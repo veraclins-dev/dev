@@ -1,0 +1,23 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { StatusButton } from './status-button';
+
+import { within, expect } from '@storybook/test';
+
+const meta: Meta<typeof StatusButton> = {
+  component: StatusButton,
+  title: 'StatusButton',
+};
+export default meta;
+type Story = StoryObj<typeof StatusButton>;
+
+export const Primary = {
+  args: {},
+};
+
+export const Heading: Story = {
+  args: {},
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.getByText(/Welcome to StatusButton!/gi)).toBeTruthy();
+  },
+};

@@ -1,0 +1,24 @@
+🩺 The doctor is checking the health of your Storybook..
+╭ Incompatible packages found ────────────────────────────╮
+│                                                         │
+│   The following packages are incompatible with          │
+│   Storybook 8.4.1 as they depend on different major     │
+│   versions of Storybook packages:                       │
+│   - @storybook/test-runner@0.13.0                       │
+│                                                         │
+│                                                         │
+│   Please consider updating your packages or             │
+│   contacting the maintainers for compatibility          │
+│   details.                                              │
+│   For more on Storybook 8 compatibility, see the        │
+│   linked GitHub issue:                                  │
+│   https://github.com/storybookjs/storybook/issues/260   │
+│   31                                                    │
+│                                                         │
+╰─────────────────────────────────────────────────────────╯
+
+You can always recheck the health of your project by running:
+npx storybook doctor
+
+Full logs are available in /Users/clintonagada/Repositories/veraclins-dev/doctor-storybook.log
+

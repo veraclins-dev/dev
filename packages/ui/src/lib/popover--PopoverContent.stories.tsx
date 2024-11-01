@@ -1,0 +1,23 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { PopoverContent } from './popover';
+
+import { within, expect } from '@storybook/test';
+
+const meta: Meta<typeof PopoverContent> = {
+  component: PopoverContent,
+  title: 'PopoverContent',
+};
+export default meta;
+type Story = StoryObj<typeof PopoverContent>;
+
+export const Primary = {
+  args: {},
+};
+
+export const Heading: Story = {
+  args: {},
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.getByText(/Welcome to PopoverContent!/gi)).toBeTruthy();
+  },
+};
