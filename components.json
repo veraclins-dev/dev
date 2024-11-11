@@ -11,6 +11,5 @@
   "aliases": {
     "components": "@veraclins-dev/ui/internal",
     "utils": "@veraclins-dev/utils"
-  },
-  "iconLibrary": "radix"
+  }
 }

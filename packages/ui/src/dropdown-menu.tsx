@@ -1,7 +1,7 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import * as React from 'react';
 
-import { Icon } from '@veraclins-dev/ui/icon.tsx';
+import { Icon } from './icon';
 import { cn } from '@veraclins-dev/utils';
 
 type WithHiddenIndicator = {
