@@ -1,7 +1,7 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { forwardRef } from 'react';
-import { Icon } from '@veraclins-dev/ui/icon.tsx';
-import { cn } from '#app/utils/misc';
+import { cn } from '@veraclins-dev/utils';
+import { Icon } from './icon';
 
 const Accordion = AccordionPrimitive.Root;
 
@@ -22,12 +22,12 @@ const AccordionTrigger = forwardRef<
       ref={ref}
       className={cn(
         'flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180',
-        className
+        className,
       )}
       {...props}
     >
       {children}
-      <Icon name={'chevron-down'} size="lg" />
+      <Icon name="chevron-down" size="lg" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));

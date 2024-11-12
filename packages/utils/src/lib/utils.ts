@@ -24,7 +24,7 @@ function formatColors(input: Config['theme'] = extendedTheme.colors) {
       colors.push(key);
     } else {
       const colorGroup = Object.keys(color).map((subKey) =>
-        subKey === 'DEFAULT' ? '' : subKey
+        subKey === 'DEFAULT' ? '' : subKey,
       );
       colors.push({ [key]: colorGroup });
     }
@@ -99,7 +99,7 @@ export function getReferrerRoute(request: Request) {
  */
 export function invariant<T>(
   condition: T,
-  message: string | (() => string)
+  message: string | (() => string),
 ): asserts condition {
   if (!condition) {
     throw new Error(typeof message === 'function' ? message() : message);
@@ -124,7 +124,7 @@ export const roundToTwo = (numb: number) =>
  * Simple debounce implementation
  */
 export function debounce<
-  Callback extends (...args: Parameters<Callback>) => void
+  Callback extends (...args: Parameters<Callback>) => void,
 >(fn: Callback, delay: number) {
   let timer: ReturnType<typeof setTimeout> | null = null;
   return (...args: Parameters<Callback>) => {
@@ -155,17 +155,6 @@ export async function downloadFile(url: string, retries = 0) {
   }
 }
 
-export const highlight = (string: string, sub: string) =>
-  sub
-    ? string.replace(new RegExp(sub, 'gi'), (match) => `<b>${match}</b>`)
-    : string;
-
-export const createMarkup = (content = '') => {
-  return {
-    __html: `${content ?? ''}`,
-  };
-};
-
 export const humanize = (message: string) => {
   if (!message) return '';
   message = message.replace(/_/g, ' '); // replaces underscore with space
@@ -175,7 +164,7 @@ export const humanize = (message: string) => {
   message = `${message.charAt(0).toUpperCase()}${message.slice(1)}`;
   return message.replace(
     /([!?.]\s+)([a-z])/g,
-    (m, $1, $2: string) => $1 + $2.toUpperCase()
+    (m, $1, $2: string) => $1 + $2.toUpperCase(),
   );
 };
 
@@ -189,9 +178,6 @@ export const substring = (string: string, length: number) => {
   }
   return sub.length < string.length ? `${sub.trim()} ...` : sub;
 };
-
-export const stripHTMLTags = (string: string) =>
-  string.replace(/<.+?>|[\r\n]/g, ' ').replace(/&nbsp;/g, ' ');
 
 export const emailToUserName = (email: string): string => {
   const [username] = email.split('@');

@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { useSpinDelay } from 'spin-delay';
-import { Icon } from '@veraclins-dev/ui/icon.tsx';
+import { Icon } from './icon';
 import { cn } from '@veraclins-dev/utils';
-import { Button, type ButtonProps } from './button.tsx';
+import { Button, type ButtonProps } from './button';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from './tooltip.tsx';
+} from './tooltip';
 
 export const StatusButton = React.forwardRef<
   HTMLButtonElement,
   ButtonProps & {
     status: 'pending' | 'success' | 'error' | 'idle';
-    message?: MaybeString;
+    message?: string;
     spinDelay?: Parameters<typeof useSpinDelay>[1];
   }
 >(({ message, status, className, children, spinDelay, ...props }, ref) => {

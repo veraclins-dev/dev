@@ -7,7 +7,7 @@ describe('utils.getErrorMessage', () => {
 
   it('should return the error message if it is an object with a message property', () => {
     expect(utils.getErrorMessage({ message: 'error message' })).toBe(
-      'error message'
+      'error message',
     );
   });
 
@@ -46,7 +46,7 @@ describe('utils.getReferrerRoute', () => {
 describe('utils.invariant', () => {
   it('should throw an error if the condition is falsey', () => {
     expect(() => utils.invariant(false, 'error message')).toThrowError(
-      'error message'
+      'error message',
     );
   });
 
@@ -101,7 +101,7 @@ describe('utils.downloadFile', () => {
     const fetchSpy = vi.spyOn(global, 'fetch').mockResolvedValueOnce(
       new Response('file content', {
         headers: { 'Content-Disposition': 'attachment; filename=file.txt' },
-      })
+      }),
     );
 
     await utils.downloadFile('https://example.com/file.txt');
@@ -112,42 +112,10 @@ describe('utils.downloadFile', () => {
     const fetchSpy = vi.spyOn(global, 'fetch').mockResolvedValueOnce(
       new Response('file content', {
         headers: { 'Content-Disposition': 'attachment; filename=file.txt' },
-      })
+      }),
     );
     await utils.downloadFile('https://example.com/file.txt', 2);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
-  });
-});
-
-describe('utils.highlight', () => {
-  it('should highlight a substring in a string', () => {
-    expect(utils.highlight('Hello World', 'World')).toBe('Hello <b>World</b>');
-  });
-
-  it('should highlight all occurrences of the substring in a string', () => {
-    expect(utils.highlight('Hello World and World', 'World')).toBe(
-      'Hello <b>World</b> and <b>World</b>'
-    );
-  });
-
-  it('should return the string if the substring is not found', () => {
-    expect(utils.highlight('Hello World', 'Universe')).toBe('Hello World');
-  });
-
-  it('should highlight a substring in a string case-insensitively', () => {
-    expect(utils.highlight('Hello World', 'world')).toBe('Hello <b>World</b>');
-  });
-});
-
-describe('utils.createMarkup', () => {
-  it('should create markup with the given content', () => {
-    expect(utils.createMarkup('Hello World')).toEqual({
-      __html: 'Hello World',
-    });
-  });
-
-  it('should create markup with an empty string if no content is provided', () => {
-    expect(utils.createMarkup()).toEqual({ __html: '' });
   });
 });
 
@@ -158,7 +126,7 @@ describe('utils.humanize', () => {
 
   it('should humanize a string with multiple underscores', () => {
     expect(utils.humanize('hello_world_and_universe')).toBe(
-      'Hello world and universe'
+      'Hello world and universe',
     );
   });
 
@@ -185,16 +153,6 @@ describe('utils.substring', () => {
   });
 });
 
-describe('utils.stripHTMLTags', () => {
-  it('should strip HTML tags from a string', () => {
-    expect(utils.stripHTMLTags('<p>Hello World</p>')).toBe(' Hello World ');
-  });
-
-  it('should replace non-breaking spaces with spaces', () => {
-    expect(utils.stripHTMLTags('Hello&nbsp;World')).toBe('Hello World');
-  });
-});
-
 describe('utils.emailToUserName', () => {
   it('should return the username from an email', () => {
     expect(utils.emailToUserName('example@email.com')).toBe('example');
@@ -215,7 +173,7 @@ describe('utils.getRandom', () => {
 
   it('should throw an error if the number of elements to take is more than the array length', () => {
     expect(() => utils.getRandom([1, 2, 3], 4)).toThrowError(
-      'getRandom: more elements taken than available'
+      'getRandom: more elements taken than available',
     );
   });
 });

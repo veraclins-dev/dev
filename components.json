@@ -9,7 +9,7 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "@veraclins-dev/ui/internal",
+    "components": "@veraclins-dev/ui",
     "utils": "@veraclins-dev/utils"
   }
 }

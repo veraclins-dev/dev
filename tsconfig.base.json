@@ -10,42 +10,18 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@veraclins-dev/editor": [
-        "packages/editor/src/index.ts"
-      ],
-      "@veraclins-dev/ui": [
-        "packages/ui/src/index.ts"
-      ],
-      "@veraclins-dev/ui/*": [
-        "packages/ui/src/*"
-      ],
-      "@veraclins-dev/utils": [
-        "packages/utils/src/index.ts"
-      ],
-      "@veraclins-dev/shadcn": [
-        "packages/shadcn/src/index.ts"
-      ],
-      "@veraclins-dev/shadutils": [
-        "packages/shadutils/src/index.ts"
-      ],
-      "@veraclins-dev/shadcn/*": [
-        "packages/shadcn/src/*"
-      ],
-      "@veraclins-dev/shadutils/*": [
-        "packages/shadutils/src/*"
-      ]
+      "@veraclins-dev/editor": ["packages/editor/src/index.ts"],
+      "@veraclins-dev/ui": ["packages/ui/src/index.ts"],
+      "@veraclins-dev/ui/*": ["packages/ui/src/*"],
+      "@veraclins-dev/ui/icons": ["packages/ui/icons/name.ts"],
+      "@veraclins-dev/utils": ["packages/utils/src/index.ts"],
+      "@veraclins-dev/utils/*": ["packages/utils/src/*"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

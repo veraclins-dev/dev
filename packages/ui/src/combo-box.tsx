@@ -1,27 +1,18 @@
-'use client';
-
 import * as React from 'react';
 
-import { type Option } from '#app/common/types.ts';
-import { Button } from '@veraclins-dev/ui/button.tsx';
+import { Button } from './button';
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-} from '@veraclins-dev/ui/commands.tsx';
-import { Icon } from '@veraclins-dev/ui/icon.tsx';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@veraclins-dev/ui/popover.tsx';
-import {
-  getOptionLabel,
-  getOptionValue,
-} from '@veraclins-dev/ui/select/select.tsx';
+} from './command';
+import { Icon } from './icon';
+import { Popover, PopoverContent, PopoverTrigger } from './popover';
+import { getOptionLabel, getOptionValue } from './select/select';
 import { cn } from '@veraclins-dev/utils';
+import { Option } from './types';
 
 interface ComboboxProps {
   options: Option[];
@@ -41,7 +32,7 @@ export function ComboboxDemo({ options }: ComboboxProps) {
           className="w-[200px] justify-between"
         >
           {getOptionLabel(
-            options.find((option) => getOptionValue(option) === value)
+            options.find((option) => getOptionValue(option) === value),
           ) ?? 'Select option...'}
           <Icon className="ml-2 shrink-0 opacity-50" name="chevron-down" />
         </Button>
@@ -65,7 +56,7 @@ export function ComboboxDemo({ options }: ComboboxProps) {
                     name="check"
                     className={cn(
                       'mr-2 h-4 w-4',
-                      value === val ? 'opacity-100' : 'opacity-0'
+                      value === val ? 'opacity-100' : 'opacity-0',
                     )}
                   />
                   {getOptionLabel(option)}
