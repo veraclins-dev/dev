@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import { Editor } from './editor';
+import { Accordion } from './accordion';
 
-describe('Editor', () => {
+describe('Accordion', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Editor />);
+    const { baseElement } = render(<Accordion type="single" />);
     expect(baseElement).toBeTruthy();
   });
 });

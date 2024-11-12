@@ -1,7 +1,7 @@
 import { type SVGProps } from 'react';
-import href from '#app/components/ui/icons/sprite.svg';
+import href from './icons/sprite.svg';
 import { ComposedTooltip } from './tooltip';
-import { type IconName } from '../icons/name';
+import { type IconName } from './icons/name';
 import { cn } from '@veraclins-dev/utils';
 
 export { href };

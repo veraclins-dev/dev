@@ -4,6 +4,7 @@
   "main": "./index.js",
   "module": "./index.mjs",
   "typings": "./index.d.ts",
+  "repository": "https://github.com/veraclins-dev/dev.git",
   "exports": {
     ".": {
       "import": "./index.mjs",

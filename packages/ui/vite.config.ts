@@ -15,8 +15,8 @@ export default defineConfig({
     iconsSpritesheet({
       withTypes: true,
       inputDir: 'svg-icons',
-      outputDir: 'icons',
-      typesOutputFile: 'icons/name.ts',
+      outputDir: 'src/icons',
+      typesOutputFile: 'src/icons/name.ts',
       cwd: process.cwd(),
       iconNameTransformer: (iconName) => iconName,
       formatter: 'prettier',
