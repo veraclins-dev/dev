@@ -9,5 +9,8 @@
       "import": "./index.js",
       "require": "./index.cjs"
     }
+  },
+  "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.1"
   }
 }
