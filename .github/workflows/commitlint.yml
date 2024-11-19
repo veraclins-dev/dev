@@ -21,7 +21,7 @@ jobs:
 
       - name: Install commitlint
         run: |
-          pnpm install conventional-changelog-conventionalcommits
+          pnpm install conventional-changelog-conventionalcommits -w
           pnpm install commitlint@latest
 
       - name: Validate current commit (last commit) with commitlint
