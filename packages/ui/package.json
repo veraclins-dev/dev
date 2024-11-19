@@ -6,8 +6,8 @@
   "repository": "https://github.com/veraclins-dev/dev.git",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "require": "./index.cjs"
+      "import": "./index.mjs",
+      "require": "./index.js"
     }
   },
   "dependencies": {
