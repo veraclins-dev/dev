@@ -1,3 +1,13 @@
+## 0.2.1 (2024-11-20)
+
+### 🩹 Fixes
+
+- add type to export in package.jon ([7952772](https://github.com/veraclins-dev/dev/commit/7952772))
+
+### ❤️  Thank You
+
+- clinton.agada
+
 ## 0.2.0 (2024-11-19)
 
 ### 🚀 Features
