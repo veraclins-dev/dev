@@ -102,7 +102,10 @@
   "release": {
     "version": {
       "preVersionCommand": "pnpm dlx nx run-many -t build",
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "generatorOptions": {
+        "packageRoot": "dist/packages/{projectName}"
+      }
     },
     "projects": [
       "packages/*"
