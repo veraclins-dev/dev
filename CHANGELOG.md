@@ -1,3 +1,17 @@
+## 0.3.0 (2024-11-20)
+
+### 🚀 Features
+
+- add skeleton ([280974f](https://github.com/veraclins-dev/dev/commit/280974f))
+
+### 🩹 Fixes
+
+- publish dist folder ([37cab8b](https://github.com/veraclins-dev/dev/commit/37cab8b))
+
+### ❤️  Thank You
+
+- clinton.agada
+
 ## 0.2.1 (2024-11-20)
 
 ### 🩹 Fixes
