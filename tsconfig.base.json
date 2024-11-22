@@ -18,7 +18,6 @@
       "@veraclins-dev/editor": ["packages/editor/src/index.ts"],
       "@veraclins-dev/ui": ["packages/ui/src/index.ts"],
       "@veraclins-dev/ui/*": ["packages/ui/src/*"],
-      "@veraclins-dev/ui/icons": ["packages/ui/icons/name.ts"],
       "@veraclins-dev/utils": ["packages/utils/src/index.ts"],
       "@veraclins-dev/utils/*": ["packages/utils/src/*"]
     }
