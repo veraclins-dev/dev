@@ -16,8 +16,6 @@
     "baseUrl": ".",
     "paths": {
       "@veraclins-dev/editor": ["packages/editor/src/index.ts"],
-      "@veraclins-dev/remix-form": ["packages/remix-form/src/index.ts"],
-      "@veraclins-dev/remix-form/server": ["packages/remix-form/src/server.ts"],
       "@veraclins-dev/ui": ["packages/ui/src/index.ts"],
       "@veraclins-dev/ui/*": ["packages/ui/src/*"],
       "@veraclins-dev/utils": ["packages/utils/src/index.ts"]

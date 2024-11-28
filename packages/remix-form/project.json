@@ -1,9 +1,0 @@
-{
-  "name": "remix-form",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/remix-form/src",
-  "projectType": "library",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project remix-form --web",
-  "targets": {}
-}
