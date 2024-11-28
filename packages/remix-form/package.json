@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/remix-form",
-  "version": "0.0.1",
+  "version": "0.4.0",
   "dependencies": {
     "@conform-to/react": "^1.2.2",
     "@conform-to/zod": "^1.2.2",

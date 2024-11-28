@@ -289,81 +289,45 @@ importers:
 
   packages/editor:
     dependencies:
-      '@tiptap/core':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/pm@2.10.2)
-      '@tiptap/extension-bubble-menu':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)
       '@tiptap/extension-code-block-lowlight':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/extension-code-block@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)(highlight.js@11.10.0)(lowlight@3.1.0)
       '@tiptap/extension-color':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/extension-text-style@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2)))
-      '@tiptap/extension-font-family':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/extension-text-style@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2)))
       '@tiptap/extension-highlight':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
       '@tiptap/extension-image':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
-      '@tiptap/extension-link':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)
-      '@tiptap/extension-mention':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)(@tiptap/suggestion@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2))
-      '@tiptap/extension-placeholder':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)
-      '@tiptap/extension-subscript':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
-      '@tiptap/extension-superscript':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
       '@tiptap/extension-table':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)
       '@tiptap/extension-table-cell':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
       '@tiptap/extension-table-header':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
       '@tiptap/extension-table-row':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
-      '@tiptap/extension-task-item':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)
-      '@tiptap/extension-task-list':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
       '@tiptap/extension-text-align':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
-      '@tiptap/extension-text-style':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
       '@tiptap/extension-underline':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
       '@tiptap/pm':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2
       '@tiptap/react':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tiptap/starter-kit':
-        specifier: ^2.10.2
+        specifier: ^2.10.1
         version: 2.10.2
-      '@tiptap/suggestion':
-        specifier: ^2.10.2
-        version: 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)
       '@types/react':
         specifier: ^18 || ^19
         version: 18.3.12
@@ -376,25 +340,6 @@ importers:
       react-dom:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
-    devDependencies:
-      type-fest:
-        specifier: ^4.27.0
-        version: 4.27.0
-
-  packages/form:
-    dependencies:
-      '@conform-to/react':
-        specifier: ^1.2.2
-        version: 1.2.2(react@18.3.1)
-      '@conform-to/zod':
-        specifier: ^1.2.2
-        version: 1.2.2(zod@3.23.8)
-      remix-utils:
-        specifier: ^7.7.0
-        version: 7.7.0(@remix-run/node@2.15.0(typescript@5.6.3))(@remix-run/react@2.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3))(@remix-run/router@1.21.0)(react@18.3.1)(zod@3.23.8)
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
 
   packages/remix-form:
     dependencies:
@@ -503,9 +448,6 @@ importers:
 
   packages/utils:
     dependencies:
-      '@conform-to/react':
-        specifier: ^1.2.2
-        version: 1.2.2(react@18.3.1)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -3811,12 +3753,6 @@ packages:
       '@tiptap/core': ^2.7.0
       '@tiptap/pm': ^2.7.0
 
-  '@tiptap/extension-font-family@2.10.2':
-    resolution: {integrity: sha512-0O3aBLgJ7QNkqFm3Ca+QnMnF3FEzvtFXICxRYXOSawjW8bYJLpA5/bl4q9cbLYOfNGU2BncFb0OjDDvye5UGVQ==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
-      '@tiptap/extension-text-style': ^2.7.0
-
   '@tiptap/extension-gapcursor@2.10.2':
     resolution: {integrity: sha512-Uj2hIYC5zRPGI9xBYFwtld8JrZ8YZXEqO7sN5VcOwt12cnSmvzga86jUKpj3WOMP/8KamLWW8m8UKHd7Qg1kMA==}
     peerDependencies:
@@ -3860,23 +3796,10 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.7.0
 
-  '@tiptap/extension-link@2.10.2':
-    resolution: {integrity: sha512-bgsWdinDPGEiMD0NgphpKaxm4l9+PbPwdLDGDFyEX069VAyuSN4y63Sn32clpwlLcibVu3JxVFClJ+o6wKtmdg==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
-      '@tiptap/pm': ^2.7.0
-
   '@tiptap/extension-list-item@2.10.2':
     resolution: {integrity: sha512-NE800m/QCk58MUcfeeCqmDjgOuiwHddaZvCCQIpErZdI2Y0io9RsSYU3HHEFPIfbKsv/ykVTYbwSweTPs1Tmxw==}
     peerDependencies:
       '@tiptap/core': ^2.7.0
-
-  '@tiptap/extension-mention@2.10.2':
-    resolution: {integrity: sha512-LluRJeQTHd+d/M7qZ5H2sDDDoKwKWS6TqOdoJbtGBue8pFmKytnO+4885iLtepbF3xZCNxEG1vb7aMUFZnVdFQ==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
-      '@tiptap/pm': ^2.7.0
-      '@tiptap/suggestion': ^2.7.0
 
   '@tiptap/extension-ordered-list@2.10.2':
     resolution: {integrity: sha512-1WYknf7/feouoBN7jW9Z6fvN9gzS1WRaOrDVkLZQ2ZLgT+Bs8H8/r1pv23q8Un6lg0mApwqnUxNhLOOrVyDkGQ==}
@@ -3888,24 +3811,8 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.7.0
 
-  '@tiptap/extension-placeholder@2.10.2':
-    resolution: {integrity: sha512-QWzih69SetWYiylQzHsK29dMR8z1ParfcEw05hy3yyWqXE1DiKEot6rOGV1xenMVEA/SNGYYhQia15Bvco95TA==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
-      '@tiptap/pm': ^2.7.0
-
   '@tiptap/extension-strike@2.10.2':
     resolution: {integrity: sha512-TjrBbO6UbXCt55hV9wRE7h5R/jLTB+z2yn2blz1TfR7wKkX3tJOnb+ptvIHEVFGJOjkZP6Xaj+aAkGVg5dKZYA==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
-
-  '@tiptap/extension-subscript@2.10.2':
-    resolution: {integrity: sha512-V6fxOl7+WWckXJfE9vx4c9Ab7PIc+lCH59WSwyp20Qe+tbEw6Qw1oP+qvwI82v3+XAhkexIlfhlMkwIoqKSTtA==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
-
-  '@tiptap/extension-superscript@2.10.2':
-    resolution: {integrity: sha512-Cw4T99cgOMEqjjFrse2q8EBE9z8kDuCyGdkVYozrVtF+PRs1oyicp+JFKxm43fV5hMHtj/r4a8soIF93ll1JnA==}
     peerDependencies:
       '@tiptap/core': ^2.7.0
 
@@ -3929,17 +3836,6 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.7.0
       '@tiptap/pm': ^2.7.0
-
-  '@tiptap/extension-task-item@2.10.2':
-    resolution: {integrity: sha512-FArCQ+j3QYwF6CbexkRJUPTgfMsFJ3uYCFHtJFQbMp8KqGHh19R3Rvc+Z4PFHX3SD6dbBcSQFoiL2mUTKFj8XA==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
-      '@tiptap/pm': ^2.7.0
-
-  '@tiptap/extension-task-list@2.10.2':
-    resolution: {integrity: sha512-q4FJGjYL2n34XyjC/k9C1Fyx0M4DavyNLq0v3Gqa9/exZD6d4uUYHUHcFvZXOBYrkpVh+4fxIOQvcyz54WVKYw==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
 
   '@tiptap/extension-text-align@2.10.2':
     resolution: {integrity: sha512-eDvks4fUZuOuAhWD8/HJ070g2OQlEnBpak2+huvzPhGdYP81vhx5OWk/rfF6WzLzxLwnDND2zvk3YL+RBqERZQ==}
@@ -3974,12 +3870,6 @@ packages:
 
   '@tiptap/starter-kit@2.10.2':
     resolution: {integrity: sha512-YbS9P3zvLhfEWnCPMcvCwK/+3XjMgZX73D1qMu9jVRHtQGI2DMk9u42KWAMLQAMBUESMcIeGxJ9G5IWJO0PsyA==}
-
-  '@tiptap/suggestion@2.10.2':
-    resolution: {integrity: sha512-HaLhKEH0bJ6ojXdsxSsZFlM9BYJ3Xaph7CbHA4Eq7ivR9Y0YylQvt6er40Eg5VEzMJQPNYlSkYxPLkzSCqDXqw==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
-      '@tiptap/pm': ^2.7.0
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -7831,9 +7721,6 @@ packages:
 
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
-
-  linkifyjs@4.1.4:
-    resolution: {integrity: sha512-0/NxkHNpiJ0k9VrYCkAn9OtU1eu8xEr1tCCpDtSsVRm/SF0xAak2Gzv3QimSfgUgqLBCDlfhMbu73XvaEHUTPQ==}
 
   loader-runner@4.3.0:
     resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==}
@@ -15445,11 +15332,6 @@ snapshots:
       '@tiptap/pm': 2.10.2
       tippy.js: 6.3.7
 
-  '@tiptap/extension-font-family@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/extension-text-style@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2)))':
-    dependencies:
-      '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
-      '@tiptap/extension-text-style': 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
-
   '@tiptap/extension-gapcursor@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)':
     dependencies:
       '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
@@ -15485,21 +15367,9 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
 
-  '@tiptap/extension-link@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)':
-    dependencies:
-      '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
-      '@tiptap/pm': 2.10.2
-      linkifyjs: 4.1.4
-
   '@tiptap/extension-list-item@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))':
     dependencies:
       '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
-
-  '@tiptap/extension-mention@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)(@tiptap/suggestion@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2))':
-    dependencies:
-      '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
-      '@tiptap/pm': 2.10.2
-      '@tiptap/suggestion': 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)
 
   '@tiptap/extension-ordered-list@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))':
     dependencies:
@@ -15509,20 +15379,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
 
-  '@tiptap/extension-placeholder@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)':
-    dependencies:
-      '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
-      '@tiptap/pm': 2.10.2
-
   '@tiptap/extension-strike@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))':
-    dependencies:
-      '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
-
-  '@tiptap/extension-subscript@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))':
-    dependencies:
-      '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
-
-  '@tiptap/extension-superscript@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))':
     dependencies:
       '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
 
@@ -15542,15 +15399,6 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
       '@tiptap/pm': 2.10.2
-
-  '@tiptap/extension-task-item@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)':
-    dependencies:
-      '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
-      '@tiptap/pm': 2.10.2
-
-  '@tiptap/extension-task-list@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))':
-    dependencies:
-      '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
 
   '@tiptap/extension-text-align@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))':
     dependencies:
@@ -15623,11 +15471,6 @@ snapshots:
       '@tiptap/extension-strike': 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
       '@tiptap/extension-text': 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
       '@tiptap/extension-text-style': 2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))
-      '@tiptap/pm': 2.10.2
-
-  '@tiptap/suggestion@2.10.2(@tiptap/core@2.10.2(@tiptap/pm@2.10.2))(@tiptap/pm@2.10.2)':
-    dependencies:
-      '@tiptap/core': 2.10.2(@tiptap/pm@2.10.2)
       '@tiptap/pm': 2.10.2
 
   '@tokenizer/token@0.3.0': {}
@@ -20424,8 +20267,6 @@ snapshots:
   linkify-it@5.0.0:
     dependencies:
       uc.micro: 2.1.0
-
-  linkifyjs@4.1.4: {}
 
   loader-runner@4.3.0: {}
 

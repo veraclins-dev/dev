@@ -1,3 +1,17 @@
+## 0.4.0 (2024-11-28)
+
+### 🚀 Features
+
+- add remix form, a test remix app and a number of new ui components ([540b541](https://github.com/veraclins-dev/dev/commit/540b541))
+
+### 🩹 Fixes
+
+- use workspace versioning ([65e3567](https://github.com/veraclins-dev/dev/commit/65e3567))
+
+### ❤️  Thank You
+
+- clinton.agada
+
 ## 0.3.0 (2024-11-20)
 
 ### 🚀 Features
