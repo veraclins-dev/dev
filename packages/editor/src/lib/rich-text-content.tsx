@@ -1,0 +1,30 @@
+import { EditorContent } from '@tiptap/react';
+import { cn } from '@veraclins-dev/utils';
+import { useRichTextEditorContext } from './rich-text-editor-provider';
+
+export type RichTextContentProps = {
+  /** Optional additional className to provide to the root element. */
+  className?: string;
+};
+
+/**
+ * A component for rendering a MUI-styled version of Tiptap rich text editor
+ * content.
+ *
+ * Must be a child of the RichTextEditorProvider so that the `editor` context is
+ * available.
+ */
+export function RichTextContent({ className }: RichTextContentProps) {
+  const editor = useRichTextEditorContext();
+
+  return (
+    <div
+      className={cn(
+        'max-h-64 overflow-y-scroll rounded-lg rounded-t-none bg-input px-5 py-2',
+        className,
+      )}
+    >
+      <EditorContent editor={editor} />
+    </div>
+  );
+}
