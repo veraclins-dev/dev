@@ -1,3 +1,13 @@
+## 0.5.0 (2024-11-28)
+
+### 🚀 Features
+
+- add form components to the ui library ([e2300fc](https://github.com/veraclins-dev/dev/commit/e2300fc))
+
+### ❤️ Thank You
+
+- clinton.agada
+
 ## 0.4.0 (2024-11-28)
 
 ### 🚀 Features
