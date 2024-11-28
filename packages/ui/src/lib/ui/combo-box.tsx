@@ -12,7 +12,7 @@ import { Icon } from './icon';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';
 import { getOptionLabel, getOptionValue } from './select/select';
 import { cn } from '@veraclins-dev/utils';
-import { Option } from './types';
+import { Option } from '../../types';
 
 interface ComboboxProps {
   options: Option[];

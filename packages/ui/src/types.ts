@@ -5,3 +5,7 @@ export interface ObjectOption {
 }
 
 export type Option = string | ObjectOption;
+
+export type Measurable = {
+  getBoundingClientRect(): DOMRect;
+};

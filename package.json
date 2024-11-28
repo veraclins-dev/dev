@@ -18,11 +18,15 @@
     "@nx/js": "20.1.2",
     "@nx/playwright": "20.1.2",
     "@nx/react": "20.1.2",
+    "@nx/remix": "20.1.2",
     "@nx/storybook": "20.1.2",
     "@nx/vite": "20.1.2",
     "@nx/web": "20.1.2",
     "@nx/workspace": "20.1.2",
     "@playwright/test": "^1.49.0",
+    "@remix-run/dev": "^2.14.0",
+    "@remix-run/node": "^2.14.0",
+    "@remix-run/testing": "^2.14.0",
     "@storybook/addon-essentials": "8.4.5",
     "@storybook/addon-interactions": "^8.4.5",
     "@storybook/core-server": "8.4.5",
@@ -34,7 +38,9 @@
     "@swc/cli": "~0.5.1",
     "@swc/core": "~1.9.3",
     "@swc/helpers": "~0.5.15",
+    "@testing-library/jest-dom": "6.4.2",
     "@testing-library/react": "16.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.14",
     "@types/node": "22.9.1",
     "@types/react": "18.3.12",
@@ -81,5 +87,11 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "@remix-run/react": "^2.14.0",
+    "@remix-run/serve": "^2.14.0",
+    "isbot": "^4.4.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
 }
