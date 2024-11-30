@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import { cn } from '@veraclins-dev/utils';
 
 type ResizableImageResizerProps = {
@@ -48,7 +49,7 @@ export function ResizableImageResizer({
     // closest, as described here https://stackoverflow.com/a/43022983/4543977,
     // but we don't do keyboard-based resizing at this time so it doesn't make
     // sense to have it keyboard focusable)
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+     
     <div
       // here, and allow users to override the aria-label when that happens to
       // support localization.

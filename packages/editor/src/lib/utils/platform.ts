@@ -39,7 +39,7 @@ export function isTouchDevice(): boolean {
 		// https://hacks.mozilla.org/2013/04/detecting-touch-its-the-why-not-the-how/
 		// (and https://stackoverflow.com/a/4819886/4543977)
 		isTouchDeviceResult =
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+			 
 			(window && 'ontouchstart' in window) ||
 			navigator.maxTouchPoints > 0 ||
 			// @ts-expect-error: msMaxTouchPoints is IE-specific, so needs to be ignored

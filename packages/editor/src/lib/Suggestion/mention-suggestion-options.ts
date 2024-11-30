@@ -1,10 +1,8 @@
 import { type MentionOptions } from '@tiptap/extension-mention';
 import { ReactRenderer } from '@tiptap/react';
 import tippy, { type Instance as TippyInstance } from 'tippy.js';
-import {
-  SuggestionList,
-  type SuggestionListRef,
-} from '#app/components/rich-editor/Suggestion/suggestion-list';
+
+import { SuggestionList, type SuggestionListRef } from './suggestion-list';
 
 export type MentionSuggestion = {
   id: string;
@@ -92,7 +90,6 @@ export const mentionSuggestionOptions: MentionOptions['suggestion'] = {
           props,
           editor: props.editor,
         });
-        // @ts-ignore
         popup = tippy('body', {
           getReferenceClientRect: () =>
             props.clientRect?.() ?? DOM_RECT_FALLBACK,

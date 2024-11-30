@@ -1,7 +1,8 @@
 import { type Editor } from '@tiptap/core';
 import { Heading, type HeadingOptions } from '@tiptap/extension-heading';
 import { ReactNodeViewRenderer } from '@tiptap/react';
-import { HeadingWithAnchorComponent } from '#app/components/rich-editor/extensions/components/heading-with-anchor';
+
+import { HeadingWithAnchorComponent } from './components/heading-with-anchor';
 
 export type HeadingWithAnchorOptions = HeadingOptions & {
   /**
@@ -34,7 +35,7 @@ export const HeadingWithAnchor = Heading.extend<HeadingWithAnchorOptions>({
     return {
       // Tiptap claims this.parent can be undefined, so disable this eslint rule
       // https://tiptap.dev/guide/custom-extensions/#extend-existing-attributes
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
       ...this.parent?.(),
       scrollToAnchorOnMount: true,
     };

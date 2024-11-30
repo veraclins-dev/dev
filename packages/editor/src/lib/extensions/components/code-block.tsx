@@ -1,13 +1,18 @@
-import { NodeViewContent, NodeViewWrapper } from '@tiptap/react';
+import {
+  NodeViewContent,
+  type NodeViewProps,
+  NodeViewWrapper,
+} from '@tiptap/react';
 import React from 'react';
-import { Select } from '#app/components/ui/select/select';
 
-interface Props {
-  node: {
-    attrs: { language: string };
+import { Select } from '@veraclins-dev/ui';
+
+interface Props extends NodeViewProps {
+  node: NodeViewProps['node'] & {
+    attrs: { language?: string };
   };
-  updateAttributes: (attrs: { language: string }) => void;
-  extension: {
+  updateAttributes: (attrs: { language?: string }) => void;
+  extension: Omit<NodeViewProps['extension'], 'options'> & {
     options: {
       lowlight: {
         listLanguages: () => string[];

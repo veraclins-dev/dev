@@ -1,10 +1,6 @@
-/// <reference types="@tiptap/extension-code-block" />
+import { useRichTextEditorContext } from '../rich-text-editor-provider';
 
-import {
-  MenuButton,
-  type MenuButtonProps,
-} from '#app/components/rich-editor/controls/menu-button';
-import { useRichTextEditorContext } from '#app/components/rich-editor/rich-text-editor-provider';
+import { MenuButton, type MenuButtonProps } from './menu-button';
 
 export type MenuButtonCodeBlockProps = Partial<MenuButtonProps>;
 

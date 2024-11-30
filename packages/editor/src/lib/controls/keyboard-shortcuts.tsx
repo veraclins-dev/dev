@@ -1,9 +1,7 @@
-import { type WithShortcuts } from '#app/common/types.ts';
-import {
-  getAltShortcutKey,
-  getModShortcutKey,
-} from '#app/components/rich-editor/utils/platform.ts';
 import { cn } from '@veraclins-dev/utils';
+
+import { type WithShortcuts } from '../types';
+import { getAltShortcutKey, getModShortcutKey } from '../utils/platform';
 
 interface KeyboardShortcutsProps extends Required<WithShortcuts> {
   className?: string;

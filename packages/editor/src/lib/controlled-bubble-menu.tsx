@@ -1,11 +1,12 @@
-import { type Editor, posToDOMRect, isNodeSelection } from '@tiptap/core';
+import { type Editor, isNodeSelection, posToDOMRect } from '@tiptap/react';
 import { useMemo } from 'react';
+
 import {
   Popover,
   PopoverAnchor,
   type PopoverAnchorProps,
   PopoverContent,
-} from '@veraclins-dev/ui/popover';
+} from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 export type ControlledBubbleMenuProps = {

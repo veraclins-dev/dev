@@ -1,5 +1,7 @@
 import { EditorContent } from '@tiptap/react';
+
 import { cn } from '@veraclins-dev/utils';
+
 import { useRichTextEditorContext } from './rich-text-editor-provider';
 
 export type RichTextContentProps = {

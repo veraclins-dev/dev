@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
+
+import {
+  ButtonBase,
+  PopoverContent,
+  type PopoverProps,
+} from '@veraclins-dev/ui';
+import { cn } from '@veraclins-dev/utils';
+
 import { ColorPicker } from '../controls/color-picker';
 import { type MenuButtonColorPickerProps } from '../controls/menu-button-color-picker';
-import { Button } from '@veraclins-dev/ui/button';
-import { PopoverContent, type PopoverProps } from '@veraclins-dev/ui/popover';
-import { cn } from '@veraclins-dev/utils';
 
 export interface ColorPickerPopperBodyProps
   extends Pick<
@@ -66,17 +71,17 @@ export function ColorPickerPopperBody({
       />
 
       <div className="mt-1 flex justify-between">
-        <Button onClick={() => onSave('')} type="button">
+        <ButtonBase onClick={() => onSave('')} type="button">
           {removeColorButton}
-        </Button>
+        </ButtonBase>
 
-        <Button onClick={onCancel} type="button">
+        <ButtonBase onClick={onCancel} type="button">
           {cancelButton}
-        </Button>
+        </ButtonBase>
 
-        <Button onClick={() => onSave(localColor)} type="button">
+        <ButtonBase onClick={() => onSave(localColor)} type="button">
           {saveButton}
-        </Button>
+        </ButtonBase>
       </div>
     </>
   );

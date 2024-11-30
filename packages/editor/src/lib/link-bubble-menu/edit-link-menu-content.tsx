@@ -1,15 +1,15 @@
-import { getMarkRange, getMarkType, type Editor } from '@tiptap/core';
-import encodeurl from 'encodeurl';
+import { type Editor, getMarkRange, getMarkType } from '@tiptap/core';
 import {
+  type ReactNode,
   useCallback,
   useEffect,
   useRef,
   useState,
-  type ReactNode,
 } from 'react';
-import { Button } from '#app/components/button';
-import { TextField } from '#app/components/text-field';
-import useKeyDown from '#app/hooks/useKeyDown.ts';
+
+import { Button, TextField } from '@veraclins-dev/ui';
+
+import useKeyDown from '../hooks/useKeyDown';
 
 export type EditLinkMenuContentProps = {
   editor: Editor;
@@ -124,7 +124,7 @@ export function EditLinkMenuContent({
     // already-encoded sequences, they're not double-encoded and thus broken.
     // (Useful for instance when a user pastes a URL into the form with complex
     // and already-encoded parameters.)
-    setHrefValue(encodeurl(currentHrefValue));
+    setHrefValue(new URL(currentHrefValue).toString());
   }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);

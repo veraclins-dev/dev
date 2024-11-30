@@ -1,11 +1,10 @@
 import { type Level } from '@tiptap/extension-heading';
 import { type Editor } from '@tiptap/react';
-import {
-  MenuSelect,
-  type Option,
-} from '#app/components/rich-editor/controls/menu-select';
-import { useRichTextEditorContext } from '#app/components/rich-editor/rich-text-editor-provider';
-import { getAttributesForEachSelected } from '../utils/get-attributes-for-each-selected.ts';
+
+import { useRichTextEditorContext } from '../rich-text-editor-provider';
+import { getAttributesForEachSelected } from '../utils/get-attributes-for-each-selected';
+
+import { MenuSelect, type Option } from './menu-select';
 
 type headingValue = `heading-${Level}`;
 

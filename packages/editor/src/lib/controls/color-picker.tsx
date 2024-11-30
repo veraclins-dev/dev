@@ -1,8 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { HexAlphaColorPicker, HexColorPicker } from 'react-colorful';
-import { ColorSwatchButton } from '#app/components/rich-editor/controls/color-swatch-button';
-import { colorToHex as colorToHexDefault } from '#app/components/rich-editor/utils/color.ts';
-import { TextField } from '#app/components/text-field';
+
+import { TextField } from '@veraclins-dev/ui';
+
+import { colorToHex as colorToHexDefault } from '../utils/color';
+
+import { ColorSwatchButton } from './color-swatch-button';
 
 export type ColorChangeSource = 'gradient' | 'text' | 'swatch';
 

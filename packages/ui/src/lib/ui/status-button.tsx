@@ -3,7 +3,7 @@ import { useSpinDelay } from 'spin-delay';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { ButtonBase, type ButtonProps } from './button';
+import { ButtonBase, type ButtonBaseProps } from './button';
 import { Icon } from './icon';
 import {
   Tooltip,
@@ -14,7 +14,7 @@ import {
 
 export const StatusButton = React.forwardRef<
   HTMLButtonElement,
-  ButtonProps & {
+  ButtonBaseProps & {
     status: 'pending' | 'success' | 'error' | 'idle';
     message?: string;
     spinDelay?: Parameters<typeof useSpinDelay>[1];

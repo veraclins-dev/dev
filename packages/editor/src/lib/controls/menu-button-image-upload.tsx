@@ -1,15 +1,14 @@
 import { type Editor } from '@tiptap/core';
-import { useRef, type ComponentPropsWithoutRef } from 'react';
+import { type ComponentPropsWithoutRef, useRef } from 'react';
 import { type SetOptional } from 'type-fest';
+
+import { useRichTextEditorContext } from '../rich-text-editor-provider';
+import { type ImageNodeAttributes, insertImages } from '../utils/images';
+
 import {
   MenuButtonAddImage,
   type MenuButtonAddImageProps,
-} from '#app/components/rich-editor/controls/menu-button-add-image';
-import { useRichTextEditorContext } from '#app/components/rich-editor/rich-text-editor-provider';
-import {
-  type ImageNodeAttributes,
-  insertImages,
-} from '#app/components/rich-editor/utils/images.ts';
+} from './menu-button-add-image';
 
 export interface MenuButtonImageUploadProps
   extends SetOptional<MenuButtonAddImageProps, 'onClick'> {

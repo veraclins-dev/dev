@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { LinkBubbleMenu } from './index';
-import { within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
+import type { Meta, StoryObj } from '@storybook/react';
+import { within } from '@storybook/testing-library';
+
+import { LinkBubbleMenu } from './index';
 
 const meta: Meta<typeof LinkBubbleMenu> = {
   component: LinkBubbleMenu,

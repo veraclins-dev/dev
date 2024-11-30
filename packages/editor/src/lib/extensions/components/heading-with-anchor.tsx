@@ -7,15 +7,16 @@ import { type Heading, type Level } from '@tiptap/extension-heading';
 import { type Node as ProseMirrorNode } from '@tiptap/pm/model';
 import { NodeViewContent, NodeViewWrapper } from '@tiptap/react';
 import { useMemo } from 'react';
-import { Icon } from '#app/components/ui/icon';
-import { slugify } from '#app/utils/slugify.ts';
+
+import { Icon } from '@veraclins-dev/ui';
+import { slugify } from '@veraclins-dev/utils';
 
 // Based on
 // https://github.com/ueberdosis/tiptap/blob/c9eb6a6299796450c7c1cfdc3552d76070c78c65/packages/extension-heading/src/heading.ts#L41-L48
 // We extend Record<string, unknown>, since we may inherit other global
 // attributes as well, aligned with ProseMirrorNode.attrs typing.
 export interface HeadingNodeAttributes extends Record<string, unknown> {
-  level: Level;
+  level?: Level;
 }
 
 interface HeadingNode extends ProseMirrorNode {
@@ -31,7 +32,7 @@ export function HeadingWithAnchorComponent({ editor, node, extension }: Props) {
   // Some of the logic here is based on the renderHTML definition from the
   // original Heading Node
   // (https://github.com/ueberdosis/tiptap/blob/c9eb6a6299796450c7c1cfdc3552d76070c78c65/packages/extension-heading/src/heading.ts#L58-L65)
-  const hasLevel = extension.options.levels.includes(node.attrs.level);
+  const hasLevel = extension.options.levels.includes(node.attrs.level as Level);
   const level = hasLevel ? node.attrs.level : extension.options.levels[0];
   const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
   // Create an anchor ID based on the text content of the header (like
@@ -70,7 +71,6 @@ export function HeadingWithAnchorComponent({ editor, node, extension }: Props) {
       the dimensions and location of the its content. */}
       <span className="relative inline-block">
         <a
-          // eslint-disable-next-line remix-react-routes/use-link-for-routes
           href={`#${headingId}`}
           contentEditable={false}
           className="absolute -left-5 z-50 no-underline opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100"

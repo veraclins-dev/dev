@@ -1,14 +1,12 @@
 import { type Editor } from '@tiptap/core';
 import { type ReactNode } from 'react';
 import { type Except } from 'type-fest';
-import {
-  MenuSelect,
-  type MenuSelectProps,
-  type Option,
-} from '#app/components/rich-editor/controls/menu-select';
-import { type FontSizeAttrs } from '#app/components/rich-editor/extensions/font-size.ts';
-import { useRichTextEditorContext } from '#app/components/rich-editor/rich-text-editor-provider';
-import { getAttributesForEachSelected } from '#app/components/rich-editor/utils/get-attributes-for-each-selected.ts';
+
+import { type FontSizeAttrs } from '../extensions/font-size';
+import { useRichTextEditorContext } from '../rich-text-editor-provider';
+import { getAttributesForEachSelected } from '../utils/get-attributes-for-each-selected';
+
+import { MenuSelect, type MenuSelectProps, type Option } from './menu-select';
 
 function stripPxFromValue(value: string): string {
   return value.replace('px', '');

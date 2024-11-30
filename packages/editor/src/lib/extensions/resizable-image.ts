@@ -1,11 +1,12 @@
 import {
+  type ExtendedRegExpMatchArray,
   InputRule,
   mergeAttributes,
-  type ExtendedRegExpMatchArray,
 } from '@tiptap/core';
 import { Image, type ImageOptions } from '@tiptap/extension-image';
 import { ReactNodeViewRenderer } from '@tiptap/react';
-import { ResizableImageComponent } from '#app/components/rich-editor/extensions/components/resizable-image';
+
+import { ResizableImageComponent } from './components/resizable-image';
 
 export type ResizableImageOptions = ImageOptions & {
   /**
@@ -31,7 +32,7 @@ export const ResizableImage = Image.extend<ResizableImageOptions>({
     return {
       // Tiptap claims this.parent can be undefined, so disable this eslint rule
       // https://tiptap.dev/guide/custom-extensions/#extend-existing-attributes
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
       ...this.parent?.(),
 
       // By default, allow all images where `src` is non-empty

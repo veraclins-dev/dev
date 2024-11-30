@@ -1,9 +1,7 @@
-/// <reference types="@tiptap/extension-bold" />
-import {
-  MenuButton,
-  type MenuButtonProps,
-} from '#app/components/rich-editor/controls/menu-button';
-import { useRichTextEditorContext } from '#app/components/rich-editor/rich-text-editor-provider';
+/// <reference types="@tiptap/starter-kit" />
+import { useRichTextEditorContext } from '../rich-text-editor-provider';
+
+import { MenuButton, type MenuButtonProps } from './menu-button';
 
 export type MenuButtonBoldProps = Partial<MenuButtonProps>;
 

@@ -1,8 +1,7 @@
-import { type SelectProps } from '@radix-ui/react-select';
 import React from 'react';
-import { type WithShortcuts, type ObjectOption } from '#app/common/types.ts';
-import { KeyboardShortcuts } from '#app/components/rich-editor/controls/keyboard-shortcuts';
+
 import {
+  type BaseSelectProps,
   DropdownMenu,
   DropdownMenuArrow,
   DropdownMenuContent,
@@ -10,20 +9,23 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from '#app/components/ui/dropdown-menu';
-import { Icon } from '#app/components/ui/icon';
-import {
   getOptionLabel,
   getOptionValue,
-} from '#app/components/ui/select/select';
+  Icon,
+  type ObjectOption,
+} from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
+
+import { type WithShortcuts } from '../types';
+
+import { KeyboardShortcuts } from './keyboard-shortcuts';
 
 export interface Option extends ObjectOption, WithShortcuts {
   label: React.ReactElement | React.ReactNode;
   className?: string;
 }
 
-export interface MenuSelectProps extends SelectProps {
+export interface MenuSelectProps extends BaseSelectProps {
   options: Option[];
   className?: string;
   defaultLabel?: string;

@@ -1,4 +1,5 @@
 import { useRichTextEditorContext } from '../rich-text-editor-provider';
+
 import { MenuButton, type MenuButtonProps } from './menu-button';
 
 export type MenuButtonIndentProps = Partial<MenuButtonProps>;

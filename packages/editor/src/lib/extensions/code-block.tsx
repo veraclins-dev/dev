@@ -7,7 +7,8 @@ import php from 'highlight.js/lib/languages/php';
 import ts from 'highlight.js/lib/languages/typescript';
 import html from 'highlight.js/lib/languages/xml';
 import { createLowlight } from 'lowlight';
-import { CodeBlock } from '#app/components/rich-editor/extensions/components/code-block';
+
+import { CodeBlock } from './components/code-block';
 
 const lowlight = createLowlight();
 

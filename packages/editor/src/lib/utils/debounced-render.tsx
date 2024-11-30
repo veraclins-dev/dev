@@ -1,21 +1,21 @@
-import { type DebounceSettings } from 'lodash'
-import debounce from 'lodash.debounce'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react';
+
+import { debounce, type DebounceSettings } from '@veraclins-dev/utils';
 
 export type DebounceRenderProps = {
-	/**
-	 * The wait in ms for debouncing. Any changes to this prop after initial
-	 * render are ignored.
-	 */
-	wait?: number
-	/**
-	 * Options to use for lodash's debounce call. Any changes to this prop after
-	 * initial render are ignored.
-	 */
-	options?: DebounceSettings
-	/** Content to render at debounced intervals as props change */
-	children: React.ReactNode
-}
+  /**
+   * The wait in ms for debouncing. Any changes to this prop after initial
+   * render are ignored.
+   */
+  wait?: number;
+  /**
+   * Options to use for lodash's debounce call. Any changes to this prop after
+   * initial render are ignored.
+   */
+  options?: DebounceSettings;
+  /** Content to render at debounced intervals as props change */
+  children: React.ReactNode;
+};
 
 /**
  * This component debounces the rendering of its children.
@@ -43,23 +43,23 @@ export type DebounceRenderProps = {
  * defaults below are a reasonable enough balance.
  */
 export const DebounceRender = (props: DebounceRenderProps) => {
-	const {
-		children,
-		wait = 170,
-		options = { leading: true, trailing: true, maxWait: 300 },
-	} = props
+  const {
+    children,
+    wait = 170,
+    options = { leading: true, trailing: true, maxWait: 300 },
+  } = props;
 
-	const [, updateState] = useState<any>()
-	const forceUpdate = useCallback(() => updateState({}), [])
+  const [, updateState] = useState<any>();
+  const forceUpdate = useCallback(() => updateState({}), []);
 
-	const updateDebounced = useCallback(debounce(forceUpdate, wait, options), [])
+  const updateDebounced = useCallback(debounce(forceUpdate, wait, options), []);
 
-	useEffect(() => {
-		updateDebounced()
-		return () => {
-			updateDebounced.cancel()
-		}
-	}, [updateDebounced])
+  useEffect(() => {
+    updateDebounced();
+    return () => {
+      updateDebounced.cancel();
+    };
+  }, [updateDebounced]);
 
-	return children
-}
+  return children;
+};

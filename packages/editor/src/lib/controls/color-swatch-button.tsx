@@ -1,12 +1,14 @@
 import {
-  forwardRef,
   type ComponentPropsWithoutRef,
   type ElementRef,
+  forwardRef,
 } from 'react';
 import { type Except } from 'type-fest';
-import { getContrastText } from '#app/components/rich-editor/utils/color.ts';
-import { Icon } from '#app/components/ui/icon';
+
+import { Icon } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
+
+import { getContrastText } from '../utils/color';
 
 export interface ColorSwatchButtonProps
   // Omit the default "color" prop so that it can't be confused for the `value`

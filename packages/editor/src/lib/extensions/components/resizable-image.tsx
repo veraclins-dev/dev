@@ -1,24 +1,25 @@
 import { type NodeViewProps } from '@tiptap/core';
 import { type Node as ProseMirrorNode } from '@tiptap/pm/model';
 import { NodeViewWrapper } from '@tiptap/react';
-import throttle from 'lodash.throttle';
 import { useMemo, useRef } from 'react';
-import { ResizableImageResizer } from '#app/components/rich-editor/extensions/components/resizable-image-resizer';
-import { cn } from '@veraclins-dev/utils';
+
+import { cn, throttle } from '@veraclins-dev/utils';
+
+import { ResizableImageResizer } from '../components/resizable-image-resizer';
 
 // Based on
 // https://github.com/ueberdosis/tiptap/blob/ab4a0e2507b4b92c46d293a0bb06bb00a04af6e0/packages/extension-image/src/image.ts#L47-L59
 // We extend Record<string, unknown>, since we may inherit other global
 // attributes as well, aligned with ProseMirrorNode.attrs typing.
 interface ImageNodeAttributes extends Record<string, unknown> {
-  src: string;
+  src?: string;
   alt?: string | null;
   title?: string | null;
 }
 
 interface ResizableImageNodeAttributes extends ImageNodeAttributes {
-  width: string | number | null;
-  aspectRatio: string | null;
+  width?: string | number | null;
+  aspectRatio?: string | null;
 }
 
 interface ResizableImageNode extends ProseMirrorNode {
@@ -113,9 +114,8 @@ export function ResizableImageComponent({
           height="auto"
           width={attrs.width ? attrs.width : undefined}
           {...{
-            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
             alt: attrs.alt || undefined,
-            // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+
             title: attrs.title || undefined,
           }}
           className={cn('block', {

@@ -1,11 +1,12 @@
-import { useEditor, type Editor, type EditorOptions } from '@tiptap/react';
+import { type Editor, type EditorOptions, useEditor } from '@tiptap/react';
 import {
+  type DependencyList,
   forwardRef,
   useEffect,
   useImperativeHandle,
-  type DependencyList,
 } from 'react';
 import { type Except, type SetRequired } from 'type-fest';
+
 import { RichTextEditorProvider } from './rich-text-editor-provider';
 import { RichTextField, type RichTextFieldProps } from './rich-text-field';
 

@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { ButtonBase, type ButtonProps as ButtonBaseProps } from '../ui/button';
+import { ButtonBase, type ButtonBaseProps } from '../ui/button';
 import { ComposedTooltip } from '../ui/tooltip';
 
 export interface ButtonProps extends ButtonBaseProps {

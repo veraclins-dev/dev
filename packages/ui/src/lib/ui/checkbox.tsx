@@ -1,8 +1,9 @@
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import * as React from 'react';
 
-import { Icon } from './icon';
 import { cn } from '@veraclins-dev/utils';
+
+import { Icon } from './icon';
 
 export type CheckboxProps = Omit<
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
@@ -20,7 +21,7 @@ const Checkbox = React.forwardRef<
     ref={ref}
     className={cn(
       'peer h-4 w-4 shrink-0 rounded-sm border ring-offset-background focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-secondary data-[state=checked]:text-primary-foreground',
-      className
+      className,
     )}
     {...props}
   >

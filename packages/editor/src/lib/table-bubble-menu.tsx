@@ -1,9 +1,10 @@
 import { findParentNodeClosestToPos, posToDOMRect } from '@tiptap/core';
 import { useMemo } from 'react';
-import { ControlledBubbleMenu } from '#app/components/rich-editor/controlled-bubble-menu';
-import { TableMenuControls } from '#app/components/rich-editor/controls/table-menu-controls';
-import { useRichTextEditorContext } from '#app/components/rich-editor/rich-text-editor-provider';
-import { DebounceRender } from '#app/components/rich-editor/utils/debounced-render';
+
+import { TableMenuControls } from './controls/table-menu-controls';
+import { DebounceRender } from './utils/debounced-render';
+import { ControlledBubbleMenu } from './controlled-bubble-menu';
+import { useRichTextEditorContext } from './rich-text-editor-provider';
 
 export function TableBubbleMenu() {
   const editor = useRichTextEditorContext();

@@ -31,13 +31,14 @@ import { TextAlign } from '@tiptap/extension-text-align';
 import { TextStyle } from '@tiptap/extension-text-style';
 import { Underline } from '@tiptap/extension-underline';
 import { useMemo } from 'react';
-import { CodeBlockExtension } from '#app/components/rich-editor/extensions/code-block';
-import { FontSize } from '#app/components/rich-editor/extensions/font-size.ts';
-import { HeadingWithAnchor } from '#app/components/rich-editor/extensions/heading-with-anchor.ts';
-import { LinkBubbleMenuHandler } from '#app/components/rich-editor/extensions/link-bubble-menu-handler.ts';
-import { ResizableImage } from '#app/components/rich-editor/extensions/resizable-image.ts';
-import { TableImproved } from '#app/components/rich-editor/extensions/table-improved.ts';
-import { mentionSuggestionOptions } from '#app/components/rich-editor/Suggestion/mention-suggestion-options.ts';
+
+import { CodeBlockExtension } from '../extensions/code-block';
+import { FontSize } from '../extensions/font-size';
+import { HeadingWithAnchor } from '../extensions/heading-with-anchor';
+import { LinkBubbleMenuHandler } from '../extensions/link-bubble-menu-handler';
+import { ResizableImage } from '../extensions/resizable-image';
+import { TableImproved } from '../extensions/table-improved';
+import { mentionSuggestionOptions } from '../Suggestion/mention-suggestion-options';
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */

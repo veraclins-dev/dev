@@ -1,7 +1,9 @@
 import { type TextAlignOptions } from '@tiptap/extension-text-align';
 import { useCallback, useMemo } from 'react';
 import { type Except } from 'type-fest';
-import { useRichTextEditorContext } from '#app/components/rich-editor/rich-text-editor-provider';
+
+import { useRichTextEditorContext } from '../rich-text-editor-provider';
+
 import {
   MenuSelectIcons,
   type MenuSelectProps,

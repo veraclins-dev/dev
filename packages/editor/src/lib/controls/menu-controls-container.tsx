@@ -1,9 +1,11 @@
 import { type Except } from 'type-fest';
+
+import { cn } from '@veraclins-dev/utils';
+
 import {
   DebounceRender,
   type DebounceRenderProps,
-} from '#app/components/rich-editor/utils/debounced-render';
-import { cn } from '@veraclins-dev/utils';
+} from '../utils/debounced-render';
 
 export type MenuControlsContainerProps = {
   /** The set of controls (buttons, etc) to include in the menu bar. */

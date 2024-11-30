@@ -1,6 +1,7 @@
 import { Extension, getAttributes } from '@tiptap/core';
 import { Plugin, PluginKey } from '@tiptap/pm/state';
-import { type LinkBubbleMenuProps } from '#app/components/rich-editor/link-bubble-menu/index';
+
+import { type LinkBubbleMenuProps } from '../link-bubble-menu/index';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {

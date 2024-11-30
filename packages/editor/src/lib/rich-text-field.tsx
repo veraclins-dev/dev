@@ -1,15 +1,12 @@
-import { FieldContainer } from '#app/components/rich-editor/field-container';
-import {
-  MenuBar,
-  type MenuBarProps,
-} from '#app/components/rich-editor/menu-bar';
+import useDebouncedFocus from './hooks/useDebouncedFocus';
+import { DebounceRender } from './utils/debounced-render';
+import { FieldContainer } from './field-container';
+import { MenuBar, type MenuBarProps } from './menu-bar';
 import {
   RichTextContent,
   type RichTextContentProps,
-} from '#app/components/rich-editor/rich-text-content';
-import { useRichTextEditorContext } from '#app/components/rich-editor/rich-text-editor-provider';
-import { DebounceRender } from '#app/components/rich-editor/utils/debounced-render';
-import useDebouncedFocus from '#app/hooks/useDebouncedFocus.ts';
+} from './rich-text-content';
+import { useRichTextEditorContext } from './rich-text-editor-provider';
 
 export type RichTextFieldProps = {
   className?: string;

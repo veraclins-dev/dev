@@ -1,10 +1,10 @@
-import { getMarkRange, getMarkType, type Editor } from '@tiptap/core';
-import truncate from 'lodash.truncate';
+import { type Editor, getMarkRange, getMarkType } from '@tiptap/core';
 import { type ReactNode } from 'react';
-import { Button } from '#app/components/button';
-import { Link } from '#app/components/link';
-import useKeyDown from '#app/hooks/useKeyDown.ts';
-import { truncateMiddle } from '@veraclins-dev/utils';
+
+import { Button, Link } from '@veraclins-dev/ui';
+import { truncate, truncateMiddle } from '@veraclins-dev/utils';
+
+import useKeyDown from '../hooks/useKeyDown';
 
 export type ViewLinkMenuContentProps = {
   editor: Editor;
@@ -44,12 +44,7 @@ export function ViewLinkMenuContent({
 
   return (
     <div className="flex flex-col gap-y-2">
-      <div className="text-pretty">
-        {truncate(linkText, {
-          length: 38,
-          omission: '…',
-        })}
-      </div>
+      <div className="text-pretty">{truncate(linkText, 38)}</div>
 
       <div className="text-pretty">
         <Link

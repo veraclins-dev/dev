@@ -1,15 +1,11 @@
-import { useState, type ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 import { type Except } from 'type-fest';
-import { ColorPickerPopper } from '#app/components/rich-editor/controls/color-picker-popper';
-import {
-  type ColorPickerProps,
-  type SwatchColorOption,
-} from '#app/components/rich-editor/controls/color-picker';
-import {
-  MenuButton,
-  type MenuButtonProps,
-} from '#app/components/rich-editor/controls/menu-button';
-import { Popover, PopoverTrigger } from '#app/components/ui/popover';
+
+import { Popover, PopoverTrigger } from '@veraclins-dev/ui';
+
+import { type ColorPickerProps, type SwatchColorOption } from './color-picker';
+import { ColorPickerPopper } from './color-picker-popper';
+import { MenuButton, type MenuButtonProps } from './menu-button';
 
 export interface MenuButtonColorPickerProps
   // Omit the default `color`, `value`, and `onChange` toggle button props so

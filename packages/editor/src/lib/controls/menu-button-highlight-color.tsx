@@ -1,9 +1,9 @@
-/// <reference types="@tiptap/extension-highlight" />
+import { useRichTextEditorContext } from '../rich-text-editor-provider';
+
 import {
   MenuButtonColorPicker,
   type MenuButtonColorPickerProps,
-} from '#app/components/rich-editor/controls/menu-button-color-picker';
-import { useRichTextEditorContext } from '#app/components/rich-editor/rich-text-editor-provider';
+} from './menu-button-color-picker';
 
 export interface MenuButtonHighlightColorProps
   extends Partial<MenuButtonColorPickerProps> {
@@ -41,7 +41,7 @@ export function MenuButtonHighlightColor({
       // highlight keyboard shortcut, toggleHighlight/setHighlight when no
       // explicit color is provided, and the "==thing==" syntax), fall back to
       // the provided defaultMarkColor
-      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+
       (editor.getAttributes('highlight').color as string | null | undefined) ||
       defaultMarkColor
     : '';

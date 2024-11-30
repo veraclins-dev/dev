@@ -1,9 +1,16 @@
 import { forwardRef } from 'react';
-import { type WithShortcuts } from '#app/common/types.ts';
-import { IconButton, type IconButtonProps } from '#app/components/icon-button';
-import { KeyboardShortcuts } from '#app/components/rich-editor/controls/keyboard-shortcuts';
-import { Icon, type IconName } from '#app/components/ui/icon';
+
+import {
+  Icon,
+  IconButton,
+  type IconButtonProps,
+  type IconName,
+} from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
+
+import { type WithShortcuts } from '../types';
+
+import { KeyboardShortcuts } from './keyboard-shortcuts';
 
 export interface MenuButtonProps
   extends Omit<IconButtonProps, 'tooltip'>,
@@ -27,9 +34,7 @@ export const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
 
 MenuButton.displayName = 'MenuButton';
 
-export interface MenuTextButtonProps extends Omit<MenuButtonProps, 'icon'> {
-  // child: React.ReactElement
-}
+export type MenuTextButtonProps = Omit<MenuButtonProps, 'icon'>;
 
 export const Button = forwardRef<HTMLButtonElement, MenuTextButtonProps>(
   ({ children, onClick, isActive, label, shortcutKeys, ...props }, ref) => (

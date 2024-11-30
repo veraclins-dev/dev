@@ -1,8 +1,9 @@
-import { getSchemaTypeNameByName } from '@tiptap/core'
-import { type MarkType, type NodeType } from '@tiptap/pm/model'
-import { type EditorState } from '@tiptap/pm/state'
-import { getAttributesForMarks } from '#app/components/rich-editor/utils/get-attributes-for-marks.ts'
-import { getAttributesForNodes } from '#app/components/rich-editor/utils/get-attributes-for-nodes.ts'
+import { getSchemaTypeNameByName } from '@tiptap/core';
+import { type MarkType, type NodeType } from '@tiptap/pm/model';
+import { type EditorState } from '@tiptap/pm/state';
+
+import { getAttributesForMarks } from './get-attributes-for-marks';
+import { getAttributesForNodes } from './get-attributes-for-nodes';
 
 /**
  * Get the attributes of all currently selected marks and nodes of the given
@@ -23,22 +24,22 @@ import { getAttributesForNodes } from '#app/components/rich-editor/utils/get-att
  * here: https://github.com/ueberdosis/tiptap/issues/3481
  */
 export function getAttributesForEachSelected(
-	state: EditorState,
-	typeOrName: string | NodeType | MarkType,
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  state: EditorState,
+  typeOrName: string | NodeType | MarkType,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Record<string, any>[] {
-	const schemaType = getSchemaTypeNameByName(
-		typeof typeOrName === 'string' ? typeOrName : typeOrName.name,
-		state.schema,
-	)
+  const schemaType = getSchemaTypeNameByName(
+    typeof typeOrName === 'string' ? typeOrName : typeOrName.name,
+    state.schema,
+  );
 
-	if (schemaType === 'node') {
-		return getAttributesForNodes(state, typeOrName as NodeType)
-	}
+  if (schemaType === 'node') {
+    return getAttributesForNodes(state, typeOrName as NodeType);
+  }
 
-	if (schemaType === 'mark') {
-		return getAttributesForMarks(state, typeOrName as MarkType)
-	}
+  if (schemaType === 'mark') {
+    return getAttributesForMarks(state, typeOrName as MarkType);
+  }
 
-	return []
+  return [];
 }

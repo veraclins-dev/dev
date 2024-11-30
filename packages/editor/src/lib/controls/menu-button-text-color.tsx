@@ -1,11 +1,12 @@
-/// <reference types="@tiptap/extension-color" />
 import { type Editor } from '@tiptap/core';
+
+import { useRichTextEditorContext } from '../rich-text-editor-provider';
+import { getAttributesForEachSelected } from '../utils/get-attributes-for-each-selected';
+
 import {
   MenuButtonColorPicker,
   type MenuButtonColorPickerProps,
-} from '#app/components/rich-editor/controls/menu-button-color-picker';
-import { useRichTextEditorContext } from '#app/components/rich-editor/rich-text-editor-provider';
-import { getAttributesForEachSelected } from '../utils/get-attributes-for-each-selected.ts';
+} from './menu-button-color-picker';
 
 export interface MenuButtonTextColorProps
   extends Partial<MenuButtonColorPickerProps> {
@@ -43,7 +44,7 @@ export function MenuButtonTextColor({
   const isTextStyleAppliedToEntireSelection = !!editor?.isActive('textStyle');
   const currentColors: string[] = allCurrentTextStyleAttrs.map(
     // Treat any null/missing color as the default color
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+
     (attrs) => attrs.color || defaultTextColor,
   );
   if (!isTextStyleAppliedToEntireSelection) {
