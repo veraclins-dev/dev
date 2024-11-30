@@ -1,6 +1,7 @@
-import { clsx, type ClassValue } from 'clsx';
-import { type Config } from 'tailwindcss';
+import { type ClassValue, clsx } from 'clsx';
 import { extendTailwindMerge } from 'tailwind-merge';
+import { type Config } from 'tailwindcss';
+
 import { extendedTheme } from './tailwind-theme';
 
 export function getErrorMessage(error: unknown) {
@@ -123,17 +124,17 @@ export const roundToTwo = (numb: number) =>
 /**
  * Simple debounce implementation
  */
-export function debounce<
-  Callback extends (...args: Parameters<Callback>) => void,
->(fn: Callback, delay: number) {
-  let timer: ReturnType<typeof setTimeout> | null = null;
-  return (...args: Parameters<Callback>) => {
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-      fn(...args);
-    }, delay);
-  };
-}
+// export function debounce<
+//   Callback extends (...args: Parameters<Callback>) => void,
+// >(fn: Callback, delay: number) {
+//   let timer: ReturnType<typeof setTimeout> | null = null;
+//   return (...args: Parameters<Callback>) => {
+//     if (timer) clearTimeout(timer);
+//     timer = setTimeout(() => {
+//       fn(...args);
+//     }, delay);
+//   };
+// }
 
 export async function wait(stallTime = 3000) {
   await new Promise((resolve) => setTimeout(resolve, stallTime));
@@ -168,7 +169,7 @@ export const humanize = (message: string) => {
   );
 };
 
-export const substring = (string: string, length: number) => {
+export const truncate = (string: string, length: number) => {
   if (string.length <= length) return string;
   let sub = string.slice(0, length + 1);
 
@@ -200,4 +201,16 @@ export function getRandom<T>(arr: T[], n: number) {
     }
   }
   return result;
+}
+
+/**
+ * Truncate the middle of the given text, if it's longer than the given length.
+ */
+export function truncateMiddle(text: string, length = 20): string {
+  if (text.length <= length) {
+    return text;
+  }
+
+  const half = Math.floor(length / 2);
+  return `${text.slice(0, half).trim()}…${text.slice(-half).trim()}`;
 }

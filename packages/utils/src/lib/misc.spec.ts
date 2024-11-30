@@ -1,4 +1,4 @@
-import * as utils from './utils';
+import * as utils from './misc';
 
 describe('utils.getErrorMessage', () => {
   it('should return the error message if it is a string', () => {
@@ -77,17 +77,6 @@ describe('utils.roundToDecimal', () => {
   });
 });
 
-describe('utils.debounce', () => {
-  it('should debounce a function', async () => {
-    const fn = vi.fn();
-    const debouncedFn = utils.debounce(fn, 100);
-    debouncedFn();
-    debouncedFn();
-    await new Promise((r) => setTimeout(r, 200));
-    expect(fn).toHaveBeenCalledTimes(1);
-  });
-});
-
 describe('utils.wait', () => {
   it('should wait for the given time', async () => {
     const start = Date.now();
@@ -141,15 +130,15 @@ describe('utils.humanize', () => {
 
 describe('utils.substring', () => {
   it('should return the string if it is shorter than the length', () => {
-    expect(utils.substring('Hello World', 20)).toBe('Hello World');
+    expect(utils.truncate('Hello World', 20)).toBe('Hello World');
   });
 
   it('should return the string if it is equal to the length', () => {
-    expect(utils.substring('Hello World', 11)).toBe('Hello World');
+    expect(utils.truncate('Hello World', 11)).toBe('Hello World');
   });
 
   it('should return the string with an ellipsis if it is longer than the length', () => {
-    expect(utils.substring('Hello World', 5)).toBe('Hello ...');
+    expect(utils.truncate('Hello World', 5)).toBe('Hello ...');
   });
 });
 
@@ -175,5 +164,19 @@ describe('utils.getRandom', () => {
     expect(() => utils.getRandom([1, 2, 3], 4)).toThrowError(
       'getRandom: more elements taken than available',
     );
+  });
+});
+
+describe('utils.truncateMiddle', () => {
+  it('should truncate the middle of the text if it is longer than the length', () => {
+    expect(utils.truncateMiddle('Hello World', 5)).toBe('He…ld');
+  });
+
+  it('should return the text if it is shorter than the length', () => {
+    expect(utils.truncateMiddle('Hello World', 20)).toBe('Hello World');
+  });
+
+  it('should return the text if it is equal to the length', () => {
+    expect(utils.truncateMiddle('Hello World', 11)).toBe('Hello World');
   });
 });
