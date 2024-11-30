@@ -1,8 +1,11 @@
 import { type FieldMetadata, useInputControl } from '@conform-to/react';
-import { getInputProps, useFieldProperties } from './textfield';
+
 import { cn } from '@veraclins-dev/utils';
+
+import { Checkbox, type CheckboxProps } from '../ui/checkbox';
+
 import { ErrorList } from './error-list';
-import { Checkbox, CheckboxProps } from '../ui/checkbox';
+import { getInputProps, useFieldProperties } from './textfield';
 
 interface Props extends CheckboxProps {
   field?: FieldMetadata<string | boolean | string[]>;

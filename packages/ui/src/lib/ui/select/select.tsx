@@ -1,10 +1,12 @@
 import * as SelectPrimitive from '@radix-ui/react-select';
 import * as React from 'react';
 
-import { type ObjectOption, type Option } from '../../../types';
-import { Icon } from '../icon';
 import { cn } from '@veraclins-dev/utils';
+
 import './styles.css';
+
+import { type ObjectOption, type Option } from '../../types';
+import { Icon } from '../icon';
 
 const SelectRoot = SelectPrimitive.Root;
 
@@ -123,22 +125,13 @@ type GroupOptions = {
   id: string;
 };
 
-export type BaseSelectProps = {
+export type BaseSelectProps = SelectPrimitive.SelectProps & {
   className?: string;
   placeholder?: string;
   showLabel?: boolean;
-} & (
-  | {
-      options: Option[];
-      grouped?: false;
-    }
-  | {
-      options: GroupOptions[];
-      grouped: true;
-    }
-);
+};
 
-type SelectProps = BaseSelectProps &
+export type SelectProps = BaseSelectProps &
   (
     | {
         options: Option[];
@@ -204,15 +197,15 @@ Select.displayName = SelectRoot.displayName;
 
 export {
   Select,
-  SelectRoot,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
   SelectContent,
-  SelectLabel,
+  SelectGroup,
   SelectItem,
-  SelectSeparator,
-  SelectScrollUpButton,
+  SelectLabel,
+  SelectRoot,
   SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
   SelectViewport,
 };

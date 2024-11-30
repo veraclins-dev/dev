@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { useSpinDelay } from 'spin-delay';
-import { Icon } from './icon';
+
 import { cn } from '@veraclins-dev/utils';
-import { Button, type ButtonProps } from './button';
+
+import { ButtonBase, type ButtonProps } from './button';
+import { Icon } from './icon';
 import {
   Tooltip,
   TooltipContent,
@@ -43,7 +45,7 @@ export const StatusButton = React.forwardRef<
   }[status];
 
   return (
-    <Button
+    <ButtonBase
       ref={ref}
       className={cn('flex justify-center gap-4', className)}
       {...props}
@@ -59,7 +61,7 @@ export const StatusButton = React.forwardRef<
       ) : (
         companion
       )}
-    </Button>
+    </ButtonBase>
   );
 });
 StatusButton.displayName = 'Button';

@@ -15,7 +15,7 @@ import { Icon, IconName } from '../ui/icon';
 import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
 import { Input } from '../ui/input';
-import { MaybeString } from '../../types';
+import { MaybeString } from '../types';
 
 type InputProps = ReturnType<typeof conformGetInputProps>;
 

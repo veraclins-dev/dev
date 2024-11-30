@@ -1,8 +1,9 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover';
 import * as React from 'react';
+
 import { cn } from '@veraclins-dev/utils';
 
-import { Measurable } from '../../types';
+import { type Maybe, type Measurable } from '../types';
 
 const Popover = PopoverPrimitive.Root;
 
@@ -42,7 +43,7 @@ type AnchorProps = React.ComponentPropsWithoutRef<
   typeof PopoverPrimitive.Anchor
 >;
 type PopoverAnchorProps = AnchorProps & {
-  anchorEl?: Measurable;
+  anchorEl?: Maybe<Measurable>;
 };
 
 const PopoverAnchor = React.forwardRef<
@@ -69,10 +70,10 @@ type PopoverProps = PopoverPrimitive.PopoverContentProps;
 
 export {
   Popover,
-  PopoverTrigger,
-  PopoverContent,
   PopoverAnchor,
-  PopoverArrow,
-  type PopoverProps,
   type PopoverAnchorProps,
+  PopoverArrow,
+  PopoverContent,
+  type PopoverProps,
+  PopoverTrigger,
 };

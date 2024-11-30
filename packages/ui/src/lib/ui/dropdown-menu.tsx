@@ -1,25 +1,25 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import * as React from 'react';
 
-import { Icon } from './icon';
 import { cn } from '@veraclins-dev/utils';
+
+import { Icon } from './icon';
+import { ComposedTooltip } from './tooltip';
 
 type WithHiddenIndicator = {
   indicatorHidden?: boolean;
 };
 
-const itemClasses =
+export const itemClasses =
   'relative flex cursor-pointer select-none items-center rounded-sm py-1.5 outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50';
 
-const activeItemClasses =
+export const activeItemClasses =
   'data-[state="checked"]:bg-accent data-[state="checked"]:text-accent-foreground';
 
-const indicatorClasses =
+export const indicatorClasses =
   'absolute left-2 flex h-3.5 w-3.5 items-center justify-center';
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
-
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 
 const DropdownMenuGroup = DropdownMenuPrimitive.Group;
 
@@ -31,6 +31,23 @@ const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
 // const DropdownMenuArrow = DropdownMenuPrimitive.Arrow
 const DropdownMenuItemIndicator = DropdownMenuPrimitive.ItemIndicator;
+
+const DropdownMenuTrigger = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Trigger> & {
+    tooltip?: React.ReactNode;
+  }
+>(({ tooltip, ...props }, ref) =>
+  tooltip ? (
+    <ComposedTooltip
+      trigger={<DropdownMenuPrimitive.Trigger ref={ref} {...props} />}
+      content={tooltip}
+    />
+  ) : (
+    <DropdownMenuPrimitive.Trigger ref={ref} {...props} />
+  ),
+);
+DropdownMenuTrigger.displayName = DropdownMenuPrimitive.Trigger.displayName;
 
 const DropdownMenuSubTrigger = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
@@ -217,20 +234,20 @@ DropdownMenuShortcut.displayName = 'DropdownMenuShortcut';
 
 export {
   DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
+  DropdownMenuArrow,
   DropdownMenuCheckboxItem,
-  DropdownMenuRadioItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuItemIndicator,
   DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuGroup,
-  DropdownMenuPortal,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuRadioGroup,
-  DropdownMenuArrow,
-  DropdownMenuItemIndicator,
+  DropdownMenuTrigger,
 };
