@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChartStyle } from './chart';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { ChartStyle } from './chart';
 
 const meta: Meta<typeof ChartStyle> = {
   component: ChartStyle,

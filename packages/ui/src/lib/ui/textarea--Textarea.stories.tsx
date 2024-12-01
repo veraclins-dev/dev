@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Textarea } from './textarea';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { Textarea } from './textarea';
 
 const meta: Meta<typeof Textarea> = {
   component: Textarea,

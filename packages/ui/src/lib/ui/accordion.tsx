@@ -1,6 +1,8 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { forwardRef } from 'react';
+
 import { cn } from '@veraclins-dev/utils';
+
 import { Icon } from './icon';
 
 const Accordion = AccordionPrimitive.Root;
@@ -48,4 +50,4 @@ const AccordionContent = forwardRef<
 
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export { Accordion, AccordionContent,AccordionItem, AccordionTrigger };

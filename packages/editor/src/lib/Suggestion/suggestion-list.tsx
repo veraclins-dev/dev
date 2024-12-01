@@ -1,4 +1,4 @@
-import { MentionNodeAttrs } from '@tiptap/extension-mention';
+import { type MentionNodeAttrs } from '@tiptap/extension-mention';
 import {
   type SuggestionOptions,
   type SuggestionProps,

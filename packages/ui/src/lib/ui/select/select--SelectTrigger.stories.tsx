@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SelectTrigger } from './select';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { SelectTrigger } from './select';
 
 const meta: Meta<typeof SelectTrigger> = {
   component: SelectTrigger,

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChartLegendContent } from './chart';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { ChartLegendContent } from './chart';
 
 const meta: Meta<typeof ChartLegendContent> = {
   component: ChartLegendContent,

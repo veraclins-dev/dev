@@ -24,7 +24,7 @@ export interface Option extends ObjectOption, WithShortcuts {
   className?: string;
 }
 
-export interface MenuSelectProps extends BaseSelectProps {
+export interface MenuSelectIconProps extends BaseSelectProps {
   options: Option[];
   className?: string;
   defaultLabel?: IconName;
@@ -41,7 +41,7 @@ export const MenuSelectIcons = ({
   className,
   onValueChange,
   tooltip,
-}: MenuSelectProps) => {
+}: MenuSelectIconProps) => {
   const selected = options.find(
     (option: Option) => getOptionValue(option) === value,
   );

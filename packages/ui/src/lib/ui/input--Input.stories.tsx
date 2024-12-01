@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Input } from './input';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { Input } from './input';
 
 const meta: Meta<typeof Input> = {
   component: Input,

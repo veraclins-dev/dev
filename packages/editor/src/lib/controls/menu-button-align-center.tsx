@@ -1,7 +1,7 @@
 /// <reference types="@tiptap/extension-text-align" />
-import { MenuButton, type MenuButtonProps } from './menu-button';
-
 import { useRichTextEditorContext } from '../rich-text-editor-provider';
+
+import { MenuButton, type MenuButtonProps } from './menu-button';
 
 export type MenuButtonAlignCenterProps = Partial<MenuButtonProps>;
 

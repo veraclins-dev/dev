@@ -4,13 +4,13 @@ import { type Editor } from '@tiptap/react';
 import { useRichTextEditorContext } from '../rich-text-editor-provider';
 import { getAttributesForEachSelected } from '../utils/get-attributes-for-each-selected';
 
-import { MenuSelect, type Option } from './menu-select';
+import { type MenuIconOption, MenuSelect } from './menu-select';
 
 type headingValue = `heading-${Level}`;
 
 type Value = headingValue | 'paragraph';
 
-interface TextOptions extends Option {
+interface TextOptions extends MenuIconOption {
   value: Value;
 }
 

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComboboxDemo } from './combo-box';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { ComboboxDemo } from './combo-box';
 
 const meta: Meta<typeof ComboboxDemo> = {
   component: ComboboxDemo,

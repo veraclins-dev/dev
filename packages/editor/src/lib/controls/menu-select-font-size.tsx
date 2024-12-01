@@ -6,7 +6,11 @@ import { type FontSizeAttrs } from '../extensions/font-size';
 import { useRichTextEditorContext } from '../rich-text-editor-provider';
 import { getAttributesForEachSelected } from '../utils/get-attributes-for-each-selected';
 
-import { MenuSelect, type MenuSelectProps, type Option } from './menu-select';
+import {
+  type MenuIconOption,
+  MenuSelect,
+  type MenuSelectProps,
+} from './menu-select';
 
 function stripPxFromValue(value: string): string {
   return value.replace('px', '');
@@ -17,7 +21,7 @@ function stripPxFromValue(value: string): string {
  * is used both as the CSS `font-size` value and the user-facing `label`
  * (equivalent to using an object with just the `value` set as that string).
  */
-export type FontSizeSelectOption = string | Option;
+export type FontSizeSelectOption = string | MenuIconOption;
 
 export interface MenuSelectFontSizeProps
   extends Except<MenuSelectProps, 'value' | 'children' | 'options'> {
@@ -86,11 +90,12 @@ export function MenuSelectFontSize({
   ...menuSelectProps
 }: MenuSelectFontSizeProps) {
   const editor = useRichTextEditorContext();
-  const optionObjects: Option[] = (DEFAULT_FONT_SIZE_SELECT_OPTIONS ?? []).map(
-    (option) =>
-      typeof option === 'string'
-        ? { value: option, label: stripPxFromValue(option) }
-        : option,
+  const optionObjects: MenuIconOption[] = (
+    DEFAULT_FONT_SIZE_SELECT_OPTIONS ?? []
+  ).map((option) =>
+    typeof option === 'string'
+      ? { value: option, label: stripPxFromValue(option) }
+      : option,
   );
 
   // Determine if all of the selected content shares the same set font size.

@@ -20,13 +20,13 @@ import { type WithShortcuts } from '../types';
 
 import { KeyboardShortcuts } from './keyboard-shortcuts';
 
-export interface Option extends ObjectOption, WithShortcuts {
+export interface MenuIconOption extends ObjectOption, WithShortcuts {
   label: React.ReactElement | React.ReactNode;
   className?: string;
 }
 
 export interface MenuSelectProps extends BaseSelectProps {
-  options: Option[];
+  options: MenuIconOption[];
   className?: string;
   defaultLabel?: string;
   /**

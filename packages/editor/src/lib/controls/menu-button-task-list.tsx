@@ -1,7 +1,7 @@
 /// <reference types="@tiptap/extension-task-list" />
-import { MenuButton, type MenuButtonProps } from './menu-button';
-
 import { useRichTextEditorContext } from '../rich-text-editor-provider';
+
+import { MenuButton, type MenuButtonProps } from './menu-button';
 
 export type MenuButtonTaskListProps = Partial<MenuButtonProps>;
 

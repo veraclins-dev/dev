@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { TooltipContent } from './tooltip';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { TooltipContent } from './tooltip';
 
 const meta: Meta<typeof TooltipContent> = {
   component: TooltipContent,

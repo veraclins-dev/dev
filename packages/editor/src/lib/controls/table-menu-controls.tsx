@@ -1,8 +1,8 @@
+import { useRichTextEditorContext } from '../rich-text-editor-provider';
+
 import { MenuButton } from './menu-button';
 import { MenuControlsContainer } from './menu-controls-container';
 import { MenuDivider } from './menu-divider';
-
-import { useRichTextEditorContext } from '../rich-text-editor-provider';
 
 export type TableMenuControlsProps = {
   /** Class applied to the root controls container element. */

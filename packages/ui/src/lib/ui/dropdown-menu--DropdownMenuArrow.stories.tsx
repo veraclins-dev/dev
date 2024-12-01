@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DropdownMenuArrow } from './dropdown-menu';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { DropdownMenuArrow } from './dropdown-menu';
 
 const meta: Meta<typeof DropdownMenuArrow> = {
   component: DropdownMenuArrow,

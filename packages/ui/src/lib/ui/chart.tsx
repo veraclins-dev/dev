@@ -1,5 +1,6 @@
 import { createContext, forwardRef, useContext, useId, useMemo } from 'react';
 import * as RechartsPrimitive from 'recharts';
+
 import { cn } from '@veraclins-dev/utils';
 
 // Format: { THEME_NAME: CSS_SELECTOR }
@@ -353,9 +354,9 @@ function getPayloadConfigFromPayload(
 
 export {
   ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
   ChartLegend,
   ChartLegendContent,
   ChartStyle,
+  ChartTooltip,
+  ChartTooltipContent,
 };

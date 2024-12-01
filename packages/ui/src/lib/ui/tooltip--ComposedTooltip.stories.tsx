@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ComposedTooltip } from './tooltip';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { ComposedTooltip } from './tooltip';
 
 const meta: Meta<typeof ComposedTooltip> = {
   component: ComposedTooltip,

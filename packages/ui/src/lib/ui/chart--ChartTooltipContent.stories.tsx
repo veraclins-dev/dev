@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChartTooltipContent } from './chart';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { ChartTooltipContent } from './chart';
 
 const meta: Meta<typeof ChartTooltipContent> = {
   component: ChartTooltipContent,

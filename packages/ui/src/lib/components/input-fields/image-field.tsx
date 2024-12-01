@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
+
 import { cn } from '@veraclins-dev/utils';
-import {
-  useFieldProperties,
-  type TextFieldProps,
-  getInputProps,
-} from './textfield';
-import { ErrorList } from './error-list';
-import { Icon } from '../ui/icon';
+
+import { Icon } from '../../ui/icon';
+import { ErrorList } from '../error-list';
+
+import { type TextFieldProps } from './textfield';
+import { getInputProps, useFieldProperties } from './utils';
 
 export interface ImageFieldProps extends Omit<TextFieldProps, 'value'> {
   defaultValue?: string;

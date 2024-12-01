@@ -53,10 +53,10 @@ const ComposedTooltip = ({
 };
 
 export {
+  ComposedTooltip,
   Tooltip,
-  TooltipTrigger,
+  TooltipArrow,
   TooltipContent,
   TooltipProvider,
-  TooltipArrow,
-  ComposedTooltip,
+  TooltipTrigger,
 };

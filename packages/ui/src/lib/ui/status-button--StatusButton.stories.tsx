@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { StatusButton } from './status-button';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { StatusButton } from './status-button';
 
 const meta: Meta<typeof StatusButton> = {
   component: StatusButton,

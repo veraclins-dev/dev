@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { companion } from './status-button';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { companion } from './status-button';
 
 const meta: Meta<typeof companion> = {
   component: companion,

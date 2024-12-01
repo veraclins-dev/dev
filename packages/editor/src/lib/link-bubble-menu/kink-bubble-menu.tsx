@@ -11,15 +11,16 @@ import {
   type LinkBubbleMenuHandlerStorage,
   LinkMenuState,
 } from '../extensions/link-bubble-menu-handler';
+import { useRichTextEditorContext } from '../rich-text-editor-provider';
+
 import {
   EditLinkMenuContent,
   type EditLinkMenuContentProps,
-} from '../link-bubble-menu/edit-link-menu-content';
+} from './edit-link-menu-content';
 import {
   ViewLinkMenuContent,
   type ViewLinkMenuContentProps,
-} from '../link-bubble-menu/view-link-menu-content';
-import { useRichTextEditorContext } from '../rich-text-editor-provider';
+} from './view-link-menu-content';
 
 export interface LinkBubbleMenuProps
   extends Partial<

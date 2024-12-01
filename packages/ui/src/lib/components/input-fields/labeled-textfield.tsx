@@ -1,9 +1,9 @@
 import {
-  type TextareaFieldProps,
-  type TextFieldProps,
   TextareaField,
+  type TextareaFieldProps,
   TextField,
-} from './textfield';
+  type TextFieldProps,
+} from './input-fields/textfield';
 
 export interface LabeledTextFieldProps extends TextFieldProps {
   label: string | React.ReactNode;

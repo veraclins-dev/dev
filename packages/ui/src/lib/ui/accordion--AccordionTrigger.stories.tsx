@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AccordionTrigger } from './accordion';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { AccordionTrigger } from './accordion';
 
 const meta: Meta<typeof AccordionTrigger> = {
   component: AccordionTrigger,

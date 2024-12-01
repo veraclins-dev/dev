@@ -1,7 +1,7 @@
 /// <reference types="@tiptap/extension-superscript" />
-import { MenuButton, type MenuButtonProps } from './menu-button';
-
 import { useRichTextEditorContext } from '../rich-text-editor-provider';
+
+import { MenuButton, type MenuButtonProps } from './menu-button';
 
 export type MenuButtonSuperscriptProps = Partial<MenuButtonProps>;
 

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Select } from './select';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { Select } from './select';
 
 const meta: Meta<typeof Select> = {
   component: Select,

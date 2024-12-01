@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SelectSeparator } from './select';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { SelectSeparator } from './select';
 
 const meta: Meta<typeof SelectSeparator> = {
   component: SelectSeparator,

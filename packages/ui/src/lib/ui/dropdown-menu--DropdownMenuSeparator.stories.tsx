@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DropdownMenuSeparator } from './dropdown-menu';
+import { expect,within } from '@storybook/test';
 
-import { within, expect } from '@storybook/test';
+import { DropdownMenuSeparator } from './dropdown-menu';
 
 const meta: Meta<typeof DropdownMenuSeparator> = {
   component: DropdownMenuSeparator,

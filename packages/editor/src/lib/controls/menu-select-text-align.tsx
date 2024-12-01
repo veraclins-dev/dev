@@ -5,15 +5,15 @@ import { type Except } from 'type-fest';
 import { useRichTextEditorContext } from '../rich-text-editor-provider';
 
 import {
+  type MenuSelectIconProps,
   MenuSelectIcons,
-  type MenuSelectProps,
   type Option,
 } from './menu-select-icons';
 
 type Value = 'left' | 'center' | 'right' | 'justify';
 
 export interface MenuSelectTextAlignProps
-  extends Except<MenuSelectProps, 'children' | 'options'> {
+  extends Except<MenuSelectIconProps, 'children' | 'options'> {
   /**
    * What to render in the Select when the highlighted content is currently
    * using multiple different text-alignments (so no one icon applies). By
