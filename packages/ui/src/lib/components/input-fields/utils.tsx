@@ -7,7 +7,7 @@ import { useId } from 'react';
 import { type MaybeString } from '../../types';
 import { type IconName } from '../../ui/icon';
 
-export type InputProps = ReturnType<typeof conformGetInputProps>;
+export type InputFieldProps = ReturnType<typeof conformGetInputProps>;
 
 type Params = Parameters<typeof conformGetInputProps>;
 
@@ -27,8 +27,8 @@ export type BaseInputProps<S = MaybeString> = {
 
 type GetPropsOptions = {
   field?: Params[0];
-  name?: InputProps['name'];
-  id?: InputProps['id'];
+  name?: InputFieldProps['name'];
+  id?: InputFieldProps['id'];
 } & Partial<Omit<Params[1], 'ariaAttributes'>>;
 
 export const getInputProps = ({

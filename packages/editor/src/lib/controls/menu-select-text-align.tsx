@@ -14,7 +14,7 @@ import {
 type Value = 'left' | 'center' | 'right' | 'justify';
 
 export interface MenuSelectTextAlignProps
-  extends Except<MenuSelectIconProps, 'children' | 'options'> {
+  extends Except<MenuSelectIconProps, 'children' | 'options' | 'onClose'> {
   /**
    * What to render in the Select when the highlighted content is currently
    * using multiple different text-alignments (so no one icon applies). By

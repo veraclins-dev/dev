@@ -35,7 +35,8 @@ const freeSelf =
   typeof self == 'object' && self && self.Object === Object && self;
 
 /** Used as a reference to the global object. */
-export const root = freeGlobal || freeSelf || Function('return this')();
+export const root: typeof globalThis =
+  freeGlobal || freeSelf || Function('return this')();
 
 /** Used for built-in method references. */
 const objectProto = Object.prototype;
@@ -61,7 +62,7 @@ export const nativeMax = Math.max,
  * @category Date
  * @returns {number} Returns the timestamp.
  */
-export const now = function () {
+export const now = function (): number {
   return root.Date.now();
 };
 
@@ -106,7 +107,7 @@ export function isObject(value: unknown): value is object {
  * _.isObjectLike(null);
  * // => false
  */
-export function isObjectLike(value: any) {
+export function isObjectLike(value: any): boolean {
   return !!value && typeof value == 'object';
 }
 
@@ -127,7 +128,7 @@ export function isObjectLike(value: any) {
  * _.isSymbol('abc');
  * // => false
  */
-export function isSymbol(value: any) {
+export function isSymbol(value: any): boolean {
   return (
     typeof value == 'symbol' ||
     (isObjectLike(value) && objectToString.call(value) == symbolTag)
@@ -144,7 +145,7 @@ export function isSymbol(value: any) {
  * @param {*} value The value to process.
  * @returns {number} Returns the number.
  */
-export function toNumber(value: any) {
+export function toNumber(value: any): number {
   if (typeof value == 'number') {
     return value;
   }

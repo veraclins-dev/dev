@@ -8,7 +8,7 @@ import { Input } from '../../ui/input';
 import {
   type BaseInputProps,
   getInputProps,
-  type InputProps,
+  type InputFieldProps,
   useFieldProperties,
 } from './utils';
 import { InputWrapper } from './wrapper';
@@ -17,7 +17,7 @@ export interface TextFieldProps
   extends PropsWithoutRef<JSX.IntrinsicElements['input']>,
     BaseInputProps {
   inputRef?: React.Ref<HTMLInputElement>;
-  type?: InputProps['type'];
+  type?: InputFieldProps['type'];
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(

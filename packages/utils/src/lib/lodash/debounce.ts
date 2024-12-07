@@ -195,9 +195,10 @@ export function debounce<T extends (...args: any) => any>(
     }
     // Restart the timer.
     timerId = setTimeout(timerExpired, remainingWait(time));
+    return undefined;
   }
 
-  function trailingEdge(time: any) {
+  function trailingEdge(time: number) {
     timerId = undefined;
 
     // Only invoke if we have `lastArgs` which means `func` has been
