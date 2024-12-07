@@ -1,3 +1,13 @@
+## 0.7.0 (2024-12-07)
+
+### 🚀 Features
+
+- bump version ([2e68a47](https://github.com/veraclins-dev/dev/commit/2e68a47))
+
+### ❤️  Thank You
+
+- clinton.agada
+
 ## 0.5.0 (2024-11-28)
 
 ### 🚀 Features
