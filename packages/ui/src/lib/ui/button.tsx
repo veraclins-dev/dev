@@ -20,6 +20,7 @@ export const buttonVariant = {
     'bg-secondary-light text-secondary-light-foreground hover:bg-secondary-light/80',
   ghost: 'hover:bg-accent hover:text-accent-foreground',
   link: 'text-primary underline-offset-4 hover:underline',
+  'primary-outline': 'border border-primary text-primary hover:bg-primary/80',
   plain: '',
 };
 

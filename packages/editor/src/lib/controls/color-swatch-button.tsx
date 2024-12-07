@@ -5,7 +5,7 @@ import {
 } from 'react';
 import { type Except } from 'type-fest';
 
-import { Icon } from '@veraclins-dev/ui';
+import { ButtonBase, Icon } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import { getContrastText } from '../utils/color';
@@ -42,7 +42,7 @@ export const ColorSwatchButton = forwardRef<
   ColorSwatchButtonProps
 >(({ value: colorValue, label, padding, active, ...buttonProps }, ref) => {
   return (
-    <button
+    <ButtonBase
       ref={ref}
       type="button"
       style={{ backgroundColor: colorValue, padding }}
@@ -50,7 +50,7 @@ export const ColorSwatchButton = forwardRef<
       value={colorValue}
       {...buttonProps}
       className={cn(
-        'h-9 w-9 rounded-sm border',
+        'h-6 w-6 rounded-full border',
         { 'bg-checkered bg-clip-content': !colorValue },
         buttonProps.className,
       )}
@@ -65,7 +65,7 @@ export const ColorSwatchButton = forwardRef<
           }}
         />
       )}
-    </button>
+    </ButtonBase>
   );
 });
 

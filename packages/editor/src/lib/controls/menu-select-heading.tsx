@@ -1,6 +1,7 @@
 import { type Level } from '@tiptap/extension-heading';
 import { type Editor } from '@tiptap/react';
 
+import { useReturnFocus } from '../hooks/use-editor-focus';
 import { useRichTextEditorContext } from '../rich-text-editor-provider';
 import { getAttributesForEachSelected } from '../utils/get-attributes-for-each-selected';
 
@@ -135,6 +136,8 @@ const textOptions: TextOptions[] = [
 
 export const MenuSelectHeading = () => {
   const editor = useRichTextEditorContext();
+  const returnFocus = useReturnFocus({ editor });
+
   if (!editor) {
     return null;
   }
@@ -152,7 +155,6 @@ export const MenuSelectHeading = () => {
   };
 
   const active = getActive(editor);
-  console.log('active', { active });
   const isCurrentlyParagraphOrHeading = active !== '';
   const canSetParagraph = editor?.can().setParagraph();
   // We have to pass a level when running `can`, so this is just an arbitrary one
@@ -161,13 +163,14 @@ export const MenuSelectHeading = () => {
     <MenuSelect
       value={active}
       onValueChange={handleValueChange}
-      className="w-24"
+      className="w-32"
       options={textOptions}
       tooltip="Text style"
       disabled={
         !editor?.isEditable ||
         !(isCurrentlyParagraphOrHeading || canSetParagraph || canSetHeading)
       }
+      onClose={returnFocus}
     />
   );
 };

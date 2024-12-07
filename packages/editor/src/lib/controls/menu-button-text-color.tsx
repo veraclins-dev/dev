@@ -44,7 +44,6 @@ export function MenuButtonTextColor({
   const isTextStyleAppliedToEntireSelection = !!editor?.isActive('textStyle');
   const currentColors: string[] = allCurrentTextStyleAttrs.map(
     // Treat any null/missing color as the default color
-
     (attrs) => attrs.color || defaultTextColor,
   );
   if (!isTextStyleAppliedToEntireSelection) {
@@ -71,18 +70,18 @@ export function MenuButtonTextColor({
     // the default color
     currentColor = defaultTextColor;
   }
-
   return (
     <MenuButtonColorPicker
       icon="format-color-text"
       label="Text color"
       value={currentColor}
+      isActive={!!currentColor}
       onChange={(newColor) => {
         editor?.chain().focus().setColor(newColor).run();
       }}
       disabled={!editor?.isEditable || !editor.can().setColor('#000')}
       {...menuButtonProps}
-      labels={{ removeColorButton: 'Reset', ...menuButtonProps.labels }}
+      labels={{ removeColorButton: 'Clear', ...menuButtonProps.labels }}
       swatchColors={[
         { value: '#000000', label: 'Black' },
         { value: '#ffffff', label: 'White' },

@@ -90,8 +90,10 @@ export const RichTextEditor = forwardRef<
       editable: editable,
       ...editorProps,
       editorProps: {
+        ...editorProps.editorProps,
         attributes: {
-          class: 'prose dark:prose-invert focus:outline-none max-w-full',
+          class:
+            'prose dark:prose-invert focus:outline-none max-w-full h-full max-h-72 min-h-64',
         },
       },
     },

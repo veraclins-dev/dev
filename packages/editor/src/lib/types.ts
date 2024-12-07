@@ -1,3 +1,5 @@
+import { type Editor, type EditorOptions } from '@tiptap/react';
+
 export type WithShortcuts = {
   /**
    * An array representing the set of keys that should be pressed to trigger
@@ -15,3 +17,7 @@ export type WithShortcuts = {
    */
   shortcutKeys?: string[];
 };
+
+export type RichEditor = Editor | null;
+
+export type RichEditorOptions = EditorOptions;

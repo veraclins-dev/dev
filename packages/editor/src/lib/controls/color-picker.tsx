@@ -143,16 +143,15 @@ export function ColorPicker({
         <HexColorPicker
           color={colorValueAsHex}
           onChange={(color) => onChange(color, 'gradient')}
-          className="w-full"
+          className="!w-full min-w-52"
         />
       ) : (
         <HexAlphaColorPicker
           color={colorValueAsHex}
           onChange={(color) => onChange(color, 'gradient')}
-          className="w-full"
+          className="!w-full min-w-52"
         />
       )}
-
       <TextField
         placeholder={textFieldPlaceholder}
         defaultValue={value || ''}
@@ -168,9 +167,8 @@ export function ColorPicker({
           }
         }}
       />
-
       {swatchColorObjects.length > 0 && (
-        <div className="mt-2 flex flex-wrap gap-2">
+        <div className="mt-2 flex flex-wrap gap-1">
           {swatchColorObjects.map((swatchColor) => (
             <ColorSwatchButton
               key={swatchColor.value}

@@ -36,7 +36,8 @@ export function MenuButtonHighlightColor({
   ...menuButtonProps
 }: MenuButtonHighlightColorProps) {
   const editor = useRichTextEditorContext();
-  const currentHighlightColor = editor?.isActive('highlight')
+  const isActive = editor && editor.isActive('highlight');
+  const currentHighlightColor = isActive
     ? // If there's no color set for the highlight (as can happen with the
       // highlight keyboard shortcut, toggleHighlight/setHighlight when no
       // explicit color is provided, and the "==thing==" syntax), fall back to
@@ -51,6 +52,7 @@ export function MenuButtonHighlightColor({
       label="Highlight color"
       shortcutKeys={['mod', 'Shift', 'H']}
       value={currentHighlightColor}
+      isActive={Boolean(isActive)}
       onChange={(newColor) => {
         if (newColor) {
           editor?.chain().focus().setHighlight({ color: newColor }).run();
@@ -61,7 +63,7 @@ export function MenuButtonHighlightColor({
       disabled={!editor?.isEditable || !editor.can().toggleHighlight()}
       {...menuButtonProps}
       labels={{
-        removeColorButton: 'None',
+        removeColorButton: 'Clear',
         removeColorButtonTooltipTitle: 'Remove highlighting from this text',
         ...menuButtonProps.labels,
       }}

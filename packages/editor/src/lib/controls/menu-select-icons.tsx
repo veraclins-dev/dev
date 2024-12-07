@@ -32,6 +32,7 @@ export interface MenuSelectIconProps extends BaseSelectProps {
    * Used to display what this button is responsible for. Ex: "Ordered list".
    */
   tooltip?: string;
+  onClose: () => void;
 }
 
 export const MenuSelectIcons = ({
@@ -41,6 +42,7 @@ export const MenuSelectIcons = ({
   className,
   onValueChange,
   tooltip,
+  onClose,
 }: MenuSelectIconProps) => {
   const selected = options.find(
     (option: Option) => getOptionValue(option) === value,
@@ -49,15 +51,20 @@ export const MenuSelectIcons = ({
   const trigger = selected?.icon ?? defaultLabel;
 
   const handleValueChange = (value: string) => {
-    console.log(value);
     onValueChange?.(value);
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu
+      onOpenChange={(open) => {
+        if (!open) {
+          onClose();
+        }
+      }}
+    >
       <DropdownMenuTrigger
         className={cn(
-          'flex h-8 items-center justify-between rounded-md px-2 py-1 hover:bg-accent hover:text-accent-foreground',
+          'flex h-7 items-center justify-between rounded-md px-2 py-1 hover:bg-accent hover:text-accent-foreground',
           className,
         )}
         tooltip={tooltip}
@@ -65,7 +72,10 @@ export const MenuSelectIcons = ({
         <Icon name={trigger} size="sm" /> <Icon name="chevron-down" />
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
-        <DropdownMenuContent className="max-h-64 overflow-y-scroll">
+        <DropdownMenuContent
+          className="max-h-64 p-2 overflow-y-scroll"
+          onCloseAutoFocus={(e) => e.preventDefault()}
+        >
           <DropdownMenuArrow />
           <DropdownMenuRadioGroup
             value={value}
@@ -79,7 +89,7 @@ export const MenuSelectIcons = ({
                 value={getOptionValue(option)}
                 indicatorHidden
               >
-                <div className="flex flex-1 items-center justify-between">
+                <div className="flex flex-1 gap-4 items-center justify-between">
                   <MenuButton
                     className="flex-1"
                     onClick={() => handleValueChange(getOptionValue(option))}

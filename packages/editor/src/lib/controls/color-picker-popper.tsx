@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import {
-  ButtonBase,
-  PopoverContent,
-  type PopoverProps,
-} from '@veraclins-dev/ui';
+import { Button, PopoverContent, type PopoverProps } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import { ColorPicker } from '../controls/color-picker';
@@ -40,9 +36,11 @@ export function ColorPickerPopperBody({
   ColorPickerProps,
 }: ColorPickerPopperBodyProps) {
   const {
-    removeColorButton = 'None',
+    removeColorButton = 'Clear',
     cancelButton = 'Cancel',
-    saveButton = 'OK',
+    saveButton = 'Apply',
+    heading = 'Choose a color',
+    removeColorButtonTooltipTitle = 'Clear color',
   } = labels;
 
   // Because color can change rapidly as the user drags the color in the
@@ -60,6 +58,7 @@ export function ColorPickerPopperBody({
 
   return (
     <>
+      <p className="text-md font-medium mb-2">{heading}</p>
       <ColorPicker
         swatchColors={swatchColors}
         value={localColor}
@@ -70,18 +69,33 @@ export function ColorPickerPopperBody({
         {...ColorPickerProps}
       />
 
-      <div className="mt-1 flex justify-between">
-        <ButtonBase onClick={() => onSave('')} type="button">
+      <div className="mt-4 flex justify-between">
+        <Button
+          tooltip={removeColorButtonTooltipTitle}
+          className="px-2 py-0.5"
+          onClick={() => onSave('')}
+          type="button"
+        >
           {removeColorButton}
-        </ButtonBase>
+        </Button>
 
-        <ButtonBase onClick={onCancel} type="button">
+        <Button
+          variant="outline"
+          className="px-2 py-0.5"
+          onClick={onCancel}
+          type="button"
+        >
           {cancelButton}
-        </ButtonBase>
+        </Button>
 
-        <ButtonBase onClick={() => onSave(localColor)} type="button">
+        <Button
+          variant="primary"
+          className="px-2 py-0.5"
+          onClick={() => onSave(localColor)}
+          type="button"
+        >
           {saveButton}
-        </ButtonBase>
+        </Button>
       </div>
     </>
   );
@@ -102,10 +116,7 @@ export function ColorPickerPopper({
   ...popperProps
 }: ColorPickerPopperProps) {
   return (
-    <PopoverContent
-      {...popperProps}
-      className={cn('z-[3] w-[235px]', className)}
-    >
+    <PopoverContent {...popperProps} className={cn('z-[3] w-64', className)}>
       <ColorPickerPopperBody
         value={value || ''}
         onSave={onSave}

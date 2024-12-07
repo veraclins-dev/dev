@@ -17,15 +17,15 @@ export const KeyboardShortcuts = ({
     return key;
   };
   return (
-    <div
+    <code
       className={cn(
-        'space-x-0.5 rounded-md border border-input bg-background px-1 py-0.5',
+        'space-x-1 flex rounded-md border border-input bg-input uppercase italic text-xs p-0.5',
         className,
       )}
     >
       {shortcutKeys.map((shortcutKey, index) => {
         return <span key={shortcutKey + index}>{getKey(shortcutKey)}</span>;
       })}
-    </div>
+    </code>
   );
 };

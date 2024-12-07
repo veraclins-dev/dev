@@ -26,22 +26,26 @@ const TooltipContent = React.forwardRef<
 ));
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
-type ComposedTooltipProps = {
-  trigger: React.ReactNode;
+type ComposedTooltipProps<P extends object> = {
+  Trigger: React.ComponentType<P>;
   content: React.ReactNode;
   arrow?: boolean;
+  TriggerProps: P;
+  myRef?: React.Ref<HTMLElement>;
 };
 
-const ComposedTooltip = ({
-  trigger,
+const ComposedTooltip = <P extends object>({
+  Trigger,
   content,
   arrow = true,
-}: ComposedTooltipProps) => {
+  TriggerProps,
+  myRef,
+}: ComposedTooltipProps<P>) => {
   return (
     <TooltipProvider>
       <Tooltip delayDuration={200}>
         <TooltipTrigger asChild>
-          <span>{trigger}</span>
+          <Trigger {...TriggerProps} ref={myRef} />
         </TooltipTrigger>
         <TooltipContent align="center">
           {content}

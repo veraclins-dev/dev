@@ -43,7 +43,6 @@ export function TableBubbleMenu() {
                     (node) => node.type.name === 'table',
                   )
                 : null;
-              console.log('nearestTableParent', nearestTableParent);
               if (nearestTableParent) {
                 const wrapperDomNode = editor.view.nodeDOM(
                   nearestTableParent.pos,
@@ -79,8 +78,6 @@ export function TableBubbleMenu() {
   }
 
   const controls = <TableMenuControls />;
-
-  // console.log('active', isEditorFocusedDebounced, editor.isActive('table'))
 
   return (
     <ControlledBubbleMenu

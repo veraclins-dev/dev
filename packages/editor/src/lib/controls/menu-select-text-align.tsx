@@ -2,6 +2,7 @@ import { type TextAlignOptions } from '@tiptap/extension-text-align';
 import { useCallback, useMemo } from 'react';
 import { type Except } from 'type-fest';
 
+import { useReturnFocus } from '../hooks/use-editor-focus';
 import { useRichTextEditorContext } from '../rich-text-editor-provider';
 
 import {
@@ -29,24 +30,28 @@ const options: Option[] = [
     label: 'Left',
     shortcutKeys: ['mod', 'Shift', 'L'],
     icon: 'text-align-left',
+    className: 'pl-0 pr-0 py-0 my-1',
   },
   {
     value: 'center',
     label: 'Center',
     shortcutKeys: ['mod', 'Shift', 'E'],
     icon: 'text-align-center',
+    className: 'pl-0 pr-0 py-0 my-1',
   },
   {
     value: 'right',
     label: 'Right',
     shortcutKeys: ['mod', 'Shift', 'R'],
     icon: 'text-align-right',
+    className: 'pl-0 pr-0 py-0 my-1',
   },
   {
     value: 'justify',
     label: 'Justify',
     shortcutKeys: ['mod', 'Shift', 'J'],
     icon: 'text-align-justify',
+    className: 'pl-0 pr-0 py-0 my-1',
   },
 ];
 
@@ -55,10 +60,10 @@ export function MenuSelectTextAlign({
   ...menuSelectProps
 }: MenuSelectTextAlignProps) {
   const editor = useRichTextEditorContext();
-
+  const returnFocus = useReturnFocus({ editor });
   const handleAlignmentSelect: (value: Value) => void = useCallback(
     (value) => {
-      editor?.chain().setTextAlign(value).focus().run();
+      editor?.chain().focus().setTextAlign(value).run();
     },
     [editor],
   );
@@ -66,7 +71,7 @@ export function MenuSelectTextAlign({
   // Figure out which settings the user has enabled with the heading extension
   const textAlignExtensionOptions = useMemo(() => {
     const textAlignExtension = editor?.extensionManager.extensions.find(
-      (extension) => extension.name == 'textAlign',
+      (extension) => extension.name === 'textAlign',
     );
     return textAlignExtension?.options as TextAlignOptions | undefined;
   }, [editor]);
@@ -101,6 +106,7 @@ export function MenuSelectTextAlign({
       tooltip="Align"
       value={selectedValue}
       {...menuSelectProps}
+      onClose={returnFocus}
     />
   );
 }

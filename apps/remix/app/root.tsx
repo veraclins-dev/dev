@@ -6,6 +6,7 @@ import {
   ScrollRestoration,
 } from '@remix-run/react';
 import type { MetaFunction, LinksFunction } from '@remix-run/node';
+import twStyles from './tailwind.css?url';
 
 export const meta: MetaFunction = () => [
   {
@@ -14,6 +15,7 @@ export const meta: MetaFunction = () => [
 ];
 
 export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: twStyles },
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
   {
     rel: 'preconnect',
@@ -28,14 +30,14 @@ export const links: LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="flex flex-col items-center">
         {children}
         <ScrollRestoration />
         <Scripts />

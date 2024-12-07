@@ -1,2 +1,2 @@
-export * from './rich-text-editor';
+export * from './editor';
 export * from './rich-text-read-only';

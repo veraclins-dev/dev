@@ -57,8 +57,6 @@ export function ControlledBubbleMenu({
           const node = editor.view.nodeDOM(from);
 
           if (node instanceof HTMLElement) {
-            const rect = node.getBoundingClientRect();
-            console.log('rect', rect);
             return node.getBoundingClientRect();
           }
         }

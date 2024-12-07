@@ -4,7 +4,10 @@ import { type Except } from 'type-fest';
 import { Popover, PopoverTrigger } from '@veraclins-dev/ui';
 
 import { type ColorPickerProps, type SwatchColorOption } from './color-picker';
-import { ColorPickerPopper } from './color-picker-popper';
+import {
+  ColorPickerPopper,
+  type ColorPickerPopperProps,
+} from './color-picker-popper';
 import { MenuButton, type MenuButtonProps } from './menu-button';
 
 export interface MenuButtonColorPickerProps
@@ -55,6 +58,8 @@ export interface MenuButtonColorPickerProps
      * 'Ex: "#7cb5ec"'
      */
     textFieldPlaceholder?: string;
+
+    heading?: ReactNode;
   };
 }
 
@@ -66,6 +71,7 @@ export function MenuButtonColorPicker({
   popoverId,
   ColorPickerProps,
   icon,
+  label,
   ...menuButtonProps
 }: MenuButtonColorPickerProps) {
   const [open, setOpen] = useState(false);
@@ -81,6 +87,7 @@ export function MenuButtonColorPicker({
           aria-describedby={popoverId}
           {...otherMenuButtonProps}
           icon={icon}
+          label={label}
           iconProps={{
             style:
               menuButtonProps.disabled || !colorValue
@@ -100,7 +107,7 @@ export function MenuButtonColorPicker({
         onCancel={handleClose}
         swatchColors={swatchColors}
         ColorPickerProps={ColorPickerProps}
-        labels={labels}
+        labels={{ ...labels, heading: labels?.heading ?? label }}
       />
     </Popover>
   );

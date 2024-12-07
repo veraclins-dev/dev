@@ -1,25 +1,25 @@
-import { type Editor } from '@tiptap/react'
-import { createContext, useContext } from 'react'
+import { type Editor } from '@tiptap/react';
+import { createContext, useContext } from 'react';
 
 export const RichTextEditorContext = createContext<Editor | null | undefined>(
-	undefined,
-)
+  undefined,
+);
 
 export function useRichTextEditorContext(): Editor | null {
-	const editor = useContext(RichTextEditorContext)
-	if (editor === undefined) {
-		throw new Error(
-			'Tiptap editor not found in component context. Be sure to use <RichTextEditorProvider editor={editor} />!',
-		)
-	}
+  const editor = useContext(RichTextEditorContext);
+  if (editor === undefined) {
+    throw new Error(
+      'Tiptap editor not found in component context. Be sure to use <RichTextEditorProvider editor={editor} />!',
+    );
+  }
 
-	return editor
+  return editor;
 }
 
 export type RichTextEditorProviderProps = Readonly<{
-	editor: Editor | null
-	children: React.ReactNode
-}>
+  editor: Editor | null;
+  children: React.ReactNode;
+}>;
 
 /**
  * Makes the Tiptap `editor` available to any nested components, via the
@@ -31,12 +31,12 @@ export type RichTextEditorProviderProps = Readonly<{
  */
 
 export function RichTextEditorProvider({
-	editor,
-	children,
+  editor,
+  children,
 }: RichTextEditorProviderProps) {
-	return (
-		<RichTextEditorContext.Provider value={editor}>
-			{children}
-		</RichTextEditorContext.Provider>
-	)
+  return (
+    <RichTextEditorContext.Provider value={editor}>
+      {children}
+    </RichTextEditorContext.Provider>
+  );
 }

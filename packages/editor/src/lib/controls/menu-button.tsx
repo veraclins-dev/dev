@@ -40,8 +40,8 @@ export const Button = forwardRef<HTMLButtonElement, MenuTextButtonProps>(
   ({ children, onClick, isActive, label, shortcutKeys, ...props }, ref) => (
     <IconButton
       {...props}
-      variant="outline"
       onClick={onClick}
+      variant="plain"
       className={cn(
         'h-7 rounded-md p-1 hover:bg-accent hover:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
         isActive ? 'bg-accent font-bold text-accent-foreground' : '',

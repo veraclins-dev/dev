@@ -68,7 +68,6 @@ export function LinkBubbleMenu({
                     (node) => node.type.name === 'link',
                   )
                 : null;
-              console.log('nearestAnchorParent', nearestAnchorParent);
               if (nearestAnchorParent) {
                 const wrapperDomNode = editor.view.nodeDOM(
                   nearestAnchorParent.pos,

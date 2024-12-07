@@ -33,6 +33,7 @@ export interface MenuSelectProps extends BaseSelectProps {
    * Used to display what this button is responsible for. Ex: "Ordered list".
    */
   tooltip?: string;
+  onClose: () => void;
 }
 
 export const MenuSelect = ({
@@ -43,6 +44,7 @@ export const MenuSelect = ({
   className,
   onValueChange,
   tooltip,
+  onClose,
 }: MenuSelectProps) => {
   const selected =
     options.find((option) => getOptionValue(option) === value) || defaultValue;
@@ -50,12 +52,17 @@ export const MenuSelect = ({
   const trigger = getOptionLabel(selected) ?? defaultLabel;
 
   const handleValueChange = (value: string) => {
-    console.log(value);
     onValueChange?.(value);
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu
+      onOpenChange={(open) => {
+        if (!open) {
+          onClose();
+        }
+      }}
+    >
       <DropdownMenuTrigger
         className={cn(
           'flex h-7 items-center justify-between rounded-md p-1 hover:bg-accent hover:text-accent-foreground',
@@ -66,7 +73,10 @@ export const MenuSelect = ({
         {trigger} <Icon name="chevron-down" />
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
-        <DropdownMenuContent className="max-h-64 overflow-y-scroll">
+        <DropdownMenuContent
+          className="max-h-64 overflow-y-scroll"
+          onCloseAutoFocus={(e) => e.preventDefault()}
+        >
           <DropdownMenuArrow />
           <DropdownMenuRadioGroup
             value={value}

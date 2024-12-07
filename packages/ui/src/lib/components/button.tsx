@@ -14,7 +14,12 @@ export interface ButtonProps extends ButtonBaseProps {
 export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ tooltip, ...props }, ref) => {
     return tooltip ? (
-      <ComposedTooltip trigger={<ButtonBase {...props} />} content={tooltip} />
+      <ComposedTooltip
+        Trigger={ButtonBase}
+        TriggerProps={props}
+        content={tooltip}
+        myRef={ref}
+      />
     ) : (
       <ButtonBase ref={ref} {...props} />
     );

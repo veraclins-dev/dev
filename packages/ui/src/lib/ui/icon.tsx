@@ -77,7 +77,11 @@ export function Icon({
   tooltip?: string;
 }) {
   return tooltip ? (
-    <ComposedTooltip trigger={<Component {...props} />} content={tooltip} />
+    <ComposedTooltip
+      Trigger={Component}
+      TriggerProps={props}
+      content={tooltip}
+    />
   ) : (
     <Component {...props} />
   );

@@ -18,7 +18,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           rounded ? 'rounded-full' : '',
           className,
         )}
-        variant="outline"
+        // variant="outline"
         ref={ref}
       >
         {children}

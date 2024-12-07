@@ -22,7 +22,7 @@ export function RichTextContent({ className }: RichTextContentProps) {
   return (
     <div
       className={cn(
-        'max-h-64 overflow-y-scroll rounded-lg rounded-t-none bg-input px-5 py-2',
+        'h-full overflow-y-scroll rounded-lg rounded-t-none bg-input px-5 py-2',
         className,
       )}
     >

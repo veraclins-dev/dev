@@ -1,3 +1,3 @@
 export function MenuDivider() {
-	return <div className="my-1 h-4 w-[1px] bg-border" />
+  return <div className="h-7 w-[1px] mx-1 bg-border" />;
 }
