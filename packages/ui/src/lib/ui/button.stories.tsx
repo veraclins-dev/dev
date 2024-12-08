@@ -1,23 +1,31 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect,within } from '@storybook/test';
+import { expect, within } from '@storybook/test';
 
-import { Button } from './button';
+import { ButtonBase } from './button';
 
-const meta: Meta<typeof Button> = {
-  component: Button,
-  title: 'Button',
+const meta: Meta<typeof ButtonBase> = {
+  component: ButtonBase,
+  title: 'ButtonBase',
 };
 export default meta;
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof ButtonBase>;
 
 export const Primary = {
-  args: {},
+  args: {
+    children: 'Primary',
+    variant: 'primary',
+    className: 'px-4 py-2',
+  },
 };
 
 export const Heading: Story = {
-  args: {},
+  args: {
+    children: 'Welcome to ButtonBase!',
+    variant: 'outline',
+    className: 'px-4 py-2',
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to Button!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Welcome to ButtonBase!/gi)).toBeTruthy();
   },
 };

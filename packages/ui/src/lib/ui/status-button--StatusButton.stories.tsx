@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect,within } from '@storybook/test';
+import { expect, within } from '@storybook/test';
 
 import { StatusButton } from './status-button';
 
@@ -10,12 +10,19 @@ const meta: Meta<typeof StatusButton> = {
 export default meta;
 type Story = StoryObj<typeof StatusButton>;
 
-export const Primary = {
-  args: {},
+export const Primary: Story = {
+  args: {
+    children: 'Primary',
+    status: 'pending',
+  },
 };
 
-export const Heading: Story = {
-  args: {},
+export const WithMessage: Story = {
+  args: {
+    children: 'WithMessage',
+    status: 'pending',
+    message: 'Success!',
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to StatusButton!/gi)).toBeTruthy();

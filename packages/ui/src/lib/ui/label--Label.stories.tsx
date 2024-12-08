@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect,within } from '@storybook/test';
+import { expect, within } from '@storybook/test';
 
 import { Label } from './label';
 
@@ -10,8 +10,10 @@ const meta: Meta<typeof Label> = {
 export default meta;
 type Story = StoryObj<typeof Label>;
 
-export const Primary = {
-  args: {},
+export const Primary: Story = {
+  args: {
+    children: 'Primary',
+  },
 };
 
 export const Heading: Story = {

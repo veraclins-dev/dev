@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect,within } from '@storybook/test';
+import { expect, within } from '@storybook/test';
 
-import { Checkbox } from './check-box';
+import { Checkbox } from './checkbox';
 
 const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
@@ -11,7 +11,9 @@ export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
 export const Primary = {
-  args: {},
+  args: {
+    className: 'border border-gray-300 rounded p-2',
+  },
 };
 
 export const Heading: Story = {
