@@ -34,13 +34,13 @@ const Base = ({
   </RemixLink>
 );
 
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
+const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   (props: LinkProps, ref) => <Base {...props} linkRef={ref} />,
 );
 
 Link.displayName = 'Link';
 
-export const LinkWithRedirect = forwardRef<HTMLAnchorElement, LinkProps>(
+const LinkWithRedirect = forwardRef<HTMLAnchorElement, LinkProps>(
   ({ to, ...props }: LinkProps, ref) => {
     const path = usePathWithRedirect(to);
 
@@ -50,7 +50,7 @@ export const LinkWithRedirect = forwardRef<HTMLAnchorElement, LinkProps>(
 
 LinkWithRedirect.displayName = 'LinkWithRedirect';
 
-export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
+const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
   (
     { className, variant = 'link', children, ...props }: LinkButtonProps,
     ref,
@@ -68,10 +68,7 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
 
 LinkButton.displayName = 'LinkButton';
 
-export const LinkButtonWithRedirect = forwardRef<
-  HTMLAnchorElement,
-  LinkButtonProps
->(
+const LinkButtonWithRedirect = forwardRef<HTMLAnchorElement, LinkButtonProps>(
   (
     { className, variant = 'link', children, ...props }: LinkButtonProps,
     ref,
@@ -87,3 +84,5 @@ export const LinkButtonWithRedirect = forwardRef<
 );
 
 LinkButtonWithRedirect.displayName = 'LinkButtonWithRedirect';
+
+export { Link, LinkButton, LinkButtonWithRedirect, LinkWithRedirect };

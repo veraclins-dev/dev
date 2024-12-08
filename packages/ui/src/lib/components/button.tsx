@@ -5,13 +5,13 @@ import { cn } from '@veraclins-dev/utils';
 import { ButtonBase, type ButtonBaseProps } from '../ui/button';
 import { ComposedTooltip } from '../ui/tooltip';
 
-export interface ButtonProps extends ButtonBaseProps {
+interface ButtonProps extends ButtonBaseProps {
   rounded?: boolean;
   // name?: string
   tooltip?: React.ReactNode;
 }
 
-export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
+const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ tooltip, ...props }, ref) => {
     return tooltip ? (
       <ComposedTooltip
@@ -28,7 +28,7 @@ export const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
 
 BaseButton.displayName = 'BaseButton';
 
-export const Button = ({
+const Button = ({
   rounded = false,
   className,
   children,
@@ -43,3 +43,5 @@ export const Button = ({
     </BaseButton>
   );
 };
+
+export { BaseButton, Button, type ButtonProps };

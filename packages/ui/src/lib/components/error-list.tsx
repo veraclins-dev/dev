@@ -15,6 +15,7 @@ export function ErrorList({
   className,
   errorItemClassName,
 }: ErrorListProps) {
+  console.log('ErrorListProps:', { id, errors, className, errorItemClassName });
   const errorsToRender = (errors ?? []).filter(Boolean);
   return errorsToRender.length ? (
     <ul id={id} className={cn('flex flex-col gap-1', className)}>

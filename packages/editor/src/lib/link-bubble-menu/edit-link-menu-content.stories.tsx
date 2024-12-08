@@ -1,6 +1,5 @@
-import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
-import { within } from '@storybook/testing-library';
+import { expect, within } from '@storybook/test';
 
 import { EditLinkMenuContent } from './edit-link-menu-content';
 
@@ -23,10 +22,7 @@ export const Primary = {
 };
 
 export const Heading: Story = {
-  args: {
-    editor: '',
-    labels: '',
-  },
+  args: {},
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to EditLinkMenuContent!/gi)).toBeTruthy();

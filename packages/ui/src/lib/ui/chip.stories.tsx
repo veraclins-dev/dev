@@ -1,25 +1,29 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { LinkBubbleMenu } from './index';
+import { Chip } from './chip';
 
-const meta: Meta<typeof LinkBubbleMenu> = {
-  component: LinkBubbleMenu,
-  title: 'LinkBubbleMenu',
+const meta: Meta<typeof Chip> = {
+  component: Chip,
+  title: 'Chip',
 };
 export default meta;
-type Story = StoryObj<typeof LinkBubbleMenu>;
+type Story = StoryObj<typeof Chip>;
 
 export const Primary = {
   args: {
-    labels: '',
+    label: '',
+    onRemove: '',
   },
 };
 
 export const Heading: Story = {
-  args: {},
+  args: {
+    label: '',
+    onRemove: '',
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to LinkBubbleMenu!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Welcome to Chip!/gi)).toBeTruthy();
   },
 };

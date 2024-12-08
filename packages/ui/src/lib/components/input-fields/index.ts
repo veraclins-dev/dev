@@ -1,4 +1,4 @@
-export * from './checkbox';
+export * from './checkbox-field';
 export * from './image-field';
 export * from './labeled-textfield';
 export * from './textarea';
