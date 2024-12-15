@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/editor",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "main": "./index.js",
   "types": "./index.d.ts",
   "repository": "https://github.com/veraclins-dev/dev.git",
