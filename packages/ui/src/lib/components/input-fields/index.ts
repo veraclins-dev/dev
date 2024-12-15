@@ -1,3 +1,4 @@
+export * from './autocomplete';
 export * from './checkbox-field';
 export * from './image-field';
 export * from './labeled-textfield';
