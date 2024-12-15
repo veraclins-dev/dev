@@ -236,34 +236,32 @@ export function Autocomplete({
           className="h-0 w-0 border-none p-0"
           readOnly
         />
-        <div className="relative mt-2">
-          <CommandList>
-            {open && filteredOptions.length > 0 ? (
-              <div className="bg-popover text-popover-foreground absolute top-0 z-10 w-full rounded-md border shadow-md outline-none animate-in">
-                <CommandGroup className="h-full overflow-auto">
-                  {filteredOptions.map((option) => {
-                    return (
-                      <CommandItem
-                        key={getOptionValue(option)}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                        }}
-                        onSelect={(value) => {
-                          console.log({ value });
-                          handleSelect(option);
-                        }}
-                        className="cursor-pointer"
-                      >
-                        {getOptionLabel(option)}
-                      </CommandItem>
-                    );
-                  })}
-                </CommandGroup>
-              </div>
-            ) : null}
-          </CommandList>
-        </div>
+        <CommandList>
+          {open && filteredOptions.length > 0 ? (
+            <div className="bg-popover text-popover-foreground absolute top-0 z-10 w-full rounded-md border shadow-md outline-none animate-in">
+              <CommandGroup className="h-full overflow-auto">
+                {filteredOptions.map((option) => {
+                  return (
+                    <CommandItem
+                      key={getOptionValue(option)}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                      onSelect={(value) => {
+                        console.log({ value });
+                        handleSelect(option);
+                      }}
+                      className="cursor-pointer"
+                    >
+                      {getOptionLabel(option)}
+                    </CommandItem>
+                  );
+                })}
+              </CommandGroup>
+            </div>
+          ) : null}
+        </CommandList>
       </Command>
     </InputWrapper>
   );
