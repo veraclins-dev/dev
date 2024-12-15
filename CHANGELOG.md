@@ -1,3 +1,13 @@
+## 0.8.0 (2024-12-15)
+
+### 🚀 Features
+
+- add autocomplete component ([15caf0c](https://github.com/veraclins-dev/dev/commit/15caf0c))
+
+### ❤️  Thank You
+
+- clinton.agada
+
 ## 0.7.0 (2024-12-07)
 
 ### 🚀 Features
