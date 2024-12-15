@@ -2,22 +2,7 @@
  *  lodash 4.17.15 (Custom Build) <https://lodash.com/>
  */
 
-import {
-  freeParseInt,
-  FUNC_ERROR_TEXT,
-  isObject,
-  NAN,
-  nativeMax,
-  nativeMin,
-  now,
-  objectToString,
-  reIsBadHex,
-  reIsBinary,
-  reIsOctal,
-  reTrim,
-  symbolTag,
-  toNumber,
-} from './utils';
+import { FUNC_ERROR_TEXT, isObject, now, toNumber } from './utils';
 
 export interface DebounceSettings {
   /**
@@ -140,9 +125,7 @@ export function debounce<T extends (...args: any) => any>(
   if (isObject(options)) {
     leading = !!options?.leading;
     maxing = 'maxWait' in options;
-    maxWait = maxing
-      ? nativeMax(toNumber(options.maxWait) || 0, wait)
-      : maxWait;
+    maxWait = maxing ? Math.max(toNumber(options.maxWait) || 0, wait) : maxWait;
     trailing = 'trailing' in options ? !!options.trailing : trailing;
   }
 
@@ -170,7 +153,7 @@ export function debounce<T extends (...args: any) => any>(
       timeSinceLastInvoke = time - lastInvokeTime,
       result = wait - timeSinceLastCall;
 
-    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+    return maxing ? Math.min(result, maxWait - timeSinceLastInvoke) : result;
   }
 
   function shouldInvoke(time: number) {

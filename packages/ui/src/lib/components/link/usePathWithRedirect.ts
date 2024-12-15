@@ -7,7 +7,7 @@ export const getPathWithRedirect = (
   to: LinkProps['to'],
   currentPath: string,
   redirectToField = 'redirectTo',
-) => {
+): LinkProps['to'] => {
   if (typeof to === 'number') return to;
   const redirectTo = new URLSearchParams([[redirectToField, currentPath]]);
   let path = to;
@@ -24,7 +24,7 @@ export const getPathWithRedirect = (
   return path;
 };
 
-export const usePathWithRedirect = (to: LinkProps['to']) => {
+export const usePathWithRedirect = (to: LinkProps['to']): LinkProps['to'] => {
   const location = useLocation();
 
   const path = useMemo(() => {

@@ -48,10 +48,6 @@ const objectProto = Object.prototype;
  */
 export const objectToString = objectProto.toString;
 
-/* Built-in method references for those with the same name as other `lodash` methods. */
-export const nativeMax = Math.max,
-  nativeMin = Math.min;
-
 /**
  * Gets the timestamp of the number of milliseconds that have elapsed since
  * the Unix epoch (1 January 1970 00:00:00 UTC).
