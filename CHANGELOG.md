@@ -1,3 +1,13 @@
+## 0.9.1 (2024-12-18)
+
+### 🩹 Fixes
+
+- ensure autocomplete works well ([da270d1](https://github.com/veraclins-dev/dev/commit/da270d1))
+
+### ❤️  Thank You
+
+- clinton.agada
+
 ## 0.9.0 (2024-12-18)
 
 ### 🚀 Features
