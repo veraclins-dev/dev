@@ -1,21 +1,26 @@
-'use client';
-import { Command as CommandPrimitive } from 'cmdk';
 import { matchSorter, type MatchSorterOptions } from 'match-sorter';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { isObject } from '@veraclins-dev/utils';
+import {
+  cn,
+  humanize,
+  scrollIntoView,
+  setReactInputValue,
+} from '@veraclins-dev/utils';
 
 import { type Maybe, type Option } from '../../types';
 import { Chip } from '../../ui/chip';
 import {
   Command,
-  CommandGroup,
+  CommandEmpty,
+  CommandInput,
   CommandItem,
   CommandList,
 } from '../../ui/command';
+import { Popover, PopoverAnchor, PopoverContent } from '../../ui/popover';
 
 import { type TextFieldProps } from './textfield';
-import { getInputProps } from './utils';
+import { getInputProps, useFieldProperties } from './utils';
 import { InputWrapper } from './wrapper';
 
 type Options = Option[];
@@ -23,21 +28,20 @@ type Options = Option[];
 export interface AutocompleteProps
   extends Omit<TextFieldProps, 'value' | 'onChange'> {
   options: Options;
-  openOnFocus?: boolean;
   maxOptions?: number;
   dependsOn?: string;
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
   disableSorting?: boolean;
+  menuClassName?: string;
 }
 
-const isStringOption = (option?: Option) => typeof option === 'string';
 const getOptionLabel = (option?: Option) =>
-  isObject(option) ? option.label : option;
-
+  typeof option === 'string' ? option : option?.label;
 const getOptionValue = (option: Option) =>
-  isObject(option) ? option.value : option;
+  typeof option === 'string' ? option : option.value;
+const isStringOption = (option?: Option) => typeof option === 'string';
 
 const filter = (
   options: Options,
@@ -60,54 +64,60 @@ const filter = (
   return matchSorter(options, value, config);
 };
 
-export function Autocomplete({
+export const Autocomplete = ({
+  className,
   options,
+  multiple,
   label,
-  disableSorting,
-  multiple = true,
+  name,
+  labelProps,
   maxOptions,
   dependsOn,
-  className,
   field,
   borderless,
-  bgClass,
-  labelProps,
-  name,
-  placeholder,
+  bgClass = 'bg-input',
+  inputClass,
+  defaultValue,
+  value: supplied,
   onChange,
+  disableSorting,
+  placeholder,
   ...props
-}: AutocompleteProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+}: AutocompleteProps) => {
+  const { errorId, id } = useFieldProperties(field);
+  const wrapperRef = useRef<Maybe<HTMLDivElement>>(null);
   const mainRef = useRef<Maybe<HTMLInputElement>>(null);
+  const inputRef = useRef<Maybe<HTMLInputElement>>(null);
+  const anchorRef = useRef<Maybe<HTMLDivElement>>(null);
+  const firstItemRef = useRef<Maybe<HTMLDivElement>>(null);
 
+  const [localValue, setLocalValue] = useState<string>('');
+  const [formValue, setFormValue] = useState<string>('');
+  const [filteredOptions, setFilteredOptions] = useState<Options>(options);
+  const [selected, setSelected] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
 
-  const [localValue, setLocalValue] = useState('');
-  const [formValue, setFormValue] = useState('');
-  const [selected, setSelected] = useState<string[]>([]);
-  const [inputValue, setInputValue] = useState('');
-
-  let filtered = options;
-  if (multiple) {
-    filtered = options.filter(
-      (option) => !selected.includes(getOptionValue(option)),
-    );
-  }
-
-  const filteredOptions = filter(
-    filtered,
-    localValue,
-    ['label'],
-    disableSorting,
-  );
-
+  const canSelect = !maxOptions || selected.length < maxOptions;
   const dependent = !!(dependsOn && !options.length);
-  const canSelect =
-    (!maxOptions || selected.length < maxOptions) && filteredOptions.length > 0;
 
-  const handleUnselect = useCallback((value: string) => {
-    setSelected((prev) => prev.filter((s) => s !== value));
-  }, []);
+  const handleChange = (value: string) => {
+    setLocalValue(value);
+    // if (value && !open) {
+    // 	setOpen(true)
+    // }
+
+    scrollIntoView(firstItemRef);
+  };
+
+  const handleBlur: React.ChangeEventHandler<HTMLInputElement> = () => {
+    setOpen(false);
+    mainRef.current?.focus();
+
+    mainRef.current?.blur();
+  };
+
+  const value = supplied ?? field?.initialValue ?? defaultValue ?? '';
+  delete field?.initialValue;
 
   const handleSelect = (option: Option) => {
     const val = getOptionValue(option);
@@ -116,12 +126,32 @@ export function Autocomplete({
         const all = [...selected, val];
         setSelected(all);
         setLocalValue('');
-        inputRef.current?.focus();
+        wrapperRef.current?.focus();
       } else {
         setSelected([val]);
         setLocalValue(getOptionLabel(val) as string);
+        setOpen(false);
       }
     }
+  };
+  const handleRemove = (value: string) => {
+    setSelected(selected.filter((val) => val !== value));
+    wrapperRef.current?.focus();
+  };
+
+  const changeValue = useCallback((value: string) => {
+    if (value !== undefined) {
+      setFormValue(value);
+      setReactInputValue(mainRef.current, value);
+      wrapperRef.current?.focus();
+      onChange?.(value);
+    }
+  }, []);
+
+  const reset = () => {
+    setSelected([]);
+    setLocalValue('');
+    changeValue('');
   };
 
   const handleKeyDown = useCallback(
@@ -146,28 +176,48 @@ export function Autocomplete({
     [],
   );
 
-  const { key, ...formProps } = getInputProps({ field, name });
-  delete formProps.defaultValue;
-
-  const changeValue = useCallback((value: string) => {
-    if (value !== undefined) {
-      setFormValue(value);
-      // setReactInputValue(mainRef.current, value)
-      // inputRef.current?.focus()
-      // onChange?.(value);
-    }
+  const handleFocus = useCallback(() => {
+    setOpen(true);
+    inputRef.current?.select();
   }, []);
 
-  const reset = () => {
-    setSelected([]);
-    setLocalValue('');
-    changeValue('');
-  };
+  useEffect(() => {
+    if (!selected.length && value?.length) {
+      const val = Array.isArray(value) ? (value as string[]) : value.split('|');
+      setSelected(val);
+    }
+  }, [value]);
+
+  useEffect(() => {
+    let filtered = options;
+    if (multiple) {
+      filtered = options.filter(
+        (option) => !selected.includes(getOptionValue(option)),
+      );
+    }
+
+    const filteredOptions = filter(
+      filtered,
+      localValue,
+      ['label'],
+      disableSorting,
+    );
+    setFilteredOptions(filteredOptions);
+  }, [localValue, multiple, options, selected]);
 
   useEffect(() => {
     const value = selected.join('|');
     changeValue(value);
   }, [selected]);
+
+  useEffect(() => {
+    if (value) {
+      changeValue(value);
+      if (!multiple) {
+        setLocalValue(value);
+      }
+    }
+  }, [value, multiple]);
 
   useEffect(() => {
     const found = selected.reduce((acc, val) => {
@@ -179,24 +229,34 @@ export function Autocomplete({
     }
   }, [options]);
 
-  console.log(filteredOptions, selected, inputValue, canSelect);
+  const { key, ...formProps } = getInputProps({ field, name });
+  delete formProps.defaultValue;
+
+  const isSelected = useCallback(
+    (option: Option) => selected.includes(getOptionValue(option)),
+    [selected],
+  );
 
   return (
-    <InputWrapper
-      borderless={borderless}
-      className={className}
-      field={field}
-      label={label}
-      labelProps={labelProps}
-      wrapperRef={inputRef}
-      bgClass={bgClass}
-    >
-      <Command
-        onKeyDown={handleKeyDown}
-        className="overflow-visible bg-transparent"
+    <div className="w-full">
+      <InputWrapper
+        borderless={borderless}
+        className={className}
+        field={field}
+        label={label}
+        labelProps={labelProps}
+        wrapperRef={wrapperRef}
+        bgClass={bgClass}
       >
-        <div className="group rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
-          <div className="flex flex-wrap gap-1">
+        <Command
+          onKeyDown={handleKeyDown}
+          className="overflow-visible bg-transparent"
+          shouldFilter={false}
+        >
+          <div
+            ref={anchorRef}
+            className="flex h-full w-full flex-wrap gap-1 border-0 px-3 py-2"
+          >
             {multiple &&
               selected.map((value) => {
                 return (
@@ -207,40 +267,52 @@ export function Autocomplete({
                         (option) => getOptionValue(option) === value,
                       ),
                     )}
-                    onRemove={() => handleUnselect(value)}
+                    onRemove={() => handleRemove(value)}
                   />
                 );
               })}
             {/* Avoid having the "Search" Icon */}
             {canSelect && (
-              <CommandPrimitive.Input
+              <CommandInput
                 ref={inputRef}
-                value={inputValue}
-                onValueChange={setInputValue}
-                onBlur={() => setOpen(false)}
-                onFocus={() => setOpen(true)}
+                id={id}
+                aria-describedby={errorId}
+                aria-invalid={errorId ? true : undefined}
+                value={localValue}
+                onValueChange={handleChange}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
                 placeholder={placeholder}
                 className="flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
                 disabled={!canSelect}
               />
             )}
           </div>
-        </div>
-        <input
-          {...props}
-          {...formProps}
-          ref={mainRef}
-          key={key}
-          value={formValue}
-          type="text"
-          className="h-0 w-0 border-none p-0"
-          readOnly
-        />
-        <CommandList>
-          {open && filteredOptions.length > 0 ? (
-            <div className="bg-popover text-popover-foreground absolute top-0 z-10 w-full rounded-md border shadow-md outline-none animate-in">
-              <CommandGroup className="h-full overflow-auto">
-                {filteredOptions.map((option) => {
+          <input
+            {...props}
+            {...formProps}
+            ref={mainRef}
+            key={key}
+            value={formValue}
+            type="text"
+            className="h-0 w-0 border-none p-0"
+            readOnly
+          />
+
+          <Popover open={open && canSelect}>
+            <PopoverAnchor virtualRef={inputRef} />
+            <PopoverContent
+              onOpenAutoFocus={(e) => e.preventDefault()}
+              className="p-2"
+              sideOffset={10}
+            >
+              <CommandList className="max-h-52 overflow-auto">
+                <CommandEmpty>
+                  {dependent
+                    ? `Select a value for "${humanize(dependsOn)}" first`
+                    : 'No options found'}
+                </CommandEmpty>
+                {filteredOptions.map((option, index) => {
                   return (
                     <CommandItem
                       key={getOptionValue(option)}
@@ -248,21 +320,21 @@ export function Autocomplete({
                         e.preventDefault();
                         e.stopPropagation();
                       }}
-                      onSelect={(value) => {
-                        console.log({ value });
-                        handleSelect(option);
-                      }}
-                      className="cursor-pointer"
+                      onSelect={() => handleSelect(option)}
+                      className={cn('cursor-pointer px-3 py-2', {
+                        'bg-input text-input-foreground': isSelected(option),
+                      })}
+                      ref={index === 0 ? firstItemRef : undefined}
                     >
                       {getOptionLabel(option)}
                     </CommandItem>
                   );
                 })}
-              </CommandGroup>
-            </div>
-          ) : null}
-        </CommandList>
-      </Command>
-    </InputWrapper>
+              </CommandList>
+            </PopoverContent>
+          </Popover>
+        </Command>
+      </InputWrapper>
+    </div>
   );
-}
+};

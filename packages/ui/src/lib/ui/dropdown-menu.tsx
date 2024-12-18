@@ -10,11 +10,11 @@ type WithHiddenIndicator = {
   indicatorHidden?: boolean;
 };
 
-export const containerClasses =
+export const contentClasses =
   'z-50 overflow-hidden rounded-md border border-input bg-card-inner p-4 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2';
 
 export const itemClasses =
-  'relative flex cursor-pointer select-none items-center rounded-sm py-1.5 outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50';
+  'relative flex cursor-pointer select-none items-center rounded-sm py-1.5 outline-none transition-colors focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50';
 
 export const activeItemClasses =
   'data-[state="checked"]:bg-accent data-[state="checked"]:text-accent-foreground';
@@ -115,7 +115,7 @@ const DropdownMenuContent = React.forwardRef<
     <DropdownMenuPrimitive.Content
       ref={ref}
       sideOffset={sideOffset}
-      className={cn('menu-content', containerClasses, className)}
+      className={cn('menu-content', contentClasses, className)}
       {...props}
     />
   </DropdownMenuPrimitive.Portal>
