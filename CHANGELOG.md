@@ -1,3 +1,13 @@
+## 0.9.0 (2024-12-18)
+
+### 🚀 Features
+
+- add autocomplete component and type entry point ([2a1f1de](https://github.com/veraclins-dev/dev/commit/2a1f1de))
+
+### ❤️  Thank You
+
+- clinton.agada
+
 ## 0.8.1 (2024-12-15)
 
 ### 🚀 Features
