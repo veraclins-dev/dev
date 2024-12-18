@@ -102,9 +102,9 @@ export const Autocomplete = ({
 
   const handleChange = (value: string) => {
     setLocalValue(value);
-    // if (value && !open) {
-    // 	setOpen(true)
-    // }
+    if (value && !open) {
+      setOpen(true);
+    }
 
     scrollIntoView(firstItemRef);
   };
@@ -236,6 +236,8 @@ export const Autocomplete = ({
     (option: Option) => selected.includes(getOptionValue(option)),
     [selected],
   );
+
+  console.log('Autocomplete', open, filteredOptions);
 
   return (
     <div className="w-full">

@@ -27,12 +27,12 @@ const CommandInput = React.forwardRef<
     withIcon?: boolean;
   }
 >(({ className, withIcon, ...props }, ref) => (
-  <div className="flex w-full items-center gap-2" cmdk-input-wrapper="">
+  <div className="flex flex-1 items-center gap-2" cmdk-input-wrapper="">
     {withIcon && <Icon name="search" className="h-4 w-4 shrink-0 opacity-50" />}
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
-        'h-full w-full flex-1 self-center border-0 px-3 py-2 text-base leading-normal text-input-foreground focus:outline-none focus:ring-0',
+        'text-base leading-normal text-input-foreground focus:outline-none focus:ring-0',
         className,
       )}
       {...props}
@@ -46,11 +46,7 @@ const CommandList = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>
 >(({ className, ...props }, ref) => (
-  <CommandPrimitive.List
-    ref={ref}
-    className={cn(contentClasses, className)}
-    {...props}
-  />
+  <CommandPrimitive.List ref={ref} className={cn(className)} {...props} />
 ));
 
 CommandList.displayName = CommandPrimitive.List.displayName;
