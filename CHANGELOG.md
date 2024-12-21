@@ -1,3 +1,13 @@
+## 0.9.2 (2024-12-21)
+
+### 🩹 Fixes
+
+- add popover arrow prop and support for external anchor ([eb03f22](https://github.com/veraclins-dev/dev/commit/eb03f22))
+
+### ❤️ Thank You
+
+- clinton.agada
+
 ## 0.9.1 (2024-12-18)
 
 ### 🩹 Fixes
