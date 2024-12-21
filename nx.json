@@ -122,6 +122,11 @@
     },
     "projects": [
       "packages/*"
-    ]
+    ],
+    "changelog": {
+      "workspaceChangelog": {
+        "createRelease": "github"
+      }
+    }
   }
 }
