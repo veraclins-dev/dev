@@ -44,3 +44,4 @@ Thumbs.db
 vite.config.*.timestamp*
 
 storybook-static
+vitest.config.*.timestamp*
