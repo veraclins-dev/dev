@@ -1,3 +1,14 @@
+## 0.9.3 (2024-12-22)
+
+### 🩹 Fixes
+
+- remove the remix app ([a7d34b7](https://github.com/veraclins-dev/dev/commit/a7d34b7))
+- fix popover and autocomplete ([30d24c0](https://github.com/veraclins-dev/dev/commit/30d24c0))
+
+### ❤️ Thank You
+
+- clinton.agada
+
 ## 0.9.2 (2024-12-21)
 
 ### 🩹 Fixes
