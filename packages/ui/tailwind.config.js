@@ -1,19 +1,18 @@
-const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
-const { join } = require('path');
-const { extendedTheme } = require('../utils/src');
+import { createGlobPatternsForDependencies } from '@nx/react/tailwind';
+import { join } from 'path';
+
+import { extendedTheme } from '@veraclins-dev/utils';
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: 'class',
-  content: [
-    join(
-      __dirname,
-      '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}',
-    ),
-    ...createGlobPatternsForDependencies(__dirname),
-  ],
-  theme: {
-    extend: extendedTheme,
-  },
-  plugins: [],
+export const darkMode = 'class';
+export const content = [
+  join(
+    __dirname,
+    '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}',
+  ),
+  ...createGlobPatternsForDependencies(__dirname),
+];
+export const theme = {
+  extend: extendedTheme,
 };
+export const plugins = [];

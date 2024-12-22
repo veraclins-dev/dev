@@ -3,8 +3,6 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import './styles.css?url';
-
 import { type ObjectOption, type Option } from '../../types';
 import { Icon } from '../icon';
 

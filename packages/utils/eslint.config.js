@@ -1,19 +1,13 @@
-const baseConfig = require('../../eslint.config.js');
+import pkg from '@nx/eslint-plugin';
 
-module.exports = [
+import baseConfig from '../../eslint.config.js';
+
+export default [
   ...baseConfig,
+  ...pkg.configs['flat/react'],
   {
-    files: ['**/*.ts'],
-    rules: {
-      '@nx/dependency-checks': [
-        'error',
-        {
-          ignoredFiles: [
-            '{projectRoot}/eslint.config.{js,cjs,mjs}',
-            '{projectRoot}/vite.config.{js,ts,mjs,mts}',
-          ],
-        },
-      ],
-    },
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    // Override or add rules here
+    rules: {},
   },
 ];
