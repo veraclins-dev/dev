@@ -1,7 +1,8 @@
 import { type Editor, isNodeSelection, posToDOMRect } from '@tiptap/react';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 import {
+  type Measurable,
   Popover,
   PopoverAnchor,
   type PopoverAnchorProps,
@@ -44,6 +45,8 @@ export function ControlledBubbleMenu({
   children,
   anchorEl,
 }: ControlledBubbleMenuProps) {
+  const anchorRef = useRef<Measurable | null>(null);
+
   const defaultAnchorEl = useMemo(() => {
     // The logic here is taken from the positioning implementation in Tiptap's BubbleMenuPlugin
     // https://github.com/ueberdosis/tiptap/blob/16bec4e9d0c99feded855b261edb6e0d3f0bad21/packages/extension-bubble-menu/src/bubble-menu-plugin.ts#L183-L193
@@ -66,9 +69,15 @@ export function ControlledBubbleMenu({
     };
   }, [editor]);
 
+  useEffect(() => {
+    if (anchorEl || defaultAnchorEl) {
+      anchorRef.current = anchorEl ?? defaultAnchorEl;
+    }
+  }, [anchorEl, defaultAnchorEl]);
+
   return (
     <Popover open={open}>
-      <PopoverAnchor anchorEl={anchorEl ?? defaultAnchorEl} />
+      <PopoverAnchor virtualRef={anchorRef} />
       <PopoverContent className={cn('z-[3] px-2.5 py-2', className)} arrow>
         {children}
       </PopoverContent>

@@ -237,8 +237,6 @@ export const Autocomplete = ({
     [selected],
   );
 
-  console.log('Autocomplete', open, filteredOptions);
-
   return (
     <div className="w-full">
       <InputWrapper

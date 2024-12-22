@@ -9,7 +9,21 @@ const Popover = PopoverPrimitive.Root;
 
 const PopoverTrigger = PopoverPrimitive.Trigger;
 
-const PopoverArrow = PopoverPrimitive.Arrow;
+const PopoverAnchor = PopoverPrimitive.Anchor;
+
+const PopoverArrow = forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Arrow>,
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Arrow> & {
+    inset?: boolean;
+  }
+>(({ className, inset, children, ...props }, ref) => (
+  <PopoverPrimitive.Arrow
+    ref={ref}
+    className={cn('fill-current', className)}
+    {...props}
+  />
+));
+PopoverArrow.displayName = PopoverPrimitive.Arrow.displayName;
 
 const PopoverContent = forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
@@ -32,7 +46,7 @@ const PopoverContent = forwardRef<
         )}
         {...props}
       >
-        {arrow && <PopoverArrow className="fill-card stroke-border" />}
+        {arrow && <PopoverArrow />}
         {children}
       </PopoverPrimitive.Content>
     </PopoverPrimitive.Portal>
@@ -57,26 +71,6 @@ type AnchorProps = React.ComponentPropsWithoutRef<
 type PopoverAnchorProps = AnchorProps & {
   anchorEl?: Maybe<Measurable>;
 };
-
-const PopoverAnchor = forwardRef<
-  React.ElementRef<typeof PopoverPrimitive.Anchor>,
-  PopoverAnchorProps
->(({ virtualRef, anchorEl, ...props }, ref) => {
-  const anchorRef = useRef<Measurable | null>(null);
-  useEffect(() => {
-    if (anchorEl) {
-      anchorRef.current = anchorEl;
-    }
-  }, [anchorEl]);
-  return (
-    <PopoverPrimitive.Anchor
-      ref={ref}
-      virtualRef={anchorRef ?? virtualRef}
-      {...props}
-    />
-  );
-});
-PopoverAnchor.displayName = PopoverPrimitive.Anchor.displayName;
 
 const ComposedPopover = ({
   children,
