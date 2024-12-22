@@ -1,3 +1,13 @@
+## 0.9.4 (2024-12-22)
+
+### 🩹 Fixes
+
+- correct main and export paths ([08cd1a8](https://github.com/veraclins-dev/dev/commit/08cd1a8))
+
+### ❤️ Thank You
+
+- clinton.agada
+
 ## 0.9.3 (2024-12-22)
 
 ### 🩹 Fixes
