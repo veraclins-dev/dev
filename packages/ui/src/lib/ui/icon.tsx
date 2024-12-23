@@ -7,9 +7,6 @@ import href from '../../icons/sprite.svg';
 
 import { ComposedTooltip } from './tooltip';
 
-export { href };
-export { IconName };
-
 const sizeClassName = {
   font: 'w-[1em] h-[1em]',
   xs: 'w-4 h-4',
@@ -30,7 +27,7 @@ const childrenSizeClassName = {
   xl: 'gap-3',
 } satisfies Record<Size, string>;
 
-export function Component({
+function Component({
   name,
   size = 'font',
   className,
@@ -45,7 +42,7 @@ export function Component({
       <span
         className={`inline-flex items-center ${childrenSizeClassName[size]}`}
       >
-        <Icon name={name} size={size} className={className} {...props} />
+        <Component name={name} size={size} className={className} {...props} />
         {children}
       </span>
     );
@@ -68,7 +65,7 @@ export function Component({
  * you need to wrap the icon and text in a common parent and set the parent to
  * display "flex" (or "inline-flex") with "items-center" and a reasonable gap.
  */
-export function Icon({
+function Icon({
   tooltip,
   ...props
 }: SVGProps<SVGSVGElement> & {
@@ -86,3 +83,5 @@ export function Icon({
     <Component {...props} />
   );
 }
+
+export { href, Icon, type IconName };
