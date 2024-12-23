@@ -67,12 +67,12 @@ type ThrottleSettingsLeading =
  * // Cancel the trailing throttled invocation.
  * jQuery(window).on('popstate', throttled.cancel);
  */
-export function throttle<T extends (...args: any) => any>(
+export function throttle<T extends (...args: Parameters<T>) => ReturnType<T>>(
   func: T,
   wait?: number,
   options?: ThrottleSettingsLeading,
 ): DebouncedFuncLeading<T>;
-export function throttle<T extends (...args: any) => any>(
+export function throttle<T extends (...args: Parameters<T>) => ReturnType<T>>(
   func: T,
   wait?: number,
   options?: ThrottleSettings,

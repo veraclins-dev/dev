@@ -23,7 +23,9 @@ type DebounceSettingsLeading =
   | (DebounceSettings & { leading: true })
   | Omit<DebounceSettings, 'leading'>;
 
-export interface DebouncedFunc<T extends (...args: any[]) => any> {
+export interface DebouncedFunc<
+  T extends (...args: Parameters<T>) => ReturnType<T>,
+> {
   /**
    * Call the original function, but applying the debounce rules.
    *
@@ -50,8 +52,9 @@ export interface DebouncedFunc<T extends (...args: any[]) => any> {
   flush(): ReturnType<T> | undefined;
 }
 
-export interface DebouncedFuncLeading<T extends (...args: any[]) => any>
-  extends DebouncedFunc<T> {
+export interface DebouncedFuncLeading<
+  T extends (...args: Parameters<T>) => ReturnType<T>,
+> extends DebouncedFunc<T> {
   (...args: Parameters<T>): ReturnType<T>;
   flush(): ReturnType<T>;
 }
@@ -92,23 +95,23 @@ export interface DebouncedFuncLeading<T extends (...args: any[]) => any>
  *  Specify invoking on the trailing edge of the timeout.
  * @returns {Function} Returns the new debounced function.
  */
-export function debounce<T extends (...args: any) => any>(
+export function debounce<T extends (...args: Parameters<T>) => ReturnType<T>>(
   func: T,
   wait: number | undefined,
   options: DebounceSettingsLeading,
 ): DebouncedFuncLeading<T>;
-export function debounce<T extends (...args: any) => any>(
+export function debounce<T extends (...args: Parameters<T>) => ReturnType<T>>(
   func: T,
   wait?: number,
   options?: DebounceSettings,
 ): DebouncedFunc<T>;
-export function debounce<T extends (...args: any) => any>(
+export function debounce<T extends (...args: Parameters<T>) => ReturnType<T>>(
   func: T,
   wait = 0,
   options?: DebounceSettings,
 ): DebouncedFunc<T> {
   let lastArgs: Parameters<T> | undefined | IArguments,
-    lastThis: undefined,
+    lastThis: NodeJS.Timeout | undefined,
     maxWait = 0,
     result: ReturnType<T> | undefined,
     timerId: ReturnType<typeof setTimeout> | undefined,
@@ -205,7 +208,7 @@ export function debounce<T extends (...args: any) => any>(
     return timerId === undefined ? result : trailingEdge(now());
   }
 
-  function debounced(this: any) {
+  function debounced(this: NodeJS.Timeout | undefined) {
     const time = now(),
       isInvoking = shouldInvoke(time);
 

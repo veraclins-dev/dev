@@ -28,11 +28,13 @@ export const freeParseInt = parseInt;
 
 /** Detect free variable `global` from Node.js. */
 const freeGlobal =
-  typeof global == 'object' && global && global.Object === Object && global;
+  typeof global === 'object' && global && global.Object === Object && global;
+
+// const self =
 
 /** Detect free variable `self`. */
 const freeSelf =
-  typeof self == 'object' && self && self.Object === Object && self;
+  typeof self === 'object' && self && self.Object === Object && self;
 
 /** Used as a reference to the global object. */
 export const root: typeof globalThis =
@@ -76,7 +78,7 @@ export const now = function (): number {
  */
 export function isObject(value: unknown): value is object {
   const type = typeof value;
-  return !!value && (type == 'object' || type == 'function');
+  return !!value && (type === 'object' || type === 'function');
 }
 
 /**
@@ -103,8 +105,8 @@ export function isObject(value: unknown): value is object {
  * _.isObjectLike(null);
  * // => false
  */
-export function isObjectLike(value: any): boolean {
-  return !!value && typeof value == 'object';
+export function isObjectLike(value: unknown): boolean {
+  return !!value && typeof value === 'object';
 }
 
 /**
@@ -124,10 +126,10 @@ export function isObjectLike(value: any): boolean {
  * _.isSymbol('abc');
  * // => false
  */
-export function isSymbol(value: any): boolean {
+export function isSymbol(value: unknown): boolean {
   return (
-    typeof value == 'symbol' ||
-    (isObjectLike(value) && objectToString.call(value) == symbolTag)
+    typeof value === 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) === symbolTag)
   );
 }
 
@@ -142,14 +144,14 @@ export function isSymbol(value: any): boolean {
  * @returns {number} Returns the number.
  */
 export function toNumber(value: any): number {
-  if (typeof value == 'number') {
+  if (typeof value === 'number') {
     return value;
   }
   if (isSymbol(value)) {
     return NAN;
   }
   if (isObject(value)) {
-    const other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    const other = typeof value.valueOf === 'function' ? value.valueOf() : value;
     value = isObject(other) ? other + '' : other;
   }
   if (typeof value != 'string') {

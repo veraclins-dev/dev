@@ -50,6 +50,8 @@ module.exports = [
           fixStyle: 'inline-type-imports',
         },
       ],
+      'no-redeclare': 'off',
+      '@typescript-eslint/no-redeclare': ['error'],
     },
   },
   {

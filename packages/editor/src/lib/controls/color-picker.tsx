@@ -180,7 +180,7 @@ export function ColorPicker({
               // and no color is set, or if the color matches when parsing and
               // converting both colors to hex.
               active={
-                swatchColor.value == value ||
+                swatchColor.value === value ||
                 (!swatchColor.value && !value) ||
                 (!!swatchColor.value &&
                   !!colorValueAsHex &&
