@@ -1,3 +1,14 @@
+## 0.9.5 (2024-12-23)
+
+### 🩹 Fixes
+
+- bundle svg sprite as external ([10398ce](https://github.com/veraclins-dev/dev/commit/10398ce))
+- update trottle and debounce types ([90203dc](https://github.com/veraclins-dev/dev/commit/90203dc))
+
+### ❤️ Thank You
+
+- clinton.agada
+
 ## 0.9.4 (2024-12-22)
 
 ### 🩹 Fixes
