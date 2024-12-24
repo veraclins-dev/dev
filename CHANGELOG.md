@@ -1,3 +1,13 @@
+## 0.9.6 (2024-12-24)
+
+### 🩹 Fixes
+
+- use external icons package ([ba5374a](https://github.com/veraclins-dev/dev/commit/ba5374a))
+
+### ❤️ Thank You
+
+- clinton.agada
+
 ## 0.9.5 (2024-12-23)
 
 ### 🩹 Fixes
