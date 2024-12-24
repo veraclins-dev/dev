@@ -1,3 +1,13 @@
+## 0.9.9 (2024-12-24)
+
+### 🩹 Fixes
+
+- remove url from sprite import ([08dfbea](https://github.com/veraclins-dev/dev/commit/08dfbea))
+
+### ❤️ Thank You
+
+- clinton.agada
+
 ## 0.9.8 (2024-12-24)
 
 ### 🩹 Fixes
