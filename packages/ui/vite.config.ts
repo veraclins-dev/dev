@@ -63,7 +63,6 @@ export default defineConfig({
         'react-dom',
         'react/jsx-runtime',
         '@veraclins-dev/icons/sprite.svg',
-        '@veraclins-dev/icons/sprite.svg?url',
         '@veraclins-dev/utils',
       ],
     },

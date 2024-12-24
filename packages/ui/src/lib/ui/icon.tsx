@@ -1,6 +1,6 @@
 import { type SVGProps } from 'react';
 
-import href from '@veraclins-dev/icons/sprite.svg?url';
+import href from '@veraclins-dev/icons/sprite.svg';
 import { cn } from '@veraclins-dev/utils';
 
 import { type IconName } from '../../icons/name';
