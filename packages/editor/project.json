@@ -3,7 +3,9 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/editor/src",
   "projectType": "library",
-  "tags": [],
+  "tags": [
+    "type:editor"
+  ],
   "// targets": "to see all targets run: nx show project editor --web",
   "targets": {}
 }
