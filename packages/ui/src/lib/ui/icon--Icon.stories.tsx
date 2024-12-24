@@ -10,8 +10,11 @@ const meta: Meta<typeof Icon> = {
 export default meta;
 type Story = StoryObj<typeof Icon>;
 
-export const Primary = {
-  args: {},
+export const Primary: Story = {
+  args: {
+    name: 'add-photo',
+    size: 'xl',
+  },
 };
 
 export const Heading: Story = {

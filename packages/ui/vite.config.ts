@@ -31,6 +31,7 @@ export default defineConfig({
     }),
     libAssetsPlugin({
       include: ['src/icons/**.svg'],
+      name: 'icon-sprite.svg',
     }),
   ],
   // Uncomment this if you are using workers.

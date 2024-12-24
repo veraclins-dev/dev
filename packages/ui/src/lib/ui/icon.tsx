@@ -1,9 +1,9 @@
 import { type SVGProps } from 'react';
 
+import href from '@veraclins-dev/icons/sprite.svg';
 import { cn } from '@veraclins-dev/utils';
 
 import { type IconName } from '../../icons/name';
-import href from '../../icons/sprite.svg';
 
 import { ComposedTooltip } from './tooltip';
 
@@ -27,16 +27,21 @@ const childrenSizeClassName = {
   xl: 'gap-3',
 } satisfies Record<Size, string>;
 
+type IconProps = SVGProps<SVGSVGElement> & {
+  name: IconName;
+  size?: Size;
+  href?: string;
+  tooltip?: string;
+};
+
 function Component({
   name,
   size = 'font',
   className,
   children,
+  // href = href,
   ...props
-}: SVGProps<SVGSVGElement> & {
-  name: IconName;
-  size?: Size;
-}) {
+}: Omit<IconProps, 'tooltip'>) {
   if (children) {
     return (
       <span
@@ -65,14 +70,8 @@ function Component({
  * you need to wrap the icon and text in a common parent and set the parent to
  * display "flex" (or "inline-flex") with "items-center" and a reasonable gap.
  */
-function Icon({
-  tooltip,
-  ...props
-}: SVGProps<SVGSVGElement> & {
-  name: IconName;
-  size?: Size;
-  tooltip?: string;
-}) {
+function Icon({ tooltip, ...props }: IconProps) {
+  console.log('Icon', href);
   return tooltip ? (
     <ComposedTooltip
       Trigger={Component}
@@ -84,4 +83,4 @@ function Icon({
   );
 }
 
-export { href, Icon, type IconName };
+export { Icon, type IconName };
