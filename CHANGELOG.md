@@ -1,3 +1,13 @@
+## 0.9.7 (2024-12-24)
+
+### 🩹 Fixes
+
+- mark other packages as external ([c57fec7](https://github.com/veraclins-dev/dev/commit/c57fec7))
+
+### ❤️ Thank You
+
+- clinton.agada
+
 ## 0.9.6 (2024-12-24)
 
 ### 🩹 Fixes
