@@ -461,8 +461,8 @@ importers:
         specifier: ^18 || ^19
         version: 18.3.1
       '@veraclins-dev/icons':
-        specifier: 0.0.2
-        version: 0.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 0.0.5
+        version: 0.0.5(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.15))(@types/node@22.9.1)(typescript@5.6.3)))
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.1
@@ -4308,11 +4308,20 @@ packages:
   '@vanilla-extract/private@1.0.6':
     resolution: {integrity: sha512-ytsG/JLweEjw7DBuZ/0JCN4WAQgM9erfSTdS1NQY778hFQSZ6cfCDEZZ0sgVm4k54uNz6ImKB33AYvSR//fjxw==}
 
-  '@veraclins-dev/icons@0.0.2':
-    resolution: {integrity: sha512-ldGM+lVugAnnpTyvCHXDmAzasMgo/j+mSooH2Ou0Tvr6M6bW+HobuCwp8livtYhXe0Opl87H4ier9XO8bdbSlA==, tarball: https://npm.pkg.github.com/download/@veraclins-dev/icons/0.0.2/d775f92eb22d1844418c7abfdd97f7e6b4c9d231}
+  '@veraclins-dev/icons@0.0.5':
+    resolution: {integrity: sha512-x1DzbXM6GspZ1/e65R2rFtQ8Xsxb0AwFi5mQBUzBAAL6Am+jf887IiFTdtzjwWDjdmihCjECScidvklOBiE68A==, tarball: https://npm.pkg.github.com/download/@veraclins-dev/icons/0.0.5/feb82ade5c3d3fba73d3e1e53019d2c51febce47}
     peerDependencies:
       react: ^18.3.1
       react-dom: ^18.3.1
+
+  '@veraclins-dev/utils@0.9.9':
+    resolution: {integrity: sha512-NARy/zQGXatrMQJiVxuqM6blK1/QyGhqFBagnzbWbeO+Pds+sLFBvjgsAb4ElD205Wu4MhXpxmeEJl54CdEwMQ==, tarball: https://npm.pkg.github.com/download/@veraclins-dev/utils/0.9.9/b38c84fa6856de1f6a83c258ce3bd09d8295c874}
+    peerDependencies:
+      '@types/react': ^18 || ^19
+      '@types/react-dom': ^18 || ^19
+      react: ^18 || ^19
+      react-dom: ^18 || ^19
+      tailwindcss: ^3
 
   '@verdaccio/auth@8.0.0-next-8.1':
     resolution: {integrity: sha512-sPmHdnYuRSMgABCsTJEfz8tb/smONsWVg0g4KK2QycyYZ/A+RwZLV1JLiQb4wzu9zvS0HSloqWqkWlyNHW3mtw==}
@@ -15795,10 +15804,27 @@ snapshots:
 
   '@vanilla-extract/private@1.0.6': {}
 
-  '@veraclins-dev/icons@0.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@veraclins-dev/icons@0.0.5(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.15))(@types/node@22.9.1)(typescript@5.6.3)))':
     dependencies:
+      '@veraclins-dev/utils': 0.9.9(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.15))(@types/node@22.9.1)(typescript@5.6.3)))
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    transitivePeerDependencies:
+      - '@types/react'
+      - '@types/react-dom'
+      - tailwindcss
+
+  '@veraclins-dev/utils@0.9.9(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.15))(@types/node@22.9.1)(typescript@5.6.3)))':
+    dependencies:
+      '@types/react': 18.3.12
+      '@types/react-dom': 18.3.1
+      class-variance-authority: 0.7.1
+      clsx: 2.1.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      tailwind-merge: 2.6.0
+      tailwindcss: 3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.15))(@types/node@22.9.1)(typescript@5.6.3))
+      tailwindcss-animate: 1.0.7(tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.15))(@types/node@22.9.1)(typescript@5.6.3)))
 
   '@verdaccio/auth@8.0.0-next-8.1':
     dependencies:
