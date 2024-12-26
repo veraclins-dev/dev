@@ -1,1 +1,1 @@
-nx release --skip-publish && nx affected -t build
+nx affected -t build
