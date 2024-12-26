@@ -2,6 +2,7 @@ import { type SVGProps } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { useIcon } from '../icons';
 import { type IconName } from '../icons/name';
 
 import { ComposedTooltip } from './tooltip';
@@ -70,14 +71,16 @@ function Component({
  * display "flex" (or "inline-flex") with "items-center" and a reasonable gap.
  */
 function Icon({ tooltip, ...props }: IconProps) {
+  const { sprite } = useIcon();
+
   return tooltip ? (
     <ComposedTooltip
       Trigger={Component}
-      TriggerProps={props}
+      TriggerProps={{ ...props, href: sprite }}
       content={tooltip}
     />
   ) : (
-    <Component {...props} />
+    <Component {...props} href={sprite} />
   );
 }
 

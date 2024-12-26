@@ -19,10 +19,6 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "peerDependencies": {
-    "@types/react": "^18 || ^19",
-    "@types/react-dom": "^18 || ^19",
-    "react": "^18 || ^19",
-    "react-dom": "^18 || ^19",
     "tailwindcss": "^3"
   }
 }
