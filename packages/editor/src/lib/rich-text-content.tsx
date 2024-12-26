@@ -20,12 +20,7 @@ export function RichTextContent({ className }: RichTextContentProps) {
   const editor = useRichTextEditorContext();
 
   return (
-    <div
-      className={cn(
-        'h-full overflow-y-scroll rounded-lg rounded-t-none bg-input px-5 py-2',
-        className,
-      )}
-    >
+    <div className={cn('h-full rounded-lg rounded-t-none bg-input', className)}>
       <EditorContent editor={editor} />
     </div>
   );

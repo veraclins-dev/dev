@@ -58,9 +58,7 @@
     "colord": "^2.9.3",
     "highlight.js": "^11.10.0",
     "lowlight": "^3.2.0",
-    "react": "18.3.1",
     "react-colorful": "^5.6.1",
-    "react-dom": "18.3.1",
     "tippy.js": "^6.3.7"
   },
   "peerDependencies": {

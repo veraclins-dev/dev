@@ -22,9 +22,15 @@ type EditorProps = {
   content?: string;
   onChange?: (content: string) => void;
   placeholder?: string;
+  className?: string;
 };
 
-export function Editor({ content, onChange, placeholder }: EditorProps) {
+export function Editor({
+  content,
+  onChange,
+  placeholder,
+  className,
+}: EditorProps) {
   const extensions = useExtensions({
     placeholder: placeholder ?? 'Add your own content here...',
   });
@@ -129,6 +135,7 @@ export function Editor({ content, onChange, placeholder }: EditorProps) {
       onBlur={({ editor }) => {
         onChange?.(editor.getHTML());
       }}
+      className={className}
     >
       {() => (
         <>
