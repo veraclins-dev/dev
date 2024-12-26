@@ -16,7 +16,7 @@ export default defineConfig({
     iconsSpritesheet({
       withTypes: true,
       inputDir: 'svg-icons',
-      outputDir: 'src/lib/icons',
+      outputDir: 'public/icons',
       typesOutputFile: 'src/lib/icons/name.ts',
       cwd: process.cwd(),
       iconNameTransformer: (iconName) => iconName,
@@ -29,10 +29,10 @@ export default defineConfig({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
-    libAssetsPlugin({
-      include: ['src/lib/icons/**.svg'],
-      name: 'sprite.svg',
-    }),
+    // libAssetsPlugin({
+    //   include: ['src/lib/icons/**.svg'],
+    //   name: 'sprite.svg',
+    // }),
   ],
   // Uncomment this if you are using workers.
   // worker: {

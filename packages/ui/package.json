@@ -11,7 +11,7 @@
       "import": "./index.js",
       "require": "./index.js"
     },
-    "./sprite.svg": "./assets/sprite.svg"
+    "./sprite.svg": "./icons/sprite.svg"
   },
   "dependencies": {
     "@conform-to/react": "^1.2.2",
