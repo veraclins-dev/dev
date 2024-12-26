@@ -3,7 +3,6 @@ import { type SVGProps } from 'react';
 import { cn } from '@veraclins-dev/utils';
 
 import { type IconName } from '../icons/name';
-import href from '../icons/sprite.svg';
 
 import { ComposedTooltip } from './tooltip';
 
@@ -31,6 +30,7 @@ export type IconProps = SVGProps<SVGSVGElement> & {
   name: IconName;
   size?: Size;
   tooltip?: string;
+  href?: string;
 };
 
 function Component({
@@ -38,6 +38,7 @@ function Component({
   size = 'font',
   className,
   children,
+  href = '/icons/sprite.svg',
   ...props
 }: Omit<IconProps, 'tooltip'>) {
   if (children) {
