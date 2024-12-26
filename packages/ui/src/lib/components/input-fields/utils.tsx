@@ -4,8 +4,8 @@ import {
 } from '@conform-to/react';
 import { useId } from 'react';
 
+import { type IconName } from '../../icons';
 import { type MaybeString } from '../../types';
-import { type IconName } from '../../ui/icon';
 
 export type InputFieldProps = ReturnType<typeof conformGetInputProps>;
 

@@ -124,6 +124,7 @@
     ],
     "changelog": {
       "workspaceChangelog": {
+        "file": false,
         "createRelease": "github"
       }
     }

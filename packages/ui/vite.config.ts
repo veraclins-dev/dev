@@ -16,8 +16,8 @@ export default defineConfig({
     iconsSpritesheet({
       withTypes: true,
       inputDir: 'svg-icons',
-      outputDir: 'src/icons',
-      typesOutputFile: 'src/icons/name.ts',
+      outputDir: 'src/lib/icons',
+      typesOutputFile: 'src/lib/icons/name.ts',
       cwd: process.cwd(),
       iconNameTransformer: (iconName) => iconName,
       formatter: 'prettier',
@@ -30,8 +30,8 @@ export default defineConfig({
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
     }),
     libAssetsPlugin({
-      include: ['src/icons/**.svg'],
-      name: 'icon-sprite.svg',
+      include: ['src/lib/icons/**.svg'],
+      name: 'sprite.svg',
     }),
   ],
   // Uncomment this if you are using workers.
@@ -63,7 +63,6 @@ export default defineConfig({
         'react-dom',
         'react/jsx-runtime',
         '@veraclins-dev/utils',
-        '@veraclins-dev/icons',
       ],
     },
   },
