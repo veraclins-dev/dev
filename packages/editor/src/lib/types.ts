@@ -1,5 +1,7 @@
 import { type Editor, type EditorOptions } from '@tiptap/react';
 
+import { type ImageNodeAttributes } from './utils';
+
 export type WithShortcuts = {
   /**
    * An array representing the set of keys that should be pressed to trigger
@@ -21,3 +23,5 @@ export type WithShortcuts = {
 export type RichEditor = Editor | null;
 
 export type RichEditorOptions = EditorOptions;
+
+export type OnUploadFiles = (files: File[]) => ImageNodeAttributes[];

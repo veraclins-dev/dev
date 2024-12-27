@@ -3,9 +3,13 @@ import { useCallback, useRef } from 'react';
 import { EditorMenuControls } from './controls';
 import { useExtensions } from './hooks';
 import { LinkBubbleMenu } from './link-bubble-menu';
-import { RichTextEditor, type RichTextEditorRef } from './rich-text-editor';
+import {
+  RichTextEditor,
+  type RichTextEditorProps,
+  type RichTextEditorRef,
+} from './rich-text-editor';
 import { TableBubbleMenu } from './table-bubble-menu';
-import { type RichEditorOptions } from './types';
+import { type OnUploadFiles, type RichEditorOptions } from './types';
 import { insertImages } from './utils';
 
 function fileListToImageFiles(fileList: FileList): File[] {
@@ -18,18 +22,20 @@ function fileListToImageFiles(fileList: FileList): File[] {
   });
 }
 
-type EditorProps = {
+export type EditorProps = {
   content?: string;
   onChange?: (content: string) => void;
   placeholder?: string;
   className?: string;
-};
+  onUploadFiles?: OnUploadFiles;
+} & Pick<RichTextEditorProps, 'immediatelyRender'>;
 
 export function Editor({
   content,
   onChange,
   placeholder,
   className,
+  onUploadFiles,
 }: EditorProps) {
   const extensions = useExtensions({
     placeholder: placeholder ?? 'Add your own content here...',
@@ -50,10 +56,12 @@ export function Editor({
       // into the editor content, though that can make the editor content very
       // large. You will probably want to use the same upload function here as
       // for the MenuButtonImageUpload `onUploadFiles` prop.
-      const attributesForImageFiles = files.map((file) => ({
-        src: URL.createObjectURL(file),
-        alt: file.name,
-      }));
+      const attributesForImageFiles = onUploadFiles
+        ? onUploadFiles(files)
+        : files.map((file) => ({
+            src: URL.createObjectURL(file),
+            alt: file.name,
+          }));
 
       insertImages({
         images: attributesForImageFiles,

@@ -1,4 +1,4 @@
-import { type Editor, type JSONContent } from '@tiptap/core';
+import { type Editor, type JSONContent, type Range } from '@tiptap/core';
 
 // See
 // https://github.com/ueberdosis/tiptap/blob/6cbc2d423391c950558721510c1b4c8614feb534/packages/extension-image/src/image.ts#L48-L58
@@ -30,7 +30,7 @@ export function insertImages({
 }: {
   images: ImageNodeAttributes[];
   editor: Editor | null;
-  position?: number;
+  position?: number | Range | null;
 }): void {
   if (!editor || editor.isDestroyed || images.length === 0) {
     return;
@@ -46,7 +46,7 @@ export function insertImages({
   editor
     .chain()
     .command(({ commands }) => {
-      if (position === null) {
+      if (!position) {
         // We'll insert at and replace the user's current selection if there
         // wasn't a specific insert position given
         return commands.insertContent(imageContentToInsert);

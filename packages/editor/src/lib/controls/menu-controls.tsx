@@ -1,3 +1,4 @@
+import { type OnUploadFiles } from '../types';
 import { isTouchDevice } from '../utils/platform';
 
 import { MenuButtonAddTable } from './menu-button-add-table';
@@ -28,7 +29,11 @@ import { MenuDivider } from './menu-divider';
 import { MenuSelectHeading } from './menu-select-heading';
 import { MenuSelectTextAlign } from './menu-select-text-align';
 
-export function EditorMenuControls() {
+type EditorMenuControlsProps = {
+  onUploadFiles?: OnUploadFiles;
+};
+
+export function EditorMenuControls({ onUploadFiles }: EditorMenuControlsProps) {
   return (
     <MenuControlsContainer>
       <MenuSelectHeading />
@@ -96,10 +101,12 @@ export function EditorMenuControls() {
           // convert the images to bas64 if you would like to encode the image
           // data directly into the editor content, though that can make the
           // editor content very large.
-          files.map((file) => ({
-            src: URL.createObjectURL(file),
-            alt: file.name,
-          }))
+          onUploadFiles
+            ? onUploadFiles(files)
+            : files.map((file) => ({
+                src: URL.createObjectURL(file),
+                alt: file.name,
+              }))
         }
       />
 

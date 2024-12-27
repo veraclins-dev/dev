@@ -77,8 +77,6 @@ export function TableBubbleMenu() {
     return null;
   }
 
-  const controls = <TableMenuControls />;
-
   return (
     <ControlledBubbleMenu
       editor={editor}
@@ -90,7 +88,9 @@ export function TableBubbleMenu() {
       editor `can` commands, and would otherwise be updating upon every editor
       interaction like caret movement and typing). See DebounceRender for
       more notes on this rationale and approach. */}
-      <DebounceRender>{controls}</DebounceRender>
+      <DebounceRender>
+        <TableMenuControls />
+      </DebounceRender>
     </ControlledBubbleMenu>
   );
 }

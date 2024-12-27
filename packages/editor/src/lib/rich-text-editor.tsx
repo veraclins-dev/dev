@@ -1,4 +1,9 @@
-import { type Editor, type EditorOptions, useEditor } from '@tiptap/react';
+import {
+  type Editor,
+  type EditorOptions,
+  useEditor,
+  type UseEditorOptions,
+} from '@tiptap/react';
 import {
   type DependencyList,
   forwardRef,
@@ -11,7 +16,11 @@ import { RichTextEditorProvider } from './rich-text-editor-provider';
 import { RichTextField, type RichTextFieldProps } from './rich-text-field';
 
 export interface RichTextEditorProps
-  extends SetRequired<Partial<EditorOptions>, 'extensions'> {
+  extends SetRequired<Partial<EditorOptions>, 'extensions'>,
+    Pick<
+      UseEditorOptions,
+      'immediatelyRender' | 'shouldRerenderOnTransaction'
+    > {
   /**
    * Render the controls content to show inside the menu bar atop the editor
    * content. Typically you will want to render a <MenuControlsContainer>
@@ -81,6 +90,7 @@ export const RichTextEditor = forwardRef<
     editorDependencies = [],
     // We default to `editable=true` just like `useEditor` does
     editable = true,
+    immediatelyRender = false,
     ...editorProps
   }: RichTextEditorProps,
   ref,
@@ -93,9 +103,10 @@ export const RichTextEditor = forwardRef<
         ...editorProps.editorProps,
         attributes: {
           class:
-            'prose dark:prose-invert focus:outline-none max-w-full h-full max-h-72 min-h-64 overflow-y-auto p-3',
+            'prose dark:prose-invert focus:outline-none max-w-full h-full max-h-72 min-h-64',
         },
       },
+      immediatelyRender,
     },
     editorDependencies,
   );

@@ -17,7 +17,7 @@ export function MenuBar({ sticky = false, children, className }: MenuBarProps) {
   return (
     <div
       className={cn(
-        'z-50 flex min-h-12 flex-wrap items-center gap-2 rounded-t-sm border-b bg-card-inner p-2',
+        'z-50 flex min-h-12 flex-wrap items-center gap-2 rounded-t-sm border-b bg-card p-2',
         className,
       )}
     >

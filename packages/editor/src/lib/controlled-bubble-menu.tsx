@@ -78,7 +78,7 @@ export function ControlledBubbleMenu({
   return (
     <Popover open={open}>
       <PopoverAnchor virtualRef={anchorRef} />
-      <PopoverContent className={cn('z-[3] px-2.5 py-2', className)} arrow>
+      <PopoverContent className={cn('z-[3] p-2 w-80', className)} arrow>
         {children}
       </PopoverContent>
     </Popover>
