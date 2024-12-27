@@ -4,7 +4,8 @@
   "sourceRoot": "packages/utils/src",
   "projectType": "library",
   "tags": [
-    "type:utils"
+    "type:utils",
+    "scope:lib"
   ],
   "targets": {}
 }

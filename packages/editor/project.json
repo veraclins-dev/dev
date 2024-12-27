@@ -4,7 +4,8 @@
   "sourceRoot": "packages/editor/src",
   "projectType": "library",
   "tags": [
-    "type:editor"
+    "type:editor",
+    "scope:lib"
   ],
   "// targets": "to see all targets run: nx show project editor --web",
   "targets": {}

@@ -44,7 +44,7 @@ jobs:
         shell: bash
 
       - name: Build packages
-        run: pnpx nx run-many -t build
+        run: pnpx nx run-many -t build --projects=tag:scope:lib
         shell: bash
 
       - name: Publish packages
