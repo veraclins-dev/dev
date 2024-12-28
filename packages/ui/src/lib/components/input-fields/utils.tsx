@@ -1,6 +1,8 @@
 import {
   type FieldMetadata,
   getInputProps as conformGetInputProps,
+  getSelectProps as conformGetSelectProps,
+  useInputControl,
 } from '@conform-to/react';
 import { useId } from 'react';
 
@@ -69,3 +71,33 @@ export function useFieldProperties<S = string>(
     id,
   };
 }
+
+type SelectParams = Parameters<typeof conformGetSelectProps>;
+
+export const getSelectProps = (field: SelectParams[0]) => {
+  const props = conformGetSelectProps(field);
+  if (!props.name) {
+    props.name = field.name;
+  }
+
+  return props;
+};
+
+export type ControlParams = Parameters<typeof useInputControl>;
+
+export const useControlProps = (field: ControlParams[0]) => {
+  const control = useInputControl(field);
+  if (!field) return { value: undefined };
+
+  return {
+    onValueChange: (value: string) => {
+      control.change(value);
+    },
+    onOpenChange: (open: boolean) => {
+      if (!open) {
+        control.blur();
+      }
+    },
+    value: control.value as string | undefined,
+  };
+};

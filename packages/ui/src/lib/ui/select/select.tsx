@@ -123,14 +123,11 @@ type GroupOptions = {
   id: string;
 };
 
-export type BaseSelectProps = SelectPrimitive.SelectProps & {
+export type SelectProps = SelectPrimitive.SelectProps & {
   className?: string;
   placeholder?: string;
   showLabel?: boolean;
-};
-
-export type SelectProps = BaseSelectProps &
-  (
+} & (
     | {
         options: Option[];
         grouped?: false;
