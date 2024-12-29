@@ -1,7 +1,7 @@
 import { useCallback, useRef } from 'react';
 
 import { EditorMenuControls } from './controls';
-import { useExtensions } from './hooks';
+import { useExtensions, type UseExtensionsOptions } from './hooks';
 import { LinkBubbleMenu } from './link-bubble-menu';
 import {
   RichTextEditor,
@@ -25,10 +25,10 @@ function fileListToImageFiles(fileList: FileList): File[] {
 export type EditorProps = {
   content?: string;
   onChange?: (content: string) => void;
-  placeholder?: string;
   className?: string;
   onUploadFiles?: OnUploadFiles;
-} & Pick<RichTextEditorProps, 'immediatelyRender'>;
+} & Pick<RichTextEditorProps, 'immediatelyRender'> &
+  UseExtensionsOptions;
 
 export function Editor({
   content,
@@ -36,9 +36,13 @@ export function Editor({
   placeholder,
   className,
   onUploadFiles,
+  mentionPath,
+  suggestionFilter,
 }: EditorProps) {
   const extensions = useExtensions({
     placeholder: placeholder ?? 'Add your own content here...',
+    mentionPath,
+    suggestionFilter,
   });
   const rteRef = useRef<RichTextEditorRef>(null);
 

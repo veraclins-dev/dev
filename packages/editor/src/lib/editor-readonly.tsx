@@ -1,4 +1,4 @@
-import { useExtensions } from './hooks';
+import { useExtensions, type UseExtensionsOptions } from './hooks';
 import {
   RichTextReadOnly,
   type RichTextReadOnlyProps,
@@ -6,8 +6,10 @@ import {
 
 export function EditorReadonly({
   content,
-}: Omit<RichTextReadOnlyProps, 'extensions'>) {
-  const extensions = useExtensions();
+  mentionPath,
+}: Omit<RichTextReadOnlyProps, 'extensions'> &
+  Pick<UseExtensionsOptions, 'mentionPath'>) {
+  const extensions = useExtensions({ mentionPath });
 
   return <RichTextReadOnly extensions={extensions} content={content ?? ''} />;
 }

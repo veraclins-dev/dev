@@ -1,27 +1,10 @@
 import { type MentionNodeAttrs } from '@tiptap/extension-mention';
-import {
-  type SuggestionOptions,
-  type SuggestionProps,
-} from '@tiptap/suggestion';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 
-import { DropdownMenu, DropdownMenuItem, itemClasses } from '@veraclins-dev/ui';
+import { contentClasses, itemClasses } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
-import { type MentionSuggestion } from '../Suggestion/mention-suggestion-options';
-
-export type SuggestionListRef = {
-  // For convenience using this SuggestionList from within the
-  // mentionSuggestionOptions, we'll match the signature of SuggestionOptions's
-  // `onKeyDown` returned in its `render` function
-  onKeyDown: NonNullable<
-    ReturnType<
-      NonNullable<SuggestionOptions<MentionSuggestion>['render']>
-    >['onKeyDown']
-  >;
-};
-
-export type SuggestionListProps = SuggestionProps<MentionSuggestion>;
+import { type SuggestionListProps, type SuggestionListRef } from './types';
 
 export const SuggestionList = forwardRef<
   SuggestionListRef,
@@ -50,6 +33,7 @@ export const SuggestionList = forwardRef<
       id: suggestion.id,
       label: suggestion.mentionLabel,
     };
+    console.log('mentionItem', mentionItem, suggestion);
     props.command(mentionItem);
   };
 
@@ -90,25 +74,31 @@ export const SuggestionList = forwardRef<
     },
   }));
 
+  console.log('SuggestionList render', props, selectedIndex);
+
   return props.items.length > 0 ? (
-    <DropdownMenu
-      open
-      onOpenChange={() => {
-        console.log('Not implemented');
-      }}
+    <ul
+      className={cn(contentClasses, 'flex max-h-40 overflow-y-auto gap-y-1')}
+      // defaultOpen
+      // open
+      // onOpenChange={(open) => {
+      //   console.log('Not implemented', { open });
+      // }}
     >
+      {/* <PopoverContent> */}
       {props.items.map((item, index) => (
-        <DropdownMenuItem
+        <li
           key={item.id}
-          className={cn(itemClasses, {
+          className={cn(itemClasses, 'px-1', {
             'bg-accent text-accent-foreground': index === selectedIndex,
           })}
           onClick={() => selectItem(index)}
         >
           {item.mentionLabel}
-        </DropdownMenuItem>
+        </li>
       ))}
-    </DropdownMenu>
+      {/* </PopoverContent> */}
+    </ul>
   ) : null;
 });
 

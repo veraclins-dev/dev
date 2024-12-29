@@ -1,4 +1,4 @@
-import { type EditorOptions } from '@tiptap/core';
+import { type EditorOptions, mergeAttributes } from '@tiptap/core';
 import { Blockquote } from '@tiptap/extension-blockquote';
 import { Bold } from '@tiptap/extension-bold';
 import { BulletList } from '@tiptap/extension-bullet-list';
@@ -32,6 +32,8 @@ import { TextStyle } from '@tiptap/extension-text-style';
 import { Underline } from '@tiptap/extension-underline';
 import { useMemo } from 'react';
 
+import { combinePaths } from '@veraclins-dev/utils';
+
 import { CodeBlockExtension } from '../extensions/code-block';
 import { FontSize } from '../extensions/font-size';
 import { HeadingWithAnchor } from '../extensions/heading-with-anchor';
@@ -39,11 +41,17 @@ import { LinkBubbleMenuHandler } from '../extensions/link-bubble-menu-handler';
 import { ResizableImage } from '../extensions/resizable-image';
 import { TableImproved } from '../extensions/table-improved';
 import { TaskItemExtension } from '../extensions/task-item';
-import { mentionSuggestionOptions } from '../Suggestion/mention-suggestion-options';
+import {
+  type MentionSuggestionItem,
+  mentionSuggestionOptions,
+  type SuggestionFilterFunction,
+} from '../Suggestion';
 
 export type UseExtensionsOptions = {
   /** Placeholder hint to show in the text input area before a user types a message. */
   placeholder?: string;
+  mentionPath?: string;
+  suggestionFilter?: SuggestionFilterFunction;
 };
 
 // Don't treat the end cursor as "inclusive" of the Link mark, so that users can
@@ -86,6 +94,8 @@ const CustomSuperscript = Superscript.extend({
  */
 export function useExtensions({
   placeholder,
+  mentionPath = '/profiles',
+  suggestionFilter,
 }: UseExtensionsOptions = {}): EditorOptions['extensions'] {
   return useMemo(() => {
     return [
@@ -171,7 +181,21 @@ export function useExtensions({
       // TaskItem.configure({ nested: true }),
 
       Mention.configure({
-        suggestion: mentionSuggestionOptions,
+        suggestion: mentionSuggestionOptions(suggestionFilter),
+        renderHTML({ options, node }) {
+          return [
+            'a',
+            mergeAttributes(
+              {
+                href: `/${combinePaths(mentionPath, node.attrs.id)}`,
+                target: '_blank',
+                rel: 'noopener noreferrer nofollow',
+              },
+              options.HTMLAttributes,
+            ),
+            `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`,
+          ];
+        },
       }),
 
       Placeholder.configure({
