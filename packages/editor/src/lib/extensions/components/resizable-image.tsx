@@ -35,11 +35,14 @@ const IMAGE_MINIMUM_WIDTH_PIXELS = 15;
 export function ResizableImageComponent({
   node,
   selected,
+  editor: { isEditable },
   updateAttributes,
 }: ResizableImageProps) {
   const { attrs } = node;
 
   const imageRef = useRef<HTMLImageElement | null>(null);
+
+  const canResize = isEditable && selected;
 
   const handleResize = useMemo(
     () =>
@@ -47,7 +50,7 @@ export function ResizableImageComponent({
       // dragging, so rendering would end up stuttering a bit without a throttle
       throttle(
         (event: MouseEvent) => {
-          if (!imageRef.current) {
+          if (!imageRef.current || !canResize) {
             return;
           }
 
@@ -123,7 +126,7 @@ export function ResizableImageComponent({
             // class/UI:
             // We'll only show the outline when the editor content is selected
             'ProseMirror-selectednode outline outline-[3px] outline-primary':
-              selected,
+              canResize,
           })}
           style={{
             // If no width has been specified, we use auto max-width
@@ -157,7 +160,7 @@ export function ResizableImageComponent({
           }}
         />
 
-        {selected && <ResizableImageResizer onResize={handleResize} />}
+        {canResize && <ResizableImageResizer onResize={handleResize} />}
       </div>
     </NodeViewWrapper>
   );
