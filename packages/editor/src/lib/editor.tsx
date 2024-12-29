@@ -140,11 +140,6 @@ export function Editor({
       editable
       editorProps={{ ...editorProps, handleDrop, handlePaste }}
       renderControls={() => <EditorMenuControls />}
-      RichTextFieldProps={{
-        MenuBarProps: {
-          sticky: true,
-        },
-      }}
       onBlur={({ editor }) => {
         onChange?.(editor.getHTML());
       }}

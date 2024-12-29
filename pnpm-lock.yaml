@@ -286,6 +286,9 @@ importers:
 
   packages/editor:
     dependencies:
+      '@conform-to/react':
+        specifier: ^1.2.2
+        version: 1.2.2(react@18.3.1)
       '@tiptap/core':
         specifier: ^2.10.3
         version: 2.10.4(@tiptap/pm@2.10.4)

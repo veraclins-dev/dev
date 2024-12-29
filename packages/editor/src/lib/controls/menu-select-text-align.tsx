@@ -13,8 +13,10 @@ import {
 
 type Value = 'left' | 'center' | 'right' | 'justify';
 
-export interface MenuSelectTextAlignProps
-  extends Except<MenuSelectIconProps, 'children' | 'options' | 'onClose'> {
+export type MenuSelectTextAlignProps = Except<
+  MenuSelectIconProps,
+  'children' | 'options' | 'onClose' | 'grouped'
+> & {
   /**
    * What to render in the Select when the highlighted content is currently
    * using multiple different text-alignments (so no one icon applies). By
@@ -22,7 +24,7 @@ export interface MenuSelectTextAlignProps
    * font size, for instance).
    */
   emptyLabel?: React.ReactNode;
-}
+};
 
 const options: Option[] = [
   {
