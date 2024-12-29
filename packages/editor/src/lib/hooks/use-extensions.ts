@@ -38,6 +38,7 @@ import { HeadingWithAnchor } from '../extensions/heading-with-anchor';
 import { LinkBubbleMenuHandler } from '../extensions/link-bubble-menu-handler';
 import { ResizableImage } from '../extensions/resizable-image';
 import { TableImproved } from '../extensions/table-improved';
+import { TaskItemExtension } from '../extensions/task-item';
 import { mentionSuggestionOptions } from '../Suggestion/mention-suggestion-options';
 
 export type UseExtensionsOptions = {
@@ -166,9 +167,8 @@ export function useExtensions({
       Dropcursor,
 
       TaskList,
-      TaskItem.configure({
-        nested: true,
-      }),
+      TaskItemExtension,
+      // TaskItem.configure({ nested: true }),
 
       Mention.configure({
         suggestion: mentionSuggestionOptions,
