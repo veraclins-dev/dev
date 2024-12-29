@@ -21,28 +21,33 @@ interface Props extends NodeViewProps {
   };
 }
 
-export const CodeBlock: React.FC<Props> = ({
+export const CodeBlock = ({
   node: {
     attrs: { language: defaultLanguage = 'css' },
   },
   updateAttributes,
   extension,
-}) => (
-  <NodeViewWrapper className="relative p-1.5">
-    <Select
-      defaultValue={defaultLanguage}
-      value={defaultLanguage}
-      onValueChange={(value) => updateAttributes({ language: value })}
-      options={[
-        ...extension.options.lowlight
-          .listLanguages()
-          .map((lang, index) => ({ value: lang, label: lang })),
-      ]}
-      className="absolute right-2 top-2 border border-border px-2.5 py-2"
-    />
+  editor: { options },
+}: Props) => {
+  return (
+    <NodeViewWrapper className="relative p-1.5">
+      {options.editable && (
+        <Select
+          defaultValue={defaultLanguage}
+          value={defaultLanguage}
+          onValueChange={(value) => updateAttributes({ language: value })}
+          options={[
+            ...extension.options.lowlight
+              .listLanguages()
+              .map((lang, index) => ({ value: lang, label: lang })),
+          ]}
+          className="absolute right-2 top-2 border border-border px-2.5 py-2"
+        />
+      )}
 
-    <pre>
-      <NodeViewContent as="code" />
-    </pre>
-  </NodeViewWrapper>
-);
+      <pre>
+        <NodeViewContent as="code" />
+      </pre>
+    </NodeViewWrapper>
+  );
+};
