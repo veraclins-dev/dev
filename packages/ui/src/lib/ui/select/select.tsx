@@ -146,7 +146,7 @@ const Select = ({
   showLabel = true,
   value,
   ...props
-}: SelectProps & SelectPrimitive.SelectProps) => (
+}: SelectProps) => (
   <SelectRoot {...props} value={value}>
     <SelectTrigger className={cn('max-w-[120px]', className)}>
       {showLabel ? (
