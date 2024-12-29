@@ -23,8 +23,10 @@ function stripPxFromValue(value: string): string {
  */
 export type FontSizeSelectOption = string | MenuIconOption;
 
-export interface MenuSelectFontSizeProps
-  extends Except<MenuSelectProps, 'value' | 'children' | 'options'> {
+export type MenuSelectFontSizeProps = Except<
+  MenuSelectProps,
+  'value' | 'children' | 'options' | 'grouped'
+> & {
   /**
    * Override the list of the size option strings shown in the dropdown.
    */
@@ -47,7 +49,7 @@ export interface MenuSelectFontSizeProps
    * uses the FormatSize MUI icon.
    */
   emptyLabel?: React.ReactNode;
-}
+};
 
 const DEFAULT_FONT_SIZE_SELECT_OPTIONS: FontSizeSelectOption[] = [
   '8px',

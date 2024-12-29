@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  type BaseSelectProps,
   DropdownMenu,
   DropdownMenuArrow,
   DropdownMenuContent,
@@ -13,6 +12,7 @@ import {
   getOptionValue,
   Icon,
   type ObjectOption,
+  type SelectProps as BaseSelectProps,
 } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
@@ -25,7 +25,7 @@ export interface MenuIconOption extends ObjectOption, WithShortcuts {
   className?: string;
 }
 
-export interface MenuSelectProps extends BaseSelectProps {
+export type MenuSelectProps = BaseSelectProps & {
   options: MenuIconOption[];
   className?: string;
   defaultLabel?: string;
@@ -34,7 +34,7 @@ export interface MenuSelectProps extends BaseSelectProps {
    */
   tooltip?: string;
   onClose: () => void;
-}
+};
 
 export const MenuSelect = ({
   options,
