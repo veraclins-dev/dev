@@ -1,8 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
 export type MenuBarProps = {
-  /** If true, the menu bar will be hidden. */
-  sticky?: boolean;
   /** The set of controls (buttons, etc) to include in the menu bar. */
   children?: React.ReactNode;
   /** Class applied to the outermost `root` element. */
@@ -13,11 +11,11 @@ export type MenuBarProps = {
  * An optionally-sticky container for showing editor controls atop
  * the editor content.
  */
-export function MenuBar({ sticky = false, children, className }: MenuBarProps) {
+export function MenuBar({ children, className }: MenuBarProps) {
   return (
     <div
       className={cn(
-        'z-50 flex min-h-12 flex-wrap items-center gap-2 rounded-t-sm border-b bg-card p-2',
+        'z-50 flex min-h-10 flex-wrap items-center gap-2 rounded-t-sm border-b bg-card p-1',
         className,
       )}
     >

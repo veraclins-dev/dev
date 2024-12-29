@@ -38,6 +38,7 @@ export function Editor({
   onUploadFiles,
   mentionPath,
   suggestionFilter,
+  ...editorProps
 }: EditorProps) {
   const extensions = useExtensions({
     placeholder: placeholder ?? 'Add your own content here...',
@@ -137,7 +138,7 @@ export function Editor({
       extensions={extensions}
       content={content ?? ''}
       editable
-      editorProps={{ handleDrop, handlePaste }}
+      editorProps={{ ...editorProps, handleDrop, handlePaste }}
       renderControls={() => <EditorMenuControls />}
       RichTextFieldProps={{
         MenuBarProps: {

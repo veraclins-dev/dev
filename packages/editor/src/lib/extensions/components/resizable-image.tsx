@@ -50,7 +50,7 @@ export function ResizableImageComponent({
       // dragging, so rendering would end up stuttering a bit without a throttle
       throttle(
         (event: MouseEvent) => {
-          if (!imageRef.current || !canResize) {
+          if (!imageRef.current) {
             return;
           }
 
