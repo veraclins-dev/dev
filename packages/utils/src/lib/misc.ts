@@ -121,21 +121,6 @@ export const roundToDecimal = (value: number | string, decimalPlaces = 2) => {
 export const roundToTwo = (numb: number) =>
   Math.round((numb + Number.EPSILON) * 100) / 100;
 
-/**
- * Simple debounce implementation
- */
-// export function debounce<
-//   Callback extends (...args: Parameters<Callback>) => void,
-// >(fn: Callback, delay: number) {
-//   let timer: ReturnType<typeof setTimeout> | null = null;
-//   return (...args: Parameters<Callback>) => {
-//     if (timer) clearTimeout(timer);
-//     timer = setTimeout(() => {
-//       fn(...args);
-//     }, delay);
-//   };
-// }
-
 export async function wait(stallTime = 3000) {
   await new Promise((resolve) => setTimeout(resolve, stallTime));
 }
@@ -213,4 +198,11 @@ export function truncateMiddle(text: string, length = 20): string {
 
   const half = Math.floor(length / 2);
   return `${text.slice(0, half).trim()}…${text.slice(-half).trim()}`;
+}
+
+export function combinePaths(...paths: string[]) {
+  return paths
+    .map((path) => path.replace(/^\/|\/$/g, ''))
+    .filter(Boolean)
+    .join('/');
 }

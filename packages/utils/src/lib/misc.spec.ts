@@ -180,3 +180,21 @@ describe('utils.truncateMiddle', () => {
     expect(utils.truncateMiddle('Hello World', 11)).toBe('Hello World');
   });
 });
+
+describe('utils.combinePaths', () => {
+  it('should combine paths', () => {
+    expect(utils.combinePaths('/path1', '/path2', '/path3')).toBe(
+      'path1/path2/path3',
+    );
+  });
+
+  it('should remove leading and trailing slashes', () => {
+    expect(utils.combinePaths('/path1/', '/path2/', '/path3/')).toBe(
+      'path1/path2/path3',
+    );
+  });
+
+  it('should remove empty paths', () => {
+    expect(utils.combinePaths('/path1', '', '/path3')).toBe('path1/path3');
+  });
+});
