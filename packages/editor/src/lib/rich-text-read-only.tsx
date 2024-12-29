@@ -44,7 +44,7 @@ function RichTextReadOnlyInternal(props: RichTextReadOnlyProps) {
 
   return (
     <RichTextEditorProvider editor={editor}>
-      <RichTextContent />
+      <RichTextContent readonly />
     </RichTextEditorProvider>
   );
 }

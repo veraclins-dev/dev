@@ -7,6 +7,7 @@ import { useRichTextEditorContext } from './rich-text-editor-provider';
 export type RichTextContentProps = {
   /** Optional additional className to provide to the root element. */
   className?: string;
+  readonly?: boolean;
 };
 
 /**
@@ -16,13 +17,16 @@ export type RichTextContentProps = {
  * Must be a child of the RichTextEditorProvider so that the `editor` context is
  * available.
  */
-export function RichTextContent({ className }: RichTextContentProps) {
+export function RichTextContent({ className, readonly }: RichTextContentProps) {
   const editor = useRichTextEditorContext();
 
   return (
     <div
       className={cn(
-        'h-full rounded-lg rounded-t-none bg-input px-3 py-2 overflow-y-auto',
+        readonly
+          ? 'readonly-editor'
+          : 'h-full rounded-lg rounded-t-none bg-input px-3 py-2 overflow-y-auto',
+
         className,
       )}
     >
