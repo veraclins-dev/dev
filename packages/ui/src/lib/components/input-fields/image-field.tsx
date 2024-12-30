@@ -1,8 +1,9 @@
+import { useInputControl } from '@conform-to/react';
 import { useEffect, useState } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { Icon } from '../../ui/icon';
+import { type MaybeString } from '../../types';
 import { ErrorList } from '../error-list';
 
 import { type TextFieldProps } from './textfield';
@@ -12,7 +13,9 @@ export interface ImageFieldProps extends Omit<TextFieldProps, 'value'> {
   defaultValue?: string;
   previewClasses?: string;
   loading?: boolean;
-  value?: string | null;
+  value?: MaybeString;
+  children?: React.ReactNode;
+  loadingIndicator?: React.ReactNode;
 }
 
 export const ImageField = ({
@@ -23,28 +26,62 @@ export const ImageField = ({
   onChange,
   loading,
   value: supplied,
-  ...props
+  name,
+  disabled,
+  children,
+  loadingIndicator,
+  ...others
 }: ImageFieldProps) => {
-  const val = supplied ?? field?.initialValue ?? '';
-  delete props.defaultValue;
+  const val = supplied ?? field?.initialValue ?? others.defaultValue ?? '';
+  delete others.defaultValue;
   delete field?.initialValue;
   const { errorId, id, errors } = useFieldProperties(field);
 
   const [value, setValue] = useState(val);
+  const props = {
+    ...others,
+    ...getInputProps({ field }),
+  };
+
+  const input = useInputControl({
+    initialValue: val,
+    key: props.key ?? '',
+    name: props.name ?? '',
+    formId: props.form ?? '',
+  });
 
   useEffect(() => {
-    if (val && val !== value) {
-      setValue(val);
-    }
+    input.change(val);
+    input.blur();
+    setValue(val);
   }, [val]);
 
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      onChange?.(event);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const result = reader.result as string;
+        setValue(result);
+        input.change(result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setValue('');
+    }
+  };
+
   return (
-    <div className="flex flex-col">
+    <div className="flex h-full w-full flex-col">
       <label
         htmlFor={id}
         aria-invalid={errorId ? true : undefined}
         {...labelProps}
-        className={cn('relative block cursor-pointer font-medium', className)}
+        className={cn(
+          'relative block h-full w-full cursor-pointer font-medium',
+          className,
+        )}
       >
         {value ? (
           <>
@@ -53,45 +90,32 @@ export const ImageField = ({
               alt="Preview"
               className={cn('h-full w-full object-cover', previewClasses)}
             />
-            <span className="absolute bottom-4 right-1/2 translate-x-1/2 transform rounded border bg-muted px-1 py-0.5 text-muted-foreground">
-              {loading ? (
-                <Icon name="rings">please wait...</Icon>
-              ) : (
-                <Icon name="pencil-1">change</Icon>
-              )}
-            </span>
+            {loading && (
+              <div className="absolute bottom-4 right-1/2 flex translate-x-1/2 transform items-center rounded border bg-muted px-1 py-0.5 text-muted-foreground gap-2">
+                {loadingIndicator && loadingIndicator}
+                <span className="text-nowrap">Please wait...</span>
+              </div>
+            )}
           </>
         ) : (
-          <div className="flex items-center justify-center rounded-lg border border-muted-foreground text-4xl text-muted-foreground">
-            <Icon name="camera" />
-          </div>
+          children
         )}
         <input
           aria-label="Image"
           className="absolute left-0 top-0 z-0 h-full w-full cursor-pointer opacity-0"
-          onChange={(event) => {
-            const file = event.target.files?.[0];
-            if (file) {
-              onChange?.(event);
-              const reader = new FileReader();
-              reader.onloadend = () => {
-                setValue(reader.result as string);
-              };
-              reader.readAsDataURL(file);
-            } else {
-              setValue('');
-            }
-          }}
+          onChange={handleChange}
+          id={id}
           accept="image/*"
           type="file"
+          title=""
+          disabled={disabled}
         />
         <input
-          aria-label="Image"
-          className="absolute left-0 top-0 z-0 h-full w-full cursor-pointer opacity-0"
+          className="absolute left-0 top-0 z-0 opacity-0"
           {...props}
-          {...(field ? getInputProps(field) : {})}
-          value={value}
-          type="hidden"
+          value={input.value}
+          type="text"
+          onChange={(e) => input.change(e.target.value)}
         />
       </label>
       {errorId ? (
