@@ -5,8 +5,43 @@ import { Editor, EditorField, EditorReadonly } from '@veraclins-dev/editor';
 import { LabeledTextarea, LabeledTextField } from '@veraclins-dev/ui';
 import { createUniqueSlug } from '@veraclins-dev/utils';
 
-const exampleContent =
-  '<h2 style="text-align: center">Hey there 👋</h2><p>This is a <em>basic</em> example of <code>mui-tiptap</code>, which combines <a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/">Tiptap</a> with customizable <a target="_blank" rel="noopener noreferrer nofollow" href="https://mui.com/">MUI (Material-UI)</a> styles, plus a suite of additional components and extensions! Sure, there are <strong>all <em>kinds</em> of <s>text</s> <u>formatting</u> options</strong> you’d probably expect from a rich text editor. But wait until you see the <span data-type="mention" data-id="15" data-label="Axl Rose">@Axl Rose</span> mentions and lists:</p><ul><li><p>That’s a bullet list with one …</p></li><li><p>… or two list items.</p></li></ul><p>Isn’t that great? And all of that is editable. <strong><span style="color: #ff9900">But wait, </span><span style="color: #403101"><mark data-color="#ffd699" style="background-color: #ffd699; color: inherit">there’s more!</mark></span></strong> Let’s try a code block:</p><pre><code class="language-css">body {\n  display: none;\n}</code></pre><p></p><p>That’s only the tip of the iceberg. Feel free to add and resize images:</p><img height="auto" src="https://firebasestorage.googleapis.com/v0/b/edulinks-dev.appspot.com/o/uploads%2F57jyw-alexandrosgiannakakisouwiyigqz.jpeg?alt=media&token=7e523553-11ed-4f11-9097-7f67d70b944e" alt="kitten" width="350" style="aspect-ratio: 3 / 2"><p></p><p>Organize information in tables:</p><table><tbody><tr><th colspan="1" rowspan="1"><p>Name</p></th><th colspan="1" rowspan="1"><p>Role</p></th><th colspan="1" rowspan="1"><p>Team</p></th></tr><tr><td colspan="1" rowspan="1"><p>Alice</p></td><td colspan="1" rowspan="1"><p>PM</p></td><td colspan="1" rowspan="1"><p>Internal tools</p></td></tr><tr><td colspan="1" rowspan="1"><p>Bob</p></td><td colspan="1" rowspan="1"><p>Software Engineer</p></td><td colspan="1" rowspan="1"><p>Infrastructure</p></td></tr></tbody></table><p></p><p>Or write down your groceries:</p><ul data-type="taskList"><li data-checked="true" data-type="taskItem"><label><input type="checkbox" checked="checked"><span></span></label><div><p>Milk</p></div></li><li data-checked="false" data-type="taskItem"><label><input type="checkbox"><span></span></label><div><p>Eggs</p></div></li><li data-checked="false" data-type="taskItem"><label><input type="checkbox"><span></span></label><div><p>Sriracha</p></div></li></ul><blockquote><p>Wow, that’s amazing. Good work! 👏 <br>— Mom</p></blockquote><p>Give it a try and click around!</p>';
+const exampleContent = `<h1><strong>Node views with React</strong></h1><p>Using Vanilla JavaScript can feel complex if you are used to work in React. Good news: You can use regular React components in your node views, too. There is just a little bit you need to know, but let’s go through this one by one.</p><h2><strong>Render a React component</strong></h2><p>Here is what you need to do to render React components inside your editor:</p><ol><li><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/docs/editor/extensions/custom-extensions">Create a node extension</a></p></li><li><p>Create a React component</p></li><li><p>Pass that component to the provided <code>ReactNodeViewRenderer</code></p></li><li><p>Register it with <code>addNodeView()</code></p></li><li><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/docs/editor/getting-started/configure">Configure Tiptap to use your new node extension</a></p></li></ol><p>This is how your node extension could look like:</p><pre><code class="language-js">import { Node } from '@tiptap/core'
+import { ReactNodeViewRenderer } from '@tiptap/react'
+import Component from './Component.jsx'
+
+export default Node.create({
+  // configuration …
+
+  addNodeView() {
+    return ReactNodeViewRenderer(Component)
+  },
+})
+</code></pre><p>There is a little bit of magic required to make this work. But don’t worry, we provide a wrapper component you can use to get started easily. Don’t forget to add it to your custom React component, like shown below:</p><pre><code class="language-html">&lt;NodeViewWrapper className="react-component"&gt; React Component &lt;/NodeViewWrapper&gt;
+</code></pre><p>Got it? Let’s see it in action. Feel free to copy the below example to get started.</p><p>That component doesn’t interact with the editor, though. Time to wire it up.</p><h2><strong>Access node attributes</strong></h2><p>The <code>ReactNodeViewRenderer</code> which you use in your node extension, passes a few very helpful props to your custom React component. One of them is the <code>node</code> prop. Let’s say you have <a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/docs/editor/extensions/custom-extensions/extend-existing#attributes">added an attribute</a> named <code>count</code> to your node extension (like we did in the above example) you could access it like this:</p><pre><code class="language-js">props.node.attrs.count
+</code></pre><h2><strong>Update node attributes</strong></h2><p>You can even update node attributes from your node, with the help of the <code>updateAttributes</code> prop passed to your component. Pass an object with updated attributes to the <code>updateAttributes</code> prop:</p><pre><code class="language-js">export default (props) =&gt; {
+  const increase = () =&gt; {
+    props.updateAttributes({
+      count: props.node.attrs.count + 1,
+    })
+  }
+
+  // …
+}
+</code></pre><p>And yes, all of that is reactive, too. A pretty seamless communication, isn’t it?</p><h2><strong>Adding a content editable</strong></h2><p>There is another component called <code>NodeViewContent</code> which helps you adding editable content to your node view. Here is an example:</p><pre><code class="language-jsx">import React from 'react'
+import { NodeViewWrapper, NodeViewContent } from '@tiptap/react'
+
+export default () =&gt; {
+  return (
+    &lt;NodeViewWrapper className="react-component"&gt;
+      &lt;span className="label" contentEditable={false}&gt;
+        React Component
+      &lt;/span&gt;
+
+      &lt;NodeViewContent className="content" /&gt;
+    &lt;/NodeViewWrapper&gt;
+  )
+}
+</code></pre><p>You don’t need to add those <code>className</code> attributes, feel free to remove them or pass other class names. Try it out in the following example:</p><p>And more</p>`;
 
 export function NxWelcome({ title }: { title: string }) {
   const mentionPath = '/mentions';
@@ -433,7 +468,7 @@ export function NxWelcome({ title }: { title: string }) {
         }}
       />
       <div className="wrapper">
-        <div className="container">
+        <div className="container mb-4 flex w-full flex-col rounded-md bg-card p-4">
           <div id="welcome">
             <h1>
               <span> Hello there, </span>
