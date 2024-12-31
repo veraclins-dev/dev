@@ -15,7 +15,7 @@ type EditorFieldProps = Except<
   'value' | 'onChange' | 'onBlur'
 > & {
   value?: string;
-  editorProps?: Except<EditorProps, 'content' | 'onChange'>;
+  editorProps?: Except<EditorProps, 'content' | 'onChange' | 'attributes'>;
 };
 
 const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
@@ -84,6 +84,12 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
           content={formValue}
           onChange={handleBlur}
           placeholder={placeholder}
+          attributes={{
+            'data-testid': name ?? 'editor-field',
+            ...(errorId
+              ? { 'aria-invalid': 'true', 'aria-describedby': errorId }
+              : {}),
+          }}
         />
       </InputWrapper>
     );

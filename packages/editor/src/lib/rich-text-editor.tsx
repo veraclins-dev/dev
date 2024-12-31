@@ -102,6 +102,7 @@ export const RichTextEditor = forwardRef<
       editorProps: {
         ...editorProps.editorProps,
         attributes: {
+          ...(editorProps.editorProps?.attributes ?? {}),
           class:
             'prose dark:prose-invert focus:outline-none max-w-full h-full max-h-72 min-h-64',
         },

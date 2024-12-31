@@ -27,6 +27,7 @@ export type EditorProps = {
   onChange?: (content: string) => void;
   className?: string;
   onUploadFiles?: OnUploadFiles;
+  attributes?: Record<string, string>;
 } & Pick<RichTextEditorProps, 'immediatelyRender'> &
   UseExtensionsOptions;
 
