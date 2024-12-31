@@ -85,7 +85,7 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
           onChange={handleBlur}
           placeholder={placeholder}
           attributes={{
-            'data-testid': name ?? 'editor-field',
+            'data-testid': formProps.name ?? 'editor-field',
             ...(errorId
               ? { 'aria-invalid': 'true', 'aria-describedby': errorId }
               : {}),
