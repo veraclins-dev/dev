@@ -2,7 +2,11 @@ import { useState } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
 
 import { Editor, EditorField, EditorReadonly } from '@veraclins-dev/editor';
-import { LabeledTextarea, LabeledTextField } from '@veraclins-dev/ui';
+import {
+  Autocomplete,
+  LabeledTextarea,
+  LabeledTextField,
+} from '@veraclins-dev/ui';
 import { createUniqueSlug } from '@veraclins-dev/utils';
 
 const exampleContent = `<h1><strong>Node views with React</strong></h1><p>Using Vanilla JavaScript can feel complex if you are used to work in React. Good news: You can use regular React components in your node views, too. There is just a little bit you need to know, but let’s go through this one by one.</p><h2><strong>Render a React component</strong></h2><p>Here is what you need to do to render React components inside your editor:</p><ol><li><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/docs/editor/extensions/custom-extensions">Create a node extension</a></p></li><li><p>Create a React component</p></li><li><p>Pass that component to the provided <code>ReactNodeViewRenderer</code></p></li><li><p>Register it with <code>addNodeView()</code></p></li><li><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/docs/editor/getting-started/configure">Configure Tiptap to use your new node extension</a></p></li></ol><p>This is how your node extension could look like:</p><pre><code class="language-js">import { Node } from '@tiptap/core'
@@ -478,6 +482,12 @@ export function NxWelcome({ title }: { title: string }) {
 
           <LabeledTextField label="An input" className="border mb-4" />
           <LabeledTextarea label="A Textarea" className="border mb-4" />
+
+          <Autocomplete
+            name="majesty"
+            className="border mb-4"
+            options={['hell', 'there']}
+          />
 
           <ClientOnly fallback={<textarea rows={5} placeholder="Loading..." />}>
             {() => (

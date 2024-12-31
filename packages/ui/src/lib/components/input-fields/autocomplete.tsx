@@ -203,7 +203,7 @@ export const Autocomplete = ({
       disableSorting,
     );
     setFilteredOptions(filteredOptions);
-  }, [localValue, multiple, options, selected]);
+  }, [disableSorting, localValue, multiple, options, selected]);
 
   useEffect(() => {
     const value = selected.join('|');
@@ -276,6 +276,7 @@ export const Autocomplete = ({
               <CommandInput
                 ref={inputRef}
                 id={id}
+                name={`${formProps.name}-input`}
                 aria-describedby={errorId}
                 aria-invalid={errorId ? true : undefined}
                 value={localValue}
