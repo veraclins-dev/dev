@@ -25,12 +25,17 @@ export const InputWrapper = ({
   bgClass,
 }: InputWrapperProps) => {
   const { errorId, id, errors } = useFieldProperties(field);
+
   return (
     <div className={cn('relative flex w-full flex-col')} ref={wrapperRef}>
       {(label || topText) && (
         <div className="mb-1 flex justify-between">
           {label && (
-            <Label {...labelProps} htmlFor={id} className="block font-medium">
+            <Label
+              {...labelProps}
+              htmlFor={id}
+              className="block cursor-pointer font-medium"
+            >
               {label}
             </Label>
           )}

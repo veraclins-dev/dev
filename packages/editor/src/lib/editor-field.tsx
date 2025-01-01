@@ -40,7 +40,7 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
     const [formValue, setFormValue] = useState<string>(value ?? '');
     const mainRef = useRef<HTMLTextAreaElement | null>(null);
 
-    const { errorId } = useFieldProperties(field);
+    const { errorId, id } = useFieldProperties(field);
 
     const { key, ...formProps } = getInputProps({ field, name });
     delete formProps.defaultValue;
@@ -51,12 +51,6 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
 
       mainRef.current?.blur();
     };
-
-    console.log('formProps', formProps, value, name);
-
-    // useEffect(() => {
-    //   if (value) setFormValue(value);
-    // }, [value]);
 
     return (
       <InputWrapper
@@ -89,6 +83,7 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
             ...(errorId
               ? { 'aria-invalid': 'true', 'aria-describedby': errorId }
               : {}),
+            id: formProps.id ?? id,
           }}
         />
       </InputWrapper>

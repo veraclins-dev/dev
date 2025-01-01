@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
 
-import { Editor, EditorField, EditorReadonly } from '@veraclins-dev/editor';
+import { EditorField, EditorReadonly } from '@veraclins-dev/editor';
 import {
   Autocomplete,
   LabeledTextarea,
@@ -487,6 +486,7 @@ export function NxWelcome({ title }: { title: string }) {
             name="majesty"
             className="border mb-4"
             options={['hell', 'there']}
+            label="An Autocomplete"
           />
 
           <ClientOnly fallback={<textarea rows={5} placeholder="Loading..." />}>

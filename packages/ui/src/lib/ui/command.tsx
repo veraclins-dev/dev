@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { contentClasses, itemClasses } from './dropdown-menu';
+import { itemClasses } from './dropdown-menu';
 import { Icon } from './icon';
 
 const Command = React.forwardRef<

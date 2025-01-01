@@ -33,7 +33,6 @@ export const SuggestionList = forwardRef<
       id: suggestion.id,
       label: suggestion.mentionLabel,
     };
-    console.log('mentionItem', mentionItem, suggestion);
     props.command(mentionItem);
   };
 
@@ -74,18 +73,8 @@ export const SuggestionList = forwardRef<
     },
   }));
 
-  console.log('SuggestionList render', props, selectedIndex);
-
   return props.items.length > 0 ? (
-    <ul
-      className={cn(contentClasses, 'flex max-h-40 overflow-y-auto gap-y-1')}
-      // defaultOpen
-      // open
-      // onOpenChange={(open) => {
-      //   console.log('Not implemented', { open });
-      // }}
-    >
-      {/* <PopoverContent> */}
+    <ul className={cn(contentClasses, 'flex max-h-40 overflow-y-auto gap-y-1')}>
       {props.items.map((item, index) => (
         <li
           key={item.id}
@@ -97,7 +86,6 @@ export const SuggestionList = forwardRef<
           {item.mentionLabel}
         </li>
       ))}
-      {/* </PopoverContent> */}
     </ul>
   ) : null;
 });

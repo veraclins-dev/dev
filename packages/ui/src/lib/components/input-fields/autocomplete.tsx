@@ -275,10 +275,10 @@ export const Autocomplete = ({
             {canSelect && (
               <CommandInput
                 ref={inputRef}
-                id={id}
                 name={`${formProps.name}-input`}
                 aria-describedby={errorId}
                 aria-invalid={errorId ? true : undefined}
+                data-testid={formProps.id ?? 'autocomplete-field'}
                 value={localValue}
                 onValueChange={handleChange}
                 onBlur={handleBlur}

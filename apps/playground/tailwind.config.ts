@@ -1,10 +1,8 @@
 import { createGlobPatternsForDependencies } from '@nx/react/tailwind';
 import type { Config } from 'tailwindcss';
 
-// @ts-expect-error - This import is not resolved correctly
-import { extendedTheme } from '@veraclins-dev/utils';
-
-console.log(extendedTheme);
+// eslint-disable-next-line
+import { extendedTheme } from '../../packages/utils/src';
 
 export default {
   content: [
