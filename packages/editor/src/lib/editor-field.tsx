@@ -1,4 +1,4 @@
-import { forwardRef, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import { type Except } from 'type-fest';
 
 import {
@@ -37,14 +37,19 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
     },
     ref,
   ) => {
-    const val = value ?? defaultValue;
-    const [formValue, setFormValue] = useState<string>(val ? `${val}` : '');
+    const { key, ...formProps } = getInputProps({ field, name });
+    const val =
+      value ??
+      formProps.defaultValue ??
+      field?.initialValue ??
+      defaultValue ??
+      '';
+
+    const [formValue, setFormValue] = useState(val);
     const mainRef = useRef<HTMLTextAreaElement | null>(null);
-    console.log('EditorFieldProps', formValue);
 
     const { errorId } = useFieldProperties(field);
 
-    const { key, ...formProps } = getInputProps({ field, name });
     delete formProps.defaultValue;
 
     const handleBlur = (content: string) => {
@@ -53,6 +58,12 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
 
       mainRef.current?.blur();
     };
+
+    useEffect(() => {
+      if (val !== formValue) {
+        setFormValue(val);
+      }
+    }, [val]);
 
     return (
       <InputWrapper
@@ -70,6 +81,7 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
           {...formProps}
           ref={mainRef}
           value={formValue}
+          key={key}
           className="inline h-0 w-0 border-0 border-none p-0"
           readOnly
         />
@@ -77,7 +89,7 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
           {...editorProps}
           aria-invalid={errorId ? true : undefined}
           aria-describedby={errorId}
-          content={formValue}
+          content={String(formValue)}
           onChange={handleBlur}
           placeholder={placeholder}
           attributes={{
