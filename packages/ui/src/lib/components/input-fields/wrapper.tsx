@@ -14,7 +14,7 @@ interface InputWrapperProps
 }
 
 export const InputWrapper = ({
-  className = 'h-10',
+  className,
   borderless = true,
   children,
   label,

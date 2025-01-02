@@ -30,7 +30,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       type = 'text',
       labelProps,
       topText,
-      className = 'h-10',
+      className,
       borderless = true,
       inputRef,
       field,
