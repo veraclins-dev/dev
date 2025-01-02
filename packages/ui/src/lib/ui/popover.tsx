@@ -1,9 +1,9 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover';
-import { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type Maybe, type Measurable } from '../types';
+import { type Maybe, type Measurable, type WithTrigger } from '../types';
 
 const Popover = PopoverPrimitive.Root;
 
@@ -57,8 +57,7 @@ PopoverContent.displayName = PopoverPrimitive.Content.displayName;
 type PopoverProps = PopoverPrimitive.PopoverContentProps;
 type PopoverContentProps = React.ComponentProps<typeof PopoverContent>;
 
-type ComposedPopoverProps = {
-  trigger: React.ReactNode;
+type ComposedPopoverProps<P extends object> = WithTrigger<P> & {
   children: React.ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -72,16 +71,20 @@ type PopoverAnchorProps = AnchorProps & {
   anchorEl?: Maybe<Measurable>;
 };
 
-const ComposedPopover = ({
+const ComposedPopover = <P extends object>({
   children,
-  trigger,
+  Trigger,
   className,
   open,
+  TriggerProps,
+  triggerRef,
   onOpenChange,
-}: ComposedPopoverProps) => {
+}: ComposedPopoverProps<P>) => {
   return (
     <Popover open={open} onOpenChange={onOpenChange}>
-      <PopoverTrigger asChild>{trigger}</PopoverTrigger>
+      <PopoverTrigger asChild>
+        <Trigger {...TriggerProps} ref={triggerRef} />
+      </PopoverTrigger>
       <PopoverContent align="center" className={className}>
         {children}
       </PopoverContent>

@@ -47,7 +47,7 @@ const DropdownMenuTrigger = React.forwardRef<
       Trigger={DropdownMenuPrimitive.Trigger}
       TriggerProps={props}
       content={tooltip}
-      myRef={ref}
+      triggerRef={ref}
     />
   ) : (
     <DropdownMenuPrimitive.Trigger ref={ref} {...props} />

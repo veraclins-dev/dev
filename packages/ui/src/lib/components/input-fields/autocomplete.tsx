@@ -250,28 +250,27 @@ export const Autocomplete = ({
       >
         <Command
           onKeyDown={handleKeyDown}
-          className="overflow-visible bg-transparent"
+          className="overflow-visible bg-transparent flex"
           shouldFilter={false}
         >
-          <div
-            ref={anchorRef}
-            className="flex h-full w-full flex-wrap gap-1 border-0 px-3 py-2"
-          >
-            {multiple &&
-              selected.map((value) => {
-                return (
-                  <Chip
-                    key={value}
-                    label={getOptionLabel(
-                      options.find(
-                        (option) => getOptionValue(option) === value,
-                      ),
-                    )}
-                    onRemove={() => handleRemove(value)}
-                  />
-                );
-              })}
-            {/* Avoid having the "Search" Icon */}
+          <div className="flex flex-wrap">
+            {multiple && selected.length ? (
+              <div ref={anchorRef} className="flex flex-wrap gap-1 p-1">
+                {selected.map((value) => {
+                  return (
+                    <Chip
+                      key={value}
+                      label={getOptionLabel(
+                        options.find(
+                          (option) => getOptionValue(option) === value,
+                        ),
+                      )}
+                      onRemove={() => handleRemove(value)}
+                    />
+                  );
+                })}
+              </div>
+            ) : null}
             {canSelect && (
               <CommandInput
                 ref={inputRef}
@@ -284,7 +283,7 @@ export const Autocomplete = ({
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 placeholder={placeholder}
-                className="flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+                className="h-full flex-1 self-center border-0 px-3 py-2 text-base leading-normal text-input-foreground focus:outline-none focus:ring-0"
                 disabled={!canSelect}
               />
             )}

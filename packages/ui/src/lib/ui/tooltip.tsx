@@ -3,6 +3,8 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { type WithTrigger } from '../types';
+
 const TooltipProvider = TooltipPrimitive.Provider;
 
 const Tooltip = TooltipPrimitive.Root;
@@ -18,7 +20,7 @@ const TooltipContent = React.forwardRef<
     ref={ref}
     sideOffset={sideOffset}
     className={cn(
-      'z-50 max-w-[12rem] overflow-hidden rounded-md border border-input bg-card px-2 py-1 text-center text-sm text-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+      'z-50 max-w-48 overflow-hidden rounded-md border border-input bg-card px-2 py-1 text-center text-sm text-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
       className,
     )}
     {...props}
@@ -26,12 +28,9 @@ const TooltipContent = React.forwardRef<
 ));
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
-type ComposedTooltipProps<P extends object> = {
-  Trigger: React.ComponentType<P>;
+type ComposedTooltipProps<P extends object> = WithTrigger<P> & {
   content: React.ReactNode;
   arrow?: boolean;
-  TriggerProps: P;
-  myRef?: React.Ref<HTMLElement>;
 };
 
 const ComposedTooltip = <P extends object>({
@@ -39,17 +38,17 @@ const ComposedTooltip = <P extends object>({
   content,
   arrow = true,
   TriggerProps,
-  myRef,
+  triggerRef,
 }: ComposedTooltipProps<P>) => {
   return (
     <TooltipProvider>
       <Tooltip delayDuration={200}>
         <TooltipTrigger asChild>
-          <Trigger {...TriggerProps} ref={myRef} />
+          <Trigger {...TriggerProps} ref={triggerRef} />
         </TooltipTrigger>
-        <TooltipContent align="center">
+        <TooltipContent>
           {content}
-          {arrow && <TooltipArrow />}
+          {arrow && <TooltipArrow className="fill-current" />}
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

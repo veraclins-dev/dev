@@ -18,7 +18,7 @@ const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
         Trigger={ButtonBase}
         TriggerProps={props}
         content={tooltip}
-        myRef={ref}
+        triggerRef={ref}
       />
     ) : (
       <ButtonBase ref={ref} {...props} />
@@ -28,20 +28,20 @@ const BaseButton = forwardRef<HTMLButtonElement, ButtonProps>(
 
 BaseButton.displayName = 'BaseButton';
 
-const Button = ({
-  rounded = false,
-  className,
-  children,
-  ...props
-}: ButtonProps) => {
-  return (
-    <BaseButton
-      {...props}
-      className={cn(rounded ? 'rounded-full' : 'rounded-md', className)}
-    >
-      {children}
-    </BaseButton>
-  );
-};
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ rounded = false, className, children, ...props }, ref) => {
+    return (
+      <BaseButton
+        {...props}
+        ref={ref}
+        className={cn(rounded ? 'rounded-full' : 'rounded-md', className)}
+      >
+        {children}
+      </BaseButton>
+    );
+  },
+);
+
+Button.displayName = 'Button';
 
 export { BaseButton, Button, type ButtonProps };

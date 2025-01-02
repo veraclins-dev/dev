@@ -13,3 +13,9 @@ export type Measurable = {
 export type Maybe<T> = T | null;
 
 export type MaybeString = Maybe<string>;
+
+export type WithTrigger<T extends object, S extends Element = Element> = {
+  Trigger: React.ComponentType<T>;
+  TriggerProps: T;
+  triggerRef?: React.Ref<S>;
+};

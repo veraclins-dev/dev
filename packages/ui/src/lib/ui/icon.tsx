@@ -1,4 +1,4 @@
-import { type SVGProps } from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
@@ -27,40 +27,54 @@ const childrenSizeClassName = {
   xl: 'gap-3',
 } satisfies Record<Size, string>;
 
-export type IconProps = SVGProps<SVGSVGElement> & {
+export type IconProps = React.SVGProps<SVGSVGElement> & {
   name: IconName;
   size?: Size;
   tooltip?: string;
   href?: string;
 };
 
-function Component({
-  name,
-  size = 'font',
-  className,
-  children,
-  href = '/icons/sprite.svg',
-  ...props
-}: Omit<IconProps, 'tooltip'>) {
-  if (children) {
+const Component = forwardRef<SVGSVGElement, Omit<IconProps, 'tooltip'>>(
+  (
+    {
+      name,
+      size = 'font',
+      className,
+      children,
+      href = '/icons/sprite.svg',
+      ...props
+    },
+    ref,
+  ) => {
+    if (children) {
+      return (
+        <span
+          className={`inline-flex items-center ${childrenSizeClassName[size]}`}
+        >
+          <Component
+            name={name}
+            size={size}
+            className={className}
+            {...props}
+            ref={ref}
+          />
+          {children}
+        </span>
+      );
+    }
     return (
-      <span
-        className={`inline-flex items-center ${childrenSizeClassName[size]}`}
+      <svg
+        {...props}
+        ref={ref}
+        className={cn(sizeClassName[size], 'inline self-center', className)}
       >
-        <Component name={name} size={size} className={className} {...props} />
-        {children}
-      </span>
+        <use href={`${href}#${name}`} />
+      </svg>
     );
-  }
-  return (
-    <svg
-      {...props}
-      className={cn(sizeClassName[size], 'inline self-center', className)}
-    >
-      <use href={`${href}#${name}`} />
-    </svg>
-  );
-}
+  },
+);
+
+Component.displayName = 'Component';
 
 /**
  * Renders an SVG icon. The icon defaults to the size of the font. To make it
@@ -70,18 +84,24 @@ function Component({
  * you need to wrap the icon and text in a common parent and set the parent to
  * display "flex" (or "inline-flex") with "items-center" and a reasonable gap.
  */
-function Icon({ tooltip, ...props }: IconProps) {
-  const { sprite } = useIcon();
 
-  return tooltip ? (
-    <ComposedTooltip
-      Trigger={Component}
-      TriggerProps={{ ...props, href: sprite }}
-      content={tooltip}
-    />
-  ) : (
-    <Component {...props} href={sprite} />
-  );
-}
+const Icon = forwardRef<SVGSVGElement, IconProps>(
+  ({ tooltip, ...props }, ref) => {
+    const { sprite } = useIcon();
+
+    return tooltip ? (
+      <ComposedTooltip
+        Trigger={Component}
+        TriggerProps={{ ...props, href: sprite, ref }}
+        content={tooltip}
+        triggerRef={ref}
+      />
+    ) : (
+      <Component {...props} href={sprite} ref={ref} />
+    );
+  },
+);
+
+Icon.displayName = 'Icon';
 
 export { Icon };

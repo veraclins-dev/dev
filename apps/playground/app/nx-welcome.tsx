@@ -1,10 +1,15 @@
+import { useState } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
 
 import { EditorField, EditorReadonly } from '@veraclins-dev/editor';
 import {
   Autocomplete,
+  Button,
+  ComposedPopover,
+  Icon,
   LabeledTextarea,
   LabeledTextField,
+  SelectField,
 } from '@veraclins-dev/ui';
 import { createUniqueSlug } from '@veraclins-dev/utils';
 
@@ -47,6 +52,7 @@ export default () =&gt; {
 </code></pre><p>You don’t need to add those <code>className</code> attributes, feel free to remove them or pass other class names. Try it out in the following example:</p><p>And more</p>`;
 
 export function NxWelcome({ title }: { title: string }) {
+  const [open, setOpen] = useState(false);
   const mentionPath = '/mentions';
 
   return (
@@ -477,22 +483,92 @@ export function NxWelcome({ title }: { title: string }) {
               <span> Hello there, </span>
               Welcome {title} 👋
             </h1>
+            Here is an Icon component:
+            <div className="flex gap-4">
+              <Icon name="search" size="sm" tooltip="small icon" />
+              <Icon name="search" size="md" tooltip="medium icon" />
+              <Icon name="search" size="lg" tooltip="large icon" />
+              <Icon name="search" size="xl" tooltip="extra large icon" />
+            </div>
           </div>
 
-          <LabeledTextField label="An input" className="border mb-4" />
-          <LabeledTextarea label="A Textarea" className="border mb-4" />
+          <LabeledTextField
+            label="An input"
+            className="border mb-4"
+            placeholder="some important input"
+          />
+          <LabeledTextarea
+            label="A Textarea"
+            className="border mb-4"
+            placeholder="Some important textarea"
+          />
 
           <Autocomplete
             name="majesty"
             className="border mb-4"
-            options={['hell', 'there']}
+            options={[
+              { label: 'John Thompson', value: 'John Thompson' },
+              { label: 'Cyndi Lauper', value: 'Cyndi Lauper' },
+              { label: 'Tom Cruise', value: 'Tom Cruise' },
+              { label: 'Madonna', value: 'Madonna' },
+              { label: 'Jerry Hall', value: 'Jerry Hall' },
+              { label: 'Joan Collins', value: 'Joan Collins' },
+              { label: 'Winona Ryder', value: 'Winona Ryder' },
+              { label: 'Christina Applegate', value: 'Christina Applegate' },
+              { label: 'Alyssa Milano', value: 'Alyssa Milano' },
+              { label: 'Molly Ringwald', value: 'Molly Ringwald' },
+              { label: 'Ally Sheedy', value: 'Ally Sheedy' },
+            ]}
             label="An Autocomplete"
+            placeholder="Start typing to filter"
+            multiple
           />
+
+          <SelectField
+            options={[
+              { label: 'John Thompson', value: 'John Thompson' },
+              { label: 'Cyndi Lauper', value: 'Cyndi Lauper' },
+              { label: 'Tom Cruise', value: 'Tom Cruise' },
+              { label: 'Madonna', value: 'Madonna' },
+              { label: 'Jerry Hall', value: 'Jerry Hall' },
+              { label: 'Joan Collins', value: 'Joan Collins' },
+              { label: 'Winona Ryder', value: 'Winona Ryder' },
+              { label: 'Christina Applegate', value: 'Christina Applegate' },
+              { label: 'Alyssa Milano', value: 'Alyssa Milano' },
+              { label: 'Molly Ringwald', value: 'Molly Ringwald' },
+              { label: 'Ally Sheedy', value: 'Ally Sheedy' },
+            ]}
+            className="border mb-4"
+            placeholder="Select an option"
+          />
+          <ComposedPopover
+            Trigger={Button}
+            TriggerProps={{
+              className: 'w-full px-2 py-2 mb-5',
+              children: 'Filter/Sort',
+            }}
+            className="w-full gap-y-6 overflow-y-scroll"
+            open={open}
+            onOpenChange={setOpen}
+          >
+            {/* <ScrollFade className="flex w-full flex-1 flex-col gap-y-2"> */}
+            <div className="flex flex-1 flex-col gap-1"></div>
+            some content here
+            {/* </ScrollFade> */}
+            <Button
+              onClick={() => {
+                console.log('Applying filters');
+              }}
+              className="w-full px-4 py-2"
+            >
+              Apply Filter(s)
+            </Button>
+          </ComposedPopover>
 
           <ClientOnly fallback={<textarea rows={5} placeholder="Loading..." />}>
             {() => (
               <EditorField
-                value={exampleContent}
+                defaultValue={exampleContent}
                 editorProps={{
                   mentionPath,
                   suggestionFilter: ({ query }) =>
