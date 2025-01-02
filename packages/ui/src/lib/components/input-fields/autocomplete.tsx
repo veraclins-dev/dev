@@ -9,6 +9,7 @@ import {
 } from '@veraclins-dev/utils';
 
 import { type Maybe, type Option } from '../../types';
+import { inputClasses } from '../../ui';
 import { Chip } from '../../ui/chip';
 import {
   Command,
@@ -283,7 +284,7 @@ export const Autocomplete = ({
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 placeholder={placeholder}
-                className="h-full flex-1 self-center border-0 px-3 py-2 text-base leading-normal text-input-foreground focus:outline-none focus:ring-0"
+                className={inputClasses}
                 disabled={!canSelect}
               />
             )}

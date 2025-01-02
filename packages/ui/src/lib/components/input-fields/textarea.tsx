@@ -60,11 +60,7 @@ export const TextareaField = forwardRef<HTMLDivElement, TextareaFieldProps>(
           id={id}
           rows={rows}
           ref={inputRef}
-          className={cn(
-            'h-full w-full flex-1 self-center border-0 px-3.5 py-2 text-base leading-normal focus:outline-none focus:ring-0',
-            bgClass,
-            inputClass,
-          )}
+          className={cn(bgClass, inputClass)}
         />
         {rightInlay ? (
           <span className="absolute bottom-0.5 right-0.5">{rightInlay}</span>

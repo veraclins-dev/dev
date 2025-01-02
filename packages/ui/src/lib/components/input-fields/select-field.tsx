@@ -2,7 +2,11 @@ import { forwardRef, type PropsWithoutRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { Select, type SelectProps as BaseSelectProps } from '../../ui';
+import {
+  inputClasses,
+  Select,
+  type SelectProps as BaseSelectProps,
+} from '../../ui';
 
 import {
   type BaseInputProps,
@@ -71,11 +75,7 @@ export const SelectField = forwardRef<HTMLDivElement, Props>(
           value={controlProps.value}
           aria-invalid={errorId ? true : undefined}
           aria-describedby={errorId}
-          className={cn(
-            'h-full w-full max-w-full flex-1 self-center border-0 px-3.5 py-2 text-base leading-normal focus:outline-none focus:ring-0',
-            bgClass,
-            inputClass,
-          )}
+          className={cn('w-full', inputClasses, bgClass, inputClass)}
           defaultValue={defaultValue}
           dir={dir}
         />

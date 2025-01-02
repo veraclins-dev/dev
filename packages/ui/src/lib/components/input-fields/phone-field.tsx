@@ -10,8 +10,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import 'react-phone-number-input/style.css';
 
-import { Select } from '../../ui';
-import { Divider } from '../divider';
+import { inputClasses, Select } from '../../ui';
 
 import { type TextFieldProps } from './textfield';
 import {
@@ -51,7 +50,7 @@ const CountrySelect = ({ countries, value, onChange }: CountrySelectProps) => {
       }))}
       showLabel
       disabled
-      className="h-full flex-1 self-center bg-inherit px-1 py-2 text-base leading-normal focus:outline-none focus:ring-0 lg:w-full lg:px-2.5"
+      className="max-w-32"
     />
   );
 };
@@ -69,7 +68,7 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(
       labelProps,
       topText,
       type = 'text',
-      className = 'h-10',
+      className = 'h-full',
       borderless = true,
       inputRef,
       field,
@@ -134,7 +133,6 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(
           onChange={countryChange}
           value={localCountryValue}
         />
-        <Divider isVertical variant="full" />
         <Input
           {...controlProps}
           autoFocus={autoFocus}
@@ -146,8 +144,9 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(
           aria-invalid={errorId ? true : undefined}
           aria-describedby={errorId}
           className={cn(
-            'h-full w-full flex-1 self-center border-0 px-3 py-2 text-base leading-normal outline-none focus:ring-0',
+            inputClasses,
             bgClass,
+            'rounded-l-none border-l',
             inputClass,
           )}
           maxLength={12}

@@ -20,10 +20,10 @@ export const Divider = ({
     >
       <div
         className={cn(
-          isVertical ? 'h-full w-[1px]' : 'h-[1px] w-full',
+          isVertical ? 'h-full w-[1px] min-h-4' : 'h-[1px] w-full min-w-4',
           opaque ? 'bg-foreground' : 'bg-border opacity-65',
         )}
-      ></div>
+      />
     </div>
   );
 };

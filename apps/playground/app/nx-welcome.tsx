@@ -7,8 +7,10 @@ import {
   Button,
   ComposedPopover,
   Icon,
+  IconButton,
   LabeledTextarea,
   LabeledTextField,
+  PhoneField,
   SelectField,
 } from '@veraclins-dev/ui';
 import { createUniqueSlug } from '@veraclins-dev/utils';
@@ -477,35 +479,26 @@ export function NxWelcome({ title }: { title: string }) {
         }}
       />
       <div className="wrapper">
-        <div className="container mb-4 flex w-full flex-col rounded-md bg-card p-4">
+        <div className="container flex w-full gap-4 flex-col rounded-md bg-card p-4">
           <div id="welcome">
             <h1>
               <span> Hello there, </span>
               Welcome {title} 👋
             </h1>
-            Here is an Icon component:
-            <div className="flex gap-4">
-              <Icon name="search" size="sm" tooltip="small icon" />
-              <Icon name="search" size="md" tooltip="medium icon" />
-              <Icon name="search" size="lg" tooltip="large icon" />
-              <Icon name="search" size="xl" tooltip="extra large icon" />
-            </div>
           </div>
-
           <LabeledTextField
             label="An input"
-            className="border mb-4"
+            className="border"
             placeholder="some important input"
           />
           <LabeledTextarea
             label="A Textarea"
-            className="border mb-4"
+            className="border"
             placeholder="Some important textarea"
           />
-
           <Autocomplete
             name="majesty"
-            className="border mb-4"
+            className="border"
             options={[
               { label: 'John Thompson', value: 'John Thompson' },
               { label: 'Cyndi Lauper', value: 'Cyndi Lauper' },
@@ -523,7 +516,6 @@ export function NxWelcome({ title }: { title: string }) {
             placeholder="Start typing to filter"
             multiple
           />
-
           <SelectField
             options={[
               { label: 'John Thompson', value: 'John Thompson' },
@@ -538,8 +530,13 @@ export function NxWelcome({ title }: { title: string }) {
               { label: 'Molly Ringwald', value: 'Molly Ringwald' },
               { label: 'Ally Sheedy', value: 'Ally Sheedy' },
             ]}
-            className="border mb-4"
+            className="border"
             placeholder="Select an option"
+          />
+          <PhoneField
+            placeholder="803 456 7890"
+            className="border h-full"
+            autoFocus
           />
           <ComposedPopover
             Trigger={Button}
@@ -564,7 +561,18 @@ export function NxWelcome({ title }: { title: string }) {
               Apply Filter(s)
             </Button>
           </ComposedPopover>
-
+          Here is an Icon component:
+          <div className="flex gap-4">
+            <IconButton tooltip="small icon" size="icon">
+              <Icon name="search" size="sm" />
+            </IconButton>
+            <Icon name="search" size="md" tooltip="medium icon" />
+            <Icon name="search" size="lg" tooltip="large icon" />
+            <Icon name="search" size="xl" tooltip="extra large icon" />
+          </div>
+          <Button tooltip="Click me" className="w-full px-2 py-2">
+            Click me for a tooltip
+          </Button>
           <ClientOnly fallback={<textarea rows={5} placeholder="Loading..." />}>
             {() => (
               <EditorField
@@ -614,7 +622,6 @@ export function NxWelcome({ title }: { title: string }) {
               />
             )}
           </ClientOnly>
-
           <EditorReadonly content={exampleContent} mentionPath={mentionPath} />
         </div>
       </div>

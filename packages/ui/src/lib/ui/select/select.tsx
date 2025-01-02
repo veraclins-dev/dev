@@ -5,6 +5,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import { type ObjectOption, type Option } from '../../types';
 import { Icon } from '../icon';
+import { inputClasses } from '../input';
 
 const SelectRoot = SelectPrimitive.Root;
 
@@ -27,7 +28,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      'flex min-h-[0.75rem] w-full items-center justify-between rounded-md border border-input bg-background text-sm focus:outline-none focus:ring-2  disabled:cursor-not-allowed disabled:opacity-50',
+      'flex min-h-[0.75rem] w-full items-center justify-between rounded-md text-sm focus:outline-none focus:ring-2  disabled:cursor-not-allowed disabled:opacity-50',
       className,
     )}
     {...props}
@@ -148,7 +149,7 @@ const Select = ({
   ...props
 }: SelectProps) => (
   <SelectRoot {...props} value={value}>
-    <SelectTrigger className={cn('max-w-[120px]', className)}>
+    <SelectTrigger className={cn(inputClasses, className)}>
       {showLabel ? (
         <SelectValue placeholder={placeholder} />
       ) : (

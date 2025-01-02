@@ -5,6 +5,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import { itemClasses } from './dropdown-menu';
 import { Icon } from './icon';
+import { inputClasses } from './input';
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
@@ -31,10 +32,7 @@ const CommandInput = React.forwardRef<
     {withIcon && <Icon name="search" className="h-4 w-4 shrink-0 opacity-50" />}
     <CommandPrimitive.Input
       ref={ref}
-      className={cn(
-        'text-base leading-normal text-input-foreground focus:outline-none focus:ring-0',
-        className,
-      )}
+      className={cn(inputClasses, className)}
       {...props}
     />
   </div>
