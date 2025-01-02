@@ -38,14 +38,17 @@ export const ImageField = ({
   const { errorId, id, errors } = useFieldProperties(field);
 
   const [value, setValue] = useState(val);
+
+  const { key, ...formProps } = getInputProps({ field, name });
+
   const props = {
     ...others,
-    ...getInputProps({ field }),
+    ...formProps,
   };
 
   const input = useInputControl({
     initialValue: val,
-    key: props.key ?? '',
+    key: key ?? '',
     name: props.name ?? '',
     formId: props.form ?? '',
   });

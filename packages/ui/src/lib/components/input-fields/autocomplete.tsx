@@ -84,7 +84,7 @@ export const Autocomplete = ({
   placeholder,
   ...props
 }: AutocompleteProps) => {
-  const { errorId, id } = useFieldProperties(field);
+  const { errorId } = useFieldProperties(field);
   const wrapperRef = useRef<Maybe<HTMLDivElement>>(null);
   const mainRef = useRef<Maybe<HTMLInputElement>>(null);
   const inputRef = useRef<Maybe<HTMLInputElement>>(null);

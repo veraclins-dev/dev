@@ -1,7 +1,3 @@
-import {
-  getSelectProps as conformGetSelectProps,
-  useInputControl,
-} from '@conform-to/react';
 import { forwardRef, type PropsWithoutRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
@@ -11,14 +7,14 @@ import { Select, type SelectProps as BaseSelectProps } from '../../ui';
 import {
   type BaseInputProps,
   getSelectProps,
-  useControlProps,
   useFieldProperties,
+  useSelectControlProps,
 } from './utils';
 import { InputWrapper } from './wrapper';
 
 interface SelectFieldProps
   extends PropsWithoutRef<JSX.IntrinsicElements['select']>,
-    Omit<BaseInputProps, 'value'> {
+    Omit<BaseInputProps<string>, 'value'> {
   placeholder?: string;
   defaultValue?: BaseSelectProps['defaultValue'];
   dir?: BaseSelectProps['dir'];
@@ -47,9 +43,11 @@ export const SelectField = forwardRef<HTMLDivElement, Props>(
   ) => {
     const { errorId } = useFieldProperties(field);
 
-    const controlProps = useControlProps(
+    const controlProps = useSelectControlProps(
       field ?? { formId: '', name: name ?? '' },
     );
+
+    const { key, ...formProps } = field ? getSelectProps(field) : {};
 
     return (
       <InputWrapper
@@ -67,8 +65,9 @@ export const SelectField = forwardRef<HTMLDivElement, Props>(
       >
         <Select
           {...props}
-          {...(field ? getSelectProps(field) : {})}
+          {...formProps}
           {...controlProps}
+          key={key}
           value={controlProps.value}
           aria-invalid={errorId ? true : undefined}
           aria-describedby={errorId}
