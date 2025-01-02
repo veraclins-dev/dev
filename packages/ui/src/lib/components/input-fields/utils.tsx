@@ -5,6 +5,7 @@ import {
   useInputControl,
 } from '@conform-to/react';
 import { useId } from 'react';
+import { type Value } from 'react-phone-number-input/input';
 
 import { type IconName } from '../../icons';
 import { type MaybeString } from '../../types';
@@ -85,7 +86,7 @@ export const getSelectProps = (field: SelectParams[0]) => {
 
 export type ControlParams = Parameters<typeof useInputControl>;
 
-export const useControlProps = (field: ControlParams[0]) => {
+export const useSelectControlProps = (field: ControlParams[0]) => {
   const control = useInputControl(field);
   if (!field) return { value: undefined };
 
@@ -99,5 +100,27 @@ export const useControlProps = (field: ControlParams[0]) => {
       }
     },
     value: control.value as string | undefined,
+  };
+};
+
+export const useInputControlProps = (field: ControlParams[0]) => {
+  const control = useInputControl(field);
+  if (!field)
+    return {
+      value: undefined,
+      onChange: () => {
+        // empty function
+      },
+    };
+
+  return {
+    onChange: (value?: Value) => {
+      control.change(value);
+    },
+    onBlur: () => {
+      control.blur();
+    },
+    control,
+    value: control.value as Value,
   };
 };

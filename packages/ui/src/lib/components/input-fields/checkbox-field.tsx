@@ -20,15 +20,17 @@ export function CheckboxField({
   label,
   value,
   defaultChecked,
-  key,
+  name,
   className,
   ...others
 }: Props) {
   const checkedValue = value ?? 'on';
 
+  const { key, ...formProps } = getInputProps({ field, name });
+
   const props = {
     ...others,
-    ...(field ? getInputProps({ field, type: 'checkbox' }) : {}),
+    ...formProps,
   };
   const input = useInputControl({
     key,

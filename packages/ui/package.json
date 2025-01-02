@@ -30,7 +30,9 @@
     "@remix-run/react": "^2.14.0",
     "class-variance-authority": "^0.7.0",
     "cmdk": "^1.0.4",
+    "country-flag-icons": "^1.5.13",
     "match-sorter": "^8.0.0",
+    "react-phone-number-input": "^3.4.10",
     "recharts": "^2.13.3",
     "spin-delay": "^2.0.1"
   },
