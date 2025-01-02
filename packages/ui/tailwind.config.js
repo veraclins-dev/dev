@@ -1,7 +1,8 @@
 import { createGlobPatternsForDependencies } from '@nx/react/tailwind';
 import { join } from 'path';
 
-import { extendedTheme } from '@veraclins-dev/utils';
+// eslint-disable-next-line
+import { extendedTheme } from '../utils/src';
 
 /** @type {import('tailwindcss').Config} */
 export const darkMode = 'class';
