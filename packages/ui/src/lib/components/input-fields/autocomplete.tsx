@@ -36,6 +36,7 @@ export interface AutocompleteProps
   onChange?: (value: string) => void;
   disableSorting?: boolean;
   menuClassName?: string;
+  shouldReset?: boolean;
 }
 
 const getOptionLabel = (option?: Option) =>
@@ -83,6 +84,7 @@ export const Autocomplete = ({
   onChange,
   disableSorting,
   placeholder,
+  shouldReset,
   ...props
 }: AutocompleteProps) => {
   const { errorId } = useFieldProperties(field);
@@ -229,6 +231,12 @@ export const Autocomplete = ({
       reset();
     }
   }, [options]);
+
+  useEffect(() => {
+    if (shouldReset) {
+      reset();
+    }
+  }, [shouldReset]);
 
   const { key, ...formProps } = getInputProps({ field, name });
   delete formProps.defaultValue;

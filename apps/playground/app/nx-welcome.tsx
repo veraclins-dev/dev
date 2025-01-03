@@ -55,6 +55,7 @@ export default () =&gt; {
 
 export function NxWelcome({ title }: { title: string }) {
   const [open, setOpen] = useState(false);
+  const [shouldReset, setShouldReset] = useState(false);
   const mentionPath = '/mentions';
 
   return (
@@ -570,10 +571,16 @@ export function NxWelcome({ title }: { title: string }) {
             <Icon name="search" size="lg" tooltip="large icon" />
             <Icon name="search" size="xl" tooltip="extra large icon" />
           </div>
-          <Button tooltip="Click me" className="w-full px-2 py-2">
+          <Button
+            onClick={() => setShouldReset(true)}
+            tooltip="Click me"
+            className="w-full px-2 py-2"
+          >
             Click me for a tooltip
           </Button>
-          <ClientOnly fallback={<textarea rows={5} placeholder="Loading..." />}>
+          <ClientOnly
+            fallback={<textarea rows={5} placeholder="Loading... some stuff" />}
+          >
             {() => (
               <EditorField
                 defaultValue={exampleContent}
@@ -618,6 +625,7 @@ export function NxWelcome({ title }: { title: string }) {
                           .includes(query.toLowerCase()),
                       ),
                 }}
+                shouldReset={shouldReset}
                 name="test-editor"
               />
             )}
