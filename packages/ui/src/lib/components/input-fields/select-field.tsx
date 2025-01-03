@@ -18,7 +18,7 @@ import { InputWrapper } from './wrapper';
 
 interface SelectFieldProps
   extends PropsWithoutRef<JSX.IntrinsicElements['select']>,
-    Omit<BaseInputProps<string>, 'value'> {
+    Omit<BaseInputProps, 'value'> {
   placeholder?: string;
   defaultValue?: BaseSelectProps['defaultValue'];
   dir?: BaseSelectProps['dir'];
