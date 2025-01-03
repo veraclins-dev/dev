@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { EditorMenuControls } from './controls';
 import { useExtensions, type UseExtensionsOptions } from './hooks';
@@ -135,9 +135,13 @@ export function Editor({
     [handleNewImageFiles],
   );
 
-  if (shouldReset) {
-    rteRef.current?.editor?.commands.setContent('');
-  }
+  useEffect(() => {
+    queueMicrotask(() => {
+      if (content && shouldReset) {
+        rteRef.current?.editor?.commands.setContent('');
+      }
+    });
+  }, [shouldReset]);
 
   return (
     <RichTextEditor

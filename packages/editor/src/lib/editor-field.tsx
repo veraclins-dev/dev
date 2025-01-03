@@ -64,19 +64,11 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
       mainRef.current?.blur();
     };
 
-    const reset = () => {
-      setFormValue('');
-    };
-
     useEffect(() => {
       if (val !== formValue) {
         setFormValue(val);
       }
     }, [val]);
-
-    if (shouldReset) {
-      setFormValue('');
-    }
 
     return (
       <InputWrapper

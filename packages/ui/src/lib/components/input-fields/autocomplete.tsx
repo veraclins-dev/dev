@@ -233,7 +233,7 @@ export const Autocomplete = ({
   }, [options]);
 
   useEffect(() => {
-    if (shouldReset) {
+    if (shouldReset && selected.length) {
       reset();
     }
   }, [shouldReset]);

@@ -3,7 +3,6 @@ import {
   type NodeViewProps,
   NodeViewWrapper,
 } from '@tiptap/react';
-import React from 'react';
 
 import { Select } from '@veraclins-dev/ui';
 
