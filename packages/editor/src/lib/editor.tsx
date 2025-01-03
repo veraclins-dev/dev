@@ -28,6 +28,7 @@ export type EditorProps = {
   className?: string;
   onUploadFiles?: OnUploadFiles;
   attributes?: Record<string, string>;
+  shouldReset?: boolean;
 } & Pick<RichTextEditorProps, 'immediatelyRender'> &
   UseExtensionsOptions;
 
@@ -39,6 +40,7 @@ export function Editor({
   onUploadFiles,
   mentionPath,
   suggestionFilter,
+  shouldReset,
   ...editorProps
 }: EditorProps) {
   const extensions = useExtensions({
@@ -132,6 +134,10 @@ export function Editor({
     },
     [handleNewImageFiles],
   );
+
+  if (shouldReset) {
+    rteRef.current?.editor?.commands.setContent('');
+  }
 
   return (
     <RichTextEditor

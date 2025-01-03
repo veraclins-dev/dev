@@ -15,7 +15,11 @@ type EditorFieldProps = Except<
   'value' | 'onChange' | 'onBlur'
 > & {
   value?: string;
-  editorProps?: Except<EditorProps, 'content' | 'onChange' | 'attributes'>;
+  shouldReset?: EditorProps['shouldReset'];
+  editorProps?: Except<
+    EditorProps,
+    'content' | 'onChange' | 'attributes' | 'shouldReset'
+  >;
 };
 
 const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
@@ -33,6 +37,7 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
       field,
       topText,
       editorProps,
+      shouldReset,
       ...rest
     },
     ref,
@@ -59,11 +64,19 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
       mainRef.current?.blur();
     };
 
+    const reset = () => {
+      setFormValue('');
+    };
+
     useEffect(() => {
       if (val !== formValue) {
         setFormValue(val);
       }
     }, [val]);
+
+    if (shouldReset) {
+      setFormValue('');
+    }
 
     return (
       <InputWrapper
@@ -92,6 +105,8 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
           content={String(formValue)}
           onChange={handleBlur}
           placeholder={placeholder}
+          key={`${key}-editor`}
+          shouldReset={shouldReset}
           attributes={{
             'data-testid': formProps.id ?? 'editor-field',
             ...(errorId

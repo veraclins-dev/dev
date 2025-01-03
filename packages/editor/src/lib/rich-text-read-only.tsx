@@ -14,6 +14,7 @@ function RichTextReadOnlyInternal(props: RichTextReadOnlyProps) {
   const editor = useEditor({
     ...props,
     editable: false,
+    immediatelyRender: false,
   });
 
   // Update content if/when it changes
