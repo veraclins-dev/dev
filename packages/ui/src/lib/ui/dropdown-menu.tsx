@@ -3,6 +3,8 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { type WithTrigger } from '../types';
+
 import { Icon } from './icon';
 import { ComposedTooltip } from './tooltip';
 
@@ -32,7 +34,6 @@ const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
-// const DropdownMenuArrow = DropdownMenuPrimitive.Arrow
 const DropdownMenuItemIndicator = DropdownMenuPrimitive.ItemIndicator;
 
 const DropdownMenuTrigger = React.forwardRef<
@@ -43,7 +44,6 @@ const DropdownMenuTrigger = React.forwardRef<
 >(({ tooltip, ...props }, ref) =>
   tooltip ? (
     <ComposedTooltip
-      // Trigger={<DropdownMenuPrimitive.Trigger ref={ref} {...props} />}
       Trigger={DropdownMenuPrimitive.Trigger}
       TriggerProps={props}
       content={tooltip}
@@ -71,7 +71,9 @@ const DropdownMenuSubTrigger = React.forwardRef<
     {...props}
   >
     {children}
-    <span className="ml-auto h-4 w-4">▶️</span>
+    <span className="ml-auto h-4 w-4" role="img" aria-label="arrow">
+      ▶️
+    </span>
   </DropdownMenuPrimitive.SubTrigger>
 ));
 DropdownMenuSubTrigger.displayName =
@@ -222,26 +224,67 @@ DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
 const DropdownMenuShortcut = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
-  return (
-    <span
-      className={cn('ml-auto text-xs tracking-widest opacity-60', className)}
-      {...props}
-    />
-  );
-};
+}: React.HTMLAttributes<HTMLSpanElement>) => (
+  <span
+    className={cn('ml-auto text-xs tracking-widest opacity-60', className)}
+    {...props}
+  />
+);
+
 DropdownMenuShortcut.displayName = 'DropdownMenuShortcut';
 
+type DropdownMenuProps = React.ComponentProps<typeof DropdownMenu>;
+
+type DropdownMenuContentProps = React.ComponentProps<
+  typeof DropdownMenuContent
+>;
+
+type DropdownMenuItemProps = React.ComponentProps<typeof DropdownMenuItem>;
+
+type ComposedDropdownMenuProps<P extends object> = WithTrigger<P> & {
+  items: (DropdownMenuItemProps & { key: string })[];
+  arrow?: boolean;
+} & DropdownMenuProps &
+  DropdownMenuContentProps;
+
+const ComposedDropdownMenu = <P extends object>({
+  open,
+  onOpenChange,
+  Trigger,
+  className,
+  TriggerProps,
+  triggerRef,
+  items,
+  arrow = true,
+}: ComposedDropdownMenuProps<P>) => (
+  <DropdownMenu open={open} onOpenChange={onOpenChange}>
+    <DropdownMenuTrigger asChild>
+      <Trigger {...TriggerProps} ref={triggerRef} />
+    </DropdownMenuTrigger>
+    <DropdownMenuContent align="center" className={className}>
+      {arrow && <DropdownMenuArrow />}
+
+      {items.map(({ key, ...item }) => (
+        <DropdownMenuItem key={key} {...item} />
+      ))}
+    </DropdownMenuContent>
+  </DropdownMenu>
+);
+
 export {
+  ComposedDropdownMenu,
+  type ComposedDropdownMenuProps,
   DropdownMenu,
   DropdownMenuArrow,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
+  type DropdownMenuContentProps,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuItemIndicator,
   DropdownMenuLabel,
   DropdownMenuPortal,
+  type DropdownMenuProps,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
