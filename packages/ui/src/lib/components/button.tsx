@@ -7,7 +7,6 @@ import { ComposedTooltip } from '../ui/tooltip';
 
 interface ButtonProps extends ButtonBaseProps {
   rounded?: boolean;
-  // name?: string
   tooltip?: React.ReactNode;
 }
 
