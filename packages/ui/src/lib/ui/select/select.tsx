@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { getOptionLabel, getOptionValue } from '../../components';
 import { type ObjectOption, type Option } from '../../types';
 import { Icon } from '../icon';
 import { inputClasses } from '../input';
@@ -15,11 +16,6 @@ const SelectViewport = SelectPrimitive.Viewport;
 const SelectValue = SelectPrimitive.Value;
 const SelectScrollUpButton = SelectPrimitive.ScrollUpButton;
 const SelectScrollDownButton = SelectPrimitive.ScrollDownButton;
-
-export const getOptionLabel = (option?: Option) =>
-  typeof option === 'string' ? option : option?.label;
-export const getOptionValue = (option: Option) =>
-  typeof option === 'string' ? option : option.value;
 
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,

@@ -5,16 +5,17 @@ import {
   useInputControl,
 } from '@conform-to/react';
 import { useId } from 'react';
-import { type Value } from 'react-phone-number-input/input';
+
+import { slugify } from '@veraclins-dev/utils';
 
 import { type IconName } from '../../icons';
-import { type MaybeString } from '../../types';
+import { type MaybeString, type Option, type OptionWithId } from '../../types';
 
-export type InputFieldProps = ReturnType<typeof conformGetInputProps>;
+type InputFieldProps = ReturnType<typeof conformGetInputProps>;
 
 type Params = Parameters<typeof conformGetInputProps>;
 
-export type BaseInputProps<S = MaybeString> = {
+type BaseInputProps<S = MaybeString> = {
   leftIcon?: IconName;
   rightIcon?: IconName;
   rightAddon?: React.ReactNode;
@@ -34,12 +35,7 @@ type GetPropsOptions = {
   id?: InputFieldProps['id'];
 } & Partial<Omit<Params[1], 'ariaAttributes'>>;
 
-export const getInputProps = ({
-  type = 'text',
-  field,
-  name,
-  id,
-}: GetPropsOptions) => {
+const getInputProps = ({ type = 'text', field, name, id }: GetPropsOptions) => {
   if (!field) {
     return {
       type,
@@ -60,9 +56,7 @@ export const getInputProps = ({
   return props;
 };
 
-export function useFieldProperties<S = string>(
-  field?: BaseInputProps<S>['field'],
-) {
+function useFieldProperties<S = string>(field?: BaseInputProps<S>['field']) {
   const fallbackId = useId();
   const id = field?.id ?? field?.name ?? fallbackId;
   const hasErrors = !!field?.errors?.length;
@@ -75,7 +69,7 @@ export function useFieldProperties<S = string>(
 
 type SelectParams = Parameters<typeof conformGetSelectProps>;
 
-export const getSelectProps = (field: SelectParams[0]) => {
+const getSelectProps = (field: SelectParams[0]) => {
   const props = conformGetSelectProps(field);
   if (!props.name) {
     props.name = field.name;
@@ -84,10 +78,10 @@ export const getSelectProps = (field: SelectParams[0]) => {
   return props;
 };
 
-export type ControlParams = Parameters<typeof useInputControl>;
+type ControlParams = Parameters<typeof useInputControl>;
 
-export const useSelectControlProps = (field: ControlParams[0]) => {
-  const control = useInputControl(field);
+const useSelectControlProps = (field?: ControlParams[0], name?: string) => {
+  const control = useInputControl(field ?? { formId: '', name: name ?? '' });
   if (!field) return { value: undefined };
 
   return {
@@ -103,8 +97,13 @@ export const useSelectControlProps = (field: ControlParams[0]) => {
   };
 };
 
-export const useInputControlProps = (field: ControlParams[0]) => {
-  const control = useInputControl(field);
+type Value = ReturnType<typeof useInputControl>['value'];
+
+const useInputControlProps = <S extends Value = string>(
+  field?: ControlParams[0],
+  name?: string,
+) => {
+  const control = useInputControl(field ?? { formId: '', name: name ?? '' });
   if (!field)
     return {
       value: undefined,
@@ -114,13 +113,41 @@ export const useInputControlProps = (field: ControlParams[0]) => {
     };
 
   return {
-    onChange: (value?: Value) => {
+    onChange: (value?: string) => {
       control.change(value);
     },
     onBlur: () => {
       control.blur();
     },
     control,
-    value: control.value as Value,
+    value: control.value as S,
   };
+};
+
+const isStringOption = (option: Option): option is string =>
+  typeof option === 'string';
+
+const getOptionLabel = <T extends Option>(option: T) =>
+  isStringOption(option) ? option : option.label;
+const getOptionValue = <T extends Option>(option: T) =>
+  isStringOption(option) ? option : option.value;
+const getOptionId = (option: OptionWithId) =>
+  isStringOption(option)
+    ? slugify(option)
+    : option.id
+      ? option.id
+      : slugify(option.value);
+
+export {
+  type BaseInputProps,
+  getInputProps,
+  getOptionId,
+  getOptionLabel,
+  getOptionValue,
+  getSelectProps,
+  type InputFieldProps,
+  isStringOption,
+  useFieldProperties,
+  useInputControlProps,
+  useSelectControlProps,
 };

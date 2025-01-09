@@ -90,9 +90,7 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(
     const [formValue, setFormValue] = useState<string>('');
     const { errorId, id } = useFieldProperties(field);
 
-    const { control, ...controlProps } = useInputControlProps(
-      field ?? { formId: '', name: name ?? '' },
-    );
+    const { control, ...controlProps } = useInputControlProps(field, name);
     const { key, ...inputProps } = getInputProps({
       field,
       type,

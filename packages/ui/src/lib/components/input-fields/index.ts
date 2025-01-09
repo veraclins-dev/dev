@@ -5,6 +5,7 @@ export * from './image-field';
 export * from './labeled-textarea';
 export * from './labeled-textfield';
 export * from './phone-field';
+export * from './radio-field';
 export * from './select-field';
 export * from './textarea';
 export * from './textfield';

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { cn } from '@veraclins-dev/utils';
 
 const labelVariants = cva(
-  'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex',
+  'text-sm font-medium cursor-pointer leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex',
 );
 
 type LabelProps = React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &

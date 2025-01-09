@@ -1,30 +1,56 @@
-import { type FieldMetadata, useInputControl } from '@conform-to/react';
+import { type FieldMetadata } from '@conform-to/react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { Checkbox, type CheckboxProps } from '../../ui/checkbox';
+import { Label } from '../../ui';
+import {
+  Checkbox,
+  type CheckboxProps,
+  type CheckedState,
+  type CheckedValue,
+} from '../../ui/checkbox';
 import { ErrorList } from '../error-list';
 
-import { getInputProps, useFieldProperties } from './utils';
+import { type TextFieldProps } from './textfield';
+import {
+  getInputProps,
+  useFieldProperties,
+  useInputControlProps,
+} from './utils';
 
-interface Props extends CheckboxProps {
-  field?: FieldMetadata<string | boolean | string[]>;
+interface CheckboxFieldProps
+  extends Omit<CheckboxProps, 'onChange' | 'onCheckedChange'>,
+    Pick<TextFieldProps, 'label' | 'labelProps' | 'inputClass'> {
+  field?: FieldMetadata<CheckedValue>;
   label?: string | React.ReactNode;
   labelProps?: JSX.IntrinsicElements['label'];
+  onChange?: (value: CheckedValue) => void;
   inputClassName?: string;
 }
+
+const getCheckedValue = (value: CheckedState) => {
+  if (value === 'indeterminate') {
+    return value;
+  }
+  return value ? 'on' : 'off';
+};
 
 export function CheckboxField({
   field,
   labelProps,
   label,
+  defaultValue: supplied,
   value,
   defaultChecked,
   name,
+  onChange,
   className,
   ...others
-}: Props) {
-  const checkedValue = value ?? 'on';
+}: CheckboxFieldProps) {
+  // delete field?.initialValue;
+  const { control, ...controlProps } = useInputControlProps(field, name);
+
+  const defaultValue = supplied ?? field?.initialValue ?? undefined;
 
   const { key, ...formProps } = getInputProps({ field, name });
 
@@ -32,14 +58,8 @@ export function CheckboxField({
     ...others,
     ...formProps,
   };
-  const input = useInputControl({
-    key,
-    name: props.name ?? '',
-    formId: props.form ?? '',
-    initialValue: defaultChecked ? checkedValue : undefined,
-  });
-  const { errorId, id, errors } = useFieldProperties(field);
 
+  const { errorId, id, errors } = useFieldProperties(field);
   return (
     <div className={cn('mb-2', className)}>
       <div className="flex items-center gap-2">
@@ -48,25 +68,27 @@ export function CheckboxField({
           id={id}
           aria-invalid={errorId ? true : undefined}
           aria-describedby={errorId}
-          checked={input.value === checkedValue}
           onCheckedChange={(state) => {
-            input.change(state.valueOf() ? checkedValue : '');
-            props.onCheckedChange?.(state);
+            const val = getCheckedValue(state);
+            control?.change(val);
+            onChange?.(val);
           }}
+          defaultChecked={value === 'on'}
           onFocus={(event) => {
-            input.focus();
+            control?.focus();
             props.onFocus?.(event);
           }}
           onBlur={(event) => {
-            input.blur();
+            control?.blur();
             props.onBlur?.(event);
           }}
+          defaultValue={defaultValue}
           type="button"
-          value={checkedValue}
+          value={controlProps.value ?? value}
         />
-        <label htmlFor={id} {...labelProps} className="self-center text-sm ">
+        <Label htmlFor={id} {...labelProps} className="self-center text-sm ">
           {label}
-        </label>
+        </Label>
       </div>
       {errorId ? (
         <div className="py-1">

@@ -5,13 +5,16 @@ import { cn } from '@veraclins-dev/utils';
 
 import { Icon } from './icon';
 
-export type CheckboxProps = Omit<
+type CheckedValue = 'on' | 'off' | 'indeterminate';
+
+type CheckboxProps = Omit<
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>,
   'type' | 'value'
 > & {
-  type?: string;
-  value?: string;
+  value?: CheckedValue;
 };
+
+type CheckedState = CheckboxPrimitive.CheckedState;
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
@@ -34,4 +37,4 @@ const Checkbox = React.forwardRef<
 ));
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
-export { Checkbox };
+export { Checkbox, type CheckboxProps, type CheckedState, type CheckedValue };

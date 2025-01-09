@@ -47,9 +47,7 @@ export const SelectField = forwardRef<HTMLDivElement, Props>(
   ) => {
     const { errorId } = useFieldProperties(field);
 
-    const controlProps = useSelectControlProps(
-      field ?? { formId: '', name: name ?? '' },
-    );
+    const controlProps = useSelectControlProps(field, name);
 
     const { key, ...formProps } = field ? getSelectProps(field) : {};
 

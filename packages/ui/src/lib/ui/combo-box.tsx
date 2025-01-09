@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { getOptionLabel, getOptionValue } from '../components';
 import { type Option } from '../types';
 
-import { getOptionLabel, getOptionValue } from './select/select';
 import { ButtonBase } from './button';
 import {
   Command,
@@ -34,8 +34,9 @@ export function ComboboxDemo({ options }: ComboboxProps) {
           className="w-[200px] justify-between"
         >
           {getOptionLabel(
-            options.find((option) => getOptionValue(option) === value),
-          ) ?? 'Select option...'}
+            options.find((option) => getOptionValue(option) === value) ??
+              'Select option...',
+          )}
           <Icon className="ml-2 shrink-0 opacity-50" name="chevron-down" />
         </ButtonBase>
       </PopoverTrigger>

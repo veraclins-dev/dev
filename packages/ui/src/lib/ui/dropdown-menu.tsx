@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type WithTrigger } from '../types';
+import { type WithComponent, type WithTrigger } from '../types';
 
 import { Icon } from './icon';
 import { ComposedTooltip } from './tooltip';
@@ -35,6 +35,16 @@ const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
 const DropdownMenuItemIndicator = DropdownMenuPrimitive.ItemIndicator;
+
+type DropdownMenuProps = React.ComponentPropsWithoutRef<typeof DropdownMenu>;
+
+type DropdownMenuContentProps = React.ComponentPropsWithoutRef<
+  typeof DropdownMenuPrimitive.Content
+>;
+
+type DropdownMenuItemProps = React.ComponentPropsWithoutRef<
+  typeof DropdownMenuPrimitive.Item
+>;
 
 const DropdownMenuTrigger = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Trigger>,
@@ -108,7 +118,7 @@ DropdownMenuSubContent.displayName =
 
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
+  DropdownMenuContentProps
 >(({ className, sideOffset = 4, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
@@ -123,7 +133,7 @@ DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 
 const DropdownMenuItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
+  DropdownMenuItemProps & {
     inset?: boolean;
   }
 >(({ className, inset, ...props }, ref) => (
@@ -233,21 +243,26 @@ const DropdownMenuShortcut = ({
 
 DropdownMenuShortcut.displayName = 'DropdownMenuShortcut';
 
-type DropdownMenuProps = React.ComponentProps<typeof DropdownMenu>;
+type ItemOption = DropdownMenuItemProps & {
+  key: string;
+  label: React.ReactNode;
+  shortcutKeys?: string[];
+  disabled?: boolean;
+  onClick?: () => void;
+};
 
-type DropdownMenuContentProps = React.ComponentProps<
-  typeof DropdownMenuContent
->;
+type Item<P extends object> = (WithComponent<P> & { key: string }) | ItemOption;
 
-type DropdownMenuItemProps = React.ComponentProps<typeof DropdownMenuItem>;
-
-type ComposedDropdownMenuProps<P extends object> = WithTrigger<P> & {
-  items: (DropdownMenuItemProps & { key: string })[];
+type ComposedDropdownMenuProps<
+  P extends object,
+  I extends object,
+> = WithTrigger<P> & {
+  items: Item<I>[];
   arrow?: boolean;
 } & DropdownMenuProps &
   DropdownMenuContentProps;
 
-const ComposedDropdownMenu = <P extends object>({
+const ComposedDropdownMenu = <P extends object, I extends object>({
   open,
   onOpenChange,
   Trigger,
@@ -256,7 +271,7 @@ const ComposedDropdownMenu = <P extends object>({
   triggerRef,
   items,
   arrow = true,
-}: ComposedDropdownMenuProps<P>) => (
+}: ComposedDropdownMenuProps<P, I>) => (
   <DropdownMenu open={open} onOpenChange={onOpenChange}>
     <DropdownMenuTrigger asChild>
       <Trigger {...TriggerProps} ref={triggerRef} />
@@ -264,9 +279,33 @@ const ComposedDropdownMenu = <P extends object>({
     <DropdownMenuContent align="center" className={className}>
       {arrow && <DropdownMenuArrow />}
 
-      {items.map(({ key, ...item }) => (
-        <DropdownMenuItem key={key} {...item} />
-      ))}
+      {items.map(({ key, ...item }) => {
+        if ('Component' in item) {
+          const { Component, ComponentProps, componentRef, ...props } = item;
+          return (
+            <DropdownMenuItem asChild key={key}>
+              <Component {...ComponentProps} {...props} />
+            </DropdownMenuItem>
+          );
+        }
+        const { label, shortcutKeys, disabled, onClick, ...itemProps } = item;
+
+        return (
+          <DropdownMenuItem
+            key={key}
+            disabled={disabled}
+            onClick={onClick}
+            {...itemProps}
+          >
+            {label}
+            {shortcutKeys && shortcutKeys.length > 0 && (
+              <DropdownMenuShortcut>
+                {shortcutKeys.join(' + ')}
+              </DropdownMenuShortcut>
+            )}
+          </DropdownMenuItem>
+        );
+      })}
     </DropdownMenuContent>
   </DropdownMenu>
 );

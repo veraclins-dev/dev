@@ -47,7 +47,9 @@ export const MenuSelect = ({
   onClose,
 }: MenuSelectProps) => {
   const selected =
-    options.find((option) => getOptionValue(option) === value) || defaultValue;
+    options.find((option) => getOptionValue(option) === value) ??
+    defaultValue ??
+    '';
 
   const trigger = getOptionLabel(selected) ?? defaultLabel;
 
