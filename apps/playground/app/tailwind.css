@@ -673,6 +673,9 @@ textarea {
   width: var(--radix-popover-trigger-width);
   max-height: var(--radix-popover-content-available-height);
 }
+.tooltip-content {
+  width: var(--radix-tooltip-trigger-width);
+}
 
 .overflow-fade {
   /* overflow: hidden; */

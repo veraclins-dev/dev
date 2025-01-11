@@ -1,19 +1,46 @@
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
 
 import { EditorField, EditorReadonly } from '@veraclins-dev/editor';
 import {
   Autocomplete,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
   Button,
+  CheckboxField,
+  ComposedDropdownMenu,
   ComposedPopover,
   Icon,
   IconButton,
   LabeledTextarea,
   LabeledTextField,
   PhoneField,
+  RadioField,
+  RadioGroup,
+  RadioGroupItem,
   SelectField,
 } from '@veraclins-dev/ui';
-import { createUniqueSlug } from '@veraclins-dev/utils';
+import { cn, createUniqueSlug } from '@veraclins-dev/utils';
+
+import { TestModal } from './modal-test';
+
+const TestAvatar = forwardRef<
+  HTMLDivElement,
+  { src: string; name: string; className?: string }
+>(({ src, name, className, ...props }, ref) => (
+  <div
+    className={cn('flex gap-2 items-center', className)}
+    ref={ref}
+    {...props}
+  >
+    <Avatar>
+      <AvatarImage src={src} />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+    <p className="font-semibold">{name}</p>
+  </div>
+));
 
 const exampleContent = `<h1><strong>Node views with React</strong></h1><p>Using Vanilla JavaScript can feel complex if you are used to work in React. Good news: You can use regular React components in your node views, too. There is just a little bit you need to know, but let’s go through this one by one.</p><h2><strong>Render a React component</strong></h2><p>Here is what you need to do to render React components inside your editor:</p><ol><li><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/docs/editor/extensions/custom-extensions">Create a node extension</a></p></li><li><p>Create a React component</p></li><li><p>Pass that component to the provided <code>ReactNodeViewRenderer</code></p></li><li><p>Register it with <code>addNodeView()</code></p></li><li><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/docs/editor/getting-started/configure">Configure Tiptap to use your new node extension</a></p></li></ol><p>This is how your node extension could look like:</p><pre><code class="language-js">import { Node } from '@tiptap/core'
 import { ReactNodeViewRenderer } from '@tiptap/react'
@@ -56,6 +83,9 @@ export default () =&gt; {
 export function NxWelcome({ title }: { title: string }) {
   const [open, setOpen] = useState(false);
   const [shouldReset, setShouldReset] = useState(false);
+
+  const [openDialog, setOpenDialog] = useState(false);
+
   const mentionPath = '/mentions';
 
   return (
@@ -138,7 +168,6 @@ export function NxWelcome({ title }: { title: string }) {
       padding-bottom: 3rem;
       padding-left: 1rem;
       padding-right: 1rem;
-      color: rgba(55, 65, 81, 1);
       width: 100%;
     }
     #welcome {
@@ -516,7 +545,32 @@ export function NxWelcome({ title }: { title: string }) {
             label="An Autocomplete"
             placeholder="Start typing to filter"
             multiple
+            maxOptions={5}
           />
+          <Autocomplete
+            name="majesty"
+            className="border text-primary"
+            options={[
+              { label: 'John Thompson', value: 'John Thompson' },
+              { label: 'Cyndi Lauper', value: 'Cyndi Lauper' },
+              { label: 'Tom Cruise', value: 'Tom Cruise' },
+              { label: 'Madonna', value: 'Madonna' },
+              { label: 'Jerry Hall', value: 'Jerry Hall' },
+              { label: 'Joan Collins', value: 'Joan Collins' },
+              { label: 'Winona Ryder', value: 'Winona Ryder' },
+              { label: 'Christina Applegate', value: 'Christina Applegate' },
+              { label: 'Alyssa Milano', value: 'Alyssa Milano' },
+              { label: 'Molly Ringwald', value: 'Molly Ringwald' },
+              { label: 'Ally Sheedy', value: 'Ally Sheedy' },
+            ]}
+            label="An Autocomplete single select"
+            placeholder="Start typing to filter"
+          />
+          <CheckboxField
+            label="Check me"
+            className="text-primary-light-foreground"
+          />
+          <CheckboxField label="I am already checked" value="on" />
           <SelectField
             options={[
               { label: 'John Thompson', value: 'John Thompson' },
@@ -531,14 +585,41 @@ export function NxWelcome({ title }: { title: string }) {
               { label: 'Molly Ringwald', value: 'Molly Ringwald' },
               { label: 'Ally Sheedy', value: 'Ally Sheedy' },
             ]}
-            className="border"
+            className="border text-blue-800"
             placeholder="Select an option"
           />
-          <PhoneField
-            placeholder="803 456 7890"
-            className="border h-full"
-            autoFocus
+          <RadioField
+            inputClass="gap-4"
+            label="Select an option"
+            defaultValue="Cyndi Lauper"
+            className="text-secondary"
+            options={[
+              { label: 'John Thompson', value: 'John Thompson' },
+              { label: 'Cyndi Lauper', value: 'Cyndi Lauper' },
+              { label: 'Tom Cruise', value: 'Tom Cruise' },
+              { label: 'Madonna', value: 'Madonna' },
+              { label: 'Jerry Hall', value: 'Jerry Hall' },
+              { label: 'Joan Collins', value: 'Joan Collins' },
+              { label: 'Winona Ryder', value: 'Winona Ryder' },
+              { label: 'Christina Applegate', value: 'Christina Applegate' },
+              { label: 'Alyssa Milano', value: 'Alyssa Milano' },
+              { label: 'Molly Ringwald', value: 'Molly Ringwald' },
+              { label: 'Ally Sheedy', value: 'Ally Sheedy' },
+            ]}
           />
+          <TestModal
+            memberId="123"
+            open={openDialog}
+            onClose={() => setOpenDialog(false)}
+            username="John Doe"
+            slug="john-doe"
+          />
+          <PhoneField placeholder="803 456 7890" className="border h-full" />
+          <RadioGroup name="radio" className="flex flex-col gap-2">
+            <RadioGroupItem id="radio1" value="radio1" label="Radio 1" />
+            <RadioGroupItem id="radio2" label="Radio 2" value="radio2" />
+            <RadioGroupItem id="radio3" label="Radio 3" value="radio3" />
+          </RadioGroup>
           <ComposedPopover
             Trigger={Button}
             TriggerProps={{
@@ -571,13 +652,97 @@ export function NxWelcome({ title }: { title: string }) {
             <Icon name="search" size="lg" tooltip="large icon" />
             <Icon name="search" size="xl" tooltip="extra large icon" />
           </div>
-          <Button
-            onClick={() => setShouldReset(true)}
-            tooltip="Click me"
-            className="w-full px-2 py-2"
-          >
-            Click me for a tooltip
-          </Button>
+          <div className="flex gap-3">
+            <Button
+              onClick={() => setOpenDialog(true)}
+              tooltip="Open the dialog menu"
+              className="w-full px-2 py-2"
+            >
+              Open Modal
+            </Button>
+            <Button
+              onClick={() => setShouldReset(true)}
+              tooltip="Hover me for a button tooltip"
+              className="w-full px-2 py-2"
+            >
+              Hover me
+            </Button>
+            <Button
+              onClick={() => setShouldReset(true)}
+              tooltip="Hover me for a disabled button tooltip"
+              className="w-full px-2 py-2"
+              disabled
+            >
+              Hover me too
+            </Button>
+          </div>
+          <ComposedDropdownMenu
+            Trigger={TestAvatar}
+            TriggerProps={{
+              src: 'https://github.com/shadcn.png',
+              className: 'cursor-pointer gap-2',
+              name: 'Dropdown with component',
+            }}
+            className="w-80"
+            items={[
+              {
+                key: 'profile',
+                Component: TestAvatar,
+                ComponentProps: {
+                  src: 'https://github.com/shadcn.png',
+                  name: 'John Thompson',
+                },
+              },
+              {
+                key: 'profile2',
+                Component: TestAvatar,
+                ComponentProps: {
+                  src: 'https://github.com/shadcn.png',
+                  name: 'Jeremiah Thompson',
+                },
+              },
+              {
+                key: 'profile-3',
+                Component: TestAvatar,
+                ComponentProps: {
+                  src: 'https://github.com/shadcn.png',
+                  name: 'Jenny Thompson',
+                },
+              },
+            ]}
+          />
+          <ComposedDropdownMenu
+            Trigger={TestAvatar}
+            TriggerProps={{
+              src: 'https://github.com/veraclins.png',
+              className: 'cursor-pointer gap-2',
+              name: 'Dropdown with options',
+            }}
+            className="w-80"
+            items={[
+              {
+                key: 'profile',
+                label: 'John Thompson',
+              },
+              {
+                key: 'profile2',
+                label: (
+                  <TestAvatar
+                    src="https://github.com/shadcn.png"
+                    name="Solomone"
+                  />
+                ),
+              },
+              {
+                key: 'profile-3',
+                Component: TestAvatar,
+                ComponentProps: {
+                  src: 'https://github.com/shadcn.png',
+                  name: 'Jenny Thompson',
+                },
+              },
+            ]}
+          />
           <ClientOnly
             fallback={<textarea rows={5} placeholder="Loading... some stuff" />}
           >

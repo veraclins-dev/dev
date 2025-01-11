@@ -45,3 +45,5 @@ vite.config.*.timestamp*
 
 storybook-static
 vitest.config.*.timestamp*
+
+.env.local

@@ -297,6 +297,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                   onValueChange={handleChange}
                   onBlur={handleBlur}
                   onFocus={handleFocus}
+                  onClick={handleFocus}
                   placeholder={placeholder}
                   className={inputClasses}
                   disabled={!canSelect}
@@ -337,7 +338,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                         }}
                         onSelect={() => handleSelect(option)}
                         className={cn('cursor-pointer px-3 py-2', {
-                          'bg-input text-input-foreground': isSelected(option),
+                          'bg-accent text-input-foreground': isSelected(option),
                         })}
                         ref={index === 0 ? firstItemRef : undefined}
                       >

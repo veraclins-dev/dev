@@ -23,7 +23,7 @@ export function FieldContainer({
   return (
     <div
       className={cn(
-        'rounded-lg rounded-t-sm border text-input-foreground w-full',
+        'rounded-lg rounded-t-sm border w-full',
         {
           'outline-none': focused,
           'cursor-not-allowed opacity-50': disabled,
