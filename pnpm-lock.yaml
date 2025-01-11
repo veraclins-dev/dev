@@ -447,58 +447,6 @@ importers:
         specifier: ^4.27.0
         version: 4.31.0
 
-  packages/remix-auth-facebook:
-    dependencies:
-      remix-auth-oauth2:
-        specifier: ^3.2.2
-        version: 3.2.2(remix-auth@4.1.0)
-    devDependencies:
-      remix-auth:
-        specifier: 4.1.0
-        version: 4.1.0
-
-  packages/remix-auth-github:
-    dependencies:
-      '@mjackson/headers':
-        specifier: 0.9.0
-        version: 0.9.0
-      arctic:
-        specifier: 3.0.0
-        version: 3.0.0
-      debug:
-        specifier: 4.4.0
-        version: 4.4.0
-    devDependencies:
-      '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
-      remix-auth:
-        specifier: 4.1.0
-        version: 4.1.0
-
-  packages/remix-auth-google:
-    dependencies:
-      remix-auth-oauth2:
-        specifier: ^3.2.2
-        version: 3.2.2(remix-auth@4.1.0)
-    devDependencies:
-      remix-auth:
-        specifier: 4.1.0
-        version: 4.1.0
-
-  packages/remix-auth-twitter:
-    dependencies:
-      remix-auth-oauth2:
-        specifier: 3.2.2
-        version: 3.2.2(remix-auth@4.1.0)
-    devDependencies:
-      '@types/debug':
-        specifier: ^4.1.12
-        version: 4.1.12
-      remix-auth:
-        specifier: 4.1.0
-        version: 4.1.0
-
   packages/ui:
     dependencies:
       '@conform-to/react':
@@ -1380,10 +1328,6 @@ packages:
     resolution: {integrity: sha512-fi0eVdCOtKu5Ed6+E8mYxUF6ZTFJDZvHogCBelM0xVXmrDEkyM22gRArQzq1YcHPm1V47Vf/iAD+WgVdUlJCGg==}
     engines: {node: '>= 6'}
 
-  '@edgefirst-dev/data@0.0.2':
-    resolution: {integrity: sha512-kvw7RRDW9TJtOYHhzMYQ4g9x+ji87o02CROTnS9qCl2SZXauAPRpTiIQMGC5YLwvgzxV76Y2uMavQK4TQB1z0Q==}
-    engines: {node: '>=20.0.0'}
-
   '@emnapi/core@1.3.1':
     resolution: {integrity: sha512-pVGjBIt1Y6gg3EJN8jTcfpP/+uuRksIo055oE/OBkDNcjZqVbfkWCksG1Jp4yZnj3iKWyWX8fdG/j6UDYPbFog==}
 
@@ -2057,9 +2001,6 @@ packages:
   '@microsoft/tsdoc@0.15.1':
     resolution: {integrity: sha512-4aErSrCR/On/e5G2hDP0wjooqDdauzEbIq8hIkIe5pXV0rtWJZvdCEKL0ykZxex+IxIwBp0eGeV48hQN07dXtw==}
 
-  '@mjackson/headers@0.9.0':
-    resolution: {integrity: sha512-1WFCu2iRaqbez9hcYYI611vcH1V25R+fDfOge/CyKc8sdbzniGfy/FRhNd3DgvFF4ZEEX2ayBrvFHLtOpfvadw==}
-
   '@module-federation/bridge-react-webpack-plugin@0.7.6':
     resolution: {integrity: sha512-eD1JZDQ+h5WLdA58MmAE1DzLwvFaGJeeam3Tswc/sEUb4QGT86X4Fme+dMTBRYRoAq/tRYql3DlVTFhdmrUVzg==}
 
@@ -2546,14 +2487,8 @@ packages:
   '@oslojs/crypto@1.0.1':
     resolution: {integrity: sha512-7n08G8nWjAr/Yu3vu9zzrd0L9XnrJfpMioQcvCMxBIiF5orECHe5/3J0jmXRVvgfqMm/+4oxlQ+Sq39COYLcNQ==}
 
-  '@oslojs/encoding@0.4.1':
-    resolution: {integrity: sha512-hkjo6MuIK/kQR5CrGNdAPZhS01ZCXuWDRJ187zh6qqF2+yMHZpD9fAYpX8q2bOO6Ryhl3XpCT6kUX76N8hhm4Q==}
-
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
-
-  '@oslojs/jwt@0.2.0':
-    resolution: {integrity: sha512-bLE7BtHrURedCn4Mco3ma9L4Y1GR2SMBuIvjWr7rmQ4/W/4Jy70TIAgZ+0nIlk0xHz1vNP8x8DCns45Sb2XRbg==}
 
   '@oxc-resolver/binding-darwin-arm64@1.12.0':
     resolution: {integrity: sha512-wYe+dlF8npM7cwopOOxbdNjtmJp17e/xF5c0K2WooQXy5VOh74icydM33+Uh/SZDgwyum09/U1FVCX5GdeQk+A==}
@@ -4881,9 +4816,6 @@ packages:
 
   archy@1.0.0:
     resolution: {integrity: sha512-Xg+9RwCg/0p32teKdGMPTPnVXKD0w3DfHnFTficozsAgsvq2XenPJq/MYpzzQ/v8zrOyJn6Ds39VA4JIDwFfqw==}
-
-  arctic@3.0.0:
-    resolution: {integrity: sha512-Od87d6wYenoExOHMmU0ss7ViXnNZpUhclemhf32OAYzpzQyXEz1clV/MlPEkBtpbukJ+ZVNuQdconuzW1tsh0w==}
 
   arg@4.1.3:
     resolution: {integrity: sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==}
@@ -9700,16 +9632,6 @@ packages:
   remark-rehype@10.1.0:
     resolution: {integrity: sha512-EFmR5zppdBp0WQeDVZ/b66CWJipB2q2VLNFMabzDSGR66Z2fQii83G5gTBbgGEnEEA0QRussvrFHxk1HWGJskw==}
 
-  remix-auth-oauth2@3.2.2:
-    resolution: {integrity: sha512-m4jb7ZTFau4UcTEfuZQ+SPrXvXQSR8nrcAxww4ddxyvGHZglSeSYPqdwC81gMeEgIxDEgHULZgRfklV4wqJ4fA==}
-    engines: {node: ^20.0.0 || >=20.0.0}
-    peerDependencies:
-      remix-auth: ^4.0.0
-
-  remix-auth@4.1.0:
-    resolution: {integrity: sha512-Xdy42clt+g79GCn+Wl1+B6S/yWnvrStnk62vo1pGuRuUwHC+pjmeEE52ZRkRPuhLGqsQnoDD9TVz/wfEJAGF8g==}
-    engines: {node: '>=20.0.0'}
-
   remix-utils@8.0.0:
     resolution: {integrity: sha512-vrs8Iytnuwi+KF+VYOPT3vzDX7cLbys897pwzLpMzLjOXJQ/S60dApHCmQ9cPWH3XHRgvaoJjZ6+sMGaax4fbg==}
     engines: {node: '>=20.0.0'}
@@ -12382,8 +12304,6 @@ snapshots:
       tunnel-agent: 0.6.0
       uuid: 8.3.2
 
-  '@edgefirst-dev/data@0.0.2': {}
-
   '@emnapi/core@1.3.1':
     dependencies:
       '@emnapi/wasi-threads': 1.0.1
@@ -12996,8 +12916,6 @@ snapshots:
       resolve: 1.22.10
 
   '@microsoft/tsdoc@0.15.1': {}
-
-  '@mjackson/headers@0.9.0': {}
 
   '@module-federation/bridge-react-webpack-plugin@0.7.6':
     dependencies:
@@ -13955,21 +13873,19 @@ snapshots:
   '@oslojs/asn1@1.0.0':
     dependencies:
       '@oslojs/binary': 1.0.0
+    optional: true
 
-  '@oslojs/binary@1.0.0': {}
+  '@oslojs/binary@1.0.0':
+    optional: true
 
   '@oslojs/crypto@1.0.1':
     dependencies:
       '@oslojs/asn1': 1.0.0
       '@oslojs/binary': 1.0.0
+    optional: true
 
-  '@oslojs/encoding@0.4.1': {}
-
-  '@oslojs/encoding@1.1.0': {}
-
-  '@oslojs/jwt@0.2.0':
-    dependencies:
-      '@oslojs/encoding': 0.4.1
+  '@oslojs/encoding@1.1.0':
+    optional: true
 
   '@oxc-resolver/binding-darwin-arm64@1.12.0':
     optional: true
@@ -16672,12 +16588,6 @@ snapshots:
   arch@3.0.0: {}
 
   archy@1.0.0: {}
-
-  arctic@3.0.0:
-    dependencies:
-      '@oslojs/crypto': 1.0.1
-      '@oslojs/encoding': 1.1.0
-      '@oslojs/jwt': 0.2.0
 
   arg@4.1.3: {}
 
@@ -22532,18 +22442,6 @@ snapshots:
       '@types/mdast': 3.0.15
       mdast-util-to-hast: 12.3.0
       unified: 10.1.2
-
-  remix-auth-oauth2@3.2.2(remix-auth@4.1.0):
-    dependencies:
-      '@edgefirst-dev/data': 0.0.2
-      '@mjackson/headers': 0.9.0
-      arctic: 3.0.0
-      debug: 4.4.0
-      remix-auth: 4.1.0
-    transitivePeerDependencies:
-      - supports-color
-
-  remix-auth@4.1.0: {}
 
   remix-utils@8.0.0(@oslojs/crypto@1.0.1)(@oslojs/encoding@1.1.0)(react@18.3.1):
     dependencies:
