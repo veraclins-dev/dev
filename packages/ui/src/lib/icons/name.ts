@@ -35,6 +35,7 @@ export const iconNames = [
   'pencil-2',
   'pencil-1',
   'ordered-list',
+  'notification',
   'moon',
   'minus-circle',
   'merge-cells-horizontal',
