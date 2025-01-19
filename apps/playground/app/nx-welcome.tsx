@@ -16,6 +16,9 @@ import {
   LabeledTextarea,
   LabeledTextField,
   PhoneField,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
   RadioField,
   RadioGroup,
   RadioGroupItem,
@@ -26,20 +29,21 @@ import { cn, createUniqueSlug } from '@veraclins-dev/utils';
 import { TestModal } from './modal-test';
 
 const TestAvatar = forwardRef<
-  HTMLDivElement,
+  HTMLButtonElement,
   { src: string; name: string; className?: string }
 >(({ src, name, className, ...props }, ref) => (
-  <div
+  <Button
     className={cn('flex gap-2 items-center', className)}
     ref={ref}
     {...props}
+    tooltip={name}
   >
     <Avatar>
       <AvatarImage src={src} />
       <AvatarFallback>CN</AvatarFallback>
     </Avatar>
     <p className="font-semibold">{name}</p>
-  </div>
+  </Button>
 ));
 
 const exampleContent = `<h1><strong>Node views with React</strong></h1><p>Using Vanilla JavaScript can feel complex if you are used to work in React. Good news: You can use regular React components in your node views, too. There is just a little bit you need to know, but let’s go through this one by one.</p><h2><strong>Render a React component</strong></h2><p>Here is what you need to do to render React components inside your editor:</p><ol><li><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/docs/editor/extensions/custom-extensions">Create a node extension</a></p></li><li><p>Create a React component</p></li><li><p>Pass that component to the provided <code>ReactNodeViewRenderer</code></p></li><li><p>Register it with <code>addNodeView()</code></p></li><li><p><a target="_blank" rel="noopener noreferrer nofollow" href="https://tiptap.dev/docs/editor/getting-started/configure">Configure Tiptap to use your new node extension</a></p></li></ol><p>This is how your node extension could look like:</p><pre><code class="language-js">import { Node } from '@tiptap/core'
@@ -164,7 +168,7 @@ export function NxWelcome({ title }: { title: string }) {
     .container {
       margin-left: auto;
       margin-right: auto;
-      max-width: 1040px;
+      max-width: 98%;
       padding-bottom: 3rem;
       padding-left: 1rem;
       padding-right: 1rem;
@@ -711,38 +715,64 @@ export function NxWelcome({ title }: { title: string }) {
               },
             ]}
           />
-          <ComposedDropdownMenu
-            Trigger={TestAvatar}
-            TriggerProps={{
-              src: 'https://github.com/veraclins.png',
-              className: 'cursor-pointer gap-2',
-              name: 'Dropdown with options',
-            }}
-            className="w-80"
-            items={[
-              {
-                key: 'profile',
-                label: 'John Thompson',
-              },
-              {
-                key: 'profile2',
-                label: (
-                  <TestAvatar
-                    src="https://github.com/shadcn.png"
-                    name="Solomone"
-                  />
-                ),
-              },
-              {
-                key: 'profile-3',
-                Component: TestAvatar,
-                ComponentProps: {
-                  src: 'https://github.com/shadcn.png',
-                  name: 'Jenny Thompson',
+          <div className="flex justify-between">
+            <ComposedDropdownMenu
+              Trigger={TestAvatar}
+              TriggerProps={{
+                src: 'https://github.com/veraclins.png',
+                className: 'cursor-pointer gap-2',
+                name: 'Dropdown with options',
+              }}
+              className="w-80"
+              items={[
+                {
+                  key: 'profile',
+                  label: 'John Thompson',
                 },
-              },
-            ]}
-          />
+                {
+                  key: 'profile2',
+                  label: (
+                    <TestAvatar
+                      src="https://github.com/shadcn.png"
+                      name="Solomone"
+                    />
+                  ),
+                },
+                {
+                  key: 'profile-3',
+                  Component: TestAvatar,
+                  ComponentProps: {
+                    src: 'https://github.com/shadcn.png',
+                    name: 'Jenny Thompson',
+                  },
+                },
+              ]}
+            />
+            <ComposedPopover
+              Trigger={Icon}
+              TriggerProps={{ name: 'chevron-down' }}
+            >
+              <div className="flex flex-col gap-2">
+                <Button className="w-full px-2 py-2">Option 1</Button>
+                <Button className="w-full px-2 py-2">Option 2</Button>
+                <Button className="w-full px-2 py-2">Option 3</Button>
+              </div>
+            </ComposedPopover>
+            <Popover>
+              <PopoverTrigger asChild>
+                <IconButton tooltip="Popover with trigger">
+                  <Icon name="chevron-up" />
+                </IconButton>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="flex flex-col gap-2">
+                  <Button className="w-full px-2 py-2">Option 1</Button>
+                  <Button className="w-full px-2 py-2">Option 2</Button>
+                  <Button className="w-full px-2 py-2">Option 3</Button>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
           <ClientOnly
             fallback={<textarea rows={5} placeholder="Loading... some stuff" />}
           >

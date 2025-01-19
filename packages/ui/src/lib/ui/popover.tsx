@@ -5,11 +5,31 @@ import { cn } from '@veraclins-dev/utils';
 
 import { type Maybe, type Measurable, type WithTrigger } from '../types';
 
+import { contentClasses } from './dropdown-menu';
+import { ComposedTooltip } from './tooltip';
+
 const Popover = PopoverPrimitive.Root;
 
-const PopoverTrigger = PopoverPrimitive.Trigger;
-
 const PopoverAnchor = PopoverPrimitive.Anchor;
+
+const PopoverTrigger = forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger> & {
+    tooltip?: React.ReactNode;
+  }
+>(({ tooltip, ...props }, ref) =>
+  tooltip ? (
+    <ComposedTooltip
+      Trigger={PopoverPrimitive.Trigger}
+      TriggerProps={props}
+      content={tooltip}
+      triggerRef={ref}
+    />
+  ) : (
+    <PopoverPrimitive.Trigger ref={ref} {...props} />
+  ),
+);
+PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName;
 
 const PopoverArrow = forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Arrow>,
@@ -39,10 +59,7 @@ const PopoverContent = forwardRef<
       ref={ref}
       align={align}
       sideOffset={sideOffset}
-      className={cn(
-        'popover-content z-50 flex min-w-64 flex-col rounded-md border bg-card p-2 shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-        className,
-      )}
+      className={cn('popover-content', contentClasses, className)}
       {...props}
     >
       {arrow && <PopoverArrow />}

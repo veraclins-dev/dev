@@ -1,6 +1,6 @@
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import * as React from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
@@ -8,7 +8,7 @@ export const buttonDefaultClasses =
   'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50';
 
 export const buttonVariant = {
-  default: 'bg-avatar hover:bg-avatar/80',
+  default: 'bg-accent hover:bg-accent/80',
   destructive:
     'bg-destructive text-destructive-foreground hover:bg-destructive/90',
   outline: 'border hover:border-brand-lightening hover:text-brand-lightening',
@@ -50,7 +50,7 @@ export interface ButtonBaseProps
   asChild?: boolean;
 }
 
-export const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
+export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
     return (

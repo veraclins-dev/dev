@@ -1,5 +1,5 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-import * as React from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
@@ -13,7 +13,7 @@ type WithHiddenIndicator = {
 };
 
 export const contentClasses =
-  'z-50 min-w-64 flex-col rounded-md border border-input bg-card p-2 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2';
+  'z-50 min-w-64 flex-col rounded-md border border-avatar bg-card p-2 shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2';
 
 export const itemClasses =
   'relative flex cursor-pointer select-none items-center rounded-sm py-1.5 outline-none transition-colors focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50';
@@ -46,7 +46,7 @@ type DropdownMenuItemProps = React.ComponentPropsWithoutRef<
   typeof DropdownMenuPrimitive.Item
 >;
 
-const DropdownMenuTrigger = React.forwardRef<
+const DropdownMenuTrigger = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Trigger> & {
     tooltip?: React.ReactNode;
@@ -65,7 +65,7 @@ const DropdownMenuTrigger = React.forwardRef<
 );
 DropdownMenuTrigger.displayName = DropdownMenuPrimitive.Trigger.displayName;
 
-const DropdownMenuSubTrigger = React.forwardRef<
+const DropdownMenuSubTrigger = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & {
     inset?: boolean;
@@ -89,7 +89,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
 DropdownMenuSubTrigger.displayName =
   DropdownMenuPrimitive.SubTrigger.displayName;
 
-const DropdownMenuArrow = React.forwardRef<
+const DropdownMenuArrow = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Arrow>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Arrow> & {
     inset?: boolean;
@@ -103,7 +103,7 @@ const DropdownMenuArrow = React.forwardRef<
 ));
 DropdownMenuArrow.displayName = DropdownMenuPrimitive.Arrow.displayName;
 
-const DropdownMenuSubContent = React.forwardRef<
+const DropdownMenuSubContent = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>
 >(({ className, ...props }, ref) => (
@@ -116,7 +116,7 @@ const DropdownMenuSubContent = React.forwardRef<
 DropdownMenuSubContent.displayName =
   DropdownMenuPrimitive.SubContent.displayName;
 
-const DropdownMenuContent = React.forwardRef<
+const DropdownMenuContent = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   DropdownMenuContentProps
 >(({ className, sideOffset = 4, ...props }, ref) => (
@@ -131,7 +131,7 @@ const DropdownMenuContent = React.forwardRef<
 ));
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 
-const DropdownMenuItem = React.forwardRef<
+const DropdownMenuItem = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
   DropdownMenuItemProps & {
     inset?: boolean;
@@ -145,7 +145,7 @@ const DropdownMenuItem = React.forwardRef<
 ));
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
 
-const DropdownMenuCheckboxItem = React.forwardRef<
+const DropdownMenuCheckboxItem = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem> &
     WithHiddenIndicator
@@ -177,7 +177,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
 DropdownMenuCheckboxItem.displayName =
   DropdownMenuPrimitive.CheckboxItem.displayName;
 
-const DropdownMenuRadioItem = React.forwardRef<
+const DropdownMenuRadioItem = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem> &
     WithHiddenIndicator
@@ -205,7 +205,7 @@ const DropdownMenuRadioItem = React.forwardRef<
 ));
 DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName;
 
-const DropdownMenuLabel = React.forwardRef<
+const DropdownMenuLabel = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Label>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> & {
     inset?: boolean;
@@ -219,7 +219,7 @@ const DropdownMenuLabel = React.forwardRef<
 ));
 DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName;
 
-const DropdownMenuSeparator = React.forwardRef<
+const DropdownMenuSeparator = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
 >(({ className, ...props }, ref) => (
@@ -248,7 +248,6 @@ type ItemOption = DropdownMenuItemProps & {
   label: React.ReactNode;
   shortcutKeys?: string[];
   disabled?: boolean;
-  onClick?: () => void;
 };
 
 type Item<P extends object> = (WithComponent<P> & { key: string }) | ItemOption;
