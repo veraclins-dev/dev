@@ -33,6 +33,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: 🔑 Authenticate with private NPM package
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
       - name: Install dependencies
         run: pnpm install
         shell: bash
