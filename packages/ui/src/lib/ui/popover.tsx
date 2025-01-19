@@ -73,9 +73,10 @@ type PopoverProps = PopoverPrimitive.PopoverProps;
 type PopoverContentProps = React.ComponentProps<typeof PopoverContent>;
 
 type ComposedPopoverProps<P extends object> = WithTrigger<P> &
-  PopoverProps &
-  PopoverContentProps;
-
+  PopoverProps & {
+    contentProps?: PopoverContentProps;
+    className?: PopoverContentProps['className'];
+  };
 type AnchorProps = React.ComponentPropsWithoutRef<
   typeof PopoverPrimitive.Anchor
 >;
@@ -91,12 +92,14 @@ const ComposedPopover = <P extends object>({
   TriggerProps,
   triggerRef,
   onOpenChange,
+  contentProps,
+  ...others
 }: ComposedPopoverProps<P>) => (
-  <Popover open={open} onOpenChange={onOpenChange}>
+  <Popover {...others} open={open} onOpenChange={onOpenChange}>
     <PopoverTrigger asChild>
       <Trigger {...TriggerProps} ref={triggerRef} />
     </PopoverTrigger>
-    <PopoverContent align="center" className={className}>
+    <PopoverContent align="center" {...contentProps} className={className}>
       {children}
     </PopoverContent>
   </Popover>
