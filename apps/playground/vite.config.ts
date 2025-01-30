@@ -22,6 +22,9 @@ export default defineConfig({
     }),
     nxViteTsPaths(),
   ],
+  server: {
+    port: process.env.PORT ? Number(process.env.PORT) : 3000,
+  },
   test: {
     setupFiles: ['test-setup.ts'],
     watch: false,

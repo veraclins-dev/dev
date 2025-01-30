@@ -25,6 +25,9 @@
       "@veraclins-dev/remix-auth-google": [
         "packages/remix-auth-google/src/index.ts"
       ],
+      "@veraclins-dev/remix-auth-oauth2": [
+        "packages/remix-auth-oauth2/src/index.ts"
+      ],
       "@veraclins-dev/remix-auth-twitter": [
         "packages/remix-auth-twitter/src/index.ts"
       ],

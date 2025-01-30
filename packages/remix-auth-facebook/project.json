@@ -1,0 +1,11 @@
+{
+  "name": "remix-auth-facebook",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/remix-auth-facebook/src",
+  "projectType": "library",
+  "tags": [
+    "type:auth",
+    "scope:lib"
+  ],
+  "targets": {}
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@veraclins-dev/remix-auth-github",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "type": "module",
+  "repository": "https://github.com/veraclins-dev/dev.git",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.js"
+    }
+  },
+  "dependencies": {
+    "@mjackson/headers": "0.9.0",
+    "arctic": "3.0.0",
+    "debug": "4.4.0"
+  },
+  "peerDependencies": {
+    "remix-auth": "^4.1.0"
+  },
+  "devDependencies": {
+    "remix-auth": "4.1.0",
+    "@types/debug": "^4.1.12"
+  }
+}
