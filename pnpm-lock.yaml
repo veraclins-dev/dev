@@ -465,11 +465,8 @@ importers:
   packages/remix-auth-social:
     dependencies:
       '@mjackson/headers':
-        specifier: 0.9.0
-        version: 0.9.0
-      '@veraclins-dev/utils':
-        specifier: ^0.15.3
-        version: 0.15.3(tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.15))(@types/node@22.9.1)(typescript@5.7.3)))
+        specifier: 0.10.0
+        version: 0.10.0
       arctic:
         specifier: 3.0.0
         version: 3.0.0
@@ -2041,8 +2038,8 @@ packages:
   '@microsoft/tsdoc@0.15.1':
     resolution: {integrity: sha512-4aErSrCR/On/e5G2hDP0wjooqDdauzEbIq8hIkIe5pXV0rtWJZvdCEKL0ykZxex+IxIwBp0eGeV48hQN07dXtw==}
 
-  '@mjackson/headers@0.9.0':
-    resolution: {integrity: sha512-1WFCu2iRaqbez9hcYYI611vcH1V25R+fDfOge/CyKc8sdbzniGfy/FRhNd3DgvFF4ZEEX2ayBrvFHLtOpfvadw==}
+  '@mjackson/headers@0.10.0':
+    resolution: {integrity: sha512-U1Eu1gF979k7ZoIBsJyD+T5l9MjtPONsZfoXfktsQHPJD0s7SokBGx+tLKDLsOY+gzVYAWS0yRFDNY8cgbQzWQ==}
 
   '@module-federation/bridge-react-webpack-plugin@0.8.9':
     resolution: {integrity: sha512-gM5fnWvFfTEfh5UjSmNod1H/np/pUUjvJnnN31ucKcZ21mL6wJo0A+Vfj8a5gv34S+1n5lWR1b6eVv9CofwgDQ==}
@@ -4499,11 +4496,6 @@ packages:
 
   '@vanilla-extract/private@1.0.6':
     resolution: {integrity: sha512-ytsG/JLweEjw7DBuZ/0JCN4WAQgM9erfSTdS1NQY778hFQSZ6cfCDEZZ0sgVm4k54uNz6ImKB33AYvSR//fjxw==}
-
-  '@veraclins-dev/utils@0.15.3':
-    resolution: {integrity: sha512-aI9LXLGywk1OpPgB9E/gVO+9iRGiko2CZheqr4akGYsJ+m6XR/wSDe1/LR+92/3XoTcXd9OTCahHK4d34G4yPg==, tarball: https://npm.pkg.github.com/download/@veraclins-dev/utils/0.15.3/8b2a0889b4e5ee290a2a02722ae21ce6b785ae45}
-    peerDependencies:
-      tailwindcss: ^3
 
   '@verdaccio/auth@8.0.0-next-8.1':
     resolution: {integrity: sha512-sPmHdnYuRSMgABCsTJEfz8tb/smONsWVg0g4KK2QycyYZ/A+RwZLV1JLiQb4wzu9zvS0HSloqWqkWlyNHW3mtw==}
@@ -13248,7 +13240,7 @@ snapshots:
 
   '@microsoft/tsdoc@0.15.1': {}
 
-  '@mjackson/headers@0.9.0': {}
+  '@mjackson/headers@0.10.0': {}
 
   '@module-federation/bridge-react-webpack-plugin@0.8.9':
     dependencies:
@@ -16463,14 +16455,6 @@ snapshots:
       - terser
 
   '@vanilla-extract/private@1.0.6': {}
-
-  '@veraclins-dev/utils@0.15.3(tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.15))(@types/node@22.9.1)(typescript@5.7.3)))':
-    dependencies:
-      class-variance-authority: 0.7.1
-      clsx: 2.1.1
-      tailwind-merge: 2.5.4
-      tailwindcss: 3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.15))(@types/node@22.9.1)(typescript@5.7.3))
-      tailwindcss-animate: 1.0.7(tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.15))(@types/node@22.9.1)(typescript@5.7.3)))
 
   '@verdaccio/auth@8.0.0-next-8.1':
     dependencies:
