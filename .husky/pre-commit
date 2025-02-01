@@ -1,1 +1,1 @@
-#nx affected -t lint
+nx affected -t lint

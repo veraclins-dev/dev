@@ -4,6 +4,7 @@
   "scripts": {},
   "type": "module",
   "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
     "@remix-run/node": "^2.15.3",
     "@remix-run/react": "^2.15.3",
     "@remix-run/serve": "^2.15.3",
@@ -11,6 +12,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remix-utils": "^8.1.0",
+    "twitter-api-v2": "^1.19.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

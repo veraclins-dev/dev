@@ -1,15 +1,6 @@
-import { type Strategy } from 'remix-auth'
-
-// Define a user type for cleaner typing
-export type ProviderUser = {
-	id: string
-	email: string
-	username?: string
-	name?: string
-	imageUrl?: string
-}
+import { type AuthStrategy } from '@veraclins-dev/remix-auth-social';
 
 export interface AuthProvider {
-	getAuthStrategy(): Strategy<ProviderUser, any>
-	handleMockAction(request: Request): Promise<void>
+  getAuthStrategy(): AuthStrategy;
+  handleMockAction(request: Request): Promise<void>;
 }

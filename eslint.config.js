@@ -44,12 +44,12 @@ module.exports = [
               onlyDependOnLibsWithTags: ['type:ui', 'type:utils'],
             },
             {
-              sourceTag: 'type:utils',
-              onlyDependOnLibsWithTags: ['type:utils'],
+              sourceTag: 'type:auth',
+              onlyDependOnLibsWithTags: ['type:auth', 'type:utils'],
             },
             {
-              sourceTag: 'type:auth',
-              onlyDependOnLibsWithTags: ['type:auth'],
+              sourceTag: 'type:utils',
+              onlyDependOnLibsWithTags: ['type:utils'],
             },
           ],
         },

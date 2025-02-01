@@ -1,4 +1,4 @@
-import { z } from '../../../validations/index.ts';
+import { z } from '../../../validations';
 
 const SocialsProvider = {
   DISCORD: 'discord',
@@ -38,7 +38,7 @@ export const providerColors: Record<ProviderName, string> = {
 } as const;
 
 export const getCallback = (provider: ProviderName) => {
-  return `${getBaseURL()}/auth/${provider}/callback`;
+  return `http://localhost:3000/${provider}/callback`;
 };
 
 export type ConnectionType = 'Connect' | 'Login' | 'Signup';

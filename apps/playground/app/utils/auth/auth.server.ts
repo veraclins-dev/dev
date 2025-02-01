@@ -1,16 +1,9 @@
-import { redirect } from '@remix-run/node';
-import bcrypt from 'bcryptjs';
 import { Authenticator } from 'remix-auth';
-import { safeRedirect } from 'remix-utils/safe-redirect';
 
-import { type z } from '../../validations/index.ts';
-import { combineHeaders, generateReferralCode, invariant } from '../misc.ts';
+import { invariant } from '@veraclins-dev/utils';
 
-import {
-  connectionSessionStorage,
-  providers,
-} from './connections/connection.server.ts';
-import { type ProviderUser } from './providers/provider.ts';
+import { providers } from './connections/connection.server';
+import { type ProviderUser } from './providers/provider';
 
 type ErrorResponse = {
   message: string;
@@ -23,17 +16,17 @@ export type SocialAuthResponse = {
   error?: string | ErrorResponse;
 };
 
-export const SESSION_EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 30;
-export const getSessionExpirationDate = () =>
-  new Date(Date.now() + SESSION_EXPIRATION_TIME);
+// export const SESSION_EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 30;
+// export const getSessionExpirationDate = () =>
+//   new Date(Date.now() + SESSION_EXPIRATION_TIME);
+
+invariant(process.env.HOST, 'HOST url is missing');
 
 export const authenticator = new Authenticator<ProviderUser>();
 
 for (const [providerName, provider] of Object.entries(providers)) {
   authenticator.use(provider.getAuthStrategy(), providerName);
 }
-
-invariant(process.env.HOST, 'HOST url is missing');
 
 // export async function signupWithConnection({
 //   email,

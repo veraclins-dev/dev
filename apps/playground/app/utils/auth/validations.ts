@@ -1,6 +1,4 @@
-import { isValidPhoneNumber } from 'react-phone-number-input';
-
-import { z } from '../../validations/index.ts';
+import { z } from '../../validations';
 
 export const passwordRegex = /^(?=.*?[A-Za-z])(?=.*?\d).{6,30}$/;
 
@@ -61,14 +59,6 @@ export const Channel = z
     return value;
   });
 
-export const PhoneNumber = z
-  .string({
-    required_error: 'Phone number is required',
-    invalid_type_error: 'Phone number is required',
-  })
-  .refine((val) => isValidPhoneNumber(val), {
-    message: 'Invalid phone number',
-  });
 export const Signup = z.object({
   email: Email,
   referralCode: RefCode,
