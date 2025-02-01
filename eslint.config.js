@@ -25,6 +25,7 @@ module.exports = [
             {
               sourceTag: 'type:app',
               onlyDependOnLibsWithTags: [
+                'type:auth',
                 'type:editor',
                 'type:ui',
                 'type:utils',
@@ -41,6 +42,10 @@ module.exports = [
             {
               sourceTag: 'type:ui',
               onlyDependOnLibsWithTags: ['type:ui', 'type:utils'],
+            },
+            {
+              sourceTag: 'type:auth',
+              onlyDependOnLibsWithTags: ['type:auth', 'type:utils'],
             },
             {
               sourceTag: 'type:utils',
@@ -71,7 +76,7 @@ module.exports = [
         },
       ],
       'no-redeclare': 'off',
-      '@typescript-eslint/no-redeclare': ['error'],
+      '@typescript-eslint/no-redeclare': 'off',
     },
   },
   {

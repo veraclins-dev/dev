@@ -16,17 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@veraclins-dev/editor": ["packages/editor/src/index.ts"],
-      "@veraclins-dev/remix-auth-facebook": [
-        "packages/remix-auth-facebook/src/index.ts"
-      ],
-      "@veraclins-dev/remix-auth-github": [
-        "packages/remix-auth-github/src/index.ts"
-      ],
-      "@veraclins-dev/remix-auth-google": [
-        "packages/remix-auth-google/src/index.ts"
-      ],
-      "@veraclins-dev/remix-auth-twitter": [
-        "packages/remix-auth-twitter/src/index.ts"
+      "@veraclins-dev/remix-auth-social": [
+        "packages/remix-auth-social/src/index.ts"
       ],
       "@veraclins-dev/ui": ["packages/ui/src/index.ts"],
       "@veraclins-dev/ui/*": ["packages/ui/src/*"],

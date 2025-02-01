@@ -1,0 +1,11 @@
+{
+  "name": "remix-auth-social",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/remix-auth-social/src",
+  "projectType": "library",
+  "tags": [
+    "type:auth",
+    "scope:lib"
+  ],
+  "targets": {}
+}
