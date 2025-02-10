@@ -27,7 +27,6 @@ export class GitHubProvider implements AuthProvider {
         redirectURI: callbackURL,
       },
       async ({ profile }) => {
-        console.log('GitHub profile', profile);
         return profile;
       },
     );

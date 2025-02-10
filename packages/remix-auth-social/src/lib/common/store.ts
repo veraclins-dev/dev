@@ -101,10 +101,11 @@ export class StateStore {
     const cookie = new Cookie(request.headers.get('cookie') ?? '');
 
     const params = new URLSearchParams();
-
-    for (const name of cookie.names()) {
+    for (const name of cookie.names) {
       if (name.startsWith(cookieName)) {
-        for (const [key, value] of new URLSearchParams(cookie.get(name))) {
+        for (const [key, value] of new URLSearchParams(
+          cookie.get(name) ?? '',
+        )) {
           params.append(key, value);
         }
       }

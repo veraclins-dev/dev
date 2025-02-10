@@ -1,8 +1,5 @@
-import { Cookie, SetCookie } from '@mjackson/headers';
 import createDebug from 'debug';
 import { Strategy } from 'remix-auth/strategy';
-
-import { emailToUserName } from '@veraclins-dev/utils';
 
 import {
   type ConstructorOptions,
@@ -88,16 +85,6 @@ export class TwitterStrategy<User> extends Strategy<User, VerifyOptions> {
 
       const store = StateStore.fromRequest(request, this.cookieName);
       store.set(state, codeVerifier);
-
-      // const header = new SetCookie({
-      //   name: this.cookieName,
-      //   value: new URLSearchParams({ state, codeVerifier }).toString(),
-      //   httpOnly: true, // Prevents JavaScript from accessing the cookie
-      //   maxAge: 60 * 5, // 5 minutes
-      //   path: '/', // Allow the cookie to be sent to any path
-      //   sameSite: 'Lax', // Prevents it from being sent in cross-site requests
-      //   ...this.cookieOptions,
-      // });
 
       throw redirect(url.toString(), {
         headers: {

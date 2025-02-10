@@ -72,7 +72,6 @@ const RadioField = forwardRef<HTMLDivElement, RadioFieldProps>(
           {...props}
           {...formProps}
           onValueChange={(val) => {
-            console.log(val, controlProps.value, value);
             control?.change(val);
             onChange?.(val);
           }}

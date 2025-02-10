@@ -2,7 +2,7 @@ import { createId as cuid } from '@paralleldrive/cuid2';
 import { redirect } from '@remix-run/node';
 
 import { FacebookStrategy } from '@veraclins-dev/remix-auth-social';
-import { emailToUserName, invariant } from '@veraclins-dev/utils';
+import { invariant } from '@veraclins-dev/utils';
 
 import { getCallback } from '../connections/common';
 import { connectionSessionStorage } from '../connections/connection.server';
@@ -27,7 +27,6 @@ export class FacebookProvider implements AuthProvider {
         redirectURI: callbackURL,
       },
       async ({ profile }) => {
-        console.log('Facebook profile', profile);
         return profile;
       },
     );

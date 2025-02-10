@@ -29,8 +29,6 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
   const { data: profile } = authResult;
 
-  console.log('profile', profile);
-
   // const [existingConnection, userId] = await Promise.all([
   //   getConnection(providerName, profile.id),
   //   getUserId(request),

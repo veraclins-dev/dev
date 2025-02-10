@@ -283,8 +283,8 @@ importers:
         specifier: ^8.1.0
         version: 8.1.0(@oslojs/crypto@1.0.1)(@oslojs/encoding@1.1.0)(intl-parse-accept-language@1.0.0)(react@18.3.1)(zod@3.24.1)
       twitter-api-v2:
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.19.1
+        version: 1.19.1
       zod:
         specifier: ^3.23.8
         version: 3.24.1
@@ -473,6 +473,9 @@ importers:
       debug:
         specifier: 4.4.0
         version: 4.4.0
+      twitter-api-v2:
+        specifier: ^1.19.1
+        version: 1.19.1
     devDependencies:
       '@types/debug':
         specifier: ^4.1.12
@@ -10866,8 +10869,8 @@ packages:
   tweetnacl@0.14.5:
     resolution: {integrity: sha512-KXXFFdAbFXY4geFIwoyNK+f5Z1b7swfXABfL7HXCmoIWMKU3dmS26672A4EeQtDzLKy7SXmfBu51JolvEKwtGA==}
 
-  twitter-api-v2@1.19.0:
-    resolution: {integrity: sha512-jfG4aapNPM9+4VxNxn0TXvD8Qj8NmVx6cY0hp5K626uZ41qXPaJz33Djd3y6gfHF/+W29+iZz0Y5qB869d/akA==}
+  twitter-api-v2@1.19.1:
+    resolution: {integrity: sha512-X7+j1/VBiynw443ugDtEbFspYrWN26WH117uFc89K1+FkAgcSvj2GGMF8mIWPag2K4eS1Vd5HW35zorNdTveOg==}
 
   typanion@3.14.0:
     resolution: {integrity: sha512-ZW/lVMRabETuYCd9O9ZvMhAh8GslSqaUjxmK/JLPCh6l73CvLBiuXswj/+7LdnWOgYsQ130FqLzFz5aGT4I3Ug==}
@@ -24126,7 +24129,7 @@ snapshots:
 
   tweetnacl@0.14.5: {}
 
-  twitter-api-v2@1.19.0: {}
+  twitter-api-v2@1.19.1: {}
 
   typanion@3.14.0: {}
 

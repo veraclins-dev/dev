@@ -18,7 +18,8 @@
     "debug": "4.4.0"
   },
   "peerDependencies": {
-    "remix-auth": "^4.1.0"
+    "remix-auth": "^4.1.0",
+    "twitter-api-v2": "^1.19.1"
   },
   "devDependencies": {
     "remix-auth": "4.1.0",

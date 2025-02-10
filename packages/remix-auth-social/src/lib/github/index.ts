@@ -1,4 +1,3 @@
-import { Cookie, SetCookie } from '@mjackson/headers';
 import createDebug from 'debug';
 import { Strategy } from 'remix-auth/strategy';
 
@@ -11,6 +10,7 @@ import {
   request as fetchRequest,
   type VerifyOptions,
 } from '../common';
+import { StateStore } from '../common/store';
 
 import { type GithubProfile, type Scope } from './types';
 
@@ -67,31 +67,24 @@ export class GitHubStrategy<User> extends Strategy<User, VerifyOptions> {
     if (!stateUrl) {
       debug('No state found in the URL, redirecting to authorization endpoint');
 
-      const state = generateState();
+      const { url, state } = this.createAuthorizationURL();
 
-      debug('Generated State', state);
+      debug('State', state);
 
-      const url = this.client.createAuthorizationURL(state, this.scopes);
-
-      url.search = this.authorizationParams(
-        url.searchParams,
-        // request,
-      ).toString();
+      url.search = this.authorizationParams(url.searchParams).toString();
 
       debug('Authorization URL', url.toString());
 
-      const header = new SetCookie({
-        name: this.cookieName,
-        value: new URLSearchParams({ state }).toString(),
-        httpOnly: true, // Prevents JavaScript from accessing the cookie
-        maxAge: 60 * 5, // 5 minutes
-        path: '/', // Allow the cookie to be sent to any path
-        sameSite: 'Lax', // Prevents it from being sent in cross-site requests
-        ...this.cookieOptions,
-      });
+      const store = StateStore.fromRequest(request, this.cookieName);
+
+      store.set(state, 'random');
 
       throw redirect(url.toString(), {
-        headers: { 'Set-Cookie': header.toString() },
+        headers: {
+          'Set-Cookie': store
+            .toSetCookie(this.cookieName, this.cookieOptions)
+            .toString(),
+        },
       });
     }
 
@@ -99,29 +92,27 @@ export class GitHubStrategy<User> extends Strategy<User, VerifyOptions> {
 
     if (!code) throw new ReferenceError('Missing code in the URL');
 
-    const cookie = new Cookie(request.headers.get('cookie') ?? '');
-    const params = new URLSearchParams(cookie.get(this.cookieName));
+    const store = StateStore.fromRequest(request, this.cookieName);
 
-    console.log('Cookie > Twitter', params.entries(), { stateUrl });
-
-    if (!params.has('state')) {
+    if (!store.has()) {
       throw new ReferenceError('Missing state on cookie.');
     }
 
-    if (params.get('state') !== stateUrl) {
+    if (!store.has(stateUrl)) {
       throw new RangeError("State in URL doesn't match state in cookie.");
     }
 
     debug('Validating authorization code');
-    const tokens = await this.client.validateAuthorizationCode(code);
+    const tokens = await this.validateAuthorizationCode(code);
 
-    debug('Verifying the user profile');
+    debug('Getting the user profile');
     const profile = await fetchRequest<GithubProfile>(userInfoURL, {
       headers: {
         Authorization: `Bearer ${tokens.accessToken()}`,
       },
     });
 
+    debug('Verifying the user profile');
     const user = await this.verify({
       request,
       tokens,
@@ -186,5 +177,17 @@ export class GitHubStrategy<User> extends Strategy<User, VerifyOptions> {
     }
 
     return scope;
+  }
+
+  protected createAuthorizationURL() {
+    const state = generateState();
+
+    const url = this.client.createAuthorizationURL(state, this.scopes);
+
+    return { state, url };
+  }
+
+  protected validateAuthorizationCode(code: string) {
+    return this.client.validateAuthorizationCode(code);
   }
 }

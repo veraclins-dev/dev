@@ -27,7 +27,6 @@ export class GoogleProvider implements AuthProvider {
         redirectURI: callbackURL,
       },
       async ({ profile }) => {
-        console.log('Google profile', profile);
         return profile;
       },
     );

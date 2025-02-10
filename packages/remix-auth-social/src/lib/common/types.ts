@@ -10,7 +10,7 @@ export interface VerifyOptions<P extends AuthProfile = AuthProfile> {
   /** The request that triggered the verification flow */
   request: Request;
   /** The OAuth2 tokens retrieved from the identity provider */
-  tokens: OAuth2Tokens;
+  tokens?: OAuth2Tokens;
 
   profile: P | null;
 }

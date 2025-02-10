@@ -4,7 +4,7 @@ import { authenticator } from '../../utils/auth/auth.server';
 import { ProviderName } from '../../utils/auth/connections/common';
 
 export async function loader() {
-  return redirect('/auth/login');
+  return redirect('/');
 }
 
 export async function action({ request, params }: ActionFunctionArgs) {

@@ -4,20 +4,13 @@
 export type Scope = string;
 
 export type GoogleProfile = {
-  id: string;
-  email: string;
+  sub: string;
   name: string;
-  first_name: string;
-  middle_name: string;
-  last_name: string;
-  picture: {
-    data: {
-      height?: number;
-      is_silhouette?: boolean;
-      url: string;
-      width?: number;
-    };
-  };
+  given_name: string;
+  family_name: string;
+  picture: string;
+  email: string;
+  email_verified: boolean;
 };
 
 export type GoogleExtraParams = {

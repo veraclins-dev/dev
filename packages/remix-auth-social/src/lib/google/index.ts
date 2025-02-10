@@ -1,4 +1,3 @@
-import { Cookie, SetCookie } from '@mjackson/headers';
 import createDebug from 'debug';
 import { Strategy } from 'remix-auth/strategy';
 
@@ -14,6 +13,7 @@ import {
   request as fetchRequest,
   type VerifyOptions,
 } from '../common';
+import { StateStore } from '../common/store';
 
 import { type GoogleProfile, type Scope } from './types';
 
@@ -77,37 +77,25 @@ export class GoogleStrategy<User> extends Strategy<User, VerifyOptions> {
     if (!stateUrl) {
       debug('No state found in the URL, redirecting to authorization endpoint');
 
-      const state = generateState();
+      const { url, codeVerifier, state } = this.createAuthorizationURL();
 
-      debug('Generated State', state);
+      debug('State', state);
+      debug('Code verifier', codeVerifier);
 
-      const codeVerifier = generateCodeVerifier();
-
-      const url = this.client.createAuthorizationURL(
-        state,
-        codeVerifier,
-        this.scopes,
-      );
-
-      url.search = this.authorizationParams(
-        url.searchParams,
-        // request,
-      ).toString();
+      url.search = this.authorizationParams(url.searchParams).toString();
 
       debug('Authorization URL', url.toString());
 
-      const header = new SetCookie({
-        name: this.cookieName,
-        value: new URLSearchParams({ state }).toString(),
-        httpOnly: true, // Prevents JavaScript from accessing the cookie
-        maxAge: 60 * 5, // 5 minutes
-        path: '/', // Allow the cookie to be sent to any path
-        sameSite: 'Lax', // Prevents it from being sent in cross-site requests
-        ...this.cookieOptions,
-      });
+      const store = StateStore.fromRequest(request, this.cookieName);
+
+      store.set(state, codeVerifier);
 
       throw redirect(url.toString(), {
-        headers: { 'Set-Cookie': header.toString() },
+        headers: {
+          'Set-Cookie': store
+            .toSetCookie(this.cookieName, this.cookieOptions)
+            .toString(),
+        },
       });
     }
 
@@ -115,47 +103,41 @@ export class GoogleStrategy<User> extends Strategy<User, VerifyOptions> {
 
     if (!code) throw new ReferenceError('Missing code in the URL');
 
-    const cookie = new Cookie(request.headers.get('cookie') ?? '');
-    const params = new URLSearchParams(cookie.get(this.cookieName));
+    const store = StateStore.fromRequest(request, this.cookieName);
 
-    if (!params.has('state')) {
+    if (!store.has()) {
       throw new ReferenceError('Missing state on cookie.');
     }
 
-    if (params.get('state') !== stateUrl) {
+    if (!store.has(stateUrl)) {
       throw new RangeError("State in URL doesn't match state in cookie.");
     }
 
-    const codeVerifier = params.get(stateUrl) ?? '';
+    const codeVerifier = store.get(stateUrl);
 
     if (!codeVerifier) {
       throw new ReferenceError('Missing code verifier on cookie.');
     }
 
     debug('Validating authorization code');
-    const tokens = await this.client.validateAuthorizationCode(
-      code,
-      codeVerifier,
-    );
+    const tokens = await this.validateAuthorizationCode(code, codeVerifier);
 
-    debug('Verifying the user profile');
-
+    debug('Getting the user profile');
     const profile = await fetchRequest<GoogleProfile>(userInfoURL, {
       headers: {
         Authorization: `Bearer ${tokens.accessToken()}`,
       },
     });
 
-    console.log('Profile > Google', profile);
-
+    debug('Verifying the user profile');
     const user = await this.verify({
       request,
       tokens,
       profile: {
         provider: 'google',
-        providerId: profile.id,
-        name: profile.name,
-        photo: profile.picture.data.url,
+        providerId: profile.sub,
+        name: profile.name ?? `${profile.given_name} ${profile.family_name}`,
+        photo: profile.picture,
         email: profile.email,
         username: emailToUserName(profile.email),
       },
@@ -195,5 +177,22 @@ export class GoogleStrategy<User> extends Strategy<User, VerifyOptions> {
     }
 
     return scope;
+  }
+
+  protected createAuthorizationURL() {
+    const state = generateState();
+    const codeVerifier = generateCodeVerifier();
+
+    const url = this.client.createAuthorizationURL(
+      state,
+      codeVerifier,
+      this.scopes,
+    );
+
+    return { state, codeVerifier, url };
+  }
+
+  protected validateAuthorizationCode(code: string, codeVerifier: string) {
+    return this.client.validateAuthorizationCode(code, codeVerifier);
   }
 }
