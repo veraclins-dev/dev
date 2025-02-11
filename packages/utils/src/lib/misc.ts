@@ -144,14 +144,21 @@ export async function downloadFile(url: string, retries = 0) {
 export const humanize = (message: string) => {
   if (!message) return '';
   message = message.replace(/_/g, ' '); // replaces underscore with space
-  message = message.replace(/^[a-z]|[A-Z]/g, function (v, i) {
-    return i === 0 ? v : ` ${v.toLowerCase()}`;
-  }); // breaks camelCase to two words
+  message = message.replace(/([A-Z]+)([A-Z][a-z]+)/g, function (_, $1, $2) {
+    return `${$1} ${$2.toLowerCase()}`;
+  }); // breaks patterns like JSONData to JSON data
+  message = message.replace(
+    /([A-Z]?[a-z]+)([A-Z][a-z]+)?([A-Z][a-z]+)?([A-Z]+[a-z]+)?([A-Z]+[a-z]+)|([A-Z]?[a-z]+)([A-Z][a-z]*)/g,
+    (_, ...s) => {
+      const matches = s.filter(Boolean).filter(isNaN).slice(0, -1);
+      return matches.map((v) => v.toLowerCase()).join(' ');
+    },
+  ); // breaks camelCase and PascalCase to words
   message = `${message.charAt(0).toUpperCase()}${message.slice(1)}`;
   return message.replace(
     /([!?.]\s+)([a-z])/g,
-    (m, $1, $2: string) => $1 + $2.toUpperCase(),
-  );
+    (_, $1, $2: string) => $1 + $2.toUpperCase(),
+  ); // capitalizes the first letter of inner sentences
 };
 
 export const truncate = (string: string, length: number) => {

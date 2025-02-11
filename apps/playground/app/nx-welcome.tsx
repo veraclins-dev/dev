@@ -2,6 +2,7 @@ import { ClientOnly } from 'remix-utils/client-only';
 
 import { EditorField } from '@veraclins-dev/editor';
 import { Select } from '@veraclins-dev/ui';
+import { humanize } from '@veraclins-dev/utils';
 
 import { SocialLogin } from './social-login';
 
@@ -13,6 +14,10 @@ export function NxWelcome({ title }: { title: string }) {
           <span> Hello there, </span>
           Welcome to {title} 👋
         </h1>
+
+        {humanize(
+          'and thisIsAnotherReallyLong sentence isB. a HTML userDefined JSONParse withAUseful and AnotherSweet string for Agada Clinton and some usefulStuff that is really long and has a lot of words',
+        )}
       </div>
       This is a playground for testing out new features and components.
       <SocialLogin />
