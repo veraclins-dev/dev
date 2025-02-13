@@ -1,7 +1,7 @@
 import { type Editor, getMarkRange, getMarkType } from '@tiptap/core';
 import { type ReactNode } from 'react';
 
-import { Button, Link } from '@veraclins-dev/ui';
+import { Button } from '@veraclins-dev/ui';
 import { truncate, truncateMiddle } from '@veraclins-dev/utils';
 
 import useKeyDown from '../hooks/useKeyDown';
@@ -47,16 +47,16 @@ export function ViewLinkMenuContent({
       <div className="text-pretty">{truncate(linkText, 38)}</div>
 
       <div className="text-pretty">
-        <Link
-          to={currentHref}
+        <a
+          href={currentHref}
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           className="hover:brand-light-purple text-primary hover:underline"
         >
           {/* We truncate in the middle, since the beginning and end of a URL are often the most
             important parts */}
           {truncateMiddle(currentHref, 38)}
-        </Link>
+        </a>
       </div>
       <div className="flex justify-end gap-x-2">
         <Button
