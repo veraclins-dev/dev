@@ -12,7 +12,7 @@ import {
 import { InputWrapper } from './wrapper';
 
 export interface TextareaFieldProps
-  extends PropsWithoutRef<JSX.IntrinsicElements['textarea']>,
+  extends PropsWithoutRef<React.JSX.IntrinsicElements['textarea']>,
     BaseInputProps {
   rightInlay?: React.ReactNode;
   inputRef?: React.Ref<HTMLTextAreaElement>;

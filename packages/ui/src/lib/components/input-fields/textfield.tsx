@@ -14,7 +14,7 @@ import {
 import { InputWrapper } from './wrapper';
 
 export interface TextFieldProps
-  extends PropsWithoutRef<JSX.IntrinsicElements['input']>,
+  extends PropsWithoutRef<React.JSX.IntrinsicElements['input']>,
     BaseInputProps {
   inputRef?: React.Ref<HTMLInputElement>;
   type?: InputFieldProps['type'];

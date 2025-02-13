@@ -9,16 +9,16 @@
     "@remix-run/react": "^2.15.3",
     "@remix-run/serve": "^2.15.3",
     "isbot": "^5.1.22",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "remix-utils": "^8.1.0",
     "twitter-api-v2": "^1.19.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.15.3",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1"
+    "@types/react": "19.0.8",
+    "@types/react-dom": "19.0.3"
   },
   "engines": {
     "node": ">=20"

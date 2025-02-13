@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { Button, PopoverContent, type PopoverProps } from '@veraclins-dev/ui';
+import {
+  Button,
+  PopoverContent,
+  type PopoverContentProps,
+} from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import { ColorPicker } from '../controls/color-picker';
@@ -20,7 +24,7 @@ export interface ColorPickerPopperBodyProps
 }
 
 export interface ColorPickerPopperProps
-  extends PopoverProps,
+  extends PopoverContentProps,
     ColorPickerPopperBodyProps {}
 
 // NOTE: This component's state logic is able to be kept simple because the

@@ -138,6 +138,12 @@ const getOptionId = (option: OptionWithId) =>
       ? option.id
       : slugify(option.value);
 
+const scrollIntoView = <T extends Element>(ref: React.RefObject<T | null>) => {
+  setTimeout(() => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  }, 2);
+};
+
 export {
   type BaseInputProps,
   getInputProps,
@@ -147,6 +153,7 @@ export {
   getSelectProps,
   type InputFieldProps,
   isStringOption,
+  scrollIntoView,
   useFieldProperties,
   useInputControlProps,
   useSelectControlProps,

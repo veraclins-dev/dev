@@ -35,14 +35,6 @@ export function closestParent(
   return fallBack ? document.body : null;
 }
 
-export const scrollIntoView = <T extends Element>(
-  ref: React.MutableRefObject<T | null>,
-) => {
-  setTimeout(() => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
-  }, 2);
-};
-
 export function setReactInputValue(
   element: HTMLInputElement | HTMLTextAreaElement | null,
   value: string,

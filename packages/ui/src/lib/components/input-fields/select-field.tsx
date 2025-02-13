@@ -17,7 +17,7 @@ import {
 import { InputWrapper } from './wrapper';
 
 interface SelectFieldProps
-  extends PropsWithoutRef<JSX.IntrinsicElements['select']>,
+  extends PropsWithoutRef<React.JSX.IntrinsicElements['select']>,
     Omit<BaseInputProps, 'value'> {
   placeholder?: string;
   defaultValue?: BaseSelectProps['defaultValue'];

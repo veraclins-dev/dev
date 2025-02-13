@@ -1,12 +1,7 @@
 import { matchSorter, type MatchSorterOptions } from 'match-sorter';
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 
-import {
-  cn,
-  humanize,
-  scrollIntoView,
-  setReactInputValue,
-} from '@veraclins-dev/utils';
+import { cn, humanize, setReactInputValue } from '@veraclins-dev/utils';
 
 import { type Maybe, type Option } from '../../types';
 import { inputClasses } from '../../ui';
@@ -26,6 +21,7 @@ import {
   getOptionLabel,
   getOptionValue,
   isStringOption,
+  scrollIntoView,
   useFieldProperties,
 } from './utils';
 import { InputWrapper } from './wrapper';
@@ -92,7 +88,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
   ) => {
     const { errorId } = useFieldProperties(field);
     const mainRef = useRef<Maybe<HTMLInputElement>>(null);
-    const inputRef = useRef<Maybe<HTMLInputElement>>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
     const anchorRef = useRef<Maybe<HTMLDivElement>>(null);
     const firstItemRef = useRef<Maybe<HTMLDivElement>>(null);
 
@@ -316,7 +312,9 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
             />
 
             <Popover open={open && canSelect}>
-              <PopoverAnchor virtualRef={inputRef} />
+              <PopoverAnchor
+                virtualRef={inputRef as React.RefObject<HTMLInputElement>}
+              />
               <PopoverContent
                 onOpenAutoFocus={(e) => e.preventDefault()}
                 className="p-2"

@@ -77,7 +77,7 @@ export function ControlledBubbleMenu({
 
   return (
     <Popover open={open}>
-      <PopoverAnchor virtualRef={anchorRef} />
+      <PopoverAnchor virtualRef={anchorRef as React.RefObject<Measurable>} />
       <PopoverContent className={cn('z-[3] p-2 w-80', className)} arrow>
         {children}
       </PopoverContent>

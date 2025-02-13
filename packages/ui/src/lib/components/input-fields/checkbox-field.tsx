@@ -23,7 +23,7 @@ interface CheckboxFieldProps
     Pick<TextFieldProps, 'label' | 'labelProps' | 'inputClass'> {
   field?: FieldMetadata<CheckedValue>;
   label?: string | React.ReactNode;
-  labelProps?: JSX.IntrinsicElements['label'];
+  labelProps?: React.JSX.IntrinsicElements['label'];
   onChange?: (value: CheckedValue) => void;
   inputClassName?: string;
 }
