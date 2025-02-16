@@ -5,7 +5,7 @@ import { forwardRef } from 'react';
 import { cn } from '@veraclins-dev/utils';
 
 export const buttonDefaultClasses =
-  'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50';
+  'cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50';
 
 export const buttonVariant = {
   default: 'bg-accent hover:bg-accent/80',

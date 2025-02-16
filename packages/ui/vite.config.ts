@@ -60,7 +60,7 @@ export default defineConfig({
       external: [
         'react',
         'react-dom',
-        'class-variance-authority',
+        // 'class-variance-authority',
         'react/jsx-runtime',
         '@veraclins-dev/utils',
       ],
