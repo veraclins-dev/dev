@@ -51,6 +51,10 @@ module.exports = [
               sourceTag: 'type:utils',
               onlyDependOnLibsWithTags: ['type:utils'],
             },
+            {
+              sourceTag: 'type:seo',
+              onlyDependOnLibsWithTags: ['type:seo'],
+            },
           ],
         },
       ],

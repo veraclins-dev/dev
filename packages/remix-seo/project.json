@@ -1,0 +1,11 @@
+{
+  "name": "remix-seo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/remix-seo/src",
+  "projectType": "library",
+  "tags": [
+    "type:seo",
+    "scope:lib"
+  ],
+  "targets": {}
+}

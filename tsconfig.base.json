@@ -19,6 +19,7 @@
       "@veraclins-dev/remix-auth-social": [
         "packages/remix-auth-social/src/index.ts"
       ],
+      "@veraclins-dev/remix-seo": ["packages/remix-seo/src/index.ts"],
       "@veraclins-dev/ui": ["packages/ui/src/index.ts"],
       "@veraclins-dev/ui/*": ["packages/ui/src/*"],
       "@veraclins-dev/utils": ["packages/utils/src/index.ts"]
