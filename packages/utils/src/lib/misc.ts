@@ -1,8 +1,5 @@
 import { type ClassValue, clsx } from 'clsx';
-import { extendTailwindMerge } from 'tailwind-merge';
-import { type Config } from 'tailwindcss';
-
-import { extendedTheme } from './tailwind-theme';
+import { twMerge } from 'tailwind-merge';
 
 export function getErrorMessage(error: unknown) {
   if (typeof error === 'string') return error;
@@ -18,44 +15,8 @@ export function getErrorMessage(error: unknown) {
   return 'Unknown Error';
 }
 
-function formatColors(input: Config['theme'] = extendedTheme.colors) {
-  const colors = [];
-  for (const [key, color] of Object.entries(input)) {
-    if (typeof color === 'string') {
-      colors.push(key);
-    } else {
-      const colorGroup = Object.keys(color).map((subKey) =>
-        subKey === 'DEFAULT' ? '' : subKey,
-      );
-      colors.push({ [key]: colorGroup });
-    }
-  }
-  return colors;
-}
-
-const customTwMerge = extendTailwindMerge<string, string>({
-  extend: {
-    theme: {
-      colors: formatColors(),
-      borderRadius: Object.keys(extendedTheme.borderRadius),
-    },
-    classGroups: {
-      'font-size': [
-        {
-          text: Object.keys(extendedTheme.fontSize),
-        },
-      ],
-      animate: [
-        {
-          animate: Object.keys(extendedTheme.animation),
-        },
-      ],
-    },
-  },
-});
-
 export function cn(...inputs: ClassValue[]) {
-  return customTwMerge(clsx(inputs));
+  return twMerge(clsx(inputs));
 }
 
 export function getDomainUrl(request: Request) {

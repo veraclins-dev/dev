@@ -1,6 +1,227 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-border: hsl(var(--border));
+
+  --color-input: hsl(var(--input));
+  --color-input-foreground: hsl(var(--input-foreground));
+  --color-input-invalid: hsl(var(--input-invalid));
+
+  --color-ring: hsl(var(--ring));
+  --color-ring-invalid: hsl(var(--foreground-destructive));
+
+  --color-background: hsl(var(--background));
+
+  --color-foreground: hsl(var(--foreground));
+  --color-foreground-destructive: hsl(var(--foreground-destructive));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-primary-light: hsl(var(--primary-light));
+  --color-primary-light-foreground: hsl(var(--primary-light-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-secondary-light: hsl(var(--secondary-light));
+  --color-secondary-light-foreground: hsl(var(--secondary-light-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-active: hsl(var(--card-active));
+
+  --color-card-inner: hsl(var(--inner-card));
+
+  --color-card-inner-light: hsl(var(--inner-card-light));
+
+  --color-badge: hsl(var(--badge));
+  --color-badge-foreground: hsl(var(--badge-foreground));
+
+  --color-avatar: hsl(var(--avatar));
+  --color-avatar-hover: hsl(var(--avatar-hover));
+
+  --color-brand-purple: hsl(var(--brand-purple));
+  --color-brand-light-purple: hsl(var(--brand-light-purple));
+  --color-brand-dark-purple: hsl(var(--brand-dark-purple));
+  --color-brand-gray: hsl(var(--brand-gray));
+  --color-brand-light-gray: hsl(var(--brand-light-gray));
+  --color-brand-white: hsl(var(--brand-white));
+  --color-brand-slate: hsl(var(--brand-slate));
+  --color-brand-off-white: hsl(var(--brand-off-white));
+  --color-brand-smoke: hsl(var(--brand-smoke));
+  --color-brand-yellow: hsl(var(--brand-yellow));
+  --color-brand-lightening: hsl(var(--brand-lightening));
+  --color-brand-silver: hsl(var(--brand-silver));
+  --color-brand-mercury: hsl(var(--brand-mercury));
+  --color-brand-red: hsl(var(--brand-red));
+  --color-brand-linked-in: hsl(201, 100%, 35%, 1);
+  --color-brand-instagram: hsl(0, 88%, 44%, 0.1608);
+  --color-brand-x: hsl(0, 0%, 0%, 1);
+
+  --color-twitter-50: #e5f4fd;
+  --color-twitter-100: #c8e9fb;
+  --color-twitter-200: #a8dcfa;
+  --color-twitter-300: #83cdf7;
+  --color-twitter-400: #57bbf5;
+  --color-twitter-500: #1da1f2;
+  --color-twitter-600: #1a94da;
+  --color-twitter-700: #1681bf;
+  --color-twitter-800: #136b9e;
+  --color-twitter-900: #0d4d71;
+
+  --color-facebook-50: #e8f4f9;
+  --color-facebook-100: #d9dee9;
+  --color-facebook-200: #b7c2da;
+  --color-facebook-300: #6482c0;
+  --color-facebook-400: #4267b2;
+  --color-facebook-500: #385898;
+  --color-facebook-600: #314e89;
+  --color-facebook-700: #29487d;
+  --color-facebook-800: #223b67;
+  --color-facebook-900: #1e355b;
+
+  --color-night-100: #dadada;
+  --color-night-200: #aaaaaa;
+  --color-night-300: #717171;
+  --color-night-400: #494949;
+  --color-night-500: #1e1e20;
+  --color-night-600: #141414;
+  --color-night-700: #090909;
+
+  --color-day-100: #f7f5ff;
+  --color-day-200: #e4e4fb;
+  --color-day-300: #ddddf4;
+  --color-day-400: #d0d0e8;
+  --color-day-500: #9696e0;
+  --color-day-600: #9999cc;
+  --color-day-700: #6a44ff;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --text-mega: 5rem;
+  --text-mega--line-height: 5.25rem;
+  --text-mega--font-weight: 700;
+  --text-h1: 3.5rem;
+  --text-h1--line-height: 3.875rem;
+  --text-h1--font-weight: 700;
+  --text-h2: 2.5rem;
+  --text-h2--line-height: 3rem;
+  --text-h2--font-weight: 700;
+  --text-h3: 2rem;
+  --text-h3--line-height: 2.25rem;
+  --text-h3--font-weight: 700;
+  --text-h4: 1.75rem;
+  --text-h4--line-height: 2.25rem;
+  --text-h4--font-weight: 700;
+  --text-h5: 1.5rem;
+  --text-h5--line-height: 2rem;
+  --text-h5--font-weight: 700;
+  --text-h6: 1rem;
+  --text-h6--line-height: 1.25rem;
+  --text-h6--font-weight: 700;
+  --text-body-2xl: 2rem;
+  --text-body-2xl--line-height: 2.25rem;
+  --text-body-xl: 1.75rem;
+  --text-body-xl--line-height: 2.25rem;
+  --text-body-lg: 1.5rem;
+  --text-body-lg--line-height: 2rem;
+  --text-body-md: 1.25rem;
+  --text-body-md--line-height: 1.75rem;
+  --text-body-sm: 1rem;
+  --text-body-sm--line-height: 1.25rem;
+  --text-body-xs: 0.875rem;
+  --text-body-xs--line-height: 1.125rem;
+  --text-body-2xs: 0.75rem;
+  --text-body-2xs--line-height: 1rem;
+  --text-caption: 1.125rem;
+  --text-caption--line-height: 1.5rem;
+  --text-caption--font-weight: 600;
+  --text-button: 0.75rem;
+  --text-button--line-height: 1rem;
+  --text-button--font-weight: 700;
+
+  --transition-property-width: width;
+  --transition-property-display: display;
+  --transition-property-height: height;
+  --transition-property-visibility: visibility;
+
+  --shadow-round: 0 0 50px rgba(0, 0, 0, 0.5);
+  --shadow-bottom: 0 4px 2px -2px rgb(0 0 0 / 0.1);
+  --shadow-raise:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  --min-height-1\/4: 25%;
+  --min-height-1\/3: 33.33%;
+  --min-height-1\/2: 50%;
+  --min-height-2\/3: 66.66%;
+  --min-height-3\/4: 75%;
+
+  --min-width-1\/4: 25%;
+  --min-width-1\/3: 33.33%;
+  --min-width-1\/2: 50%;
+  --min-width-2\/3: 66.66%;
+  --min-width-3\/4: 75%;
+
+  --max-height-1\/4: 25%;
+  --max-height-1\/3: 33.33%;
+  --max-height-1\/2: 50%;
+  --max-height-2\/3: 66.66%;
+  --max-height-3\/4: 75%;
+
+  --container-1\/4: 25%;
+  --container-1\/3: 33.33%;
+  --container-1\/2: 50%;
+  --container-2\/3: 66.66%;
+  --container-3\/4: 75%;
+
+  --height-0_75: 0.1875rem;
+
+  --width-99: 99%;
+
+  --background-image-profile-hero: url('/mask.svg');
+  --background-image-checkered: repeating-conic-gradient(
+      #3d3d3d 0% 25%,
+      #ffffff 0% 50%
+    )
+    50% / 12px 12px;
+
+  --breakpoint-vl: 1200px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-2xl: 1800px;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 @layer base {
   :root {
@@ -470,7 +691,7 @@ textarea {
       }
 
       input[type='checkbox'] + span {
-        @apply inline-block border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground h-5 w-5 shrink-0 rounded-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+        @apply inline-block border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground h-5 w-5 shrink-0 rounded-sm border focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
       }
       input[type='checkbox']:checked + span {
         @apply bg-primary text-primary-foreground;

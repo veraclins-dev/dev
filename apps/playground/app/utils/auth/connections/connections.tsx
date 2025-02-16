@@ -22,7 +22,7 @@ export const ProviderConnectionForm = ({
       ) : null}
       <Button
         variant="outline"
-        className="items-center justify-center rounded-full border-0 p-0 focus:outline-none"
+        className="items-center justify-center rounded-full border-0 p-0 focus:outline-hidden"
         type="submit"
       >
         <span className="inline-flex items-center gap-1.5">
