@@ -46,7 +46,7 @@ export function getActive(editor: Editor): ActiveValue {
       'heading',
     );
     const currentNodeLevels = currentNodeHeadingAttributes.map(
-      (attrs) => attrs.level as Level | undefined,
+      (attrs) => attrs['level'] as Level | undefined,
     );
 
     const numCurrentNodeLevels = new Set(currentNodeLevels).size;

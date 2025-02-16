@@ -1,9 +1,17 @@
 {
   "name": "@veraclins-dev/remix-seo",
   "version": "0.0.1",
-  "type": "module",
   "main": "./index.js",
   "types": "./index.d.ts",
+  "type": "module",
+  "repository": "https://github.com/veraclins-dev/dev.git",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.js"
+    }
+  },
   "peerDependencies": {
     "react-router": "^7.1.5"
   },

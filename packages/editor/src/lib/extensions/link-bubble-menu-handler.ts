@@ -206,7 +206,7 @@ export const LinkBubbleMenuHandler = Extension.create<
             // the link text.)
             if (
               link &&
-              attrs.href &&
+              attrs['href'] &&
               this.storage.state === LinkMenuState.HIDDEN
             ) {
               this.editor.commands.openLinkBubbleMenu();

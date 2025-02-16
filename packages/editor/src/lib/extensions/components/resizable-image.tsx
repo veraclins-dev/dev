@@ -100,7 +100,7 @@ export function ResizableImageComponent({
         // only applied via `renderHTML` and not the `NodeView` renderer
         // (https://github.com/ueberdosis/tiptap/blob/6c34dec33ac39c9f037a0a72e4525f3fc6d422bf/packages/extension-text-align/src/text-align.ts#L43-L49),
         // so we have to do this manually/redundantly here.
-        textAlign: attrs.textAlign,
+        textAlign: attrs['textAlign'],
         width: '100%',
       }}
     >

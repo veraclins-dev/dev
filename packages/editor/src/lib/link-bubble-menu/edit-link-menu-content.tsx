@@ -40,7 +40,7 @@ export function EditLinkMenuContent({
   labels,
 }: EditLinkMenuContentProps) {
   const existingHref = editor.isActive('link')
-    ? (editor.getAttributes('link').href as string)
+    ? (editor.getAttributes('link')['href'] as string)
     : '';
   const linkRange = getMarkRange(
     editor.state.selection.$from,

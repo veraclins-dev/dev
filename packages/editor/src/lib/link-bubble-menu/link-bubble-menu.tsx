@@ -98,8 +98,9 @@ export function LinkBubbleMenu({
       'You must add the LinkBubbleMenuHandler extension to the useEditor `extensions` array in order to use this component!',
     );
   }
-  const handlerStorage = editor.storage
-    .linkBubbleMenuHandler as LinkBubbleMenuHandlerStorage;
+  const handlerStorage = editor.storage[
+    'linkBubbleMenuHandler'
+  ] as LinkBubbleMenuHandlerStorage;
 
   // Update the menu step if the bubble menu state has changed
   const menuState = handlerStorage.state;

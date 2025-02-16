@@ -61,7 +61,7 @@ export const ResizableImage = Image.extend<ResizableImageOptions>({
         // How to render this attribute in the HTML, so it's serialized/saved
         // (and in this case, affects visuals)
         renderHTML: (attributes) => ({
-          width: attributes.width as string | number | undefined,
+          width: attributes['width'] as string | number | undefined,
         }),
         // How to load this attribute from any existing HTML content
         parseHTML: (element) => element.getAttribute('width'),
@@ -80,12 +80,12 @@ export const ResizableImage = Image.extend<ResizableImageOptions>({
       aspectRatio: {
         default: null,
         renderHTML: (attributes) => {
-          if (!attributes.aspectRatio) {
+          if (!attributes['aspectRatio']) {
             return {};
           }
 
           return {
-            style: `aspect-ratio: ${attributes.aspectRatio as string}`,
+            style: `aspect-ratio: ${attributes['aspectRatio'] as string}`,
           };
         },
         parseHTML: (element) => element.style.aspectRatio,

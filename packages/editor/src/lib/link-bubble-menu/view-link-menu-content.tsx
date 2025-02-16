@@ -37,7 +37,7 @@ export function ViewLinkMenuContent({
     : '';
 
   const currentHref =
-    (editor.getAttributes('link').href as string | undefined) ?? '';
+    (editor.getAttributes('link')['href'] as string | undefined) ?? '';
 
   // If the user presses escape, we should cancel
   useKeyDown('Escape', onCancel);

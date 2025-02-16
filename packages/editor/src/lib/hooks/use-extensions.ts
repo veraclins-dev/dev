@@ -187,13 +187,13 @@ export function useExtensions({
             'a',
             mergeAttributes(
               {
-                href: `/${combinePaths(mentionPath, node.attrs.id)}`,
+                href: `/${combinePaths(mentionPath, node.attrs['id'])}`,
                 target: '_blank',
                 rel: 'noopener noreferrer nofollow',
               },
               options.HTMLAttributes,
             ),
-            `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`,
+            `${options.suggestion.char}${node.attrs['label'] ?? node.attrs['id']}`,
           ];
         },
       }),

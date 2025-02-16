@@ -39,7 +39,7 @@ export function insertImages({
   const imageContentToInsert: JSONContent[] = images
     .filter((imageAttrs) => !!imageAttrs.src)
     .map((imageAttrs) => ({
-      type: editor.schema.nodes.image.name,
+      type: editor.schema.nodes['image'].name,
       attrs: imageAttrs,
     }));
 

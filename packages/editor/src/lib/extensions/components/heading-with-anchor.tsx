@@ -61,7 +61,7 @@ export function HeadingWithAnchorComponent({ editor, node, extension }: Props) {
       // only applied via `renderHTML` and not the `NodeView` renderer
       // (https://github.com/ueberdosis/tiptap/blob/6c34dec33ac39c9f037a0a72e4525f3fc6d422bf/packages/extension-text-align/src/text-align.ts#L43-L49),
       // so we have to do this manually/redundantly here.
-      style={{ textAlign: node.attrs.textAlign }}
+      style={{ textAlign: node.attrs['textAlign'] }}
     >
       {/* We need a separate inner container here in order to (1) have the node
       view wrapper take up the full width of its parent div created by

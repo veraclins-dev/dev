@@ -43,8 +43,10 @@ export function MenuButtonHighlightColor({
       // explicit color is provided, and the "==thing==" syntax), fall back to
       // the provided defaultMarkColor
 
-      (editor.getAttributes('highlight').color as string | null | undefined) ||
-      defaultMarkColor
+      (editor.getAttributes('highlight')['color'] as
+        | string
+        | null
+        | undefined) || defaultMarkColor
     : '';
   return (
     <MenuButtonColorPicker
