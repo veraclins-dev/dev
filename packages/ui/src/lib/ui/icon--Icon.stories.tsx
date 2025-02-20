@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
+import { iconNames } from '../icons';
+
 import { Icon } from './icon';
 
 const meta: Meta<typeof Icon> = {
@@ -14,6 +16,16 @@ export const Primary: Story = {
   args: {
     name: 'add-photo',
     size: 'xl',
+  },
+  argTypes: {
+    name: {
+      options: [...iconNames].reverse(),
+      control: { type: 'select' },
+    },
+    size: {
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      control: { type: 'select' },
+    },
   },
 };
 

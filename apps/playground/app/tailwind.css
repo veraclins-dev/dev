@@ -1,5 +1,12 @@
 @import 'tailwindcss';
 
+@plugin 'tailwindcss-animate';
+@plugin 'tailwindcss-radix';
+
+@source '../../node_modules/@veraclins-dev/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}';
+
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   --color-border: hsl(var(--border));
 
@@ -188,6 +195,7 @@
   --container-1\/2: 50%;
   --container-2\/3: 66.66%;
   --container-3\/4: 75%;
+  --container-xl: 80rem;
 
   --height-0_75: 0.1875rem;
 
@@ -200,9 +208,37 @@
     )
     50% / 12px 12px;
 
-  --breakpoint-vl: 1200px;
-  --breakpoint-xl: 1440px;
-  --breakpoint-2xl: 1800px;
+  --breakpoint-vl: 80rem;
+  --breakpoint-xl: 90rem;
+  --breakpoint-2xl: 100rem;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: calc(var(--spacing) * 4);
+  width: 100%;
+
+  @variant sm {
+    max-width: var(--breakpoint-sm);
+  }
+  @variant md {
+    max-width: var(--breakpoint-md);
+  }
+  @variant lg {
+    max-width: var(--breakpoint-lg);
+  }
+  @variant vl {
+    max-width: var(--breakpoint-vl);
+  }
+
+  @variant xl {
+    padding-inline: calc(var(--spacing) * 6);
+    max-width: var(--breakpoint-xl);
+  }
+
+  @variant 2xl {
+    max-width: var(--breakpoint-2xl);
+  }
 }
 
 /*
@@ -231,7 +267,7 @@
     /* prefixed with foreground because it should look good on the background */
     --foreground-destructive: 4 83% 60%;
 
-    --background: 0 0% 96%;
+    --background: 0 0% 93%;
     --foreground: 0 0% 28%;
 
     --muted: 210 40% 96.1%;
@@ -322,7 +358,7 @@
     --input-foreground: 210 40% 98%;
     --input-invalid: 0 62.8% 30.6%;
 
-    --primary: 289 71% 34%;
+    --primary: 289 71% 54%;
     --primary-foreground: 210 40% 98%;
 
     --primary-light: 289 54% 24%;
@@ -334,7 +370,7 @@
     --secondary-light: 43 94% 53%;
     --secondary-light-foreground: 210 40% 98%;
 
-    --accent: 217.2 32.6% 25%;
+    --accent: 217.2 32.6% 30%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 60% 40%;
@@ -436,70 +472,6 @@ fieldset {
   @apply text-center;
 }
 
-.contained-spacing {
-  @apply px-4 md:px-6 xl:px-10;
-}
-
-.contained {
-  @apply container px-4 xl:px-6;
-}
-
-@media (min-width: 640px) {
-  .sm\:contained {
-    @apply contained;
-  }
-}
-@media (min-width: 768px) {
-  .md\:contained {
-    @apply contained;
-  }
-}
-@media (min-width: 1024px) {
-  .lg\:contained {
-    @apply contained;
-  }
-}
-@media (min-width: 1280px) {
-  .xl\:contained {
-    @apply contained;
-  }
-}
-@media (min-width: 1536px) {
-  .\32xl\:contained {
-    @apply contained;
-  }
-}
-
-.contained-all {
-  @apply contained py-3 md:py-4 xl:py-6;
-}
-
-@media (min-width: 640px) {
-  .sm\:contained-all {
-    @apply contained-all;
-  }
-}
-@media (min-width: 768px) {
-  .md\:contained-all {
-    @apply contained-all;
-  }
-}
-@media (min-width: 1024px) {
-  .lg\:contained-all {
-    @apply contained-all;
-  }
-}
-@media (min-width: 1280px) {
-  .xl\:contained-all {
-    @apply contained-all;
-  }
-}
-@media (min-width: 1536px) {
-  .\32xl\:contained-all {
-    @apply contained-all;
-  }
-}
-
 .main-height {
   @apply h-[calc(100vh-4rem)];
 }
@@ -509,14 +481,14 @@ fieldset {
 }
 
 .page-heading {
-  @apply text-lg font-semibold text-brand-light-purple md:text-xl;
+  @apply text-brand-light-purple text-lg font-semibold md:text-xl;
 }
 .page-sub-heading {
-  @apply text-sm text-brand-light-gray md:text-base;
+  @apply text-brand-light-gray text-sm md:text-base;
 }
 
 .upload-button {
-  @apply absolute bottom-2 right-2 border md:bottom-3 md:right-3 xl:bottom-4 xl:right-4;
+  @apply absolute right-2 bottom-2 border md:right-3 md:bottom-3 xl:right-4 xl:bottom-4;
 }
 
 .bg-brand-gradient {
@@ -691,7 +663,7 @@ textarea {
       }
 
       input[type='checkbox'] + span {
-        @apply inline-block border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground h-5 w-5 shrink-0 rounded-sm border focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+        @apply border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground inline-block h-5 w-5 shrink-0 rounded-sm border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50;
       }
       input[type='checkbox']:checked + span {
         @apply bg-primary text-primary-foreground;
@@ -700,11 +672,11 @@ textarea {
   }
 
   table {
-    @apply border-collapse table-fixed m-0 overflow-y-hidden overflow-x-auto relative block;
+    @apply relative m-0 block table-fixed border-collapse overflow-x-auto overflow-y-hidden;
 
     td,
     th {
-      @apply px-1.5 py-1 border border-border min-w-5 box-border relative align-top;
+      @apply border-border relative box-border min-w-5 border px-1.5 py-1 align-top;
       & > * {
         margin-bottom: 0;
         display: inline;
@@ -712,14 +684,14 @@ textarea {
     }
 
     th {
-      @apply bg-accent text-accent-foreground font-semibold text-left;
+      @apply bg-accent text-accent-foreground text-left font-semibold;
     }
   }
   .tableWrapper {
     @apply overflow-x-auto;
 
     table {
-      @apply overflow-hidden table;
+      @apply table overflow-hidden;
     }
   }
 
@@ -728,7 +700,7 @@ textarea {
       @apply cursor-col-resize;
     }
     .column-resize-handle {
-      @apply bg-primary w-1 absolute right-[-2px] top-0 bottom-[-2px] pointer-events-none z-50;
+      @apply bg-primary pointer-events-none absolute top-0 right-[-2px] bottom-[-2px] z-50 w-1;
     }
   }
   &[contenteditable='false'] {
@@ -741,7 +713,7 @@ textarea {
     }
   }
   a {
-    @apply text-primary hover:underline cursor-pointer;
+    @apply cursor-pointer hover:underline;
   }
   .collaboration-cursor__caret {
     border-left: 1px solid #0d0d0d;
@@ -894,9 +866,6 @@ textarea {
   width: var(--radix-popover-trigger-width);
   max-height: var(--radix-popover-content-available-height);
 }
-.tooltip-content {
-  width: var(--radix-tooltip-trigger-width);
-}
 
 .overflow-fade {
   /* overflow: hidden; */
@@ -946,6 +915,7 @@ textarea {
 }
 
 .readonly-editor {
+  @apply mb-2 md:mb-3;
   .ProseMirror {
     /* pointer-events: none; */
   }
