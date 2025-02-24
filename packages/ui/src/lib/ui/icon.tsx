@@ -55,6 +55,7 @@ const Component = forwardRef<SVGSVGElement, Omit<IconProps, 'tooltip'>>(
             name={name}
             size={size}
             className={className}
+            href={href}
             {...props}
             ref={ref}
           />
