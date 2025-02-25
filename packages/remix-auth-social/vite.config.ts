@@ -40,7 +40,12 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['@veraclins-dev/utils', 'remix-auth', 'twitter-api-v2'],
+      external: [
+        '@veraclins-dev/utils',
+        'remix-auth',
+        'twitter-api-v2',
+        /node:.*/,
+      ],
     },
   },
   test: {
