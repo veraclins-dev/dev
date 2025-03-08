@@ -46,6 +46,8 @@ export const ImageField = ({
     ...formProps,
   };
 
+  delete props.defaultValue;
+
   const input = useInputControl({
     initialValue: val,
     key: key ?? '',
