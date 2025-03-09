@@ -1,6 +1,6 @@
 import {
   type ComponentPropsWithoutRef,
-  type ElementRef,
+  type ComponentRef,
   forwardRef,
 } from 'react';
 import { type Except } from 'type-fest';
@@ -38,7 +38,7 @@ export interface ColorSwatchButtonProps
  * selecting a color preset.
  */
 export const ColorSwatchButton = forwardRef<
-  ElementRef<'button'>,
+  ComponentRef<'button'>,
   ColorSwatchButtonProps
 >(({ value: colorValue, label, padding, active, ...buttonProps }, ref) => {
   return (

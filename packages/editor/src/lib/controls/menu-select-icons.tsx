@@ -73,13 +73,14 @@ export const MenuSelectIcons = ({
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent
-          className="max-h-64 p-2 overflow-y-scroll"
+          className="max-h-64 min-w-fit p-2 overflow-y-scroll"
           onCloseAutoFocus={(e) => e.preventDefault()}
         >
           <DropdownMenuArrow />
           <DropdownMenuRadioGroup
             value={value}
             onValueChange={handleValueChange}
+            className="flex-row"
           >
             {options.map((option) => (
               <DropdownMenuRadioItem

@@ -32,28 +32,24 @@ const options: Option[] = [
     label: 'Left',
     shortcutKeys: ['mod', 'Shift', 'L'],
     icon: 'text-align-left',
-    className: 'pl-0 pr-0 py-0 my-1',
   },
   {
     value: 'center',
     label: 'Center',
     shortcutKeys: ['mod', 'Shift', 'E'],
     icon: 'text-align-center',
-    className: 'pl-0 pr-0 py-0 my-1',
   },
   {
     value: 'right',
     label: 'Right',
     shortcutKeys: ['mod', 'Shift', 'R'],
     icon: 'text-align-right',
-    className: 'pl-0 pr-0 py-0 my-1',
   },
   {
     value: 'justify',
     label: 'Justify',
     shortcutKeys: ['mod', 'Shift', 'J'],
     icon: 'text-align-justify',
-    className: 'pl-0 pr-0 py-0 my-1',
   },
 ];
 
