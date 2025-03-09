@@ -13,7 +13,7 @@ const Popover = PopoverPrimitive.Root;
 const PopoverAnchor = PopoverPrimitive.Anchor;
 
 const PopoverTrigger = forwardRef<
-  React.ElementRef<typeof PopoverPrimitive.Trigger>,
+  React.ComponentRef<typeof PopoverPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger> & {
     tooltip?: React.ReactNode;
   }
@@ -32,7 +32,7 @@ const PopoverTrigger = forwardRef<
 PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName;
 
 const PopoverArrow = forwardRef<
-  React.ElementRef<typeof PopoverPrimitive.Arrow>,
+  React.ComponentRef<typeof PopoverPrimitive.Arrow>,
   React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Arrow> & {
     inset?: boolean;
   }
@@ -46,7 +46,7 @@ const PopoverArrow = forwardRef<
 PopoverArrow.displayName = PopoverPrimitive.Arrow.displayName;
 
 const PopoverContent = forwardRef<
-  React.ElementRef<typeof PopoverPrimitive.Content>,
+  React.ComponentRef<typeof PopoverPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> & {
     arrow?: boolean;
   }

@@ -1,7 +1,7 @@
 import { ClientOnly } from 'remix-utils/client-only';
 
 import { EditorField } from '@veraclins-dev/editor';
-import { Select } from '@veraclins-dev/ui';
+import { Select, SelectField } from '@veraclins-dev/ui';
 import { humanize } from '@veraclins-dev/utils';
 
 import { SocialLogin } from './social-login';
@@ -21,10 +21,24 @@ export function NxWelcome({ title }: { title: string }) {
       </div>
       This is a playground for testing out new features and components.
       <SocialLogin />
-      <div className="">
-        <Select
-          placeholder="Select something"
-          options={['hell', 'there', 'and sone long stuff']}
+      <div className="max-w-sm">
+        <SelectField
+          placeholder="Select something nice and cool"
+          options={[
+            'hell',
+            'there',
+            'and sone long stuff',
+            {
+              label: (
+                <div className="flex flex-col">
+                  <span>hello</span>
+                  <span>there</span>
+                </div>
+              ),
+              value: 'hello',
+            },
+          ]}
+          multiple
         />
       </div>
       <ClientOnly

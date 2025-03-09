@@ -5,20 +5,24 @@ import { cn } from '@veraclins-dev/utils';
 
 import { getOptionLabel, getOptionValue } from '../../components';
 import { type ObjectOption, type Option } from '../../types';
+import {
+  activeItemClasses,
+  contentClasses,
+  itemClasses,
+} from '../dropdown-menu';
 import { Icon } from '../icon';
 import { inputClasses } from '../input';
 
 const SelectRoot = SelectPrimitive.Root;
 
 const SelectGroup = SelectPrimitive.Group;
-const SelectViewport = SelectPrimitive.Viewport;
 
 const SelectValue = SelectPrimitive.Value;
 const SelectScrollUpButton = SelectPrimitive.ScrollUpButton;
 const SelectScrollDownButton = SelectPrimitive.ScrollDownButton;
 
 const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Trigger>,
+  React.ComponentRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
   <SelectPrimitive.Trigger
@@ -37,15 +41,29 @@ const SelectTrigger = React.forwardRef<
 ));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
+const SelectViewport = React.forwardRef<
+  React.ComponentRef<typeof SelectPrimitive.Viewport>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Viewport>
+>(({ className, children, ...props }, ref) => (
+  <SelectPrimitive.Viewport
+    ref={ref}
+    {...props}
+    className={cn('gap-0.5 flex flex-col', className)}
+  >
+    {children}
+  </SelectPrimitive.Viewport>
+));
+SelectViewport.displayName = SelectPrimitive.Viewport.displayName;
+
 const SelectContent = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Content>,
+  React.ComponentRef<typeof SelectPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
 >(({ className, children, position = 'popper', ...props }, ref) => (
-  // <SelectPrimitive.Portal>
   <SelectPrimitive.Content
     ref={ref}
     className={cn(
-      'relative z-50 min-w-[8rem] overflow-hidden rounded-md bg-card text-inherit shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+      contentClasses,
+      'relative min-w-[var(--radix-select-trigger-width)]',
       position === 'popper' &&
         'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
       className,
@@ -53,22 +71,19 @@ const SelectContent = React.forwardRef<
     position={position}
     {...props}
   >
-    <SelectPrimitive.Viewport
+    <SelectViewport
       className={cn(
-        'p-1',
-        position === 'popper' &&
-          'h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]',
+        position === 'popper' && 'h-[var(--radix-select-trigger-height)]',
       )}
     >
       {children}
-    </SelectPrimitive.Viewport>
+    </SelectViewport>
   </SelectPrimitive.Content>
-  // </SelectPrimitive.Portal>
 ));
 SelectContent.displayName = SelectPrimitive.Content.displayName;
 
 const SelectLabel = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Label>,
+  React.ComponentRef<typeof SelectPrimitive.Label>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
@@ -80,30 +95,24 @@ const SelectLabel = React.forwardRef<
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
 const SelectItem = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Item>,
+  React.ComponentRef<typeof SelectPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
 >(({ className, children, ...props }, ref) => (
   <SelectPrimitive.Item
     ref={ref}
-    className={cn(
-      'relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[state=checked]:bg-accent',
-      className,
-    )}
+    className={cn(itemClasses, 'px-2', activeItemClasses, className)}
     {...props}
   >
-    {/* <span className=""> */}
-    <SelectPrimitive.ItemIndicator className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+    <SelectPrimitive.ItemIndicator className="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
       <Icon name="check" />
     </SelectPrimitive.ItemIndicator>
-    {/* </span> */}
-
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
 ));
 SelectItem.displayName = SelectPrimitive.Item.displayName;
 
 const SelectSeparator = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Separator>,
+  React.ComponentRef<typeof SelectPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
@@ -153,24 +162,11 @@ const Select = ({
       )}
     </SelectTrigger>
     <SelectContent className="border">
-      <SelectViewport>
-        {grouped ? (
-          options.map((group) => (
-            <SelectGroup key={group.id}>
-              <SelectLabel>{group.label}</SelectLabel>
-              {group.options.map((option) => (
-                <SelectItem
-                  key={getOptionValue(option)}
-                  value={getOptionValue(option)}
-                >
-                  {getOptionLabel(option)}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          ))
-        ) : (
-          <>
-            {options.map((option) => (
+      {grouped ? (
+        options.map((group) => (
+          <SelectGroup key={group.id}>
+            <SelectLabel>{group.label}</SelectLabel>
+            {group.options.map((option) => (
               <SelectItem
                 key={getOptionValue(option)}
                 value={getOptionValue(option)}
@@ -178,9 +174,20 @@ const Select = ({
                 {getOptionLabel(option)}
               </SelectItem>
             ))}
-          </>
-        )}
-      </SelectViewport>
+          </SelectGroup>
+        ))
+      ) : (
+        <>
+          {options.map((option) => (
+            <SelectItem
+              key={getOptionValue(option)}
+              value={getOptionValue(option)}
+            >
+              {getOptionLabel(option)}
+            </SelectItem>
+          ))}
+        </>
+      )}
     </SelectContent>
   </SelectRoot>
 );
