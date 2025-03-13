@@ -1,7 +1,13 @@
 import { ClientOnly } from 'remix-utils/client-only';
 
 import { EditorField } from '@veraclins-dev/editor';
-import { Select, SelectField } from '@veraclins-dev/ui';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  SelectField,
+} from '@veraclins-dev/ui';
 import { humanize } from '@veraclins-dev/utils';
 
 import { SocialLogin } from './social-login';
@@ -41,6 +47,35 @@ export function NxWelcome({ title }: { title: string }) {
           multiple
         />
       </div>
+      <Accordion
+        className="w-[300px] rounded-md bg-mauve6 shadow-[0_2px_10px] shadow-black/5"
+        type="multiple"
+        defaultValue={['item-1', 'item-2']}
+      >
+        <AccordionItem value="item-1">
+          <AccordionTrigger className="text-xl">
+            Is it accessible?
+          </AccordionTrigger>
+          <AccordionContent>
+            Yes. It adheres to the WAI-ARIA design pattern.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Is it unstyled?</AccordionTrigger>
+          <AccordionContent>
+            Yes. It's unstyled by default, giving you freedom over the look and
+            feel.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="item-3">
+          <AccordionTrigger>Can it be animated?</AccordionTrigger>
+          <AccordionContent>
+            Yes! You can animate the Accordion with CSS or JavaScript.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
       <ClientOnly
         fallback={<textarea rows={5} placeholder="Loading... some stuff" />}
       >
