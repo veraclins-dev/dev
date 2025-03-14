@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { cn } from '@veraclins-dev/utils';
 
 export type FieldContainerProps = {

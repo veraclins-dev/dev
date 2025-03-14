@@ -1,7 +1,5 @@
 import type { Preview } from '@storybook/react';
-import React from 'react';
 
-// @ts-expect-error - this is a local import
 import { IconProvider } from '@veraclins-dev/ui';
 
 // import href from '@veraclins-dev/ui/sprite.svg';

@@ -6,6 +6,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  Button,
   SelectField,
 } from '@veraclins-dev/ui';
 import { humanize } from '@veraclins-dev/utils';
@@ -76,6 +77,9 @@ export function NxWelcome({ title }: { title: string }) {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
+      <Button variant="primary-light" size="icon" className="rounded-md">
+        Click me
+      </Button>
       <ClientOnly
         fallback={<textarea rows={5} placeholder="Loading... some stuff" />}
       >
