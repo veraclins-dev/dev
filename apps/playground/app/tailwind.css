@@ -57,24 +57,6 @@
   --color-avatar: hsl(var(--avatar));
   --color-avatar-hover: hsl(var(--avatar-hover));
 
-  --color-brand-purple: hsl(var(--brand-purple));
-  --color-brand-light-purple: hsl(var(--brand-light-purple));
-  --color-brand-dark-purple: hsl(var(--brand-dark-purple));
-  --color-brand-gray: hsl(var(--brand-gray));
-  --color-brand-light-gray: hsl(var(--brand-light-gray));
-  --color-brand-white: hsl(var(--brand-white));
-  --color-brand-slate: hsl(var(--brand-slate));
-  --color-brand-off-white: hsl(var(--brand-off-white));
-  --color-brand-smoke: hsl(var(--brand-smoke));
-  --color-brand-yellow: hsl(var(--brand-yellow));
-  --color-brand-lightening: hsl(var(--brand-lightening));
-  --color-brand-silver: hsl(var(--brand-silver));
-  --color-brand-mercury: hsl(var(--brand-mercury));
-  --color-brand-red: hsl(var(--brand-red));
-  --color-brand-linked-in: hsl(201, 100%, 35%, 1);
-  --color-brand-instagram: hsl(0, 88%, 44%, 0.1608);
-  --color-brand-x: hsl(0, 0%, 0%, 1);
-
   --color-twitter-50: #e5f4fd;
   --color-twitter-100: #c8e9fb;
   --color-twitter-200: #a8dcfa;
@@ -315,21 +297,6 @@
 
     --avatar: 210 40% 90%;
     --avatar-hover: 210 40% 80%;
-
-    --brand-light-purple: 288 34% 48%;
-    --brand-dark-purple: 210 40% 96.1%;
-    --brand-purple: 289 71% 34%;
-    --brand-gray: 0 0% 24%;
-    --brand-light-gray: 0 0% 58%;
-    --brand-white: 0 0% 99%;
-    --brand-slate: 0 0% 75%;
-    --brand-off-white: 0 0% 98%;
-    --brand-smoke: 0 0% 96%;
-    --brand-yellow: 43 98% 69%;
-    --brand-lightening: 43 94% 53%;
-    --brand-silver: 0 0% 79%;
-    --brand-mercury: 0 0% 91%;
-    --brand-red: 343 80% 58%;
   }
 
   .dark {
@@ -383,21 +350,6 @@
 
     --avatar: 0 0% 40%;
     --avatar-hover: 0 0% 50%;
-
-    --brand-light-purple: 288 34% 68%;
-    --brand-dark-purple: 210 40% 96.1%;
-    --brand-purple: 289 71% 34%;
-    --brand-gray: 0 0% 24%;
-    --brand-light-gray: 0 0% 58%;
-    --brand-white: 0 0% 85%;
-    --brand-slate: 0 0% 75%;
-    --brand-off-white: 0 0% 98%;
-    --brand-smoke: 0 0% 96%;
-    --brand-yellow: 43 98% 69%;
-    --brand-lightening: 43 94% 53%;
-    --brand-silver: 0 0% 79%;
-    --brand-mercury: 0 0% 91%;
-    --brand-red: 343 80% 58%;
   }
 }
 
@@ -478,13 +430,6 @@ fieldset {
 
 .inner-height {
   @apply h-[calc(100vh-5rem)];
-}
-
-.page-heading {
-  @apply text-brand-light-purple text-lg font-semibold md:text-xl;
-}
-.page-sub-heading {
-  @apply text-brand-light-gray text-sm md:text-base;
 }
 
 .upload-button {

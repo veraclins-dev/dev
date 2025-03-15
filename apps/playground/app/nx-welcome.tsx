@@ -7,10 +7,16 @@ import {
   AccordionItem,
   AccordionTrigger,
   Button,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  Icon,
   SelectField,
 } from '@veraclins-dev/ui';
-import { humanize } from '@veraclins-dev/utils';
+import { cn, humanize } from '@veraclins-dev/utils';
 
+import { ModalDialog } from './components/modal';
 import { SocialLogin } from './social-login';
 
 export function NxWelcome({ title }: { title: string }) {
@@ -77,7 +83,48 @@ export function NxWelcome({ title }: { title: string }) {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <Button variant="primary-light" size="icon" className="rounded-md">
+      <ModalDialog
+        open={true}
+        onOpenChange={() => console.log('Modal opened')}
+        title="Sample Modal"
+        confirmButtonProps={{ variant: 'primary', children: 'Confirm' }}
+        cancelButtonProps={{ variant: 'secondary', children: 'Cancel' }}
+      >
+        some content
+        {/* Add additional modal content here if needed */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="outline"
+              className="items-center rounded-md px-3 w-fit"
+            >
+              <Icon name="dots-horizontal" size="md" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="md:min-w-[300px]">
+            <DropdownMenuItem>
+              <Button className="bg-brand-red hover:bg-brand-red w-full rounded-none sm:px-5 lg:px-8 xl:px-10">
+                Add as admin
+              </Button>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Button className="bg-brand-red hover:bg-brand-red w-full rounded-none sm:px-5 lg:px-8 xl:px-10">
+                Remove as admin
+              </Button>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Button className="bg-brand-red hover:bg-brand-red w-full rounded-none sm:px-5 lg:px-8 xl:px-10">
+                Suspend as admin
+              </Button>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </ModalDialog>
+      <Button
+        variant="primary-light"
+        size="icon"
+        className={cn('hover:bg-white', 'rounded-md hover:bg-destructive')}
+      >
         Click me
       </Button>
       <ClientOnly

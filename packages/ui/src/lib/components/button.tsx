@@ -34,7 +34,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
         ref={ref}
         className={cn(
-          rounded || props.size === 'icon' ? 'rounded-full' : 'rounded-full',
+          rounded || props.size === 'icon' ? 'rounded-full' : 'rounded-md',
           className,
         )}
       >
