@@ -12,7 +12,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   Icon,
+  LabeledTextField,
   SelectField,
+  TextField,
 } from '@veraclins-dev/ui';
 import { cn, humanize } from '@veraclins-dev/utils';
 
@@ -84,7 +86,7 @@ export function NxWelcome({ title }: { title: string }) {
         </AccordionItem>
       </Accordion>
       <ModalDialog
-        open={true}
+        open={false}
         onOpenChange={() => console.log('Modal opened')}
         title="Sample Modal"
         confirmButtonProps={{ variant: 'primary', children: 'Confirm' }}
@@ -120,6 +122,15 @@ export function NxWelcome({ title }: { title: string }) {
           </DropdownMenuContent>
         </DropdownMenu>
       </ModalDialog>
+      <div className="flex flex-col gap-1">
+        <TextField label="Hello" />
+        <TextField placeholder="interesting" />
+        <TextField />
+        <LabeledTextField
+          wrapperProps={{ className: 'flex-row items-center gap-4' }}
+          label="Hello"
+        />
+      </div>
       <Button
         variant="primary-light"
         size="icon"

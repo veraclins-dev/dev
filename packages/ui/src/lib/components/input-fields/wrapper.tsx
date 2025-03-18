@@ -5,12 +5,15 @@ import { ErrorList } from '../error-list';
 
 import { type BaseInputProps, useFieldProperties } from './utils';
 
-interface InputWrapperProps
+export interface InputWrapperProps
   extends React.HTMLAttributes<HTMLDivElement>,
     BaseInputProps {
   children: React.ReactNode;
   borderless?: boolean;
   wrapperRef?: React.Ref<HTMLDivElement>;
+  wrapperProps?: {
+    className?: string;
+  };
 }
 
 export const InputWrapper = ({
@@ -23,13 +26,18 @@ export const InputWrapper = ({
   field,
   wrapperRef,
   bgClass,
+  wrapperProps: { className: wrapperClassName, ...wrapperProps } = {},
 }: InputWrapperProps) => {
   const { errorId, id, errors } = useFieldProperties(field);
 
   return (
-    <div className={cn('relative flex w-full flex-col')} ref={wrapperRef}>
+    <div
+      {...wrapperProps}
+      className={cn('relative flex w-full flex-col gap-2', wrapperClassName)}
+      ref={wrapperRef}
+    >
       {(label || topText) && (
-        <div className="mb-1 flex justify-between">
+        <div className="flex justify-between">
           {label && (
             <Label
               {...labelProps}

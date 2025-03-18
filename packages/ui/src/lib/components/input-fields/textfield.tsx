@@ -11,13 +11,14 @@ import {
   type InputFieldProps,
   useFieldProperties,
 } from './utils';
-import { InputWrapper } from './wrapper';
+import { InputWrapper, type InputWrapperProps } from './wrapper';
 
 export interface TextFieldProps
   extends PropsWithoutRef<React.JSX.IntrinsicElements['input']>,
     BaseInputProps {
   inputRef?: React.Ref<HTMLInputElement>;
   type?: InputFieldProps['type'];
+  wrapperProps?: InputWrapperProps['wrapperProps'];
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
@@ -37,6 +38,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       bgClass = 'bg-input',
       inputClass,
       rightAddon,
+      wrapperProps,
       ...props
     },
     ref,
@@ -65,6 +67,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         topText={topText}
         wrapperRef={ref}
         bgClass={bgClass}
+        wrapperProps={wrapperProps}
       >
         {leftIcon && <Icon name={leftIcon} className="ml-3.5" size="sm" />}
         <Input
