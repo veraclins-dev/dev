@@ -1,12 +1,16 @@
-export interface ObjectOption {
-  label: React.ReactNode;
+export type Label = string | React.ReactNode;
+
+export interface ObjectOption<T extends Label = string> {
+  label: T;
   value: string;
   [key: string]: unknown;
 }
 
-export type Option = string | ObjectOption;
+export type Option<T extends Label = string> = string | ObjectOption<T>;
 
-export type OptionWithId = (ObjectOption & { id?: string }) | string;
+export type OptionWithId<T extends Label = string> =
+  | (ObjectOption<T> & { id?: string })
+  | string;
 
 export type Measurable = {
   getBoundingClientRect(): DOMRect;

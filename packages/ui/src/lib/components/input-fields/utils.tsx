@@ -9,7 +9,13 @@ import { useId } from 'react';
 import { slugify } from '@veraclins-dev/utils';
 
 import { type IconName } from '../../icons';
-import { type MaybeString, type Option, type OptionWithId } from '../../types';
+import {
+  type Label,
+  type MaybeString,
+  type ObjectOption,
+  type Option,
+  type OptionWithId,
+} from '../../types';
 
 type InputFieldProps = ReturnType<typeof conformGetInputProps>;
 
@@ -124,12 +130,14 @@ const useInputControlProps = <S extends Value = string>(
   };
 };
 
-const isStringOption = (option: Option): option is string =>
-  typeof option === 'string';
+const isStringOption = <T extends Label = string>(
+  option: Option<T>,
+): option is string => typeof option === 'string';
 
-const getOptionLabel = <T extends Option>(option: T) =>
-  isStringOption(option) ? option : option.label;
-const getOptionValue = <T extends Option>(option: T) =>
+const getOptionLabel = <T extends Label = string>(option: Option<T>) =>
+  isStringOption(option) ? option : (option.label as T);
+
+const getOptionValue = <T extends Label = string>(option: Option<T>) =>
   isStringOption(option) ? option : option.value;
 const getOptionId = (option: OptionWithId) =>
   isStringOption(option)

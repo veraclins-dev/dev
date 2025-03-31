@@ -6,6 +6,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  Autocomplete,
   Button,
   DropdownMenu,
   DropdownMenuContent,
@@ -129,6 +130,61 @@ export function NxWelcome({ title }: { title: string }) {
         <LabeledTextField
           wrapperProps={{ className: 'flex-row items-center gap-4' }}
           label="Hello"
+        />
+        <Autocomplete
+          options={[
+            { label: 'John Thompson', value: 'john-thompson' },
+            { label: 'Cyndi Lauper', value: 'cyndi-lauper' },
+            { label: 'Tom Cruise', value: 'tom-cruise' },
+            { label: 'Madonna', value: 'madonna' },
+            { label: 'Jerry Hall', value: 'jerry-hall' },
+            { label: 'Joan Collins', value: 'joan-collins' },
+            { label: 'Winona Ryder', value: 'winona-ryder' },
+            { label: 'Christina Applegate', value: 'christina-applegate' },
+            { label: 'Alyssa Milano', value: 'alyssa-milano' },
+            { label: 'Molly Ringwald', value: 'molly-ringwald' },
+            { label: 'Ally Sheedy', value: 'ally-sheedy' },
+            { label: 'Debbie Harry', value: 'debbie-harry' },
+            { label: 'Olivia Newton-John', value: 'olivia-newton-john' },
+            { label: 'Elton John', value: 'elton-john' },
+            { label: 'Michael J. Fox', value: 'michael-j-fox' },
+            { label: 'Axl Rose', value: 'axl-rose' },
+            { label: 'Emilio Estevez', value: 'emilio-estevez' },
+            { label: 'Ralph Macchio', value: 'ralph-macchio' },
+            { label: 'Lisa Bonet', value: 'lisa-bonet' },
+            {
+              label: 'Benicio Monserrate Rafael',
+              value: 'benicio-monserrate-rafael',
+            },
+          ]}
+        />
+        <Autocomplete
+          multiple
+          options={[
+            { label: 'John Thompson', value: 'john-thompson' },
+            { label: 'Cyndi Lauper', value: 'cyndi-lauper' },
+            { label: 'Tom Cruise', value: 'tom-cruise' },
+            { label: 'Madonna', value: 'madonna' },
+            { label: 'Jerry Hall', value: 'jerry-hall' },
+            { label: 'Joan Collins', value: 'joan-collins' },
+            { label: 'Winona Ryder', value: 'winona-ryder' },
+            { label: 'Christina Applegate', value: 'christina-applegate' },
+            { label: 'Alyssa Milano', value: 'alyssa-milano' },
+            { label: 'Molly Ringwald', value: 'molly-ringwald' },
+            { label: 'Ally Sheedy', value: 'ally-sheedy' },
+            { label: 'Debbie Harry', value: 'debbie-harry' },
+            { label: 'Olivia Newton-John', value: 'olivia-newton-john' },
+            { label: 'Elton John', value: 'elton-john' },
+            { label: 'Michael J. Fox', value: 'michael-j-fox' },
+            { label: 'Axl Rose', value: 'axl-rose' },
+            { label: 'Emilio Estevez', value: 'emilio-estevez' },
+            { label: 'Ralph Macchio', value: 'ralph-macchio' },
+            { label: 'Lisa Bonet', value: 'lisa-bonet' },
+            {
+              label: 'Benicio Monserrate Rafael',
+              value: 'benicio-monserrate-rafael',
+            },
+          ]}
         />
       </div>
       <Button

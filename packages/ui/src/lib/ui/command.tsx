@@ -28,8 +28,13 @@ const CommandInput = React.forwardRef<
     withIcon?: boolean;
   }
 >(({ className, withIcon, ...props }, ref) => (
-  <div className="flex flex-1 items-center gap-2" cmdk-input-wrapper="">
-    {withIcon && <Icon name="search" className="h-4 w-4 shrink-0 opacity-50" />}
+  <div
+    className="flex-1 flex w-0 min-w-30 items-center gap-2"
+    cmdk-input-wrapper=""
+  >
+    {withIcon && (
+      <Icon name="search" size="md" className="shrink-0 opacity-50" />
+    )}
     <CommandPrimitive.Input
       ref={ref}
       className={cn(inputClasses, className)}

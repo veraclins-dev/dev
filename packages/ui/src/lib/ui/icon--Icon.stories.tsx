@@ -15,7 +15,8 @@ type Story = StoryObj<typeof Icon>;
 export const Primary: Story = {
   args: {
     name: 'add-photo',
-    size: 'xl',
+    size: 'sm',
+    color: 'primary',
   },
   argTypes: {
     name: {

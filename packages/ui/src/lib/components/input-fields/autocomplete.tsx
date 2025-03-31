@@ -4,16 +4,20 @@ import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { cn, humanize, setReactInputValue } from '@veraclins-dev/utils';
 
 import { type Maybe, type Option } from '../../types';
-import { inputClasses } from '../../ui';
-import { Chip } from '../../ui/chip';
 import {
+  Chip,
   Command,
   CommandEmpty,
   CommandInput,
   CommandItem,
   CommandList,
-} from '../../ui/command';
-import { Popover, PopoverAnchor, PopoverContent } from '../../ui/popover';
+  Icon,
+  inputClasses,
+  Popover,
+  PopoverAnchor,
+  PopoverContent,
+} from '../../ui';
+import { IconButton } from '../icon-button';
 
 import { type TextFieldProps } from './textfield';
 import {
@@ -26,7 +30,7 @@ import {
 } from './utils';
 import { InputWrapper } from './wrapper';
 
-type Options = Option[];
+type Options = Option<string>[];
 
 export interface AutocompleteProps
   extends Omit<TextFieldProps, 'value' | 'onChange'> {
@@ -40,12 +44,19 @@ export interface AutocompleteProps
   shouldReset?: boolean;
 }
 
-const filter = (
-  options: Options,
-  value: string,
+const filter = ({
+  options,
+  value,
   keys = ['label', 'value'],
   disableSorting = false,
-) => {
+  multiple = false,
+}: {
+  options: Options;
+  value: string;
+  keys?: string[];
+  disableSorting?: boolean;
+  multiple?: boolean;
+}) => {
   const isObject = options.length && !isStringOption(options[0]);
 
   const config: MatchSorterOptions<Option> = {};
@@ -56,7 +67,7 @@ const filter = (
   if (disableSorting) {
     config.baseSort = () => 0;
   }
-  config.threshold = matchSorter.rankings.NO_MATCH;
+  config.threshold = !multiple ? matchSorter.rankings.NO_MATCH : undefined;
 
   return matchSorter(options, value, config);
 };
@@ -89,7 +100,6 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     const { errorId } = useFieldProperties(field);
     const mainRef = useRef<Maybe<HTMLInputElement>>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const anchorRef = useRef<Maybe<HTMLDivElement>>(null);
     const firstItemRef = useRef<Maybe<HTMLDivElement>>(null);
 
     const [localValue, setLocalValue] = useState<string>('');
@@ -110,11 +120,10 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       scrollIntoView(firstItemRef);
     };
 
-    const handleBlur: React.ChangeEventHandler<HTMLInputElement> = () => {
-      setOpen(false);
+    const handleBlur = () => {
       mainRef.current?.focus();
-
       mainRef.current?.blur();
+      setOpen(false);
     };
 
     const value = supplied ?? field?.initialValue ?? defaultValue ?? '';
@@ -130,7 +139,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
           inputRef.current?.focus();
         } else {
           setSelected([val]);
-          setLocalValue(getOptionLabel(val) as string);
+          setLocalValue(getOptionLabel(option));
           setOpen(false);
         }
       }
@@ -144,7 +153,6 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       if (value !== undefined) {
         setFormValue(value);
         setReactInputValue(mainRef.current, value);
-        // inputRef.current?.focus();
         onChange?.(value);
       }
     }, []);
@@ -153,6 +161,11 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       setSelected([]);
       setLocalValue('');
       changeValue('');
+    };
+
+    const clear = () => {
+      reset();
+      inputRef.current?.focus();
     };
 
     const handleKeyDown = useCallback(
@@ -168,7 +181,6 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
               });
             }
           }
-          // This is not a default behaviour of the <input /> field
           if (e.key === 'Escape') {
             input.blur();
           }
@@ -199,12 +211,13 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
         );
       }
 
-      const filteredOptions = filter(
-        filtered,
-        localValue,
-        ['label'],
+      const filteredOptions = filter({
+        options: filtered,
+        value: localValue,
         disableSorting,
-      );
+        multiple,
+      });
+
       setFilteredOptions(filteredOptions);
     }, [disableSorting, localValue, multiple, options, selected]);
 
@@ -246,6 +259,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       [selected],
     );
 
+    console.log('selected', selected, formValue, localValue);
+
     return (
       <div className="w-full">
         <InputWrapper
@@ -261,44 +276,66 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
             onKeyDown={handleKeyDown}
             className="overflow-visible bg-transparent flex"
             shouldFilter={false}
+            onBlur={handleBlur}
           >
-            <div className="flex flex-wrap">
-              {multiple && selected.length ? (
-                <div ref={anchorRef} className="flex flex-wrap gap-1 p-1">
-                  {selected.map((value) => {
-                    return (
-                      <Chip
-                        key={value}
-                        label={getOptionLabel(
-                          options.find(
-                            (option) => getOptionValue(option) === value,
-                          ) ?? '',
-                        )}
-                        onRemove={() => handleRemove(value)}
-                      />
-                    );
-                  })}
-                </div>
-              ) : null}
-              {canSelect && (
-                <CommandInput
-                  ref={inputRef}
-                  name={`${formProps.name}-input`}
-                  aria-describedby={errorId}
-                  aria-label={formProps.name ?? 'autocomplete-field'}
-                  aria-labelledby={formProps.id ?? 'autocomplete-field'}
-                  aria-invalid={errorId ? true : undefined}
-                  data-testid={formProps.id ?? 'autocomplete-field'}
-                  value={localValue}
-                  onValueChange={handleChange}
-                  onBlur={handleBlur}
-                  onFocus={handleFocus}
-                  onClick={handleFocus}
-                  placeholder={placeholder}
-                  className={inputClasses}
-                  disabled={!canSelect}
-                />
+            <div
+              className={cn(
+                inputClasses,
+                'flex w-full justify-between items-center py-1',
               )}
+            >
+              <div className="flex flex-wrap gap-1 flex-1">
+                {multiple && selected.length ? (
+                  <>
+                    {selected.map((value) => {
+                      return (
+                        <Chip
+                          key={value}
+                          label={getOptionLabel(
+                            options.find(
+                              (option) => getOptionValue(option) === value,
+                            ) ?? '',
+                          )}
+                          onRemove={() => handleRemove(value)}
+                        />
+                      );
+                    })}
+                  </>
+                ) : null}
+                {canSelect && (
+                  <CommandInput
+                    ref={inputRef}
+                    name={`${formProps.name}-input`}
+                    aria-describedby={errorId}
+                    aria-label={formProps.name ?? 'autocomplete-field'}
+                    aria-labelledby={formProps.id ?? 'autocomplete-field'}
+                    aria-invalid={errorId ? true : undefined}
+                    data-testid={formProps.id ?? 'autocomplete-field'}
+                    value={localValue}
+                    onValueChange={handleChange}
+                    // onBlur={handleBlur}
+                    onFocus={handleFocus}
+                    onClick={handleFocus}
+                    placeholder={placeholder}
+                    className="p-1"
+                    disabled={!canSelect}
+                  />
+                )}
+              </div>
+              <div className="flex gap-2">
+                {selected.length ? (
+                  <IconButton onClick={clear} variant="ghost" rounded>
+                    <Icon name="cross-2" className="opacity-70" />
+                  </IconButton>
+                ) : null}
+
+                <Icon
+                  name="chevron-down"
+                  data-state={open ? 'open' : 'closed'}
+                  className={cn('opacity-70', { 'rotate-180': open })}
+                  onClick={handleFocus}
+                />
+              </div>
             </div>
             <input
               {...props}
@@ -310,10 +347,9 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
               className="h-0 w-0 border-none p-0"
               readOnly
             />
-
             <Popover open={open && canSelect}>
               <PopoverAnchor
-                virtualRef={inputRef as React.RefObject<HTMLInputElement>}
+                virtualRef={ref as React.RefObject<HTMLInputElement>}
               />
               <PopoverContent
                 onOpenAutoFocus={(e) => e.preventDefault()}
@@ -326,24 +362,22 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
                       ? `Select a value for "${humanize(dependsOn)}" first`
                       : 'No options found'}
                   </CommandEmpty>
-                  {filteredOptions.map((option, index) => {
-                    return (
-                      <CommandItem
-                        key={getOptionValue(option)}
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                        }}
-                        onSelect={() => handleSelect(option)}
-                        className={cn('cursor-pointer px-3 py-2', {
-                          'bg-accent text-input-foreground': isSelected(option),
-                        })}
-                        ref={index === 0 ? firstItemRef : undefined}
-                      >
-                        {getOptionLabel(option)}
-                      </CommandItem>
-                    );
-                  })}
+                  {filteredOptions.map((option, index) => (
+                    <CommandItem
+                      key={getOptionValue(option)}
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                      onSelect={() => handleSelect(option)}
+                      className={cn('cursor-pointer px-3 py-2 my-0.5', {
+                        'bg-accent text-input-foreground': isSelected(option),
+                      })}
+                      ref={index === 0 ? firstItemRef : undefined}
+                    >
+                      {getOptionLabel(option)}
+                    </CommandItem>
+                  ))}
                 </CommandList>
               </PopoverContent>
             </Popover>

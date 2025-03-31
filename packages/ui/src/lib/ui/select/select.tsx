@@ -35,7 +35,7 @@ const SelectTrigger = React.forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <Icon className="opacity-50" name="chevron-down" />
+      <Icon className="opacity-70" name="chevron-down" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -124,8 +124,8 @@ const SelectSeparator = React.forwardRef<
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
 type GroupOptions = {
-  label: ObjectOption['label'];
-  options: Option[];
+  label: ObjectOption<React.ReactNode>['label'];
+  options: Option<React.ReactNode>[];
   id: string;
 };
 
@@ -135,7 +135,7 @@ export type SelectProps = SelectPrimitive.SelectProps & {
   showLabel?: boolean;
 } & (
     | {
-        options: Option[];
+        options: Option<React.ReactNode>[];
         grouped?: false;
       }
     | {

@@ -30,7 +30,7 @@ function Chip({ className, variant, onRemove, label, ...props }: ChipProps) {
       <span className="align-middle">{label}</span>
       <Icon
         className={cn(
-          'flex cursor-pointer items-center justify-center p-0.5 hover:!border-transparent focus:outline-none',
+          'flex cursor-pointer opacity-60 items-center justify-center p-0.5 hover:!border-transparent focus:outline-none',
         )}
         onClick={onRemove}
         name="cancel"
