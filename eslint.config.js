@@ -83,9 +83,4 @@ module.exports = [
       '@typescript-eslint/no-redeclare': 'off',
     },
   },
-  {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    // Override or add rules here
-    rules: {},
-  },
 ];
