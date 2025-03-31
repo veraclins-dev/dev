@@ -100,6 +100,8 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     const { errorId } = useFieldProperties(field);
     const mainRef = useRef<Maybe<HTMLInputElement>>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    const anchorRef = useRef<Maybe<HTMLDivElement>>(null);
+
     const firstItemRef = useRef<Maybe<HTMLDivElement>>(null);
 
     const [localValue, setLocalValue] = useState<string>('');
@@ -259,8 +261,6 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       [selected],
     );
 
-    console.log('selected', selected, formValue, localValue);
-
     return (
       <div className="w-full">
         <InputWrapper
@@ -279,6 +279,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
             onBlur={handleBlur}
           >
             <div
+              ref={anchorRef}
               className={cn(
                 inputClasses,
                 'flex w-full justify-between items-center py-1',
@@ -349,12 +350,11 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
             />
             <Popover open={open && canSelect}>
               <PopoverAnchor
-                virtualRef={ref as React.RefObject<HTMLInputElement>}
+                virtualRef={anchorRef as React.RefObject<HTMLDivElement>}
               />
               <PopoverContent
                 onOpenAutoFocus={(e) => e.preventDefault()}
                 className="p-2"
-                sideOffset={10}
               >
                 <CommandList className="max-h-52 overflow-auto">
                   <CommandEmpty>
