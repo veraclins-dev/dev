@@ -295,7 +295,6 @@ export const iconNames = [
   'height',
   'heart',
   'heart-filled',
-  'heart copy',
   'heading',
   'hashtag',
   'hand',
