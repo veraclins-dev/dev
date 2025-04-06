@@ -29,6 +29,9 @@ export function RichTextContent({ className, readonly }: RichTextContentProps) {
 
         className,
       )}
+      data-testid={
+        readonly ? 'rich-text-content-readonly' : 'rich-text-content'
+      }
     >
       <EditorContent editor={editor} />
     </div>
