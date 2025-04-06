@@ -188,6 +188,7 @@ export const iconNames = [
   'pencil-1',
   'pause',
   'pause-circle',
+  'passkey',
   'paper-plane',
   'paper-clip',
   'paper-airplane',
