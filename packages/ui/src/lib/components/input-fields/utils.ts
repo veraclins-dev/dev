@@ -12,7 +12,6 @@ import { type IconName } from '../../icons';
 import {
   type Label,
   type MaybeString,
-  type ObjectOption,
   type Option,
   type OptionWithId,
 } from '../../types';
@@ -35,26 +34,38 @@ type BaseInputProps<S = MaybeString> = {
   inputClass?: string;
 };
 
-type GetPropsOptions = {
-  field?: Params[0];
+type GetPropsOptions<S = MaybeString> = {
+  field?: FieldMetadata<S>;
   name?: InputFieldProps['name'];
   id?: InputFieldProps['id'];
 } & Partial<Omit<Params[1], 'ariaAttributes'>>;
 
-const getInputProps = ({ type = 'text', field, name, id }: GetPropsOptions) => {
+const getInputProps = <S = MaybeString>({
+  type = 'text',
+  field,
+  name,
+  id,
+}: GetPropsOptions<S>): InputFieldProps & {
+  'aria-label'?: string;
+} => {
   if (!field) {
     return {
       type,
       key: undefined,
       defaultValue: undefined,
-      name,
+      name: name ?? '',
       'aria-label': name,
-      id,
+      id: id ?? '',
+      form: '',
     };
   }
+
   const props = conformGetInputProps(field, { ariaAttributes: true, type });
   if (!props.name) {
     props.name = field.name ?? name;
+  }
+  if (props.maxLength) {
+    delete props.maxLength;
   }
   if (!props.id) {
     props.id = field.id ?? id;

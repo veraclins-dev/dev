@@ -69,7 +69,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         bgClass={bgClass}
         wrapperProps={wrapperProps}
       >
-        {leftIcon && <Icon name={leftIcon} className="ml-3.5" size="sm" />}
+        {leftIcon && <Icon name={leftIcon} className="ml-3" size="sm" />}
         <Input
           {...props}
           {...inputProps}
@@ -85,14 +85,14 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           <Icon
             size="md"
             name={passwordIcon}
-            className="mr-3.5 cursor-pointer"
+            className="mr-3 cursor-pointer"
             onClick={toggleHidden}
           />
         ) : rightIcon ? (
           <Icon
             size="md"
             name={rightIcon}
-            className="mr-3.5 cursor-pointer"
+            className="mr-3 cursor-pointer"
             onClick={toggleHidden}
           />
         ) : null}
