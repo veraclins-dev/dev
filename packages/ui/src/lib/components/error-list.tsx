@@ -18,9 +18,12 @@ export function ErrorList({
   const errorsToRender = (errors ?? []).filter(Boolean);
   return errorsToRender.length ? (
     <ul id={id} className={cn('flex flex-col gap-1', className)}>
-      {errorsToRender.map((e) => (
-        <li key={e} className={cn('text-sm text-red-500', errorItemClassName)}>
-          {e}
+      {errorsToRender.map((error) => (
+        <li
+          key={error}
+          className={cn('text-sm text-destructive', errorItemClassName)}
+        >
+          {error}
         </li>
       ))}
     </ul>
