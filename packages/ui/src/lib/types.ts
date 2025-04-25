@@ -1,14 +1,14 @@
-export type Label = string | React.ReactNode;
+export type InputLabel = string | React.ReactNode;
 
-export interface ObjectOption<T extends Label = string> {
+export interface ObjectOption<T extends InputLabel = string> {
   label: T;
   value: string;
   [key: string]: unknown;
 }
 
-export type Option<T extends Label = string> = string | ObjectOption<T>;
+export type Option<T extends InputLabel = string> = string | ObjectOption<T>;
 
-export type OptionWithId<T extends Label = string> =
+export type OptionWithId<T extends InputLabel = string> =
   | (ObjectOption<T> & { id?: string })
   | string;
 

@@ -10,7 +10,7 @@ import { slugify } from '@veraclins-dev/utils';
 
 import { type IconName } from '../../icons';
 import {
-  type Label,
+  type InputLabel,
   type MaybeString,
   type Option,
   type OptionWithId,
@@ -141,14 +141,14 @@ const useInputControlProps = <S extends Value = string>(
   };
 };
 
-const isStringOption = <T extends Label = string>(
+const isStringOption = <T extends InputLabel = string>(
   option: Option<T>,
 ): option is string => typeof option === 'string';
 
-const getOptionLabel = <T extends Label = string>(option: Option<T>) =>
+const getOptionLabel = <T extends InputLabel = string>(option: Option<T>) =>
   isStringOption(option) ? option : (option.label as T);
 
-const getOptionValue = <T extends Label = string>(option: Option<T>) =>
+const getOptionValue = <T extends InputLabel = string>(option: Option<T>) =>
   isStringOption(option) ? option : option.value;
 const getOptionId = (option: OptionWithId) =>
   isStringOption(option)
