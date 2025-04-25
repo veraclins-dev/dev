@@ -20,3 +20,4 @@ export * from './skeleton';
 export * from './status-button';
 export * from './textarea';
 export * from './tooltip';
+export * from './typography';
