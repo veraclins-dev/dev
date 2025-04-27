@@ -23,7 +23,7 @@ export function FieldContainer({
       className={cn(
         'rounded-lg rounded-t-sm border w-full',
         {
-          'outline-none': focused,
+          'outline-hidden': focused,
           'cursor-not-allowed opacity-50': disabled,
         },
         className,

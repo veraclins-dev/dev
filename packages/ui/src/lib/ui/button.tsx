@@ -5,14 +5,14 @@ import { forwardRef } from 'react';
 import { cn } from '@veraclins-dev/utils';
 
 export const buttonDefaultClasses =
-  'cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50';
+  'cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50';
 
 export const buttonVariant = {
   default:
     'border bg-accent hover:bg-accent/80 border-accent hover:border-accent/80',
   destructive:
     'border text-destructive-foreground bg-destructive hover:bg-destructive/90 border-destructive hover:border-destructive/90',
-  outline: 'border hover:border-brand-lightening hover:text-brand-lightening',
+  outline: 'border hover:border-primary/80 hover:text-primary/80',
   primary:
     'border text-primary-foreground bg-primary hover:bg-primary/80 border-primary hover:border-primary/80',
   'primary-light':

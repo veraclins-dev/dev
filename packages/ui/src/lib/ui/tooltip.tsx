@@ -61,6 +61,7 @@ const ComposedTooltip = <P extends { disabled?: boolean; className?: string }>({
 
 export {
   ComposedTooltip,
+  type ComposedTooltipProps,
   Tooltip,
   TooltipArrow,
   TooltipContent,

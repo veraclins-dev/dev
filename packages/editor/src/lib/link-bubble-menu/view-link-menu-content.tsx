@@ -51,7 +51,7 @@ export function ViewLinkMenuContent({
           href={currentHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:brand-light-purple text-primary hover:underline"
+          className="hover:text-primary/80 text-primary hover:underline"
         >
           {/* We truncate in the middle, since the beginning and end of a URL are often the most
             important parts */}
@@ -61,13 +61,13 @@ export function ViewLinkMenuContent({
       <div className="flex justify-end gap-x-2">
         <Button
           onClick={onEdit}
-          // variant="outline"
+          variant="primary-light"
           className="rounded-md px-3 py-1"
         >
           {labels?.viewLinkEditButtonLabel ?? 'Edit'}
         </Button>
         <Button
-          className="rounded-md border border-brand-red bg-brand-red px-3 py-1 text-brand-white hover:bg-brand-red md:bg-transparent md:text-foreground"
+          className="rounded-md border border-red-500 px-3 py-1 hover:text-red-500 hover:border-red-500 md:bg-transparent text-foreground"
           variant="outline"
           onClick={onRemove}
         >

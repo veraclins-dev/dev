@@ -56,7 +56,7 @@ export const InputWrapper = ({
         aria-invalid={errorId ? true : undefined}
         data-state={errorId ? 'error' : undefined}
         className={cn(
-          'flex w-full flex-wrap items-center rounded-md border text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+          'flex w-full flex-wrap items-center rounded-md border text-sm placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
           borderless ? 'border-0' : 'border',
           bgClass,
           'data-[state=error]:border data-[state=error]:border-destructive',

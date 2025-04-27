@@ -117,7 +117,7 @@ export function EditLinkMenuContent({
       !currentHrefValue.startsWith('mailto:') &&
       !currentHrefValue.startsWith('tel:')
     ) {
-      currentHrefValue = `http://${currentHrefValue}`;
+      currentHrefValue = `https://${currentHrefValue}`;
     }
     // URL-encode any characters that wouldn't be valid. We use `encodeurl`
     // instead of the builtin `encodeURI` so that if there are any
@@ -193,6 +193,7 @@ export function EditLinkMenuContent({
           type="submit"
           className="rounded-md px-5 py-1"
           disabled={isSubmitting}
+          variant="primary-light"
         >
           {labels?.editLinkSaveButtonLabel ?? 'Save'}
         </Button>

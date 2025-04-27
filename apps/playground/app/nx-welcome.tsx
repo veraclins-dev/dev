@@ -106,17 +106,17 @@ export function NxWelcome({ title }: { title: string }) {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="md:min-w-[300px]">
             <DropdownMenuItem>
-              <Button className="bg-brand-red hover:bg-brand-red w-full rounded-none sm:px-5 lg:px-8 xl:px-10">
+              <Button className="bg-red-500 hover:bg-red-500 w-full rounded-none sm:px-5 lg:px-8 xl:px-10">
                 Add as admin
               </Button>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Button className="bg-brand-red hover:bg-brand-red w-full rounded-none sm:px-5 lg:px-8 xl:px-10">
+              <Button className="bg-red-500 hover:bg-red-500 w-full rounded-none sm:px-5 lg:px-8 xl:px-10">
                 Remove as admin
               </Button>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Button className="bg-brand-red hover:bg-brand-red w-full rounded-none sm:px-5 lg:px-8 xl:px-10">
+              <Button className="bg-red-500 hover:bg-red-500 w-full rounded-none sm:px-5 lg:px-8 xl:px-10">
                 Suspend as admin
               </Button>
             </DropdownMenuItem>
