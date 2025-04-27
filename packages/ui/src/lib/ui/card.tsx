@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Typography, type TypographyProps } from './typography';
+
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -9,7 +11,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      'rounded-lg border bg-card text-card-foreground shadow-sm',
+      'bg-card flex w-full flex-col gap-y-3 py-4 rounded-md',
       className,
     )}
     {...props}
@@ -23,30 +25,22 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('flex flex-col space-y-1.5 p-6', className)}
+    className={cn('flex flex-col gap-y-1 px-4', className)}
     {...props}
   />
 ));
 CardHeader.displayName = 'CardHeader';
 
-const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, children, ...props }, ref) => (
-  <h3
-    ref={ref}
-    className={cn(
-      'text-2xl font-semibold leading-none tracking-tight',
-      className,
-    )}
-    {...props}
-  >
-    {children}
-  </h3>
-));
+const CardTitle = React.forwardRef<HTMLParagraphElement, TypographyProps>(
+  ({ children, ...props }, ref) => (
+    <Typography variant="h3" ref={ref} {...props}>
+      {children}
+    </Typography>
+  ),
+);
 CardTitle.displayName = 'CardTitle';
 
-const CardDescription = React.forwardRef<
+const CardSubtitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
@@ -56,13 +50,13 @@ const CardDescription = React.forwardRef<
     {...props}
   />
 ));
-CardDescription.displayName = 'CardDescription';
+CardSubtitle.displayName = 'CardSubtitle';
 
 const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
+  <div ref={ref} className={cn('px-4', className)} {...props} />
 ));
 CardContent.displayName = 'CardContent';
 
@@ -72,17 +66,10 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('flex items-center p-6 pt-0', className)}
+    className={cn('flex items-center px-4', className)}
     {...props}
   />
 ));
 CardFooter.displayName = 'CardFooter';
 
-export {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-};
+export { Card, CardContent, CardFooter, CardHeader, CardSubtitle, CardTitle };

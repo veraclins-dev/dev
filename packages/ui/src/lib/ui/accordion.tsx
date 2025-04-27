@@ -17,16 +17,24 @@ AccordionItem.displayName = 'AccordionItem';
 
 const AccordionTrigger = forwardRef<
   React.ComponentRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
+    align?: 'left' | 'right';
+  }
+>(({ className, children, align = 'right', ...props }, ref) => (
   <AccordionPrimitive.Header className={cn('flex text-xl', className)}>
     <AccordionPrimitive.Trigger
       ref={ref}
-      className="flex flex-1 items-center justify-between font-medium transition-all [&[data-state=open]>svg]:rotate-180"
+      className={cn(
+        'flex flex-1 items-center gap-x-2 font-medium transition-all',
+        align === 'left'
+          ? '[&[data-state=open]>svg]:rotate-90'
+          : 'flex-row-reverse justify-between [&[data-state=open]>svg]:rotate-180',
+      )}
+      data-align={align}
       {...props}
     >
+      <Icon name={align === 'left' ? 'chevron-right' : 'chevron-down'} />
       {children}
-      <Icon name="chevron-down" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
