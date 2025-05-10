@@ -9,8 +9,14 @@ export const createMarkup = (content = '') => {
   };
 };
 
-export const stripHTMLTags = (string: string) =>
-  string.replace(/<.+?>|[\r\n]/g, ' ').replace(/&nbsp;/g, ' ');
+export const stripHTMLTags = (htmlContent: string) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlContent, 'text/html');
+
+  const textContent = doc.body.textContent || '';
+
+  return textContent.trim();
+};
 
 export function closestParent(
   el: HTMLElement | null,
