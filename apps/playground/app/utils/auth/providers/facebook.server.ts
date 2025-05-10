@@ -1,5 +1,5 @@
 import { createId as cuid } from '@paralleldrive/cuid2';
-import { redirect } from '@remix-run/node';
+import { redirect } from 'react-router';
 
 import { FacebookStrategy } from '@veraclins-dev/remix-auth-social';
 import { invariant } from '@veraclins-dev/utils';

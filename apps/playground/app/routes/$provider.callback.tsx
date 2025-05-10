@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs } from '@remix-run/node';
+import { type LoaderFunctionArgs } from 'react-router';
 
 import { authenticator } from '../utils/auth/auth.server';
 import { providerLabels, ProviderName } from '../utils/auth/connections/common';
@@ -10,8 +10,15 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const authResult = await authenticator
     .authenticate(providerName, request)
     .then(
-      (data) => ({ success: true, data }) as const,
-      (error) => ({ success: false, error, data: null }) as const,
+      (data) => (({
+        success: true,
+        data
+      }) as const),
+      (error) => (({
+        success: false,
+        error,
+        data: null
+      }) as const),
     );
 
   if (!authResult.success) {

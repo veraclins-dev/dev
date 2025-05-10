@@ -1,4 +1,4 @@
-import { createCookieSessionStorage } from '@remix-run/node';
+import { createCookieSessionStorage } from 'react-router';
 
 import { FacebookProvider } from '../providers/facebook.server';
 import { GitHubProvider } from '../providers/github.server';
