@@ -3,6 +3,6 @@ const baseConfig = require('../../eslint.config.js');
 module.exports = [
   ...baseConfig,
   {
-    ignores: ['build', 'public/build'],
+    ignores: ['build', 'public/build', '.react-router'],
   },
 ];

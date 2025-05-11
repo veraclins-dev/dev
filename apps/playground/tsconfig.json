@@ -1,15 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2019"
-    ],
-    "types": [
-      "@react-router/node",
-      "vite/client"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ES2019"],
+    "types": ["@react-router/node", "vite/client"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -23,7 +16,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true
   },
-  "include": [],
+  "include": [".react-router/types/**/*"],
   "files": [],
   "references": [
     {

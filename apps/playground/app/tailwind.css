@@ -3,7 +3,7 @@
 @plugin 'tailwindcss-animate';
 @plugin 'tailwindcss-radix';
 
-@source '../../node_modules/@veraclins-dev/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}';
+@source '../../../packages/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}';
 
 @custom-variant dark (&:is(.dark *));
 

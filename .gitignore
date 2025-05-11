@@ -47,3 +47,5 @@ storybook-static
 vitest.config.*.timestamp*
 
 .env.local
+
+.react-router/
