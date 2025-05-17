@@ -4,7 +4,7 @@ import { type OptionWithId } from '../../types';
 import {
   RadioGroup,
   RadioGroupItem,
-  type RadioGroupProps,
+  // type RadioGroupProps,
 } from '../../ui/radio-group';
 
 import { type TextFieldProps } from './textfield';
@@ -20,9 +20,14 @@ import { InputWrapper } from './wrapper';
 
 type Options = OptionWithId[];
 
+type RadioGroupProps = React.ComponentProps<typeof RadioGroup>;
+
 interface RadioFieldProps
   extends Omit<RadioGroupProps, 'onChange' | 'defaultChecked'>,
-    Pick<TextFieldProps, 'label' | 'labelProps' | 'field' | 'inputClass'> {
+    Pick<
+      TextFieldProps,
+      'label' | 'labelProps' | 'field' | 'inputClass' | 'wrapperClassName'
+    > {
   options: Options;
   value?: string;
   defaultValue?: string;
@@ -44,6 +49,7 @@ const RadioField = forwardRef<HTMLDivElement, RadioFieldProps>(
       value,
       onChange,
       shouldReset,
+      wrapperClassName,
       ...props
     },
     ref,
@@ -61,12 +67,13 @@ const RadioField = forwardRef<HTMLDivElement, RadioFieldProps>(
 
     return (
       <InputWrapper
-        borderless
         className={className}
         field={field}
         label={label}
         labelProps={labelProps}
         wrapperRef={ref}
+        wrapperClassName={wrapperClassName}
+        plain
       >
         <RadioGroup
           {...props}
@@ -77,11 +84,11 @@ const RadioField = forwardRef<HTMLDivElement, RadioFieldProps>(
           }}
           onFocus={(event) => {
             control?.focus();
-            props.onFocus?.(event);
+            props['onFocus']?.(event);
           }}
           onBlur={(event) => {
             control?.blur();
-            props.onBlur?.(event);
+            props['onBlur']?.(event);
           }}
           defaultValue={defaultValue}
           className={inputClass}

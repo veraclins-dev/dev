@@ -13,7 +13,6 @@ type Story = StoryObj<typeof InputWrapper>;
 export const Primary = {
   args: {
     children: '',
-    borderless: false,
     wrapperRef: '',
   },
 };
@@ -21,7 +20,6 @@ export const Primary = {
 export const Heading: Story = {
   args: {
     children: '',
-    borderless: false,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

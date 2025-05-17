@@ -355,6 +355,7 @@ export const iconNames = [
   'face',
   'face-smile',
   'face-frown',
+  'eye-slash',
   'eye-open',
   'eye-none',
   'eye-dropper',

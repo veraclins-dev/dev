@@ -2,15 +2,16 @@ import type { LinksFunction, MetaFunction } from 'react-router';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
 import { IconProvider } from '@veraclins-dev/ui';
-import sprite from '@veraclins-dev/ui/sprite.svg';
+import sprites from '@veraclins-dev/ui/sprite.svg';
 
 import twStyles from './tailwind.css?url';
 
-export const meta: MetaFunction = () => [
-  {
-    title: 'New Remix App',
-  },
-];
+export const meta: MetaFunction = () => [{ title: 'New Remix App' }];
+
+const sprite = sprites.replace(
+  /\/sprite.svg$/,
+  '/sprite.svg?time=' + Date.now(),
+);
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: twStyles },
@@ -30,14 +31,14 @@ export const links: LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark h-screen">
+    <html lang="en" className="dark h-screen w-screen">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body className="bg-background h-full text-sm text-foreground p-3 w-full">
+      <body className="bg-background h-full text-sm text-foreground w-full">
         {children}
         <ScrollRestoration />
         <Scripts />

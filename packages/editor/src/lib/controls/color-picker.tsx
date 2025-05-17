@@ -157,7 +157,6 @@ export function ColorPicker({
         defaultValue={value || ''}
         inputRef={inputRef}
         spellCheck={false}
-        borderless={false}
         className="mt-2"
         onChange={(event) => {
           const newColor = event.target.value;

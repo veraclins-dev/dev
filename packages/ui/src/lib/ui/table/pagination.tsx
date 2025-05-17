@@ -3,9 +3,9 @@ import { type Table } from '@tanstack/react-table';
 import { Button } from '../../components';
 import { Icon } from '../icon';
 import {
+  Select,
   SelectContent,
   SelectItem,
-  SelectRoot as Select,
   SelectTrigger,
   SelectValue,
 } from '../select';

@@ -12,7 +12,7 @@ import {
   CommandItem,
   CommandList,
   Icon,
-  inputClasses,
+  inputClassOverrides,
   Popover,
   PopoverAnchor,
   PopoverContent,
@@ -84,8 +84,6 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       maxOptions,
       dependsOn,
       field,
-      borderless,
-      bgClass = 'bg-input',
       inputClass,
       defaultValue,
       value: supplied,
@@ -93,6 +91,7 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
       disableSorting,
       placeholder,
       shouldReset,
+      wrapperClassName,
       ...props
     },
     ref,
@@ -262,128 +261,127 @@ export const Autocomplete = forwardRef<HTMLDivElement, AutocompleteProps>(
     );
 
     return (
-      <div className="w-full">
-        <InputWrapper
-          borderless={borderless}
-          className={className}
-          field={field}
-          label={label}
-          labelProps={labelProps}
-          wrapperRef={ref}
-          bgClass={bgClass}
+      <InputWrapper
+        className={className}
+        field={field}
+        label={label}
+        labelProps={labelProps}
+        wrapperRef={ref}
+        wrapperClassName={wrapperClassName}
+      >
+        <Command
+          onKeyDown={handleKeyDown}
+          className="overflow-visible bg-transparent flex"
+          shouldFilter={false}
+          onBlur={handleBlur}
         >
-          <Command
-            onKeyDown={handleKeyDown}
-            className="overflow-visible bg-transparent flex"
-            shouldFilter={false}
-            onBlur={handleBlur}
+          <div
+            ref={anchorRef}
+            className={cn('flex w-full h-full justify-between items-center')}
           >
-            <div
-              ref={anchorRef}
-              className={cn(
-                inputClasses,
-                'flex w-full justify-between items-center py-1',
-              )}
-            >
-              <div className="flex flex-wrap gap-1 flex-1">
-                {multiple && selected.length ? (
-                  <>
-                    {selected.map((value) => {
-                      return (
-                        <Chip
-                          key={value}
-                          label={getOptionLabel(
-                            options.find(
-                              (option) => getOptionValue(option) === value,
-                            ) ?? '',
-                          )}
-                          onRemove={() => handleRemove(value)}
-                        />
-                      );
-                    })}
-                  </>
-                ) : null}
-                {canSelect && (
-                  <CommandInput
-                    ref={inputRef}
-                    name={`${formProps.name}-input`}
-                    aria-describedby={errorId}
-                    aria-label={formProps.name ?? 'autocomplete-field'}
-                    aria-labelledby={formProps.id ?? 'autocomplete-field'}
-                    aria-invalid={errorId ? true : undefined}
-                    data-testid={formProps.id ?? 'autocomplete-field'}
-                    value={localValue}
-                    onValueChange={handleChange}
-                    // onBlur={handleBlur}
-                    onFocus={handleFocus}
-                    onClick={handleFocus}
-                    placeholder={placeholder}
-                    className="p-1"
-                    disabled={!canSelect}
-                  />
-                )}
-              </div>
-              <div className="flex gap-2">
-                {selected.length ? (
-                  <IconButton onClick={clear} variant="ghost" rounded>
-                    <Icon name="cross-2" className="opacity-70" />
-                  </IconButton>
-                ) : null}
-
-                <Icon
-                  name="chevron-down"
-                  data-state={open ? 'open' : 'closed'}
-                  className={cn('opacity-70', { 'rotate-180': open })}
+            <div className="flex flex-1 flex-wrap gap-1">
+              {multiple && selected.length ? (
+                <>
+                  {selected.map((value) => {
+                    return (
+                      <Chip
+                        key={value}
+                        label={getOptionLabel(
+                          options.find(
+                            (option) => getOptionValue(option) === value,
+                          ) ?? '',
+                        )}
+                        onRemove={() => handleRemove(value)}
+                      />
+                    );
+                  })}
+                </>
+              ) : null}
+              {canSelect && (
+                <CommandInput
+                  ref={inputRef}
+                  name={`${formProps.name}-input`}
+                  aria-describedby={errorId}
+                  aria-label={formProps.name ?? 'autocomplete-field'}
+                  aria-labelledby={formProps.id ?? 'autocomplete-field'}
+                  data-testid={formProps.id ?? 'autocomplete-field'}
+                  aria-invalid={errorId ? true : undefined}
+                  value={localValue}
+                  onValueChange={handleChange}
+                  // onBlur={handleBlur}
+                  onFocus={handleFocus}
                   onClick={handleFocus}
+                  placeholder={placeholder}
+                  className={inputClassOverrides}
+                  disabled={!canSelect}
                 />
-              </div>
+              )}
             </div>
-            <input
-              {...props}
-              {...formProps}
-              ref={mainRef}
-              key={key}
-              value={formValue}
-              type="text"
-              className="h-0 w-0 border-none p-0"
-              readOnly
-            />
-            <Popover open={open && canSelect}>
-              <PopoverAnchor
-                virtualRef={anchorRef as React.RefObject<HTMLDivElement>}
+            <div className="flex gap-2">
+              {selected.length ? (
+                <IconButton
+                  onClick={clear}
+                  variant="ghost"
+                  className="p-1"
+                  rounded
+                >
+                  <Icon name="cross-2" className="opacity-70" />
+                </IconButton>
+              ) : null}
+
+              <Icon
+                name="chevron-down"
+                data-state={open ? 'open' : 'closed'}
+                className={cn('opacity-70', { 'rotate-180': open })}
+                onClick={handleFocus}
               />
-              <PopoverContent
-                onOpenAutoFocus={(e) => e.preventDefault()}
-                className="p-2"
-              >
-                <CommandList className="max-h-52 overflow-auto">
-                  <CommandEmpty>
-                    {dependent
-                      ? `Select a value for "${humanize(dependsOn)}" first`
-                      : 'No options found'}
-                  </CommandEmpty>
-                  {filteredOptions.map((option, index) => (
-                    <CommandItem
-                      key={getOptionValue(option)}
-                      onMouseDown={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                      }}
-                      onSelect={() => handleSelect(option)}
-                      className={cn('cursor-pointer px-3 py-2 my-0.5', {
-                        'bg-accent text-input-foreground': isSelected(option),
-                      })}
-                      ref={index === 0 ? firstItemRef : undefined}
-                    >
-                      {getOptionLabel(option)}
-                    </CommandItem>
-                  ))}
-                </CommandList>
-              </PopoverContent>
-            </Popover>
-          </Command>
-        </InputWrapper>
-      </div>
+            </div>
+          </div>
+          <input
+            {...props}
+            {...formProps}
+            ref={mainRef}
+            key={key}
+            value={formValue}
+            type="text"
+            className="h-0 w-0 border-none p-0"
+            readOnly
+          />
+          <Popover open={open && canSelect}>
+            <PopoverAnchor
+              virtualRef={anchorRef as React.RefObject<HTMLDivElement>}
+            />
+            <PopoverContent
+              onOpenAutoFocus={(e) => e.preventDefault()}
+              className="p-2"
+            >
+              <CommandList className="max-h-52 overflow-auto">
+                <CommandEmpty>
+                  {dependent
+                    ? `Select a value for "${humanize(dependsOn)}" first`
+                    : 'No options found'}
+                </CommandEmpty>
+                {filteredOptions.map((option, index) => (
+                  <CommandItem
+                    key={getOptionValue(option)}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                    onSelect={() => handleSelect(option)}
+                    className={cn('cursor-pointer px-3 py-2 my-0.5', {
+                      'bg-accent': isSelected(option),
+                    })}
+                    ref={index === 0 ? firstItemRef : undefined}
+                  >
+                    {getOptionLabel(option)}
+                  </CommandItem>
+                ))}
+              </CommandList>
+            </PopoverContent>
+          </Popover>
+        </Command>
+      </InputWrapper>
     );
   },
 );

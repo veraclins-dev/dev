@@ -18,9 +18,9 @@ const customErrorMap: z.ZodErrorMap = (error, ctx) => {
 
 z.setErrorMap(customErrorMap);
 
-export type ParserType = 'sync' | 'async';
+type ParserType = 'sync' | 'async';
 
-export function formatZodError(error: ZodError) {
+function formatZodError(error: ZodError) {
   if (!error || typeof error.format !== 'function') {
     throw new Error(
       'The argument to formatZodError must be a zod error with error.format()',
@@ -91,11 +91,11 @@ const validateZodSchemaAsync =
     }
   };
 
-export type Values<S extends z.ZodType> = z.TypeOf<S> & {
+type Values<S extends z.ZodType> = z.TypeOf<S> & {
   [key: string]: string | string[];
 };
 
-export type ReturnType<S extends z.ZodType> =
+type ReturnType<S extends z.ZodType> =
   | {
       values: Values<S>;
       errors?: undefined;
@@ -107,9 +107,9 @@ export type ReturnType<S extends z.ZodType> =
       success: false;
     };
 
-export type ValidateReturnType<S extends z.ZodType<unknown>> = ReturnType<S>;
+type ValidateReturnType<S extends z.ZodType<unknown>> = ReturnType<S>;
 
-export function validateZodSchema<S extends z.ZodType<unknown>>(
+function validateZodSchema<S extends z.ZodType<unknown>>(
   schema?: S,
   parserType: ParserType = 'async',
 ) {
@@ -120,4 +120,21 @@ export function validateZodSchema<S extends z.ZodType<unknown>>(
   }
 }
 
-export { z };
+type SchemaType = z.ZodTypeAny;
+type SchemaTypeWithId = z.ZodType & { id: string | number };
+
+type SchemaInfer<T extends SchemaTypeWithId = SchemaTypeWithId> = z.infer<T>;
+
+export {
+  formatZodError,
+  type ParserType,
+  type ReturnType,
+  type SchemaInfer,
+  type SchemaType,
+  SchemaTypeWithId,
+  type ValidateReturnType,
+  validateZodSchema,
+  type Values,
+  z,
+  type ZodError,
+};

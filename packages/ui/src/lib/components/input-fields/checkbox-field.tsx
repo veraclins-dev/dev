@@ -17,10 +17,14 @@ import {
   useFieldProperties,
   useInputControlProps,
 } from './utils';
+import { InputWrapper } from './wrapper';
 
 interface CheckboxFieldProps
   extends Omit<CheckboxProps, 'onChange' | 'onCheckedChange'>,
-    Pick<TextFieldProps, 'label' | 'labelProps' | 'inputClass'> {
+    Pick<
+      TextFieldProps,
+      'label' | 'labelProps' | 'inputClass' | 'wrapperClassName'
+    > {
   field?: FieldMetadata<CheckedValue>;
   label?: string | React.ReactNode;
   labelProps?: React.JSX.IntrinsicElements['label'];
@@ -45,6 +49,7 @@ export function CheckboxField({
   name,
   onChange,
   className,
+  wrapperClassName,
   ...others
 }: CheckboxFieldProps) {
   // delete field?.initialValue;
@@ -59,9 +64,14 @@ export function CheckboxField({
     ...formProps,
   };
 
-  const { errorId, id, errors } = useFieldProperties(field);
+  const { errorId, id } = useFieldProperties(field);
   return (
-    <div className={cn('mb-2', className)}>
+    <InputWrapper
+      className={className}
+      field={field}
+      wrapperClassName={wrapperClassName}
+      plain
+    >
       <div className="flex items-center gap-2">
         <Checkbox
           {...props}
@@ -90,11 +100,6 @@ export function CheckboxField({
           {label}
         </Label>
       </div>
-      {errorId ? (
-        <div className="py-1">
-          <ErrorList id={errorId} errors={errors} />
-        </div>
-      ) : null}
-    </div>
+    </InputWrapper>
   );
 }

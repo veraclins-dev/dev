@@ -1,7 +1,5 @@
 import { forwardRef, type PropsWithoutRef } from 'react';
 
-import { cn } from '@veraclins-dev/utils';
-
 import { Textarea } from '../../ui/textarea';
 
 import {
@@ -27,12 +25,11 @@ export const TextareaField = forwardRef<HTMLDivElement, TextareaFieldProps>(
       className,
       rows = 4,
       rightInlay,
-      borderless = true,
       inputRef,
       field,
-      bgClass = 'bg-input',
       inputClass,
       name,
+      wrapperClassName,
       ...props
     },
     ref,
@@ -42,14 +39,13 @@ export const TextareaField = forwardRef<HTMLDivElement, TextareaFieldProps>(
 
     return (
       <InputWrapper
-        borderless={borderless}
         className={className}
         field={field}
         label={label}
         labelProps={labelProps}
         topText={topText}
         wrapperRef={ref}
-        bgClass={bgClass}
+        wrapperClassName={wrapperClassName}
       >
         <Textarea
           {...props}
@@ -60,7 +56,7 @@ export const TextareaField = forwardRef<HTMLDivElement, TextareaFieldProps>(
           id={id}
           rows={rows}
           ref={inputRef}
-          className={cn(bgClass, inputClass)}
+          className={inputClass}
         />
         {rightInlay ? (
           <span className="absolute bottom-0.5 right-0.5">{rightInlay}</span>

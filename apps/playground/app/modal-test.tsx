@@ -24,11 +24,7 @@ export const TestModal = ({
       confirmButtonProps={{
         children: 'Suspend',
       }}
-      title={
-        <p className="text-2xl text-primary-light-foreground">
-          Suspend {username}
-        </p>
-      }
+      title={<p className="text-2xl">Suspend {username}</p>}
     >
       <div className="flex flex-col items-center justify-center space-y-5">
         <p className="flex w-5/6 flex-col space-y-2 text-center text-sm">

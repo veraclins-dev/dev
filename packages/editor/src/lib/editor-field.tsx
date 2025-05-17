@@ -7,6 +7,7 @@ import {
   type TextareaFieldProps,
   useFieldProperties,
 } from '@veraclins-dev/ui';
+import { cn } from '@veraclins-dev/utils';
 
 import { Editor, type EditorProps } from './editor';
 
@@ -32,12 +33,11 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
       defaultValue,
       className = 'editor-field',
       placeholder = 'Type something here',
-      bgClass,
-      borderless,
       field,
       topText,
       editorProps,
       shouldReset,
+      wrapperClassName,
       ...rest
     },
     ref,
@@ -72,14 +72,13 @@ const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
 
     return (
       <InputWrapper
-        borderless={borderless}
-        className={className}
+        className={cn('px-0 py-0', className)}
+        wrapperClassName={wrapperClassName}
         field={field}
         label={label}
         labelProps={labelProps}
         topText={topText}
         wrapperRef={ref}
-        bgClass={bgClass}
       >
         <textarea
           {...rest}

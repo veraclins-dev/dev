@@ -2,8 +2,8 @@ import { forwardRef, type PropsWithoutRef, useCallback, useState } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { Icon } from '../../ui/icon';
-import { Input } from '../../ui/input';
+import { Icon, Input, inputClassOverrides } from '../../ui';
+import { IconButton } from '../icon-button';
 
 import {
   type BaseInputProps,
@@ -18,7 +18,6 @@ export interface TextFieldProps
     BaseInputProps {
   inputRef?: React.Ref<HTMLInputElement>;
   type?: InputFieldProps['type'];
-  wrapperProps?: InputWrapperProps['wrapperProps'];
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
@@ -32,44 +31,41 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       labelProps,
       topText,
       className,
-      borderless = true,
       inputRef,
       field,
-      bgClass = 'bg-input',
       inputClass,
       rightAddon,
-      wrapperProps,
+      wrapperClassName,
       ...props
     },
     ref,
   ) => {
     const isPassword = type === 'password';
     const [hidden, setHidden] = useState(isPassword);
-    const toggleHidden: React.MouseEventHandler<SVGElement> = useCallback(
-      (e) => {
-        e.preventDefault();
-        setHidden(!hidden);
-      },
-      [hidden],
-    );
+    const toggleHidden: React.MouseEventHandler<HTMLButtonElement> =
+      useCallback(
+        (e) => {
+          e.preventDefault();
+          setHidden(!hidden);
+        },
+        [hidden],
+      );
     const { errorId, id } = useFieldProperties(field);
-    const passwordIcon = hidden ? 'eye-open' : 'eye-none';
+    const passwordIcon = hidden ? 'eye-open' : 'eye-slash';
 
     const { key, ...inputProps } = getInputProps({ field, type, name });
 
     return (
       <InputWrapper
-        borderless={borderless}
         className={className}
         field={field}
         label={label}
         labelProps={labelProps}
         topText={topText}
         wrapperRef={ref}
-        bgClass={bgClass}
-        wrapperProps={wrapperProps}
+        wrapperClassName={wrapperClassName}
       >
-        {leftIcon && <Icon name={leftIcon} className="ml-3" size="sm" />}
+        {leftIcon && <Icon name={leftIcon} className="mr-3" size="sm" />}
         <Input
           {...props}
           {...inputProps}
@@ -79,23 +75,20 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           aria-describedby={errorId}
           aria-invalid={errorId ? true : undefined}
           type={isPassword && !hidden ? 'text' : type}
-          className={cn(bgClass, inputClass)}
+          className={cn(inputClass, inputClassOverrides)}
         />
-        {isPassword ? (
-          <Icon
-            size="md"
-            name={passwordIcon}
-            className="mr-3 cursor-pointer"
-            onClick={toggleHidden}
-          />
-        ) : rightIcon ? (
-          <Icon
-            size="md"
-            name={rightIcon}
-            className="mr-3 cursor-pointer"
-            onClick={toggleHidden}
-          />
-        ) : null}
+        <IconButton
+          onClick={toggleHidden}
+          variant="ghost"
+          className="p-1"
+          rounded
+        >
+          {isPassword ? (
+            <Icon size="md" name={passwordIcon} className="cursor-pointer" />
+          ) : rightIcon ? (
+            <Icon size="md" name={rightIcon} className="cursor-pointer" />
+          ) : null}
+        </IconButton>
         {rightAddon}
       </InputWrapper>
     );

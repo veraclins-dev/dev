@@ -1,5 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
+import { inputContainerClass } from '../../ui';
 import { Label } from '../../ui/label';
 import { ErrorList } from '../error-list';
 
@@ -9,30 +10,25 @@ export interface InputWrapperProps
   extends React.HTMLAttributes<HTMLDivElement>,
     BaseInputProps {
   children: React.ReactNode;
-  borderless?: boolean;
   wrapperRef?: React.Ref<HTMLDivElement>;
-  wrapperProps?: {
-    className?: string;
-  };
+  plain?: boolean;
 }
 
 export const InputWrapper = ({
   className,
-  borderless = true,
   children,
   label,
   labelProps,
   topText,
   field,
   wrapperRef,
-  bgClass,
-  wrapperProps: { className: wrapperClassName, ...wrapperProps } = {},
+  wrapperClassName,
+  plain,
 }: InputWrapperProps) => {
   const { errorId, id, errors } = useFieldProperties(field);
 
   return (
     <div
-      {...wrapperProps}
       className={cn('relative flex w-full flex-col gap-2', wrapperClassName)}
       ref={wrapperRef}
     >
@@ -55,13 +51,7 @@ export const InputWrapper = ({
       <div
         aria-invalid={errorId ? true : undefined}
         data-state={errorId ? 'error' : undefined}
-        className={cn(
-          'flex w-full flex-wrap items-center rounded-md border text-sm placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-          borderless ? 'border-0' : 'border',
-          bgClass,
-          'data-[state=error]:border data-[state=error]:border-destructive',
-          className,
-        )}
+        className={cn(!plain && inputContainerClass, className)}
       >
         {children}
       </div>

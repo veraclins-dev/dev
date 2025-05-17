@@ -27,11 +27,10 @@ type BaseInputProps<S = MaybeString> = {
   name?: string;
   label?: string | React.ReactNode;
   topText?: string | React.ReactNode;
-  borderless?: boolean;
   field?: FieldMetadata<S>;
   labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>;
-  bgClass?: string;
   inputClass?: string;
+  wrapperClassName?: string;
 };
 
 type GetPropsOptions<S = MaybeString> = {

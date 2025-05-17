@@ -3,8 +3,8 @@ import { forwardRef, type PropsWithoutRef } from 'react';
 import { cn } from '@veraclins-dev/utils';
 
 import {
-  inputClasses,
-  Select,
+  ComposedSelect,
+  inputClassOverrides,
   type SelectProps as BaseSelectProps,
 } from '../../ui';
 
@@ -34,13 +34,12 @@ export const SelectField = forwardRef<HTMLDivElement, Props>(
       labelProps,
       topText,
       className,
-      borderless = true,
       field,
-      bgClass = 'bg-input',
       inputClass,
       defaultValue,
       value,
       dir,
+      wrapperClassName,
       ...props
     },
     ref,
@@ -53,19 +52,18 @@ export const SelectField = forwardRef<HTMLDivElement, Props>(
 
     return (
       <InputWrapper
-        borderless={borderless}
         className={className}
         field={field}
+        wrapperClassName={wrapperClassName}
         label={label}
         labelProps={{
           ...labelProps,
           htmlFor: name,
         }}
         topText={topText}
-        bgClass={bgClass}
         wrapperRef={ref}
       >
-        <Select
+        <ComposedSelect
           {...props}
           {...formProps}
           {...controlProps}
@@ -73,7 +71,7 @@ export const SelectField = forwardRef<HTMLDivElement, Props>(
           value={controlProps.value}
           aria-invalid={errorId ? true : undefined}
           aria-describedby={errorId}
-          className={cn('w-full', inputClasses, bgClass, inputClass)}
+          className={cn('w-full', inputClassOverrides, inputClass)}
           defaultValue={defaultValue}
           dir={dir}
         />

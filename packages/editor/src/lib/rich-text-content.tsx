@@ -25,7 +25,7 @@ export function RichTextContent({ className, readonly }: RichTextContentProps) {
       className={cn(
         readonly
           ? 'readonly-editor'
-          : 'h-full rounded-lg rounded-t-none bg-input px-3 py-2 overflow-y-auto',
+          : 'h-full rounded-lg rounded-t-none px-3 py-2 overflow-y-auto',
 
         className,
       )}

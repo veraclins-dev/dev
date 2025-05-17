@@ -5,22 +5,19 @@ import { forwardRef } from 'react';
 import { cn } from '@veraclins-dev/utils';
 
 export const buttonDefaultClasses =
-  'cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50';
+  "cursor-pointer inline-flex items-center justify-center gap-2 px-3 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive";
 
 export const buttonVariant = {
-  default:
-    'border bg-accent hover:bg-accent/80 border-accent hover:border-accent/80',
+  default: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
   destructive:
-    'border text-destructive-foreground bg-destructive hover:bg-destructive/90 border-destructive hover:border-destructive/90',
-  outline: 'border hover:border-primary/80 hover:text-primary/80',
-  primary:
-    'border text-primary-foreground bg-primary hover:bg-primary/80 border-primary hover:border-primary/80',
-  'primary-light':
-    'border bg-primary-light text-primary-light-foreground hover:bg-primary/40 hover:text-primary-foreground/80 border-primary-light hover:border-primary-light/80',
+    'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+  outline:
+    'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',
+  light: 'bg-primary/40 text-primary-foreground/90 hover:bg-primary/60',
   secondary:
-    'border text-secondary-foreground bg-secondary hover:bg-secondary/80 border-secondary hover:border-secondary/80',
+    'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
   'secondary-light':
-    'border text-secondary-light-foreground bg-secondary-light hover:bg-secondary/50 hover:text-secondary-foreground/80 border-secondary-light hover:border-secondary-light/80',
+    'bg-secondary/40 text-secondary-foreground/90 hover:bg-secondary/60',
   ghost: 'hover:bg-accent hover:border-accent hover:text-accent-foreground',
   link: 'text-primary underline-offset-4 hover:underline',
   'primary-outline': 'border border-primary text-primary hover:bg-primary/80',
@@ -31,13 +28,12 @@ const buttonVariants = cva(buttonDefaultClasses, {
   variants: {
     variant: buttonVariant,
     size: {
-      default: 'p-1',
-      wide: 'px-24 py-5',
+      default: 'px-4 py-2',
       sm: 'py-2 px-3',
       lg: 'py-3 px-8',
       xl: 'py-4 px-12',
       pill: 'px-12 py-3 leading-3',
-      icon: 'p-3 w-fit rounded-full',
+      icon: 'size-9',
     },
   },
   defaultVariants: {

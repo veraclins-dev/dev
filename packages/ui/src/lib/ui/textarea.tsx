@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { inputClasses } from './input';
+import { inputClasses } from './styles';
 
 export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 

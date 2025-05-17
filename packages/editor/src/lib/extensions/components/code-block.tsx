@@ -4,7 +4,7 @@ import {
   NodeViewWrapper,
 } from '@tiptap/react';
 
-import { Select } from '@veraclins-dev/ui';
+import { ComposedSelect } from '@veraclins-dev/ui';
 
 interface Props extends NodeViewProps {
   node: NodeViewProps['node'] & {
@@ -31,7 +31,7 @@ export const CodeBlock = ({
   return (
     <NodeViewWrapper className="relative p-1.5">
       {options.editable && (
-        <Select
+        <ComposedSelect
           defaultValue={defaultLanguage}
           value={defaultLanguage}
           onValueChange={(value) => updateAttributes({ language: value })}

@@ -1,73 +1,76 @@
+'use client';
+
 import * as PopoverPrimitive from '@radix-ui/react-popover';
-import { forwardRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type Maybe, type Measurable, type WithTrigger } from '../types';
+import {
+  type ComponentWithTooltip,
+  type Maybe,
+  type Measurable,
+  type WithTrigger,
+} from '../types';
 
-import { contentClasses } from './dropdown-menu';
+import { popupContentClasses } from './styles';
 import { ComposedTooltip } from './tooltip';
 
-const Popover = PopoverPrimitive.Root;
+function Popover({
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Root>) {
+  return <PopoverPrimitive.Root data-slot="popover" {...props} />;
+}
 
-const PopoverAnchor = PopoverPrimitive.Anchor;
-
-const PopoverTrigger = forwardRef<
-  React.ComponentRef<typeof PopoverPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger> & {
-    tooltip?: React.ReactNode;
-  }
->(({ tooltip, ...props }, ref) =>
-  tooltip ? (
+function PopoverTrigger({
+  tooltip,
+  ...props
+}: ComponentWithTooltip<typeof PopoverPrimitive.Trigger>) {
+  return tooltip ? (
     <ComposedTooltip
       Trigger={PopoverPrimitive.Trigger}
       TriggerProps={props}
       content={tooltip}
-      triggerRef={ref}
     />
   ) : (
-    <PopoverPrimitive.Trigger ref={ref} {...props} />
-  ),
-);
-PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName;
+    <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
+  );
+}
 
-const PopoverArrow = forwardRef<
-  React.ComponentRef<typeof PopoverPrimitive.Arrow>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Arrow> & {
-    inset?: boolean;
-  }
->(({ className, inset, children, ...props }, ref) => (
+const PopoverArrow = ({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Arrow>) => (
   <PopoverPrimitive.Arrow
-    ref={ref}
+    data-slot="popover-arrow"
     className={cn('fill-current', className)}
     {...props}
   />
-));
-PopoverArrow.displayName = PopoverPrimitive.Arrow.displayName;
-
-const PopoverContent = forwardRef<
-  React.ComponentRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> & {
-    arrow?: boolean;
-  }
->(
-  (
-    { className, align = 'center', sideOffset = 4, arrow, children, ...props },
-    ref,
-  ) => (
-    <PopoverPrimitive.Content
-      ref={ref}
-      align={align}
-      sideOffset={sideOffset}
-      className={cn('popover-content', contentClasses, className)}
-      {...props}
-    >
-      {arrow && <PopoverArrow />}
-      {children}
-    </PopoverPrimitive.Content>
-  ),
 );
-PopoverContent.displayName = PopoverPrimitive.Content.displayName;
+
+const PopoverContent = ({
+  className,
+  align = 'center',
+  sideOffset = 4,
+  arrow,
+  children,
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Content> & {
+  arrow?: boolean;
+}) => (
+  <PopoverPrimitive.Content
+    align={align}
+    sideOffset={sideOffset}
+    className={cn(
+      popupContentClasses,
+      'w-72 origin-(--radix-popover-content-transform-origin) border p-4 shadow-md outline-hidden',
+      className,
+    )}
+    {...props}
+  >
+    {arrow && <PopoverArrow />}
+    {children}
+  </PopoverPrimitive.Content>
+);
 
 type PopoverProps = PopoverPrimitive.PopoverProps;
 type PopoverContentProps = React.ComponentProps<typeof PopoverContent>;
@@ -77,12 +80,16 @@ type ComposedPopoverProps<P extends object> = WithTrigger<P> &
     contentProps?: PopoverContentProps;
     className?: PopoverContentProps['className'];
   };
-type AnchorProps = React.ComponentPropsWithoutRef<
-  typeof PopoverPrimitive.Anchor
->;
+type AnchorProps = React.ComponentProps<typeof PopoverPrimitive.Anchor>;
 type PopoverAnchorProps = AnchorProps & {
   anchorEl?: Maybe<Measurable>;
 };
+
+function PopoverAnchor({
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {
+  return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />;
+}
 
 const ComposedPopover = <P extends object>({
   children,

@@ -10,7 +10,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import 'react-phone-number-input/style.css';
 
-import { inputClasses, Select } from '../../ui';
+import { ComposedSelect, inputClasses } from '../../ui';
 
 import { type TextFieldProps } from './textfield';
 import {
@@ -41,7 +41,7 @@ interface CountrySelectProps {
 
 const CountrySelect = ({ countries, value, onChange }: CountrySelectProps) => {
   return (
-    <Select
+    <ComposedSelect
       value={value}
       onValueChange={onChange}
       options={countries.map((option) => ({
@@ -69,10 +69,8 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(
       topText,
       type = 'text',
       className = 'h-full',
-      borderless = true,
       inputRef,
       field,
-      bgClass = 'bg-input',
       inputClass,
       defaultCountry = 'NG',
       country,
@@ -80,6 +78,7 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(
       placeholder,
       rightAddon,
       autoFocus,
+      wrapperClassName,
       ...props
     },
     ref,
@@ -117,14 +116,13 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(
 
     return (
       <InputWrapper
-        borderless={borderless}
         className={className}
         field={field}
         label={label}
         labelProps={labelProps}
         topText={topText}
         wrapperRef={ref}
-        bgClass={bgClass}
+        wrapperClassName={wrapperClassName}
       >
         <CountrySelect
           countries={getCountries()}
@@ -141,12 +139,7 @@ export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(
           international={international}
           aria-invalid={errorId ? true : undefined}
           aria-describedby={errorId}
-          className={cn(
-            inputClasses,
-            bgClass,
-            'rounded-l-none border-l',
-            inputClass,
-          )}
+          className={cn(inputClasses, 'rounded-l-none border-l', inputClass)}
           maxLength={12}
         />
         {rightAddon}
