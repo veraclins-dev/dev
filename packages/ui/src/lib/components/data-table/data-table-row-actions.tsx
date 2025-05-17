@@ -1,5 +1,3 @@
-import { forwardRef } from 'react';
-
 import { cn } from '@veraclins-dev/utils';
 
 import {
@@ -14,15 +12,12 @@ export interface DataTableRowActionsProps<T extends object> {
   actions: ComposedDropdownMenuProps<T>['items'];
 }
 
-const ActionButton = forwardRef<HTMLButtonElement, ButtonBaseProps>(
-  ({ className, ...props }, ref) => (
-    <Button
-      ref={ref}
-      variant="ghost"
-      className={cn('flex h-8 w-8 p-0 data-[state=open]:bg-muted', className)}
-      {...props}
-    />
-  ),
+const ActionButton = ({ className, ...props }: ButtonBaseProps) => (
+  <Button
+    variant="ghost"
+    className={cn('flex h-8 w-8 p-0 data-[state=open]:bg-muted', className)}
+    {...props}
+  />
 );
 
 export function DataTableRowActions<T extends object>({

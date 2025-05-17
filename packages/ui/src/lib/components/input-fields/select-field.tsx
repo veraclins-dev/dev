@@ -1,4 +1,4 @@
-import { forwardRef, type PropsWithoutRef } from 'react';
+import { type PropsWithoutRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
@@ -26,58 +26,53 @@ interface SelectFieldProps
 
 type Props = BaseSelectProps & SelectFieldProps;
 
-export const SelectField = forwardRef<HTMLDivElement, Props>(
-  (
-    {
-      name,
-      label,
-      labelProps,
-      topText,
-      className,
-      field,
-      inputClass,
-      defaultValue,
-      value,
-      dir,
-      wrapperClassName,
-      ...props
-    },
-    ref,
-  ) => {
-    const { errorId } = useFieldProperties(field);
+const SelectField = ({
+  name,
+  label,
+  labelProps,
+  topText,
+  className,
+  field,
+  inputClass,
+  defaultValue,
+  value,
+  dir,
+  wrapperClassName,
+  ...props
+}: Props) => {
+  const { errorId } = useFieldProperties(field);
 
-    const controlProps = useSelectControlProps(field, name);
+  const controlProps = useSelectControlProps(field, name);
 
-    const { key, ...formProps } = field ? getSelectProps(field) : {};
+  const { key, ...formProps } = field ? getSelectProps(field) : {};
 
-    return (
-      <InputWrapper
-        className={className}
-        field={field}
-        wrapperClassName={wrapperClassName}
-        label={label}
-        labelProps={{
-          ...labelProps,
-          htmlFor: name,
-        }}
-        topText={topText}
-        wrapperRef={ref}
-      >
-        <ComposedSelect
-          {...props}
-          {...formProps}
-          {...controlProps}
-          key={key}
-          value={controlProps.value}
-          aria-invalid={errorId ? true : undefined}
-          aria-describedby={errorId}
-          className={cn('w-full', inputClassOverrides, inputClass)}
-          defaultValue={defaultValue}
-          dir={dir}
-        />
-      </InputWrapper>
-    );
-  },
-);
+  return (
+    <InputWrapper
+      className={className}
+      field={field}
+      wrapperClassName={wrapperClassName}
+      label={label}
+      labelProps={{
+        ...labelProps,
+        htmlFor: name,
+      }}
+      topText={topText}
+    >
+      <ComposedSelect
+        {...props}
+        {...formProps}
+        {...controlProps}
+        key={key}
+        value={controlProps.value}
+        aria-invalid={errorId ? true : undefined}
+        aria-describedby={errorId}
+        className={cn('w-full', inputClassOverrides, inputClass)}
+        defaultValue={defaultValue}
+        dir={dir}
+        sideOffset={10}
+      />
+    </InputWrapper>
+  );
+};
 
-SelectField.displayName = 'SelectField';
+export { SelectField };

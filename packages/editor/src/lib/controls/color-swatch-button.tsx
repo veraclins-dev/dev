@@ -1,8 +1,3 @@
-import {
-  type ComponentPropsWithoutRef,
-  type ComponentRef,
-  forwardRef,
-} from 'react';
 import { type Except } from 'type-fest';
 
 import { ButtonBase, Icon } from '@veraclins-dev/ui';
@@ -13,7 +8,7 @@ import { getContrastText } from '../utils/color';
 export interface ColorSwatchButtonProps
   // Omit the default "color" prop so that it can't be confused for the `value`
   // prop
-  extends Except<ComponentPropsWithoutRef<'button'>, 'color'> {
+  extends Except<React.ComponentProps<'button'>, 'color'> {
   /**
    * What color is shown with this swatch. If not provided, shows a checkerboard
    * pattern, typically used as "not set" or "transparent".
@@ -37,36 +32,36 @@ export interface ColorSwatchButtonProps
  * Renders a button in the given color `value`, useful for showing and allowing
  * selecting a color preset.
  */
-export const ColorSwatchButton = forwardRef<
-  ComponentRef<'button'>,
-  ColorSwatchButtonProps
->(({ value: colorValue, label, padding, active, ...buttonProps }, ref) => {
-  return (
-    <ButtonBase
-      ref={ref}
-      type="button"
-      style={{ backgroundColor: colorValue, padding }}
-      aria-label={label ?? colorValue}
-      value={colorValue}
-      {...buttonProps}
-      className={cn(
-        'h-6 w-6 rounded-full border',
-        { 'bg-checkered bg-clip-content': !colorValue },
-        buttonProps.className,
-      )}
-    >
-      {active && (
-        <Icon
-          fontSize="small"
-          name="check"
-          className="h-full w-4/5 align-middle"
-          style={{
-            color: colorValue ? getContrastText(colorValue) : undefined,
-          }}
-        />
-      )}
-    </ButtonBase>
-  );
-});
+export const ColorSwatchButton = ({
+  value: colorValue,
+  label,
+  padding,
+  active,
+  ...buttonProps
+}: ColorSwatchButtonProps) => (
+  <ButtonBase
+    type="button"
+    style={{ backgroundColor: colorValue, padding }}
+    aria-label={label ?? colorValue}
+    value={colorValue}
+    {...buttonProps}
+    className={cn(
+      'h-6 w-6 rounded-full border',
+      { 'bg-checkered bg-clip-content': !colorValue },
+      buttonProps.className,
+    )}
+  >
+    {active && (
+      <Icon
+        fontSize="small"
+        name="check"
+        className="h-full w-4/5 align-middle"
+        style={{
+          color: colorValue ? getContrastText(colorValue) : undefined,
+        }}
+      />
+    )}
+  </ButtonBase>
+);
 
 ColorSwatchButton.displayName = 'ColorSwatchButton';

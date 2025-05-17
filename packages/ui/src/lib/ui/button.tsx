@@ -1,16 +1,15 @@
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { forwardRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-export const buttonDefaultClasses =
-  "cursor-pointer inline-flex items-center justify-center gap-2 px-3 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive";
+const buttonDefaultClasses =
+  "cursor-pointer inline-flex items-center justify-center gap-2 px-3 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive";
 
-export const buttonVariant = {
+const buttonVariant = {
   default: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
   destructive:
-    'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+    'bg-destructive text-white shadow-xs hover:bg-destructive/90 dark:bg-destructive/60',
   outline:
     'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',
   light: 'bg-primary/40 text-primary-foreground/90 hover:bg-primary/60',
@@ -29,7 +28,7 @@ const buttonVariants = cva(buttonDefaultClasses, {
     variant: buttonVariant,
     size: {
       default: 'px-4 py-2',
-      sm: 'py-2 px-3',
+      sm: 'py-1.5 px-3',
       lg: 'py-3 px-8',
       xl: 'py-4 px-12',
       pill: 'px-12 py-3 leading-3',
@@ -42,25 +41,34 @@ const buttonVariants = cva(buttonDefaultClasses, {
   },
 });
 
-export type ButtonVariants = VariantProps<typeof buttonVariants>;
+type ButtonVariants = VariantProps<typeof buttonVariants>;
 
-export interface ButtonBaseProps
+interface ButtonBaseProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     ButtonVariants {
   asChild?: boolean;
 }
 
-export const ButtonBase = forwardRef<HTMLButtonElement, ButtonBaseProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button';
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    );
-  },
-);
+const ButtonBase = ({
+  className,
+  variant,
+  size,
+  asChild = false,
+  ...props
+}: ButtonBaseProps) => {
+  const Comp = asChild ? Slot : 'button';
+  return (
+    <Comp
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
+};
 
-ButtonBase.displayName = 'Button';
+export {
+  ButtonBase,
+  type ButtonBaseProps,
+  buttonDefaultClasses,
+  buttonVariant,
+  type ButtonVariants,
+};

@@ -19,6 +19,8 @@ const inputClasses = cn(
   'file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium',
   // Transitions
   'transition-[color,box-shadow]',
+  //  SVG Styles
+  "[&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 );
 
 // Input Container Class

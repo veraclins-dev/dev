@@ -27,14 +27,13 @@ export interface ChipProps
 function Chip({ className, variant, onRemove, label, ...props }: ChipProps) {
   return (
     <div className={cn(chipVariants({ variant }), className)} {...props}>
-      <span className="align-middle">{label}</span>
+      <span className="align-middle text-xs">{label}</span>
       <Icon
         className={cn(
-          'flex cursor-pointer opacity-60 items-center justify-center p-0.5 hover:!border-transparent focus:outline-hidden',
+          'flex cursor-pointer opacity-60 items-center justify-center p-0.5 hover:!border-transparent focus:outline-hidden size-4',
         )}
         onClick={onRemove}
         name="cancel"
-        size="sm"
         tooltip="remove"
       />{' '}
     </div>

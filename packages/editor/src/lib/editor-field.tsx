@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { type Except } from 'type-fest';
 
 import {
@@ -23,91 +23,85 @@ type EditorFieldProps = Except<
   >;
 };
 
-const EditorField = forwardRef<HTMLDivElement, EditorFieldProps>(
-  (
-    {
-      label,
-      labelProps,
-      name,
-      value,
-      defaultValue,
-      className = 'editor-field',
-      placeholder = 'Type something here',
-      field,
-      topText,
-      editorProps,
-      shouldReset,
-      wrapperClassName,
-      ...rest
-    },
-    ref,
-  ) => {
-    const { key, ...formProps } = getInputProps({ field, name });
-    const val =
-      value ??
-      formProps.defaultValue ??
-      field?.initialValue ??
-      defaultValue ??
-      '';
+const EditorField = ({
+  label,
+  labelProps,
+  name,
+  value,
+  defaultValue,
+  className = 'editor-field',
+  placeholder = 'Type something here',
+  field,
+  topText,
+  editorProps,
+  shouldReset,
+  wrapperClassName,
+  ...rest
+}: EditorFieldProps) => {
+  const { key, ...formProps } = getInputProps({ field, name });
+  const val =
+    value ??
+    formProps.defaultValue ??
+    field?.initialValue ??
+    defaultValue ??
+    '';
 
-    const [formValue, setFormValue] = useState(val);
-    const mainRef = useRef<HTMLTextAreaElement | null>(null);
+  const [formValue, setFormValue] = useState(val);
+  const mainRef = useRef<HTMLTextAreaElement | null>(null);
 
-    const { errorId } = useFieldProperties(field);
+  const { errorId } = useFieldProperties(field);
 
-    delete formProps.defaultValue;
+  delete formProps.defaultValue;
 
-    const handleBlur = (content: string) => {
-      setFormValue(content);
-      mainRef.current?.focus();
+  const handleBlur = (content: string) => {
+    setFormValue(content);
+    mainRef.current?.focus();
 
-      mainRef.current?.blur();
-    };
+    mainRef.current?.blur();
+  };
 
-    useEffect(() => {
-      if (val !== formValue) {
-        setFormValue(val);
-      }
-    }, [val]);
+  useEffect(() => {
+    if (val !== formValue) {
+      setFormValue(val);
+    }
+  }, [val]);
 
-    return (
-      <InputWrapper
-        className={cn('px-0 py-0', className)}
-        wrapperClassName={wrapperClassName}
-        field={field}
-        label={label}
-        labelProps={labelProps}
-        topText={topText}
-        wrapperRef={ref}
-      >
-        <textarea
-          {...rest}
-          {...formProps}
-          ref={mainRef}
-          value={formValue}
-          key={key}
-          className="inline h-0 w-0 border-0 border-none p-0"
-          readOnly
-        />
-        <Editor
-          {...editorProps}
-          aria-invalid={errorId ? true : undefined}
-          aria-describedby={errorId}
-          content={String(formValue)}
-          onChange={handleBlur}
-          placeholder={placeholder}
-          key={`${key}-editor`}
-          shouldReset={shouldReset}
-          attributes={{
-            'data-testid': formProps.id ?? 'editor-field',
-            ...(errorId
-              ? { 'aria-invalid': 'true', 'aria-describedby': errorId }
-              : {}),
-          }}
-        />
-      </InputWrapper>
-    );
-  },
-);
+  return (
+    <InputWrapper
+      className={cn('px-0 py-0', className)}
+      wrapperClassName={wrapperClassName}
+      field={field}
+      label={label}
+      labelProps={labelProps}
+      topText={topText}
+    >
+      <textarea
+        {...rest}
+        {...formProps}
+        ref={mainRef}
+        value={formValue}
+        key={key}
+        className="inline h-0 w-0 border-0 border-none p-0"
+        readOnly
+      />
+      <Editor
+        {...editorProps}
+        aria-invalid={errorId ? true : undefined}
+        aria-describedby={errorId}
+        content={String(formValue)}
+        onChange={handleBlur}
+        placeholder={placeholder}
+        key={`${key}-editor`}
+        shouldReset={shouldReset}
+        attributes={{
+          'data-testid': formProps.id ?? 'editor-field',
+          ...(errorId
+            ? { 'aria-invalid': 'true', 'aria-describedby': errorId }
+            : {}),
+        }}
+      />
+    </InputWrapper>
+  );
+};
 
 export { EditorField, type EditorFieldProps };

@@ -1,29 +1,39 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { forwardRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
 import { Icon } from './icon';
 
-const Accordion = AccordionPrimitive.Root;
+function Accordion({
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Root>) {
+  return <AccordionPrimitive.Root data-slot="accordion" {...props} />;
+}
 
-const AccordionItem = forwardRef<
-  React.ComponentRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item ref={ref} className={cn('', className)} {...props} />
-));
-AccordionItem.displayName = 'AccordionItem';
+function AccordionItem({
+  className,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Item>) {
+  return (
+    <AccordionPrimitive.Item
+      data-slot="accordion-item"
+      className={className}
+      {...props}
+    />
+  );
+}
 
-const AccordionTrigger = forwardRef<
-  React.ComponentRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
-    align?: 'left' | 'right';
-  }
->(({ className, children, align = 'right', ...props }, ref) => (
+function AccordionTrigger({
+  className,
+  children,
+  align = 'right',
+  ...props
+}: React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
+  align?: 'left' | 'right';
+}) {
   <AccordionPrimitive.Header className={cn('flex text-xl', className)}>
     <AccordionPrimitive.Trigger
-      ref={ref}
+      data-slot="accordion-trigger"
       className={cn(
         'flex flex-1 items-center gap-x-2 font-medium transition-all',
         align === 'left'
@@ -36,26 +46,25 @@ const AccordionTrigger = forwardRef<
       <Icon name={align === 'left' ? 'chevron-right' : 'chevron-down'} />
       {children}
     </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-));
-AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+  </AccordionPrimitive.Header>;
+}
 
-const AccordionContent = forwardRef<
-  React.ComponentRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Content
-    ref={ref}
-    className={cn(
-      'overflow-hidden data-[state=closed]:hidden data-[state=open]:flex text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
-      className,
-    )}
-    {...props}
-  >
-    {children}
-  </AccordionPrimitive.Content>
-));
-
-AccordionContent.displayName = AccordionPrimitive.Content.displayName;
+function AccordionContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Content>) {
+  return (
+    <AccordionPrimitive.Content
+      className={cn(
+        'overflow-hidden data-[state=closed]:hidden data-[state=open]:flex text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </AccordionPrimitive.Content>
+  );
+}
 
 export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };

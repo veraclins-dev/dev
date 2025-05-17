@@ -1,18 +1,11 @@
 import * as SelectPrimitive from '@radix-ui/react-select';
-import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
 import { getOptionLabel, getOptionValue } from '../../components';
 import { type ObjectOption, type Option } from '../../types';
 import { Icon } from '../icon';
-import {
-  activeItemClasses,
-  contentClasses,
-  inputClasses,
-  itemClasses,
-  popupContentClasses,
-} from '../styles';
+import { inputClasses, itemClasses, popupContentClasses } from '../styles';
 
 function Select({
   ...props
@@ -42,25 +35,27 @@ function SelectTrigger({
       data-slot="select-trigger"
       className={cn(
         inputClasses,
-        "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        'flex w-fit items-center justify-between gap-2 bg-transparent whitespace-nowrap *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0',
         className,
       )}
       {...props}
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <Icon className="opacity-70" name="chevron-down" />
+        <Icon name="chevron-down" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
 }
+
+type SelectContentProps = React.ComponentProps<typeof SelectPrimitive.Content>;
 
 function SelectContent({
   className,
   children,
   position = 'popper',
   ...props
-}: React.ComponentProps<typeof SelectPrimitive.Content>) {
+}: SelectContentProps) {
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
@@ -178,31 +173,17 @@ function SelectScrollDownButton({
   );
 }
 
-const SelectViewport = React.forwardRef<
-  React.ComponentRef<typeof SelectPrimitive.Viewport>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Viewport>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Viewport
-    ref={ref}
-    {...props}
-    className={cn('gap-0.5 flex flex-col', className)}
-  >
-    {children}
-  </SelectPrimitive.Viewport>
-));
-SelectViewport.displayName = SelectPrimitive.Viewport.displayName;
-
 type GroupOptions = {
   label: ObjectOption<React.ReactNode>['label'];
   options: Option<React.ReactNode>[];
   id: string;
 };
 
-export type SelectProps = SelectPrimitive.SelectProps & {
-  className?: string;
-  placeholder?: string;
-  showLabel?: boolean;
-} & (
+export type SelectProps = SelectPrimitive.SelectProps &
+  Pick<SelectContentProps, 'className' | 'position' | 'sideOffset'> & {
+    placeholder?: string;
+    showLabel?: boolean;
+  } & (
     | {
         options: Option<React.ReactNode>[];
         grouped?: false;
@@ -219,6 +200,8 @@ const ComposedSelect = ({
   className,
   placeholder,
   showLabel = true,
+  position,
+  sideOffset,
   value,
   ...props
 }: SelectProps) => (
@@ -230,7 +213,7 @@ const ComposedSelect = ({
         (value ?? placeholder)
       )}
     </SelectTrigger>
-    <SelectContent className="border">
+    <SelectContent position={position} sideOffset={sideOffset}>
       {grouped ? (
         options.map((group) => (
           <SelectGroup key={group.id}>
@@ -273,5 +256,4 @@ export {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-  SelectViewport,
 };

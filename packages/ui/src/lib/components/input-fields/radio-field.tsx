@@ -1,5 +1,3 @@
-import { forwardRef } from 'react';
-
 import { type OptionWithId } from '../../types';
 import {
   RadioGroup,
@@ -35,81 +33,73 @@ interface RadioFieldProps
   onChange?: (value: string) => void;
 }
 
-const RadioField = forwardRef<HTMLDivElement, RadioFieldProps>(
-  (
-    {
-      className,
-      options,
-      label,
-      name,
-      labelProps,
-      field,
-      inputClass,
-      defaultValue: supplied,
-      value,
-      onChange,
-      shouldReset,
-      wrapperClassName,
-      ...props
-    },
-    ref,
-  ) => {
-    const { errorId } = useFieldProperties(field);
+const RadioField = ({
+  className,
+  options,
+  label,
+  name,
+  labelProps,
+  field,
+  inputClass,
+  defaultValue: supplied,
+  value,
+  onChange,
+  shouldReset,
+  wrapperClassName,
+  ...props
+}: RadioFieldProps) => {
+  const { errorId } = useFieldProperties(field);
 
-    const defaultValue = supplied ?? field?.initialValue ?? undefined;
+  const defaultValue = supplied ?? field?.initialValue ?? undefined;
 
-    delete field?.initialValue;
+  delete field?.initialValue;
 
-    const { key, ...formProps } = getInputProps({ field, name });
-    delete formProps.defaultValue;
+  const { key, ...formProps } = getInputProps({ field, name });
+  delete formProps.defaultValue;
 
-    const { control, ...controlProps } = useInputControlProps(field, name);
+  const { control, ...controlProps } = useInputControlProps(field, name);
 
-    return (
-      <InputWrapper
-        className={className}
-        field={field}
-        label={label}
-        labelProps={labelProps}
-        wrapperRef={ref}
-        wrapperClassName={wrapperClassName}
-        plain
+  return (
+    <InputWrapper
+      className={className}
+      field={field}
+      label={label}
+      labelProps={labelProps}
+      wrapperClassName={wrapperClassName}
+      plain
+    >
+      <RadioGroup
+        {...props}
+        {...formProps}
+        onValueChange={(val) => {
+          control?.change(val);
+          onChange?.(val);
+        }}
+        onFocus={(event) => {
+          control?.focus();
+          props['onFocus']?.(event);
+        }}
+        onBlur={(event) => {
+          control?.blur();
+          props['onBlur']?.(event);
+        }}
+        defaultValue={defaultValue}
+        className={inputClass}
+        value={controlProps.value ?? value}
+        aria-invalid={errorId ? true : undefined}
+        aria-describedby={errorId}
       >
-        <RadioGroup
-          {...props}
-          {...formProps}
-          onValueChange={(val) => {
-            control?.change(val);
-            onChange?.(val);
-          }}
-          onFocus={(event) => {
-            control?.focus();
-            props['onFocus']?.(event);
-          }}
-          onBlur={(event) => {
-            control?.blur();
-            props['onBlur']?.(event);
-          }}
-          defaultValue={defaultValue}
-          className={inputClass}
-          value={controlProps.value ?? value}
-          aria-invalid={errorId ? true : undefined}
-          aria-describedby={errorId}
-        >
-          {options.map((option) => (
-            <RadioGroupItem
-              key={getOptionId(option)}
-              id={getOptionId(option)}
-              value={getOptionValue(option)}
-              label={getOptionLabel(option)}
-            />
-          ))}
-        </RadioGroup>
-      </InputWrapper>
-    );
-  },
-);
-
-RadioField.displayName = 'RadioField';
+        {options.map((option) => (
+          <RadioGroupItem
+            key={getOptionId(option)}
+            id={getOptionId(option)}
+            value={getOptionValue(option)}
+            label={getOptionLabel(option)}
+          />
+        ))}
+      </RadioGroup>
+    </InputWrapper>
+  );
+};
 
 export { RadioField, type RadioFieldProps };

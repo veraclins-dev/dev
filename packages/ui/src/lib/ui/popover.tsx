@@ -62,7 +62,7 @@ const PopoverContent = ({
     sideOffset={sideOffset}
     className={cn(
       popupContentClasses,
-      'w-72 origin-(--radix-popover-content-transform-origin) border p-4 shadow-md outline-hidden',
+      'min-w-72 origin-(--radix-popover-content-transform-origin) w-(--radix-popover-trigger-width) border p-4 shadow-md outline-hidden',
       className,
     )}
     {...props}

@@ -21,7 +21,7 @@ export function FieldContainer({
   return (
     <div
       className={cn(
-        'rounded-lg rounded-t-sm border w-full',
+        'rounded-lg w-full',
         {
           'outline-hidden': focused,
           'cursor-not-allowed opacity-50': disabled,

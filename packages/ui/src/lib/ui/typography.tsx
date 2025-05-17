@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import { forwardRef, memo } from 'react';
+import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
@@ -18,17 +18,6 @@ type Variant =
   | 'caption'
   | 'overline'
   | 'inherit';
-
-type Color =
-  | 'primary'
-  | 'secondary'
-  | 'error'
-  | 'warning'
-  | 'info'
-  | 'success'
-  | 'inherit';
-
-type Align = 'inherit' | 'left' | 'center' | 'right' | 'justify';
 
 const variantMapping: Record<Variant, string> = {
   h1: 'h1',
@@ -108,48 +97,40 @@ export interface TypographyProps
 }
 
 export const Typography = memo(
-  forwardRef<HTMLElement, TypographyProps>(
-    (
-      {
-        variant: va = 'body2',
-        color = 'inherit',
-        align = 'inherit',
-        gutterBottom = false,
-        noWrap = false,
-        component,
-        className,
-        children,
-        ...props
-      },
-      ref,
-    ) => {
-      const variant = va ?? 'body2';
-      const Component = component || variantMapping[variant] || 'p';
+  ({
+    variant: va = 'body2',
+    color = 'inherit',
+    align = 'inherit',
+    gutterBottom = false,
+    noWrap = false,
+    component,
+    className,
+    children,
+    ...props
+  }: TypographyProps) => {
+    const variant = va ?? 'body2';
+    const Component = component || variantMapping[variant] || 'p';
 
-      return (
-        <Component
-          className={cn(
-            typographyVariants({
-              variant,
-              color,
-              align,
-              gutterBottom,
-              noWrap,
-              className,
-            }),
-          )}
-          ref={ref}
-          role={variant.startsWith('h') ? 'heading' : undefined}
-          aria-level={
-            variant.startsWith('h') ? variant.replace('h', '') : undefined
-          }
-          {...props}
-        >
-          {children}
-        </Component>
-      );
-    },
-  ),
+    return (
+      <Component
+        className={cn(
+          typographyVariants({
+            variant,
+            color,
+            align,
+            gutterBottom,
+            noWrap,
+            className,
+          }),
+        )}
+        role={variant.startsWith('h') ? 'heading' : undefined}
+        aria-level={
+          variant.startsWith('h') ? variant.replace('h', '') : undefined
+        }
+        {...props}
+      >
+        {children}
+      </Component>
+    );
+  },
 );
-
-Typography.displayName = 'Typography';

@@ -1,5 +1,5 @@
 import * as Flags from 'country-flag-icons/react/3x2';
-import { forwardRef, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Input, {
   getCountries,
   getCountryCallingCode,
@@ -10,7 +10,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import 'react-phone-number-input/style.css';
 
-import { ComposedSelect, inputClasses } from '../../ui';
+import { ComposedSelect, inputClassOverrides } from '../../ui';
 
 import { type TextFieldProps } from './textfield';
 import {
@@ -50,7 +50,7 @@ const CountrySelect = ({ countries, value, onChange }: CountrySelectProps) => {
       }))}
       showLabel
       disabled
-      className="max-w-32"
+      className={cn('max-w-19', inputClassOverrides)}
     />
   );
 };
@@ -60,101 +60,97 @@ type PhoneFieldProps = Omit<
   'onChange' | 'leftIcon' | 'rightIcon'
 > & { rightAddon?: React.ReactNode };
 
-export const PhoneField = forwardRef<HTMLInputElement, PhoneFieldProps>(
-  (
-    {
-      name,
-      label,
-      labelProps,
-      topText,
-      type = 'text',
-      className = 'h-full',
-      inputRef,
-      field,
-      inputClass,
-      defaultCountry = 'NG',
-      country,
-      international = true,
-      placeholder,
-      rightAddon,
-      autoFocus,
-      wrapperClassName,
-      ...props
+export const PhoneField = ({
+  name,
+  label,
+  labelProps,
+  topText,
+  type = 'text',
+  className = 'h-full',
+  inputRef,
+  field,
+  inputClass,
+  defaultCountry = 'NG',
+  country,
+  international = true,
+  placeholder,
+  rightAddon,
+  autoFocus,
+  wrapperClassName,
+  ...props
+}: PhoneFieldProps) => {
+  const [localCountryValue, setLocalCountryValue] = useState<CountryCode>(
+    country ?? defaultCountry,
+  );
+  const [formValue, setFormValue] = useState<string>('');
+  const { errorId, id } = useFieldProperties(field);
+
+  const { control, ...controlProps } = useInputControlProps(field, name);
+  const { key, ...inputProps } = getInputProps({
+    field,
+    type,
+    name,
+  });
+
+  const countryChange = useCallback(
+    (value: CountryCode) => {
+      control?.change('');
+      setLocalCountryValue(value);
     },
-    ref,
-  ) => {
-    const [localCountryValue, setLocalCountryValue] = useState<CountryCode>(
-      country ?? defaultCountry,
-    );
-    const [formValue, setFormValue] = useState<string>('');
-    const { errorId, id } = useFieldProperties(field);
+    [localCountryValue],
+  );
 
-    const { control, ...controlProps } = useInputControlProps(field, name);
-    const { key, ...inputProps } = getInputProps({
-      field,
-      type,
-      name,
-    });
+  useEffect(() => {
+    if (control?.value) {
+      const value =
+        typeof control.value === 'string'
+          ? control.value
+          : control.value.join('|');
+      setFormValue(value);
+    }
+  }, [control?.value]);
 
-    const countryChange = useCallback(
-      (value: CountryCode) => {
-        control?.change('');
-        setLocalCountryValue(value);
-      },
-      [localCountryValue],
-    );
-
-    useEffect(() => {
-      if (control?.value) {
-        const value =
-          typeof control.value === 'string'
-            ? control.value
-            : control.value.join('|');
-        setFormValue(value);
-      }
-    }, [control?.value]);
-
-    return (
-      <InputWrapper
-        className={className}
-        field={field}
-        label={label}
-        labelProps={labelProps}
-        topText={topText}
-        wrapperRef={ref}
-        wrapperClassName={wrapperClassName}
-      >
-        <CountrySelect
-          countries={getCountries()}
-          onChange={countryChange}
-          value={localCountryValue}
-        />
-        <Input
-          {...controlProps}
-          autoFocus={autoFocus}
-          placeholder={placeholder}
-          id={id}
-          ref={inputRef}
-          country={localCountryValue}
-          international={international}
-          aria-invalid={errorId ? true : undefined}
-          aria-describedby={errorId}
-          className={cn(inputClasses, 'rounded-l-none border-l', inputClass)}
-          maxLength={12}
-        />
-        {rightAddon}
-        <input
-          {...props}
-          {...inputProps}
-          key={key}
-          value={formValue}
-          type="text"
-          className="h-0 w-0 border-none p-0"
-          readOnly
-        />
-      </InputWrapper>
-    );
-  },
-);
-
-PhoneField.displayName = 'PhoneField';
+  return (
+    <InputWrapper
+      className={className}
+      field={field}
+      label={label}
+      labelProps={labelProps}
+      topText={topText}
+      wrapperClassName={wrapperClassName}
+    >
+      <CountrySelect
+        countries={getCountries()}
+        onChange={countryChange}
+        value={localCountryValue}
+      />
+      <Input
+        {...controlProps}
+        autoFocus={autoFocus}
+        placeholder={placeholder}
+        id={id}
+        ref={inputRef}
+        country={localCountryValue}
+        international={international}
+        aria-invalid={errorId ? true : undefined}
+        aria-describedby={errorId}
+        className={cn(
+          inputClassOverrides,
+          'flex-1 outline-none pl-2',
+          inputClass,
+        )}
+        maxLength={12}
+      />
+      {rightAddon}
+      <input
+        {...props}
+        {...inputProps}
+        key={key}
+        value={formValue}
+        type="text"
+        className="h-0 w-0 border-none p-0"
+        readOnly
+      />
+    </InputWrapper>
+  );
+};

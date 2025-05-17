@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useSpinDelay } from 'spin-delay';
 
 import { cn } from '@veraclins-dev/utils';
@@ -12,14 +11,18 @@ import {
   TooltipTrigger,
 } from './tooltip';
 
-export const StatusButton = React.forwardRef<
-  HTMLButtonElement,
-  ButtonBaseProps & {
-    status: 'pending' | 'success' | 'error' | 'idle';
-    message?: string;
-    spinDelay?: Parameters<typeof useSpinDelay>[1];
-  }
->(({ message, status, className, children, spinDelay, ...props }, ref) => {
+export const StatusButton = ({
+  message,
+  status,
+  className,
+  children,
+  spinDelay,
+  ...props
+}: ButtonBaseProps & {
+  status: 'pending' | 'success' | 'error' | 'idle';
+  message?: string;
+  spinDelay?: Parameters<typeof useSpinDelay>[1];
+}) => {
   const delayedPending = useSpinDelay(status === 'pending', {
     delay: 400,
     minDuration: 300,
@@ -46,7 +49,6 @@ export const StatusButton = React.forwardRef<
 
   return (
     <ButtonBase
-      ref={ref}
       className={cn('flex justify-center gap-4', className)}
       {...props}
     >
@@ -63,5 +65,5 @@ export const StatusButton = React.forwardRef<
       )}
     </ButtonBase>
   );
-});
+};
 StatusButton.displayName = 'Button';

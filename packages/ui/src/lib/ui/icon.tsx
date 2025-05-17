@@ -1,5 +1,3 @@
-import { forwardRef } from 'react';
-
 import { cn } from '@veraclins-dev/utils';
 
 import { useIcon } from '../icons';
@@ -34,48 +32,39 @@ export type IconProps = React.SVGProps<SVGSVGElement> & {
   href?: string;
 };
 
-const Component = forwardRef<SVGSVGElement, Omit<IconProps, 'tooltip'>>(
-  (
-    {
-      name,
-      size = 'font',
-      className,
-      children,
-      href = '/icons/sprite.svg',
-      ...props
-    },
-    ref,
-  ) => {
-    if (children) {
-      return (
-        <span
-          className={`inline-flex items-center ${childrenSizeClassName[size]}`}
-        >
-          <Component
-            name={name}
-            size={size}
-            className={className}
-            href={href}
-            {...props}
-            ref={ref}
-          />
-          {children}
-        </span>
-      );
-    }
+const Component = ({
+  name,
+  size = 'font',
+  className,
+  children,
+  href = '/icons/sprite.svg',
+  ...props
+}: Omit<IconProps, 'tooltip'>) => {
+  if (children) {
     return (
-      <svg
-        {...props}
-        ref={ref}
-        className={cn(sizeClassName[size], 'inline self-center', className)}
+      <span
+        className={`inline-flex items-center ${childrenSizeClassName[size]}`}
       >
-        <use href={`${href}#${name}`} />
-      </svg>
+        <Component
+          name={name}
+          size={size}
+          className={className}
+          href={href}
+          {...props}
+        />
+        {children}
+      </span>
     );
-  },
-);
-
-Component.displayName = 'Component';
+  }
+  return (
+    <svg
+      {...props}
+      className={cn(sizeClassName[size], 'inline self-center', className)}
+    >
+      <use href={`${href}#${name}`} />
+    </svg>
+  );
+};
 
 /**
  * Renders an SVG icon. The icon defaults to the size of the font. To make it
@@ -86,23 +75,18 @@ Component.displayName = 'Component';
  * display "flex" (or "inline-flex") with "items-center" and a reasonable gap.
  */
 
-const Icon = forwardRef<SVGSVGElement, IconProps>(
-  ({ tooltip, ...props }, ref) => {
-    const { sprite } = useIcon();
+function Icon({ tooltip, ...props }: IconProps) {
+  const { sprite } = useIcon();
 
-    return tooltip ? (
-      <ComposedTooltip
-        Trigger={Component}
-        TriggerProps={{ ...props, href: sprite, ref }}
-        content={tooltip}
-        triggerRef={ref}
-      />
-    ) : (
-      <Component {...props} href={sprite} ref={ref} />
-    );
-  },
-);
-
-Icon.displayName = 'Icon';
+  return tooltip ? (
+    <ComposedTooltip
+      Trigger={Component}
+      TriggerProps={{ ...props, href: sprite }}
+      content={tooltip}
+    />
+  ) : (
+    <Component {...props} href={sprite} />
+  );
+}
 
 export { Icon };
