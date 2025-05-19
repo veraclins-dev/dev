@@ -71,4 +71,5 @@ export {
   buttonDefaultClasses,
   buttonVariant,
   type ButtonVariants,
+  buttonVariants,
 };

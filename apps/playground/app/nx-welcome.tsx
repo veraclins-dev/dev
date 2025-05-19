@@ -17,6 +17,12 @@ import {
   Checkbox,
   CheckboxField,
   ComposedSelect,
+  DatePickerField,
+  DateRangePickerField,
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+  Icon,
   Input,
   Label,
   PhoneField,
@@ -89,6 +95,18 @@ export function NxWelcome({ title }: { title: string }) {
                 { value: 'option-1', label: 'Option 1' },
                 { value: 'option-2', label: 'Option 2' },
               ]}
+            />
+          </div>
+          <div className="flex gap-4">
+            <DatePickerField
+            // wrapperClassName="max-w-xs"
+            // placeholder="Light"
+            // type="password"
+            />
+            <DateRangePickerField
+            // placeholder="autocomplete"
+            // options={['option 1', 'option 2']}
+            // wrapperClassName="max-w-xs"
             />
           </div>
           <div className="flex gap-4">
@@ -187,6 +205,82 @@ export function NxWelcome({ title }: { title: string }) {
                 </div>
               </CardFooter>
             </Card>
+            <Card className="bg-card-inner">
+              <CardHeader>
+                <CardTitle>Meeting Notes</CardTitle>
+                <CardDescription>
+                  Transcript from the meeting with the client.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-sm">
+                <p>
+                  Client requested dashboard redesign with focus on mobile
+                  responsiveness.
+                </p>
+                <ol className="mt-4 flex list-decimal flex-col gap-2 pl-6">
+                  <li>New analytics widgets for daily/weekly metrics</li>
+                  <li>Simplified navigation menu</li>
+                  <li>Dark mode support</li>
+                  <li>Timeline: 6 weeks</li>
+                  <li>Follow-up meeting scheduled for next Tuesday</li>
+                </ol>
+              </CardContent>
+              <CardFooter>
+                <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+                  <Avatar>
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="@shadcn"
+                    />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                  <Avatar>
+                    <AvatarImage
+                      src="https://github.com/leerob.png"
+                      alt="@leerob"
+                    />
+                    <AvatarFallback>LR</AvatarFallback>
+                  </Avatar>
+                  <Avatar>
+                    <AvatarImage
+                      src="https://github.com/evilrabbit.png"
+                      alt="@evilrabbit"
+                    />
+                    <AvatarFallback>ER</AvatarFallback>
+                  </Avatar>
+                </div>
+              </CardFooter>
+            </Card>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Button variant="outline" className="max-h-10">
+                  @nextjs
+                </Button>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                <div className="flex justify-between gap-4">
+                  <Avatar>
+                    <AvatarImage src="https://github.com/vercel.png" />
+                    <AvatarFallback>VC</AvatarFallback>
+                  </Avatar>
+                  <div className="flex flex-col gap-1">
+                    <h4 className="text-sm font-semibold">@nextjs</h4>
+                    <p className="text-sm">
+                      The React Framework – created and maintained by @vercel.
+                    </p>
+                    <div className="mt-1 flex items-center gap-2">
+                      <Icon
+                        name="calendar"
+                        className="text-muted-foreground size-4"
+                      />
+                      <span className="text-muted-foreground text-xs">
+                        Joined December 2021
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
           </div>
           <Autocomplete
             placeholder="autocomplete multiple"

@@ -48,7 +48,7 @@ const RadioField = ({
   wrapperClassName,
   ...props
 }: RadioFieldProps) => {
-  const { errorId } = useFieldProperties(field);
+  const { errorId, id } = useFieldProperties(field);
 
   const defaultValue = supplied ?? field?.initialValue ?? undefined;
 
@@ -88,11 +88,13 @@ const RadioField = ({
         value={controlProps.value ?? value}
         aria-invalid={errorId ? true : undefined}
         aria-describedby={errorId}
+        id={id}
       >
         {options.map((option) => (
           <RadioGroupItem
             key={getOptionId(option)}
             id={getOptionId(option)}
+            aria-invalid={errorId ? true : undefined}
             value={getOptionValue(option)}
             label={getOptionLabel(option)}
           />

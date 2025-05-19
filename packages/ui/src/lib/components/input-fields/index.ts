@@ -1,5 +1,6 @@
 export * from './autocomplete';
 export * from './checkbox-field';
+export * from './date-picker';
 export * from './hidden-field';
 export * from './image-field';
 export * from './labeled-textarea';

@@ -20,7 +20,6 @@ function Checkbox({
   checked,
   ...props
 }: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
-  console.log('Checkbox', { checked, ...props });
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
