@@ -21,7 +21,7 @@ import {
 
 import { type DataTableFacetedFilterProps } from './types';
 
-export function DataTableFacetedFilter<TData, TValue>({
+function DataTableFacetedFilter<TData, TValue>({
   column,
   title,
   options,
@@ -138,3 +138,5 @@ export function DataTableFacetedFilter<TData, TValue>({
     </Popover>
   );
 }
+
+export { DataTableFacetedFilter };

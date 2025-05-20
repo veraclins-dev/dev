@@ -1,15 +1,25 @@
-import { cn } from '@veraclins-dev/utils';
+import { type Row } from '@tanstack/react-table';
+
+import { cn, type NonEmptyArray } from '@veraclins-dev/utils';
 
 import {
   ButtonBase as Button,
   type ButtonBaseProps,
   ComposedDropdownMenu,
-  type ComposedDropdownMenuProps,
   Icon,
+  type ItemOption,
 } from '../../ui';
 
-export interface DataTableRowActionsProps<T extends object> {
-  actions: ComposedDropdownMenuProps<T>['items'];
+import { type WithId } from './types';
+
+type Action<TData extends WithId> = ItemOption & {
+  onActionClick: (row: Row<TData>) => void;
+};
+
+type Actions<TData extends WithId> = NonEmptyArray<Action<TData>>;
+interface DataTableRowActionsProps<TData extends WithId> {
+  actions: Actions<TData>;
+  row: Row<TData>;
 }
 
 const ActionButton = ({ className, ...props }: ButtonBaseProps) => (
@@ -20,9 +30,14 @@ const ActionButton = ({ className, ...props }: ButtonBaseProps) => (
   />
 );
 
-export function DataTableRowActions<T extends object>({
+function DataTableRowActions<TData extends WithId>({
   actions,
-}: DataTableRowActionsProps<T>) {
+  row,
+}: DataTableRowActionsProps<TData>) {
+  const mappedActions = actions.map(({ onActionClick, ...action }) => ({
+    ...action,
+    onClick: onActionClick ? () => onActionClick(row) : undefined,
+  }));
   return (
     <ComposedDropdownMenu
       Trigger={ActionButton}
@@ -34,7 +49,9 @@ export function DataTableRowActions<T extends object>({
           </>
         ),
       }}
-      items={actions}
+      items={mappedActions}
     />
   );
 }
+
+export { type Actions, DataTableRowActions, type DataTableRowActionsProps };

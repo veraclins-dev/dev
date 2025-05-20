@@ -36,7 +36,6 @@ const ComposedTooltip = <P extends { disabled?: boolean; className?: string }>({
   content,
   arrow = true,
   TriggerProps,
-  triggerRef,
 }: ComposedTooltipProps<P>) => {
   const className = TriggerProps?.disabled
     ? cn(TriggerProps.className, 'disabled:pointer-events-auto')
@@ -46,7 +45,7 @@ const ComposedTooltip = <P extends { disabled?: boolean; className?: string }>({
     <TooltipProvider>
       <Tooltip delayDuration={200}>
         <TooltipTrigger asChild>
-          <Trigger {...TriggerProps} className={className} ref={triggerRef} />
+          <Trigger {...TriggerProps} className={className} />
         </TooltipTrigger>
         <TooltipContent>
           {content}

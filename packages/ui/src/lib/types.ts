@@ -20,16 +20,14 @@ export type Maybe<T> = T | null;
 
 export type MaybeString = Maybe<string>;
 
-export type WithTrigger<T extends object, S extends Element = Element> = {
+export type WithTrigger<T extends object> = {
   Trigger: React.ComponentType<T>;
   TriggerProps: T;
-  triggerRef?: React.Ref<S>;
 };
 
-export type WithComponent<T extends object, S extends Element = Element> = {
+export type WithComponent<T extends object> = {
   Component: React.ComponentType<T>;
   ComponentProps: T;
-  componentRef?: React.Ref<S>;
 };
 
 export type ComponentWithTooltip<

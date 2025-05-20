@@ -5,7 +5,6 @@ import {
 } from '@dnd-kit/sortable';
 import { rankItem } from '@tanstack/match-sorter-utils';
 import {
-  type ColumnDef,
   type ColumnFiltersState,
   type FilterFn,
   flexRender,
@@ -30,35 +29,20 @@ import {
   TableRow,
 } from '../../ui';
 
-import { priorities, statuses } from './data/data';
-import data from './data/tasks.json';
-import { columns } from './columns';
-import {
-  getActionsColumn,
-  getDragHandleColumn,
-  getSelectColumn,
-} from './data-table-columns';
 import { DataTableDndContext } from './data-table-dnd-provider';
 import { DataTablePagination } from './data-table-pagination';
 import { DataTableRow } from './data-table-row';
-import { type DataTableRowActionsProps } from './data-table-row-actions';
 import {
   DataTableToolbar,
   type DataTableToolbarProps,
 } from './data-table-toolbar';
 import { type WithId } from './types';
+import { type ColumnConfig, generateColumnsConfig } from './utils';
 
-export interface DataTableProps<
-  TData extends WithId,
-  TValue,
-  T extends object,
-> {
-  columns: ColumnDef<TData, TValue>[];
+interface DataTableProps<TData extends WithId, TValue = unknown> {
+  columnsConfig: ColumnConfig<TData, TValue>[];
   data: TData[];
   filters?: DataTableToolbarProps<TData, TValue>['filters'];
-  draggable?: boolean | ColumnDef<TData, TValue>;
-  selectable?: boolean | ColumnDef<TData, TValue>;
-  actions?: DataTableRowActionsProps<T>['actions'];
 }
 
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
@@ -72,18 +56,11 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed;
 };
 
-export function DataTable<
-  TData extends { id: UniqueIdentifier },
-  TValue,
-  T extends object,
->({
-  columns: baseColumns,
+function DataTable<TData extends WithId, TValue = unknown>({
+  columnsConfig,
   data: initialData,
   filters,
-  draggable = false,
-  selectable = false,
-  actions,
-}: DataTableProps<TData, TValue, T>) {
+}: DataTableProps<TData, TValue>) {
   const [data, setData] = useState(() => initialData);
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -91,34 +68,14 @@ export function DataTable<
   const [globalFilter, setGlobalFilter] = useState('');
   const [sorting, setSorting] = useState<SortingState>([]);
 
-  const columns = useMemo(() => {
-    const drag: ColumnDef<TData, TValue> | null =
-      typeof draggable === 'object'
-        ? draggable
-        : draggable
-          ? getDragHandleColumn<TData, TValue>()
-          : null;
-    const select: ColumnDef<TData, TValue> | null =
-      typeof selectable === 'object'
-        ? selectable
-        : selectable
-          ? getSelectColumn<TData, TValue>()
-          : null;
-    const action: ColumnDef<TData, TValue> | null = actions
-      ? getActionsColumn<TData, TValue, T>(actions)
-      : null;
-    const controlColumns = [drag, select].filter(Boolean) as ColumnDef<
-      TData,
-      TValue
-    >[];
-    const actionColumns = action ? [action] : [];
-
-    return [...controlColumns, ...baseColumns, ...actionColumns];
-  }, [baseColumns]);
+  const config = useMemo(
+    () => generateColumnsConfig(columnsConfig),
+    [columnsConfig],
+  );
 
   const table = useReactTable({
     data,
-    columns,
+    columns: config.columns,
     state: {
       sorting,
       columnVisibility,
@@ -128,7 +85,7 @@ export function DataTable<
     },
     getRowId: (row) => row.id.toString(),
     enableRowSelection: true,
-    enableSorting: !draggable,
+    enableSorting: !config.draggable,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -191,14 +148,14 @@ export function DataTable<
                     <DataTableRow
                       key={row.id}
                       row={row}
-                      draggable={Boolean(draggable)}
+                      draggable={Boolean(config.draggable)}
                     />
                   ))}
                 </SortableContext>
               ) : (
                 <TableRow>
                   <TableCell
-                    colSpan={columns.length}
+                    colSpan={config.columns.length}
                     className="h-24 text-center"
                   >
                     No results.
@@ -214,33 +171,4 @@ export function DataTable<
   );
 }
 
-export const DataTableComponent = () => (
-  <DataTable
-    columns={columns}
-    data={data}
-    draggable
-    selectable
-    filters={{
-      faceted: {
-        status: { options: statuses },
-        priority: { options: priorities },
-      },
-    }}
-    actions={[
-      {
-        label: 'Edit',
-        key: 'edit',
-        onClick: (row) => {
-          console.log('Edit', row);
-        },
-      },
-      {
-        label: 'Delete',
-        key: 'trash',
-        onClick: (row) => {
-          console.log('Delete', row);
-        },
-      },
-    ]}
-  />
-);
+export { DataTable, type DataTableProps };

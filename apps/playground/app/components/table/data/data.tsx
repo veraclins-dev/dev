@@ -1,4 +1,4 @@
-import { type DataTableFacetedFilterProps } from '../types';
+import { type DataTableFacetedFilterProps } from '@veraclins-dev/ui';
 
 type Options = DataTableFacetedFilterProps<any, any>['options'];
 

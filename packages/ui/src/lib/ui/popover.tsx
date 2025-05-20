@@ -97,14 +97,13 @@ const ComposedPopover = <P extends object>({
   Trigger,
   className,
   TriggerProps,
-  triggerRef,
   onOpenChange,
   contentProps,
   ...others
 }: ComposedPopoverProps<P>) => (
   <Popover {...others} open={open} onOpenChange={onOpenChange}>
     <PopoverTrigger asChild>
-      <Trigger {...TriggerProps} ref={triggerRef} />
+      <Trigger {...TriggerProps} />
     </PopoverTrigger>
     <PopoverContent align="center" {...contentProps} className={className}>
       {children}

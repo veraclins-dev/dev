@@ -1,14 +1,14 @@
-import { type ColumnDef } from '@tanstack/react-table';
-
-import { Badge, Checkbox, Icon } from '../../ui';
+import {
+  Badge,
+  DataTableColumnHeader,
+  type DataTableProps,
+  Icon,
+} from '@veraclins-dev/ui';
 
 import { labels, priorities, statuses } from './data/data';
 import { type Task } from './data/schema';
-import { DataTableColumnHeader } from './data-table-column-header';
-import { DataTableDragHandle } from './data-table-drag-handle';
-import { DataTableRowActions } from './data-table-row-actions';
 
-export const columns: ColumnDef<Task>[] = [
+export const columns: DataTableProps<Task>['columnsConfig'] = [
   {
     accessorKey: 'id',
     header: ({ column }) => (

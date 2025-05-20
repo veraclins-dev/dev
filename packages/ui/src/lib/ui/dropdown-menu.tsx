@@ -332,20 +332,19 @@ const ComposedDropdownMenu = <P extends object, I extends object>({
   Trigger,
   className,
   TriggerProps,
-  triggerRef,
   items,
   arrow = true,
 }: ComposedDropdownMenuProps<P, I>) => (
   <DropdownMenu open={open} onOpenChange={onOpenChange}>
     <DropdownMenuTrigger asChild>
-      <Trigger {...TriggerProps} ref={triggerRef} />
+      <Trigger {...TriggerProps} />
     </DropdownMenuTrigger>
     <DropdownMenuContent align="center" className={className}>
       {arrow && <DropdownMenuArrow />}
 
       {items.map(({ key, ...item }) => {
         if ('Component' in item) {
-          const { Component, ComponentProps, componentRef, ...props } = item;
+          const { Component, ComponentProps, ...props } = item;
           return (
             <DropdownMenuItem asChild key={key}>
               <Component {...ComponentProps} {...props} />
@@ -396,4 +395,5 @@ export {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
+  type ItemOption,
 };

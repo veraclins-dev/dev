@@ -3,7 +3,7 @@ import { type Column } from '@tanstack/react-table';
 
 import { type IconName } from '../../icons';
 
-export interface DataTableFacetedFilterProps<TData, TValue> {
+interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>;
   title?: string;
   options: {
@@ -13,6 +13,8 @@ export interface DataTableFacetedFilterProps<TData, TValue> {
   }[];
 }
 
-export interface WithId {
+interface WithId {
   id: UniqueIdentifier;
 }
+
+export type { DataTableFacetedFilterProps, WithId };
