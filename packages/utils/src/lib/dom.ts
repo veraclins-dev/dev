@@ -1,4 +1,4 @@
-'use client';
+import sanitizeHtml from 'sanitize-html';
 
 export const highlight = (string: string, sub: string) =>
   sub
@@ -12,12 +12,10 @@ export const createMarkup = (content = '') => {
 };
 
 export const stripHTMLTags = (htmlContent: string) => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlContent, 'text/html');
-
-  const textContent = doc.body.textContent || '';
-
-  return textContent.trim();
+  return sanitizeHtml(htmlContent, {
+    allowedTags: [], // No tags allowed, strips all HTML
+    allowedAttributes: {}, // No attributes allowed
+  }).trim();
 };
 
 export function closestParent(
