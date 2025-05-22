@@ -49,3 +49,5 @@ vitest.config.*.timestamp*
 .env.local
 
 .react-router/
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
