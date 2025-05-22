@@ -6,9 +6,9 @@ import { ButtonBase as Button, Icon, Input } from '../../ui';
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 import { DataTableViewOptions } from './data-table-view-options';
-import { type DataTableFacetedFilterProps } from './types';
+import { type DataTableFacetedFilterProps, type WithId } from './types';
 
-export interface DataTableToolbarProps<TData, TValue> {
+export interface DataTableToolbarProps<TData extends WithId, TValue> {
   table: Table<TData>;
   filters?: {
     global?: {
@@ -23,7 +23,7 @@ export interface DataTableToolbarProps<TData, TValue> {
   };
 }
 
-export function DataTableToolbar<TData, TValue>({
+export function DataTableToolbar<TData extends WithId, TValue>({
   table,
   filters: { global, faceted } = {},
 }: DataTableToolbarProps<TData, TValue>) {

@@ -18,8 +18,9 @@ import { type WithShortcuts } from '../types';
 
 import { KeyboardShortcuts } from './keyboard-shortcuts';
 
-export interface MenuIconOption extends ObjectOption, WithShortcuts {
-  label: React.ReactElement | React.ReactNode;
+export interface MenuIconOption
+  extends ObjectOption<React.ReactNode>,
+    WithShortcuts {
   className?: string;
 }
 
