@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/remix-auth-social",
-  "version": "0.25.2",
+  "version": "0.25.3",
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
