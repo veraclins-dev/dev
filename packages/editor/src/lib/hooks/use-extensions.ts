@@ -156,6 +156,9 @@ export function useExtensions({
         autolink: true,
         linkOnPaste: true,
         openOnClick: false,
+        HTMLAttributes: {
+          class: 'border-primary border-b hover:border-b-2 no-underline',
+        },
       }),
       LinkBubbleMenuHandler,
 

@@ -129,24 +129,16 @@ export function EditLinkMenuContent({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  return (
-    <form
-      onSubmit={(event) => {
-        // Don't submit the form with a standard full-page request
-        event.preventDefault();
-        // Don't let this event propagate upwards in the React tree, to prevent
-        // submitting any form the rich text editor is wrapped in
-        event.stopPropagation();
+  const handleSubmit = () => {
+    setIsSubmitting(true);
+    const text = textRef.current?.value ?? '';
+    const href = hrefRef.current?.value ?? '';
+    onSave({ text: text, link: href });
+    setIsSubmitting(false);
+  };
 
-        setIsSubmitting(true);
-        const text = textRef.current?.value ?? '';
-        const href = hrefRef.current?.value ?? '';
-        onSave({ text: text, link: href });
-        setIsSubmitting(false);
-      }}
-      autoComplete="off"
-      className="flex flex-col gap-y-2"
-    >
+  return (
+    <div className="flex flex-col gap-y-3">
       <h5 className="text-lg">{editMenuTitle}</h5>
 
       <TextField
@@ -179,7 +171,7 @@ export function EditLinkMenuContent({
         required
       />
 
-      <div className="flex justify-end gap-x-2">
+      <div className="flex justify-end gap-x-3">
         <Button
           onClick={onCancel}
           variant="outline"
@@ -190,14 +182,15 @@ export function EditLinkMenuContent({
         </Button>
 
         <Button
-          type="submit"
+          type="button"
           className="rounded-md px-5 py-1"
           disabled={isSubmitting}
-          variant="primary-light"
+          variant="light"
+          onClick={handleSubmit}
         >
           {labels?.editLinkSaveButtonLabel ?? 'Save'}
         </Button>
       </div>
-    </form>
+    </div>
   );
 }

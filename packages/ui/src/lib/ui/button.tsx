@@ -10,8 +10,10 @@ const buttonVariant = {
   default: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
   destructive:
     'bg-destructive text-white shadow-xs hover:bg-destructive/90 dark:bg-destructive/60',
+  'destructive-outline':
+    'border border-destructive text-destructive shadow-xs hover:bg-destructive/40 hover:text-destructive-foreground',
   outline:
-    'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',
+    'border bg-transparent shadow-xs hover:bg-accent hover:text-accent-foreground',
   light: 'bg-primary/40 text-primary-foreground/90 hover:bg-primary/60',
   secondary:
     'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
@@ -19,6 +21,7 @@ const buttonVariant = {
     'bg-secondary/40 text-secondary-foreground/90 hover:bg-secondary/60',
   ghost: 'hover:bg-accent hover:border-accent hover:text-accent-foreground',
   link: 'text-primary underline-offset-4 hover:underline',
+  accent: 'bg-accent text-accent-foreground shadow-xs hover:bg-accent/80',
   'primary-outline': 'border border-primary text-primary hover:bg-primary/80',
   plain: '',
 };
@@ -59,6 +62,7 @@ const ButtonBase = ({
   const Comp = asChild ? Slot : 'button';
   return (
     <Comp
+      data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />

@@ -5,7 +5,7 @@ import { inputClasses } from './styles';
 export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 const Textarea = ({ className, ...props }: TextareaProps) => (
-  <textarea className={cn(inputClasses, className)} {...props} />
+  <textarea className={cn('resize-none', inputClasses, className)} {...props} />
 );
 
 export { Textarea };

@@ -38,7 +38,7 @@ export function MenuControlsContainer({
   const content = (
     <div
       className={cn(
-        'flex h-full flex-wrap items-center gap-x-1 gap-y-2',
+        'flex h-full flex-wrap items-center gap-x-1 gap-y-3',
         className,
       )}
     >

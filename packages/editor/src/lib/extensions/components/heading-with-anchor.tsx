@@ -73,7 +73,7 @@ export function HeadingWithAnchorComponent({ editor, node, extension }: Props) {
         <a
           href={`#${headingId}`}
           contentEditable={false}
-          className="absolute -left-4 z-50 no-underline opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100"
+          className="absolute -left-4 z-50 no-underline opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100 border-b-0"
         >
           <Icon name="link-2" className="md:text-lg" />
         </a>

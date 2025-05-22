@@ -53,6 +53,16 @@ export function NxWelcome({ title }: { title: string }) {
             <Button variant="secondary-light">Secondary Light</Button>
             <Button variant="link">Link</Button>
             <Button variant="outline">Outline</Button>
+            <Button className="rounded-full p-0.5 size-9" variant="accent">
+              <Icon name="moon" className="p-0.5 size-8" />
+            </Button>
+            <Button className="rounded-full p-0.5 size-9" variant="accent">
+              <Icon name="notification" className="p-0.5 size-8" />
+            </Button>
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
           </div>
           <div className="flex gap-4">
             <Input placeholder="Default" className="w-full" />

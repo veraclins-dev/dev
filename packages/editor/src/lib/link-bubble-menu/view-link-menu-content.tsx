@@ -43,7 +43,7 @@ export function ViewLinkMenuContent({
   useKeyDown('Escape', onCancel);
 
   return (
-    <div className="flex flex-col gap-y-2">
+    <div className="flex flex-col gap-y-3">
       <div className="text-pretty">{truncate(linkText, 38)}</div>
 
       <div className="text-pretty">
@@ -58,17 +58,17 @@ export function ViewLinkMenuContent({
           {truncateMiddle(currentHref, 38)}
         </a>
       </div>
-      <div className="flex justify-end gap-x-2">
+      <div className="flex w-full justify-end gap-x-3">
         <Button
           onClick={onEdit}
-          variant="primary-light"
+          variant="light"
           className="rounded-md px-3 py-1"
         >
           {labels?.viewLinkEditButtonLabel ?? 'Edit'}
         </Button>
         <Button
-          className="rounded-md border border-red-500 px-3 py-1 hover:text-red-500 hover:border-red-500 md:bg-transparent text-foreground"
-          variant="outline"
+          className="px-3 py-1 "
+          variant="destructive-outline"
           onClick={onRemove}
         >
           Remove

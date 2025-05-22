@@ -2,10 +2,11 @@ import * as SelectPrimitive from '@radix-ui/react-select';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { getOptionLabel, getOptionValue } from '../../components';
-import { type ObjectOption, type Option } from '../../types';
-import { Icon } from '../icon';
-import { inputClasses, itemClasses, popupContentClasses } from '../styles';
+import { getOptionLabel, getOptionValue } from '../components';
+import { type ObjectOption, type Option } from '../types';
+
+import { Icon } from './icon';
+import { inputClasses, itemClasses, popupContentClasses } from './styles';
 
 function Select({
   ...props

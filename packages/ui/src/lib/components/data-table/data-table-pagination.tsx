@@ -10,11 +10,13 @@ import {
   SelectValue,
 } from '../../ui';
 
-interface DataTablePaginationProps<TData> {
+import { type WithId } from './types';
+
+interface DataTablePaginationProps<TData extends WithId> {
   table: Table<TData>;
 }
 
-export function DataTablePagination<TData>({
+export function DataTablePagination<TData extends WithId>({
   table,
 }: DataTablePaginationProps<TData>) {
   return (

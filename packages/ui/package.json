@@ -11,7 +11,8 @@
       "import": "./index.js",
       "require": "./index.js"
     },
-    "./sprite.svg": null
+    "./sprite.svg": "./icons/sprite.svg",
+    "./styles.css": "./css/styles.css"
   },
   "dependencies": {
     "@conform-to/react": "^1.2.2",
@@ -49,10 +50,13 @@
     "vaul": "^1.1.2"
   },
   "peerDependencies": {
+    "@tailwindcss/typography": "^0.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "react": "^19",
     "react-dom": "^19",
+    "tailwindcss-animate": "^1",
+    "tailwindcss-radix": "^4",
     "tailwindcss": "^4"
   },
   "devDependencies": {

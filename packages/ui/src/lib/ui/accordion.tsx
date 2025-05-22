@@ -35,7 +35,7 @@ function AccordionTrigger({
     <AccordionPrimitive.Trigger
       data-slot="accordion-trigger"
       className={cn(
-        'flex flex-1 items-center gap-x-2 font-medium transition-all',
+        'flex flex-1 items-center gap-x-3 font-medium transition-all',
         align === 'left'
           ? '[&[data-state=open]>svg]:rotate-90'
           : 'flex-row-reverse justify-between [&[data-state=open]>svg]:rotate-180',
@@ -56,6 +56,7 @@ function AccordionContent({
 }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
   return (
     <AccordionPrimitive.Content
+      data-slot="accordion-content"
       className={cn(
         'overflow-hidden data-[state=closed]:hidden data-[state=open]:flex text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
         className,

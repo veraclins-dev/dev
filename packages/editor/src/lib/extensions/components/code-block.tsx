@@ -5,6 +5,7 @@ import {
 } from '@tiptap/react';
 
 import { ComposedSelect } from '@veraclins-dev/ui';
+import { cn } from '@veraclins-dev/utils';
 
 interface Props extends NodeViewProps {
   node: NodeViewProps['node'] & {
@@ -29,7 +30,7 @@ export const CodeBlock = ({
   editor: { options },
 }: Props) => {
   return (
-    <NodeViewWrapper className="relative p-1.5">
+    <NodeViewWrapper className={cn('relative p-3')}>
       {options.editable && (
         <ComposedSelect
           defaultValue={defaultLanguage}
@@ -40,11 +41,11 @@ export const CodeBlock = ({
               .listLanguages()
               .map((lang, index) => ({ value: lang, label: lang })),
           ]}
-          className="absolute right-2 top-2 border border-border px-2.5 py-2"
+          className="absolute right-2 top-2 border-0 px-2.5 py-0"
         />
       )}
 
-      <pre>
+      <pre className="py-4 px-2">
         <NodeViewContent as="code" />
       </pre>
     </NodeViewWrapper>

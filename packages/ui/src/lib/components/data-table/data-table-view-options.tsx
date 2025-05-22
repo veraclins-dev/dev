@@ -11,11 +11,13 @@ import {
   Icon,
 } from '../../ui';
 
-interface DataTableViewOptionsProps<TData> {
+import { type WithId } from './types';
+
+interface DataTableViewOptionsProps<TData extends WithId> {
   table: Table<TData>;
 }
 
-export function DataTableViewOptions<TData>({
+export function DataTableViewOptions<TData extends WithId>({
   table,
 }: DataTableViewOptionsProps<TData>) {
   return (

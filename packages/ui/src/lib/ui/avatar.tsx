@@ -1,6 +1,25 @@
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
+import { cva } from 'class-variance-authority';
 
 import { cn } from '@veraclins-dev/utils';
+
+const avatarVariants = cva(
+  'relative flex size-8 shrink-0 overflow-hidden rounded-full',
+  {
+    variants: {
+      size: {
+        sm: 'size-6',
+        md: 'size-8',
+        lg: 'size-10',
+        xl: 'size-12',
+      },
+      shape: {
+        circle: 'rounded-full',
+        square: 'rounded-md',
+      },
+    },
+  },
+);
 
 function Avatar({
   className,
@@ -39,7 +58,7 @@ function AvatarFallback({
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        'bg-muted flex size-full items-center justify-center rounded-full',
+        'bg-accent flex size-full items-center justify-center rounded-full',
         className,
       )}
       {...props}
