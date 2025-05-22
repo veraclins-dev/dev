@@ -1,3 +1,5 @@
+'use client';
+
 export const highlight = (string: string, sub: string) =>
   sub
     ? string.replace(new RegExp(sub, 'gi'), (match) => `<b>${match}</b>`)
