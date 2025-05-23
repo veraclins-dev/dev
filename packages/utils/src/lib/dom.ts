@@ -12,7 +12,8 @@ export const createMarkup = (content = '') => {
 };
 
 export const stripHTMLTags = (htmlContent: string) => {
-  return sanitizeHtml(htmlContent, {
+  const text = htmlContent.replace(/>/g, '> ');
+  return sanitizeHtml(text, {
     allowedTags: [], // No tags allowed, strips all HTML
     allowedAttributes: {}, // No attributes allowed
   }).trim();
