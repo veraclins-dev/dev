@@ -28,25 +28,27 @@ function AccordionTrigger({
   children,
   align = 'right',
   ...props
-}: React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
+}: React.ComponentProps<typeof AccordionPrimitive.Trigger> & {
   align?: 'left' | 'right';
 }) {
-  <AccordionPrimitive.Header className={cn('flex text-xl', className)}>
-    <AccordionPrimitive.Trigger
-      data-slot="accordion-trigger"
-      className={cn(
-        'flex flex-1 items-center gap-x-3 font-medium transition-all',
-        align === 'left'
-          ? '[&[data-state=open]>svg]:rotate-90'
-          : 'flex-row-reverse justify-between [&[data-state=open]>svg]:rotate-180',
-      )}
-      data-align={align}
-      {...props}
-    >
-      <Icon name={align === 'left' ? 'chevron-right' : 'chevron-down'} />
-      {children}
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>;
+  return (
+    <AccordionPrimitive.Header className={cn('flex text-xl', className)}>
+      <AccordionPrimitive.Trigger
+        data-slot="accordion-trigger"
+        className={cn(
+          'flex flex-1 items-center gap-x-3 font-medium transition-all',
+          align === 'left'
+            ? '[&[data-state=open]>svg]:rotate-90'
+            : 'flex-row-reverse justify-between [&[data-state=open]>svg]:rotate-180',
+        )}
+        data-align={align}
+        {...props}
+      >
+        <Icon name={align === 'left' ? 'chevron-right' : 'chevron-down'} />
+        {children}
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  );
 }
 
 function AccordionContent({

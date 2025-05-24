@@ -1,5 +1,5 @@
 import { type Editor } from '@tiptap/core';
-import { type ComponentPropsWithoutRef, useRef } from 'react';
+import { useRef } from 'react';
 import { type SetOptional } from 'type-fest';
 
 import { useRichTextEditorContext } from '../rich-text-editor-provider';
@@ -42,7 +42,7 @@ export interface MenuButtonImageUploadProps
    * image formats; see
    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept).
    */
-  inputProps?: Partial<ComponentPropsWithoutRef<'input'>>;
+  inputProps?: Partial<React.ComponentProps<'input'>>;
 }
 
 /**
