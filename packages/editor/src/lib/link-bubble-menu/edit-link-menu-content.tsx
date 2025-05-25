@@ -185,7 +185,8 @@ export function EditLinkMenuContent({
           type="button"
           className="rounded-md px-5 py-1"
           disabled={isSubmitting}
-          variant="light"
+          variant="soft"
+          color="primary"
           onClick={handleSubmit}
         >
           {labels?.editLinkSaveButtonLabel ?? 'Save'}

@@ -71,12 +71,7 @@ export const TextField = ({
         type={isPassword && !hidden ? 'text' : type}
         className={cn(inputClass, inputClassOverrides)}
       />
-      <IconButton
-        onClick={toggleHidden}
-        variant="ghost"
-        className="p-1"
-        rounded
-      >
+      <IconButton onClick={toggleHidden} variant="text" className="p-1" rounded>
         {isPassword ? (
           <Icon size="md" name={passwordIcon} className="cursor-pointer" />
         ) : rightIcon ? (

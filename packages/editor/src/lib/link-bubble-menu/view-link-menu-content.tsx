@@ -61,14 +61,16 @@ export function ViewLinkMenuContent({
       <div className="flex w-full justify-end gap-x-3">
         <Button
           onClick={onEdit}
-          variant="light"
+          variant="soft"
+          color="primary"
           className="rounded-md px-3 py-1"
         >
           {labels?.viewLinkEditButtonLabel ?? 'Edit'}
         </Button>
         <Button
           className="px-3 py-1 "
-          variant="destructive-outline"
+          color="destructive"
+          variant="soft"
           onClick={onRemove}
         >
           Remove

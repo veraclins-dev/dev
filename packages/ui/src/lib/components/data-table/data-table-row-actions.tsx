@@ -24,7 +24,7 @@ interface DataTableRowActionsProps<TData extends WithId> {
 
 const ActionButton = ({ className, ...props }: ButtonBaseProps) => (
   <Button
-    variant="ghost"
+    variant="text"
     className={cn('flex h-8 w-8 p-0 data-[state=open]:bg-muted', className)}
     {...props}
   />

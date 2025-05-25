@@ -11,7 +11,8 @@ export function DataTableDragHandle({ id }: WithId) {
     <Button
       {...attributes}
       {...listeners}
-      variant="ghost"
+      variant="text"
+      color="accent"
       size="icon"
       className="text-muted-foreground hover:bg-transparent p-0"
     >

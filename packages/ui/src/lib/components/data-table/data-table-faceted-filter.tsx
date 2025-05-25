@@ -42,16 +42,18 @@ function DataTableFacetedFilter<TData, TValue>({
             <>
               <Separator orientation="vertical" />
               <Badge
-                variant="secondary"
-                className="rounded-sm px-1 font-normal lg:hidden"
+                color="secondary"
+                variant="soft"
+                className="text-xs rounded-sm py-0.5 font-normal lg:hidden"
               >
                 {selectedValues.size}
               </Badge>
               <div className="hidden space-x-1 lg:flex">
                 {selectedValues.size > 2 ? (
                   <Badge
-                    variant="secondary"
-                    className="rounded-sm px-1 font-normal"
+                    color="secondary"
+                    variant="soft"
+                    className="text-xs rounded-sm py-0.5 font-normal"
                   >
                     {selectedValues.size} selected
                   </Badge>
@@ -60,9 +62,10 @@ function DataTableFacetedFilter<TData, TValue>({
                     .filter((option) => selectedValues.has(option.value))
                     .map((option) => (
                       <Badge
-                        variant="secondary"
+                        color="secondary"
+                        variant="soft"
                         key={option.value}
-                        className="rounded-sm px-1 font-normal"
+                        className="text-xs rounded-sm py-0.5 font-normal"
                       >
                         {option.label}
                       </Badge>

@@ -18,6 +18,7 @@ const buttonVariants = cva(BUTTON_DEFAULT_CLASSES, {
       outline: 'bg-transparent',
       text: 'bg-transparent',
       soft: 'shadow-xs',
+      plain: 'bg-transparent',
     },
     color: {
       default: '',
@@ -242,7 +243,6 @@ interface ButtonBaseProps
   asChild?: boolean;
   type?: 'button' | 'submit' | 'reset';
   'aria-label'?: string;
-  'aria-current'?: 'page' | 'step' | 'location' | 'date' | 'time' | boolean;
   loading?: boolean;
   leadingIcon?: IconName;
   trailingIcon?: IconName;

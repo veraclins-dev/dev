@@ -314,7 +314,7 @@ export const Autocomplete = ({
             {selected.length ? (
               <IconButton
                 onClick={clear}
-                variant="ghost"
+                variant="text"
                 className="p-1"
                 rounded
               >

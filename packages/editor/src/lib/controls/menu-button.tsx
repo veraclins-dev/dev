@@ -41,10 +41,11 @@ export const Button = ({
   <IconButton
     {...props}
     onClick={onClick}
-    variant="plain"
+    variant={isActive ? 'solid' : 'soft'}
+    color="accent"
     className={cn(
-      'size-7 rounded-md p-1 hover:bg-accent hover:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
-      isActive ? 'bg-accent font-bold text-accent-foreground' : '',
+      'size-7 rounded-md p-1 bg-transparent border-0',
+      isActive ? 'bg-accent font-bold' : '',
     )}
     type="button"
     tooltip={
