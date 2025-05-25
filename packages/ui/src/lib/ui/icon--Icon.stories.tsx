@@ -7,7 +7,7 @@ import { Icon } from './icon';
 
 const meta: Meta<typeof Icon> = {
   component: Icon,
-  title: 'Icon',
+  title: 'Base/Icon',
 };
 export default meta;
 type Story = StoryObj<typeof Icon>;

@@ -5,7 +5,7 @@ import { PopoverAnchor } from './popover';
 
 const meta: Meta<typeof PopoverAnchor> = {
   component: PopoverAnchor,
-  title: 'PopoverAnchor',
+  title: 'Base/PopoverAnchor',
 };
 export default meta;
 type Story = StoryObj<typeof PopoverAnchor>;

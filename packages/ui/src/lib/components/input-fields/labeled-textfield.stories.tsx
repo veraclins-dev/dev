@@ -5,7 +5,7 @@ import { LabeledTextField } from './labeled-textfield';
 
 const meta: Meta<typeof LabeledTextField> = {
   component: LabeledTextField,
-  title: 'LabeledTextField',
+  title: 'Components/LabeledTextField',
 };
 export default meta;
 type Story = StoryObj<typeof LabeledTextField>;

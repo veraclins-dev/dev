@@ -13,7 +13,7 @@
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
 
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(0.9623 0.0069 247.9);
   --accent-foreground: oklch(0.205 0 0);
 
   --popover: oklch(1 0 0);
@@ -32,6 +32,15 @@
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0.0035 247.86);
 
+  --success: oklch(0.65 0.2 140);
+  --success-foreground: oklch(0.98 0.0035 247.86);
+
+  --warning: oklch(0.65 0.2 60);
+  --warning-foreground: oklch(0.98 0.0035 247.86);
+
+  --info: oklch(0.65 0.15 200);
+  --info-foreground: oklch(0.98 0.0035 247.86);
+
   --badge: oklch(0.905 0.068 297.6);
   --badge-foreground: oklch(0.567 0.132 303.5);
 
@@ -46,8 +55,8 @@
   --muted: oklch(0.242 0.033 260.7);
   --muted-foreground: oklch(0.717 0.013 260.7);
 
-  --accent: oklch(0.411 0.033 260.7);
-  --accent-foreground: oklch(0.964 0.013 264.1);
+  --accent: oklch(0.61 0.033 280);
+  --accent-foreground: oklch(0.98 0.013 264.1);
 
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
@@ -56,14 +65,23 @@
   --card-foreground: oklch(0.964 0.013 264.1);
   --card-inner: oklch(0.346 0.013 260.7);
 
-  --primary: oklch(0.61 0.2501 319.41);
+  --primary: oklch(0.55 0.2501 319.41);
   --primary-foreground: oklch(0.964 0.013 264.1);
 
   --secondary: oklch(0.542 0.188 80.6);
   --secondary-foreground: oklch(0.964 0.013 264.1);
 
-  --destructive: oklch(0.518 0.188 25.6);
+  --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.97 0.013 25.6);
+
+  --success: oklch(0.7 0.2 140);
+  --success-foreground: oklch(0.97 0.013 264.1);
+
+  --warning: oklch(0.7 0.2 60);
+  --warning-foreground: oklch(0.97 0.013 264.1);
+
+  --info: oklch(0.7 0.15 200);
+  --info-foreground: oklch(0.97 0.013 264.1);
 
   --badge: oklch(0.462 0.068 297.6);
   --badge-foreground: oklch(0.951 0.124 303.5);
@@ -97,6 +115,15 @@
 
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
 
   --color-badge: var(--badge);
   --color-badge-foreground: var(--badge-foreground);
@@ -200,6 +227,10 @@
   .badge {
     @apply bg-badge text-badge-foreground;
   }
+
+  a {
+    @apply font-medium border-primary/40 border-b hover:border-primary no-underline;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -209,7 +240,7 @@
 }
 input,
 textarea {
-  &:where(:autofill, [data-com-onepassword-filled]) {
+  &:where(:autofill, [data-com-onepassword-filled], :-moz-autofill) {
     -webkit-background-clip: text;
     -webkit-text-fill-color: inherit;
 

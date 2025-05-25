@@ -51,7 +51,7 @@ export function ViewLinkMenuContent({
           href={currentHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-primary/80 text-primary hover:underline"
+          // className="hover:text-primary/80 text-primary hover:underline"
         >
           {/* We truncate in the middle, since the beginning and end of a URL are often the most
             important parts */}

@@ -5,7 +5,7 @@ import { StatusButton } from './status-button';
 
 const meta: Meta<typeof StatusButton> = {
   component: StatusButton,
-  title: 'StatusButton',
+  title: 'Base/StatusButton',
 };
 export default meta;
 type Story = StoryObj<typeof StatusButton>;

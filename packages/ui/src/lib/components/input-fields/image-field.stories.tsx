@@ -5,7 +5,7 @@ import { ImageField } from './image-field';
 
 const meta: Meta<typeof ImageField> = {
   component: ImageField,
-  title: 'ImageField',
+  title: 'Components/ImageField',
 };
 export default meta;
 type Story = StoryObj<typeof ImageField>;

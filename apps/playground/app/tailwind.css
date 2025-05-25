@@ -2,10 +2,6 @@
 
 @source '../../../packages/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}';
 
-.dark {
-  --background: oklch(0.284 0.33 267.8);
-}
-
 .title,
 .description {
   @apply text-center;
@@ -37,15 +33,6 @@
   background: transparent
     linear-gradient(180deg, #7c1993 0%, #a134bc 55%, #ba46d8 100%) 0% 0%
     no-repeat padding-box;
-}
-
-button:disabled {
-  pointer-events: none;
-  opacity: 0.4;
-}
-
-textarea {
-  resize: none;
 }
 
 .z-100 {

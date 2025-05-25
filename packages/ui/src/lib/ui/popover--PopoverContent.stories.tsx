@@ -5,7 +5,7 @@ import { PopoverContent } from './popover';
 
 const meta: Meta<typeof PopoverContent> = {
   component: PopoverContent,
-  title: 'PopoverContent',
+  title: 'Base/PopoverContent',
 };
 export default meta;
 type Story = StoryObj<typeof PopoverContent>;

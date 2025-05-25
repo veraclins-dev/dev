@@ -5,7 +5,7 @@ import { Badge } from './badge';
 
 const meta: Meta<typeof Badge> = {
   component: Badge,
-  title: 'Badge',
+  title: 'Base/Badge',
 };
 export default meta;
 type Story = StoryObj<typeof Badge>;

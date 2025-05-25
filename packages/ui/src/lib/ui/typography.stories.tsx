@@ -5,7 +5,7 @@ import { Typography } from './typography';
 
 const meta: Meta<typeof Typography> = {
   component: Typography,
-  title: 'Typography',
+  title: 'Base/Typography',
 };
 export default meta;
 type Story = StoryObj<typeof Typography>;

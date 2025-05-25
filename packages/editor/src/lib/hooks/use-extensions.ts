@@ -24,7 +24,6 @@ import { Superscript } from '@tiptap/extension-superscript';
 import { TableCell } from '@tiptap/extension-table-cell';
 import { TableHeader } from '@tiptap/extension-table-header';
 import { TableRow } from '@tiptap/extension-table-row';
-import { TaskItem } from '@tiptap/extension-task-item';
 import { TaskList } from '@tiptap/extension-task-list';
 import { Text } from '@tiptap/extension-text';
 import { TextAlign } from '@tiptap/extension-text-align';
@@ -42,7 +41,6 @@ import { ResizableImage } from '../extensions/resizable-image';
 import { TableImproved } from '../extensions/table-improved';
 import { TaskItemExtension } from '../extensions/task-item';
 import {
-  type MentionSuggestionItem,
   mentionSuggestionOptions,
   type SuggestionFilterFunction,
 } from '../Suggestion';
@@ -157,7 +155,8 @@ export function useExtensions({
         linkOnPaste: true,
         openOnClick: false,
         HTMLAttributes: {
-          class: 'border-primary border-b hover:border-b-2 no-underline',
+          class:
+            'font-medium border-primary/40 border-b hover:border-primary no-underline',
         },
       }),
       LinkBubbleMenuHandler,
@@ -181,7 +180,6 @@ export function useExtensions({
 
       TaskList,
       TaskItemExtension,
-      // TaskItem.configure({ nested: true }),
 
       Mention.configure({
         suggestion: mentionSuggestionOptions(suggestionFilter),

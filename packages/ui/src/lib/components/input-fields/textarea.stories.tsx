@@ -5,7 +5,7 @@ import { TextareaField } from './textarea';
 
 const meta: Meta<typeof TextareaField> = {
   component: TextareaField,
-  title: 'TextareaField',
+  title: 'Components/TextareaField',
 };
 export default meta;
 type Story = StoryObj<typeof TextareaField>;

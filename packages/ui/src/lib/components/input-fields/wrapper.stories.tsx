@@ -5,7 +5,7 @@ import { InputWrapper } from './wrapper';
 
 const meta: Meta<typeof InputWrapper> = {
   component: InputWrapper,
-  title: 'InputWrapper',
+  title: 'Components/InputWrapper',
 };
 export default meta;
 type Story = StoryObj<typeof InputWrapper>;

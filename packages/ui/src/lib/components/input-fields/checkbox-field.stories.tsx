@@ -5,7 +5,7 @@ import { CheckboxField } from './checkbox-field';
 
 const meta: Meta<typeof CheckboxField> = {
   component: CheckboxField,
-  title: 'CheckboxField',
+  title: 'Components/CheckboxField',
 };
 export default meta;
 type Story = StoryObj<typeof CheckboxField>;

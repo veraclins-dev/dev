@@ -6,7 +6,7 @@ import { ComposedTooltip } from './tooltip';
 
 const meta: Meta<typeof ComposedTooltip> = {
   component: ComposedTooltip,
-  title: 'ComposedTooltip',
+  title: 'Base/ComposedTooltip',
 };
 export default meta;
 type Story = StoryObj<typeof ComposedTooltip>;

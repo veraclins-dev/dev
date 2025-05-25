@@ -5,7 +5,7 @@ import { Label } from './label';
 
 const meta: Meta<typeof Label> = {
   component: Label,
-  title: 'Label',
+  title: 'Base/Label',
 };
 export default meta;
 type Story = StoryObj<typeof Label>;

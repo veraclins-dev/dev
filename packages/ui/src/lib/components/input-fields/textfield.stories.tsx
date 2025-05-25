@@ -5,7 +5,7 @@ import { TextField } from './textfield';
 
 const meta: Meta<typeof TextField> = {
   component: TextField,
-  title: 'TextField',
+  title: 'Components/TextField',
 };
 export default meta;
 type Story = StoryObj<typeof TextField>;

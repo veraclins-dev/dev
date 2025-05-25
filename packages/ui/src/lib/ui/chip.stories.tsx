@@ -5,22 +5,24 @@ import { Chip } from './chip';
 
 const meta: Meta<typeof Chip> = {
   component: Chip,
-  title: 'Chip',
+  title: 'Base/Chip',
 };
 export default meta;
 type Story = StoryObj<typeof Chip>;
 
 export const Primary = {
   args: {
-    label: '',
+    label: 'Hello',
     onRemove: '',
   },
 };
 
 export const Heading: Story = {
   args: {
-    label: '',
-    onRemove: '',
+    label: 'Welcome to Chip!',
+    onRemove: () => {
+      console.log('Chip removed');
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

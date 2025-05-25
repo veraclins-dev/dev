@@ -5,7 +5,7 @@ import { BaseButton } from './button';
 
 const meta: Meta<typeof BaseButton> = {
   component: BaseButton,
-  title: 'BaseButton',
+  title: 'Components/BaseButton',
 };
 export default meta;
 type Story = StoryObj<typeof BaseButton>;

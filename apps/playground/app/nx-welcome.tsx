@@ -33,9 +33,14 @@ import {
   TextField,
 } from '@veraclins-dev/ui';
 
+import { Badges } from './components/badges';
+import { Buttons } from './components/button';
+
 export function NxWelcome({ title }: { title: string }) {
   return (
     <div className="container flex w-full gap-4 flex-col h-full my-8 overflow-auto rounded-md py-4">
+      <Buttons />
+      <Badges />
       <Card>
         <CardHeader>
           <CardTitle>{title} card</CardTitle>
@@ -44,26 +49,6 @@ export function NxWelcome({ title }: { title: string }) {
           </CardSubtitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
-          <div className="flex gap-4">
-            <Button>Default</Button>
-            <Button variant="light">Light</Button>
-            <Button variant="destructive">Destructive</Button>
-            <Button variant="ghost">Ghost</Button>
-            <Button variant="secondary">Secondary</Button>
-            <Button variant="secondary-light">Secondary Light</Button>
-            <Button variant="link">Link</Button>
-            <Button variant="outline">Outline</Button>
-            <Button className="rounded-full p-0.5 size-9" variant="accent">
-              <Icon name="moon" className="p-0.5 size-8" />
-            </Button>
-            <Button className="rounded-full p-0.5 size-9" variant="accent">
-              <Icon name="notification" className="p-0.5 size-8" />
-            </Button>
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          </div>
           <div className="flex gap-4">
             <Input placeholder="Default" className="w-full" />
             <Input placeholder="Light" className="w-full" />
@@ -142,10 +127,7 @@ export function NxWelcome({ title }: { title: string }) {
                     <div className="grid gap-2">
                       <div className="flex items-center">
                         <Label htmlFor="password">Password</Label>
-                        <a
-                          href="#"
-                          className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                        >
+                        <a href="#" className="ml-auto inline-block text-sm">
                           Forgot your password?
                         </a>
                       </div>
@@ -163,7 +145,7 @@ export function NxWelcome({ title }: { title: string }) {
                 </Button>
                 <div className="mt-4 text-center text-sm">
                   Don&apos;t have an account?{' '}
-                  <a href="#" className="underline underline-offset-4">
+                  <a href="#" className="">
                     Sign up
                   </a>
                 </div>

@@ -5,7 +5,7 @@ import { Input } from './input';
 
 const meta: Meta<typeof Input> = {
   component: Input,
-  title: 'Input',
+  title: 'Base/Input',
 };
 export default meta;
 type Story = StoryObj<typeof Input>;

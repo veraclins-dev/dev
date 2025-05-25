@@ -5,7 +5,7 @@ import { Skeleton } from './skeleton';
 
 const meta: Meta<typeof Skeleton> = {
   component: Skeleton,
-  title: 'Skeleton',
+  title: 'Base/Skeleton',
 };
 export default meta;
 type Story = StoryObj<typeof Skeleton>;

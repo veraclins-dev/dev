@@ -1,10 +1,7 @@
-import { cn } from '@veraclins-dev/utils';
-
 import { ButtonBase, type ButtonBaseProps } from '../ui/button';
 import { ComposedTooltip } from '../ui/tooltip';
 
 interface ButtonProps extends ButtonBaseProps {
-  rounded?: boolean;
   tooltip?: React.ReactNode;
 }
 
@@ -20,20 +17,9 @@ const BaseButton = ({ tooltip, ...props }: ButtonProps) => {
   );
 };
 
-const Button = ({
-  rounded = false,
-  className,
-  children,
-  ...props
-}: ButtonProps) => {
+const Button = ({ className, children, ...props }: ButtonProps) => {
   return (
-    <BaseButton
-      {...props}
-      className={cn(
-        rounded || props.size === 'icon' ? 'rounded-full' : 'rounded-md',
-        className,
-      )}
-    >
+    <BaseButton {...props} className={className}>
       {children}
     </BaseButton>
   );

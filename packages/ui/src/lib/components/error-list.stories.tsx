@@ -5,7 +5,7 @@ import { ErrorList } from './error-list';
 
 const meta: Meta<typeof ErrorList> = {
   component: ErrorList,
-  title: 'ErrorList',
+  title: 'Components/ErrorList',
 };
 export default meta;
 type Story = StoryObj<typeof ErrorList>;

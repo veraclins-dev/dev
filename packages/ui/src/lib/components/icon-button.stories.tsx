@@ -5,7 +5,7 @@ import { IconButton } from './icon-button';
 
 const meta: Meta<typeof IconButton> = {
   component: IconButton,
-  title: 'IconButton',
+  title: 'Components/IconButton',
 };
 export default meta;
 type Story = StoryObj<typeof IconButton>;

@@ -5,7 +5,7 @@ import { LabeledTextarea } from './labeled-textarea';
 
 const meta: Meta<typeof LabeledTextarea> = {
   component: LabeledTextarea,
-  title: 'LabeledTextarea',
+  title: 'Components/LabeledTextarea',
 };
 export default meta;
 type Story = StoryObj<typeof LabeledTextarea>;
