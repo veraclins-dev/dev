@@ -42,6 +42,7 @@ export interface AutocompleteProps
   onChange?: (value: string) => void;
   disableSorting?: boolean;
   shouldReset?: boolean;
+  freeSolo?: boolean; // Added freeSolo prop
 }
 
 const filter = ({
@@ -67,7 +68,7 @@ const filter = ({
   if (disableSorting) {
     config.baseSort = () => 0;
   }
-  config.threshold = !multiple ? matchSorter.rankings.NO_MATCH : undefined;
+  // config.threshold = !multiple ? matchSorter.rankings.NO_MATCH : undefined;
 
   return matchSorter(options, value, config);
 };
@@ -90,13 +91,13 @@ export const Autocomplete = ({
   placeholder,
   shouldReset,
   wrapperClassName,
+  freeSolo = false,
   ...props
 }: AutocompleteProps) => {
   const { errorId } = useFieldProperties(field);
   const mainRef = useRef<Maybe<HTMLInputElement>>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const anchorRef = useRef<Maybe<HTMLDivElement>>(null);
-
   const firstItemRef = useRef<Maybe<HTMLDivElement>>(null);
 
   const [localValue, setLocalValue] = useState<string>('');
@@ -113,14 +114,32 @@ export const Autocomplete = ({
     if (value && !open) {
       setOpen(true);
     }
-
     scrollIntoView(firstItemRef);
+  };
+
+  const handleCreateOption = () => {
+    console.debug('Creating option:', { localValue, canSelect, multiple });
+    if (freeSolo && localValue && canSelect) {
+      if (multiple) {
+        setSelected([...selected, localValue]);
+        setLocalValue('');
+        inputRef.current?.focus();
+      } else {
+        setSelected([localValue]);
+        setLocalValue(localValue);
+        setOpen(false);
+      }
+    }
   };
 
   const handleBlur = () => {
     mainRef.current?.focus();
     mainRef.current?.blur();
     setOpen(false);
+    // When freeSolo is enabled and input has value, select it on blur
+    if (freeSolo && localValue && canSelect && !multiple) {
+      handleCreateOption();
+    }
   };
 
   const value = supplied ?? field?.initialValue ?? defaultValue ?? '';
@@ -141,6 +160,7 @@ export const Autocomplete = ({
       }
     }
   };
+
   const handleRemove = (value: string) => {
     setSelected(selected.filter((val) => val !== value));
     inputRef.current?.focus();
@@ -181,9 +201,19 @@ export const Autocomplete = ({
         if (e.key === 'Escape') {
           input.blur();
         }
+        // Handle Enter key for creating new option in freeSolo mode
+        if (
+          e.key === 'Enter' &&
+          freeSolo &&
+          localValue &&
+          filteredOptions.length === 0
+        ) {
+          e.preventDefault();
+          handleCreateOption();
+        }
       }
     },
-    [],
+    [freeSolo, localValue, filteredOptions],
   );
 
   const handleFocus = useCallback(() => {
@@ -235,10 +265,10 @@ export const Autocomplete = ({
       return acc && options.some((option) => getOptionValue(option) === val);
     }, true);
 
-    if (!found) {
+    if (!found && !freeSolo) {
       reset();
     }
-  }, [options]);
+  }, [options, freeSolo]);
 
   useEffect(() => {
     if (shouldReset && selected.length) {
@@ -282,8 +312,10 @@ export const Autocomplete = ({
                       label={getOptionLabel(
                         options.find(
                           (option) => getOptionValue(option) === value,
-                        ) ?? '',
+                        ) ?? { label: value, value }, // Use value as label for freeSolo created options
                       )}
+                      variant="soft"
+                      color="primary"
                       onRemove={() => handleRemove(value)}
                     />
                   );
@@ -301,7 +333,6 @@ export const Autocomplete = ({
                 aria-invalid={errorId ? true : undefined}
                 value={localValue}
                 onValueChange={handleChange}
-                // onBlur={handleBlur}
                 onFocus={handleFocus}
                 onClick={handleFocus}
                 placeholder={placeholder}
@@ -353,7 +384,11 @@ export const Autocomplete = ({
               <CommandEmpty>
                 {dependent
                   ? `Select a value for "${humanize(dependsOn)}" first`
-                  : 'No options found'}
+                  : freeSolo && localValue
+                    ? `Press Enter to add "${localValue}"`
+                    : freeSolo && !localValue
+                      ? 'Type a value and press Enter to add a new one'
+                      : 'No options found'}
               </CommandEmpty>
               {filteredOptions.map((option, index) => (
                 <CommandItem

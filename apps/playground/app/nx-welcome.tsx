@@ -291,6 +291,12 @@ export function NxWelcome({ title }: { title: string }) {
             value={'option 1|option 2'}
             multiple
           />
+          <Autocomplete
+            placeholder="autocomplete free solo"
+            options={[]}
+            multiple
+            freeSolo
+          />
           <div className="flex gap-6">
             <RadioField
               options={[

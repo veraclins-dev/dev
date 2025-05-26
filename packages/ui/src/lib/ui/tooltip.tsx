@@ -9,7 +9,13 @@ const TooltipProvider = TooltipPrimitive.Provider;
 const Tooltip = TooltipPrimitive.Root;
 
 const TooltipTrigger = TooltipPrimitive.Trigger;
-const TooltipArrow = TooltipPrimitive.Arrow;
+
+const TooltipArrow = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof TooltipPrimitive.Arrow>) => (
+  <TooltipPrimitive.Arrow className={cn(className)} {...props} />
+);
 
 const TooltipContent = ({
   className,

@@ -6,7 +6,7 @@ import { cn } from '@veraclins-dev/utils';
 import { Icon } from './icon';
 
 const CHIP_DEFAULT_CLASSES =
-  "inline-flex max-w-fit items-center justify-center gap-1.5 border border-transparent px-2.5 py-0.5 text-xs font-medium transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-ring/50 focus:ring-offset-2 aria-invalid:border-destructive/20 dark:aria-invalid:border-destructive/40 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-3.5 shrink-0 [&_svg]:shrink-0";
+  'inline-flex max-w-fit items-center justify-center gap-1.5 border border-transparent px-2.5 py-0.5 text-xs font-medium transition-colors rounded-md focus:outline-none focus:ring-2 focus:ring-ring/50 focus:ring-offset-2 aria-invalid:border-destructive/20 dark:aria-invalid:border-destructive/40 shrink-0 [&_svg]:shrink-0';
 
 const chipVariants = cva(CHIP_DEFAULT_CLASSES, {
   variants: {
@@ -26,10 +26,10 @@ const chipVariants = cva(CHIP_DEFAULT_CLASSES, {
       accent: '',
     },
     size: {
-      sm: "px-1 py-0.5 text-xs [&_svg:not([class*='size-'])]:size-3.5",
-      md: "px-2 py-1 text-sm [&_svg:not([class*='size-'])]:size-4",
-      lg: "px-3 py-1.5 text-sm [&_svg:not([class*='size-'])]:size-5",
-      xl: "px-4 py-2 text-base [&_svg:not([class*='size-'])]:size-6",
+      sm: 'p-0.5 text-xs',
+      md: 'p-1 text-sm',
+      lg: 'p-1.5 text-sm',
+      xl: 'p-2 text-base',
     },
   },
   compoundVariants: [
@@ -191,7 +191,7 @@ const Chip = memo(
     className,
     variant,
     color,
-    size,
+    size = 'md',
     onRemove,
     label,
     ...props
@@ -206,9 +206,10 @@ const Chip = memo(
           <Icon
             className={cn(
               'cursor-pointer opacity-60 p-0.5 hover:opacity-100 focus:outline-none',
-              size === 'sm' && 'size-3.5',
-              size === 'md' && 'size-4',
-              size === 'lg' && 'size-4.5',
+              size === 'sm' && 'size-4',
+              size === 'md' && 'size-5',
+              size === 'lg' && 'size-6',
+              size === 'xl' && 'size-7',
             )}
             onClick={onRemove}
             name="cancel"
