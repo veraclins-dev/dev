@@ -116,6 +116,7 @@ export {
   Popover,
   PopoverAnchor,
   PopoverAnchorProps,
+  PopoverArrow,
   PopoverContent,
   type PopoverContentProps,
   type PopoverProps,

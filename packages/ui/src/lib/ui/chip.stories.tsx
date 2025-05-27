@@ -10,7 +10,7 @@ const meta: Meta<typeof Chip> = {
 export default meta;
 type Story = StoryObj<typeof Chip>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {
     label: 'Hello',
     onRemove: '',

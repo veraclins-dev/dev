@@ -10,12 +10,16 @@ const meta: Meta<typeof Badge> = {
 export default meta;
 type Story = StoryObj<typeof Badge>;
 
-export const Primary = {
-  args: {},
+export const Primary: Story = {
+  args: {
+    children: 'Badge',
+  },
 };
 
 export const Heading: Story = {
-  args: {},
+  args: {
+    children: 'Welcome to Badge!',
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to Badge!/gi)).toBeTruthy();

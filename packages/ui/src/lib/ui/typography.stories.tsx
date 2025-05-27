@@ -10,10 +10,10 @@ const meta: Meta<typeof Typography> = {
 export default meta;
 type Story = StoryObj<typeof Typography>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {
     children: 'Primary',
-    variant: 'primary',
+    variant: 'h2',
     className: 'px-4 py-2',
   },
 };

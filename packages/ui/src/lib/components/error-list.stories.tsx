@@ -10,9 +10,9 @@ const meta: Meta<typeof ErrorList> = {
 export default meta;
 type Story = StoryObj<typeof ErrorList>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {
-    errors: '',
+    errors: ['Error 1', 'Error 2'],
     id: '',
     className: '',
     errorItemClassName: '',

@@ -10,10 +10,8 @@ const meta: Meta<typeof Checkbox> = {
 export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
-export const Primary = {
-  args: {
-    className: 'border border-gray-300 rounded p-2',
-  },
+export const Primary: Story = {
+  args: {},
 };
 
 export const Heading: Story = {

@@ -5,21 +5,19 @@ import { Button } from './button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
-  title: 'Components/Button',
+  title: 'Components/Button/Main',
 };
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {
-    rounded: false,
     tooltip: '',
   },
 };
 
 export const Heading: Story = {
   args: {
-    rounded: false,
     tooltip: '',
   },
   play: async ({ canvasElement }) => {

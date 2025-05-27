@@ -10,7 +10,7 @@ const meta: Meta<typeof ImageField> = {
 export default meta;
 type Story = StoryObj<typeof ImageField>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {
     defaultValue: '',
     previewClasses: '',

@@ -5,12 +5,12 @@ import { Select } from './select';
 
 const meta: Meta<typeof Select> = {
   component: Select,
-  title: 'Base/Select',
+  title: 'Base/Select/Root',
 };
 export default meta;
 type Story = StoryObj<typeof Select>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {},
 };
 

@@ -10,11 +10,10 @@ const meta: Meta<typeof CheckboxField> = {
 export default meta;
 type Story = StoryObj<typeof CheckboxField>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {
-    field: '',
     label: '',
-    labelProps: '',
+
     inputClassName: '',
   },
 };

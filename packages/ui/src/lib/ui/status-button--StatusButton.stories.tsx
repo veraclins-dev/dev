@@ -11,18 +11,11 @@ export default meta;
 type Story = StoryObj<typeof StatusButton>;
 
 export const Primary: Story = {
-  args: {
-    children: 'Primary',
-    status: 'pending',
-  },
+  args: {},
 };
 
-export const WithMessage: Story = {
-  args: {
-    children: 'WithMessage',
-    status: 'pending',
-    message: 'Success!',
-  },
+export const Heading: Story = {
+  args: {},
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to StatusButton!/gi)).toBeTruthy();

@@ -10,7 +10,7 @@ const meta: Meta<typeof LabeledTextarea> = {
 export default meta;
 type Story = StoryObj<typeof LabeledTextarea>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {
     label: '',
   },

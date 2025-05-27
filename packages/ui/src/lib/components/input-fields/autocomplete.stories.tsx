@@ -10,7 +10,7 @@ const meta: Meta<typeof Autocomplete> = {
 export default meta;
 type Story = StoryObj<typeof Autocomplete>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {
     options: [
       { label: 'Option 1', value: 'Option 1' },

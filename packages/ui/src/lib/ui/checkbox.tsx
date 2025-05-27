@@ -36,7 +36,7 @@ function Checkbox({
       >
         <Icon
           name={checked === 'indeterminate' ? 'minus' : 'check-square'}
-          className="size-3.5"
+          className="size-4"
         />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>

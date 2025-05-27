@@ -148,6 +148,17 @@ export function Buttons() {
           </div>
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Outline</Typography>
+            <Button variant="outline" color="default" className="w-fit">
+              <Icon name="plus" /> Add Item
+            </Button>
+            <Button
+              variant="outline"
+              color="default"
+              className="w-fit"
+              trailingIcon="plus"
+            >
+              Add Item
+            </Button>
             <div className="flex gap-2">
               <Button variant="outline" color="default">
                 Default

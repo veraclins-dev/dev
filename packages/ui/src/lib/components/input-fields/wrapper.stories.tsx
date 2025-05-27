@@ -10,10 +10,9 @@ const meta: Meta<typeof InputWrapper> = {
 export default meta;
 type Story = StoryObj<typeof InputWrapper>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {
     children: '',
-    wrapperRef: '',
   },
 };
 

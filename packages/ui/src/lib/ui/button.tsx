@@ -327,9 +327,9 @@ const ButtonBase = memo(
             />
           </svg>
         )}
-        {leadingIcon && <Icon className="mr-2" name={leadingIcon} />}
+        {leadingIcon && <Icon name={leadingIcon} />}
         {children}
-        {trailingIcon && <Icon className="ml-2" name={trailingIcon} />}
+        {trailingIcon && <Icon name={trailingIcon} />}
       </Comp>
     );
   },

@@ -70,7 +70,7 @@ export const PrimarySolid: Story = {
   args: {
     variant: 'solid',
     color: 'primary',
-    size: 'default',
+    size: 'md',
     children: 'Primary Button',
   },
   play: async ({ canvasElement }) => {
@@ -100,7 +100,7 @@ export const TextInfo: Story = {
   args: {
     variant: 'text',
     color: 'info',
-    size: 'default',
+    size: 'md',
     children: 'Learn More',
   },
   play: async ({ canvasElement }) => {
@@ -114,7 +114,7 @@ export const SoftSuccess: Story = {
   args: {
     variant: 'soft',
     color: 'success',
-    size: 'pill',
+    size: 'lg',
     children: 'Save',
     trailingIcon: 'check',
   },
@@ -129,7 +129,7 @@ export const SoftSuccess: Story = {
 export const IconOnly: Story = {
   args: {
     variant: 'solid',
-    color: 'neutral',
+    color: 'accent',
     size: 'icon',
     'aria-label': 'Add item',
     children: <Icon name="plus" data-testid="svg" />,
@@ -172,7 +172,7 @@ export const LoadingPrimary: Story = {
   args: {
     variant: 'solid',
     color: 'primary',
-    size: 'default',
+    size: 'md',
     loading: true,
     children: 'Submitting',
   },

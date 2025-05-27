@@ -10,7 +10,7 @@ const meta: Meta<typeof TextareaField> = {
 export default meta;
 type Story = StoryObj<typeof TextareaField>;
 
-export const Primary = {
+export const Primary: Story = {
   args: {},
 };
 

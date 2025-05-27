@@ -1,25 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { Label } from './label';
+import { SelectValue } from './select';
 
-const meta: Meta<typeof Label> = {
-  component: Label,
-  title: 'Base/Label',
+const meta: Meta<typeof SelectValue> = {
+  component: SelectValue,
+  title: 'Base/Select/Value',
 };
 export default meta;
-type Story = StoryObj<typeof Label>;
+type Story = StoryObj<typeof SelectValue>;
 
 export const Primary: Story = {
-  args: {
-    children: 'Primary',
-  },
+  args: {},
 };
 
 export const Heading: Story = {
   args: {},
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to Label!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Welcome to SelectValue!/gi)).toBeTruthy();
   },
 };
