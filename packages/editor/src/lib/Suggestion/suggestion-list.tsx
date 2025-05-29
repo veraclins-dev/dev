@@ -1,7 +1,7 @@
 import { type MentionNodeAttrs } from '@tiptap/extension-mention';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 
-import { contentClasses, itemClasses } from '@veraclins-dev/ui';
+import { CONTENT_CLASSES, ITEM_CLASSES } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import { type SuggestionListProps, type SuggestionListRef } from './types';
@@ -74,11 +74,13 @@ export const SuggestionList = forwardRef<
   }));
 
   return props.items.length > 0 ? (
-    <ul className={cn(contentClasses, 'flex max-h-40 overflow-y-auto gap-y-1')}>
+    <ul
+      className={cn(CONTENT_CLASSES, 'flex max-h-40 overflow-y-auto gap-y-1')}
+    >
       {props.items.map((item, index) => (
         <li
           key={item.id}
-          className={cn(itemClasses, 'px-1', {
+          className={cn(ITEM_CLASSES, 'px-1', {
             'bg-accent text-accent-foreground': index === selectedIndex,
           })}
           onClick={() => selectItem(index)}

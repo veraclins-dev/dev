@@ -1,11 +1,14 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { inputClasses } from './styles';
+import { INPUT_CLASSES } from './styles';
 
 export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 const Textarea = ({ className, ...props }: TextareaProps) => (
-  <textarea className={cn('resize-none', inputClasses, className)} {...props} />
+  <textarea
+    className={cn('resize-none', INPUT_CLASSES, className)}
+    {...props}
+  />
 );
 
 export { Textarea };

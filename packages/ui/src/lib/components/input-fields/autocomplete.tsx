@@ -12,7 +12,7 @@ import {
   CommandItem,
   CommandList,
   Icon,
-  inputClassOverrides,
+  INPUT_CLASS_OVERRIDES,
   Popover,
   PopoverAnchor,
   PopoverContent,
@@ -32,8 +32,7 @@ import { InputWrapper } from './wrapper';
 
 type Options = Option<string>[];
 
-export interface AutocompleteProps
-  extends Omit<TextFieldProps, 'value' | 'onChange'> {
+interface AutocompleteProps extends Omit<TextFieldProps, 'value' | 'onChange'> {
   options: Options;
   maxOptions?: number;
   dependsOn?: string;
@@ -73,7 +72,77 @@ const filter = ({
   return matchSorter(options, value, config);
 };
 
-export const Autocomplete = ({
+/**
+ * A flexible and customizable Autocomplete component that allows users to select one or multiple options
+ * from a provided list or create new options in freeSolo mode. The component supports filtering, sorting,
+ * and dependency-based option rendering, with integration into form contexts and accessibility features.
+ *
+ * @component
+ * @param {Object} props - The properties for the Autocomplete component.
+ * @param {Option<string>[]} props.options - An array of options to display in the autocomplete dropdown.
+ *   Each option can be a string or an object with `label` and `value` properties.
+ * @param {boolean} [props.multiple=false] - Enables multiple selection mode, allowing users to select
+ *   multiple options, which are displayed as chips.
+ * @param {string} [props.label] - The label for the input field, displayed above the autocomplete.
+ * @param {string} [props.name] - The name attribute for the input, used for form integration.
+ * @param {Object} [props.labelProps] - Additional props to pass to the label element.
+ * @param {number} [props.maxOptions] - The maximum number of options that can be selected in multiple mode.
+ * @param {string} [props.dependsOn] - The name of another field that this autocomplete depends on.
+ *   If specified and no options are available, a message is shown prompting selection of the dependent field.
+ * @param {Object} [props.field] - Field properties for form integration (e.g., from React Hook Form).
+ * @param {string} [props.inputClass] - Additional CSS classes for the input element.
+ * @param {string} [props.defaultValue] - The default value for the autocomplete, used if no value is provided.
+ * @param {string} [props.value] - The controlled value of the autocomplete, overriding defaultValue.
+ * @param {(value: string) => void} [props.onChange] - Callback function triggered when the selected value(s) change.
+ *   Receives a string of selected values joined by `|` for multiple selections.
+ * @param {boolean} [props.disableSorting=false] - Disables sorting of filtered options, preserving the original order.
+ * @param {string} [props.placeholder] - Placeholder text for the input field.
+ * @param {boolean} [props.shouldReset=false] - If true, resets the selected values when this prop changes.
+ * @param {string} [props.wrapperClassName] - Additional CSS classes for the wrapper element.
+ * @param {boolean} [props.freeSolo=false] - Enables freeSolo mode, allowing users to create new options by typing
+ *   and pressing Enter or blurring the input (for single selection).
+ * @param {string} [props.className] - Additional CSS classes for the root element.
+ * @param {...any} props - Additional props are spread onto the hidden input element for form integration.
+ * @returns {JSX.Element} The rendered Autocomplete component.
+ *
+ * @example
+ * ```jsx
+ * const options = [
+ *   { label: 'Apple', value: 'apple' },
+ *   { label: 'Banana', value: 'banana' },
+ *   { label: 'Orange', value: 'orange' },
+ * ];
+ *
+ * <Autocomplete
+ *   options={options}
+ *   multiple
+ *   label="Select Fruits"
+ *   placeholder="Type to search or add..."
+ *   freeSolo
+ *   onChange={(value) => console.log('Selected:', value)}
+ * />
+ * ```
+ *
+ * @remarks
+ * - **Single vs. Multiple Selection**: In single selection mode (`multiple=false`), the component allows
+ *   selecting one option or creating a new one in freeSolo mode. In multiple selection mode (`multiple=true`),
+ *   selected options are displayed as removable chips, and new options can be added in freeSolo mode.
+ * - **FreeSolo Mode**: When `freeSolo=true`, users can type a custom value and press Enter (or blur for single
+ *   selection) to add it as a new option, even if it doesn't exist in the provided `options`.
+ * - **Filtering**: Options are filtered using the `match-sorter` library based on the input value. Filtering
+ *   can be customized with `disableSorting` to preserve the original order.
+ * - **Dependency Handling**: If `dependsOn` is specified and no options are available, a message prompts the
+ *   user to select a value for the dependent field first.
+ * - **Accessibility**: The component includes ARIA attributes (`aria-describedby`, `aria-label`, etc.) for
+ *   accessibility and integrates with form libraries via a hidden input.
+ * - **Keyboard Navigation**: Supports keyboard interactions like `Enter` for creating new options in freeSolo
+ *   mode, `Delete`/`Backspace` for removing selections, and `Escape` to close the dropdown.
+ * - **Form Integration**: Works with form libraries (e.g., React Hook Form) via the `field` prop and a hidden
+ *   input that stores the selected value(s) joined by `|`.
+ * - **Reset and Clear**: The component can be reset programmatically via `shouldReset` or cleared using the
+ *   clear button (displayed when selections exist).
+ */
+const Autocomplete = ({
   className,
   options,
   multiple,
@@ -133,7 +202,6 @@ export const Autocomplete = ({
   };
 
   const handleBlur = () => {
-    mainRef.current?.focus();
     mainRef.current?.blur();
     setOpen(false);
     // When freeSolo is enabled and input has value, select it on blur
@@ -336,7 +404,7 @@ export const Autocomplete = ({
                 onFocus={handleFocus}
                 onClick={handleFocus}
                 placeholder={placeholder}
-                className={inputClassOverrides}
+                className={INPUT_CLASS_OVERRIDES}
                 disabled={!canSelect}
               />
             )}
@@ -387,7 +455,7 @@ export const Autocomplete = ({
                   : freeSolo && localValue
                     ? `Press Enter to add "${localValue}"`
                     : freeSolo && !localValue
-                      ? 'Type a value and press Enter to add a new one'
+                      ? 'Type a value and press Enter to accept it'
                       : 'No options found'}
               </CommandEmpty>
               {filteredOptions.map((option, index) => (
@@ -413,3 +481,5 @@ export const Autocomplete = ({
     </InputWrapper>
   );
 };
+
+export { Autocomplete, type AutocompleteProps };

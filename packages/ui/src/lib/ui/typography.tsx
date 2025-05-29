@@ -1,7 +1,8 @@
-import { cva, type VariantProps } from 'class-variance-authority';
 import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
+
+import { type TypographyVariants, typographyVariants } from './variants';
 
 // Type definitions
 type Variant =
@@ -19,7 +20,9 @@ type Variant =
   | 'overline'
   | 'inherit';
 
-const variantMapping: Record<Variant, string> = {
+type TypographyElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+
+const variantMapping: Record<Variant, TypographyElement> = {
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',
@@ -35,102 +38,119 @@ const variantMapping: Record<Variant, string> = {
   inherit: 'p',
 };
 
-const typographyVariants = cva('', {
-  variants: {
-    variant: {
-      h1: 'text-4xl font-bold leading-tight',
-      h2: 'text-3xl font-bold leading-tight',
-      h3: 'text-2xl font-semibold leading-snug',
-      h4: 'text-xl font-semibold leading-snug',
-      h5: 'text-lg font-medium leading-normal',
-      h6: 'text-base font-medium leading-normal',
-      subtitle1: 'text-base font-normal leading-normal',
-      subtitle2: 'text-sm font-medium leading-normal',
-      body1: 'text-base font-normal leading-relaxed',
-      body2: 'text-sm font-normal leading-relaxed',
-      caption: 'text-xs font-normal leading-normal text-gray-500',
-      overline: 'text-xs font-normal leading-normal uppercase tracking-wider',
-      inherit: '',
-    },
-    color: {
-      primary: 'text-primary',
-      secondary: 'text-secondary',
-      error: 'text-red-500',
-      warning: 'text-yellow-500',
-      info: 'text-blue-400',
-      success: 'text-green-600',
-      inherit: 'text-inherit',
-    },
-    align: {
-      inherit: '',
-      left: 'text-left',
-      center: 'text-center',
-      right: 'text-right',
-      justify: 'text-justify',
-    },
-    gutterBottom: {
-      true: 'mb-4',
-      false: '',
-    },
-    noWrap: {
-      true: 'truncate',
-      false: '',
-    },
-  },
-  defaultVariants: {
-    variant: 'body2',
-    color: 'inherit',
-    align: 'inherit',
-    gutterBottom: false,
-    noWrap: false,
-  },
-});
-
-export type TypographyVariants = VariantProps<typeof typographyVariants>;
-
-export interface TypographyProps
+interface TypographyProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
     TypographyVariants {
-  component?: React.ElementType;
+  component?: TypographyElement;
   className?: string;
   children: React.ReactNode;
 }
 
-export const Typography = memo(
-  ({
-    variant: va = 'body2',
-    color = 'inherit',
-    align = 'inherit',
-    gutterBottom = false,
-    noWrap = false,
-    component,
-    className,
-    children,
-    ...props
-  }: TypographyProps) => {
-    const variant = va ?? 'body2';
-    const Component = component || variantMapping[variant] || 'p';
+/**
+ * A versatile Typography component for rendering text with customizable styles, including variant-based
+ * typography (e.g., headings, body text, captions), color schemes, text alignment, and spacing options.
+ * The component is memoized for performance optimization and supports accessibility with appropriate
+ * ARIA attributes for headings.
+ */
+function Base({
+  variant: va = 'body2',
+  align = 'inherit',
+  gutterBottom = false,
+  noWrap = false,
+  component,
+  className,
+  children,
+  ...props
+}: TypographyProps) {
+  const variant = va ?? 'body2';
+  const Component = component || variantMapping[variant] || 'p';
 
-    return (
-      <Component
-        className={cn(
-          typographyVariants({
-            variant,
-            color,
-            align,
-            gutterBottom,
-            noWrap,
-            className,
-          }),
-        )}
-        role={variant.startsWith('h') ? 'heading' : undefined}
-        aria-level={
-          variant.startsWith('h') ? variant.replace('h', '') : undefined
-        }
-        {...props}
-      >
-        {children}
-      </Component>
-    );
-  },
-);
+  return (
+    <Component
+      className={cn(
+        typographyVariants({
+          variant,
+          align,
+          gutterBottom,
+          noWrap,
+          className,
+        }),
+      )}
+      role={variant.startsWith('h') ? 'heading' : undefined}
+      aria-level={
+        variant.startsWith('h') ? Number(variant.replace('h', '')) : undefined
+      }
+      {...props}
+    >
+      {children}
+    </Component>
+  );
+}
+
+/**
+ * A versatile Typography component for rendering text with customizable styles, including variant-based
+ * typography (e.g., headings, body text, captions), color schemes, text alignment, and spacing options.
+ * The component is memoized for performance optimization and supports accessibility with appropriate
+ * ARIA attributes for headings.
+ *
+ * @component
+ * @param {Object} props - The properties for the Typography component.
+ * @param {string} [props.variant='body2'] - The typography variant to apply, controlling font size, weight,
+ *   and line height. Options include:
+ *   - `h1`, `h2`, `h3`, `h4`, `h5`, `h6`: Heading styles with varying sizes and weights.
+ *   - `subtitle1`, `subtitle2`: Subtitle styles for secondary headings.
+ *   - `body1`, `body2`: Body text styles for standard content.
+ *   - `caption`: Small text for annotations or secondary information.
+ *   - `overline`: Uppercase text with wide tracking for labels.
+ *   - `inherit`: Inherits the parent typography styles and renders a <p> element.
+ * @param {string} [props.align='inherit'] - Text alignment. Options include:
+ *   - `inherit`: Inherits the parent alignment.
+ *   - `left`: Left-aligned text.
+ *   - `center`: Centered text.
+ *   - `right`: Right-aligned text.
+ *   - `justify`: Justified text.
+ * @param {boolean} [props.gutterBottom=false] - Adds bottom margin (`mb-4`) for spacing below the text.
+ * @param {boolean} [props.noWrap=false] - Prevents text wrapping, applying truncation (`truncate`) for overflow.
+ * @param {string} [props.component] - Custom HTML element to render (e.g., `h1`, `p`, `span`). If not provided,
+ *   the component is inferred from the `variant` (e.g., `h1` for `variant='h1'`, `p` for `variant='body1'`).
+ * @param {string} [props.className] - Additional CSS classes to apply to the component.
+ * @param {React.ReactNode} props.children - The content to render inside the Typography component.
+ * @param {...any} props - Additional props are spread onto the rendered HTML element.
+ * @returns {JSX.Element} The rendered Typography component.
+ *
+ * @example
+ * ```jsx
+ * <Typography variant="h1" color="primary" align="center" gutterBottom>
+ *   Welcome to Our Website
+ * </Typography>
+ *
+ * <Typography variant="body1" color="success" noWrap>
+ *   This is a success message that will not wrap.
+ * </Typography>
+ *
+ * <Typography component="span" variant="caption">
+ *   Small caption text
+ * </Typography>
+ * ```
+ *
+ * @remarks
+ * - **Variant Mapping**: The component maps typography variants to HTML elements (e.g., `h1` for `variant='h1'`,
+ *   `p` for `variant='body1'`, `span` for `variant='caption'`) unless overridden by the `component` prop.
+ * - **Styling**: Styles are applied using the `typographyVariants` utility (based on `class-variance-authority`),
+ *   which defines font sizes, weights, line heights, and other properties for each variant.
+ * - **Accessibility**: Heading variants (`h1`–`h6`) include `role="heading"` and `aria-level` attributes to
+ *   ensure proper accessibility for screen readers.
+ * - **Performance**: The component is wrapped with `memo` to prevent unnecessary re-renders when props are unchanged.
+ * - **Customization**: The `className` prop allows additional styling, and the `cn` utility (from `@veraclins-dev/utils`)
+ *   merges custom classes with variant-based classes.
+ * - **Responsive Design**: Variants like `h1`–`h6`, `subtitle1`, `subtitle2`, `body1`, `body2`, `caption`, and
+ *   `overline` provide a range of typography scales suitable for responsive layouts.
+ * - **Spacing and Truncation**: The `gutterBottom` prop adds consistent spacing below the text, and `noWrap`
+ *   enables truncation for single-line text with overflow.
+ */
+const Typography = memo(Base);
+
+export { Typography, type TypographyProps };
+
+// for storybook
+export default Base;

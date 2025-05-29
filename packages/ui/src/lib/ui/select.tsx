@@ -6,7 +6,7 @@ import { getOptionLabel, getOptionValue } from '../components';
 import { type ObjectOption, type Option } from '../types';
 
 import { Icon } from './icon';
-import { inputClasses, itemClasses, popupContentClasses } from './styles';
+import { INPUT_CLASSES, ITEM_CLASSES, POPUP_CONTENT_CLASSES } from './styles';
 
 function Select({
   ...props
@@ -35,7 +35,7 @@ function SelectTrigger({
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
       className={cn(
-        inputClasses,
+        INPUT_CLASSES,
         'flex w-fit items-center justify-between gap-2 bg-transparent whitespace-nowrap *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0',
         className,
       )}
@@ -62,7 +62,7 @@ function SelectContent({
       <SelectPrimitive.Content
         data-slot="select-content"
         className={cn(
-          popupContentClasses,
+          POPUP_CONTENT_CLASSES,
           'relative max-h-(--radix-select-content-available-height) min-w-[8rem] origin-(--radix-select-content-transform-origin) overflow-x-hidden overflow-y-auto',
           position === 'popper' &&
             'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
@@ -109,7 +109,7 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        itemClasses,
+        ITEM_CLASSES,
         'w-full pr-8 pl-2 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2',
         className,
       )}
@@ -207,7 +207,7 @@ const ComposedSelect = ({
   ...props
 }: SelectProps) => (
   <Select {...props} value={value}>
-    <SelectTrigger className={cn(inputClasses, className)}>
+    <SelectTrigger className={cn(INPUT_CLASSES, className)}>
       {showLabel ? (
         <SelectValue placeholder={placeholder} />
       ) : (

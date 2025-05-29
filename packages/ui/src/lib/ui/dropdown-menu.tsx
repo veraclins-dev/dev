@@ -12,10 +12,10 @@ import {
 
 import { Icon } from './icon';
 import {
-  contentClasses,
-  indicatorClasses,
-  itemClasses,
-  subContentClasses,
+  CONTENT_CLASSES,
+  INDICATOR_CLASSES,
+  ITEM_CLASSES,
+  SUB_CONTENT_CLASSES,
 } from './styles';
 import { ComposedTooltip } from './tooltip';
 
@@ -156,7 +156,7 @@ function DropdownMenuContent({
       <DropdownMenuPrimitive.Content
         data-slot="dropdown-menu-content"
         sideOffset={sideOffset}
-        className={cn(contentClasses, className)}
+        className={cn(CONTENT_CLASSES, className)}
         {...props}
       />
     </DropdownMenuPrimitive.Portal>
@@ -170,7 +170,7 @@ function DropdownMenuSubContent({
   return (
     <DropdownMenuPrimitive.SubContent
       data-slot="dropdown-menu-sub-content"
-      className={cn(subContentClasses, className)}
+      className={cn(SUB_CONTENT_CLASSES, className)}
       {...props}
     />
   );
@@ -190,7 +190,7 @@ function DropdownMenuItem({
       data-slot="dropdown-menu-item"
       data-inset={inset}
       data-variant={variant}
-      className={cn(itemClasses, className)}
+      className={cn(ITEM_CLASSES, className)}
       {...props}
     />
   );
@@ -208,7 +208,7 @@ function DropdownMenuCheckboxItem({
     <DropdownMenuPrimitive.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
       data-hidden-indicator={indicatorHidden}
-      className={cn(indicatorClasses, className)}
+      className={cn(INDICATOR_CLASSES, className)}
       checked={checked}
       {...props}
     >
@@ -244,7 +244,7 @@ function DropdownMenuRadioItem({
     <DropdownMenuPrimitive.RadioItem
       data-slot="dropdown-menu-radio-item"
       data-hidden-indicator={indicatorHidden}
-      className={cn(indicatorClasses, className)}
+      className={cn(INDICATOR_CLASSES, className)}
       {...props}
     >
       {!indicatorHidden && (

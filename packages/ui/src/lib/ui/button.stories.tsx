@@ -1,64 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { iconNames } from '../icons';
-
-import { ButtonBase } from './button';
+import ButtonBase from './button';
 import { Icon } from './icon';
 
 const meta: Meta<typeof ButtonBase> = {
   component: ButtonBase,
-  title: 'Base/ButtonBase',
+  title: 'Base/Button',
   args: {
     children: 'Button',
-  },
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['solid', 'outline', 'text', 'soft'],
-      description:
-        'Structural style of the button (solid, outline, text, soft)',
-    },
-    color: {
-      control: 'select',
-      options: [
-        'primary',
-        'secondary',
-        'destructive',
-        'success',
-        'warning',
-        'neutral',
-        'info',
-      ],
-      description: 'Semantic color of the button',
-    },
-    size: {
-      control: 'select',
-      options: ['default', 'sm', 'lg', 'xl', 'pill', 'icon'],
-      description: 'Size of the button',
-    },
-    loading: {
-      control: 'boolean',
-      description: 'Show loading state with a spinner',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Disable the button',
-    },
-    leadingIcon: {
-      control: 'select',
-      options: [...iconNames].reverse(),
-      description: 'Icon to display before the button content',
-    },
-    trailingIcon: {
-      control: 'select',
-      options: [...iconNames].reverse(),
-      description: 'Icon to display after the button content',
-    },
-    'aria-label': {
-      control: 'text',
-      description: 'Accessible label for icon-only buttons',
-    },
   },
 };
 

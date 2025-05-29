@@ -10,7 +10,7 @@ import {
 
 import { cn } from '@veraclins-dev/utils';
 
-import { buttonVariants } from './button';
+import { buttonVariants } from './variants';
 
 type CalendarProps = DayPickerProps;
 

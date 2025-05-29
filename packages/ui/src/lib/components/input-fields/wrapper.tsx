@@ -1,6 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { inputContainerClass } from '../../ui';
+import { INPUT_CONTAINER_CLASSES } from '../../ui';
 import { Label } from '../../ui/label';
 import { ErrorList } from '../error-list';
 
@@ -51,7 +51,7 @@ export const InputWrapper = ({
       <div
         aria-invalid={errorId ? true : undefined}
         data-state={errorId ? 'error' : undefined}
-        className={cn(!plain && inputContainerClass, className)}
+        className={cn(!plain && INPUT_CONTAINER_CLASSES, className)}
       >
         {children}
       </div>

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { Typography } from './typography';
+import Typography from './typography';
 
 const meta: Meta<typeof Typography> = {
   component: Typography,
@@ -18,7 +18,7 @@ export const Primary: Story = {
   },
 };
 
-export const Heading: Story = {
+export const H1: Story = {
   args: {
     children: 'Welcome to Typography!',
     variant: 'h1',
@@ -27,5 +27,21 @@ export const Heading: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to Typography!/gi)).toBeTruthy();
+  },
+};
+
+export const Overline: Story = {
+  args: {
+    children: 'This is an overline text',
+    variant: 'overline',
+    className: 'px-4 py-2',
+  },
+};
+
+export const Body1: Story = {
+  args: {
+    children: 'This is body text',
+    variant: 'body1',
+    className: 'px-4 py-2',
   },
 };

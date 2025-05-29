@@ -7,12 +7,17 @@ type DividerProps = {
   className?: string;
 };
 
-export const Divider = ({
+/**
+ * Divider component that renders a visual separator.
+ * @param param0 - Props for the divider component.
+ * @returns The divider component.
+ */
+function Divider({
   orientation = 'vertical',
   opaque,
   variant = 'middle',
   className,
-}: DividerProps) => {
+}: DividerProps) {
   const isVertical = orientation === 'vertical';
   const padding = isVertical ? 'py-1' : 'px-1';
   return (
@@ -31,27 +36,36 @@ export const Divider = ({
       />
     </div>
   );
-};
+}
 
 type DividerWithTextProps = DividerProps & {
   text: string;
 };
 
-export const DividerWithText = ({
+/**
+ * Divider component that renders a visual separator with optional text.
+ * @param param0 - Props for the divider component.
+ * @returns The divider component with optional text.
+ */
+function DividerWithText({
   text,
   orientation = 'horizontal',
   ...others
-}: DividerWithTextProps) => (
-  <div
-    className={cn(
-      'flex items-center',
-      orientation === 'vertical'
-        ? 'h-full flex-col gap-y-0.5'
-        : 'w-full flex-row gap-x-0.5',
-    )}
-  >
-    <Divider {...others} orientation={orientation} />
-    <span className="text-nowrap text-sm">{text}</span>
-    <Divider {...others} orientation={orientation} />
-  </div>
-);
+}: DividerWithTextProps) {
+  return (
+    <div
+      className={cn(
+        'flex items-center',
+        orientation === 'vertical'
+          ? 'h-full flex-col gap-y-0.5'
+          : 'w-full flex-row gap-x-0.5',
+      )}
+    >
+      <Divider {...others} orientation={orientation} />
+      <span className="text-nowrap text-sm">{text}</span>
+      <Divider {...others} orientation={orientation} />
+    </div>
+  );
+}
+
+export { Divider, DividerWithText };

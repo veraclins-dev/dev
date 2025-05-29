@@ -11,11 +11,25 @@ export default meta;
 type Story = StoryObj<typeof CardContent>;
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    children: (
+      <>
+        <h1>Welcome to CardContent!</h1>
+        <p>This is a simple card content example.</p>
+      </>
+    ),
+  },
 };
 
 export const Heading: Story = {
-  args: {},
+  args: {
+    children: (
+      <>
+        <h1>Welcome to CardContent!</h1>
+        <p>This is a simple card content example.</p>
+      </>
+    ),
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByText(/Welcome to CardContent!/gi)).toBeTruthy();

@@ -12,8 +12,8 @@ import {
   type CalendarProps,
   type DateRange,
   Icon,
-  inputClasses,
-  inputClassOverrides,
+  INPUT_CLASS_OVERRIDES,
+  INPUT_CLASSES,
   type Modifiers,
   Popover,
   PopoverContent,
@@ -151,8 +151,8 @@ function BaseDatePicker<T extends ValueType>({
             id={id}
             variant="plain"
             className={cn(
-              inputClasses,
-              inputClassOverrides,
+              INPUT_CLASSES,
+              INPUT_CLASS_OVERRIDES,
               'h-full min-w-[200px] justify-start font-normal',
               !isSelected && 'text-muted-foreground',
             )}

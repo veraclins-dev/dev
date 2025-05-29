@@ -6,6 +6,13 @@ import { Autocomplete } from './autocomplete';
 const meta: Meta<typeof Autocomplete> = {
   component: Autocomplete,
   title: 'Components/Autocomplete',
+  parameters: {
+    docs: {
+      story: {
+        height: '250px',
+      },
+    },
+  },
 };
 export default meta;
 type Story = StoryObj<typeof Autocomplete>;
@@ -28,10 +35,11 @@ export const Primary: Story = {
       { label: 'Yet Another Option', value: 'Yet Another Option' },
       { label: 'One More Option', value: 'One More Option' },
     ],
+    multiple: true,
   },
 };
 
-export const Heading: Story = {
+export const Single: Story = {
   args: {
     options: [
       { label: 'Option 1', value: 'Option 1' },
@@ -59,5 +67,13 @@ export const FreeSolo: Story = {
       { label: 'Option 3', value: 'Option 3' },
     ],
     freeSolo: true,
+  },
+};
+
+export const FreeSoloMultiple: Story = {
+  args: {
+    options: [],
+    freeSolo: true,
+    multiple: true,
   },
 };

@@ -12,13 +12,15 @@ type Story = StoryObj<typeof BaseButton>;
 
 export const Primary: Story = {
   args: {
-    tooltip: '',
+    tooltip: 'This is a tooltip!',
+    children: 'Click Me',
   },
 };
 
 export const Heading: Story = {
   args: {
-    tooltip: '',
+    tooltip: 'Hello, this is a tooltip!',
+    children: 'Welcome to BaseButton!',
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

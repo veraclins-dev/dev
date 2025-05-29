@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from './dialog';
 import { Icon } from './icon';
-import { inputClasses, sharedItemClasses } from './styles';
+import { INPUT_CLASSES, SHARED_ITEM_CLASSES } from './styles';
 
 function Command({
   className,
@@ -74,7 +74,7 @@ function CommandInput({
       )}
       <CommandPrimitive.Input
         data-slot="command-input"
-        className={cn(inputClasses, className)}
+        className={cn(INPUT_CLASSES, className)}
         {...props}
       />
     </div>
@@ -146,7 +146,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        sharedItemClasses,
+        SHARED_ITEM_CLASSES,
         'data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground',
         className,
       )}

@@ -13,7 +13,9 @@ type Story = StoryObj<typeof Chip>;
 export const Primary: Story = {
   args: {
     label: 'Hello',
-    onRemove: '',
+    onRemove: () => {
+      console.log('Chip removed');
+    },
   },
 };
 

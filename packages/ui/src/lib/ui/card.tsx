@@ -2,6 +2,22 @@ import { cn } from '@veraclins-dev/utils';
 
 import { Typography, type TypographyProps } from './typography';
 
+/**
+ * Card component suite for building card UI elements.
+ *
+ * @remarks
+ * Provides a set of composable components to construct cards with headers, titles, subtitles, descriptions, actions, content, and footers.
+ * Each component is styled and can be customized via className and other props.
+ *
+ * @packageDocumentation
+ */
+
+/**
+ * Renders a card container with optional borderless style.
+ *
+ * @param props - Standard div props and an optional `borderless` boolean to remove the border.
+ * @returns The card container element.
+ */
 function Card({
   className,
   borderless = true,
@@ -19,7 +35,12 @@ function Card({
     />
   );
 }
-
+/**
+ * Renders the header section of the card.
+ *
+ * @param props - Standard div props.
+ * @returns The card header element.
+ */
 function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
@@ -33,10 +54,21 @@ function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
   );
 }
 
+/**
+ * Renders the card title using the Typography component.
+ *
+ * @param props - TypographyProps for customizing the title.
+ * @returns The card title element.
+ */
 function CardTitle({ className, ...props }: TypographyProps) {
   return <Typography data-slot="card-title" variant="h3" {...props} />;
 }
-
+/**
+ * Renders the card subtitle using the Typography component.
+ *
+ * @param props - TypographyProps for customizing the subtitle.
+ * @returns The card subtitle element.
+ */
 function CardSubtitle({ className, ...props }: TypographyProps) {
   return (
     <Typography
@@ -47,7 +79,12 @@ function CardSubtitle({ className, ...props }: TypographyProps) {
     />
   );
 }
-
+/**
+ * Renders a description section within the card.
+ *
+ * @param props - Standard div props.
+ * @returns The card description element.
+ */
 function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
@@ -57,19 +94,27 @@ function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
     />
   );
 }
-
+/**
+ * Renders an action area in the card header, typically for buttons or menus.
+ *
+ * @param props - Standard div props.
+ * @returns The card action element.
+ */
 function CardAction({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="card-action"
-      className={cn(
-        'col-start-2 row-span-2 row-start-1 self-start justify-self-end',
-        className,
-      )}
+      className={cn('flex self-end justify-self-end gap-3', className)}
       {...props}
     />
   );
 }
+/**
+ * Renders the main content area of the card.
+ * This is where the primary information or media of the card is displayed.
+ * @param props - Standard div props.
+ * @returns The card content element.
+ */
 
 function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
   return (
@@ -80,12 +125,20 @@ function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
     />
   );
 }
-
+/**
+ * Renders the footer section of the card, typically for actions or summary.
+ * the action is usually placed inside the footer.
+ * @param props - Standard div props.
+ * @returns The card footer element.
+ */
 function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="card-footer"
-      className={cn('flex items-center px-4 [.border-t]:pt-4', className)}
+      className={cn(
+        'flex w-full items-center px-4 [.border-t]:pt-4',
+        className,
+      )}
       {...props}
     />
   );

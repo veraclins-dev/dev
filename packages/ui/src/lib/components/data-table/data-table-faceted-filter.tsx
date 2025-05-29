@@ -12,7 +12,7 @@ import {
   CommandList,
   CommandSeparator,
   Icon,
-  inputClassOverrides,
+  INPUT_CLASS_OVERRIDES,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -82,7 +82,7 @@ function DataTableFacetedFilter<TData, TValue>({
             withIcon
             placeholder={title}
             wrapperClassName="px-3 w-full py-1"
-            className={cn(inputClassOverrides, 'py-1 px-2')}
+            className={cn(INPUT_CLASS_OVERRIDES, 'py-1 px-2')}
           />
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>

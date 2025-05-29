@@ -4,7 +4,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import {
   ComposedSelect,
-  inputClassOverrides,
+  INPUT_CLASS_OVERRIDES,
   type SelectProps as BaseSelectProps,
 } from '../../ui';
 
@@ -66,7 +66,7 @@ const SelectField = ({
         value={controlProps.value}
         aria-invalid={errorId ? true : undefined}
         aria-describedby={errorId}
-        className={cn('w-full', inputClassOverrides, inputClass)}
+        className={cn('w-full', INPUT_CLASS_OVERRIDES, inputClass)}
         defaultValue={defaultValue}
         dir={dir}
         sideOffset={10}

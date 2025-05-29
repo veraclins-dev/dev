@@ -5,9 +5,20 @@ import { cn } from '@veraclins-dev/utils';
 import { Icon } from './icon';
 
 function Accordion({
+  align = 'right',
+  className,
   ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Root>) {
-  return <AccordionPrimitive.Root data-slot="accordion" {...props} />;
+}: React.ComponentProps<typeof AccordionPrimitive.Root> & {
+  align?: 'left' | 'right';
+}) {
+  return (
+    <AccordionPrimitive.Root
+      data-slot="accordion"
+      data-align={align}
+      className={cn('group', className)}
+      {...props}
+    />
+  );
 }
 
 function AccordionItem({
@@ -17,6 +28,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
+      data-state="closed"
       className={className}
       {...props}
     />
@@ -26,25 +38,19 @@ function AccordionItem({
 function AccordionTrigger({
   className,
   children,
-  align = 'right',
   ...props
-}: React.ComponentProps<typeof AccordionPrimitive.Trigger> & {
-  align?: 'left' | 'right';
-}) {
+}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
   return (
     <AccordionPrimitive.Header className={cn('flex text-xl', className)}>
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          'flex flex-1 items-center gap-x-3 font-medium transition-all',
-          align === 'left'
-            ? '[&[data-state=open]>svg]:rotate-90'
-            : 'flex-row-reverse justify-between [&[data-state=open]>svg]:rotate-180',
+          'flex flex-1 text-left items-center gap-x-3 font-medium transition-all',
+          'group-data-[align=left]:[&[data-state=closed]>svg]:-rotate-90 group-data-[align=right]:flex-row-reverse group-data-[align=right]:justify-between group-data-[align=right]:[&[data-state=open]>svg]:rotate-180',
         )}
-        data-align={align}
         {...props}
       >
-        <Icon name={align === 'left' ? 'chevron-right' : 'chevron-down'} />
+        <Icon name="chevron-down" />
         {children}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

@@ -16,6 +16,14 @@ const preview: Preview = {
       );
     },
   ],
+  parameters: {
+    options: {
+      storySort: {
+        // order: ['Base', 'Components', 'Utilities'],
+        method: 'alphabetical',
+      },
+    },
+  },
 };
 
 export default preview;

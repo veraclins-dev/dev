@@ -6,12 +6,12 @@ import { type IconName } from '../icons/name';
 import { ComposedTooltip } from './tooltip';
 
 const sizeClassName = {
-  font: 'w-[1em] h-[1em]',
-  xs: 'w-4 h-4',
-  sm: 'w-5 h-5',
-  md: 'w-6 h-6',
-  lg: 'w-8 h-8',
-  xl: 'w-10 h-10',
+  font: 'size-[1em]',
+  xs: 'size-4',
+  sm: 'size-5',
+  md: 'size-6',
+  lg: 'size-8',
+  xl: 'size-10',
 } as const;
 
 type Size = keyof typeof sizeClassName;

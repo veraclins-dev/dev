@@ -1,6 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
-const inputClasses = cn(
+const INPUT_CLASSES = cn(
   // Layout and Base
   'flex flex-1 min-w-0 bg-transparent outline-none',
   // Text and Selection
@@ -24,7 +24,7 @@ const inputClasses = cn(
 );
 
 // Input Container Class
-const inputContainerClass = cn(
+const INPUT_CONTAINER_CLASSES = cn(
   // Layout and Base
   'flex flex-1 min-w-0 bg-transparent outline-none items-center',
   // Spacing
@@ -42,7 +42,7 @@ const inputContainerClass = cn(
 );
 
 // Input Class Overrides (applied to container to target input child)
-const inputClassOverrides = cn(
+const INPUT_CLASS_OVERRIDES = cn(
   // Spacing
   'p-0 min-h-0',
   // Border and Shadow
@@ -54,7 +54,7 @@ const inputClassOverrides = cn(
 );
 
 // Popover Content Classes
-const popupContentClasses = cn(
+const POPUP_CONTENT_CLASSES = cn(
   // Appearance
   'bg-popover text-popover-foreground rounded-md border shadow-md',
   // Animations
@@ -66,8 +66,8 @@ const popupContentClasses = cn(
 );
 
 // Dropdown Menu Content Classes
-const contentClasses = cn(
-  popupContentClasses,
+const CONTENT_CLASSES = cn(
+  POPUP_CONTENT_CLASSES,
   // Sizing
   'max-h-[var(--radix-dropdown-menu-content-available-height)] min-w-[8rem]',
   // Transform Origin
@@ -81,9 +81,9 @@ const contentClasses = cn(
 );
 
 // Sub-Menu Content Classes
-const subContentClasses = cn(
+const SUB_CONTENT_CLASSES = cn(
   // Base Popover Styles
-  popupContentClasses,
+  POPUP_CONTENT_CLASSES,
   // Sizing
   'min-w-[8rem]',
   // Transform Origin
@@ -97,7 +97,7 @@ const subContentClasses = cn(
 );
 
 // Shared Item Classes
-const sharedItemClasses = cn(
+const SHARED_ITEM_CLASSES = cn(
   // Layout
   'relative flex items-center gap-2',
   // Appearance
@@ -109,9 +109,9 @@ const sharedItemClasses = cn(
 );
 
 // Menu Item Classes
-const itemClasses = cn(
+const ITEM_CLASSES = cn(
   // Base Shared Styles
-  sharedItemClasses,
+  SHARED_ITEM_CLASSES,
   // Focus States
   'focus:bg-accent focus:text-accent-foreground',
   // Destructive Variant
@@ -121,13 +121,13 @@ const itemClasses = cn(
 );
 
 // Active Item Classes
-const activeItemClasses = cn(
+const ACTIVE_ITEM_CLASSES = cn(
   // Checked State
   'data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground',
 );
 
 // Indicator Classes
-const indicatorClasses = cn(
+const INDICATOR_CLASSES = cn(
   // Layout
   'relative flex items-center gap-2',
   // Appearance
@@ -138,15 +138,79 @@ const indicatorClasses = cn(
   "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 );
 
+// Shared default classes, grouped
+const SHARED_ACTIVE_ELEMENT_CLASSES = cn(
+  // Layout and Base
+  'inline-flex items-center justify-center',
+  // Border
+  'border border-transparent',
+  // Text
+  'font-medium',
+  // Transitions
+  'transition-colors',
+  // Focus Styles
+  'focus:outline-none focus:ring-2 focus:ring-ring/50 focus:ring-offset-2',
+  // Error States
+  'aria-invalid:border-destructive/20 dark:aria-invalid:border-destructive/40',
+  // SVG Styles
+  '[&_svg]:shrink-0',
+);
+
+// Component-specific default classes, grouped
+const CHIP_DEFAULT_CLASSES = cn(
+  SHARED_ACTIVE_ELEMENT_CLASSES,
+  // Layout and Base
+  'max-w-fit shrink-0',
+  // Spacing
+  'px-2.5 py-0.5 gap-1.5',
+  // Text
+  'text-xs',
+  // Border and Shape
+  'rounded-md',
+);
+
+const BADGE_DEFAULT_CLASSES = cn(
+  SHARED_ACTIVE_ELEMENT_CLASSES,
+  // Layout and Base
+  'max-w-fit',
+  // Spacing
+  'px-2.5 py-0.5 gap-1.5',
+  // Text
+  'text-xs',
+  // Border and Shape
+  'rounded-full',
+);
+
+const BUTTON_DEFAULT_CLASSES = cn(
+  SHARED_ACTIVE_ELEMENT_CLASSES,
+  // Layout and Base
+  'cursor-pointer',
+  // Spacing
+  'px-3 gap-2',
+  // Text
+  'text-sm whitespace-nowrap',
+  // Border and Shape
+  'rounded-md',
+  // Disabled Styles
+  'disabled:pointer-events-none disabled:opacity-30 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-30',
+  // Focus and Error States
+  'outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
+  // SVG Styles
+  "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+);
+
 export {
-  activeItemClasses,
-  contentClasses,
-  indicatorClasses,
-  inputClasses,
-  inputClassOverrides,
-  inputContainerClass,
-  itemClasses,
-  popupContentClasses,
-  sharedItemClasses,
-  subContentClasses,
+  ACTIVE_ITEM_CLASSES,
+  BADGE_DEFAULT_CLASSES,
+  BUTTON_DEFAULT_CLASSES,
+  CHIP_DEFAULT_CLASSES,
+  CONTENT_CLASSES,
+  INDICATOR_CLASSES,
+  INPUT_CLASS_OVERRIDES,
+  INPUT_CLASSES,
+  INPUT_CONTAINER_CLASSES,
+  ITEM_CLASSES,
+  POPUP_CONTENT_CLASSES,
+  SHARED_ITEM_CLASSES,
+  SUB_CONTENT_CLASSES,
 };

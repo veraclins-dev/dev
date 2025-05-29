@@ -6,6 +6,13 @@ import { cn } from '@veraclins-dev/utils';
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '', dark: '.dark' } as const;
 
+/**
+ * A component that generates CSS styles for chart theming based on the provided configuration.
+ * @param props - The component props.
+ * @param props.id - A unique identifier for the chart.
+ * @param props.config - The chart configuration object defining colors or themes for chart elements.
+ * @returns A style element with dynamic CSS for chart theming, or null if no color configuration is provided.
+ */
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
     ([_, config]) => config.theme || config.color,
@@ -39,6 +46,14 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   );
 };
 
+/**
+ * Configuration type for chart styling and behavior.
+ * @typedef {Object.<string, ChartConfigItem>} ChartConfig
+ * @property {React.ReactNode} [label] - Optional label for the chart element.
+ * @property {React.ComponentType} [icon] - Optional icon component for the chart element.
+ * @property {string} [color] - A single color for the chart element (mutually exclusive with theme).
+ * @property {Record<keyof typeof THEMES, string>} [theme] - Theme-specific colors for the chart element (mutually exclusive with color).
+ */
 export type ChartConfig = {
   [k in string]: {
     label?: React.ReactNode;
@@ -49,12 +64,22 @@ export type ChartConfig = {
   );
 };
 
+/**
+ * Context for sharing chart configuration across components.
+ * @typedef {Object} ChartContextProps
+ * @property {ChartConfig} config - The chart configuration object.
+ */
 type ChartContextProps = {
   config: ChartConfig;
 };
 
 const ChartContext = createContext<ChartContextProps | null>(null);
 
+/**
+ * Hook to access chart configuration from the ChartContext.
+ * @returns The chart configuration context.
+ * @throws {Error} If used outside of a ChartContainer.
+ */
 function useChart() {
   const context = useContext(ChartContext);
 
@@ -65,6 +90,17 @@ function useChart() {
   return context;
 }
 
+/**
+ * A container component for rendering charts with theming and responsive behavior.
+ * This component wraps Recharts components and applies styles based on the provided configuration.
+ * @param props - The component props.
+ * @param props.id - Optional unique identifier for the chart. If not provided, a unique ID is generated.
+ * @param props.className - Optional CSS class names to apply to the container.
+ * @param props.config - The chart configuration object for styling and theming.
+ * @param props.children - The chart components to render, typically Recharts components.
+ * @param props - Additional props passed to the underlying div element.
+ * @returns A styled chart container with responsive chart content.
+ */
 function ChartContainer({
   id,
   className,
@@ -100,8 +136,31 @@ function ChartContainer({
   );
 }
 
+/**
+ * A wrapper for the Recharts Tooltip component.
+ * @type {typeof RechartsPrimitive.Tooltip}
+ */
 const ChartTooltip = RechartsPrimitive.Tooltip;
 
+/**
+ * A component for rendering custom tooltip content for charts.
+ * This component displays formatted data from the chart payload, with optional indicators and labels.
+ * @param props - The component props.
+ * @param props.active - Whether the tooltip is active (visible).
+ * @param props.payload - The data payload for the tooltip.
+ * @param props.className - Optional CSS class names for the tooltip container.
+ * @param props.indicator - The type of indicator to display ('dot', 'line', or 'dashed'). Defaults to 'dot'.
+ * @param props.hideLabel - Whether to hide the tooltip label. Defaults to false.
+ * @param props.hideIndicator - Whether to hide the indicator. Defaults to false.
+ * @param props.label - The label for the tooltip.
+ * @param props.labelFormatter - Optional function to format the tooltip label.
+ * @param props.labelClassName - Optional CSS class names for the label.
+ * @param props.formatter - Optional function to format the tooltip value.
+ * @param props.color - Optional custom color for the indicator.
+ * @param props.nameKey - Optional key to identify the name in the payload.
+ * @param props.labelKey - Optional key to identify the label in the payload.
+ * @returns A styled tooltip with formatted content, or null if not active or no payload.
+ */
 function ChartTooltipContent({
   active,
   payload,
@@ -246,8 +305,23 @@ function ChartTooltipContent({
   );
 }
 
+/**
+ * A wrapper for the Recharts Legend component.
+ * @type {typeof RechartsPrimitive.Legend}
+ */
 const ChartLegend = RechartsPrimitive.Legend;
 
+/**
+ * A component for rendering custom legend content for charts.
+ * This component displays a list of legend items based on the provided payload, with optional icons or color indicators.
+ * @param props - The component props.
+ * @param props.className - Optional CSS class names for the legend container.
+ * @param props.hideIcon - Whether to hide the icon or color indicator. Defaults to false.
+ * @param props.payload - The data payload for the legend.
+ * @param props.verticalAlign - The vertical alignment of the legend ('top' or 'bottom'). Defaults to 'bottom'.
+ * @param props.nameKey - Optional key to identify the name in the payload.
+ * @returns A styled legend with formatted content, or null if no payload.
+ */
 function ChartLegendContent({
   className,
   hideIcon = false,
@@ -302,7 +376,14 @@ function ChartLegendContent({
   );
 }
 
-// Helper to extract item config from a payload.
+/**
+ * Helper function to extract configuration for a chart item from the payload.
+ *
+ * @param config - The chart configuration object.
+ * @param payload - The data payload for the chart item.
+ * @param key - The key to identify the item in the configuration.
+ * @returns The configuration for the specified item, or undefined if not found.
+ */
 function getPayloadConfigFromPayload(
   config: ChartConfig,
   payload: unknown,

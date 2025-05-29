@@ -10,7 +10,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import 'react-phone-number-input/style.css';
 
-import { ComposedSelect, inputClassOverrides } from '../../ui';
+import { ComposedSelect, INPUT_CLASS_OVERRIDES } from '../../ui';
 
 import { type TextFieldProps } from './textfield';
 import {
@@ -25,10 +25,10 @@ type CountryCode = Parameters<typeof getCountryCallingCode>[0];
 const CountryLabel = ({ value }: { value: CountryCode }) => {
   const CountryFlag = Flags[value];
   return (
-    <label className="grid grid-cols-3 items-center">
+    <label className="grid grid-cols-3 items-center text-xs">
       <span className="col-span-2">+{getCountryCallingCode(value)}</span>
 
-      <CountryFlag className="col-span-1 h-4" />
+      <CountryFlag className="col-span-1 h-3" />
     </label>
   );
 };
@@ -50,7 +50,7 @@ const CountrySelect = ({ countries, value, onChange }: CountrySelectProps) => {
       }))}
       showLabel
       disabled
-      className={cn('max-w-19', inputClassOverrides)}
+      className={cn('max-w-19', INPUT_CLASS_OVERRIDES)}
     />
   );
 };
@@ -135,7 +135,7 @@ export const PhoneField = ({
         aria-invalid={errorId ? true : undefined}
         aria-describedby={errorId}
         className={cn(
-          inputClassOverrides,
+          INPUT_CLASS_OVERRIDES,
           'flex-1 outline-none pl-2',
           inputClass,
         )}

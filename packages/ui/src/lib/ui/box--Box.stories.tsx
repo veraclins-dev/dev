@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { Box } from './box';
+import Box from './box';
 
 const meta: Meta<typeof Box> = {
   component: Box,
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof Box>;
 export const Primary: Story = {
   args: {
     className: '',
-    children: '',
+    children: 'This is a Box component!',
   },
 };
 
@@ -21,7 +21,7 @@ export const Heading: Story = {
   args: {
     component: 'span',
     className: '',
-    children: '',
+    children: 'Welcome to Box!',
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

@@ -2,8 +2,7 @@ import { useCallback, useState } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { Icon, Input, inputClassOverrides } from '../../ui';
-import { IconButton } from '../icon-button';
+import { Icon, Input, INPUT_CLASS_OVERRIDES } from '../../ui';
 
 import {
   type BaseInputProps,
@@ -11,7 +10,7 @@ import {
   type InputFieldProps,
   useFieldProperties,
 } from './utils';
-import { InputWrapper, type InputWrapperProps } from './wrapper';
+import { InputWrapper } from './wrapper';
 
 export interface TextFieldProps
   extends React.ComponentProps<'input'>,
@@ -38,7 +37,7 @@ export const TextField = ({
 }: TextFieldProps) => {
   const isPassword = type === 'password';
   const [hidden, setHidden] = useState(isPassword);
-  const toggleHidden: React.MouseEventHandler<HTMLButtonElement> = useCallback(
+  const toggleHidden: React.MouseEventHandler<SVGElement> = useCallback(
     (e) => {
       e.preventDefault();
       setHidden(!hidden);
@@ -52,7 +51,7 @@ export const TextField = ({
 
   return (
     <InputWrapper
-      className={className}
+      className={cn('gap-2', className)}
       field={field}
       label={label}
       labelProps={labelProps}
@@ -69,15 +68,20 @@ export const TextField = ({
         aria-describedby={errorId}
         aria-invalid={errorId ? true : undefined}
         type={isPassword && !hidden ? 'text' : type}
-        className={cn(inputClass, inputClassOverrides)}
+        className={cn(inputClass, INPUT_CLASS_OVERRIDES)}
       />
-      <IconButton onClick={toggleHidden} variant="text" className="p-1" rounded>
-        {isPassword ? (
-          <Icon size="md" name={passwordIcon} className="cursor-pointer" />
-        ) : rightIcon ? (
-          <Icon size="md" name={rightIcon} className="cursor-pointer" />
-        ) : null}
-      </IconButton>
+      {/* <IconButton onClick={toggleHidden} variant="text" className="p-1" rounded> */}
+      {isPassword ? (
+        <Icon
+          onClick={toggleHidden}
+          size="sm"
+          name={passwordIcon}
+          className="cursor-pointer"
+        />
+      ) : rightIcon ? (
+        <Icon size="sm" name={rightIcon} className="cursor-pointer" />
+      ) : null}
+      {/* </IconButton> */}
       {rightAddon}
     </InputWrapper>
   );

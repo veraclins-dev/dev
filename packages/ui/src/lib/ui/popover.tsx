@@ -11,7 +11,7 @@ import {
   type WithTrigger,
 } from '../types';
 
-import { popupContentClasses } from './styles';
+import { POPUP_CONTENT_CLASSES } from './styles';
 import { ComposedTooltip } from './tooltip';
 
 function Popover({
@@ -61,7 +61,7 @@ const PopoverContent = ({
     align={align}
     sideOffset={sideOffset}
     className={cn(
-      popupContentClasses,
+      POPUP_CONTENT_CLASSES,
       'min-w-72 origin-(--radix-popover-content-transform-origin) w-(--radix-popover-trigger-width) border p-4 shadow-md outline-hidden',
       className,
     )}
