@@ -2,6 +2,8 @@ import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { type ComponentPropsWithoutColor } from '../types';
+
 import { type TypographyVariants, typographyVariants } from './variants';
 
 // Type definitions
@@ -19,8 +21,8 @@ type Variant =
   | 'caption'
   | 'overline'
   | 'inherit';
-
-type TypographyElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+type TypographyBlockElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
+type TypographyElement = TypographyBlockElement | 'span';
 
 const variantMapping: Record<Variant, TypographyElement> = {
   h1: 'h1',
@@ -38,13 +40,12 @@ const variantMapping: Record<Variant, TypographyElement> = {
   inherit: 'p',
 };
 
-interface TypographyProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, 'color'>,
-    TypographyVariants {
-  component?: TypographyElement;
-  className?: string;
+type TypographyProps = ComponentPropsWithoutColor<TypographyBlockElement> & {
+  // | ComponentPropsWithoutColor<'p' | 'span'>
+  variant?: Variant;
   children: React.ReactNode;
-}
+  className?: string;
+} & TypographyVariants;
 
 /**
  * A versatile Typography component for rendering text with customizable styles, including variant-based
@@ -57,13 +58,12 @@ function Base({
   align = 'inherit',
   gutterBottom = false,
   noWrap = false,
-  component,
   className,
   children,
   ...props
 }: TypographyProps) {
   const variant = va ?? 'body2';
-  const Component = component || variantMapping[variant] || 'p';
+  const Component = variantMapping[variant] || 'p';
 
   return (
     <Component
@@ -111,8 +111,6 @@ function Base({
  *   - `justify`: Justified text.
  * @param {boolean} [props.gutterBottom=false] - Adds bottom margin (`mb-4`) for spacing below the text.
  * @param {boolean} [props.noWrap=false] - Prevents text wrapping, applying truncation (`truncate`) for overflow.
- * @param {string} [props.component] - Custom HTML element to render (e.g., `h1`, `p`, `span`). If not provided,
- *   the component is inferred from the `variant` (e.g., `h1` for `variant='h1'`, `p` for `variant='body1'`).
  * @param {string} [props.className] - Additional CSS classes to apply to the component.
  * @param {React.ReactNode} props.children - The content to render inside the Typography component.
  * @param {...any} props - Additional props are spread onto the rendered HTML element.
@@ -128,14 +126,14 @@ function Base({
  *   This is a success message that will not wrap.
  * </Typography>
  *
- * <Typography component="span" variant="caption">
+ * <Typography variant="caption">
  *   Small caption text
  * </Typography>
  * ```
  *
  * @remarks
  * - **Variant Mapping**: The component maps typography variants to HTML elements (e.g., `h1` for `variant='h1'`,
- *   `p` for `variant='body1'`, `span` for `variant='caption'`) unless overridden by the `component` prop.
+ *   `p` for `variant='body1'`, `span` for `variant='caption'`).
  * - **Styling**: Styles are applied using the `typographyVariants` utility (based on `class-variance-authority`),
  *   which defines font sizes, weights, line heights, and other properties for each variant.
  * - **Accessibility**: Heading variants (`h1`–`h6`) include `role="heading"` and `aria-level` attributes to

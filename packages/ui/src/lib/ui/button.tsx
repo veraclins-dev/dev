@@ -13,7 +13,7 @@ export type ButtonColor = ButtonVariants['color'];
 export type ButtonSize = ButtonVariants['size'];
 
 interface ButtonBaseProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color'>,
+  extends Omit<React.ComponentProps<'button'>, 'color'>,
     ButtonVariants {
   asChild?: boolean;
   type?: 'button' | 'submit' | 'reset';

@@ -36,3 +36,9 @@ export type ComponentWithTooltip<
     | React.JSXElementConstructor<any>,
   S extends object = object,
 > = React.ComponentProps<T> & { tooltip?: React.ReactNode } & S;
+
+export type ComponentPropsWithoutColor<
+  T extends
+    | keyof React.JSX.IntrinsicElements
+    | React.JSXElementConstructor<any>,
+> = Omit<React.ComponentProps<T>, 'color'>;

@@ -105,6 +105,22 @@ export function NxWelcome({ title }: { title: string }) {
             />
           </div>
           <div className="flex gap-4">
+            <div className="flex">
+              <Avatar>
+                <AvatarImage
+                  src="https://github.com/shadcn.pngs"
+                  alt="@shadcn"
+                />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              <Avatar>
+                <AvatarImage
+                  src="https://github.com/leerob.png"
+                  alt="@leerob"
+                />
+                <AvatarFallback>LR</AvatarFallback>
+              </Avatar>
+            </div>
             <Card className="w-full max-w-sm bg-card-inner">
               <CardHeader>
                 <CardTitle>Login to your account</CardTitle>

@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import {
   Badge,
   Card,
@@ -9,6 +11,7 @@ import {
 } from '@veraclins-dev/ui';
 
 export function Badges() {
+  const titleRef = useRef<HTMLDivElement>(null);
   return (
     <div className="flex gap-8">
       <Card className="w-full">
@@ -18,7 +21,9 @@ export function Badges() {
         <CardContent className="flex gap-16">
           <div className="flex gap-4 flex-wrap">
             <div className="flex flex-col gap-3">
-              <Typography variant="h3">Solid</Typography>
+              <Typography ref={titleRef} variant="body2">
+                Solid
+              </Typography>
               <Badge variant="solid">Default</Badge>
 
               <Badge variant="solid" color="primary">
