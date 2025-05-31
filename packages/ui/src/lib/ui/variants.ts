@@ -465,7 +465,7 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
     type: {
       link: 'border-0 border-b border-[currentColor]/20 w-fit',
       button:
-        'border border-transparent inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors w-fit',
+        'border border-transparent inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors',
     },
     variant: {
       ...sharedBaseVariants.variants.variant,
