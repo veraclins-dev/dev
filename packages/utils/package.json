@@ -24,6 +24,7 @@
     "tailwindcss": "^4"
   },
   "devDependencies": {
-    "@types/sanitize-html": "^2.16.0"
+    "@types/sanitize-html": "^2.16.0",
+    "type-fest": "^4.41.0"
   }
 }
