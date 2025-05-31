@@ -35,11 +35,13 @@ import {
 
 import { Badges } from './components/badges';
 import { Buttons } from './components/button';
+import { Links } from './components/links';
 
 export function NxWelcome({ title }: { title: string }) {
   return (
     <div className="container flex w-full gap-4 flex-col h-full my-8 overflow-auto rounded-md py-4">
       <Buttons />
+      <Links />
       <Badges />
       <Card>
         <CardHeader>

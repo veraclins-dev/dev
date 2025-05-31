@@ -228,7 +228,7 @@
     @apply bg-badge text-badge-foreground;
   }
 
-  a {
+  a:not(.) {
     @apply font-medium border-primary/40 border-b hover:border-primary no-underline;
   }
 }

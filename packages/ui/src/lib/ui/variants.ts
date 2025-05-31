@@ -5,6 +5,7 @@ import {
   BADGE_DEFAULT_CLASSES,
   BUTTON_DEFAULT_CLASSES,
   CHIP_DEFAULT_CLASSES,
+  LINK_DEFAULT_CLASSES,
 } from './styles';
 
 /** :::::::::: Buttons, chips and badges ::::::::: */
@@ -13,9 +14,9 @@ import {
 const sharedBaseVariants = {
   variants: {
     variant: {
-      solid: 'shadow-xs',
+      solid: '',
       outline: 'bg-transparent',
-      soft: 'shadow-xs',
+      soft: '',
     },
     color: {
       default: '',
@@ -81,7 +82,7 @@ const sharedBaseVariants = {
     {
       variant: 'outline',
       color: 'default',
-      className: 'border-foreground text-foreground hover:bg-foreground/10',
+      className: 'border-foreground hover:bg-foreground/10',
     },
     {
       variant: 'outline',
@@ -123,8 +124,7 @@ const sharedBaseVariants = {
     {
       variant: 'soft',
       color: 'default',
-      className:
-        'border-foreground/20 bg-foreground/20 text-foreground hover:bg-foreground/30',
+      className: 'border-foreground/20 bg-foreground/20 hover:bg-foreground/30',
     },
     {
       variant: 'soft',
@@ -176,7 +176,7 @@ const buttonSpecificCompoundVariants = [
   {
     variant: 'text',
     color: 'default',
-    className: 'text-foreground hover:bg-foreground/10',
+    className: 'hover:bg-foreground/10',
   },
   {
     variant: 'text',
@@ -289,7 +289,7 @@ const chipVariants = cva(CHIP_DEFAULT_CLASSES, {
 /** ::::::::: Box ::::::::: */
 const BOX_DEFAULT_CLASSES = 'flex flex-col';
 
-export const spaces = [
+const spaces = [
   4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56,
   60, 64, 72, 80, 96,
 ] as const;
@@ -297,12 +297,12 @@ export const spaces = [
 type Spaces = (typeof spaces)[number];
 
 /**
- * returns an object mapping space values to the corresponding tailwind class names.
+ * Returns an object mapping space values to the corresponding Tailwind class names.
  * #### Margin:
  * - m-4  m-5  m-6  m-7  m-8  m-9  m-10  m-11  m-12  m-14  m-16  m-20  m-24  m-28  m-32  m-36  m-40  m-44  m-48  m-52  m-56  m-60  m-64  m-72  m-80  m-96
  * - mt-4 mt-5 mt-6 mt-7 mt-8 mt-9 mt-10 mt-11 mt-12 mt-14 mt-16 mt-20 mt-24 mt-28 mt-32 mt-36 mt-40 mt-44 mt-48 mt-52 mt-56 mt-60 mt-64 mt-72 mt-80 mt-96
- * - mr-4 mr-5 mr-6 mr-7 mr-8 mr-9 mr-10 mr-11 mr-12 mr-14 mr-16 mr-20 mr-24 mr-28 mr-32 mr-36 mr-40 mr-44 mr-48 mr-52 mr-56 mr-60 mr-64 mr-72 mr-80 mr-96
- * - mb-4 mb-5 mb-6 mb-7 mb-8 mb-9 mb-10 mb-11 mb-12 mb-14 mb-16 mb-20 mb-24 mb-28 mb-32 mb-36 mb-40 mb-44 mb-48 mb-52 mb-56 mb-60 mb-64 mb-72 mb-80 mb-96
+ * - mr-4 mr-5 mr-6 mr-7 mr-8 mr-9 mr-10 mr-11 mr-12 mr-14 mr-16 mr-20 mr-24 mr-28 mr-32 mr-36 mr-40 mr-48 mr-52 mr-56 mr-60 mr-64 mr-72 mr-80 mr-96
+ * - mb-4 mb-5 mb-6 mb-7 mb-8 mb-9 mb-10 mb-11 mb-12 mb-14 mb-16 mb-20 mb-24 mb-28 mt-32 mb-36 mb-40 mb-44 mb-48 mb-52 mb-56 mb-60 mb-64 mb-72 mb-80 mb-96
  * - ml-4 ml-5 ml-6 ml-7 ml-8 ml-9 ml-10 ml-11 ml-12 ml-14 ml-16 ml-20 ml-24 ml-28 ml-32 ml-36 ml-40 ml-44 ml-48 ml-52 ml-56 ml-60 ml-64 ml-72 ml-80 ml-96
  *
  * #### Padding:
@@ -459,11 +459,229 @@ const typographyVariants = cva('', {
   },
 });
 
+/** ::::::::: Link ::::::::: */
+const linkVariants = cva(LINK_DEFAULT_CLASSES, {
+  variants: {
+    type: {
+      link: 'border-0 border-b border-[currentColor]/20 w-fit',
+      button:
+        'border border-transparent inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors w-fit',
+    },
+    variant: {
+      ...sharedBaseVariants.variants.variant,
+      text: 'bg-transparent',
+      plain: 'bg-transparent',
+    },
+    color: {
+      ...sharedBaseVariants.variants.color,
+    },
+    underline: {
+      none: '',
+      hover: '',
+      always: '',
+    },
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+      xl: '',
+    },
+  },
+  compoundVariants: [
+    // Button type styles (reusing shared and button-specific compound variants)
+    ...sharedBaseVariants.compoundVariants.map((variant) => ({
+      ...variant,
+      type: 'button' as const,
+    })),
+    ...buttonSpecificCompoundVariants.map((variant) => ({
+      ...variant,
+      type: 'button' as const,
+    })),
+    // Button type size styles
+    {
+      type: 'button',
+      size: 'sm',
+      className: "py-1 px-2 [&_svg:not([class*='size-'])]:size-3",
+    },
+    {
+      type: 'button',
+      size: 'md',
+      className: "px-4 py-2 [&_svg:not([class*='size-'])]:size-5",
+    },
+    {
+      type: 'button',
+      size: 'lg',
+      className: "py-3 px-6 [&_svg:not([class*='size-'])]:size-6",
+    },
+    {
+      type: 'button',
+      size: 'xl',
+      className: "py-4 px-8 [&_svg:not([class*='size-'])]:size-8",
+    },
+    // Link type styles
+    {
+      type: 'link',
+      color: 'default',
+      underline: 'none',
+      className: 'text-foreground',
+    },
+    {
+      type: 'link',
+      color: 'default',
+      underline: 'hover',
+      className: 'hover:border-b hover:border-foreground',
+    },
+    {
+      type: 'link',
+      color: 'default',
+      underline: 'always',
+      className: 'border-b border-foreground',
+    },
+    {
+      type: 'link',
+      color: 'primary',
+      underline: 'none',
+      className: 'text-primary',
+    },
+    {
+      type: 'link',
+      color: 'primary',
+      underline: 'hover',
+      className: 'text-primary hover:border-b hover:border-primary',
+    },
+    {
+      type: 'link',
+      color: 'primary',
+      underline: 'always',
+      className: 'text-primary border-b border-primary',
+    },
+    {
+      type: 'link',
+      color: 'secondary',
+      underline: 'none',
+      className: 'text-secondary',
+    },
+    {
+      type: 'link',
+      color: 'secondary',
+      underline: 'hover',
+      className: 'text-secondary hover:border-b hover:border-secondary',
+    },
+    {
+      type: 'link',
+      color: 'secondary',
+      underline: 'always',
+      className: 'text-secondary border-b border-secondary',
+    },
+    {
+      type: 'link',
+      color: 'destructive',
+      underline: 'none',
+      className: 'text-destructive',
+    },
+    {
+      type: 'link',
+      color: 'destructive',
+      underline: 'hover',
+      className: 'text-destructive hover:border-b hover:border-destructive',
+    },
+    {
+      type: 'link',
+      color: 'destructive',
+      underline: 'always',
+      className: 'text-destructive border-b border-destructive',
+    },
+    {
+      type: 'link',
+      color: 'success',
+      underline: 'none',
+      className: 'text-success',
+    },
+    {
+      type: 'link',
+      color: 'success',
+      underline: 'hover',
+      className: 'text-success hover:border-b hover:border-success',
+    },
+    {
+      type: 'link',
+      color: 'success',
+      underline: 'always',
+      className: 'text-success border-b border-success',
+    },
+    {
+      type: 'link',
+      color: 'warning',
+      underline: 'none',
+      className: 'text-warning',
+    },
+    {
+      type: 'link',
+      color: 'warning',
+      underline: 'hover',
+      className: 'text-warning hover:border-b hover:border-warning',
+    },
+    {
+      type: 'link',
+      color: 'warning',
+      underline: 'always',
+      className: 'text-warning border-b border-warning',
+    },
+    {
+      type: 'link',
+      color: 'info',
+      underline: 'none',
+      className: 'text-info',
+    },
+    {
+      type: 'link',
+      color: 'info',
+      underline: 'hover',
+      className: 'text-info hover:border-b hover:border-info',
+    },
+    {
+      type: 'link',
+      color: 'info',
+      underline: 'always',
+      className: 'text-info border-b border-info',
+    },
+    {
+      type: 'link',
+      color: 'accent',
+      underline: 'none',
+      className: 'text-accent-foreground/20',
+    },
+    {
+      type: 'link',
+      color: 'accent',
+      underline: 'hover',
+      className:
+        'text-accent-foreground/20 hover:border-b hover:border-accent-foreground/20',
+    },
+    {
+      type: 'link',
+      color: 'accent',
+      underline: 'always',
+      className:
+        'text-accent-foreground/20 border-b border-accent-foreground/20',
+    },
+  ],
+  defaultVariants: {
+    type: 'link',
+    variant: 'solid',
+    color: 'default',
+    underline: 'hover',
+    size: 'md',
+  },
+});
+
+/** ::::::::: Variant Types ::::::::: */
 type BadgeVariants = VariantProps<typeof badgeVariants>;
 type BoxVariants = VariantProps<typeof boxVariants>;
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 type ChipVariants = VariantProps<typeof chipVariants>;
 type TypographyVariants = VariantProps<typeof typographyVariants>;
+type LinkVariants = VariantProps<typeof linkVariants>;
 
 export {
   type BadgeVariants,
@@ -474,6 +692,10 @@ export {
   buttonVariants,
   type ChipVariants,
   chipVariants,
+  type LinkVariants,
+  linkVariants,
+  type Spaces,
+  spaces,
   type TypographyVariants,
   typographyVariants,
 };

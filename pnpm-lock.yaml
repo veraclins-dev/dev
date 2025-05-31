@@ -689,6 +689,9 @@ importers:
       '@types/sanitize-html':
         specifier: ^2.16.0
         version: 2.16.0
+      type-fest:
+        specifier: ^4.41.0
+        version: 4.41.0
 
 packages:
 

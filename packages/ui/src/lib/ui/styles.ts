@@ -199,6 +199,20 @@ const BUTTON_DEFAULT_CLASSES = cn(
   "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
 );
 
+const LINK_DEFAULT_CLASSES = cn(
+  SHARED_ACTIVE_ELEMENT_CLASSES,
+  // Layout and Base
+  'cursor-pointer',
+  // Transitions
+  'transition-colors',
+  // Focus Styles
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2',
+  // Disabled Styles
+  'disabled:pointer-events-none disabled:opacity-30 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-30',
+  // Text
+  'font-medium no-underline',
+);
+
 export {
   ACTIVE_ITEM_CLASSES,
   BADGE_DEFAULT_CLASSES,
@@ -210,6 +224,7 @@ export {
   INPUT_CLASSES,
   INPUT_CONTAINER_CLASSES,
   ITEM_CLASSES,
+  LINK_DEFAULT_CLASSES,
   POPUP_CONTENT_CLASSES,
   SHARED_ITEM_CLASSES,
   SUB_CONTENT_CLASSES,
