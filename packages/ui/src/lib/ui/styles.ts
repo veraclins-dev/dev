@@ -206,7 +206,7 @@ const LINK_DEFAULT_CLASSES = cn(
   // Transitions
   'transition-colors',
   // Focus Styles
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2',
+  'focus-visible:outline-none focus-visible:ring-0',
   // Disabled Styles
   'disabled:pointer-events-none disabled:opacity-30 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-30',
   // Text

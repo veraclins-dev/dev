@@ -5,19 +5,11 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  Icon,
   Link,
-  LinkProps,
   Typography,
 } from '@veraclins-dev/ui';
 
 export function Links() {
-  const linkProps: LinkProps<typeof RouterLink> = {
-    className: 'text-blue-500 hover:text-blue-700',
-    variant: 'solid',
-    color: 'primary',
-  };
-
   return (
     <div className="flex gap-8">
       <Card className="flex-1">
@@ -169,10 +161,16 @@ export function Links() {
             <Link href="/primary" color="primary">
               Primary
             </Link>
-            <Link color="secondary">Secondary</Link>
-            <Link color="destructive">Destructive</Link>
+            <Link underline="none" color="secondary">
+              Secondary
+            </Link>
+            <Link className="border-b-2" color="destructive">
+              Destructive
+            </Link>
             <Link color="success">Success</Link>
-            <Link color="warning">Warning</Link>
+            <Link underline="always" color="warning">
+              Warning
+            </Link>
             <Link color="info">Info</Link>
             <Link color="accent">Accent</Link>
           </div>
