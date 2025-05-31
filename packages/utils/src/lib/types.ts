@@ -1,5 +1,4 @@
 import type * as React from 'react';
-import { type Except } from 'type-fest';
 
 type Maybe<T> = T | null;
 

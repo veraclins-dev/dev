@@ -14,7 +14,7 @@ interface BaseLinkProps extends LinkVariants {
   rel?: string;
 }
 
-export interface LinkTypeMap<
+interface LinkTypeMap<
   AdditionalProps = object,
   RootComponent extends React.ElementType = 'a',
 > {
@@ -74,4 +74,4 @@ function Link<
   );
 }
 
-export { BaseLinkProps, Link, LinkProps, linkVariants };
+export { Link, LinkProps, linkVariants };

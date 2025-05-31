@@ -18,6 +18,7 @@ export default defineConfig({
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+      aliasesExclude: ['@veraclins-dev/utils', '@veraclins-dev/ui'],
     }),
   ],
   // Uncomment this if you are using workers.

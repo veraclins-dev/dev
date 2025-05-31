@@ -22,13 +22,13 @@ export default defineConfig({
       cwd: process.cwd(),
       iconNameTransformer: (iconName) => iconName,
       formatter: 'prettier',
-      pathToFormatterConfig: '../../.prettierrc',
     }),
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
+      aliasesExclude: ['@veraclins-dev/utils'],
     }),
     // libAssetsPlugin({
     //   include: ['src/lib/icons/**.svg'],

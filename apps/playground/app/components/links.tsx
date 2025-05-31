@@ -7,10 +7,17 @@ import {
   CardTitle,
   Icon,
   Link,
+  LinkProps,
   Typography,
 } from '@veraclins-dev/ui';
 
 export function Links() {
+  const linkProps: LinkProps<typeof RouterLink> = {
+    className: 'text-blue-500 hover:text-blue-700',
+    variant: 'solid',
+    color: 'primary',
+  };
+
   return (
     <div className="flex gap-8">
       <Card className="flex-1">
