@@ -31,7 +31,7 @@ const Chip = memo(
         {onRemove && (
           <Icon
             className={cn(
-              'cursor-pointer opacity-60 p-0.5 hover:opacity-100 focus:outline-none',
+              'cursor-pointer opacity-60 p-0.5 hover:opacity-100 focus:outline-none size-4',
               size === 'sm' && 'size-4',
               size === 'md' && 'size-5',
               size === 'lg' && 'size-6',

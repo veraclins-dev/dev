@@ -15,7 +15,7 @@ export function MenuBar({ children, className }: MenuBarProps) {
   return (
     <div
       className={cn(
-        'z-50 flex min-h-10 flex-wrap items-center gap-2 rounded-t-sm border-b bg-card p-1',
+        'z-50 flex min-h-10 flex-wrap items-center gap-2 rounded-t-sm border-b p-1',
         className,
       )}
     >

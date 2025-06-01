@@ -4,7 +4,7 @@ const INPUT_CLASSES = cn(
   // Layout and Base
   'flex flex-1 min-w-0 bg-transparent outline-none',
   // Text and Selection
-  'text-base data-[placeholder]:text-muted-foreground md:text-sm placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground',
+  'text-base data-[placeholder]:text-[currentColor]/50 md:text-sm placeholder:text-[currentColor]/50 selection:bg-primary selection:text-primary-foreground',
   // Spacing
   'min-h-7 px-3 py-2',
   // Border and Shadow
@@ -20,7 +20,7 @@ const INPUT_CLASSES = cn(
   // Transitions
   'transition-[color,box-shadow]',
   //  SVG Styles
-  "[&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  '[&_svg]:shrink-0',
 );
 
 // Input Container Class
@@ -105,7 +105,7 @@ const SHARED_ITEM_CLASSES = cn(
   // Interactivity
   'cursor-default outline-hidden data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
   // SVG Styles
-  "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  '[&_svg]:pointer-events-none [&_svg]:shrink-0',
 );
 
 // Menu Item Classes
@@ -135,7 +135,7 @@ const INDICATOR_CLASSES = cn(
   // Interactivity
   'cursor-default outline-hidden data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
   // SVG Styles
-  "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  '[&_svg]:pointer-events-none [&_svg]:shrink-0',
 );
 
 // Shared default classes, grouped
@@ -148,8 +148,6 @@ const SHARED_ACTIVE_ELEMENT_CLASSES = cn(
   'font-medium',
   // Transitions
   'transition-colors',
-  // Focus Styles
-  'focus:outline-none focus:ring-2 focus:ring-ring/50 focus:ring-offset-2',
   // Error States
   'aria-invalid:border-destructive/20 dark:aria-invalid:border-destructive/40',
   // SVG Styles
@@ -194,9 +192,9 @@ const BUTTON_DEFAULT_CLASSES = cn(
   // Disabled Styles
   'disabled:pointer-events-none disabled:opacity-30 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-30',
   // Focus and Error States
-  'outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
+  'focus:outline-none focus:ring-2 focus:ring-ring/50 focus:ring-offset-1 outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
   // SVG Styles
-  "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+  '[&_svg]:pointer-events-none',
 );
 
 const LINK_DEFAULT_CLASSES = cn(

@@ -34,6 +34,7 @@ import {
 } from '@veraclins-dev/ui';
 
 import { Badges } from './components/badges';
+import { Boxes } from './components/boxes';
 import { Buttons } from './components/button';
 import { Links } from './components/links';
 
@@ -43,6 +44,7 @@ export function NxWelcome({ title }: { title: string }) {
       <Buttons />
       <Links />
       <Badges />
+      <Boxes />
       <Card>
         <CardHeader>
           <CardTitle>{title} card</CardTitle>

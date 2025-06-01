@@ -384,6 +384,8 @@ const Autocomplete = ({
                       )}
                       variant="soft"
                       color="primary"
+                      size="sm"
+                      className="p-0.5 text-xs border-none"
                       onRemove={() => handleRemove(value)}
                     />
                   );
@@ -414,7 +416,7 @@ const Autocomplete = ({
               <IconButton
                 onClick={clear}
                 variant="text"
-                className="p-1"
+                className="p-0.5"
                 rounded
               >
                 <Icon name="cross-2" className="opacity-70" />
