@@ -1,3 +1,6 @@
+import { cn } from '@veraclins-dev/utils';
+
+import { INPUT_CLASS_OVERRIDES } from '../../ui';
 import { Textarea } from '../../ui/textarea';
 
 import {
@@ -48,7 +51,7 @@ export const TextareaField = ({
         aria-describedby={errorId}
         id={id}
         rows={rows}
-        className={inputClass}
+        className={cn(INPUT_CLASS_OVERRIDES, inputClass)}
       />
       {rightInlay ? (
         <span className="absolute bottom-0.5 right-0.5">{rightInlay}</span>

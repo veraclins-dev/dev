@@ -68,7 +68,7 @@ export const TextField = ({
         aria-describedby={errorId}
         aria-invalid={errorId ? true : undefined}
         type={isPassword && !hidden ? 'text' : type}
-        className={cn(inputClass, INPUT_CLASS_OVERRIDES)}
+        className={cn(INPUT_CLASS_OVERRIDES, inputClass)}
       />
       {/* <IconButton onClick={toggleHidden} variant="text" className="p-1" rounded> */}
       {isPassword ? (

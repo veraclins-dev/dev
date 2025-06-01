@@ -10,7 +10,7 @@ import {
 
 export function Badges() {
   return (
-    <div className="flex gap-8">
+    <div className="flex gap-4">
       <Card className="w-full">
         <CardHeader>
           <CardTitle>Badges</CardTitle>
