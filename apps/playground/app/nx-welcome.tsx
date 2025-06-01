@@ -4,6 +4,7 @@ import { Badges } from './components/badges';
 import { Boxes } from './components/boxes';
 import { Buttons } from './components/button';
 import { Cards } from './components/cards';
+import { Dialogs } from './components/dialogs';
 import { Inputs } from './components/inputs';
 import { Links } from './components/links';
 
@@ -13,6 +14,7 @@ export function NxWelcome({ title }: { title: string }) {
       <Typography variant="h1" className="text-center">
         Welcome to <span className="text-primary">{title}</span>
       </Typography>
+      <Dialogs />
       <Buttons />
       <Links />
       <Badges />

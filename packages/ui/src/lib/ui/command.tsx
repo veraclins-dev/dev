@@ -147,7 +147,7 @@ function CommandItem({
       data-slot="command-item"
       className={cn(
         SHARED_ITEM_CLASSES,
-        'data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground',
+        'data-[selected=true]:bg-muted data-[selected=true]:text-muted-foreground',
         className,
       )}
       {...props}
