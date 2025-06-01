@@ -10,7 +10,6 @@ export interface InputWrapperProps
   extends React.ComponentProps<'div'>,
     BaseInputProps {
   children: React.ReactNode;
-  wrapperRef?: React.Ref<HTMLDivElement>;
   plain?: boolean;
 }
 
@@ -21,7 +20,7 @@ export const InputWrapper = ({
   labelProps,
   topText,
   field,
-  wrapperRef,
+  ref,
   wrapperClassName,
   plain,
 }: InputWrapperProps) => {
@@ -30,7 +29,7 @@ export const InputWrapper = ({
   return (
     <div
       className={cn('relative flex w-full flex-col gap-2', wrapperClassName)}
-      ref={wrapperRef}
+      ref={ref}
     >
       {(label || topText) && (
         <div className="flex justify-between">
