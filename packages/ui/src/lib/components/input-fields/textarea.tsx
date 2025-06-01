@@ -11,7 +11,8 @@ import {
 import { InputWrapper } from './wrapper';
 
 export interface TextareaFieldProps
-  extends React.ComponentProps<'textarea'>,
+  extends Omit<React.ComponentProps<'textarea'>, 'ref'>,
+    Pick<React.ComponentProps<'div'>, 'ref'>,
     BaseInputProps {
   rightInlay?: React.ReactNode;
   inputRef?: React.Ref<HTMLTextAreaElement>;
@@ -29,6 +30,7 @@ export const TextareaField = ({
   inputClass,
   name,
   wrapperClassName,
+  ref,
   ...props
 }: TextareaFieldProps) => {
   const { errorId, id } = useFieldProperties(field);
@@ -42,6 +44,7 @@ export const TextareaField = ({
       labelProps={labelProps}
       topText={topText}
       wrapperClassName={wrapperClassName}
+      ref={ref}
     >
       <Textarea
         {...props}

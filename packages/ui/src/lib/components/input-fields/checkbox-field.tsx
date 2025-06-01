@@ -17,7 +17,8 @@ import {
 import { InputWrapper } from './wrapper';
 
 interface CheckboxFieldProps
-  extends Omit<CheckboxProps, 'onChange' | 'onCheckedChange'>,
+  extends Omit<CheckboxProps, 'onChange' | 'onCheckedChange' | 'ref'>,
+    Pick<React.ComponentProps<'div'>, 'ref'>,
     Pick<
       TextFieldProps,
       'label' | 'labelProps' | 'inputClass' | 'wrapperClassName'
@@ -47,6 +48,7 @@ export function CheckboxField({
   onChange,
   className,
   wrapperClassName,
+  ref,
   ...others
 }: CheckboxFieldProps) {
   // delete field?.initialValue;
@@ -68,6 +70,7 @@ export function CheckboxField({
       field={field}
       wrapperClassName={wrapperClassName}
       plain
+      ref={ref}
     >
       <div className="flex items-center gap-2">
         <Checkbox

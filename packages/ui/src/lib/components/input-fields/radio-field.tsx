@@ -46,6 +46,7 @@ const RadioField = ({
   onChange,
   shouldReset,
   wrapperClassName,
+  ref,
   ...props
 }: RadioFieldProps) => {
   const { errorId, id } = useFieldProperties(field);
@@ -67,6 +68,7 @@ const RadioField = ({
       labelProps={labelProps}
       wrapperClassName={wrapperClassName}
       plain
+      ref={ref}
     >
       <RadioGroup
         {...props}

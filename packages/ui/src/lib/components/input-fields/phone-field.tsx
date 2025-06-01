@@ -77,6 +77,7 @@ export const PhoneField = ({
   rightAddon,
   autoFocus,
   wrapperClassName,
+  ref,
   ...props
 }: PhoneFieldProps) => {
   const [localCountryValue, setLocalCountryValue] = useState<CountryCode>(
@@ -118,6 +119,7 @@ export const PhoneField = ({
       labelProps={labelProps}
       topText={topText}
       wrapperClassName={wrapperClassName}
+      ref={ref}
     >
       <CountrySelect
         countries={getCountries()}

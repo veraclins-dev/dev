@@ -36,6 +36,7 @@ const EditorField = ({
   editorProps,
   shouldReset,
   wrapperClassName,
+  ref,
   ...rest
 }: EditorFieldProps) => {
   const { key, ...formProps } = getInputProps({ field, name });
@@ -74,6 +75,7 @@ const EditorField = ({
       label={label}
       labelProps={labelProps}
       topText={topText}
+      ref={ref}
     >
       <textarea
         {...rest}

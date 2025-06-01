@@ -7,7 +7,7 @@ import { ErrorList } from '../error-list';
 import { type BaseInputProps, useFieldProperties } from './utils';
 
 export interface InputWrapperProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends React.ComponentProps<'div'>,
     BaseInputProps {
   children: React.ReactNode;
   wrapperRef?: React.Ref<HTMLDivElement>;

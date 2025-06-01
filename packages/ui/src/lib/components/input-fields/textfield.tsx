@@ -33,6 +33,7 @@ export const TextField = ({
   inputClass,
   rightAddon,
   wrapperClassName,
+  ref,
   ...props
 }: TextFieldProps) => {
   const isPassword = type === 'password';
@@ -57,6 +58,7 @@ export const TextField = ({
       labelProps={labelProps}
       topText={topText}
       wrapperClassName={wrapperClassName}
+      ref={ref}
     >
       {leftIcon && <Icon name={leftIcon} className="mr-3" size="sm" />}
       <Input

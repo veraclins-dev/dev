@@ -1,5 +1,3 @@
-import { type PropsWithoutRef } from 'react';
-
 import { cn } from '@veraclins-dev/utils';
 
 import {
@@ -17,7 +15,7 @@ import {
 import { InputWrapper } from './wrapper';
 
 interface SelectFieldProps
-  extends PropsWithoutRef<React.JSX.IntrinsicElements['select']>,
+  extends React.ComponentProps<'select'>,
     Omit<BaseInputProps, 'value'> {
   placeholder?: string;
   defaultValue?: BaseSelectProps['defaultValue'];
@@ -38,6 +36,7 @@ const SelectField = ({
   value,
   dir,
   wrapperClassName,
+  ref,
   ...props
 }: Props) => {
   const { errorId } = useFieldProperties(field);

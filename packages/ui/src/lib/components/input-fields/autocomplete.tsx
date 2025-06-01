@@ -49,13 +49,11 @@ const filter = ({
   value,
   keys = ['label', 'value'],
   disableSorting = false,
-  multiple = false,
 }: {
   options: Options;
   value: string;
   keys?: string[];
   disableSorting?: boolean;
-  multiple?: boolean;
 }) => {
   const isObject = options.length && !isStringOption(options[0]);
 
@@ -161,6 +159,7 @@ const Autocomplete = ({
   shouldReset,
   wrapperClassName,
   freeSolo = false,
+  ref,
   ...props
 }: AutocompleteProps) => {
   const { errorId } = useFieldProperties(field);
@@ -308,11 +307,10 @@ const Autocomplete = ({
       options: filtered,
       value: localValue,
       disableSorting,
-      multiple,
     });
 
     setFilteredOptions(filteredOptions);
-  }, [disableSorting, localValue, multiple, options, selected]);
+  }, [disableSorting, localValue, options, selected]);
 
   useEffect(() => {
     const value = selected.join('|');
@@ -359,6 +357,7 @@ const Autocomplete = ({
       label={label}
       labelProps={labelProps}
       wrapperClassName={wrapperClassName}
+      ref={ref}
     >
       <Command
         onKeyDown={handleKeyDown}
