@@ -93,13 +93,15 @@ function PopoverAnchor({
 
 const ComposedPopover = <P extends object>({
   children,
+  open,
   Trigger,
   className,
   TriggerProps,
+  onOpenChange,
   contentProps,
   ...others
 }: ComposedPopoverProps<P>) => (
-  <Popover {...others}>
+  <Popover {...others} open={open} onOpenChange={onOpenChange}>
     <PopoverTrigger asChild>
       <Trigger {...TriggerProps} />
     </PopoverTrigger>
