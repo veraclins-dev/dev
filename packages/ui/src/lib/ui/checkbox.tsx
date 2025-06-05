@@ -3,6 +3,7 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { cn } from '@veraclins-dev/utils';
 
 import { Icon } from './icon';
+import { CHECKBOX_CLASSES } from './styles';
 
 type CheckedValue = 'on' | 'off' | 'indeterminate';
 
@@ -28,10 +29,7 @@ function Checkbox({
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
-      className={cn(
-        'peer focus-visible:border-ring focus-visible:ring-current/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=checked]:border-primary size-5 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50',
-        className,
-      )}
+      className={cn(CHECKBOX_CLASSES, className)}
       {...props}
       checked={checked}
     >

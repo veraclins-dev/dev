@@ -18,7 +18,11 @@ export default defineConfig({
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
-      aliasesExclude: ['@veraclins-dev/utils', '@veraclins-dev/ui'],
+      aliasesExclude: [
+        '@veraclins-dev/utils',
+        '@veraclins-dev/ui',
+        '@veraclins-dev/react-utils',
+      ],
     }),
   ],
   // Uncomment this if you are using workers.
@@ -51,6 +55,7 @@ export default defineConfig({
         'react/jsx-runtime',
         '@veraclins-dev/ui',
         '@veraclins-dev/utils',
+        '@veraclins-dev/react-utils',
       ],
     },
   },

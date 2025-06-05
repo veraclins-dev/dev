@@ -21,6 +21,7 @@ export * from './popover';
 export * from './radio-group';
 export * from './select';
 export * from './separator';
+export * from './sheet';
 export * from './skeleton';
 export * from './status-button';
 export * from './styles';

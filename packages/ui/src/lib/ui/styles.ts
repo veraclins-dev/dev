@@ -1,25 +1,61 @@
 import { cn } from '@veraclins-dev/utils';
 
-const INPUT_CLASSES = cn(
+const BASE_INPUT_CLASSES = cn(
+  // Border and Shadow
+  'border shadow-xs',
+  // Focus Styles
+  'focus-visible:ring-current/50 focus-visible:ring-2 focus:ring-offset-1',
+  // Disabled Styles
+  'disabled:cursor-not-allowed disabled:opacity-50',
+  // Error States
+  'aria-invalid:ring-destructive/20 aria-invalid:border-destructive',
+  // Base
+  'outline-none',
+  // Transitions
+  'transition-[color,box-shadow]',
+);
+
+const CHECKBOX_CLASSES = cn(
+  BASE_INPUT_CLASSES,
   // Layout and Base
-  'flex flex-1 min-w-0 bg-transparent outline-none',
+  'peer size-5 shrink-0 rounded-[4px]',
+  // Text and Selection
+  'data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=checked]:border-primary',
+  // Transitions
+  'transition-shadow',
+  // Focus Styles
+  'focus:ring-primary/50 focus:ring-2',
+);
+
+const RADIO_GROUP_ITEM_CLASSES = cn(
+  BASE_INPUT_CLASSES,
+  // Layout and Base
+  'flex items-center justify-center aspect-square size-5 shrink-0 rounded-full',
+  // checked
+  'data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary',
+  // Transitions
+  'transition-shadow',
+  // Focus Styles
+  'focus:ring-primary/50 focus:ring-2',
+);
+
+const INPUT_CLASSES = cn(
+  BASE_INPUT_CLASSES,
+  // Layout and Base
+  'flex flex-1 min-w-0 bg-transparent',
   // Text and Selection
   'text-base data-[placeholder]:text-current/50 md:text-sm placeholder:text-current/50 selection:bg-primary selection:text-primary-foreground',
   // Spacing
   'min-h-7 px-3 py-2',
   // Border and Shadow
-  'rounded-md border shadow-xs',
+  'rounded-md',
   // Focus Styles
-  'focus-visible:border-ring focus-visible:ring-current/50 focus-visible:ring-2 focus:ring-offset-1',
+  'focus-visible:ring-2 focus:ring-offset-1',
   // Disabled Styles
-  'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
-  // Error States
-  'aria-invalid:ring-destructive/20 aria-invalid:border-destructive',
+  'disabled:pointer-events-none',
   // File Input Styles
   'file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium',
-  // Transitions
-  'transition-[color,box-shadow]',
-  //  SVG Styles
+  // SVG Styles
   '[&_svg]:shrink-0',
 );
 
@@ -32,7 +68,7 @@ const INPUT_CONTAINER_CLASSES = cn(
   // Border and Shadow
   'rounded-md border shadow-xs',
   // Focus Styles
-  'has-focus-visible:border-ring has-focus-visible:ring-current/50 has-focus-visible:ring-2 has-focus-visible:ring-offset-1',
+  'has-focus-visible:ring-current/50 has-focus-visible:ring-2 has-focus-visible:ring-offset-1',
   // Disabled Styles
   'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
   // Error States
@@ -48,7 +84,7 @@ const INPUT_CLASS_OVERRIDES = cn(
   // Border and Shadow
   'border-none rounded-none shadow-none',
   // Focus Styles
-  'focus-visible:border-none focus-visible:ring-0',
+  'focus-visible:border-none focus-visible:ring-0 focus:ring-offset-0',
   // Error States
   'aria-invalid:border-none aria-invalid:ring-0',
 );
@@ -211,6 +247,7 @@ const LINK_DEFAULT_CLASSES = cn(
 export {
   BADGE_DEFAULT_CLASSES,
   BUTTON_DEFAULT_CLASSES,
+  CHECKBOX_CLASSES,
   CHIP_DEFAULT_CLASSES,
   CONTENT_CLASSES,
   INDICATOR_CLASSES,
@@ -220,6 +257,7 @@ export {
   ITEM_CLASSES,
   LINK_DEFAULT_CLASSES,
   POPUP_CONTENT_CLASSES,
+  RADIO_GROUP_ITEM_CLASSES,
   SHARED_ITEM_CLASSES,
   SUB_CONTENT_CLASSES,
 };

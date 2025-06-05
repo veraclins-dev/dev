@@ -14,7 +14,7 @@ import {
 
 const meta: Meta<typeof Card> = {
   component: Card,
-  title: 'Base/Card/Main',
+  title: 'Base/Card',
 };
 export default meta;
 type Story = StoryObj<typeof Card>;
@@ -54,10 +54,24 @@ export const Primary: Story = {
   },
 };
 
-export const Heading: Story = {
+export const HeaderWithFooter: Story = {
   args: {},
+  render: (args) => {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Header + Footer</CardTitle>
+          <CardDescription>
+            This is a card with a header and a footer.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="text-sm">Content</CardContent>
+        <CardFooter className="text-sm">Footer</CardFooter>
+      </Card>
+    );
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(/Welcome to Card!/gi)).toBeTruthy();
+    expect(canvas.getByText(/Header + Footer/gi)).toBeTruthy();
   },
 };

@@ -65,7 +65,7 @@ function CommandInput({
     <div
       data-slot="command-input-wrapper"
       className={cn(
-        'flex-1 flex w-0 min-w-30 items-center gap-2',
+        'flex-1 flex w-full min-w-30 items-center gap-2',
         wrapperClassName,
       )}
     >

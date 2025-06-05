@@ -5,6 +5,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import { Icon } from './icon';
 import { Label, type LabelProps } from './label';
+import { RADIO_GROUP_ITEM_CLASSES } from './styles';
 
 function RadioGroup({
   className,
@@ -33,10 +34,7 @@ function RadioGroupItem({
     <div className="flex items-center space-x-2">
       <RadioGroupPrimitive.Item
         data-slot="radio-group-item"
-        className={cn(
-          'focus-visible:border-ring focus-visible:ring-current/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive  data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground aspect-square size-5 shrink-0 rounded-full border shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50',
-          className,
-        )}
+        className={cn(RADIO_GROUP_ITEM_CLASSES, className)}
         id={id}
         {...props}
       >
@@ -44,7 +42,7 @@ function RadioGroupItem({
           data-slot="radio-group-indicator"
           className="flex items-center justify-center"
         >
-          <Icon name="circle-solid" className="size-3" />
+          <Icon name="circle-solid" className="size-3.5" />
         </RadioGroupPrimitive.Indicator>
       </RadioGroupPrimitive.Item>
       {label && (

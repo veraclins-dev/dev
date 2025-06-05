@@ -11,7 +11,11 @@ module.exports = [
     },
   },
   {
-    ignores: ['**/dist'],
+    ignores: [
+      '**/dist',
+      '**/vite.config.*.timestamp*',
+      '**/vitest.config.*.timestamp*',
+    ],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
@@ -29,6 +33,7 @@ module.exports = [
                 'type:editor',
                 'type:ui',
                 'type:utils',
+                'type:react-utils',
               ],
             },
             {
@@ -37,11 +42,20 @@ module.exports = [
                 'type:editor',
                 'type:ui',
                 'type:utils',
+                'type:react-utils',
               ],
             },
             {
               sourceTag: 'type:ui',
-              onlyDependOnLibsWithTags: ['type:ui', 'type:utils'],
+              onlyDependOnLibsWithTags: [
+                'type:ui',
+                'type:utils',
+                'type:react-utils',
+              ],
+            },
+            {
+              sourceTag: 'type:react-utils',
+              onlyDependOnLibsWithTags: ['type:utils', 'type:react-utils'],
             },
             {
               sourceTag: 'type:auth',
