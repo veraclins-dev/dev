@@ -8,128 +8,282 @@
 
 :root {
   --background: oklch(0.945 0 0);
+  --background-hover: oklch(0.895 0 0);
+  --background-soft: oklch(0.975 0 0);
+  --background-soft-hover: oklch(0.925 0 0);
+
   --foreground: oklch(0.346 0 0);
+  --foreground-hover: oklch(0.426 0 0);
 
   --muted: oklch(0.8923 0.0069 247.9);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-hover: oklch(0.8423 0.0069 247.9);
+  --muted-soft: oklch(0.9423 0.0069 247.9);
+  --muted-soft-hover: oklch(0.8923 0.0069 247.9);
 
-  --accent: oklch(0.9223 0.0069 247.9);
+  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground-hover: oklch(0.636 0 0);
+
+  --accent: oklch(0.9605 0.0046 258.32);
+  --accent-hover: oklch(0.9105 0.0046 258.32);
+  --accent-soft: oklch(0.9805 0.0046 258.32);
+  --accent-soft-hover: oklch(0.9305 0.0046 258.32);
+
   --accent-foreground: oklch(0.205 0 0);
+  --accent-foreground-hover: oklch(0.285 0 0);
 
   --popover: oklch(0.986 0 0);
+  --popover-hover: oklch(0.936 0 0);
+  --popover-soft: oklch(0.996 0 0);
+  --popover-soft-hover: oklch(0.946 0 0);
+
   --popover-foreground: oklch(0.145 0 0);
+  --popover-foreground-hover: oklch(0.225 0 0);
 
   --card: oklch(0.996 0 0);
+  --card-hover: oklch(0.946 0 0);
+  --card-soft: oklch(0.996 0 0);
+  --card-soft-hover: oklch(0.946 0 0);
+
   --card-foreground: oklch(0.242 0 0);
+  --card-foreground-hover: oklch(0.322 0 0);
+
   --card-inner: oklch(0.945 0 0);
+  --card-inner-hover: oklch(0.895 0 0);
+  --card-inner-soft: oklch(0.975 0 0);
+  --card-inner-soft-hover: oklch(0.925 0 0);
 
-  --primary: oklch(0.44 0.193 319.13);
+  --primary: oklch(0.4222 0.1918 318.89);
+  --primary-hover: oklch(0.3422 0.1918 318.89);
+  --primary-soft: oklch(0.9822 0.1918 318.89);
+  --primary-soft-hover: oklch(0.8922 0.1918 318.89);
+
   --primary-foreground: oklch(0.98 0.0035 247.86);
+  --primary-foreground-hover: oklch(0.93 0.0035 247.86);
 
-  --secondary: oklch(0.595 0.188 80.6);
-  --secondary-foreground: oklch(0.996 0 0);
+  --secondary: oklch(0.4127 0.0095 320.55);
+  --secondary-hover: oklch(0.3127 0.0095 320.55);
+  --secondary-soft: oklch(0.8827 0.0095 320.55);
+  --secondary-soft-hover: oklch(0.7827 0.0095 320.55);
 
-  --destructive: oklch(0.577 0.245 27.325);
+  --secondary-foreground: oklch(0.896 0 0);
+  --secondary-foreground-hover: oklch(0.276 0 0);
+
+  --destructive: oklch(0.477 0.245 27.325);
+  --destructive-hover: oklch(0.327 0.245 27.325);
+  --destructive-soft: oklch(0.999 0.245 17.325);
+  --destructive-soft-hover: oklch(0.919 0.245 17.325);
+
   --destructive-foreground: oklch(0.98 0.0035 247.86);
+  --destructive-foreground-hover: oklch(0.93 0.0035 247.86);
 
-  --success: oklch(0.65 0.2 140);
+  --success: oklch(0.55 0.2 140);
+  --success-hover: oklch(0.6 0.2 140);
+  --success-soft: oklch(0.93 0.2 140);
+  --success-soft-hover: oklch(0.849 0.2 140);
+
   --success-foreground: oklch(0.98 0.0035 247.86);
+  --success-foreground-hover: oklch(0.93 0.0035 247.86);
 
   --warning: oklch(0.65 0.2 60);
+  --warning-hover: oklch(0.6 0.2 60);
+  --warning-soft: oklch(0.98 0.2 60);
+  --warning-soft-hover: oklch(0.91 0.2 60);
+
   --warning-foreground: oklch(0.98 0.0035 247.86);
+  --warning-foreground-hover: oklch(0.93 0.0035 247.86);
 
-  --info: oklch(0.65 0.15 200);
+  --info: oklch(0.452 0.313214 264.052);
+  --info-hover: oklch(0.6 0.313214 264.052);
+  --info-soft: oklch(0.98 0.313214 264.052);
+  --info-soft-hover: oklch(0.917 0.313214 264.052);
+
   --info-foreground: oklch(0.98 0.0035 247.86);
-
-  --badge: oklch(0.905 0.068 297.6);
-  --badge-foreground: oklch(0.567 0.132 303.5);
-
-  --border: oklch(0.922 0 0);
-  --ring: oklch(0.44 0.193 319.13);
+  --info-foreground-hover: oklch(0.93 0.0035 247.86);
 }
 
 .dark {
-  --background: oklch(0.184 0.033 267.8);
-  --foreground: oklch(0.811 0 0);
+  --background: oklch(0.271 0 0);
+  --foreground: oklch(0.981 0 0);
 
   --muted: oklch(0.442 0.033 260.7);
-  --muted-foreground: oklch(0.817 0.013 260.7);
+  --muted-hover: oklch(0.522 0.033 260.7);
+  --muted-soft: oklch(0.392 0.033 260.7);
+  --muted-soft-hover: oklch(0.442 0.033 260.7);
 
-  --accent: oklch(0.51 0.033 280);
+  --muted-foreground: oklch(0.817 0.013 260.7);
+  --muted-foreground-hover: oklch(0.737 0.013 260.7);
+
+  --accent: oklch(0.3215 0.0017 286.3);
+  --accent-hover: oklch(0.4015 0.0017 286.3);
+  --accent-soft: oklch(0.2715 0.0017 286.3);
+  --accent-soft-hover: oklch(0.3215 0.0017 286.3);
+
   --accent-foreground: oklch(0.98 0.013 264.1);
+  --accent-foreground-hover: oklch(0.9 0.013 264.1);
 
   --popover: oklch(0.205 0 0);
+  --popover-hover: oklch(0.285 0 0);
+  --popover-soft: oklch(0.155 0 0);
+  --popover-soft-hover: oklch(0.205 0 0);
+
   --popover-foreground: oklch(0.885 0 0);
+  --popover-foreground-hover: oklch(0.805 0 0);
 
-  --card: oklch(0.242 0.013 260.7);
+  --card: oklch(0.132 0 0);
+  --card-hover: oklch(0.322 0 0);
+  --card-soft: oklch(0.192 0 0);
+  --card-soft-hover: oklch(0.242 0 0);
+
   --card-foreground: oklch(0.864 0.013 264.1);
-  --card-inner: oklch(0.346 0.013 260.7);
+  --card-foreground-hover: oklch(0.784 0.013 264.1);
 
-  --primary: oklch(0.51 0.2501 319.41);
-  --primary-foreground: oklch(0.864 0.013 264.1);
+  --card-inner: oklch(0.246 0 0);
+  --card-inner-hover: oklch(0.426 0 0);
+  --card-inner-soft: oklch(0.296 0 0);
+  --card-inner-soft-hover: oklch(0.346 0 0);
 
-  --secondary: oklch(0.542 0.188 80.6);
-  --secondary-foreground: oklch(0.864 0.013 264.1);
+  --primary: oklch(0.48 0.2201 309.41);
+  --primary-hover: oklch(0.44 0.2201 309.41);
+  --primary-soft: oklch(0.2314 0.2201 309.41);
+  --primary-soft-hover: oklch(0.2814 0.2201 309.41);
 
-  --destructive: oklch(0.704 0.191 22.216);
+  --primary-foreground: oklch(0.894 0.013 264.1);
+  --primary-foreground-hover: oklch(0.796 0.013 264.1);
+
+  --secondary: oklch(0.8542 0.0155 317.7);
+  --secondary-hover: oklch(0.7642 0.0155 317.7);
+  --secondary-soft: oklch(0.5442 0.0155 317.7);
+  --secondary-soft-hover: oklch(0.4842 0.0155 317.7);
+
+  --secondary-foreground: oklch(0.15 0.013 264.1);
+  --secondary-foreground-hover: oklch(0.32 0.013 264.1);
+
+  --destructive: oklch(0.604 0.191 22.216);
+  --destructive-hover: oklch(0.554 0.191 22.216);
+  --destructive-soft: oklch(0.224 0.191 22.216);
+  --destructive-soft-hover: oklch(0.274 0.191 22.216);
+
   --destructive-foreground: oklch(0.9 0.013 25.6);
+  --destructive-foreground-hover: oklch(0.82 0.013 25.6);
 
-  --success: oklch(0.7 0.2 140);
+  --success: oklch(0.6 0.2 140);
+  --success-hover: oklch(0.45 0.2 140);
+  --success-soft: oklch(0.293 0.2 140);
+  --success-soft-hover: oklch(0.33 0.2 140);
+
   --success-foreground: oklch(0.9 0.013 264.1);
+  --success-foreground-hover: oklch(0.82 0.013 264.1);
 
-  --warning: oklch(0.7 0.2 60);
+  --warning: oklch(0.6 0.15 60);
+  --warning-hover: oklch(0.45 0.15 60);
+  --warning-soft: oklch(0.293 0.085 60);
+  --warning-soft-hover: oklch(0.23 0.085 60);
+
   --warning-foreground: oklch(0.9 0.013 264.1);
+  --warning-foreground-hover: oklch(0.82 0.013 264.1);
 
-  --info: oklch(0.7 0.15 200);
+  --info: oklch(0.65 0.15 250);
+  --info-hover: oklch(0.55 0.15 250);
+  --info-soft: oklch(0.35 0.085 250);
+  --info-soft-hover: oklch(0.39 0.15 250);
+
   --info-foreground: oklch(0.9 0.013 264.1);
-
-  --badge: oklch(0.462 0.068 297.6);
-  --badge-foreground: oklch(0.851 0.124 303.5);
-
-  --border: oklch(0.848 0.033 260.7);
-  --ring: oklch(0.61 0.2501 319.41);
+  --info-foreground-hover: oklch(0.82 0.013 264.1);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-hover: var(--background-hover);
+  --color-background-soft: var(--background-soft);
+  --color-background-soft-hover: var(--background-soft-hover);
+
   --color-foreground: var(--foreground);
+  --color-foreground-hover: var(--foreground-hover);
 
   --color-muted: var(--muted);
+  --color-muted-hover: var(--muted-hover);
+  --color-muted-soft: var(--muted-soft);
+  --color-muted-soft-hover: var(--muted-soft-hover);
+
   --color-muted-foreground: var(--muted-foreground);
+  --color-muted-foreground-hover: var(--muted-foreground-hover);
 
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-hover: var(--accent-soft-hover);
+
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-foreground-hover: var(--accent-foreground-hover);
 
   --color-popover: var(--popover);
+  --color-popover-hover: var(--popover-hover);
+  --color-popover-soft: var(--popover-soft);
+  --color-popover-soft-hover: var(--popover-soft-hover);
+
   --color-popover-foreground: var(--popover-foreground);
+  --color-popover-foreground-hover: var(--popover-foreground-hover);
 
   --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-card-soft: var(--card-soft);
+  --color-card-soft-hover: var(--card-soft-hover);
+
   --color-card-foreground: var(--card-foreground);
+  --color-card-foreground-hover: var(--card-foreground-hover);
+
   --color-card-inner: var(--card-inner);
+  --color-card-inner-hover: var(--card-inner-hover);
+  --color-card-inner-soft: var(--card-inner-soft);
+  --color-card-inner-soft-hover: var(--card-inner-soft-hover);
 
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-hover: var(--primary-soft-hover);
+
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-foreground-hover: var(--primary-foreground-hover);
 
   --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-soft: var(--secondary-soft);
+  --color-secondary-soft-hover: var(--secondary-soft-hover);
+
   --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-foreground-hover: var(--secondary-foreground-hover);
 
   --color-destructive: var(--destructive);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-destructive-soft-hover: var(--destructive-soft-hover);
+
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-foreground-hover: var(--destructive-foreground-hover);
 
   --color-success: var(--success);
+  --color-success-hover: var(--success-hover);
+  --color-success-soft: var(--success-soft);
+  --color-success-soft-hover: var(--success-soft-hover);
+
   --color-success-foreground: var(--success-foreground);
+  --color-success-foreground-hover: var(--success-foreground-hover);
 
   --color-warning: var(--warning);
+  --color-warning-hover: var(--warning-hover);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-soft-hover: var(--warning-soft-hover);
+
   --color-warning-foreground: var(--warning-foreground);
+  --color-warning-foreground-hover: var(--warning-foreground-hover);
 
   --color-info: var(--info);
+  --color-info-hover: var(--info-hover);
+  --color-info-soft: var(--info-soft);
+  --color-info-soft-hover: var(--info-soft-hover);
+
   --color-info-foreground: var(--info-foreground);
-
-  --color-badge: var(--badge);
-  --color-badge-foreground: var(--badge-foreground);
-
-  --color-border: var(--border);
-  --color-ring: var(--ring);
+  --color-info-foreground-hover: var(--info-foreground-hover);
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -213,23 +367,14 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-foreground/30;
   }
   body {
     @apply bg-background text-foreground;
   }
-  .chip {
-    @apply bg-badge/60 text-badge-foreground/80;
-  }
-  .chip-plain {
-    @apply bg-card-inner text-card-foreground;
-  }
-  .badge {
-    @apply bg-badge text-badge-foreground;
-  }
 
-  a:not(.) {
-    @apply font-medium border-primary/40 border-b hover:border-primary no-underline;
+  a:not([data-slot='link']) {
+    @apply font-medium border-current/40 border-b hover:border-current no-underline;
   }
 }
 

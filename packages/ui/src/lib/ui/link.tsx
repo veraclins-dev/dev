@@ -62,6 +62,7 @@ function Link<
 
   return (
     <Component
+      data-slot="link"
       className={cn(
         linkVariants({ type, color, underline, size, variant, className }),
       )}

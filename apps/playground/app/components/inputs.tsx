@@ -34,7 +34,12 @@ export function Inputs() {
             <CardTitle>Inputs</CardTitle>
           </CardHeader>
           <CardContent className="flex gap-4">
-            <Box display="flex" gap={4} className="flex-1">
+            <Box
+              display="flex"
+              flexDirection="column"
+              gap={4}
+              className="flex-1"
+            >
               <Typography variant="h3">Base Inputs</Typography>
               <Box>
                 <Input placeholder="Base Input" className="w-full" />
@@ -47,6 +52,10 @@ export function Inputs() {
                   options={[
                     { value: 'option-1', label: 'Option 1' },
                     { value: 'option-2', label: 'Option 2' },
+                    { value: 'option-3', label: 'Option 3' },
+                    { value: 'option-4', label: 'Option 4' },
+                    { value: 'option-5', label: 'Option 5' },
+                    { value: 'option-6', label: 'Option 6' },
                   ]}
                 />
               </Box>
@@ -58,7 +67,12 @@ export function Inputs() {
 
               <Checkbox />
             </Box>
-            <Box display="flex" gap={4} className="flex-1">
+            <Box
+              display="flex"
+              flexDirection="column"
+              gap={4}
+              className="flex-1"
+            >
               <Typography variant="h3">Input Fields</Typography>
 
               <TextField placeholder="Text Field" label="Text Field" />
@@ -67,8 +81,16 @@ export function Inputs() {
                 placeholder="Select Field"
                 label="Select Field"
                 options={[
-                  { value: 'option-1', label: 'Option 1' },
-                  { value: 'option-2', label: 'Option 2' },
+                  { value: 'important option', label: 'Important Option' },
+                  { value: 'interesting', label: 'Interesting' },
+                  { value: 'super cool', label: 'Super Cool' },
+                  { value: 'delicious', label: 'Delicious' },
+                  { value: 'awesome', label: 'Awesome' },
+                  { value: 'fantastic', label: 'Fantastic' },
+                  { value: 'incredible', label: 'Incredible' },
+                  { value: 'amazing', label: 'Amazing' },
+                  { value: 'wonderful', label: 'Wonderful' },
+                  { value: 'extraordinary', label: 'Extraordinary' },
                 ]}
               />
               <PhoneField placeholder="Phone number" label="Phone number" />
@@ -90,7 +112,12 @@ export function Inputs() {
             <CardTitle>Autocomplete & Textarea</CardTitle>
           </CardHeader>
           <CardContent className="flex gap-4">
-            <Box display="flex" gap={3} className="flex-1">
+            <Box
+              display="flex"
+              flexDirection="column"
+              gap={3}
+              className="flex-1"
+            >
               <Autocomplete
                 placeholder="Single"
                 options={[
@@ -131,7 +158,12 @@ export function Inputs() {
                 label="Free Solo Autocomplete"
               />
             </Box>
-            <Box display="flex" gap={3} className="flex-1">
+            <Box
+              display="flex"
+              flexDirection="column"
+              gap={3}
+              className="flex-1"
+            >
               <Typography variant="h3">Textarea</Typography>
               <Textarea placeholder="Textarea" className="w-full" />
 

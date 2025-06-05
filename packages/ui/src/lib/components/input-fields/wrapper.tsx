@@ -30,6 +30,7 @@ export const InputWrapper = ({
     <div
       className={cn('relative flex w-full flex-col gap-2', wrapperClassName)}
       ref={ref}
+      data-slot="input-wrapper"
     >
       {(label || topText) && (
         <div className="flex justify-between">

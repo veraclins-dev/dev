@@ -79,13 +79,14 @@ export function ColorPickerPopperBody({
           className="px-2 py-0.5"
           onClick={() => onSave('')}
           type="button"
-          color="accent"
+          color="secondary"
         >
           {removeColorButton}
         </Button>
 
         <Button
           variant="outline"
+          color="secondary"
           className="px-2 py-0.5"
           onClick={onCancel}
           type="button"

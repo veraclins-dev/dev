@@ -18,7 +18,7 @@ interface ButtonBaseProps
   asChild?: boolean;
   type?: 'button' | 'submit' | 'reset';
   'aria-label'?: string;
-  loading?: boolean;
+  // loading?: boolean;
   leadingIcon?: IconName;
   trailingIcon?: IconName;
 }
@@ -32,11 +32,12 @@ interface ButtonBaseProps
 function Component({
   className,
   variant = 'solid',
-  color = 'default',
+  color,
   size,
   asChild = false,
   type = 'button',
   loading = false,
+  fullWidth = false,
   'aria-label': ariaLabel,
   leadingIcon,
   trailingIcon,
@@ -56,11 +57,11 @@ function Component({
     <Comp
       data-slot="button"
       className={cn(
-        buttonVariants({ variant, color, size, loading, className }),
+        buttonVariants({ variant, color, size, loading, className, fullWidth }),
       )}
       type={asChild ? undefined : type}
       aria-disabled={disabled || loading ? 'true' : undefined}
-      disabled={disabled || loading}
+      disabled={disabled || Boolean(loading)}
       data-disabled={disabled || loading ? 'true' : undefined}
       aria-label={ariaLabel}
       {...props}
@@ -103,7 +104,7 @@ function Component({
  * It also supports loading states with a spinner, leading and trailing icons, and accessibility features.
  * @param {ButtonBaseProps} props - Component props
  * @param {ButtonVariant} [props.variant='solid'] - Structural style (solid, outline, text, soft)
- * @param {ButtonColor} [props.color='default'] - Semantic color (default, primary, secondary, destructive, etc.)
+ * @param {ButtonColor} [props.color] - Semantic color (primary, secondary, destructive, etc.)
  * @param {ButtonSize} [props.size='default'] - Button size (default, sm, lg, xl, pill, icon)
  * @param {boolean} [props.asChild=false] - Render as a child component using Radix Slot
  * @param {boolean} [props.loading=false] - Show loading state with a spinner

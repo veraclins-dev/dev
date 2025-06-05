@@ -19,12 +19,6 @@ export function Buttons() {
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Solid</Typography>
             <div className="flex gap-2">
-              <Button variant="solid">Default</Button>
-              <Button variant="solid" loading>
-                Loading
-              </Button>
-            </div>
-            <div className="flex gap-2">
               <Button variant="solid" color="primary">
                 Primary
               </Button>
@@ -72,23 +66,9 @@ export function Buttons() {
                 Loading
               </Button>
             </div>
-            <div className="flex gap-2">
-              <Button variant="solid" color="accent">
-                Accent
-              </Button>
-              <Button variant="solid" color="accent" loading>
-                Loading
-              </Button>
-            </div>
           </div>
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Soft</Typography>
-            <div className="flex gap-2">
-              <Button variant="soft">Default</Button>
-              <Button variant="soft" loading>
-                Loading
-              </Button>
-            </div>
             <div className="flex gap-2">
               <Button variant="soft" color="primary">
                 Primary
@@ -137,26 +117,10 @@ export function Buttons() {
                 Loading
               </Button>
             </div>
-            <div className="flex gap-2">
-              <Button variant="soft" color="accent">
-                Accent
-              </Button>
-              <Button variant="soft" color="accent" loading>
-                Loading
-              </Button>
-            </div>
           </div>
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Outline</Typography>
 
-            <div className="flex gap-2">
-              <Button variant="outline" color="default">
-                Default
-              </Button>
-              <Button variant="outline" color="default" loading>
-                Loading
-              </Button>
-            </div>
             <div className="flex gap-2">
               <Button variant="outline" color="primary">
                 Primary
@@ -206,25 +170,9 @@ export function Buttons() {
                 Loading
               </Button>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline" color="accent">
-                Accent
-              </Button>
-              <Button variant="outline" color="accent" loading>
-                Loading
-              </Button>
-            </div>
           </div>
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Text</Typography>
-            <div className="flex gap-2">
-              <Button variant="text" color="default">
-                Default
-              </Button>
-              <Button variant="text" color="default" loading>
-                Loading
-              </Button>
-            </div>
             <div className="flex gap-2">
               <Button variant="text" color="primary">
                 Primary
@@ -273,31 +221,9 @@ export function Buttons() {
                 Loading
               </Button>
             </div>
-            <div className="flex gap-2">
-              <Button variant="text" color="accent">
-                Accent
-              </Button>
-              <Button variant="text" color="accent" loading>
-                Loading
-              </Button>
-            </div>
           </div>
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Icon</Typography>
-            <div className="flex gap-2">
-              <Button size="icon" color="default" variant="solid">
-                <Icon name="plus" />
-              </Button>
-              <Button size="icon" color="default" variant="soft">
-                <Icon name="cog" />
-              </Button>
-              <Button size="icon" color="default" variant="outline">
-                <Icon name="bell" />
-              </Button>
-              <Button size="icon" color="default" variant="text">
-                <Icon name="heart" />
-              </Button>
-            </div>
             <div className="flex gap-2">
               <Button size="icon" color="primary" variant="solid">
                 <Icon name="plus" />
@@ -382,20 +308,34 @@ export function Buttons() {
                 <Icon name="heart" />
               </Button>
             </div>
-            <div className="flex gap-2">
-              <Button size="icon" color="accent" variant="solid">
-                <Icon name="plus" />
-              </Button>
-              <Button size="icon" color="accent" variant="soft">
-                <Icon name="cog" />
-              </Button>
-              <Button size="icon" color="accent" variant="outline">
-                <Icon name="bell" />
-              </Button>
-              <Button size="icon" color="accent" variant="text">
-                <Icon name="heart" />
-              </Button>
-            </div>
+          </div>
+        </div>
+        <Typography variant="h2">Combination</Typography>
+        <div className="flex gap-4">
+          <div className="flex gap-4 justify-center flex-1">
+            <Button variant="solid" color="secondary">
+              Clear
+            </Button>
+            <Button variant="outline" color="secondary">
+              Cancel
+            </Button>
+            <Button color="primary">Submit</Button>
+          </div>
+          <div className="flex gap-3 justify-center flex-1">
+            <Button variant="solid" fullWidth color="secondary" size="md">
+              Login
+            </Button>
+            <Button color="primary" fullWidth size="md">
+              Get started
+            </Button>
+          </div>
+          <div className="flex gap-3 justify-center flex-1">
+            <Button variant="outline" fullWidth color="secondary" size="sm">
+              Login
+            </Button>
+            <Button color="primary" fullWidth size="sm">
+              Get started
+            </Button>
           </div>
         </div>
       </CardContent>

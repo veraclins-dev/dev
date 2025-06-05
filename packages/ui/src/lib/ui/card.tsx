@@ -1,5 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
 import { Typography, type TypographyProps } from './typography';
 
 /**
@@ -22,15 +23,17 @@ function Card({
   className,
   borderless = true,
   ...props
-}: React.ComponentProps<'div'> & { borderless?: boolean }) {
+}: React.ComponentProps<typeof Box> & { borderless?: boolean }) {
   return (
-    <div
+    <Box
       data-slot="card"
       className={cn(
-        'bg-card text-card-foreground flex flex-col gap-4 rounded-xl border py-4 shadow-sm',
+        'bg-card text-card-foreground gap-4 rounded-xl border py-4 shadow-md',
         borderless && 'border-0',
         className,
       )}
+      flexDirection="column"
+      display="flex"
       {...props}
     />
   );
@@ -41,9 +44,9 @@ function Card({
  * @param props - Standard div props.
  * @returns The card header element.
  */
-function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
+function CardHeader({ className, ...props }: React.ComponentProps<typeof Box>) {
   return (
-    <div
+    <Box
       data-slot="card-header"
       className={cn(
         '@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-4 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-4',
@@ -85,9 +88,12 @@ function CardSubtitle({ className, ...props }: TypographyProps) {
  * @param props - Standard div props.
  * @returns The card description element.
  */
-function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
+function CardDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof Box>) {
   return (
-    <div
+    <Box
       data-slot="card-description"
       className={cn('text-muted-foreground text-sm', className)}
       {...props}
@@ -100,9 +106,9 @@ function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
  * @param props - Standard div props.
  * @returns The card action element.
  */
-function CardAction({ className, ...props }: React.ComponentProps<'div'>) {
+function CardAction({ className, ...props }: React.ComponentProps<typeof Box>) {
   return (
-    <div
+    <Box
       data-slot="card-action"
       className={cn('flex self-end justify-self-end gap-3', className)}
       {...props}
@@ -116,9 +122,12 @@ function CardAction({ className, ...props }: React.ComponentProps<'div'>) {
  * @returns The card content element.
  */
 
-function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
+function CardContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof Box>) {
   return (
-    <div
+    <Box
       data-slot="card-content"
       className={cn('px-4', className)}
       {...props}
@@ -131,9 +140,9 @@ function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
  * @param props - Standard div props.
  * @returns The card footer element.
  */
-function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
+function CardFooter({ className, ...props }: React.ComponentProps<typeof Box>) {
   return (
-    <div
+    <Box
       data-slot="card-footer"
       className={cn(
         'flex w-full items-center px-4 [.border-t]:pt-4',

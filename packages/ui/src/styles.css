@@ -213,7 +213,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-foreground/30;
   }
   body {
     @apply bg-background text-foreground;

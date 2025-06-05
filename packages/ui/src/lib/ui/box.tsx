@@ -67,6 +67,7 @@ function Base({
   items,
   justify,
   children,
+  flexWrap,
   ...props
 }: BoxProps) {
   const Component = component;
@@ -96,6 +97,7 @@ function Base({
           gapY,
           display,
           flexDirection,
+          flexWrap,
           items,
           justify,
         }),

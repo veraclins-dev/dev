@@ -13,12 +13,12 @@ export function Boxes() {
       <CardHeader>
         <CardTitle>Boxes</CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-wrap gap-4">
+      <CardContent display="flex" gap={4} className="flex-wrap">
         {/* Spacing Props */}
-        <div className="flex flex-col gap-4">
+        <Box display="flex" flexDirection="column" gap={4}>
           <Typography variant="h2">Margin & Padding</Typography>
-          <div className="flex gap-4 flex-wrap">
-            <div className="flex flex-col gap-3 bg-card-inner">
+          <Box display="flex" gap={4} className="gap-4 ">
+            <Box className="flex flex-col gap-3 bg-card-inner">
               <Typography variant="h3">Margin</Typography>
               <Box m={4} className="bg-accent" p={2}>
                 Margin (m-4)
@@ -41,8 +41,8 @@ export function Boxes() {
               <Box ml={4} className="bg-accent" p={2}>
                 Margin Left (ml-4)
               </Box>
-            </div>
-            <div className="flex flex-col gap-3 bg-card-inner">
+            </Box>
+            <Box className="flex flex-col gap-3 bg-card-inner">
               <Typography variant="h3">Padding</Typography>
               <Box p={4} className="bg-accent">
                 Padding (p-4)
@@ -65,20 +65,31 @@ export function Boxes() {
               <Box pl={4} className="bg-accent">
                 Padding Left (pl-4)
               </Box>
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
 
         {/* Gap Props */}
-        <div className="flex flex-col gap-4">
+        <Box className="flex flex-col gap-4">
           <Typography variant="h2">Gap Props</Typography>
-          <div className="flex gap-4 flex-wrap">
-            <Box display="flex" gap={4} className="bg-accent" p={2}>
+          <Box className="flex gap-4 flex-wrap">
+            <Box
+              display="flex"
+              flexDirection="column"
+              gap={4}
+              className="bg-accent"
+              p={2}
+            >
               <Box className="bg-muted text-muted-foreground p-2">Box 1</Box>
               <Box className="bg-muted text-muted-foreground p-2">Box 2</Box>
               Gap (gap-4)
             </Box>
-            <Box display="flex" className="bg-accent" p={2}>
+            <Box
+              display="flex"
+              flexDirection="column"
+              className="bg-accent"
+              p={2}
+            >
               <Box gapX={4} flexDirection="row">
                 <Box className="bg-muted w-fit text-muted-foreground p-2">
                   Box 1
@@ -100,14 +111,14 @@ export function Boxes() {
               <Box className="bg-muted text-muted-foreground p-2">Box 2</Box>
               Gap Y (gap-y-4)
             </Box>
-          </div>
-        </div>
+          </Box>
+        </Box>
 
         {/* Layout Props */}
-        <div className="flex flex-col gap-4">
+        <Box className="flex flex-col gap-4">
           <Typography variant="h2">Layout Props</Typography>
-          <div className="flex gap-4 flex-wrap">
-            <div className="flex flex-col gap-2 bg-card-inner">
+          <Box className="flex gap-4 flex-wrap">
+            <Box className="flex flex-col gap-2 bg-card-inner">
               <Typography variant="h3">Flex Direction</Typography>
               Row
               <Box
@@ -153,8 +164,8 @@ export function Boxes() {
                 <Box className="bg-muted text-muted-foreground p-2">Box 1</Box>
                 <Box className="bg-muted text-muted-foreground p-2">Box 2</Box>
               </Box>
-            </div>
-            <div className="flex flex-col gap-2 bg-card-inner">
+            </Box>
+            <Box className="flex flex-col gap-2 bg-card-inner">
               <Typography variant="h3">Align Items</Typography>
               Flex-start
               <Box
@@ -216,8 +227,8 @@ export function Boxes() {
                 <Box className="bg-muted text-muted-foreground p-2">Box 1</Box>
                 <Box className="bg-muted text-muted-foreground p-2">Box 2</Box>
               </Box>
-            </div>
-            <div className="flex flex-col gap-2 bg-card-inner">
+            </Box>
+            <Box className="flex flex-col gap-2 bg-card-inner">
               <Typography variant="h3">Justify Content</Typography>
               Flex-start
               <Box
@@ -315,9 +326,9 @@ export function Boxes() {
                   Box 2
                 </Box>
               </Box>
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       </CardContent>
     </Card>
   );

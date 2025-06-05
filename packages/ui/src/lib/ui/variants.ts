@@ -19,153 +19,175 @@ const sharedBaseVariants = {
       soft: '',
     },
     color: {
-      default: '',
       primary: '',
       secondary: '',
       destructive: '',
       success: '',
       warning: '',
       info: '',
-      accent: '',
     },
   },
   compoundVariants: [
     // Solid variant styles
     {
       variant: 'solid',
-      color: 'default',
-      className:
-        'border-foreground bg-foreground text-background hover:bg-foreground/90',
-    },
-    {
-      variant: 'solid',
       color: 'primary',
-      className:
-        'border-primary bg-primary text-primary-foreground hover:bg-primary/90',
+      className: [
+        'border-primary',
+        'bg-primary',
+        'text-primary-foreground',
+        'hover:bg-primary-hover',
+      ],
     },
     {
       variant: 'solid',
       color: 'secondary',
-      className:
-        'border-secondary bg-secondary text-secondary-foreground hover:bg-secondary/80',
+      className: [
+        'border-secondary',
+        'bg-secondary',
+        'text-secondary-foreground',
+        'hover:bg-secondary-hover',
+      ],
     },
     {
       variant: 'solid',
       color: 'destructive',
-      className:
-        'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+      className: [
+        'border-destructive',
+        'bg-destructive',
+        'text-destructive-foreground',
+        'hover:bg-destructive-hover',
+      ],
     },
     {
       variant: 'solid',
       color: 'success',
-      className:
-        'border-success bg-success text-success-foreground hover:bg-success/90',
+      className: [
+        'border-success',
+        'bg-success',
+        'text-success-foreground',
+        'hover:bg-success-hover',
+      ],
     },
     {
       variant: 'solid',
       color: 'warning',
-      className:
-        'border-warning bg-warning text-warning-foreground hover:bg-warning/90',
+      className: [
+        'border-warning',
+        'bg-warning',
+        'text-warning-foreground',
+        'hover:bg-warning-hover',
+      ],
     },
     {
       variant: 'solid',
       color: 'info',
-      className: 'border-info bg-info text-info-foreground hover:bg-info/90',
-    },
-    {
-      variant: 'solid',
-      color: 'accent',
-      className:
-        'border-accent bg-accent text-accent-foreground hover:bg-accent/90',
+      className: [
+        'border-info',
+        'bg-info',
+        'text-info-foreground',
+        'hover:bg-info-hover',
+      ],
     },
     // Outline variant styles
     {
       variant: 'outline',
-      color: 'default',
-      className: 'border-foreground hover:bg-foreground/10',
-    },
-    {
-      variant: 'outline',
       color: 'primary',
-      className: 'border-primary text-primary hover:bg-primary/10',
+      className: ['border-primary', 'text-primary', 'hover:bg-primary-soft'],
     },
     {
       variant: 'outline',
       color: 'secondary',
-      className: 'border-secondary text-secondary hover:bg-secondary/10',
+      className: [
+        'border-secondary',
+        'text-secondary',
+        'hover:bg-secondary-soft',
+      ],
     },
     {
       variant: 'outline',
       color: 'destructive',
-      className: 'border-destructive text-destructive hover:bg-destructive/10',
+      className: [
+        'border-destructive',
+        'text-destructive',
+        'hover:bg-destructive-soft',
+      ],
     },
     {
       variant: 'outline',
       color: 'success',
-      className: 'border-success text-success hover:bg-success/10',
+      className: ['border-success', 'text-success', 'hover:bg-success-soft'],
     },
     {
       variant: 'outline',
       color: 'warning',
-      className: 'border-warning text-warning hover:bg-warning/10',
+      className: ['border-warning', 'text-warning', 'hover:bg-warning-soft'],
     },
     {
       variant: 'outline',
       color: 'info',
-      className: 'border-info text-info hover:bg-info/10',
-    },
-    {
-      variant: 'outline',
-      color: 'accent',
-      className:
-        'border-accent-foreground/20 text-accent/foreground/20 hover:bg-accent/40',
+      className: ['border-info', 'text-info', 'hover:bg-info-soft'],
     },
     // Soft variant styles
     {
       variant: 'soft',
-      color: 'default',
-      className: 'border-foreground/20 bg-foreground/20 hover:bg-foreground/30',
-    },
-    {
-      variant: 'soft',
       color: 'primary',
-      className:
-        'border-primary/20 bg-primary/20 text-primary hover:bg-primary/30',
+      className: [
+        'border-primary-soft',
+        'bg-primary-soft',
+        'text-primary',
+        'hover:bg-primary-soft-hover',
+      ],
     },
     {
       variant: 'soft',
       color: 'secondary',
-      className:
-        'border-secondary/20 bg-secondary/20 text-secondary hover:bg-secondary/30',
+      className: [
+        'border-secondary-soft',
+        'bg-secondary-soft',
+        'text-secondary',
+        'hover:bg-secondary-soft-hover',
+      ],
     },
     {
       variant: 'soft',
       color: 'destructive',
-      className:
-        'border-destructive/20 bg-destructive/20 text-destructive hover:bg-destructive/30',
+      className: [
+        'border-destructive-soft',
+        'bg-destructive-soft',
+        'text-destructive',
+        'hover:bg-destructive-soft-hover',
+      ],
     },
     {
       variant: 'soft',
       color: 'success',
-      className:
-        'border-success/20 bg-success/20 text-success hover:bg-success/30',
+      className: [
+        'border-success-soft',
+        'bg-success-soft',
+        'text-success',
+        'hover:bg-success-soft-hover',
+      ],
     },
     {
       variant: 'soft',
       color: 'warning',
-      className:
-        'border-warning/20 bg-warning/20 text-warning hover:bg-warning/30',
+      className: [
+        'border-warning-soft',
+        'bg-warning-soft',
+        'text-warning',
+        'hover:bg-warning-soft-hover',
+      ],
     },
     {
       variant: 'soft',
       color: 'info',
-      className: 'border-info/20 bg-info/20 text-info hover:bg-info/30',
-    },
-    {
-      variant: 'soft',
-      color: 'accent',
-      className:
-        'border-accent/80 bg-accent/80 text-accent-foreground/60 hover:bg-accent/30',
+      className: [
+        'border-info-soft',
+        'bg-info-soft',
+        'text-info',
+        'hover:bg-info-soft-hover',
+      ],
     },
   ] as const,
 };
@@ -175,43 +197,33 @@ const buttonSpecificCompoundVariants = [
   // Text variant styles
   {
     variant: 'text',
-    color: 'default',
-    className: 'hover:bg-foreground/10',
-  },
-  {
-    variant: 'text',
     color: 'primary',
-    className: 'text-primary hover:bg-primary/10',
+    className: 'text-primary hover:bg-primary-soft',
   },
   {
     variant: 'text',
     color: 'secondary',
-    className: 'text-secondary hover:bg-secondary/10',
+    className: 'text-secondary hover:bg-secondary-soft',
   },
   {
     variant: 'text',
     color: 'destructive',
-    className: 'text-destructive hover:bg-destructive/10',
+    className: 'text-destructive hover:bg-destructive-soft',
   },
   {
     variant: 'text',
     color: 'success',
-    className: 'text-success hover:bg-success/10',
+    className: 'text-success hover:bg-success-soft',
   },
   {
     variant: 'text',
     color: 'warning',
-    className: 'text-warning hover:bg-warning/10',
+    className: 'text-warning hover:bg-warning-soft',
   },
   {
     variant: 'text',
     color: 'info',
-    className: 'text-info hover:bg-info/10',
-  },
-  {
-    variant: 'text',
-    color: 'accent',
-    className: 'text-accent/foreground/20 hover:bg-accent/40',
+    className: 'text-info hover:bg-info-soft',
   },
 ] as const;
 
@@ -235,6 +247,10 @@ const buttonVariants = cva(BUTTON_DEFAULT_CLASSES, {
       true: 'cursor-not-allowed',
       false: '',
     },
+    fullWidth: {
+      true: 'w-full flex-1',
+      false: '',
+    },
   },
   compoundVariants: [
     ...sharedBaseVariants.compoundVariants,
@@ -242,7 +258,7 @@ const buttonVariants = cva(BUTTON_DEFAULT_CLASSES, {
   ],
   defaultVariants: {
     variant: 'solid',
-    color: 'default',
+    color: 'secondary',
     size: 'md',
     loading: false,
   },
@@ -259,10 +275,15 @@ const badgeVariants = cva(BADGE_DEFAULT_CLASSES, {
       xl: 'px-4.5 py-2 text-base',
     },
   },
-  compoundVariants: [...sharedBaseVariants.compoundVariants],
+  compoundVariants: [
+    ...sharedBaseVariants.compoundVariants.map((variant) => ({
+      ...variant,
+      className: variant.className.filter((c) => !c.includes('hover:')),
+    })),
+  ],
   defaultVariants: {
     variant: 'solid',
-    color: 'default',
+    color: 'primary',
     size: 'md',
   },
 });
@@ -281,13 +302,13 @@ const chipVariants = cva(CHIP_DEFAULT_CLASSES, {
   compoundVariants: [...sharedBaseVariants.compoundVariants],
   defaultVariants: {
     variant: 'solid',
-    color: 'default',
+    color: 'primary',
     size: 'md',
   },
 });
 
 /** ::::::::: Box ::::::::: */
-const BOX_DEFAULT_CLASSES = 'flex flex-col';
+const BOX_DEFAULT_CLASSES = '';
 
 const spaces = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 20, 24, 28, 32, 36, 40, 44, 48,
@@ -457,6 +478,11 @@ const boxVariants = cva(BOX_DEFAULT_CLASSES, {
       'space-around': 'justify-around',
       'space-evenly': 'justify-evenly',
     },
+    flexWrap: {
+      nowrap: 'flex-nowrap',
+      wrap: 'flex-wrap',
+      'wrap-reverse': 'flex-wrap-reverse',
+    },
   },
   defaultVariants: {},
 });
@@ -507,9 +533,9 @@ const typographyVariants = cva('', {
 const linkVariants = cva(LINK_DEFAULT_CLASSES, {
   variants: {
     type: {
-      link: 'border-0 border-[currentColor]/20 w-fit',
+      link: 'border-0 border-current/30 w-fit justify-start',
       button:
-        'border border-transparent inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors',
+        'border border-transparent rounded-md text-sm font-medium ring-offset-background transition-colors',
     },
     variant: {
       ...sharedBaseVariants.variants.variant,
@@ -563,24 +589,6 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       className: 'py-4 px-8',
     },
     // Link type styles
-    {
-      type: 'link',
-      color: 'default',
-      underline: 'none',
-      className: 'text-foreground',
-    },
-    {
-      type: 'link',
-      color: 'default',
-      underline: 'hover',
-      className: 'hover:border-foreground',
-    },
-    {
-      type: 'link',
-      color: 'default',
-      underline: 'always',
-      className: 'border-foreground',
-    },
     {
       type: 'link',
       color: 'primary',
@@ -689,29 +697,11 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       underline: 'always',
       className: 'text-info border-info',
     },
-    {
-      type: 'link',
-      color: 'accent',
-      underline: 'none',
-      className: 'text-accent-foreground/20',
-    },
-    {
-      type: 'link',
-      color: 'accent',
-      underline: 'hover',
-      className: 'text-accent-foreground/20 hover:border-accent-foreground/20',
-    },
-    {
-      type: 'link',
-      color: 'accent',
-      underline: 'always',
-      className: 'text-accent-foreground/20 border-accent-foreground/20',
-    },
   ],
   defaultVariants: {
     type: 'link',
     variant: 'solid',
-    color: 'default',
+    color: 'primary',
     underline: 'hover',
     size: 'md',
   },

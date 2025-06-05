@@ -4,13 +4,13 @@ const INPUT_CLASSES = cn(
   // Layout and Base
   'flex flex-1 min-w-0 bg-transparent outline-none',
   // Text and Selection
-  'text-base data-[placeholder]:text-[currentColor]/50 md:text-sm placeholder:text-[currentColor]/50 selection:bg-primary selection:text-primary-foreground',
+  'text-base data-[placeholder]:text-current/50 md:text-sm placeholder:text-current/50 selection:bg-primary selection:text-primary-foreground',
   // Spacing
   'min-h-7 px-3 py-2',
   // Border and Shadow
   'rounded-md border shadow-xs',
   // Focus Styles
-  'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-1',
+  'focus-visible:border-ring focus-visible:ring-current/50 focus-visible:ring-2 focus:ring-offset-1',
   // Disabled Styles
   'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
   // Error States
@@ -32,7 +32,7 @@ const INPUT_CONTAINER_CLASSES = cn(
   // Border and Shadow
   'rounded-md border shadow-xs',
   // Focus Styles
-  'has-focus-visible:border-ring has-focus-visible:ring-ring/50 has-focus-visible:ring-1',
+  'has-focus-visible:border-ring has-focus-visible:ring-current/50 has-focus-visible:ring-2 has-focus-visible:ring-offset-1',
   // Disabled Styles
   'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
   // Error States
@@ -189,7 +189,7 @@ const BUTTON_DEFAULT_CLASSES = cn(
   // Disabled Styles
   'disabled:pointer-events-none disabled:opacity-30 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-30',
   // Focus and Error States
-  'focus:outline-none focus:ring-2 focus:ring-ring/50 focus:ring-offset-1 outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
+  'focus:outline-none focus:ring-2 focus:ring-current/50 focus:ring-offset-1 outline-none focus-visible:outline-none focus-visible:ring-current/50 focus-visible:ring-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
   // SVG Styles
   '[&_svg]:pointer-events-none',
 );

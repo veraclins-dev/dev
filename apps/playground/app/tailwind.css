@@ -181,7 +181,7 @@
       }
 
       input[type='checkbox'] + span {
-        @apply border-primary ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground inline-block h-5 w-5 shrink-0 rounded-sm border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50;
+        @apply border-primary ring-offset-background focus-visible:ring-current data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground inline-block h-5 w-5 shrink-0 rounded-sm border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50;
       }
       input[type='checkbox']:checked + span {
         @apply bg-primary text-primary-foreground;
@@ -194,7 +194,7 @@
 
     td,
     th {
-      @apply border-border relative box-border min-w-5 border px-1.5 py-1 align-top;
+      @apply border-foreground/30 relative box-border min-w-5 border px-1.5 py-1 align-top;
       & > * {
         margin-bottom: 0;
         display: inline;

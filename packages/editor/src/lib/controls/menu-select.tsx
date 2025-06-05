@@ -66,7 +66,7 @@ export const MenuSelect = ({
     >
       <DropdownMenuTrigger
         className={cn(
-          'flex h-7 items-center justify-between rounded-md p-1 hover:bg-accent hover:text-accent-foreground',
+          'flex h-7 items-center justify-between rounded-md p-1 hover:bg-accent-hover hover:text-accent-foreground',
           className,
         )}
         tooltip={tooltip}

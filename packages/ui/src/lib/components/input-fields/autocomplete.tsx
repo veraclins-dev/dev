@@ -166,6 +166,7 @@ const Autocomplete = ({
   const mainRef = useRef<Maybe<HTMLInputElement>>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const anchorRef = useRef<Maybe<HTMLDivElement>>(null);
+  const wrapperRef = useRef<Maybe<HTMLDivElement>>(null);
   const firstItemRef = useRef<Maybe<HTMLDivElement>>(null);
 
   const [localValue, setLocalValue] = useState<string>('');
@@ -357,7 +358,7 @@ const Autocomplete = ({
       label={label}
       labelProps={labelProps}
       wrapperClassName={wrapperClassName}
-      ref={ref}
+      ref={ref ?? wrapperRef}
     >
       <Command
         onKeyDown={handleKeyDown}
@@ -442,12 +443,12 @@ const Autocomplete = ({
         />
         <Popover open={open && canSelect}>
           <PopoverAnchor
-            virtualRef={anchorRef as React.RefObject<HTMLDivElement>}
+            virtualRef={(ref ?? wrapperRef) as React.RefObject<HTMLDivElement>}
           />
           <PopoverContent
             onOpenAutoFocus={(e) => e.preventDefault()}
             className="p-2"
-            sideOffset={12}
+            sideOffset={5}
           >
             <CommandList className="max-h-52 overflow-auto">
               <CommandEmpty>

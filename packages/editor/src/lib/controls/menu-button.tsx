@@ -42,10 +42,10 @@ export const Button = ({
     {...props}
     onClick={onClick}
     variant={isActive ? 'solid' : 'soft'}
-    color="accent"
+    color="secondary"
     className={cn(
-      'size-7 rounded-md p-1 bg-transparent border-0',
-      isActive ? 'bg-accent font-bold' : '',
+      'size-7 rounded-md bg-transparent p-1 border-0',
+      isActive ? 'font-bold bg-secondary' : '',
     )}
     type="button"
     tooltip={

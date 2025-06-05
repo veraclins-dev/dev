@@ -137,7 +137,7 @@ function BaseDatePicker<T extends ValueType>({
   return (
     <InputWrapper
       className={cn(
-        'has-focus:border-ring has-focus:ring-ring/50 has-focus:ring-1',
+        'has-focus:border-ring has-focus:ring-current/50 has-focus:ring-1',
         className,
       )}
       field={field}

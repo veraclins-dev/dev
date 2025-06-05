@@ -56,6 +56,7 @@ const SelectField = ({
         htmlFor: name,
       }}
       topText={topText}
+      plain
     >
       <ComposedSelect
         {...props}
@@ -65,10 +66,10 @@ const SelectField = ({
         value={controlProps.value}
         aria-invalid={errorId ? true : undefined}
         aria-describedby={errorId}
-        className={cn('w-full', INPUT_CLASS_OVERRIDES, inputClass)}
+        className={cn('w-full', inputClass)}
         defaultValue={defaultValue}
         dir={dir}
-        sideOffset={10}
+        sideOffset={0}
       />
     </InputWrapper>
   );
