@@ -701,7 +701,6 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
   defaultVariants: {
     type: 'link',
     variant: 'solid',
-    color: 'primary',
     underline: 'hover',
     size: 'md',
   },
