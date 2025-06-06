@@ -97,6 +97,7 @@ const sharedBaseVariants = {
         'border-primary',
         'text-primary',
         'hover:bg-primary-soft',
+        'data-[active=true]:bg-primary-soft',
         'hover:text-primary-soft-foreground',
       ],
     },
@@ -107,6 +108,7 @@ const sharedBaseVariants = {
         'border-secondary',
         'text-secondary',
         'hover:bg-secondary-soft',
+        'data-[active=true]:bg-secondary-soft',
         'hover:text-secondary-soft-foreground',
       ],
     },
@@ -117,6 +119,7 @@ const sharedBaseVariants = {
         'border-destructive',
         'text-destructive',
         'hover:bg-destructive-soft',
+        'data-[active=true]:bg-destructive-soft',
         'hover:text-destructive-soft-foreground',
       ],
     },
@@ -127,6 +130,7 @@ const sharedBaseVariants = {
         'border-success',
         'text-success',
         'hover:bg-success-soft',
+        'data-[active=true]:bg-success-soft',
         'hover:text-success-soft-foreground',
       ],
     },
@@ -137,6 +141,7 @@ const sharedBaseVariants = {
         'border-warning',
         'text-warning',
         'hover:bg-warning-soft',
+        'data-[active=true]:bg-warning-soft',
         'hover:text-warning-soft-foreground',
       ],
     },
@@ -147,6 +152,7 @@ const sharedBaseVariants = {
         'border-info',
         'text-info',
         'hover:bg-info-soft',
+        'data-[active=true]:bg-info-soft',
         'hover:text-info-soft-foreground',
       ],
     },
@@ -220,32 +226,56 @@ const buttonSpecificCompoundVariants = [
   {
     variant: 'text',
     color: 'primary',
-    className: 'text-primary hover:bg-primary-soft',
+    className: [
+      'text-primary',
+      'hover:bg-primary-soft',
+      'data-[active=true]:bg-primary-soft',
+    ],
   },
   {
     variant: 'text',
     color: 'secondary',
-    className: 'text-secondary hover:bg-secondary-soft',
+    className: [
+      'text-secondary',
+      'hover:bg-secondary-soft',
+      'data-[active=true]:bg-secondary-soft',
+    ],
   },
   {
     variant: 'text',
     color: 'destructive',
-    className: 'text-destructive hover:bg-destructive-soft',
+    className: [
+      'text-destructive',
+      'hover:bg-destructive-soft',
+      'data-[active=true]:bg-destructive-soft',
+    ],
   },
   {
     variant: 'text',
     color: 'success',
-    className: 'text-success hover:bg-success-soft',
+    className: [
+      'text-success',
+      'hover:bg-success-soft',
+      'data-[active=true]:bg-success-soft',
+    ],
   },
   {
     variant: 'text',
     color: 'warning',
-    className: 'text-warning hover:bg-warning-soft',
+    className: [
+      'text-warning',
+      'hover:bg-warning-soft',
+      'data-[active=true]:bg-warning-soft',
+    ],
   },
   {
     variant: 'text',
     color: 'info',
-    className: 'text-info hover:bg-info-soft',
+    className: [
+      'text-info',
+      'hover:bg-info-soft',
+      'data-[active=true]:bg-info-soft',
+    ],
   },
 ] as const;
 
@@ -555,7 +585,7 @@ const typographyVariants = cva('', {
 const linkVariants = cva(LINK_DEFAULT_CLASSES, {
   variants: {
     type: {
-      link: 'border-0 border-primary/30 hover:border-primary w-fit justify-start',
+      link: 'border-0 border-primary/30 hover: border-primary w-fit justify-start',
       button:
         'border border-transparent rounded-md text-sm font-medium ring-offset-background transition-colors',
     },

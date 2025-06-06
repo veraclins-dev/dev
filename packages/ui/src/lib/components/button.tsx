@@ -4,12 +4,13 @@ import { ComposedTooltip } from '../ui/tooltip';
 interface ButtonProps extends ButtonBaseProps {
   tooltip?: React.ReactNode;
 }
+
 /**
- * Base button component that wraps the ButtonBase with a tooltip if provided.
+ * Button component that renders a button with children and additional props.
  * @param param0 - Props for the button component.
- * @returns The button component with optional tooltip.
+ * @returns The button component with children.
  */
-function BaseButton({ tooltip, ...props }: ButtonProps) {
+function Button({ tooltip, ...props }: ButtonProps) {
   return tooltip ? (
     <ComposedTooltip
       Trigger={ButtonBase}
@@ -21,17 +22,4 @@ function BaseButton({ tooltip, ...props }: ButtonProps) {
   );
 }
 
-/**
- * Button component that renders a button with children and additional props.
- * @param param0 - Props for the button component.
- * @returns The button component with children.
- */
-function Button({ className, children, ...props }: ButtonProps) {
-  return (
-    <BaseButton {...props} className={className}>
-      {children}
-    </BaseButton>
-  );
-}
-
-export { BaseButton, Button, type ButtonProps };
+export { Button, type ButtonProps };

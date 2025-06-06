@@ -17,7 +17,7 @@ import {
   PopoverAnchor,
   PopoverContent,
 } from '../../ui';
-import { IconButton } from '../icon-button';
+import { Button } from '../button';
 
 import { type TextFieldProps } from './textfield';
 import {
@@ -413,14 +413,13 @@ const Autocomplete = ({
           </div>
           <div className="flex gap-2">
             {selected.length ? (
-              <IconButton
+              <Button
                 onClick={clear}
                 variant="text"
-                className="p-0.5"
-                rounded
+                className="p-0.5 rounded-full"
               >
                 <Icon name="cross-2" className="opacity-70" />
-              </IconButton>
+              </Button>
             ) : null}
 
             <Icon

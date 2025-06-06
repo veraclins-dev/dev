@@ -8,12 +8,7 @@
 
 :root {
   --background: oklch(0.945 0 0);
-  --background-hover: oklch(0.895 0 0);
-  --background-soft: oklch(0.975 0 0);
-  --background-soft-hover: oklch(0.925 0 0);
-
   --foreground: oklch(0.346 0 0);
-  --foreground-hover: oklch(0.426 0 0);
 
   --muted: oklch(0.8923 0.0069 247.9);
   --muted-hover: oklch(0.8423 0.0069 247.9);
@@ -25,8 +20,8 @@
   --muted-soft-foreground: oklch(0.346 0 0);
   --muted-soft-foreground-hover: oklch(0.426 0 0);
 
-  --accent: oklch(0.9366 0.0017 247.84);
-  --accent-hover: oklch(0.9105 0.0046 258.32);
+  --accent: oklch(0.8566 0.0017 247.84);
+  --accent-hover: oklch(0.9405 0.0046 258.32);
   --accent-soft: oklch(0.9805 0.0046 258.32);
   --accent-soft-hover: oklch(0.9305 0.0046 258.32);
 
@@ -127,8 +122,8 @@
 }
 
 .dark {
-  --background: oklch(0.271 0 0);
-  --foreground: oklch(0.981 0 0);
+  --background: oklch(0.231 0 0);
+  --foreground: oklch(0.881 0 0);
 
   --muted: oklch(0.442 0.033 260.7);
   --muted-hover: oklch(0.522 0.033 260.7);
@@ -140,8 +135,8 @@
   --muted-soft-foreground: oklch(0.642 0.033 260.7);
   --muted-soft-foreground-hover: oklch(0.722 0.033 260.7);
 
-  --accent: oklch(0.3215 0.0017 286.3);
-  --accent-hover: oklch(0.4015 0.0017 286.3);
+  --accent: oklch(0.4515 0.0017 286.3);
+  --accent-hover: oklch(0.3915 0.0017 286.3);
   --accent-soft: oklch(0.2715 0.0017 286.3);
   --accent-soft-hover: oklch(0.3215 0.0017 286.3);
 
@@ -160,7 +155,7 @@
   --popover-soft-foreground: oklch(0.405 0 0);
   --popover-soft-foreground-hover: oklch(0.485 0 0);
 
-  --card: oklch(0.132 0 0);
+  --card: oklch(0.15 0 0);
   --card-hover: oklch(0.322 0 0);
   --card-soft: oklch(0.192 0 0);
   --card-soft-hover: oklch(0.242 0 0);
@@ -180,8 +175,8 @@
 
   --primary: oklch(0.48 0.2201 309.41);
   --primary-hover: oklch(0.44 0.2201 309.41);
-  --primary-soft: oklch(0.2914 0.1128 288.32);
-  --primary-soft-hover: oklch(0.2414 0.1128 288.32);
+  --primary-soft: oklch(0.2614 0.1128 298.32);
+  --primary-soft-hover: oklch(0.2214 0.1128 298.32);
 
   --primary-foreground: oklch(0.894 0.013 264.1);
   --primary-foreground-hover: oklch(0.796 0.013 264.1);
@@ -243,12 +238,7 @@
 
 @theme inline {
   --color-background: var(--background);
-  --color-background-hover: var(--background-hover);
-  --color-background-soft: var(--background-soft);
-  --color-background-soft-hover: var(--background-soft-hover);
-
   --color-foreground: var(--foreground);
-  --color-foreground-hover: var(--foreground-hover);
 
   --color-muted: var(--muted);
   --color-muted-hover: var(--muted-hover);
@@ -432,7 +422,7 @@
   }
 
   a:not([data-slot='link']) {
-    @apply font-medium border-primary/40 border-b hover:border-primary no-underline;
+    @apply border-primary/40 hover:border-primary border-b font-medium no-underline;
   }
 }
 

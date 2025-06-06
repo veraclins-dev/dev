@@ -1,7 +1,7 @@
 import {
+  Button as IconButton,
+  type ButtonProps as IconButtonProps,
   Icon,
-  IconButton,
-  type IconButtonProps,
   type IconName,
 } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
@@ -35,35 +35,43 @@ export const Button = ({
   onClick,
   isActive,
   label,
+  className,
   shortcutKeys,
   ...props
-}: MenuTextButtonProps) => (
-  <IconButton
-    {...props}
-    onClick={onClick}
-    variant={isActive ? 'solid' : 'soft'}
-    color="secondary"
-    className={cn(
-      'size-7 rounded-md bg-transparent p-1 border-0',
-      isActive ? 'font-bold bg-secondary' : '',
-    )}
-    type="button"
-    tooltip={
-      label || (shortcutKeys && shortcutKeys.length > 0) ? (
-        <div className="flex items-center space-x-2">
-          <span>{label}</span>
-          {shortcutKeys && shortcutKeys.length > 0 && (
-            <KeyboardShortcuts shortcutKeys={shortcutKeys} />
-          )}
-        </div>
-      ) : (
-        ''
-      )
-    }
-  >
-    {children}
-  </IconButton>
-);
+}: MenuTextButtonProps) => {
+  if (isActive) {
+    console.log('Button is active:', { label, shortcutKeys });
+  }
+  return (
+    <IconButton
+      {...props}
+      onClick={onClick}
+      variant="plain"
+      // color="secondary"
+      className={cn(
+        'size-7 rounded-md p-1 border-0 hover:bg-accent-hover',
+        isActive ? 'font-bold bg-accent' : '',
+        className,
+      )}
+      data-active={isActive}
+      type="button"
+      tooltip={
+        label || (shortcutKeys && shortcutKeys.length > 0) ? (
+          <div className="flex items-center space-x-2">
+            <span>{label}</span>
+            {shortcutKeys && shortcutKeys.length > 0 && (
+              <KeyboardShortcuts shortcutKeys={shortcutKeys} />
+            )}
+          </div>
+        ) : (
+          ''
+        )
+      }
+    >
+      {children}
+    </IconButton>
+  );
+};
 
 Button.displayName = 'Button';
 

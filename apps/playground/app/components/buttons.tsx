@@ -22,7 +22,12 @@ export function Buttons() {
               <Button variant="solid" color="primary">
                 Primary
               </Button>
-              <Button variant="solid" color="primary" loading>
+              <Button
+                tooltip="This is a loading button"
+                variant="solid"
+                color="primary"
+                loading
+              >
                 Loading
               </Button>
             </div>

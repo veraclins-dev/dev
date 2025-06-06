@@ -141,7 +141,7 @@ const SHARED_ITEM_CLASSES = cn(
   // Interactivity
   'cursor-default outline-hidden data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
   // SVG Styles
-  '[&_svg]:pointer-events-none [&_svg]:shrink-0',
+  '[&_svg]:shrink-0',
 );
 
 // Menu Item Classes
@@ -149,18 +149,19 @@ const ITEM_CLASSES = cn(
   // Base Shared Styles
   SHARED_ITEM_CLASSES,
   // Focus and Hover States
-  'focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground',
+  'focus:bg-accent-hover focus:text-accent-hover-foreground hover:bg-accent-hover hover:text-accent-hover-foreground',
   // Destructive Variant
   'data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive',
   // Inset Spacing
   'data-[inset]:pl-8',
 
   // Checked and Selected States
-  'data-[state=checked]:bg-muted data-[state=checked]:text-muted-foreground data-[selected=true]:bg-muted data-[selected=true]:text-muted-foreground',
+  'data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground',
 );
 
 // Indicator Classes
 const INDICATOR_CLASSES = cn(
+  ITEM_CLASSES,
   // Layout
   'relative flex items-center gap-2',
   // Appearance

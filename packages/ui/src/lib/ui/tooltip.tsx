@@ -46,7 +46,6 @@ const ComposedTooltip = <P extends { disabled?: boolean; className?: string }>({
   const className = TriggerProps?.disabled
     ? cn(TriggerProps.className, 'disabled:pointer-events-auto')
     : TriggerProps.className;
-
   return (
     <TooltipProvider>
       <Tooltip delayDuration={200}>

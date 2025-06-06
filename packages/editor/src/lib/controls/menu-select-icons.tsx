@@ -90,15 +90,13 @@ export const MenuSelectIcons = ({
                 value={getOptionValue(option)}
                 indicatorHidden
               >
-                <div className="flex flex-1 gap-4 items-center justify-between">
-                  <MenuButton
-                    className="flex-1"
-                    onClick={() => handleValueChange(getOptionValue(option))}
-                    icon={option.icon}
-                    label={option.label}
-                    shortcutKeys={option.shortcutKeys}
-                  />
-                </div>
+                <MenuButton
+                  className="flex-1 bg-transparent hover:bg-transparent h-6"
+                  onClick={() => handleValueChange(getOptionValue(option))}
+                  icon={option.icon}
+                  label={option.label}
+                  shortcutKeys={option.shortcutKeys}
+                />
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
