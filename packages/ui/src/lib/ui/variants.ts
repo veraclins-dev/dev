@@ -93,7 +93,12 @@ const sharedBaseVariants = {
     {
       variant: 'outline',
       color: 'primary',
-      className: ['border-primary', 'text-primary', 'hover:bg-primary-soft'],
+      className: [
+        'border-primary',
+        'text-primary',
+        'hover:bg-primary-soft',
+        'hover:text-primary-soft-foreground',
+      ],
     },
     {
       variant: 'outline',
@@ -102,6 +107,7 @@ const sharedBaseVariants = {
         'border-secondary',
         'text-secondary',
         'hover:bg-secondary-soft',
+        'hover:text-secondary-soft-foreground',
       ],
     },
     {
@@ -111,22 +117,38 @@ const sharedBaseVariants = {
         'border-destructive',
         'text-destructive',
         'hover:bg-destructive-soft',
+        'hover:text-destructive-soft-foreground',
       ],
     },
     {
       variant: 'outline',
       color: 'success',
-      className: ['border-success', 'text-success', 'hover:bg-success-soft'],
+      className: [
+        'border-success',
+        'text-success',
+        'hover:bg-success-soft',
+        'hover:text-success-soft-foreground',
+      ],
     },
     {
       variant: 'outline',
       color: 'warning',
-      className: ['border-warning', 'text-warning', 'hover:bg-warning-soft'],
+      className: [
+        'border-warning',
+        'text-warning',
+        'hover:bg-warning-soft',
+        'hover:text-warning-soft-foreground',
+      ],
     },
     {
       variant: 'outline',
       color: 'info',
-      className: ['border-info', 'text-info', 'hover:bg-info-soft'],
+      className: [
+        'border-info',
+        'text-info',
+        'hover:bg-info-soft',
+        'hover:text-info-soft-foreground',
+      ],
     },
     // Soft variant styles
     {
@@ -135,7 +157,7 @@ const sharedBaseVariants = {
       className: [
         'border-primary-soft',
         'bg-primary-soft',
-        'text-primary',
+        'text-primary-soft-foreground',
         'hover:bg-primary-soft-hover',
       ],
     },
@@ -145,7 +167,7 @@ const sharedBaseVariants = {
       className: [
         'border-secondary-soft',
         'bg-secondary-soft',
-        'text-secondary',
+        'text-secondary-soft-foreground',
         'hover:bg-secondary-soft-hover',
       ],
     },
@@ -155,7 +177,7 @@ const sharedBaseVariants = {
       className: [
         'border-destructive-soft',
         'bg-destructive-soft',
-        'text-destructive',
+        'text-destructive-soft-foreground',
         'hover:bg-destructive-soft-hover',
       ],
     },
@@ -165,7 +187,7 @@ const sharedBaseVariants = {
       className: [
         'border-success-soft',
         'bg-success-soft',
-        'text-success',
+        'text-success-soft-foreground',
         'hover:bg-success-soft-hover',
       ],
     },
@@ -175,7 +197,7 @@ const sharedBaseVariants = {
       className: [
         'border-warning-soft',
         'bg-warning-soft',
-        'text-warning',
+        'text-warning-soft-foreground',
         'hover:bg-warning-soft-hover',
       ],
     },
@@ -185,7 +207,7 @@ const sharedBaseVariants = {
       className: [
         'border-info-soft',
         'bg-info-soft',
-        'text-info',
+        'text-info-soft-foreground',
         'hover:bg-info-soft-hover',
       ],
     },
