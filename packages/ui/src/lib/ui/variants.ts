@@ -533,7 +533,7 @@ const typographyVariants = cva('', {
 const linkVariants = cva(LINK_DEFAULT_CLASSES, {
   variants: {
     type: {
-      link: 'border-0 border-current/30 w-fit justify-start',
+      link: 'border-0 border-primary/30 w-fit justify-start',
       button:
         'border border-transparent rounded-md text-sm font-medium ring-offset-background transition-colors',
     },

@@ -23,7 +23,7 @@
   --muted-foreground: oklch(0.556 0 0);
   --muted-foreground-hover: oklch(0.636 0 0);
 
-  --accent: oklch(0.9605 0.0046 258.32);
+  --accent: oklch(0.9366 0.0017 247.84);
   --accent-hover: oklch(0.9105 0.0046 258.32);
   --accent-soft: oklch(0.9805 0.0046 258.32);
   --accent-soft-hover: oklch(0.9305 0.0046 258.32);
@@ -54,7 +54,7 @@
 
   --primary: oklch(0.4222 0.1918 318.89);
   --primary-hover: oklch(0.3422 0.1918 318.89);
-  --primary-soft: oklch(0.9822 0.1918 318.89);
+  --primary-soft: oklch(0.9058 0.0559 306.14);
   --primary-soft-hover: oklch(0.8922 0.1918 318.89);
 
   --primary-foreground: oklch(0.98 0.0035 247.86);
@@ -66,7 +66,7 @@
   --secondary-soft-hover: oklch(0.7827 0.0095 320.55);
 
   --secondary-foreground: oklch(0.896 0 0);
-  --secondary-foreground-hover: oklch(0.276 0 0);
+  --secondary-foreground-hover: oklch(0.846 0 0);
 
   --destructive: oklch(0.477 0.245 27.325);
   --destructive-hover: oklch(0.327 0.245 27.325);
@@ -99,6 +99,8 @@
 
   --info-foreground: oklch(0.98 0.0035 247.86);
   --info-foreground-hover: oklch(0.93 0.0035 247.86);
+
+  --border: oklch(0.922 0 0);
 }
 
 .dark {
@@ -189,6 +191,8 @@
 
   --info-foreground: oklch(0.9 0.013 264.1);
   --info-foreground-hover: oklch(0.82 0.013 264.1);
+
+  --border: oklch(0.848 0.033 260.7);
 }
 
 @theme inline {
@@ -285,6 +289,8 @@
   --color-info-foreground: var(--info-foreground);
   --color-info-foreground-hover: var(--info-foreground-hover);
 
+  --color-border: var(--border);
+
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 
@@ -347,34 +353,16 @@
   }
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
-
 @layer base {
   * {
-    @apply border-foreground/30;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
   }
 
   a:not([data-slot='link']) {
-    @apply font-medium border-current/40 border-b hover:border-current no-underline;
+    @apply font-medium border-primary/40 border-b hover:border-primary no-underline;
   }
 }
 
