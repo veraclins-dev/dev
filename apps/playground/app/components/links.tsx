@@ -20,6 +20,9 @@ export function Links() {
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Solid</Typography>
 
+            <Link type="button" variant="solid">
+              Default Color
+            </Link>
             <Link type="button" variant="solid" color="primary">
               Primary
             </Link>
@@ -47,6 +50,9 @@ export function Links() {
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Soft</Typography>
 
+            <Link type="button" variant="soft">
+              Default Color
+            </Link>
             <Link type="button" variant="soft" color="primary">
               Primary
             </Link>
@@ -74,6 +80,9 @@ export function Links() {
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Outline</Typography>
 
+            <Link type="button" variant="outline">
+              Default Color
+            </Link>
             <Link type="button" variant="outline" color="primary">
               Primary
             </Link>
@@ -101,6 +110,9 @@ export function Links() {
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Text</Typography>
 
+            <Link type="button" variant="text">
+              Default Color
+            </Link>
             <Link type="button" variant="text" color="primary">
               Primary
             </Link>
@@ -127,6 +139,7 @@ export function Links() {
           </div>
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Normal Links</Typography>
+            <Link href="/">Default Color</Link>
             <Link href="/primary" color="primary">
               Primary
             </Link>
@@ -145,6 +158,9 @@ export function Links() {
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Router Link</Typography>
 
+            <Link to="/" component={RouterLink}>
+              Default Color
+            </Link>
             <Link to="/primary" component={RouterLink} color="primary">
               Primary
             </Link>

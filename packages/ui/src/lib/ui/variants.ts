@@ -533,7 +533,7 @@ const typographyVariants = cva('', {
 const linkVariants = cva(LINK_DEFAULT_CLASSES, {
   variants: {
     type: {
-      link: 'border-0 border-primary/30 w-fit justify-start',
+      link: 'border-0 border-primary/30 hover:border-primary w-fit justify-start',
       button:
         'border border-transparent rounded-md text-sm font-medium ring-offset-background transition-colors',
     },
@@ -599,13 +599,13 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'primary',
       underline: 'hover',
-      className: 'text-primary hover:border-primary',
+      className: 'text-primary border-primary/30 hover:border-primary',
     },
     {
       type: 'link',
       color: 'primary',
       underline: 'always',
-      className: 'text-primary border-primary',
+      className: 'text-primary border-primary hover:border-primary',
     },
     {
       type: 'link',
@@ -617,13 +617,13 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'secondary',
       underline: 'hover',
-      className: 'text-secondary hover:border-secondary',
+      className: 'text-secondary border-secondary/30 hover:border-secondary',
     },
     {
       type: 'link',
       color: 'secondary',
       underline: 'always',
-      className: 'text-secondary border-secondary',
+      className: 'text-secondary border-secondary hover:border-secondary',
     },
     {
       type: 'link',
@@ -635,13 +635,14 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'destructive',
       underline: 'hover',
-      className: 'text-destructive hover:border-destructive',
+      className:
+        'text-destructive border-destructive/30 hover:border-destructive',
     },
     {
       type: 'link',
       color: 'destructive',
       underline: 'always',
-      className: 'text-destructive border-destructive',
+      className: 'text-destructive border-destructive hover:border-destructive',
     },
     {
       type: 'link',
@@ -653,13 +654,13 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'success',
       underline: 'hover',
-      className: 'text-success hover:border-success',
+      className: 'text-success border-success/30 hover:border-success',
     },
     {
       type: 'link',
       color: 'success',
       underline: 'always',
-      className: 'text-success border-success',
+      className: 'text-success border-success hover:border-success',
     },
     {
       type: 'link',
@@ -671,13 +672,13 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'warning',
       underline: 'hover',
-      className: 'text-warning hover:border-warning',
+      className: 'text-warning border-warning/30 hover:border-warning',
     },
     {
       type: 'link',
       color: 'warning',
       underline: 'always',
-      className: 'text-warning border-warning',
+      className: 'text-warning border-warning hover:border-warning',
     },
     {
       type: 'link',
@@ -689,13 +690,13 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'info',
       underline: 'hover',
-      className: 'text-info hover:border-info',
+      className: 'text-info border-info/30 hover:border-info',
     },
     {
       type: 'link',
       color: 'info',
       underline: 'always',
-      className: 'text-info border-info',
+      className: 'text-info border-info hover:border-info',
     },
   ],
   defaultVariants: {
