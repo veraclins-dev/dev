@@ -4,20 +4,23 @@ import { memo } from 'react';
 import { cn } from '@veraclins-dev/utils';
 
 import { type IconName } from '../icons';
+import { type ComponentWithTooltip, type WithTooltip } from '../types';
 
 import { Icon } from './icon';
+import { ComposedTooltip } from './tooltip';
 import { type ButtonVariants, buttonVariants } from './variants';
 
 export type ButtonVariant = ButtonVariants['variant'];
 export type ButtonColor = ButtonVariants['color'];
 export type ButtonSize = ButtonVariants['size'];
 
-interface ButtonBaseProps
+interface Props
   extends Omit<React.ComponentProps<'button'>, 'color'>,
     ButtonVariants {
   asChild?: boolean;
   type?: 'button' | 'submit' | 'reset';
   'aria-label'?: string;
+  'data-disabled'?: 'true' | 'false';
   // loading?: boolean;
   leadingIcon?: IconName;
   trailingIcon?: IconName;
@@ -29,9 +32,9 @@ interface ButtonBaseProps
  * It can render as a Radix Slot child component for better integration with other components.
  * It also supports loading states with a spinner, leading and trailing icons, and accessibility features.
  */
-function Component({
+function Base({
   className,
-  variant = 'solid',
+  variant,
   color,
   size,
   asChild = false,
@@ -44,7 +47,7 @@ function Component({
   children,
   disabled,
   ...props
-}: ButtonBaseProps) {
+}: Props) {
   const Comp = asChild ? Slot : 'button';
   const isIconOnly =
     size === 'icon' && !children && !leadingIcon && !trailingIcon;
@@ -56,13 +59,8 @@ function Component({
   return (
     <Comp
       data-slot="button"
-      className={cn(
-        buttonVariants({ variant, color, size, loading, className, fullWidth }),
-      )}
+      className={className}
       type={asChild ? undefined : type}
-      aria-disabled={disabled || loading ? 'true' : undefined}
-      disabled={disabled || Boolean(loading)}
-      data-disabled={disabled || loading ? 'true' : undefined}
       aria-label={ariaLabel}
       {...props}
     >
@@ -97,12 +95,60 @@ function Component({
   );
 }
 
+function Component({
+  tooltip,
+  variant = 'solid',
+  color,
+  size,
+  loading = false,
+  fullWidth = false,
+  disabled,
+  className,
+  ...props
+}: ComponentWithTooltip<typeof Base>) {
+  const classes = cn(
+    buttonVariants({ variant, color, size, loading, className, fullWidth }),
+  );
+  const isDisabled = Boolean(disabled || loading);
+  return tooltip ? (
+    <ComposedTooltip
+      Trigger={Base}
+      TriggerProps={{
+        ...props,
+        className: classes,
+        size,
+        loading,
+        fullWidth,
+        variant,
+        color,
+        'aria-disabled': isDisabled ? 'true' : undefined,
+        disabled: isDisabled,
+        'data-disabled': isDisabled ? 'true' : undefined,
+      }}
+      content={tooltip}
+    />
+  ) : (
+    <Base
+      {...props}
+      className={classes}
+      size={size}
+      loading={loading}
+      fullWidth={fullWidth}
+      variant={variant}
+      color={color}
+      aria-disabled={isDisabled ? 'true' : undefined}
+      disabled={isDisabled}
+      data-disabled={isDisabled ? 'true' : undefined}
+    />
+  );
+}
+
 /**
  * A memoized flexible button component for the design system, supporting structural variants and semantic colors.
  * The button supports various variants (solid, outline, text, soft) and colors (primary, secondary, destructive, etc.).
  * It can render as a Radix Slot child component for better integration with other components.
  * It also supports loading states with a spinner, leading and trailing icons, and accessibility features.
- * @param {ButtonBaseProps} props - Component props
+ * @param {Props} props - Component props
  * @param {ButtonVariant} [props.variant='solid'] - Structural style (solid, outline, text, soft)
  * @param {ButtonColor} [props.color] - Semantic color (primary, secondary, destructive, etc.)
  * @param {ButtonSize} [props.size='default'] - Button size (default, sm, lg, xl, pill, icon)
@@ -114,13 +160,15 @@ function Component({
  * @param {string} [props.aria-label] - Accessible label for icon-only buttons
  * @param {React.Ref<HTMLButtonElement>} [props.ref] - Ref for the button element
  * @example
- * <ButtonBase variant="outline" color="destructive" size="lg" leadingIcon="trash">
+ * <Button variant="outline" color="destructive" size="lg" leadingIcon="trash">
  *   Delete
- * </ButtonBase>
+ * </Button>
  */
-const ButtonBase = memo(Component);
+const Button = memo(Component);
 
-export { ButtonBase, type ButtonBaseProps, type ButtonVariants };
+type ButtonProps = WithTooltip<Props>;
+
+export { Button, type ButtonProps, type ButtonVariants };
 
 // for storybook
 export default Component;

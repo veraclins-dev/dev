@@ -1,7 +1,7 @@
 import { type Table } from '@tanstack/react-table';
 
 import {
-  ButtonBase as Button,
+  Button as Button,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,

@@ -6,10 +6,17 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/**
+ * Color system for light and dark mode.
+ * These CSS variables define the color palette for the UI.
+ * The :root block is for light mode, and the .dark block is for dark mode.
+ */
 :root {
+  /* Base colors */
   --background: oklch(0.945 0 0);
   --foreground: oklch(0.346 0 0);
 
+  /* Muted */
   --muted: oklch(0.8923 0.0069 247.9);
   --muted-hover: oklch(0.8423 0.0069 247.9);
   --muted-soft: oklch(0.9423 0.0069 247.9);
@@ -20,6 +27,7 @@
   --muted-soft-foreground: oklch(0.346 0 0);
   --muted-soft-foreground-hover: oklch(0.426 0 0);
 
+  /* Accent */
   --accent: oklch(0.8566 0.0017 247.84);
   --accent-hover: oklch(0.9405 0.0046 258.32);
   --accent-soft: oklch(0.9805 0.0046 258.32);
@@ -30,6 +38,7 @@
   --accent-soft-foreground: oklch(0.346 0 0);
   --accent-soft-foreground-hover: oklch(0.426 0 0);
 
+  /* Popover */
   --popover: oklch(0.986 0 0);
   --popover-hover: oklch(0.936 0 0);
   --popover-soft: oklch(0.996 0 0);
@@ -40,6 +49,7 @@
   --popover-soft-foreground: oklch(0.346 0 0);
   --popover-soft-foreground-hover: oklch(0.426 0 0);
 
+  /* Card */
   --card: oklch(0.996 0 0);
   --card-hover: oklch(0.946 0 0);
   --card-soft: oklch(0.996 0 0);
@@ -58,6 +68,7 @@
   --card-inner-soft-foreground: oklch(0.346 0 0);
   --card-inner-soft-foreground-hover: oklch(0.426 0 0);
 
+  /* Primary */
   --primary: oklch(0.4222 0.1918 318.89);
   --primary-hover: oklch(0.3422 0.1918 318.89);
   --primary-soft: oklch(0.9058 0.0559 306.14);
@@ -68,6 +79,7 @@
   --primary-soft-foreground: oklch(0.3222 0.1918 318.89);
   --primary-soft-foreground-hover: oklch(0.3022 0.1918 318.89);
 
+  /* Secondary */
   --secondary: oklch(0.4127 0.0095 320.55);
   --secondary-hover: oklch(0.3127 0.0095 320.55);
   --secondary-soft: oklch(0.8827 0.0095 320.55);
@@ -78,6 +90,7 @@
   --secondary-soft-foreground: oklch(0.2127 0.0095 320.55);
   --secondary-soft-foreground-hover: oklch(0.2927 0.0095 320.55);
 
+  /* Destructive */
   --destructive: oklch(0.477 0.245 27.325);
   --destructive-hover: oklch(0.327 0.245 27.325);
   --destructive-soft: oklch(0.999 0.245 17.325);
@@ -88,6 +101,7 @@
   --destructive-soft-foreground: oklch(0.277 0.245 27.325);
   --destructive-soft-foreground-hover: oklch(0.357 0.245 27.325);
 
+  /* Success */
   --success: oklch(0.55 0.2 140);
   --success-hover: oklch(0.6 0.2 140);
   --success-soft: oklch(0.93 0.2 140);
@@ -98,6 +112,7 @@
   --success-soft-foreground: oklch(0.35 0.2 140);
   --success-soft-foreground-hover: oklch(0.43 0.2 140);
 
+  /* Warning */
   --warning: oklch(0.65 0.2 60);
   --warning-hover: oklch(0.6 0.2 60);
   --warning-soft: oklch(0.98 0.2 60);
@@ -108,6 +123,7 @@
   --warning-soft-foreground: oklch(0.45 0.2 60);
   --warning-soft-foreground-hover: oklch(0.53 0.2 60);
 
+  /* Info */
   --info: oklch(0.452 0.313214 264.052);
   --info-hover: oklch(0.6 0.313214 264.052);
   --info-soft: oklch(0.98 0.313214 264.052);
@@ -118,13 +134,16 @@
   --info-soft-foreground: oklch(0.252 0.313214 264.052);
   --info-soft-foreground-hover: oklch(0.332 0.313214 264.052);
 
+  /* Border */
   --border: oklch(0.922 0 0);
 }
 
 .dark {
+  /* Base colors */
   --background: oklch(0.231 0 0);
   --foreground: oklch(0.881 0 0);
 
+  /* Muted */
   --muted: oklch(0.442 0.033 260.7);
   --muted-hover: oklch(0.522 0.033 260.7);
   --muted-soft: oklch(0.392 0.033 260.7);
@@ -135,6 +154,7 @@
   --muted-soft-foreground: oklch(0.642 0.033 260.7);
   --muted-soft-foreground-hover: oklch(0.722 0.033 260.7);
 
+  /* Accent */
   --accent: oklch(0.4515 0.0017 286.3);
   --accent-hover: oklch(0.3915 0.0017 286.3);
   --accent-soft: oklch(0.2715 0.0017 286.3);
@@ -145,6 +165,7 @@
   --accent-soft-foreground: oklch(0.5215 0.0017 286.3);
   --accent-soft-foreground-hover: oklch(0.6015 0.0017 286.3);
 
+  /* Popover */
   --popover: oklch(0.205 0 0);
   --popover-hover: oklch(0.285 0 0);
   --popover-soft: oklch(0.155 0 0);
@@ -155,6 +176,7 @@
   --popover-soft-foreground: oklch(0.405 0 0);
   --popover-soft-foreground-hover: oklch(0.485 0 0);
 
+  /* Card */
   --card: oklch(0.15 0 0);
   --card-hover: oklch(0.322 0 0);
   --card-soft: oklch(0.192 0 0);
@@ -173,6 +195,7 @@
   --card-inner-soft-foreground: oklch(0.446 0 0);
   --card-inner-soft-foreground-hover: oklch(0.526 0 0);
 
+  /* Primary */
   --primary: oklch(0.48 0.2201 309.41);
   --primary-hover: oklch(0.44 0.2201 309.41);
   --primary-soft: oklch(0.2614 0.1128 298.32);
@@ -183,6 +206,7 @@
   --primary-soft-foreground: oklch(0.68 0.2201 309.41);
   --primary-soft-foreground-hover: oklch(0.76 0.2201 309.41);
 
+  /* Secondary */
   --secondary: oklch(0.8542 0.0155 317.7);
   --secondary-hover: oklch(0.7842 0.0155 317.7);
   --secondary-soft: oklch(0.5442 0.0155 317.7);
@@ -193,6 +217,7 @@
   --secondary-soft-foreground: oklch(0.9542 0.0155 317.7);
   --secondary-soft-foreground-hover: oklch(0.9942 0.0155 317.7);
 
+  /* Destructive */
   --destructive: oklch(0.604 0.191 22.216);
   --destructive-hover: oklch(0.544 0.191 22.216);
   --destructive-soft: oklch(0.224 0.091 22.216);
@@ -203,6 +228,7 @@
   --destructive-soft-foreground: oklch(0.804 0.191 22.216);
   --destructive-soft-foreground-hover: oklch(0.884 0.191 22.216);
 
+  /* Success */
   --success: oklch(0.56 0.2 140);
   --success-hover: oklch(0.45 0.2 140);
   --success-soft: oklch(0.293 0.1 140);
@@ -213,6 +239,7 @@
   --success-soft-foreground: oklch(0.8 0.2 140);
   --success-soft-foreground-hover: oklch(0.88 0.2 140);
 
+  /* Warning */
   --warning: oklch(0.56 0.15 60);
   --warning-hover: oklch(0.45 0.15 60);
   --warning-soft: oklch(0.293 0.085 60);
@@ -223,6 +250,7 @@
   --warning-soft-foreground: oklch(0.8 0.015 60);
   --warning-soft-foreground-hover: oklch(0.88 0.015 60);
 
+  /* Info */
   --info: oklch(0.55 0.15 250);
   --info-hover: oklch(0.5 0.15 250);
   --info-soft: oklch(0.35 0.085 250);
@@ -233,6 +261,7 @@
   --info-soft-foreground: oklch(0.85 0.15 250);
   --info-soft-foreground-hover: oklch(0.93 0.15 250);
 
+  /* Border */
   --border: oklch(0.848 0.033 260.7);
 }
 

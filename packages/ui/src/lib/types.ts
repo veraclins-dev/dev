@@ -30,6 +30,10 @@ export type WithComponent<T extends object> = {
   ComponentProps: T;
 };
 
+export type WithTooltip<T extends object> = T & {
+  tooltip?: React.ReactNode;
+};
+
 export type ComponentWithTooltip<
   T extends
     | keyof React.JSX.IntrinsicElements

@@ -2,7 +2,7 @@ import { type Table } from '@tanstack/react-table';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { ButtonBase as Button, Icon, Input } from '../../ui';
+import { Button as Button, Icon, Input } from '../../ui';
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 import { DataTableViewOptions } from './data-table-view-options';

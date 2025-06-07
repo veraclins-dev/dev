@@ -245,6 +245,21 @@ const LINK_DEFAULT_CLASSES = cn(
   'font-medium no-underline',
 );
 
+const TOOLTIP_CLASSES = cn(
+  // Appearance
+  'bg-accent text-accent-foreground rounded-md border border-accent shadow-md',
+  // Layout and Base
+  'px-2 py-1 text-center text-sm max-w-60',
+  // Overflow
+  'overflow-hidden',
+  // Animations
+  'animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
+  // Positioning
+  'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+  // Z-Index
+  'z-50',
+);
+
 export {
   BADGE_DEFAULT_CLASSES,
   BUTTON_DEFAULT_CLASSES,
@@ -261,4 +276,5 @@ export {
   RADIO_GROUP_ITEM_CLASSES,
   SHARED_ITEM_CLASSES,
   SUB_CONTENT_CLASSES,
+  TOOLTIP_CLASSES,
 };

@@ -39,9 +39,6 @@ export const Button = ({
   shortcutKeys,
   ...props
 }: MenuTextButtonProps) => {
-  if (isActive) {
-    console.log('Button is active:', { label, shortcutKeys });
-  }
   return (
     <IconButton
       {...props}

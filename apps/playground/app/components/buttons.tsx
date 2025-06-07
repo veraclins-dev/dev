@@ -23,7 +23,7 @@ export function Buttons() {
                 Primary
               </Button>
               <Button
-                tooltip="This is a loading button"
+                tooltip="This is a loading button with a tooltip and is disabled"
                 variant="solid"
                 color="primary"
                 loading
@@ -75,7 +75,11 @@ export function Buttons() {
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Soft</Typography>
             <div className="flex gap-2">
-              <Button variant="soft" color="primary">
+              <Button
+                variant="soft"
+                color="primary"
+                tooltip="This is a soft button with a tooltip"
+              >
                 Primary
               </Button>
               <Button variant="soft" color="primary" loading>

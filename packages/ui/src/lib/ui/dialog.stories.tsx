@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import Button, { ButtonBase } from './button';
+import Button from './button';
 import {
   Dialog,
   DialogClose,
@@ -29,7 +29,7 @@ export const Primary: Story = {
       <Dialog>
         <form>
           <DialogTrigger asChild>
-            <ButtonBase variant="outline">Edit Profile</ButtonBase>
+            <Button variant="outline">Edit Profile</Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>

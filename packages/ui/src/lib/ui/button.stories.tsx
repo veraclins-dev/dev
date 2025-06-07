@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import ButtonBase from './button';
+import Button from './button';
 import { Icon } from './icon';
 
-const meta: Meta<typeof ButtonBase> = {
-  component: ButtonBase,
+const meta: Meta<typeof Button> = {
+  component: Button,
   title: 'Base/Button',
   args: {
     children: 'Button',
@@ -14,7 +14,7 @@ const meta: Meta<typeof ButtonBase> = {
 
 export default meta;
 
-type Story = StoryObj<typeof ButtonBase>;
+type Story = StoryObj<typeof Button>;
 
 export const PrimarySolid: Story = {
   args: {
@@ -79,7 +79,7 @@ export const SoftSuccess: Story = {
 export const IconOnly: Story = {
   args: {
     variant: 'solid',
-    color: 'accent',
+    color: 'secondary',
     size: 'icon',
     'aria-label': 'Add item',
     children: <Icon name="plus" data-testid="svg" />,

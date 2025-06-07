@@ -2,7 +2,7 @@ import { useSpinDelay } from 'spin-delay';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { ButtonBase, type ButtonBaseProps } from './button';
+import { Button, type ButtonProps } from './button';
 import { Icon } from './icon';
 import {
   Tooltip,
@@ -18,7 +18,7 @@ export const StatusButton = ({
   children,
   spinDelay,
   ...props
-}: ButtonBaseProps & {
+}: ButtonProps & {
   status: 'pending' | 'success' | 'error' | 'idle';
   message?: string;
   spinDelay?: Parameters<typeof useSpinDelay>[1];
@@ -48,10 +48,7 @@ export const StatusButton = ({
   }[status];
 
   return (
-    <ButtonBase
-      className={cn('flex justify-center gap-4', className)}
-      {...props}
-    >
+    <Button className={cn('flex justify-center gap-4', className)} {...props}>
       <div>{children}</div>
       {message ? (
         <TooltipProvider>
@@ -63,7 +60,7 @@ export const StatusButton = ({
       ) : (
         companion
       )}
-    </ButtonBase>
+    </Button>
   );
 };
 StatusButton.displayName = 'Button';

@@ -3,8 +3,8 @@ import { type Row } from '@tanstack/react-table';
 import { cn, type NonEmptyArray } from '@veraclins-dev/utils';
 
 import {
-  ButtonBase as Button,
-  type ButtonBaseProps,
+  Button as Button,
+  type ButtonProps,
   ComposedDropdownMenu,
   Icon,
   type ItemOption,
@@ -22,7 +22,7 @@ interface DataTableRowActionsProps<TData extends WithId> {
   row: Row<TData>;
 }
 
-const ActionButton = ({ className, ...props }: ButtonBaseProps) => (
+const ActionButton = ({ className, ...props }: ButtonProps) => (
   <Button
     variant="text"
     className={cn('flex h-8 w-8 p-0 data-[state=open]:bg-muted', className)}

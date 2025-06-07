@@ -3,7 +3,7 @@ import { type Column } from '@tanstack/react-table';
 import { cn } from '@veraclins-dev/utils';
 
 import {
-  ButtonBase as Button,
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -33,7 +33,7 @@ export function DataTableColumnHeader<TData, TValue>({
         <DropdownMenuTrigger asChild>
           <Button
             variant="text"
-            color="accent"
+            // color="accent"
             size="sm"
             className="-ml-3 h-8 data-[state=open]:bg-accent"
           >

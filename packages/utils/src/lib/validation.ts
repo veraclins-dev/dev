@@ -131,7 +131,7 @@ export {
   type ReturnType,
   type SchemaInfer,
   type SchemaType,
-  SchemaTypeWithId,
+  type SchemaTypeWithId,
   type ValidateReturnType,
   validateZodSchema,
   type Values,

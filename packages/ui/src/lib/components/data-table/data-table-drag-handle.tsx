@@ -1,6 +1,6 @@
 import { useSortable } from '@dnd-kit/sortable';
 
-import { ButtonBase as Button, Icon } from '../../ui';
+import { Button, Icon } from '../../ui';
 
 import { type WithId } from './types';
 
@@ -12,7 +12,7 @@ export function DataTableDragHandle({ id }: WithId) {
       {...attributes}
       {...listeners}
       variant="text"
-      color="accent"
+      // color="accent"
       size="icon"
       className="text-muted-foreground hover:bg-transparent p-0"
     >

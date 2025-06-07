@@ -70,7 +70,7 @@ export function ViewLinkMenuContent({
         <Button
           className="px-3 py-1 "
           color="destructive"
-          variant="soft"
+          variant="outline"
           onClick={onRemove}
         >
           Remove

@@ -75,4 +75,4 @@ function Link<
   );
 }
 
-export { Link, LinkProps, linkVariants };
+export { Link, type LinkProps, linkVariants };

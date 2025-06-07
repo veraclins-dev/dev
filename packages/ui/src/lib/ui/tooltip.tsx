@@ -4,9 +4,30 @@ import { cn } from '@veraclins-dev/utils';
 
 import { type WithTrigger } from '../types';
 
-const TooltipProvider = TooltipPrimitive.Provider;
+import { TOOLTIP_CLASSES } from './styles';
 
-const Tooltip = TooltipPrimitive.Root;
+function TooltipProvider({
+  delayDuration = 0,
+  ...props
+}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
+  return (
+    <TooltipPrimitive.Provider
+      data-slot="tooltip-provider"
+      delayDuration={delayDuration}
+      {...props}
+    />
+  );
+}
+
+function Tooltip({
+  ...props
+}: React.ComponentProps<typeof TooltipPrimitive.Root>) {
+  return (
+    <TooltipProvider>
+      <TooltipPrimitive.Root data-slot="tooltip" {...props} />
+    </TooltipProvider>
+  );
+}
 
 const TooltipTrigger = TooltipPrimitive.Trigger;
 
@@ -24,10 +45,7 @@ const TooltipContent = ({
 }: React.ComponentProps<typeof TooltipPrimitive.Content>) => (
   <TooltipPrimitive.Content
     sideOffset={sideOffset}
-    className={cn(
-      'z-50 overflow-hidden rounded-md border border-input bg-card px-2 py-1 text-center text-sm text-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-      className,
-    )}
+    className={cn(TOOLTIP_CLASSES, className)}
     {...props}
   />
 );
@@ -44,20 +62,22 @@ const ComposedTooltip = <P extends { disabled?: boolean; className?: string }>({
   TriggerProps,
 }: ComposedTooltipProps<P>) => {
   const className = TriggerProps?.disabled
-    ? cn(TriggerProps.className, 'disabled:pointer-events-auto')
+    ? cn(
+        TriggerProps.className,
+        'disabled:pointer-events-auto data-[disabled=true]:pointer-events-auto',
+      )
     : TriggerProps.className;
+
   return (
-    <TooltipProvider>
-      <Tooltip delayDuration={200}>
-        <TooltipTrigger asChild>
-          <Trigger {...TriggerProps} className={className} />
-        </TooltipTrigger>
-        <TooltipContent>
-          {content}
-          {arrow && <TooltipArrow className="fill-current" />}
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Tooltip delayDuration={200}>
+      <TooltipTrigger asChild>
+        <Trigger {...TriggerProps} className={className} />
+      </TooltipTrigger>
+      <TooltipContent>
+        {content}
+        {arrow && <TooltipArrow className="fill-current" />}
+      </TooltipContent>
+    </Tooltip>
   );
 };
 

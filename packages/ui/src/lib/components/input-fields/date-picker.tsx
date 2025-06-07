@@ -7,7 +7,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn, setReactInputValue } from '@veraclins-dev/utils';
 
 import {
-  ButtonBase as Button,
+  Button,
   Calendar,
   type CalendarProps,
   type DateRange,

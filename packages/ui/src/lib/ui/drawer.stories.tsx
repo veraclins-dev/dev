@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 
-import { ButtonBase as Button } from './button';
+import { Button as Button } from './button';
 import {
   Drawer,
   DrawerClose,

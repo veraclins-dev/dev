@@ -5,6 +5,7 @@ import { cn, humanize, setReactInputValue } from '@veraclins-dev/utils';
 
 import { type Maybe, type Option } from '../../types';
 import {
+  Button,
   Chip,
   Command,
   CommandEmpty,
@@ -17,7 +18,6 @@ import {
   PopoverAnchor,
   PopoverContent,
 } from '../../ui';
-import { Button } from '../button';
 
 import { type TextFieldProps } from './textfield';
 import {

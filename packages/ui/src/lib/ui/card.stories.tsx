@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { ButtonBase } from './button';
+import { Button } from './button';
 import {
   Card,
   CardAction,
@@ -45,8 +45,8 @@ export const Primary: Story = {
         </CardContent>
         <CardFooter>
           <CardAction>
-            <ButtonBase variant="outline">Cancel</ButtonBase>
-            <ButtonBase color="primary">Save</ButtonBase>
+            <Button variant="outline">Cancel</Button>
+            <Button color="primary">Save</Button>
           </CardAction>
         </CardFooter>
       </Card>

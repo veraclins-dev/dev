@@ -1,6 +1,6 @@
 import { type Except } from 'type-fest';
 
-import { ButtonBase, Icon } from '@veraclins-dev/ui';
+import { Button, Icon } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import { getContrastText } from '../utils/color';
@@ -39,7 +39,7 @@ export const ColorSwatchButton = ({
   active,
   ...buttonProps
 }: ColorSwatchButtonProps) => (
-  <ButtonBase
+  <Button
     type="button"
     style={{ backgroundColor: colorValue, padding }}
     aria-label={label ?? colorValue}
@@ -61,7 +61,7 @@ export const ColorSwatchButton = ({
         }}
       />
     )}
-  </ButtonBase>
+  </Button>
 );
 
 ColorSwatchButton.displayName = 'ColorSwatchButton';

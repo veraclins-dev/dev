@@ -2,7 +2,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import {
   Badge,
-  ButtonBase as Button,
+  Button as Button,
   Checkbox,
   Command,
   CommandEmpty,
