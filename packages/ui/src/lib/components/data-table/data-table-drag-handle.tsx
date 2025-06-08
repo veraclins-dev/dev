@@ -12,15 +12,11 @@ export function DataTableDragHandle({ id }: WithId) {
       {...attributes}
       {...listeners}
       variant="text"
-      // color="accent"
+      color="neutral"
       size="icon"
-      className="text-muted-foreground hover:bg-transparent p-0"
+      className="hover:bg-transparent p-0"
     >
-      <Icon
-        name="drag-handle-dots-2"
-        size="md"
-        className="text-muted-foreground"
-      />
+      <Icon name="drag-handle-dots-2" size="md" />
       <span className="sr-only">Drag to reorder</span>
     </Button>
   );

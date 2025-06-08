@@ -25,6 +25,7 @@ const sharedBaseVariants = {
       success: '',
       warning: '',
       info: '',
+      neutral: '',
     },
   },
   compoundVariants: [
@@ -87,6 +88,16 @@ const sharedBaseVariants = {
         'bg-info',
         'text-info-foreground',
         'hover:bg-info-hover',
+      ],
+    },
+    {
+      variant: 'solid',
+      color: 'neutral',
+      className: [
+        'border-neutral',
+        'bg-neutral',
+        'text-neutral-foreground',
+        'hover:bg-neutral-hover',
       ],
     },
     // Outline variant styles
@@ -156,6 +167,17 @@ const sharedBaseVariants = {
         'hover:text-info-soft-foreground',
       ],
     },
+    {
+      variant: 'outline',
+      color: 'neutral',
+      className: [
+        'border-neutral-foreground',
+        'text-neutral-foreground',
+        'hover:bg-neutral-soft-hover',
+        'data-[active=true]:bg-neutral-soft',
+        'hover:text-neutral-soft-foreground',
+      ],
+    },
     // Soft variant styles
     {
       variant: 'soft',
@@ -217,6 +239,16 @@ const sharedBaseVariants = {
         'hover:bg-info-soft-hover',
       ],
     },
+    {
+      variant: 'soft',
+      color: 'neutral',
+      className: [
+        'border-neutral-soft',
+        'bg-neutral-soft',
+        'text-neutral-soft-foreground',
+        'hover:bg-neutral-soft-hover',
+      ],
+    },
   ] as const,
 };
 
@@ -230,6 +262,7 @@ const buttonSpecificCompoundVariants = [
       'text-primary',
       'hover:bg-primary-soft',
       'data-[active=true]:bg-primary-soft',
+      'hover:text-primary-soft-foreground',
     ],
   },
   {
@@ -239,6 +272,7 @@ const buttonSpecificCompoundVariants = [
       'text-secondary',
       'hover:bg-secondary-soft',
       'data-[active=true]:bg-secondary-soft',
+      'hover:text-secondary-soft-foreground',
     ],
   },
   {
@@ -248,6 +282,7 @@ const buttonSpecificCompoundVariants = [
       'text-destructive',
       'hover:bg-destructive-soft',
       'data-[active=true]:bg-destructive-soft',
+      'hover:text-destructive-soft-foreground',
     ],
   },
   {
@@ -257,6 +292,7 @@ const buttonSpecificCompoundVariants = [
       'text-success',
       'hover:bg-success-soft',
       'data-[active=true]:bg-success-soft',
+      'hover:text-success-soft-foreground',
     ],
   },
   {
@@ -266,6 +302,7 @@ const buttonSpecificCompoundVariants = [
       'text-warning',
       'hover:bg-warning-soft',
       'data-[active=true]:bg-warning-soft',
+      'hover:text-warning-soft-foreground',
     ],
   },
   {
@@ -275,6 +312,17 @@ const buttonSpecificCompoundVariants = [
       'text-info',
       'hover:bg-info-soft',
       'data-[active=true]:bg-info-soft',
+      'hover:text-info-soft-foreground',
+    ],
+  },
+  {
+    variant: 'text',
+    color: 'neutral',
+    className: [
+      'text-neutral-foreground',
+      'hover:bg-neutral-soft',
+      'data-[active=true]:bg-neutral-soft',
+      'hover:text-neutral-soft-foreground',
     ],
   },
 ] as const;

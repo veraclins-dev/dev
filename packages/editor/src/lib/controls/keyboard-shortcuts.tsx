@@ -19,7 +19,7 @@ export const KeyboardShortcuts = ({
   return (
     <code
       className={cn(
-        'space-x-1 flex rounded-md bg-accent uppercase italic text-xs p-0.5 px-1',
+        'space-x-1 flex rounded-md bg-secondary uppercase italic text-xs p-0.5 px-1',
         className,
       )}
     >

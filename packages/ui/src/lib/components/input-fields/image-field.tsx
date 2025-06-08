@@ -96,7 +96,7 @@ export const ImageField = ({
               className={cn('h-full w-full object-cover', previewClasses)}
             />
             {loading && (
-              <div className="absolute bottom-4 right-1/2 flex translate-x-1/2 transform items-center rounded border bg-muted px-1 py-0.5 text-muted-foreground gap-2">
+              <div className="absolute bottom-4 right-1/2 flex translate-x-1/2 transform items-center rounded border bg-neutral px-1 py-0.5 text-neutral-foreground gap-2">
                 {loadingIndicator && loadingIndicator}
                 <span className="text-nowrap">Please wait...</span>
               </div>

@@ -71,6 +71,14 @@ export function Buttons() {
                 Loading
               </Button>
             </div>
+            <div className="flex gap-2">
+              <Button variant="solid" color="neutral">
+                Neutral
+              </Button>
+              <Button variant="solid" color="neutral" loading>
+                Loading
+              </Button>
+            </div>
           </div>
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Soft</Typography>
@@ -123,6 +131,14 @@ export function Buttons() {
                 Info
               </Button>
               <Button variant="soft" color="info" loading>
+                Loading
+              </Button>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="soft" color="neutral">
+                Neutral
+              </Button>
+              <Button variant="soft" color="neutral" loading>
                 Loading
               </Button>
             </div>
@@ -179,6 +195,14 @@ export function Buttons() {
                 Loading
               </Button>
             </div>
+            <div className="flex gap-2">
+              <Button variant="outline" color="neutral">
+                Neutral
+              </Button>
+              <Button variant="outline" color="neutral" loading>
+                Loading
+              </Button>
+            </div>
           </div>
           <div className="flex flex-col gap-3">
             <Typography variant="h2">Text</Typography>
@@ -227,6 +251,14 @@ export function Buttons() {
                 Info
               </Button>
               <Button variant="text" color="info" loading>
+                Loading
+              </Button>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="text" color="neutral">
+                Neutral
+              </Button>
+              <Button variant="text" color="neutral" loading>
                 Loading
               </Button>
             </div>
@@ -314,6 +346,20 @@ export function Buttons() {
                 <Icon name="bell" />
               </Button>
               <Button size="icon" color="info" variant="text">
+                <Icon name="heart" />
+              </Button>
+            </div>
+            <div className="flex gap-2">
+              <Button size="icon" color="neutral" variant="solid">
+                <Icon name="plus" />
+              </Button>
+              <Button size="icon" color="neutral" variant="soft">
+                <Icon name="cog" />
+              </Button>
+              <Button size="icon" color="neutral" variant="outline">
+                <Icon name="bell" />
+              </Button>
+              <Button size="icon" color="neutral" variant="text">
                 <Icon name="heart" />
               </Button>
             </div>

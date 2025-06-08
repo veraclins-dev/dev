@@ -468,7 +468,7 @@ const Autocomplete = ({
                   }}
                   onSelect={() => handleSelect(option)}
                   className={cn('cursor-pointer px-3 py-2 my-0.5', {
-                    'bg-accent': isSelected(option),
+                    'bg-secondary': isSelected(option),
                   })}
                   ref={index === 0 ? firstItemRef : undefined}
                 >

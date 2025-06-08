@@ -154,13 +154,13 @@ function BaseDatePicker<T extends ValueType>({
               INPUT_CLASSES,
               INPUT_CLASS_OVERRIDES,
               'h-full min-w-[200px] justify-start font-normal',
-              !isSelected && 'text-muted-foreground',
+              !isSelected && 'text-neutral-foreground',
             )}
             aria-invalid={errorId ? true : undefined}
             aria-describedby={errorId}
             type="button"
           >
-            <Icon name="calendar" className="text-muted-foreground" />
+            <Icon name="calendar" className="text-neutral-foreground" />
             <span>{displayText()}</span>
           </Button>
         </PopoverTrigger>

@@ -46,8 +46,8 @@ export const Button = ({
       variant="plain"
       // color="secondary"
       className={cn(
-        'size-7 rounded-md p-1 border-0 hover:bg-accent-hover',
-        isActive ? 'font-bold bg-accent' : '',
+        'size-7 rounded-md p-1 border-0 hover:bg-secondary-hover',
+        isActive ? 'font-bold bg-secondary' : '',
         className,
       )}
       data-active={isActive}

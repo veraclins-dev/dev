@@ -28,7 +28,7 @@ function Card({
     <Box
       data-slot="card"
       className={cn(
-        'bg-card text-card-foreground gap-4 rounded-xl border py-4 shadow-md',
+        'bg-card text-card-foreground gap-4 rounded-xl border py-4 shadow-sm',
         borderless && 'border-0',
         className,
       )}
@@ -77,7 +77,7 @@ function CardSubtitle({ className, ...props }: TypographyProps) {
     <Typography
       data-slot="card-subtitle"
       variant="subtitle1"
-      className={cn('text-sm text-muted-foreground', className)}
+      className={cn('text-sm text-neutral-foreground', className)}
       {...props}
     />
   );
@@ -95,7 +95,7 @@ function CardDescription({
   return (
     <Box
       data-slot="card-description"
-      className={cn('text-muted-foreground text-sm', className)}
+      className={cn('text-neutral-foreground text-sm', className)}
       {...props}
     />
   );

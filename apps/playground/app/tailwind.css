@@ -202,7 +202,7 @@
     }
 
     th {
-      @apply bg-accent text-accent-foreground text-left font-semibold;
+      @apply bg-secondary text-secondary-foreground text-left font-semibold;
     }
   }
   .tableWrapper {
@@ -282,7 +282,7 @@
     border-color: hsl(var(--primary));
   }
   p.is-editor-empty:first-of-type::before {
-    color: hsl(var(--muted-foreground));
+    color: hsl(var(--neutral-foreground));
     content: attr(data-placeholder);
     float: left;
     height: 0;

@@ -93,6 +93,8 @@ const INPUT_CLASS_OVERRIDES = cn(
 const POPUP_CONTENT_CLASSES = cn(
   // Appearance
   'bg-popover text-popover-foreground rounded-md border shadow-md',
+  // Layout and Base
+  'flex flex-col gap-y-0.5',
   // Animations
   'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
   // Positioning
@@ -139,7 +141,7 @@ const SHARED_ITEM_CLASSES = cn(
   // Appearance
   'rounded-sm px-2 py-1.5 text-sm select-none',
   // Interactivity
-  'cursor-default outline-hidden data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
+  'cursor-pointer outline-hidden data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
   // SVG Styles
   '[&_svg]:shrink-0',
 );
@@ -149,25 +151,23 @@ const ITEM_CLASSES = cn(
   // Base Shared Styles
   SHARED_ITEM_CLASSES,
   // Focus and Hover States
-  'focus:bg-accent-hover focus:text-accent-hover-foreground hover:bg-accent-hover hover:text-accent-hover-foreground',
+  'focus:bg-neutral-hover focus:text-neutral-foreground-hover hover:bg-neutral-hover hover:text-neutral-foreground-hover',
   // Destructive Variant
   'data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive',
   // Inset Spacing
   'data-[inset]:pl-8',
 
   // Checked and Selected States
-  'data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground',
+  'data-[state=checked]:bg-neutral data-[state=checked]:text-neutral-foreground data-[selected=true]:bg-neutral data-[selected=true]:text-neutral-foreground',
 );
 
 // Indicator Classes
 const INDICATOR_CLASSES = cn(
   ITEM_CLASSES,
-  // Layout
-  'relative flex items-center gap-2',
   // Appearance
   'rounded-sm py-1.5 pr-2 pl-8 data-[hidden-indicator=true]:pl-2 text-sm select-none',
   // Interactivity
-  'cursor-default outline-hidden data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+  'cursor-pointer outline-hidden data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
   // SVG Styles
   '[&_svg]:pointer-events-none [&_svg]:shrink-0',
 );
@@ -247,7 +247,7 @@ const LINK_DEFAULT_CLASSES = cn(
 
 const TOOLTIP_CLASSES = cn(
   // Appearance
-  'bg-accent text-accent-foreground rounded-md border border-accent shadow-md',
+  'bg-neutral text-neutral-foreground rounded-md border border-neutral shadow-md',
   // Layout and Base
   'px-2 py-1 text-center text-sm max-w-60',
   // Overflow

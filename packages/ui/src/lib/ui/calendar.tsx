@@ -31,7 +31,7 @@ function Calendar({
         month_caption: `relative mx-10 flex h-7 items-center justify-center ${defaultClassNames.month_caption}`,
         weekdays: cn('flex flex-row', classNames?.weekdays),
         weekday: cn(
-          'w-8 text-sm font-normal text-muted-foreground',
+          'w-8 text-sm font-normal text-neutral-foreground',
           classNames?.weekday,
         ),
         month: cn('w-full', classNames?.month),
@@ -62,15 +62,15 @@ function Calendar({
           classNames?.day_button,
         ),
         range_start: cn(
-          'bg-accent [&>button]:bg-primary [&>button]:text-primary-foreground [&>button]:hover:bg-primary [&>button]:hover:text-primary-foreground day-range-start rounded-s-md',
+          'bg-secondary [&>button]:bg-primary [&>button]:text-primary-foreground [&>button]:hover:bg-primary [&>button]:hover:text-primary-foreground day-range-start rounded-s-md',
           classNames?.range_start,
         ),
         range_middle: cn(
-          'bg-accent !text-foreground [&>button]:bg-transparent [&>button]:!text-foreground [&>button]:hover:bg-transparent [&>button]:hover:!text-foreground',
+          'bg-secondary !text-foreground [&>button]:bg-transparent [&>button]:!text-foreground [&>button]:hover:bg-transparent [&>button]:hover:!text-foreground',
           classNames?.range_middle,
         ),
         range_end: cn(
-          'bg-accent [&>button]:bg-primary [&>button]:text-primary-foreground [&>button]:hover:bg-primary [&>button]:hover:text-primary-foreground day-range-end rounded-e-md',
+          'bg-secondary [&>button]:bg-primary [&>button]:text-primary-foreground [&>button]:hover:bg-primary [&>button]:hover:text-primary-foreground day-range-end rounded-e-md',
           classNames?.range_end,
         ),
         selected: cn(
@@ -78,14 +78,17 @@ function Calendar({
           classNames?.selected,
         ),
         today: cn(
-          '[&>button]:bg-accent [&>button]:text-accent-foreground',
+          '[&>button]:bg-secondary [&>button]:text-secondary-foreground',
           classNames?.today,
         ),
         outside: cn(
-          'day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30',
+          'day-outside text-neutral-foreground opacity-50 aria-selected:bg-secondary/50 aria-selected:text-neutral-foreground aria-selected:opacity-30',
           classNames?.outside,
         ),
-        disabled: cn('text-muted-foreground opacity-50', classNames?.disabled),
+        disabled: cn(
+          'text-neutral-foreground opacity-50',
+          classNames?.disabled,
+        ),
         hidden: cn('invisible flex-1', classNames?.hidden),
 
         ...classNames,

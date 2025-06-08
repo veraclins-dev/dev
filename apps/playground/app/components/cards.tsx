@@ -160,9 +160,9 @@ export function Cards() {
                       <div className="mt-1 flex items-center gap-2">
                         <Icon
                           name="calendar"
-                          className="text-muted-foreground size-4"
+                          className="text-neutral-foreground size-4"
                         />
-                        <span className="text-muted-foreground text-xs">
+                        <span className="text-neutral-foreground text-xs">
                           Joined December 2021
                         </span>
                       </div>

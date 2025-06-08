@@ -24,40 +24,6 @@ export function Colors() {
           </Box>
         </Box>
 
-        <Box display="flex" p={2} className="bg-card rounded-md">
-          <Box
-            display="flex"
-            p={4}
-            py={2}
-            className="bg-accent text-accent-foreground rounded-md"
-          >
-            Accent
-          </Box>
-        </Box>
-        <Box display="flex" p={2} className="bg-card rounded-md">
-          <Box
-            display="flex"
-            p={4}
-            py={2}
-            className="bg-accent-hover text-accent-foreground-hover rounded-md"
-          >
-            Accent Hover
-          </Box>
-        </Box>
-        <Box
-          display="flex"
-          p={4}
-          className="bg-muted text-muted-foreground rounded-md"
-        >
-          Muted
-        </Box>
-        <Box
-          display="flex"
-          p={4}
-          className="bg-muted-hover text-muted-foreground-hover rounded-md"
-        >
-          Muted Hover
-        </Box>
         <Box
           display="flex"
           p={4}

@@ -2,7 +2,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import {
   Badge,
-  Button as Button,
+  Button,
   Checkbox,
   Command,
   CommandEmpty,
@@ -42,7 +42,7 @@ function DataTableFacetedFilter<TData, TValue>({
             <>
               <Separator orientation="vertical" />
               <Badge
-                color="secondary"
+                color="neutral"
                 variant="soft"
                 className="text-xs rounded-sm py-0.5 font-normal lg:hidden"
               >
@@ -51,7 +51,7 @@ function DataTableFacetedFilter<TData, TValue>({
               <div className="hidden space-x-1 lg:flex">
                 {selectedValues.size > 2 ? (
                   <Badge
-                    color="secondary"
+                    color="neutral"
                     variant="soft"
                     className="text-xs rounded-sm py-0.5 font-normal"
                   >
@@ -62,7 +62,7 @@ function DataTableFacetedFilter<TData, TValue>({
                     .filter((option) => selectedValues.has(option.value))
                     .map((option) => (
                       <Badge
-                        color="secondary"
+                        color="neutral"
                         variant="soft"
                         key={option.value}
                         className="text-xs rounded-sm py-0.5 font-normal"

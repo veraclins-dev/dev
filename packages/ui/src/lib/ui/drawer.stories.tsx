@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 
-import { Button as Button } from './button';
+import { Button } from './button';
 import {
   Drawer,
   DrawerClose,
@@ -137,7 +137,7 @@ export const DrawerBottom: Story = {
                   <div className="text-7xl font-bold tracking-tighter">
                     {10}
                   </div>
-                  <div className="text-muted-foreground text-[0.70rem] uppercase">
+                  <div className="text-neutral-foreground text-[0.70rem] uppercase">
                     Calories/day
                   </div>
                 </div>

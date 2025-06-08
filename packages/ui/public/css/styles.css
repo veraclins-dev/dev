@@ -16,57 +16,35 @@
   --background: oklch(0.945 0 0);
   --foreground: oklch(0.346 0 0);
 
-  /* Muted */
-  --muted: oklch(0.8923 0.0069 247.9);
-  --muted-hover: oklch(0.8423 0.0069 247.9);
-  --muted-soft: oklch(0.9423 0.0069 247.9);
-  --muted-soft-hover: oklch(0.8923 0.0069 247.9);
-
-  --muted-foreground: oklch(0.556 0 0);
-  --muted-foreground-hover: oklch(0.636 0 0);
-  --muted-soft-foreground: oklch(0.346 0 0);
-  --muted-soft-foreground-hover: oklch(0.426 0 0);
-
-  /* Accent */
-  --accent: oklch(0.8566 0.0017 247.84);
-  --accent-hover: oklch(0.9405 0.0046 258.32);
-  --accent-soft: oklch(0.9805 0.0046 258.32);
-  --accent-soft-hover: oklch(0.9305 0.0046 258.32);
-
-  --accent-foreground: oklch(0.205 0 0);
-  --accent-foreground-hover: oklch(0.285 0 0);
-  --accent-soft-foreground: oklch(0.346 0 0);
-  --accent-soft-foreground-hover: oklch(0.426 0 0);
-
   /* Popover */
-  --popover: oklch(0.986 0 0);
-  --popover-hover: oklch(0.936 0 0);
-  --popover-soft: oklch(0.996 0 0);
-  --popover-soft-hover: oklch(0.946 0 0);
+  --popover: oklch(0.97 0 0);
+  --popover-hover: oklch(0.94 0.015 240);
+  --popover-soft: oklch(0.98 0.005 240);
+  --popover-soft-hover: oklch(0.95 0.01 240);
 
-  --popover-foreground: oklch(0.145 0 0);
-  --popover-foreground-hover: oklch(0.225 0 0);
-  --popover-soft-foreground: oklch(0.346 0 0);
-  --popover-soft-foreground-hover: oklch(0.426 0 0);
+  --popover-foreground: oklch(0.3 0 0);
+  --popover-foreground-hover: oklch(0.25 0 0);
+  --popover-soft-foreground: oklch(0.35 0 0);
+  --popover-soft-foreground-hover: oklch(0.3 0 0);
 
   /* Card */
-  --card: oklch(0.996 0 0);
-  --card-hover: oklch(0.946 0 0);
-  --card-soft: oklch(0.996 0 0);
-  --card-soft-hover: oklch(0.946 0 0);
+  --card: oklch(0.98 0 0);
+  --card-hover: oklch(0.93 0.015 0);
+  --card-soft: oklch(0.97 0.005 0);
+  --card-soft-hover: oklch(0.94 0.01 0);
 
-  --card-foreground: oklch(0.242 0 0);
-  --card-foreground-hover: oklch(0.322 0 0);
-  --card-soft-foreground: oklch(0.346 0 0);
-  --card-soft-foreground-hover: oklch(0.426 0 0);
+  --card-foreground: oklch(0.3 0 0);
+  --card-foreground-hover: oklch(0.25 0 0);
+  --card-soft-foreground: oklch(0.35 0 0);
+  --card-soft-foreground-hover: oklch(0.3 0 0);
 
-  --card-inner: oklch(0.945 0 0);
-  --card-inner-hover: oklch(0.895 0 0);
-  --card-inner-soft: oklch(0.975 0 0);
-  --card-inner-soft-hover: oklch(0.925 0 0);
+  --card-inner: oklch(0.93 0.015 230);
+  --card-inner-hover: oklch(0.9 0.02 230);
+  --card-inner-soft: oklch(0.95 0.01 230);
+  --card-inner-soft-hover: oklch(0.92 0.015 230);
 
-  --card-inner-soft-foreground: oklch(0.346 0 0);
-  --card-inner-soft-foreground-hover: oklch(0.426 0 0);
+  --card-inner-soft-foreground: oklch(0.35 0 0);
+  --card-inner-soft-foreground-hover: oklch(0.3 0 0);
 
   /* Primary */
   --primary: oklch(0.4222 0.1918 318.89);
@@ -80,15 +58,26 @@
   --primary-soft-foreground-hover: oklch(0.3022 0.1918 318.89);
 
   /* Secondary */
-  --secondary: oklch(0.4127 0.0095 320.55);
-  --secondary-hover: oklch(0.3127 0.0095 320.55);
-  --secondary-soft: oklch(0.8827 0.0095 320.55);
-  --secondary-soft-hover: oklch(0.8227 0.0095 320.55);
+  --secondary: oklch(0.25 0.01 250);
+  --secondary-hover: oklch(0.15 0.015 250);
+  --secondary-soft: oklch(0.85 0.005 280);
+  --secondary-soft-hover: oklch(0.8 0.01 250);
 
-  --secondary-foreground: oklch(0.896 0 0);
-  --secondary-foreground-hover: oklch(0.846 0 0);
-  --secondary-soft-foreground: oklch(0.2127 0.0095 320.55);
-  --secondary-soft-foreground-hover: oklch(0.2927 0.0095 320.55);
+  --secondary-foreground: oklch(0.92 0 0);
+  --secondary-foreground-hover: oklch(0.85 0 0);
+  --secondary-soft-foreground: oklch(0.27 0 0);
+  --secondary-soft-foreground-hover: oklch(0.8 0 0);
+
+  /* Neutral */
+  --neutral: oklch(0.94 0.015 240);
+  --neutral-hover: oklch(0.91 0.015 240);
+  --neutral-soft: oklch(0.92 0.005 240);
+  --neutral-soft-hover: oklch(0.9 0.01 240);
+
+  --neutral-foreground: oklch(0.3 0 0);
+  --neutral-foreground-hover: oklch(0.25 0 0);
+  --neutral-soft-foreground: oklch(0.35 0 0);
+  --neutral-soft-foreground-hover: oklch(0.3 0 0);
 
   /* Destructive */
   --destructive: oklch(0.477 0.245 27.325);
@@ -104,8 +93,8 @@
   /* Success */
   --success: oklch(0.55 0.2 140);
   --success-hover: oklch(0.6 0.2 140);
-  --success-soft: oklch(0.93 0.2 140);
-  --success-soft-hover: oklch(0.849 0.2 140);
+  --success-soft: oklch(0.93 0.06 140);
+  --success-soft-hover: oklch(0.869 0.06 140);
 
   --success-foreground: oklch(0.98 0.0035 247.86);
   --success-foreground-hover: oklch(0.93 0.0035 247.86);
@@ -115,8 +104,8 @@
   /* Warning */
   --warning: oklch(0.65 0.2 60);
   --warning-hover: oklch(0.6 0.2 60);
-  --warning-soft: oklch(0.98 0.2 60);
-  --warning-soft-hover: oklch(0.91 0.2 60);
+  --warning-soft: oklch(0.95 0.06 60);
+  --warning-soft-hover: oklch(0.91 0.06 60);
 
   --warning-foreground: oklch(0.98 0.0035 247.86);
   --warning-foreground-hover: oklch(0.93 0.0035 247.86);
@@ -124,10 +113,10 @@
   --warning-soft-foreground-hover: oklch(0.53 0.2 60);
 
   /* Info */
-  --info: oklch(0.452 0.313214 264.052);
+  --info: oklch(0.552 0.313214 264.052);
   --info-hover: oklch(0.6 0.313214 264.052);
-  --info-soft: oklch(0.98 0.313214 264.052);
-  --info-soft-hover: oklch(0.917 0.313214 264.052);
+  --info-soft: oklch(0.97 0.313214 274.052);
+  --info-soft-hover: oklch(0.917 0.313214 274.052);
 
   --info-foreground: oklch(0.98 0.0035 247.86);
   --info-foreground-hover: oklch(0.93 0.0035 247.86);
@@ -135,65 +124,65 @@
   --info-soft-foreground-hover: oklch(0.332 0.313214 264.052);
 
   /* Border */
-  --border: oklch(0.922 0 0);
+  --border: oklch(0.65 0 0);
 }
 
 .dark {
   /* Base colors */
-  --background: oklch(0.231 0 0);
+  --background: oklch(0.251 0 0);
   --foreground: oklch(0.881 0 0);
 
-  /* Muted */
-  --muted: oklch(0.442 0.033 260.7);
-  --muted-hover: oklch(0.522 0.033 260.7);
-  --muted-soft: oklch(0.392 0.033 260.7);
-  --muted-soft-hover: oklch(0.442 0.033 260.7);
+  /* Secondary */
+  --secondary: oklch(0.75 0.01 260);
+  --secondary-hover: oklch(0.8 0.015 260);
+  --secondary-soft: oklch(0.72 0.005 260);
+  --secondary-soft-hover: oklch(0.75 0.01 260);
 
-  --muted-foreground: oklch(0.817 0.013 260.7);
-  --muted-foreground-hover: oklch(0.737 0.013 260.7);
-  --muted-soft-foreground: oklch(0.642 0.033 260.7);
-  --muted-soft-foreground-hover: oklch(0.722 0.033 260.7);
+  --secondary-foreground: oklch(0.3 0 0);
+  --secondary-foreground-hover: oklch(0.25 0 0);
+  --secondary-soft-foreground: oklch(0.25 0 0);
+  --secondary-soft-foreground-hover: oklch(0.2 0 0);
 
-  /* Accent */
-  --accent: oklch(0.4515 0.0017 286.3);
-  --accent-hover: oklch(0.3915 0.0017 286.3);
-  --accent-soft: oklch(0.2715 0.0017 286.3);
-  --accent-soft-hover: oklch(0.3215 0.0017 286.3);
+  /* Neutral */
+  --neutral: oklch(0.45 0.01 260);
+  --neutral-hover: oklch(0.5 0.015 260);
+  --neutral-soft: oklch(0.32 0.005 260);
+  --neutral-soft-hover: oklch(0.27 0.01 260);
 
-  --accent-foreground: oklch(0.98 0.013 264.1);
-  --accent-foreground-hover: oklch(0.9 0.013 264.1);
-  --accent-soft-foreground: oklch(0.5215 0.0017 286.3);
-  --accent-soft-foreground-hover: oklch(0.6015 0.0017 286.3);
+  --neutral-foreground: oklch(0.9 0 0);
+  --neutral-foreground-hover: oklch(0.85 0 0);
+  --neutral-soft-foreground: oklch(0.85 0 0);
+  --neutral-soft-foreground-hover: oklch(0.8 0 0);
 
   /* Popover */
-  --popover: oklch(0.205 0 0);
-  --popover-hover: oklch(0.285 0 0);
-  --popover-soft: oklch(0.155 0 0);
-  --popover-soft-hover: oklch(0.205 0 0);
+  --popover: oklch(0.3 0.01 260);
+  --popover-hover: oklch(0.35 0.015 260);
+  --popover-soft: oklch(0.27 0.005 260);
+  --popover-soft-hover: oklch(0.3 0.01 260);
 
-  --popover-foreground: oklch(0.885 0 0);
-  --popover-foreground-hover: oklch(0.805 0 0);
-  --popover-soft-foreground: oklch(0.405 0 0);
-  --popover-soft-foreground-hover: oklch(0.485 0 0);
+  --popover-foreground: oklch(0.9 0 0);
+  --popover-foreground-hover: oklch(0.85 0 0);
+  --popover-soft-foreground: oklch(0.85 0 0);
+  --popover-soft-foreground-hover: oklch(0.8 0 0);
 
   /* Card */
-  --card: oklch(0.15 0 0);
-  --card-hover: oklch(0.322 0 0);
-  --card-soft: oklch(0.192 0 0);
-  --card-soft-hover: oklch(0.242 0 0);
+  --card: oklch(0.2 0.01 260);
+  --card-hover: oklch(0.33 0.015 260);
+  --card-soft: oklch(0.25 0.005 260);
+  --card-soft-hover: oklch(0.28 0.01 260);
 
-  --card-foreground: oklch(0.864 0.013 264.1);
-  --card-foreground-hover: oklch(0.784 0.013 264.1);
-  --card-soft-foreground: oklch(0.332 0 0);
-  --card-soft-foreground-hover: oklch(0.412 0 0);
+  --card-foreground: oklch(0.9 0 0);
+  --card-foreground-hover: oklch(0.85 0 0);
+  --card-soft-foreground: oklch(0.85 0 0);
+  --card-soft-foreground-hover: oklch(0.8 0 0);
 
-  --card-inner: oklch(0.246 0 0);
-  --card-inner-hover: oklch(0.426 0 0);
-  --card-inner-soft: oklch(0.296 0 0);
-  --card-inner-soft-hover: oklch(0.346 0 0);
+  --card-inner: oklch(0.25 0.015 260);
+  --card-inner-hover: oklch(0.3 0.02 260);
+  --card-inner-soft: oklch(0.22 0.01 260);
+  --card-inner-soft-hover: oklch(0.25 0.015 260);
 
-  --card-inner-soft-foreground: oklch(0.446 0 0);
-  --card-inner-soft-foreground-hover: oklch(0.526 0 0);
+  --card-inner-soft-foreground: oklch(0.85 0 0);
+  --card-inner-soft-foreground-hover: oklch(0.8 0 0);
 
   /* Primary */
   --primary: oklch(0.48 0.2201 309.41);
@@ -205,17 +194,6 @@
   --primary-foreground-hover: oklch(0.796 0.013 264.1);
   --primary-soft-foreground: oklch(0.68 0.2201 309.41);
   --primary-soft-foreground-hover: oklch(0.76 0.2201 309.41);
-
-  /* Secondary */
-  --secondary: oklch(0.8542 0.0155 317.7);
-  --secondary-hover: oklch(0.7842 0.0155 317.7);
-  --secondary-soft: oklch(0.5442 0.0155 317.7);
-  --secondary-soft-hover: oklch(0.4842 0.0155 317.7);
-
-  --secondary-foreground: oklch(0.15 0.013 264.1);
-  --secondary-foreground-hover: oklch(0.32 0.013 264.1);
-  --secondary-soft-foreground: oklch(0.9542 0.0155 317.7);
-  --secondary-soft-foreground-hover: oklch(0.9942 0.0155 317.7);
 
   /* Destructive */
   --destructive: oklch(0.604 0.191 22.216);
@@ -269,25 +247,27 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-muted: var(--muted);
-  --color-muted-hover: var(--muted-hover);
-  --color-muted-soft: var(--muted-soft);
-  --color-muted-soft-hover: var(--muted-soft-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-soft: var(--secondary-soft);
+  --color-secondary-soft-hover: var(--secondary-soft-hover);
 
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted-foreground-hover: var(--muted-foreground-hover);
-  --color-muted-soft-foreground: var(--muted-soft-foreground);
-  --color-muted-soft-foreground-hover: var(--muted-soft-foreground-hover);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-foreground-hover: var(--secondary-foreground-hover);
+  --color-secondary-soft-foreground: var(--secondary-soft-foreground);
+  --color-secondary-soft-foreground-hover: var(
+    --secondary-soft-foreground-hover
+  );
 
-  --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-accent-soft: var(--accent-soft);
-  --color-accent-soft-hover: var(--accent-soft-hover);
+  --color-neutral: var(--neutral);
+  --color-neutral-hover: var(--neutral-hover);
+  --color-neutral-soft: var(--neutral-soft);
+  --color-neutral-soft-hover: var(--neutral-soft-hover);
 
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent-foreground-hover: var(--accent-foreground-hover);
-  --color-accent-soft-foreground: var(--accent-soft-foreground);
-  --color-accent-soft-foreground-hover: var(--accent-soft-foreground-hover);
+  --color-neutral-foreground: var(--neutral-foreground);
+  --color-neutral-foreground-hover: var(--neutral-foreground-hover);
+  --color-neutral-soft-foreground: var(--neutral-soft-foreground);
+  --color-neutral-soft-foreground-hover: var(--neutral-soft-foreground-hover);
 
   --color-popover: var(--popover);
   --color-popover-hover: var(--popover-hover);
@@ -306,8 +286,8 @@
 
   --color-card-foreground: var(--card-foreground);
   --color-card-foreground-hover: var(--card-foreground-hover);
-  --color-card-foreground-soft: var(--card-foreground-soft);
-  --color-card-foreground-soft-hover: var(--card-foreground-soft-hover);
+  --color-card-foreground-soft: var(--card-soft-foreground);
+  --color-card-foreground-soft-hover: var(--card-soft-foreground-hover);
 
   --color-card-inner: var(--card-inner);
   --color-card-inner-hover: var(--card-inner-hover);
@@ -323,18 +303,6 @@
   --color-primary-foreground-hover: var(--primary-foreground-hover);
   --color-primary-soft-foreground: var(--primary-soft-foreground);
   --color-primary-soft-foreground-hover: var(--primary-soft-foreground-hover);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-hover: var(--secondary-hover);
-  --color-secondary-soft: var(--secondary-soft);
-  --color-secondary-soft-hover: var(--secondary-soft-hover);
-
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary-foreground-hover: var(--secondary-foreground-hover);
-  --color-secondary-soft-foreground: var(--secondary-soft-foreground);
-  --color-secondary-soft-foreground-hover: var(
-    --secondary-soft-foreground-hover
-  );
 
   --color-destructive: var(--destructive);
   --color-destructive-hover: var(--destructive-hover);

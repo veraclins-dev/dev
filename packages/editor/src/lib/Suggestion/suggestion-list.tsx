@@ -81,7 +81,7 @@ export const SuggestionList = forwardRef<
         <li
           key={item.id}
           className={cn(ITEM_CLASSES, 'px-1', {
-            'bg-accent text-accent-foreground': index === selectedIndex,
+            'bg-secondary text-secondary-foreground': index === selectedIndex,
           })}
           onClick={() => selectItem(index)}
         >

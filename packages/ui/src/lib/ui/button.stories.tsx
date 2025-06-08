@@ -113,7 +113,7 @@ export const IconOnly: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button', { name: /add item/i });
-    expect(button).toHaveClass('bg-muted text-muted-foreground size-9');
+    expect(button).toHaveClass('bg-neutral text-neutral-foreground size-9');
     expect(canvas.getByTestId('svg')).toBeInTheDocument();
   },
 };
