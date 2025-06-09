@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react';
 
-import '../src/styles.css';
+import '../public/css/styles.css';
 
 import { IconProvider } from '../src';
 export const tags = ['autodocs'];
