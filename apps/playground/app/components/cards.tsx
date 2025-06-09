@@ -2,6 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
+  Box,
   Button,
   Card,
   CardContent,
@@ -27,8 +28,8 @@ export function Cards() {
           This is a card component that can be used to display content.
         </CardSubtitle>
       </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        <div className="flex gap-4">
+      <CardContent display="flex" flexDirection="column" gap={4}>
+        <Box display="flex" gap={4}>
           <Card className="w-full max-w-sm bg-card-inner">
             <CardHeader>
               <CardTitle>Login to your account</CardTitle>
@@ -38,8 +39,8 @@ export function Cards() {
             </CardHeader>
             <CardContent>
               <form>
-                <div className="flex flex-col gap-6">
-                  <div className="grid gap-2">
+                <Box display="flex" flexDirection="column" gap={6}>
+                  <Box display="grid" gap={2}>
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
@@ -47,32 +48,29 @@ export function Cards() {
                       placeholder="m@example.com"
                       required
                     />
-                  </div>
-                  <div className="grid gap-2">
-                    <div className="flex items-center">
+                  </Box>
+                  <Box display="grid" gap={2}>
+                    <Box display="flex" items="center">
                       <Label htmlFor="password">Password</Label>
                       <a href="#" className="ml-auto inline-block text-sm">
                         Forgot your password?
                       </a>
-                    </div>
+                    </Box>
                     <Input id="password" type="password" required />
-                  </div>
-                </div>
+                  </Box>
+                </Box>
               </form>
             </CardContent>
-            <CardFooter className="flex-col gap-2">
+            <CardFooter display="flex" flexDirection="column" gap={2}>
               <Button color="primary" type="submit" className="w-full">
                 Login
               </Button>
               <Button variant="outline" className="w-full">
                 Login with Google
               </Button>
-              <div className="mt-4 text-center text-sm">
-                Don&apos;t have an account?{' '}
-                <a href="#" className="">
-                  Sign up
-                </a>
-              </div>
+              <Box display="flex" flexDirection="column" gap={4}>
+                Don&apos;t have an account? <a href="#">Sign up</a>
+              </Box>
             </CardFooter>
           </Card>
           <Card className="bg-card-inner">
@@ -96,7 +94,10 @@ export function Cards() {
               </ol>
             </CardContent>
             <CardFooter>
-              <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+              <Box
+                display="flex"
+                className="*:data-[slot=avatar]:ring-background -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale"
+              >
                 <Avatar>
                   <AvatarImage
                     src="https://github.com/shadcn.png"
@@ -118,7 +119,7 @@ export function Cards() {
                   />
                   <AvatarFallback>ER</AvatarFallback>
                 </Avatar>
-              </div>
+              </Box>
             </CardFooter>
           </Card>
           <Card className="bg-card-inner">
@@ -147,17 +148,17 @@ export function Cards() {
                   <Button variant="text">@nextjs</Button>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-80" side="right">
-                  <div className="flex justify-between gap-4">
+                  <Box display="flex" justify="between" gap={4}>
                     <Avatar>
                       <AvatarImage src="https://github.com/vercel.png" />
                       <AvatarFallback>VC</AvatarFallback>
                     </Avatar>
-                    <div className="flex flex-col gap-1">
+                    <Box display="flex" flexDirection="column" gap={1}>
                       <h4 className="text-sm font-semibold">@nextjs</h4>
                       <p className="text-sm">
                         The React Framework – created and maintained by @vercel.
                       </p>
-                      <div className="mt-1 flex items-center gap-2">
+                      <Box display="flex" items="center" gap={2} mt={1}>
                         <Icon
                           name="calendar"
                           className="text-neutral-foreground size-4"
@@ -165,14 +166,14 @@ export function Cards() {
                         <span className="text-neutral-foreground text-xs">
                           Joined December 2021
                         </span>
-                      </div>
-                    </div>
-                  </div>
+                      </Box>
+                    </Box>
+                  </Box>
                 </HoverCardContent>
               </HoverCard>
             </CardFooter>
           </Card>
-        </div>
+        </Box>
       </CardContent>
     </Card>
   );

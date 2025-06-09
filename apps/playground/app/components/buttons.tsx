@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardContent,
@@ -14,11 +15,11 @@ export function Buttons() {
       <CardHeader>
         <CardTitle>Buttons</CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        <div className="flex gap-4 flex-wrap">
-          <div className="flex flex-col gap-3">
+      <CardContent display="flex" flexDirection="column" gap={4}>
+        <Box display="flex" flexDirection="column" flexWrap="wrap" gap={4}>
+          <Box display="flex" flexDirection="column" gap={3}>
             <Typography variant="h2">Solid</Typography>
-            <div className="flex gap-2">
+            <Box display="flex" gap={2}>
               <Button variant="solid" color="primary">
                 Primary
               </Button>
@@ -30,59 +31,59 @@ export function Buttons() {
               >
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="solid" color="secondary">
                 Secondary
               </Button>
               <Button variant="solid" color="secondary" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="solid" color="destructive">
                 Destructive
               </Button>
               <Button variant="solid" color="destructive" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="solid" color="success">
                 Success
               </Button>
               <Button variant="solid" color="success" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="solid" color="warning">
                 Warning
               </Button>
               <Button variant="solid" color="warning" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="solid" color="info">
                 Info
               </Button>
               <Button variant="solid" color="info" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="solid" color="neutral">
                 Neutral
               </Button>
               <Button variant="solid" color="neutral" loading>
                 Loading
               </Button>
-            </div>
-          </div>
-          <div className="flex flex-col gap-3">
+            </Box>
+          </Box>
+          <Box display="flex" flexDirection="column" gap={3}>
             <Typography variant="h2">Soft</Typography>
-            <div className="flex gap-2">
+            <Box display="flex" gap={2}>
               <Button
                 variant="soft"
                 color="primary"
@@ -93,179 +94,179 @@ export function Buttons() {
               <Button variant="soft" color="primary" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="soft" color="secondary">
                 Secondary
               </Button>
               <Button variant="soft" color="secondary" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="soft" color="destructive">
                 Destructive
               </Button>
               <Button variant="soft" color="destructive" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="soft" color="success">
                 Success
               </Button>
               <Button variant="soft" color="success" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="soft" color="warning">
                 Warning
               </Button>
               <Button variant="soft" color="warning" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="soft" color="info">
                 Info
               </Button>
               <Button variant="soft" color="info" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="soft" color="neutral">
                 Neutral
               </Button>
               <Button variant="soft" color="neutral" loading>
                 Loading
               </Button>
-            </div>
-          </div>
-          <div className="flex flex-col gap-3">
+            </Box>
+          </Box>
+          <Box display="flex" flexDirection="column" gap={3}>
             <Typography variant="h2">Outline</Typography>
 
-            <div className="flex gap-2">
+            <Box display="flex" gap={2}>
               <Button variant="outline" color="primary">
                 Primary
               </Button>
               <Button variant="outline" color="primary" loading>
                 Loading
               </Button>
-            </div>
+            </Box>
 
-            <div className="flex gap-2">
+            <Box display="flex" gap={2}>
               <Button variant="outline" color="secondary">
                 Secondary
               </Button>
               <Button variant="outline" color="secondary" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="outline" color="destructive">
                 Destructive
               </Button>
               <Button variant="outline" color="destructive" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="outline" color="success">
                 Success
               </Button>
               <Button variant="outline" color="success" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="outline" color="warning">
                 Warning
               </Button>
               <Button variant="outline" color="warning" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="outline" color="info">
                 Info
               </Button>
               <Button variant="outline" color="info" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="outline" color="neutral">
                 Neutral
               </Button>
               <Button variant="outline" color="neutral" loading>
                 Loading
               </Button>
-            </div>
-          </div>
-          <div className="flex flex-col gap-3">
+            </Box>
+          </Box>
+          <Box display="flex" flexDirection="column" gap={3}>
             <Typography variant="h2">Text</Typography>
-            <div className="flex gap-2">
+            <Box display="flex" gap={2}>
               <Button variant="text" color="primary">
                 Primary
               </Button>
               <Button variant="text" color="primary" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="text" color="secondary">
                 Secondary
               </Button>
               <Button variant="text" color="secondary" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="text" color="destructive">
                 Destructive
               </Button>
               <Button variant="text" color="destructive" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="text" color="success">
                 Success
               </Button>
               <Button variant="text" color="success" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="text" color="warning">
                 Warning
               </Button>
               <Button variant="text" color="warning" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="text" color="info">
                 Info
               </Button>
               <Button variant="text" color="info" loading>
                 Loading
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button variant="text" color="neutral">
                 Neutral
               </Button>
               <Button variant="text" color="neutral" loading>
                 Loading
               </Button>
-            </div>
-          </div>
-          <div className="flex flex-col gap-3">
+            </Box>
+          </Box>
+          <Box display="flex" flexDirection="column" gap={3}>
             <Typography variant="h2">Icon</Typography>
-            <div className="flex gap-2">
+            <Box display="flex" gap={2}>
               <Button size="icon" color="primary" variant="solid">
                 <Icon name="plus" />
               </Button>
@@ -278,8 +279,8 @@ export function Buttons() {
               <Button size="icon" color="primary" variant="text">
                 <Icon name="heart" />
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button size="icon" color="secondary" variant="solid">
                 <Icon name="plus" />
               </Button>
@@ -292,8 +293,8 @@ export function Buttons() {
               <Button size="icon" color="secondary" variant="text">
                 <Icon name="heart" />
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button size="icon" color="destructive" variant="solid">
                 <Icon name="plus" />
               </Button>
@@ -306,8 +307,8 @@ export function Buttons() {
               <Button size="icon" color="destructive" variant="text">
                 <Icon name="heart" />
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button size="icon" color="success" variant="solid">
                 <Icon name="plus" />
               </Button>
@@ -320,8 +321,8 @@ export function Buttons() {
               <Button size="icon" color="success" variant="text">
                 <Icon name="heart" />
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button size="icon" color="warning" variant="solid">
                 <Icon name="plus" />
               </Button>
@@ -334,8 +335,8 @@ export function Buttons() {
               <Button size="icon" color="warning" variant="text">
                 <Icon name="heart" />
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button size="icon" color="info" variant="solid">
                 <Icon name="plus" />
               </Button>
@@ -348,8 +349,8 @@ export function Buttons() {
               <Button size="icon" color="info" variant="text">
                 <Icon name="heart" />
               </Button>
-            </div>
-            <div className="flex gap-2">
+            </Box>
+            <Box display="flex" gap={2}>
               <Button size="icon" color="neutral" variant="solid">
                 <Icon name="plus" />
               </Button>
@@ -362,12 +363,12 @@ export function Buttons() {
               <Button size="icon" color="neutral" variant="text">
                 <Icon name="heart" />
               </Button>
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
         <Typography variant="h2">Combination</Typography>
-        <div className="flex gap-4">
-          <div className="flex gap-4 justify-center flex-1">
+        <Box display="flex" gap={4}>
+          <Box display="flex" gap={4} justify="center" flex={1}>
             <Button variant="solid" color="secondary">
               Clear
             </Button>
@@ -375,24 +376,24 @@ export function Buttons() {
               Cancel
             </Button>
             <Button color="primary">Submit</Button>
-          </div>
-          <div className="flex gap-3 justify-center flex-1">
+          </Box>
+          <Box display="flex" gap={4} justify="center" flex={1}>
             <Button variant="solid" fullWidth color="secondary" size="md">
               Login
             </Button>
             <Button color="primary" fullWidth size="md">
               Get started
             </Button>
-          </div>
-          <div className="flex gap-3 justify-center flex-1">
+          </Box>
+          <Box display="flex" gap={4} justify="center" flex={1}>
             <Button variant="outline" fullWidth color="secondary" size="sm">
               Login
             </Button>
             <Button color="primary" fullWidth size="sm">
               Get started
             </Button>
-          </div>
-        </div>
+          </Box>
+        </Box>
       </CardContent>
     </Card>
   );

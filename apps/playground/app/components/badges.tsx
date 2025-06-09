@@ -1,5 +1,6 @@
 import {
   Badge,
+  Box,
   Card,
   CardContent,
   CardHeader,
@@ -11,14 +12,14 @@ import { Chips } from './chips';
 
 export function Badges() {
   return (
-    <div className="flex gap-4">
+    <Box display="flex" gap={4}>
       <Card className="w-full">
         <CardHeader>
           <CardTitle>Badges</CardTitle>
         </CardHeader>
         <CardContent className="flex gap-16">
-          <div className="flex gap-4 flex-wrap">
-            <div className="flex flex-col gap-3">
+          <Box display="flex" gap={4} flexWrap="wrap">
+            <Box display="flex" flexDirection="column" gap={3}>
               <Typography variant="h3">Solid</Typography>
 
               <Badge variant="solid" color="primary">
@@ -44,8 +45,8 @@ export function Badges() {
               <Badge variant="solid" color="info">
                 Info
               </Badge>
-            </div>
-            <div className="flex flex-col gap-3">
+            </Box>
+            <Box display="flex" flexDirection="column" gap={3}>
               <Typography variant="h3">Soft</Typography>
 
               <Badge variant="soft" color="primary">
@@ -71,8 +72,8 @@ export function Badges() {
               <Badge variant="soft" color="info">
                 Info
               </Badge>
-            </div>
-            <div className="flex flex-col gap-3">
+            </Box>
+            <Box display="flex" flexDirection="column" gap={3}>
               <Typography variant="h3">Outline</Typography>
 
               <Badge variant="outline" color="primary">
@@ -98,8 +99,8 @@ export function Badges() {
               <Badge variant="outline" color="info">
                 Info
               </Badge>
-            </div>
-            <div className="flex flex-col gap-3">
+            </Box>
+            <Box display="flex" flexDirection="column" gap={3}>
               <Typography variant="h3">Sizes</Typography>
 
               <Badge variant="outline" color="primary" size="md">
@@ -125,11 +126,11 @@ export function Badges() {
               <Badge variant="outline" color="info" size="lg">
                 Large (lg)
               </Badge>
-            </div>
-          </div>
+            </Box>
+          </Box>
         </CardContent>
       </Card>
       <Chips />
-    </div>
+    </Box>
   );
 }

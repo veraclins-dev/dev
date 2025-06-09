@@ -1,4 +1,4 @@
-import { Typography } from '@veraclins-dev/ui';
+import { Box, Typography } from '@veraclins-dev/ui';
 
 import { Badges } from './components/badges';
 import { Boxes } from './components/boxes';
@@ -11,7 +11,14 @@ import { Links } from './components/links';
 
 export function NxWelcome({ title }: { title: string }) {
   return (
-    <div className="container flex w-full gap-4 flex-col h-full my-8 overflow-auto rounded-md py-4">
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={4}
+      my={8}
+      py={4}
+      className="container w-full h-full overflow-auto rounded-md"
+    >
       <Typography variant="h1" className="text-center">
         Welcome to <span className="text-primary">{title}</span>
         <a
@@ -31,7 +38,7 @@ export function NxWelcome({ title }: { title: string }) {
       <Inputs />
       <Boxes />
       <Cards />
-    </div>
+    </Box>
   );
 }
 
