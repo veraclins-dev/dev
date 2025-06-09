@@ -3,6 +3,9 @@ import * as RechartsPrimitive from 'recharts';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
+import { Typography } from './typography';
+
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '', dark: '.dark' } as const;
 
@@ -118,7 +121,7 @@ function ChartContainer({
 
   return (
     <ChartContext.Provider value={{ config }}>
-      <div
+      <Box
         data-slot="chart"
         data-chart={chartId}
         className={cn(
@@ -131,7 +134,7 @@ function ChartContainer({
         <RechartsPrimitive.ResponsiveContainer>
           {children}
         </RechartsPrimitive.ResponsiveContainer>
-      </div>
+      </Box>
     </ChartContext.Provider>
   );
 }
@@ -200,9 +203,9 @@ function ChartTooltipContent({
 
     if (labelFormatter) {
       return (
-        <div className={cn('font-medium', labelClassName)}>
+        <Box className={cn('font-medium', labelClassName)}>
           {labelFormatter(value, payload)}
-        </div>
+        </Box>
       );
     }
 
@@ -210,7 +213,7 @@ function ChartTooltipContent({
       return null;
     }
 
-    return <div className={cn('font-medium', labelClassName)}>{value}</div>;
+    return <Box className={cn('font-medium', labelClassName)}>{value}</Box>;
   }, [
     label,
     labelFormatter,
@@ -228,21 +231,21 @@ function ChartTooltipContent({
   const nestLabel = payload.length === 1 && indicator !== 'dot';
 
   return (
-    <div
+    <Box
       className={cn(
         'border-foreground/50 bg-background grid min-w-[8rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl',
         className,
       )}
     >
       {!nestLabel ? tooltipLabel : null}
-      <div className="grid gap-1.5">
+      <Box className="grid gap-1.5">
         {payload.map((item, index) => {
           const key = `${nameKey || item.name || item.dataKey || 'value'}`;
           const itemConfig = getPayloadConfigFromPayload(config, item, key);
           const indicatorColor = color || item.payload.fill || item.color;
 
           return (
-            <div
+            <Box
               key={item.dataKey}
               className={cn(
                 '[&>svg]:text-neutral-foreground flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5',
@@ -257,7 +260,7 @@ function ChartTooltipContent({
                     <itemConfig.icon />
                   ) : (
                     !hideIndicator && (
-                      <div
+                      <Box
                         className={cn(
                           'shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)',
                           {
@@ -277,31 +280,33 @@ function ChartTooltipContent({
                       />
                     )
                   )}
-                  <div
-                    className={cn(
-                      'flex flex-1 justify-between leading-none',
-                      nestLabel ? 'items-end' : 'items-center',
-                    )}
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    flex="1"
+                    justify="between"
+                    items={nestLabel ? 'end' : 'center'}
+                    className="leading-none"
                   >
-                    <div className="grid gap-1.5">
+                    <Box display="grid" className=" gap-1.5">
                       {nestLabel ? tooltipLabel : null}
-                      <span className="text-neutral-foreground">
+                      <Typography className="text-neutral-foreground">
                         {itemConfig?.label || item.name}
-                      </span>
-                    </div>
+                      </Typography>
+                    </Box>
                     {item.value && (
                       <span className="text-foreground font-mono font-medium tabular-nums">
                         {item.value.toLocaleString()}
                       </span>
                     )}
-                  </div>
+                  </Box>
                 </>
               )}
-            </div>
+            </Box>
           );
         })}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 
@@ -340,19 +345,19 @@ function ChartLegendContent({
   }
 
   return (
-    <div
-      className={cn(
-        'flex items-center justify-center gap-4',
-        verticalAlign === 'top' ? 'pb-3' : 'pt-3',
-        className,
-      )}
+    <Box
+      display="flex"
+      items="center"
+      justify="center"
+      gap={4}
+      className={cn(verticalAlign === 'top' ? 'pb-3' : 'pt-3', className)}
     >
       {payload.map((item) => {
         const key = `${nameKey || item.dataKey || 'value'}`;
         const itemConfig = getPayloadConfigFromPayload(config, item, key);
 
         return (
-          <div
+          <Box
             key={item.value}
             className={cn(
               '[&>svg]:text-neutral-foreground flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3',
@@ -361,7 +366,7 @@ function ChartLegendContent({
             {itemConfig?.icon && !hideIcon ? (
               <itemConfig.icon />
             ) : (
-              <div
+              <Box
                 className="h-2 w-2 shrink-0 rounded-[2px]"
                 style={{
                   backgroundColor: item.color,
@@ -369,10 +374,10 @@ function ChartLegendContent({
               />
             )}
             {itemConfig?.label}
-          </div>
+          </Box>
         );
       })}
-    </div>
+    </Box>
   );
 }
 

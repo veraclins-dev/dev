@@ -2,6 +2,7 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
 import { Icon } from './icon';
 
 function Dialog({
@@ -72,9 +73,12 @@ function DialogContent({
 
 function DialogHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={2}
       data-slot="dialog-header"
-      className={cn('flex flex-col gap-2 text-center sm:text-left', className)}
+      className={cn('text-center sm:text-left', className)}
       {...props}
     />
   );
@@ -82,12 +86,13 @@ function DialogHeader({ className, ...props }: React.ComponentProps<'div'>) {
 
 function DialogFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div
+    <Box
+      display="flex"
+      flexDirection="column-reverse"
+      gap={2}
+      justify="end"
       data-slot="dialog-footer"
-      className={cn(
-        'flex flex-col-reverse gap-2 sm:flex-row sm:justify-end',
-        className,
-      )}
+      className={cn('sm:flex-row sm:justify-end', className)}
       {...props}
     />
   );

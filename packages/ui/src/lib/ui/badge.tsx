@@ -1,5 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
 import { type BadgeVariants, badgeVariants } from './variants';
 
 type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> &
@@ -34,7 +35,7 @@ type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> &
  */
 function Badge({ className, variant, color, size, ...props }: BadgeProps) {
   const badgeClass = cn(badgeVariants({ variant, color, size }), className);
-  return <div className={badgeClass} {...props} />;
+  return <Box className={badgeClass} {...props} />;
 }
 
 export { Badge, type BadgeProps };

@@ -39,10 +39,10 @@ type CheckedState = CheckboxPrimitive.CheckedState;
  * <Checkbox />
  *
  * // With label
- * <div className="flex items-center gap-2">
+ * <Box className="flex items-center gap-2">
  *   <Checkbox id="terms" />
  *   <label htmlFor="terms">Accept terms</label>
- * </div>
+ * </Box>
  *
  * // Controlled component
  * <Checkbox checked={isChecked} onCheckedChange={setIsChecked} />

@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
 import { Icon } from './icon';
 import { Label, type LabelProps } from './label';
 import { RADIO_GROUP_ITEM_CLASSES } from './styles';
@@ -80,7 +81,7 @@ function RadioGroupItem({
   label?: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center space-x-2">
+    <Box display="flex" items="center" gap={2}>
       <RadioGroupPrimitive.Item
         data-slot="radio-group-item"
         className={cn(RADIO_GROUP_ITEM_CLASSES, className)}
@@ -99,7 +100,7 @@ function RadioGroupItem({
           {label}
         </Label>
       )}
-    </div>
+    </Box>
   );
 }
 

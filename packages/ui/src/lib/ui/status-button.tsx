@@ -2,6 +2,7 @@ import { useSpinDelay } from 'spin-delay';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
 import { Button, type ButtonProps } from './button';
 import { Icon } from './icon';
 import {
@@ -71,26 +72,41 @@ export const StatusButton = ({
   });
   const companion = {
     pending: delayedPending ? (
-      <div className="inline-flex h-6 w-6 items-center justify-center">
+      <Box
+        display="inline-flex"
+        items="center"
+        justify="center"
+        className="h-6 w-6"
+      >
         <Icon name="update" className="animate-spin" />
-      </div>
+      </Box>
     ) : null,
     success: (
-      <div className="inline-flex h-6 w-6 items-center justify-center">
+      <Box
+        display="inline-flex"
+        items="center"
+        justify="center"
+        className="h-6 w-6"
+      >
         <Icon name="check" />
-      </div>
+      </Box>
     ),
     error: (
-      <div className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-destructive">
+      <Box
+        display="inline-flex"
+        items="center"
+        justify="center"
+        className="h-6 w-6 rounded-full bg-destructive"
+      >
         <Icon name="cross-1" className="text-destructive-foreground" />
-      </div>
+      </Box>
     ),
     idle: null,
   }[status];
 
   return (
     <Button className={cn('flex justify-center gap-4', className)} {...props}>
-      <div>{children}</div>
+      <Box>{children}</Box>
       {message ? (
         <TooltipProvider>
           <Tooltip>

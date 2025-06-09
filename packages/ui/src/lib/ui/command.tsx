@@ -2,6 +2,7 @@ import { Command as CommandPrimitive } from 'cmdk';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
 import {
   Dialog,
   DialogContent,
@@ -62,12 +63,13 @@ function CommandInput({
   wrapperClassName?: string;
 }) {
   return (
-    <div
+    <Box
+      display="flex"
+      items="center"
+      gap={2}
+      flex="1"
       data-slot="command-input-wrapper"
-      className={cn(
-        'flex-1 flex w-full min-w-30 items-center gap-2',
-        wrapperClassName,
-      )}
+      className={cn('w-full min-w-30', wrapperClassName)}
     >
       {withIcon && (
         <Icon name="search" className="size-4 shrink-0 opacity-50" />
@@ -77,7 +79,7 @@ function CommandInput({
         className={cn(INPUT_CLASSES, className)}
         {...props}
       />
-    </div>
+    </Box>
   );
 }
 function CommandList({

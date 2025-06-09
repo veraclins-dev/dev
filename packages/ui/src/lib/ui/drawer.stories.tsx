@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 
+import { Box } from './box';
 import { Button } from './button';
 import {
   Drawer,
@@ -77,7 +78,7 @@ export const Primary: Story = {
             <DrawerTitle>Move Goal</DrawerTitle>
             <DrawerDescription>Set your daily activity goal.</DrawerDescription>
           </DrawerHeader>
-          <div className="overflow-y-auto px-4 text-sm">
+          <Box className="overflow-y-auto px-4 text-sm">
             <h4 className="mb-4 text-lg leading-none font-medium">
               Lorem Ipsum
             </h4>
@@ -92,7 +93,7 @@ export const Primary: Story = {
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
             ))}
-          </div>
+          </Box>
           <DrawerFooter>
             <Button>Submit</Button>
             <DrawerClose asChild>
@@ -114,15 +115,15 @@ export const DrawerBottom: Story = {
           <Button variant="outline">Open Drawer</Button>
         </DrawerTrigger>
         <DrawerContent>
-          <div className="mx-auto w-full max-w-sm">
+          <Box className="mx-auto w-full max-w-sm">
             <DrawerHeader>
               <DrawerTitle>Move Goal</DrawerTitle>
               <DrawerDescription>
                 Set your daily activity goal.
               </DrawerDescription>
             </DrawerHeader>
-            <div className="p-4 pb-0">
-              <div className="flex items-center justify-center space-x-2">
+            <Box className="p-4 pb-0">
+              <Box display="flex" items="center" justify="center" gap={2}>
                 <Button
                   variant="outline"
                   size="icon"
@@ -133,14 +134,14 @@ export const DrawerBottom: Story = {
                   <Icon name="minus" />
                   <span className="sr-only">Decrease</span>
                 </Button>
-                <div className="flex-1 text-center">
-                  <div className="text-7xl font-bold tracking-tighter">
+                <Box flex="1" textAlign="center">
+                  <Box className="text-7xl font-bold tracking-tighter">
                     {10}
-                  </div>
-                  <div className="text-neutral-foreground text-[0.70rem] uppercase">
+                  </Box>
+                  <Box className="text-neutral-foreground text-[0.70rem] uppercase">
                     Calories/day
-                  </div>
-                </div>
+                  </Box>
+                </Box>
                 <Button
                   variant="outline"
                   size="icon"
@@ -151,8 +152,8 @@ export const DrawerBottom: Story = {
                   <Icon name="plus" />
                   <span className="sr-only">Increase</span>
                 </Button>
-              </div>
-              <div className="mt-3 h-[120px]">
+              </Box>
+              <Box className="mt-3 h-[120px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={data}>
                     <Bar
@@ -166,15 +167,15 @@ export const DrawerBottom: Story = {
                     />
                   </BarChart>
                 </ResponsiveContainer>
-              </div>
-            </div>
+              </Box>
+            </Box>
             <DrawerFooter>
               <Button>Submit</Button>
               <DrawerClose asChild>
                 <Button variant="outline">Cancel</Button>
               </DrawerClose>
             </DrawerFooter>
-          </div>
+          </Box>
         </DrawerContent>
       </Drawer>
     );

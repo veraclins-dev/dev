@@ -555,7 +555,7 @@ const boxVariants = cva(BOX_DEFAULT_CLASSES, {
       'inline-flex': 'inline-flex',
       grid: 'grid',
       'inline-grid': 'inline-grid',
-      none: 'none',
+      hidden: 'hidden',
     },
     flexDirection: {
       row: 'flex-row',
@@ -584,7 +584,7 @@ const boxVariants = cva(BOX_DEFAULT_CLASSES, {
       'wrap-reverse': 'flex-wrap-reverse',
     },
     flex: {
-      1: 'flex-1',
+      '1': 'flex-1',
       auto: 'flex-auto',
       initial: 'flex-initial',
       none: 'flex-none',

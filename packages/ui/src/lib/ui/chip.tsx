@@ -2,6 +2,7 @@ import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
 import { Icon } from './icon';
 import { type ChipVariants, chipVariants } from './variants';
 
@@ -61,7 +62,7 @@ const Chip = memo(
     ...props
   }: ChipProps) => {
     return (
-      <div
+      <Box
         className={cn(chipVariants({ variant, color, size }), className)}
         {...props}
       >
@@ -81,7 +82,7 @@ const Chip = memo(
             tooltip="Remove"
           />
         )}
-      </div>
+      </Box>
     );
   },
 );

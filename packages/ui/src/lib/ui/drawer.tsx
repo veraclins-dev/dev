@@ -3,6 +3,8 @@ import { Drawer as DrawerPrimitive } from 'vaul';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
+
 function Drawer({
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
@@ -63,7 +65,11 @@ function DrawerContent({
         )}
         {...props}
       >
-        <div className="bg-neutral mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
+        <Box
+          mt={4}
+          display="hidden"
+          className="bg-neutral mx-auto h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block"
+        />
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
@@ -72,9 +78,12 @@ function DrawerContent({
 
 function DrawerHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div
+    <Box
+      display="flex"
+      flexDirection="column"
+      p={4}
       data-slot="drawer-header"
-      className={cn('flex flex-col gap-1.5 p-4', className)}
+      className={cn('gap-1.5', className)}
       {...props}
     />
   );
@@ -82,9 +91,13 @@ function DrawerHeader({ className, ...props }: React.ComponentProps<'div'>) {
 
 function DrawerFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div
+    <Box
+      display="flex"
+      flexDirection="column"
+      p={4}
+      gap={2}
       data-slot="drawer-footer"
-      className={cn('mt-auto flex flex-col gap-2 p-4', className)}
+      className={cn('mt-auto', className)}
       {...props}
     />
   );

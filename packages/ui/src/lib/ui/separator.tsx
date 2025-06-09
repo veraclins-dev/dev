@@ -13,11 +13,11 @@ import { cn } from '@veraclins-dev/utils';
  * <Separator />
  *
  * // Vertical separator
- * <div className="flex h-8">
- *   <span>Left</span>
+ * <Box className="flex h-8">
+ *   <Typography variant="body2">Left</Typography>
  *   <Separator orientation="vertical" />
- *   <span>Right</span>
- * </div>
+ *   <Typography variant="body2">Right</Typography>
+ * </Box>
  *
  * // With custom styling
  * <Separator className="my-4 bg-blue-500" />

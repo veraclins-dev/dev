@@ -12,11 +12,11 @@ import { Box } from './box';
  * <Skeleton className="h-4 w-[250px]" />
  *
  * // Card skeleton
- * <div className="space-y-3">
+ * <Box className="space-y-3">
  *   <Skeleton className="h-4 w-[250px]" />
  *   <Skeleton className="h-4 w-[200px]" />
  *   <Skeleton className="h-4 w-[300px]" />
- * </div>
+ * </Box>
  *
  * // Avatar skeleton
  * <Skeleton className="h-12 w-12 rounded-full" />

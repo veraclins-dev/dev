@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Box } from './box';
 import { RadioGroup, RadioGroupItem } from './radio-group';
+import { Typography } from './typography';
 
 const meta = {
   title: 'Base/RadioGroup',
@@ -136,12 +137,14 @@ export const WithCustomContent: Story = {
           id="custom-content-option1"
           value="option1"
           label={
-            <div className="flex flex-col">
-              <span className="font-medium">Option 1</span>
-              <span className="text-sm text-gray-500">
+            <Box display="flex" flexDirection="column">
+              <Typography variant="body1" className="font-medium">
+                Option 1
+              </Typography>
+              <Typography variant="body2" className="text-sm text-gray-500">
                 Description for option 1
-              </span>
-            </div>
+              </Typography>
+            </Box>
           }
         />
         <RadioGroupItem

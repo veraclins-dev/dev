@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
+import { Box } from './box';
 import Button from './button';
 import {
   Dialog,
@@ -39,20 +40,20 @@ export const Primary: Story = {
                 done.
               </DialogDescription>
             </DialogHeader>
-            <div className="grid gap-4">
-              <div className="grid gap-3">
+            <Box display="grid" gap={4}>
+              <Box display="grid" gap={3}>
                 <Label htmlFor="name-1">Name</Label>
                 <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
-              </div>
-              <div className="grid gap-3">
+              </Box>
+              <Box display="grid" gap={3}>
                 <Label htmlFor="username-1">Username</Label>
                 <Input
                   id="username-1"
                   name="username"
                   defaultValue="@peduarte"
                 />
-              </div>
-            </div>
+              </Box>
+            </Box>
             <DialogFooter>
               <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
@@ -81,7 +82,7 @@ export const DialogScrollableContent: Story = {
               This is a dialog with scrollable content.
             </DialogDescription>
           </DialogHeader>
-          <div className="-mx-6 max-h-[500px] overflow-y-auto px-6 text-sm">
+          <Box className="-mx-6 max-h-[500px] overflow-y-auto px-6 text-sm">
             <h4 className="mb-4 text-lg leading-none font-medium">
               Lorem Ipsum
             </h4>
@@ -96,7 +97,7 @@ export const DialogScrollableContent: Story = {
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
             ))}
-          </div>
+          </Box>
         </DialogContent>
       </Dialog>
     );
@@ -122,7 +123,7 @@ export const DialogWithStickyFooter: Story = {
               This is a dialog with scrollable content.
             </DialogDescription>
           </DialogHeader>
-          <div className="-mx-6 max-h-[500px] overflow-y-auto px-6 text-sm">
+          <Box className="-mx-6 max-h-[500px] overflow-y-auto px-6 text-sm">
             <h4 className="mb-4 text-lg leading-none font-medium">
               Lorem Ipsum
             </h4>
@@ -137,7 +138,7 @@ export const DialogWithStickyFooter: Story = {
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
             ))}
-          </div>
+          </Box>
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline">Close</Button>

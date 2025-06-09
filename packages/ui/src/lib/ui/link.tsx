@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { cn, type OverrideProps } from '@veraclins-dev/utils';
+import { cn } from '@veraclins-dev/utils';
 
 import { type LinkVariants, linkVariants } from './variants';
 
 type Target = '_blank' | '_self' | '_parent' | '_top';
 
-// Base props for when component is not provided or is a standard HTML anchor
+// Base props for the Link component
 interface BaseLinkProps extends LinkVariants {
   className?: string;
   children?: React.ReactNode;
@@ -14,27 +14,19 @@ interface BaseLinkProps extends LinkVariants {
   rel?: string;
 }
 
-interface LinkTypeMap<
-  AdditionalProps = object,
-  RootComponent extends React.ElementType = 'a',
-> {
-  props: AdditionalProps & BaseLinkProps;
-  defaultComponent: RootComponent;
-}
+// Define a type for custom components
+type CustomComponent = React.ComponentType<any>;
 
-type LinkProps<
-  RootComponent extends React.ElementType = LinkTypeMap['defaultComponent'],
-  AdditionalProps = object,
-> = OverrideProps<
-  LinkTypeMap<AdditionalProps, RootComponent>,
-  RootComponent
-> & {
+// Define LinkProps using OverrideProps
+type LinkProps<RootComponent extends 'a' | CustomComponent = 'a'> = {
   component?: RootComponent;
-};
-function Link<
-  C extends React.ElementType = LinkTypeMap['defaultComponent'],
-  AdditionalProps = object,
->({
+} & (RootComponent extends 'a'
+  ? BaseLinkProps & Omit<React.ComponentProps<'a'>, keyof BaseLinkProps>
+  : RootComponent extends React.ComponentType<infer P>
+    ? BaseLinkProps & Omit<P, keyof BaseLinkProps>
+    : never);
+
+function Link<C extends 'a' | CustomComponent = 'a'>({
   component = 'a' as C,
   type,
   color,
@@ -46,8 +38,8 @@ function Link<
   target,
   rel,
   ...props
-}: LinkProps<C, AdditionalProps>) {
-  const Component = component;
+}: LinkProps<C>) {
+  const Component = component as React.ComponentType<any>;
 
   // Ensure rel includes 'noopener noreferrer' for external links when target is '_blank'
   const computedRel =

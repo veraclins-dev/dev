@@ -4,6 +4,7 @@ import * as SheetPrimitive from '@radix-ui/react-dialog';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
 import { Icon } from './icon';
 
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
@@ -83,9 +84,13 @@ function SheetContent({
 
 function SheetHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div
+    <Box
       data-slot="sheet-header"
-      className={cn('flex flex-col gap-1.5 p-4', className)}
+      display="flex"
+      flexDirection="column"
+      gap={2}
+      p={4}
+      className={className}
       {...props}
     />
   );
@@ -93,9 +98,14 @@ function SheetHeader({ className, ...props }: React.ComponentProps<'div'>) {
 
 function SheetFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div
+    <Box
       data-slot="sheet-footer"
-      className={cn('mt-auto flex flex-col gap-2 p-4', className)}
+      mt={4}
+      display="flex"
+      flexDirection="column"
+      gap={2}
+      p={4}
+      className={className}
       {...props}
     />
   );

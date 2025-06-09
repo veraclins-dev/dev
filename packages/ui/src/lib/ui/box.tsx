@@ -17,7 +17,9 @@ type ContainerElement =
 
 interface BoxProps extends React.HTMLAttributes<HTMLElement>, BoxVariants {
   /** The HTML element to render the Box as. Defaults to 'div'. */
-  component?: ContainerElement;
+  component?: ContainerElement | React.ComponentType<any>;
+  /** The ref to be forwarded to the underlying element */
+  ref?: React.Ref<HTMLDivElement | HTMLSpanElement>;
 }
 
 /**
@@ -70,7 +72,7 @@ function Base({
   flexWrap,
   ...props
 }: BoxProps) {
-  const Component = component;
+  const Component = component as React.ElementType;
 
   return (
     <Component
@@ -109,6 +111,7 @@ function Base({
     </Component>
   );
 }
+
 /**
  * A memoized flexible container component inspired by MUI's Box, supporting spacing and layout props.
  * This enables predictable styling of elements with a consistent API.

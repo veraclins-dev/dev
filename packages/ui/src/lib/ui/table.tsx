@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Box } from './box';
+
 /**
  * A responsive table component with built-in styling and accessibility features.
  * Wraps the native table element with additional functionality and styling.
@@ -26,7 +28,7 @@ import { cn } from '@veraclins-dev/utils';
  */
 function Table({ className, ...props }: React.ComponentProps<'table'>) {
   return (
-    <div
+    <Box
       data-slot="table-container"
       className="relative w-full overflow-x-auto"
     >
@@ -35,7 +37,7 @@ function Table({ className, ...props }: React.ComponentProps<'table'>) {
         className={cn('w-full caption-bottom text-sm', className)}
         {...props}
       />
-    </div>
+    </Box>
   );
 }
 
