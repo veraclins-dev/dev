@@ -18,6 +18,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Typography,
 } from '../../ui';
 
 import {
@@ -161,7 +162,7 @@ function BaseDatePicker<T extends ValueType>({
             type="button"
           >
             <Icon name="calendar" className="text-neutral-foreground" />
-            <span>{displayText()}</span>
+            <Typography variant="body2">{displayText()}</Typography>
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
@@ -278,13 +279,12 @@ function DateRangePickerField({
     onChange?: (range: DateRange | undefined) => void;
   }) {
   const { control, mainRef, ...baseProps } = useDatePicker({ field, name });
-  const initial = suppliedDefaultValue ?? field?.initialValue;
-  const defaultValue = getRangeFromValue(initial) ?? {
-    from: new Date(new Date().getFullYear(), 0, 20),
-    to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
-  };
+  const defaultValue = suppliedDefaultValue ?? field?.initialValue;
+  const initialRange = defaultValue
+    ? getRangeFromValue(defaultValue)
+    : undefined;
 
-  const [range, setRange] = useState<DateRange | undefined>(defaultValue);
+  const [range, setRange] = useState<DateRange | undefined>(initialRange);
   const [formValue, setFormValue] = useState<string>('');
 
   useEffect(() => {
@@ -298,7 +298,6 @@ function DateRangePickerField({
   }, [suppliedValue]);
 
   const handleSelect = (newRange: DateRange | undefined) => {
-    console.log('Selected date:', newRange);
     setRange(newRange);
     const newFormValue = getValueFromRange(newRange);
     setFormValue(newFormValue);
@@ -308,10 +307,10 @@ function DateRangePickerField({
   };
 
   const displayText = () => {
-    if (!range?.from) return 'Pick a date';
-    return range.to
-      ? `${format(range.from, 'LLL dd, y')} - ${format(range.to, 'LLL dd, y')}`
-      : format(range.from, 'LLL dd, y');
+    if (!range) return 'Pick a date range';
+    const from = range.from ? format(range.from, 'LLL dd, y') : '';
+    const to = range.to ? format(range.to, 'LLL dd, y') : '';
+    return from && to ? `${from} - ${to}` : from || to;
   };
 
   return (

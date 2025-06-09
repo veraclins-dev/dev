@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { cn } from '@veraclins-dev/utils';
 
 import { type MaybeString } from '../../types';
+import { Box, Typography } from '../../ui';
 import { ErrorList } from '../error-list';
 
 import { type TextFieldProps } from './textfield';
@@ -78,7 +79,7 @@ export const ImageField = ({
   };
 
   return (
-    <div className="flex h-full w-full flex-col">
+    <Box display="flex" flexDirection="column" className="h-full w-full">
       <label
         htmlFor={id}
         aria-invalid={errorId ? true : undefined}
@@ -96,10 +97,17 @@ export const ImageField = ({
               className={cn('h-full w-full object-cover', previewClasses)}
             />
             {loading && (
-              <div className="absolute bottom-4 right-1/2 flex translate-x-1/2 transform items-center rounded border bg-neutral px-1 py-0.5 text-neutral-foreground gap-2">
+              <Box
+                display="flex"
+                items="center"
+                gap={2}
+                className="absolute bottom-4 right-1/2 translate-x-1/2 transform rounded border bg-neutral px-1 py-0.5 text-neutral-foreground"
+              >
                 {loadingIndicator && loadingIndicator}
-                <span className="text-nowrap">Please wait...</span>
-              </div>
+                <Typography variant="body2" className="text-nowrap">
+                  Please wait...
+                </Typography>
+              </Box>
             )}
           </>
         ) : (
@@ -124,10 +132,10 @@ export const ImageField = ({
         />
       </label>
       {errorId ? (
-        <div className="py-1">
+        <Box className="py-1">
           <ErrorList id={errorId} errors={errors} />
-        </div>
+        </Box>
       ) : null}
-    </div>
+    </Box>
   );
 };

@@ -1,7 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { INPUT_CLASS_OVERRIDES } from '../../ui';
-import { Textarea } from '../../ui/textarea';
+import { INPUT_CLASS_OVERRIDES, Textarea, Typography } from '../../ui';
 
 import {
   type BaseInputProps,
@@ -57,7 +56,9 @@ export const TextareaField = ({
         className={cn(INPUT_CLASS_OVERRIDES, inputClass)}
       />
       {rightInlay ? (
-        <span className="absolute bottom-0.5 right-0.5">{rightInlay}</span>
+        <Typography className="absolute bottom-0.5 right-0.5">
+          {rightInlay}
+        </Typography>
       ) : null}
     </InputWrapper>
   );

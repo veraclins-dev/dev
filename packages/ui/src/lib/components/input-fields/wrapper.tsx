@@ -1,5 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
+import { Box, Typography } from '../../ui';
 import { INPUT_CONTAINER_CLASSES } from '../../ui';
 import { Label } from '../../ui/label';
 import { ErrorList } from '../error-list';
@@ -27,13 +28,16 @@ export const InputWrapper = ({
   const { errorId, id, errors } = useFieldProperties(field);
 
   return (
-    <div
-      className={cn('relative flex w-full flex-col gap-2', wrapperClassName)}
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={2}
+      className={cn('relative w-full', wrapperClassName)}
       ref={ref}
       data-slot="input-wrapper"
     >
       {(label || topText) && (
-        <div className="flex justify-between">
+        <Box display="flex" justify="between">
           {label && (
             <Label
               {...labelProps}
@@ -44,22 +48,24 @@ export const InputWrapper = ({
             </Label>
           )}
           {topText && (
-            <span className="justify-self-end text-sm italic">{topText}</span>
+            <Typography variant="caption" className="justify-self-end italic">
+              {topText}
+            </Typography>
           )}
-        </div>
+        </Box>
       )}
-      <div
+      <Box
         aria-invalid={errorId ? true : undefined}
         data-state={errorId ? 'error' : undefined}
         className={cn(!plain && INPUT_CONTAINER_CLASSES, className)}
       >
         {children}
-      </div>
+      </Box>
       {errorId ? (
-        <div className="">
+        <Box>
           <ErrorList id={errorId} errors={errors} />
-        </div>
+        </Box>
       ) : null}
-    </div>
+    </Box>
   );
 };

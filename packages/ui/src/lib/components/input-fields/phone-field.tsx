@@ -10,7 +10,12 @@ import { cn } from '@veraclins-dev/utils';
 
 import 'react-phone-number-input/style.css';
 
-import { ComposedSelect, INPUT_CLASS_OVERRIDES } from '../../ui';
+import {
+  Box,
+  ComposedSelect,
+  INPUT_CLASS_OVERRIDES,
+  Typography,
+} from '../../ui';
 
 import { type TextFieldProps } from './textfield';
 import {
@@ -25,11 +30,12 @@ type CountryCode = Parameters<typeof getCountryCallingCode>[0];
 const CountryLabel = ({ value }: { value: CountryCode }) => {
   const CountryFlag = Flags[value];
   return (
-    <label className="grid grid-cols-3 items-center text-xs">
-      <span className="col-span-2">+{getCountryCallingCode(value)}</span>
-
+    <Box display="grid" className="grid-cols-3 items-center text-xs">
+      <Typography variant="caption" className="col-span-2">
+        +{getCountryCallingCode(value)}
+      </Typography>
       <CountryFlag className="col-span-1 h-3" />
-    </label>
+    </Box>
   );
 };
 

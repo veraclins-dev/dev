@@ -72,7 +72,6 @@ export const TextField = ({
         type={isPassword && !hidden ? 'text' : type}
         className={cn(INPUT_CLASS_OVERRIDES, inputClass)}
       />
-      {/* <IconButton onClick={toggleHidden} variant="text" className="p-1" rounded> */}
       {isPassword ? (
         <Icon
           onClick={toggleHidden}
@@ -83,7 +82,6 @@ export const TextField = ({
       ) : rightIcon ? (
         <Icon size="sm" name={rightIcon} className="cursor-pointer" />
       ) : null}
-      {/* </IconButton> */}
       {rightAddon}
     </InputWrapper>
   );

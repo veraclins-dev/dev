@@ -1,11 +1,12 @@
 import { type FieldMetadata } from '@conform-to/react';
 
-import { Label } from '../../ui';
 import {
+  Box,
   Checkbox,
   type CheckboxProps,
   type CheckedState,
   type CheckedValue,
+  Label,
 } from '../../ui';
 
 import { type TextFieldProps } from './textfield';
@@ -72,7 +73,7 @@ export function CheckboxField({
       plain
       ref={ref}
     >
-      <div className="flex items-center gap-2">
+      <Box display="flex" items="center" gap={2}>
         <Checkbox
           {...props}
           id={id}
@@ -96,10 +97,10 @@ export function CheckboxField({
           type="button"
           value={controlProps.value ?? value}
         />
-        <Label htmlFor={id} {...labelProps} className="self-center text-sm ">
+        <Label htmlFor={id} {...labelProps} className="self-center text-sm">
           {label}
         </Label>
-      </div>
+      </Box>
     </InputWrapper>
   );
 }

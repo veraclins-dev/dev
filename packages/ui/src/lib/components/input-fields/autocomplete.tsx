@@ -5,6 +5,7 @@ import { cn, humanize, setReactInputValue } from '@veraclins-dev/utils';
 
 import { type Maybe, type Option } from '../../types';
 import {
+  Box,
   Button,
   Chip,
   Command,
@@ -17,6 +18,7 @@ import {
   Popover,
   PopoverAnchor,
   PopoverContent,
+  Typography,
 } from '../../ui';
 
 import { type TextFieldProps } from './textfield';
@@ -366,11 +368,14 @@ const Autocomplete = ({
         shouldFilter={false}
         onBlur={handleBlur}
       >
-        <div
+        <Box
           ref={anchorRef}
-          className={cn('flex w-full h-full justify-between items-center')}
+          display="flex"
+          justify="between"
+          items="center"
+          className="w-full h-full"
         >
-          <div className="flex flex-1 flex-wrap gap-1">
+          <Box display="flex" flexWrap="wrap" flex="1" gap={1}>
             {multiple && selected.length ? (
               <>
                 {selected.map((value) => {
@@ -410,8 +415,8 @@ const Autocomplete = ({
                 disabled={!canSelect}
               />
             )}
-          </div>
-          <div className="flex gap-2">
+          </Box>
+          <Box display="flex" gap={2}>
             {selected.length ? (
               <Button
                 onClick={clear}
@@ -428,8 +433,8 @@ const Autocomplete = ({
               className={cn({ 'rotate-180': open })}
               onClick={handleFocus}
             />
-          </div>
-        </div>
+          </Box>
+        </Box>
         <input
           {...props}
           {...formProps}
