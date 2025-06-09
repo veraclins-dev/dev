@@ -498,8 +498,6 @@ importers:
         specifier: ^4.41.0
         version: 4.41.0
 
-  packages/react-utils: {}
-
   packages/remix-auth-social:
     dependencies:
       '@mjackson/headers':
