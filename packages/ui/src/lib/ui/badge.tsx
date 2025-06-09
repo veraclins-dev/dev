@@ -14,7 +14,7 @@ type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> &
  *
  * @remarks
  * - Variants: `solid`, `outline`, `soft`
- * - Colors: `default`, `primary`, `secondary`, `destructive`, `success`, `warning`, `info`, `accent`
+ * - Colors: `primary`, `secondary`, `destructive`, `success`, `warning`, `info`, `neutral`
  * - Sizes: `sm`, `md`, `lg`, `xl`
  *
  * @example

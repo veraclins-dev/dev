@@ -7,6 +7,29 @@ import { Icon } from './icon';
 import { Label, type LabelProps } from './label';
 import { RADIO_GROUP_ITEM_CLASSES } from './styles';
 
+/**
+ * A group of radio buttons where only one option can be selected at a time.
+ * Built on top of Radix UI's RadioGroup primitive with additional styling and features.
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <RadioGroup defaultValue="option1">
+ *   <RadioGroupItem value="option1" label="Option 1" />
+ *   <RadioGroupItem value="option2" label="Option 2" />
+ *   <RadioGroupItem value="option3" label="Option 3" />
+ * </RadioGroup>
+ *
+ * // With custom label props
+ * <RadioGroup defaultValue="option1">
+ *   <RadioGroupItem
+ *     value="option1"
+ *     label="Option 1"
+ *     labelProps={{ className: "text-sm font-medium" }}
+ *   />
+ * </RadioGroup>
+ * ```
+ */
 function RadioGroup({
   className,
   ...props
@@ -20,6 +43,32 @@ function RadioGroup({
   );
 }
 
+/**
+ * An individual radio button option within a RadioGroup.
+ * Includes a label and custom styling for the radio button.
+ *
+ * @example
+ * ```tsx
+ * // Basic usage with label
+ * <RadioGroupItem value="option1" label="Option 1" />
+ *
+ * // With custom label props
+ * <RadioGroupItem
+ *   value="option1"
+ *   label="Option 1"
+ *   labelProps={{ className: "text-sm font-medium" }}
+ * />
+ *
+ * // Without label
+ * <RadioGroupItem value="option1" />
+ * ```
+ *
+ * @property {string} value - The value of the radio button
+ * @property {React.ReactNode} [label] - The label text or element for the radio button
+ * @property {LabelProps} [labelProps] - Props to pass to the Label component
+ * @property {string} [className] - Additional CSS classes for the radio button
+ * @property {string} [id] - Unique identifier for the radio button
+ */
 function RadioGroupItem({
   className,
   id,

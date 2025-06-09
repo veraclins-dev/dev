@@ -8,24 +8,66 @@ import { type ObjectOption, type Option } from '../types';
 import { Icon } from './icon';
 import { INPUT_CLASSES, ITEM_CLASSES, POPUP_CONTENT_CLASSES } from './styles';
 
+/**
+ * Root component for the Select component. Provides the context for all select-related components.
+ * @example
+ * ```tsx
+ * <Select>
+ *   <SelectTrigger>
+ *     <SelectValue placeholder="Select an option" />
+ *   </SelectTrigger>
+ *   <SelectContent>
+ *     <SelectItem value="option1">Option 1</SelectItem>
+ *     <SelectItem value="option2">Option 2</SelectItem>
+ *   </SelectContent>
+ * </Select>
+ * ```
+ */
 function Select({
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Root>) {
   return <SelectPrimitive.Root data-slot="select" {...props} />;
 }
 
+/**
+ * Groups related select items together. Can be used to organize options into categories.
+ * @example
+ * ```tsx
+ * <SelectGroup>
+ *   <SelectLabel>Fruits</SelectLabel>
+ *   <SelectItem value="apple">Apple</SelectItem>
+ *   <SelectItem value="banana">Banana</SelectItem>
+ * </SelectGroup>
+ * ```
+ */
 function SelectGroup({
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Group>) {
   return <SelectPrimitive.Group data-slot="select-group" {...props} />;
 }
 
+/**
+ * Displays the currently selected value or placeholder in the select trigger.
+ * @example
+ * ```tsx
+ * <SelectValue placeholder="Select an option" />
+ * ```
+ */
 function SelectValue({
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Value>) {
   return <SelectPrimitive.Value data-slot="select-value" {...props} />;
 }
 
+/**
+ * The button that triggers the select dropdown. Contains the selected value and a dropdown icon.
+ * @example
+ * ```tsx
+ * <SelectTrigger>
+ *   <SelectValue placeholder="Select an option" />
+ * </SelectTrigger>
+ * ```
+ */
 function SelectTrigger({
   className,
   children,
@@ -51,6 +93,18 @@ function SelectTrigger({
 
 type SelectContentProps = React.ComponentProps<typeof SelectPrimitive.Content>;
 
+/**
+ * The container for the select dropdown content. Includes scroll buttons and viewport.
+ * @example
+ * ```tsx
+ * <SelectContent>
+ *   <SelectScrollUpButton />
+ *   <SelectItem value="option1">Option 1</SelectItem>
+ *   <SelectItem value="option2">Option 2</SelectItem>
+ *   <SelectScrollDownButton />
+ * </SelectContent>
+ * ```
+ */
 function SelectContent({
   className,
   children,
@@ -87,6 +141,13 @@ function SelectContent({
   );
 }
 
+/**
+ * A label for a group of select items. Used to categorize options.
+ * @example
+ * ```tsx
+ * <SelectLabel>Fruits</SelectLabel>
+ * ```
+ */
 function SelectLabel({
   className,
   ...props
@@ -100,6 +161,13 @@ function SelectLabel({
   );
 }
 
+/**
+ * An individual selectable option in the dropdown.
+ * @example
+ * ```tsx
+ * <SelectItem value="apple">Apple</SelectItem>
+ * ```
+ */
 function SelectItem({
   className,
   children,
@@ -125,6 +193,19 @@ function SelectItem({
   );
 }
 
+/**
+ * A visual separator between groups of select items.
+ * @example
+ * ```tsx
+ * <SelectGroup>
+ *   <SelectItem value="apple">Apple</SelectItem>
+ * </SelectGroup>
+ * <SelectSeparator />
+ * <SelectGroup>
+ *   <SelectItem value="carrot">Carrot</SelectItem>
+ * </SelectGroup>
+ * ```
+ */
 function SelectSeparator({
   className,
   ...props
@@ -138,6 +219,16 @@ function SelectSeparator({
   );
 }
 
+/**
+ * A button that appears at the top of the select content when there are more items above.
+ * @example
+ * ```tsx
+ * <SelectContent>
+ *   <SelectScrollUpButton />
+ *   <SelectItem value="option1">Option 1</SelectItem>
+ * </SelectContent>
+ * ```
+ */
 function SelectScrollUpButton({
   className,
   ...props
@@ -156,6 +247,16 @@ function SelectScrollUpButton({
   );
 }
 
+/**
+ * A button that appears at the bottom of the select content when there are more items below.
+ * @example
+ * ```tsx
+ * <SelectContent>
+ *   <SelectItem value="option1">Option 1</SelectItem>
+ *   <SelectScrollDownButton />
+ * </SelectContent>
+ * ```
+ */
 function SelectScrollDownButton({
   className,
   ...props
@@ -180,6 +281,18 @@ type GroupOptions = {
   id: string;
 };
 
+/**
+ * Props for the Select component.
+ * @property {Option<React.ReactNode>[]} options - Array of options or grouped options
+ * @property {boolean} [grouped] - Whether the options are grouped
+ * @property {string} [placeholder] - Placeholder text when no value is selected
+ * @property {boolean} [showLabel] - Whether to show the label
+ * @property {'popper' | 'item-aligned'} [position] - Position of the select content
+ * @property {number} [sideOffset] - Offset from the trigger
+ * @property {string} [value] - Currently selected value
+ * @property {function} [onValueChange] - Callback when value changes
+ * @property {string} [className] - Additional CSS classes
+ */
 export type SelectProps = SelectPrimitive.SelectProps &
   Pick<SelectContentProps, 'className' | 'position' | 'sideOffset'> & {
     placeholder?: string;
@@ -195,6 +308,37 @@ export type SelectProps = SelectPrimitive.SelectProps &
       }
   );
 
+/**
+ * A pre-composed Select component that handles common use cases.
+ * Supports both flat and grouped options, with customizable styling and behavior.
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <ComposedSelect
+ *   options={[
+ *     { label: 'Option 1', value: 'option1' },
+ *     { label: 'Option 2', value: 'option2' },
+ *   ]}
+ *   placeholder="Select an option"
+ * />
+ *
+ * // With grouped options
+ * <ComposedSelect
+ *   grouped
+ *   options={[
+ *     {
+ *       id: 'fruits',
+ *       label: 'Fruits',
+ *       options: [
+ *         { label: 'Apple', value: 'apple' },
+ *         { label: 'Banana', value: 'banana' },
+ *       ],
+ *     },
+ *   ]}
+ *   placeholder="Select a fruit"
+ * />
+ * ```
+ */
 const ComposedSelect = ({
   options,
   grouped,

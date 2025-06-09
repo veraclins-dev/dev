@@ -4,12 +4,37 @@ import * as HoverCardPrimitive from '@radix-ui/react-hover-card';
 
 import { cn } from '@veraclins-dev/utils';
 
+/**
+ * A hover card component that displays additional content when hovering over a trigger element.
+ *
+ * @example
+ * ```tsx
+ * <HoverCard>
+ *   <HoverCardTrigger>
+ *     <Button>Hover me</Button>
+ *   </HoverCardTrigger>
+ *   <HoverCardContent>
+ *     <p>Additional information</p>
+ *   </HoverCardContent>
+ * </HoverCard>
+ * ```
+ */
 function HoverCard({
   ...props
 }: React.ComponentProps<typeof HoverCardPrimitive.Root>) {
   return <HoverCardPrimitive.Root data-slot="hover-card" {...props} />;
 }
 
+/**
+ * The trigger element that activates the hover card when hovered.
+ *
+ * @example
+ * ```tsx
+ * <HoverCardTrigger asChild>
+ *   <Button>Hover me</Button>
+ * </HoverCardTrigger>
+ * ```
+ */
 function HoverCardTrigger({
   ...props
 }: React.ComponentProps<typeof HoverCardPrimitive.Trigger>) {
@@ -18,6 +43,22 @@ function HoverCardTrigger({
   );
 }
 
+/**
+ * The content container for the hover card.
+ *
+ * @param {Object} props - The component props
+ * @param {string} [props.className] - Additional CSS classes to apply
+ * @param {'start' | 'center' | 'end'} [props.align='center'] - The alignment of the content relative to the trigger
+ * @param {'top' | 'right' | 'bottom' | 'left'} [props.side='top'] - The side of the trigger where the content appears
+ * @param {number} [props.sideOffset=4] - The distance between the trigger and content
+ *
+ * @example
+ * ```tsx
+ * <HoverCardContent align="start" side="right" sideOffset={8}>
+ *   <p>Content appears on the right side</p>
+ * </HoverCardContent>
+ * ```
+ */
 function HoverCardContent({
   className,
   align = 'center',

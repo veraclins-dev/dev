@@ -2,6 +2,28 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+/**
+ * A responsive table component with built-in styling and accessibility features.
+ * Wraps the native table element with additional functionality and styling.
+ *
+ * @example
+ * ```tsx
+ * <Table>
+ *   <TableHeader>
+ *     <TableRow>
+ *       <TableHead>Name</TableHead>
+ *       <TableHead>Email</TableHead>
+ *     </TableRow>
+ *   </TableHeader>
+ *   <TableBody>
+ *     <TableRow>
+ *       <TableCell>John Doe</TableCell>
+ *       <TableCell>john@example.com</TableCell>
+ *     </TableRow>
+ *   </TableBody>
+ * </Table>
+ * ```
+ */
 function Table({ className, ...props }: React.ComponentProps<'table'>) {
   return (
     <div
@@ -17,6 +39,19 @@ function Table({ className, ...props }: React.ComponentProps<'table'>) {
   );
 }
 
+/**
+ * The header section of the table. Contains the column headers.
+ *
+ * @example
+ * ```tsx
+ * <TableHeader>
+ *   <TableRow>
+ *     <TableHead>Name</TableHead>
+ *     <TableHead>Email</TableHead>
+ *   </TableRow>
+ * </TableHeader>
+ * ```
+ */
 function TableHeader({ className, ...props }: React.ComponentProps<'thead'>) {
   return (
     <thead
@@ -27,6 +62,19 @@ function TableHeader({ className, ...props }: React.ComponentProps<'thead'>) {
   );
 }
 
+/**
+ * The main content section of the table. Contains the table data rows.
+ *
+ * @example
+ * ```tsx
+ * <TableBody>
+ *   <TableRow>
+ *     <TableCell>John Doe</TableCell>
+ *     <TableCell>john@example.com</TableCell>
+ *   </TableRow>
+ * </TableBody>
+ * ```
+ */
 function TableBody({ className, ...props }: React.ComponentProps<'tbody'>) {
   return (
     <tbody
@@ -37,6 +85,19 @@ function TableBody({ className, ...props }: React.ComponentProps<'tbody'>) {
   );
 }
 
+/**
+ * The footer section of the table. Typically used for summary rows or totals.
+ *
+ * @example
+ * ```tsx
+ * <TableFooter>
+ *   <TableRow>
+ *     <TableCell>Total</TableCell>
+ *     <TableCell>$1,000</TableCell>
+ *   </TableRow>
+ * </TableFooter>
+ * ```
+ */
 function TableFooter({ className, ...props }: React.ComponentProps<'tfoot'>) {
   return (
     <tfoot
@@ -50,6 +111,18 @@ function TableFooter({ className, ...props }: React.ComponentProps<'tfoot'>) {
   );
 }
 
+/**
+ * A row in the table. Can be used in header, body, or footer sections.
+ * Includes hover and selected states.
+ *
+ * @example
+ * ```tsx
+ * <TableRow>
+ *   <TableCell>John Doe</TableCell>
+ *   <TableCell>john@example.com</TableCell>
+ * </TableRow>
+ * ```
+ */
 function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
   return (
     <tr
@@ -63,6 +136,14 @@ function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
   );
 }
 
+/**
+ * A header cell in the table. Used for column headers.
+ *
+ * @example
+ * ```tsx
+ * <TableHead>Name</TableHead>
+ * ```
+ */
 function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
   return (
     <th
@@ -76,6 +157,14 @@ function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
   );
 }
 
+/**
+ * A cell in the table body or footer. Contains the actual data.
+ *
+ * @example
+ * ```tsx
+ * <TableCell>John Doe</TableCell>
+ * ```
+ */
 function TableCell({ className, ...props }: React.ComponentProps<'td'>) {
   return (
     <td
@@ -89,6 +178,14 @@ function TableCell({ className, ...props }: React.ComponentProps<'td'>) {
   );
 }
 
+/**
+ * A caption for the table. Provides a title or description.
+ *
+ * @example
+ * ```tsx
+ * <TableCaption>List of users</TableCaption>
+ * ```
+ */
 function TableCaption({
   className,
   ...props

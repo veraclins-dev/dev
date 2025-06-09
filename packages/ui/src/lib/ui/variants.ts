@@ -574,14 +574,20 @@ const boxVariants = cva(BOX_DEFAULT_CLASSES, {
       start: 'justify-start',
       end: 'justify-end',
       center: 'justify-center',
-      'space-between': 'justify-between',
-      'space-around': 'justify-around',
-      'space-evenly': 'justify-evenly',
+      between: 'justify-between',
+      around: 'justify-around',
+      evenly: 'justify-evenly',
     },
     flexWrap: {
       nowrap: 'flex-nowrap',
       wrap: 'flex-wrap',
       'wrap-reverse': 'flex-wrap-reverse',
+    },
+    flex: {
+      1: 'flex-1',
+      auto: 'flex-auto',
+      initial: 'flex-initial',
+      none: 'flex-none',
     },
   },
   defaultVariants: {},
@@ -626,6 +632,168 @@ const typographyVariants = cva('', {
     align: 'inherit',
     gutterBottom: false,
     noWrap: false,
+  },
+});
+
+/** ::::::::: List ::::::::: */
+const listVariants = cva('', {
+  variants: {
+    variant: {
+      ul: 'list-disc',
+      ol: 'list-decimal',
+      none: 'list-none',
+    },
+    // Short-form spacing props
+    m: {
+      ...getSpaceClass('m'),
+    },
+    mx: {
+      ...getSpaceClass('mx'),
+    },
+    my: {
+      ...getSpaceClass('my'),
+    },
+    mt: {
+      ...getSpaceClass('mt'),
+    },
+    mr: {
+      ...getSpaceClass('mr'),
+    },
+    mb: {
+      ...getSpaceClass('mb'),
+    },
+    ml: {
+      ...getSpaceClass('ml'),
+    },
+    p: {
+      ...getSpaceClass('p'),
+    },
+    px: {
+      ...getSpaceClass('px'),
+    },
+    py: {
+      ...getSpaceClass('py'),
+    },
+    pt: {
+      ...getSpaceClass('pt'),
+    },
+    pr: {
+      ...getSpaceClass('pr'),
+    },
+    pb: {
+      ...getSpaceClass('pb'),
+    },
+    pl: {
+      ...getSpaceClass('pl'),
+    },
+    // Long-form spacing props
+    margin: {
+      ...getSpaceClass('m'),
+    },
+    marginX: {
+      ...getSpaceClass('mx'),
+    },
+    marginY: {
+      ...getSpaceClass('my'),
+    },
+    marginTop: {
+      ...getSpaceClass('mt'),
+    },
+    marginRight: {
+      ...getSpaceClass('mr'),
+    },
+    marginBottom: {
+      ...getSpaceClass('mb'),
+    },
+    marginLeft: {
+      ...getSpaceClass('ml'),
+    },
+    padding: {
+      ...getSpaceClass('p'),
+    },
+    paddingX: {
+      ...getSpaceClass('px'),
+    },
+    paddingY: {
+      ...getSpaceClass('py'),
+    },
+    paddingTop: {
+      ...getSpaceClass('pt'),
+    },
+    paddingRight: {
+      ...getSpaceClass('pr'),
+    },
+    paddingBottom: {
+      ...getSpaceClass('pb'),
+    },
+    paddingLeft: {
+      ...getSpaceClass('pl'),
+    },
+    marker: {
+      default: '',
+      circle: 'list-[circle]',
+      square: 'list-[square]',
+      roman: 'list-[lower-roman]',
+      alpha: 'list-[lower-alpha]',
+      decimal: 'list-decimal',
+      disc: 'list-disc',
+    },
+  },
+  compoundVariants: [
+    {
+      variant: 'ul',
+      marker: 'default',
+      className: 'list-disc',
+    },
+    {
+      variant: 'ol',
+      marker: 'default',
+      className: 'list-decimal',
+    },
+  ],
+  defaultVariants: {
+    variant: 'ul',
+    pl: 6,
+    marker: 'default',
+  },
+});
+
+/** ::::::::: List Item ::::::::: */
+const listItemVariants = cva('', {
+  variants: {
+    variant: {
+      default: '',
+      interactive: 'cursor-pointer hover:bg-neutral-hover',
+      selected: 'bg-neutral',
+    },
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+    },
+    weight: {
+      normal: 'font-normal',
+      medium: 'font-medium',
+      semibold: 'font-semibold',
+      bold: 'font-bold',
+    },
+    color: {
+      default: 'text-foreground',
+      primary: 'text-primary',
+      secondary: 'text-secondary',
+      destructive: 'text-destructive',
+      success: 'text-success',
+      warning: 'text-warning',
+      info: 'text-info',
+      neutral: 'text-neutral',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+    size: 'md',
+    weight: 'normal',
+    color: 'default',
   },
 });
 
@@ -813,6 +981,8 @@ type BoxVariants = VariantProps<typeof boxVariants>;
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 type ChipVariants = VariantProps<typeof chipVariants>;
 type TypographyVariants = VariantProps<typeof typographyVariants>;
+type ListVariants = VariantProps<typeof listVariants>;
+type ListItemVariants = VariantProps<typeof listItemVariants>;
 type LinkVariants = VariantProps<typeof linkVariants>;
 
 export {
@@ -826,6 +996,10 @@ export {
   chipVariants,
   type LinkVariants,
   linkVariants,
+  type ListItemVariants,
+  listItemVariants,
+  type ListVariants,
+  listVariants,
   type Spaces,
   spaces,
   type TypographyVariants,

@@ -6,6 +6,20 @@ import { type WithTrigger } from '../types';
 
 import { TOOLTIP_CLASSES } from './styles';
 
+/**
+ * TooltipProvider component that wraps the tooltip functionality.
+ * Provides context for tooltip positioning and behavior.
+ *
+ * @example
+ * ```tsx
+ * <TooltipProvider>
+ *   <Tooltip>
+ *     <TooltipTrigger>Hover me</TooltipTrigger>
+ *     <TooltipContent>Tooltip content</TooltipContent>
+ *   </Tooltip>
+ * </TooltipProvider>
+ * ```
+ */
 function TooltipProvider({
   delayDuration = 0,
   ...props
@@ -19,6 +33,17 @@ function TooltipProvider({
   );
 }
 
+/**
+ * Root Tooltip component that manages the tooltip state and positioning.
+ *
+ * @example
+ * ```tsx
+ * <Tooltip>
+ *   <TooltipTrigger>Hover me</TooltipTrigger>
+ *   <TooltipContent>Tooltip content</TooltipContent>
+ * </Tooltip>
+ * ```
+ */
 function Tooltip({
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Root>) {
@@ -29,8 +54,29 @@ function Tooltip({
   );
 }
 
+/**
+ * TooltipTrigger component that triggers the tooltip on hover or focus.
+ *
+ * @example
+ * ```tsx
+ * <TooltipTrigger>
+ *   <Button>Hover me</Button>
+ * </TooltipTrigger>
+ * ```
+ */
 const TooltipTrigger = TooltipPrimitive.Trigger;
 
+/**
+ * TooltipArrow component that adds a visual arrow to the tooltip.
+ *
+ * @example
+ * ```tsx
+ * <TooltipContent>
+ *   Tooltip content
+ *   <TooltipArrow className="fill-current" />
+ * </TooltipContent>
+ * ```
+ */
 const TooltipArrow = ({
   className,
   ...props
@@ -38,6 +84,16 @@ const TooltipArrow = ({
   <TooltipPrimitive.Arrow className={cn(className)} {...props} />
 );
 
+/**
+ * TooltipContent component that renders the tooltip content.
+ *
+ * @example
+ * ```tsx
+ * <TooltipContent>
+ *   This is the tooltip content
+ * </TooltipContent>
+ * ```
+ */
 const TooltipContent = ({
   className,
   sideOffset = 2,
@@ -50,11 +106,29 @@ const TooltipContent = ({
   />
 );
 
+/**
+ * Props for the ComposedTooltip component
+ */
 type ComposedTooltipProps<P extends object> = WithTrigger<P> & {
+  /** The content to display in the tooltip */
   content: React.ReactNode;
+  /** Whether to show an arrow on the tooltip */
   arrow?: boolean;
 };
 
+/**
+ * ComposedTooltip component that combines all tooltip parts into a single component.
+ * Provides a simpler API for common tooltip use cases.
+ *
+ * @example
+ * ```tsx
+ * <ComposedTooltip
+ *   Trigger={Button}
+ *   content="This is a tooltip"
+ *   TriggerProps={{ children: 'Hover me' }}
+ * />
+ * ```
+ */
 const ComposedTooltip = <P extends { disabled?: boolean; className?: string }>({
   Trigger,
   content,
