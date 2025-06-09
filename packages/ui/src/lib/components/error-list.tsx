@@ -1,31 +1,31 @@
-import { cn } from '@veraclins-dev/utils';
+import { Typography } from '../ui';
+import { List } from '../ui/list';
+import { ListItem } from '../ui/list-item';
 
-export type ListOfErrors = Array<string | null | undefined> | null | undefined;
+import { type useFieldProperties } from './input-fields';
 
 interface ErrorListProps {
-  errors?: ListOfErrors;
+  errors?: ReturnType<typeof useFieldProperties>['errors'];
   id?: string;
-  className?: string;
-  errorItemClassName?: string;
 }
 
-export function ErrorList({
-  id,
-  errors,
-  className,
-  errorItemClassName,
-}: ErrorListProps) {
-  const errorsToRender = (errors ?? []).filter(Boolean);
-  return errorsToRender.length ? (
-    <ul id={id} className={cn('flex flex-col gap-1', className)}>
-      {errorsToRender.map((error) => (
-        <li
-          key={error}
-          className={cn('text-sm text-destructive', errorItemClassName)}
-        >
-          {error}
-        </li>
+export const ErrorList = ({ errors, id }: ErrorListProps) => {
+  if (!errors?.length) {
+    return null;
+  }
+
+  return (
+    <List
+      id={id}
+      role="alert"
+      aria-live="polite"
+      className="list-disc pl-4 text-destructive"
+    >
+      {errors.map((error, index) => (
+        <ListItem key={index}>
+          <Typography variant="caption">{error}</Typography>
+        </ListItem>
       ))}
-    </ul>
-  ) : null;
-}
+    </List>
+  );
+};
