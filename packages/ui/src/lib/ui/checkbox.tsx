@@ -5,21 +5,54 @@ import { cn } from '@veraclins-dev/utils';
 import { Icon } from './icon';
 import { CHECKBOX_CLASSES } from './styles';
 
+/**
+ * Represents the possible checked states of a checkbox.
+ * - 'on': Checkbox is checked
+ * - 'off': Checkbox is unchecked
+ * - 'indeterminate': Checkbox is in an indeterminate state
+ */
 type CheckedValue = 'on' | 'off' | 'indeterminate';
 
+/**
+ * Props for the Checkbox component.
+ * Extends Radix UI's CheckboxPrimitive.Root props with custom value handling.
+ */
 type CheckboxProps = Omit<
   React.ComponentProps<typeof CheckboxPrimitive.Root>,
   'type' | 'value'
 > & {
+  /** The checked state of the checkbox */
   value?: CheckedValue;
 };
 
+/** Type representing the checked state from Radix UI's CheckboxPrimitive */
 type CheckedState = CheckboxPrimitive.CheckedState;
 
 /**
- * Checkbox component that uses Radix UI's CheckboxPrimitive.
- * @param param0
- * @returns
+ * Checkbox component that provides a customizable checkbox input with support for
+ * checked, unchecked, and indeterminate states. Built on top of Radix UI's
+ * CheckboxPrimitive for accessibility and customization.
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <Checkbox />
+ *
+ * // With label
+ * <div className="flex items-center gap-2">
+ *   <Checkbox id="terms" />
+ *   <label htmlFor="terms">Accept terms</label>
+ * </div>
+ *
+ * // Controlled component
+ * <Checkbox checked={isChecked} onCheckedChange={setIsChecked} />
+ *
+ * // Indeterminate state
+ * <Checkbox checked="indeterminate" />
+ * ```
+ *
+ * @param props - Props for the Checkbox component
+ * @returns A styled checkbox input with support for various states
  */
 function Checkbox({
   className,

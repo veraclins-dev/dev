@@ -25,6 +25,18 @@ function Avatar({
   );
 }
 
+/**
+ * AvatarImage component for displaying the user's profile image.
+ * Falls back to AvatarFallback if the image fails to load.
+ *
+ * @example
+ * ```tsx
+ * <Avatar>
+ *   <AvatarImage src="/path/to/image.jpg" alt="User avatar" />
+ *   <AvatarFallback>JD</AvatarFallback>
+ * </Avatar>
+ * ```
+ */
 function AvatarImage({
   className,
   ...props
@@ -38,6 +50,18 @@ function AvatarImage({
   );
 }
 
+/**
+ * AvatarFallback component that displays when the AvatarImage fails to load
+ * or while it's loading. Typically shows initials or a placeholder.
+ *
+ * @example
+ * ```tsx
+ * <Avatar>
+ *   <AvatarImage src="/path/to/image.jpg" alt="User avatar" />
+ *   <AvatarFallback>JD</AvatarFallback>
+ * </Avatar>
+ * ```
+ */
 function AvatarFallback({
   className,
   ...props
