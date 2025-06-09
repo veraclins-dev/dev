@@ -2,6 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
+  Box,
   Button,
   type ButtonProps,
   ComposedDropdownMenu,
@@ -9,6 +10,7 @@ import {
   type IconName,
   ITEM_CLASSES,
   Link,
+  Typography,
 } from '@veraclins-dev/ui';
 import { cn, createMarkup } from '@veraclins-dev/utils';
 
@@ -50,7 +52,7 @@ const Activity = ({
 
   return (
     <>
-      <div className="relative h-14 w-14">
+      <Box className="relative h-14 w-14">
         {/* <Avatar size={14} src={profileImage} alt="Actor Image" /> */}
         <Avatar className="size-10">
           <AvatarImage src={profileImage || ''} alt="Actor Image" />
@@ -61,18 +63,29 @@ const Activity = ({
           <AvatarImage src={profileImage || ''} alt="Actor Image" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-      </div>
-      <div className="relative flex h-fit flex-1 flex-col gap-1">
-        <p
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        flex="1"
+        gap={1}
+        className="relative h-fit"
+      >
+        <Typography
+          variant="body2"
           className={cn(
             'line-clamp-2',
             isRead ? 'font-light' : 'font-semibold',
           )}
           // skipcq: JS-0440
           dangerouslySetInnerHTML={createMarkup(message)}
-        />
-        <p className="first-letter:uppercase">{createdAt.toString()}</p>
-      </div>
+        >
+          {message}
+        </Typography>
+        <Typography variant="caption" className="first-letter:uppercase">
+          {createdAt.toString()}
+        </Typography>
+      </Box>
     </>
   );
 };
@@ -222,7 +235,10 @@ export const Notification = ({
 
       <Actions notificationId={notification.id} isRead={notification.isRead} />
       {!notification.isRead && (
-        <span className="bg-primary flex h-3 w-3 self-center rounded-full" />
+        <Box
+          display="flex"
+          className="bg-primary h-3 w-3 self-center rounded-full"
+        />
       )}
     </ActivityLink>
   );

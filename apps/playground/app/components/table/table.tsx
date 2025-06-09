@@ -1,4 +1,4 @@
-import { DataTable, Icon } from '@veraclins-dev/ui';
+import { Box, DataTable, Icon } from '@veraclins-dev/ui';
 
 import { priorities, statuses } from './data/data';
 import data from './data/tasks.json';
@@ -48,11 +48,62 @@ export const DataTableComponent = () => (
   />
 );
 
+export const DataTableComponent2 = () => (
+  <DataTable
+    columnsConfig={[
+      { type: 'select' },
+      ...columns,
+      {
+        type: 'actions',
+        actions: [
+          {
+            key: 'edit',
+            onActionClick: (row) => {
+              console.log('Edit', row.original);
+            },
+            label: (
+              <Icon name="pencil-square" className="size-4">
+                Edit
+              </Icon>
+            ),
+          },
+          {
+            key: 'delete',
+            onActionClick: (row) => {
+              console.log('Delete', row);
+            },
+            label: (
+              <Icon name="trash-can" className="size-4">
+                Delete
+              </Icon>
+            ),
+          },
+        ],
+      },
+    ]}
+    data={data}
+    filters={{
+      faceted: {
+        status: { options: statuses },
+        priority: { options: priorities },
+      },
+    }}
+  />
+);
+
 export function Page() {
   return (
-    <div className="container bg-card flex w-full gap-4 flex-col h-full my-8 overflow-auto rounded-md py-4">
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={4}
+      my={8}
+      py={4}
+      className="container bg-card w-full h-full overflow-auto rounded-md"
+    >
       <DataTableComponent />
-    </div>
+      <DataTableComponent2 />
+    </Box>
   );
 }
 

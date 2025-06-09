@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   type ButtonProps,
   Dialog,
@@ -43,14 +44,14 @@ export function ModalDialog({
           {title && <DialogTitle>{title}</DialogTitle>}
           {subtitle && <DialogDescription>{subtitle}</DialogDescription>}
         </DialogHeader>
-        <div
-          className={cn(
-            'flex max-w-full flex-1 flex-col overflow-scroll',
-            contentClassName,
-          )}
+        <Box
+          display="flex"
+          flexDirection="column"
+          flex="1"
+          className={cn('max-w-full overflow-scroll', contentClassName)}
         >
           {children}
-        </div>
+        </Box>
         <DialogFooter>
           {!cancelHidden && (
             <DialogClose asChild>

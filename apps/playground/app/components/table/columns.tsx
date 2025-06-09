@@ -1,8 +1,10 @@
 import {
   Badge,
+  Box,
   DataTableColumnHeader,
   type DataTableProps,
   Icon,
+  Typography,
 } from '@veraclins-dev/ui';
 
 import { labels, priorities, statuses } from './data/data';
@@ -14,7 +16,7 @@ export const columns: DataTableProps<Task>['columnsConfig'] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Task" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue('id')}</div>,
+    cell: ({ row }) => <Box className="w-[80px]">{row.getValue('id')}</Box>,
     enableSorting: false,
     enableHiding: false,
   },
@@ -27,12 +29,15 @@ export const columns: DataTableProps<Task>['columnsConfig'] = [
       const label = labels.find((label) => label.value === row.original.label);
 
       return (
-        <div className="flex space-x-2">
+        <Box className="flex space-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
-          <span className="max-w-[500px] truncate font-medium">
+          <Typography
+            variant="body2"
+            className="max-w-[500px] truncate font-medium"
+          >
             {row.getValue('title')}
-          </span>
-        </div>
+          </Typography>
+        </Box>
       );
     },
   },
@@ -51,15 +56,15 @@ export const columns: DataTableProps<Task>['columnsConfig'] = [
       }
 
       return (
-        <div className="flex w-[100px] items-center">
+        <Box className="flex w-[100px] items-center">
           {status.icon ? (
             <Icon name={status.icon} className="size-4">
               {status.label}
             </Icon>
           ) : (
-            <span>{status.label}</span>
+            <Typography variant="body2">{status.label}</Typography>
           )}
-        </div>
+        </Box>
       );
     },
     filterFn: (row, id, value) => {
@@ -81,15 +86,15 @@ export const columns: DataTableProps<Task>['columnsConfig'] = [
       }
 
       return (
-        <div className="flex items-center">
+        <Box className="flex items-center">
           {priority.icon ? (
             <Icon name={priority.icon} className="size-4">
               {priority.label}
             </Icon>
           ) : (
-            <span>{priority.label}</span>
+            <Typography variant="body2">{priority.label}</Typography>
           )}
-        </div>
+        </Box>
       );
     },
     filterFn: (row, id, value) => {
