@@ -1,8 +1,10 @@
 import {
+  Box,
   Button as IconButton,
   type ButtonProps as IconButtonProps,
   Icon,
   type IconName,
+  Typography,
 } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
@@ -54,12 +56,12 @@ export const Button = ({
       type="button"
       tooltip={
         label || (shortcutKeys && shortcutKeys.length > 0) ? (
-          <div className="flex items-center space-x-2">
-            <span>{label}</span>
+          <Box display="flex" items="center" gap={2}>
+            <Typography>{label}</Typography>
             {shortcutKeys && shortcutKeys.length > 0 && (
               <KeyboardShortcuts shortcutKeys={shortcutKeys} />
             )}
-          </div>
+          </Box>
         ) : (
           ''
         )

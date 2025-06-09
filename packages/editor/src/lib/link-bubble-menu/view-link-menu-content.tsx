@@ -1,7 +1,7 @@
 import { type Editor, getMarkRange, getMarkType } from '@tiptap/core';
 import { type ReactNode } from 'react';
 
-import { Button } from '@veraclins-dev/ui';
+import { Box, Button, Typography } from '@veraclins-dev/ui';
 import { truncate, truncateMiddle } from '@veraclins-dev/utils';
 
 import useKeyDown from '../hooks/useKeyDown';
@@ -43,10 +43,12 @@ export function ViewLinkMenuContent({
   useKeyDown('Escape', onCancel);
 
   return (
-    <div className="flex flex-col gap-y-3">
-      <div className="text-pretty">{truncate(linkText, 38)}</div>
+    <Box display="flex" flexDirection="column" gapY={3}>
+      <Typography variant="body2" className="text-pretty">
+        {truncate(linkText, 38)}
+      </Typography>
 
-      <div className="text-pretty">
+      <Typography variant="body2" className="text-pretty">
         <a
           href={currentHref}
           target="_blank"
@@ -57,8 +59,8 @@ export function ViewLinkMenuContent({
             important parts */}
           {truncateMiddle(currentHref, 38)}
         </a>
-      </div>
-      <div className="flex w-full justify-end gap-x-3">
+      </Typography>
+      <Box display="flex" justify="end" gapX={3}>
         <Button
           onClick={onEdit}
           variant="soft"
@@ -75,7 +77,7 @@ export function ViewLinkMenuContent({
         >
           Remove
         </Button>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

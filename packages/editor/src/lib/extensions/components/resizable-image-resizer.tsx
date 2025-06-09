@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { Box } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 type ResizableImageResizerProps = {
@@ -49,8 +50,8 @@ export function ResizableImageResizer({
     // closest, as described here https://stackoverflow.com/a/43022983/4543977,
     // but we don't do keyboard-based resizing at this time so it doesn't make
     // sense to have it keyboard focusable)
-     
-    <div
+
+    <Box
       // here, and allow users to override the aria-label when that happens to
       // support localization.
       aria-label="resize image"

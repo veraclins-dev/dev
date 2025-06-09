@@ -1,3 +1,4 @@
+import { Box } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 export type MenuBarProps = {
@@ -13,13 +14,14 @@ export type MenuBarProps = {
  */
 export function MenuBar({ children, className }: MenuBarProps) {
   return (
-    <div
-      className={cn(
-        'z-50 flex min-h-10 flex-wrap items-center gap-2 rounded-t-sm border-b p-1',
-        className,
-      )}
+    <Box
+      display="flex"
+      flexWrap="wrap"
+      items="center"
+      gap={2}
+      className={cn('z-50 min-h-10 rounded-t-sm border-b p-1', className)}
     >
       {children}
-    </div>
+    </Box>
   );
 }

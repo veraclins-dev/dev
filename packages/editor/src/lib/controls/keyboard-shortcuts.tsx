@@ -1,3 +1,4 @@
+import { Box, Typography } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import { type WithShortcuts } from '../types';
@@ -24,7 +25,15 @@ export const KeyboardShortcuts = ({
       )}
     >
       {shortcutKeys.map((shortcutKey, index) => {
-        return <span key={shortcutKey + index}>{getKey(shortcutKey)}</span>;
+        return (
+          <Typography
+            key={shortcutKey + index}
+            variant="caption"
+            className="uppercase"
+          >
+            {getKey(shortcutKey)}
+          </Typography>
+        );
       })}
     </code>
   );

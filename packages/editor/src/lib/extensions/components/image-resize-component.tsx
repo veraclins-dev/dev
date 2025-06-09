@@ -1,5 +1,7 @@
 import { NodeViewWrapper } from '@tiptap/react';
 
+import { Box } from '@veraclins-dev/ui';
+
 export const ImageResizer = (props: any) => {
   const handler = (mouseDownEvent: React.MouseEvent<HTMLImageElement>) => {
     const parent = (mouseDownEvent.target as HTMLElement).closest(
@@ -32,9 +34,9 @@ export const ImageResizer = (props: any) => {
       ) : (
         <img {...props.node.attrs} className="postimage" />
       )}
-      <div className="resize-trigger" onMouseDown={handler}>
+      <Box className="resize-trigger" onMouseDown={handler}>
         {props.extension.options.resizeIcon}
-      </div>
+      </Box>
     </NodeViewWrapper>
   );
 };

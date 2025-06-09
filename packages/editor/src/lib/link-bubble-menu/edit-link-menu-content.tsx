@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 
-import { Button, TextField } from '@veraclins-dev/ui';
+import { Box, Button, TextField, Typography } from '@veraclins-dev/ui';
 
 import useKeyDown from '../hooks/useKeyDown';
 
@@ -138,8 +138,10 @@ export function EditLinkMenuContent({
   };
 
   return (
-    <div className="flex flex-col gap-y-3">
-      <h5 className="text-lg">{editMenuTitle}</h5>
+    <Box display="flex" flexDirection="column" gapY={3}>
+      <Typography variant="h5" className="text-lg">
+        {editMenuTitle}
+      </Typography>
 
       <TextField
         inputRef={textRef}
@@ -171,19 +173,14 @@ export function EditLinkMenuContent({
         required
       />
 
-      <div className="flex justify-end gap-x-3">
-        <Button
-          onClick={onCancel}
-          variant="outline"
-          className="rounded-md border px-3 py-1"
-          type="button"
-        >
+      <Box display="flex" justify="end" gapX={3}>
+        <Button onClick={onCancel} variant="outline" size="sm">
           {labels?.editLinkCancelButtonLabel ?? 'Cancel'}
         </Button>
 
         <Button
           type="button"
-          className="rounded-md px-5 py-1"
+          size="sm"
           disabled={isSubmitting}
           variant="soft"
           color="primary"
@@ -191,7 +188,7 @@ export function EditLinkMenuContent({
         >
           {labels?.editLinkSaveButtonLabel ?? 'Save'}
         </Button>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

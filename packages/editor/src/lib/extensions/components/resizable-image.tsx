@@ -3,6 +3,7 @@ import { type Node as ProseMirrorNode } from '@tiptap/pm/model';
 import { NodeViewWrapper } from '@tiptap/react';
 import { useMemo, useRef } from 'react';
 
+import { Box } from '@veraclins-dev/ui';
 import { cn, throttle } from '@veraclins-dev/utils';
 
 import { ResizableImageResizer } from '../components/resizable-image-resizer';
@@ -110,7 +111,7 @@ export function ResizableImageComponent({
       elements), and (2) still allow for this image container to take up exactly
       the size of the `img` being rendered, which allows for positioning the
       resize handle at the edge of the img. */}
-      <div className="relative inline-block">
+      <Box display="inline-block" className="relative inline-block">
         <img
           ref={imageRef}
           src={attrs.src}
@@ -161,7 +162,7 @@ export function ResizableImageComponent({
         />
 
         {canResize && <ResizableImageResizer onResize={handleResize} />}
-      </div>
+      </Box>
     </NodeViewWrapper>
   );
 }

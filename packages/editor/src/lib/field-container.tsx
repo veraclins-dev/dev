@@ -1,3 +1,4 @@
+import { Box } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 export type FieldContainerProps = {
@@ -19,7 +20,7 @@ export function FieldContainer({
   className,
 }: FieldContainerProps) {
   return (
-    <div
+    <Box
       className={cn(
         'rounded-lg w-full',
         {
@@ -30,6 +31,6 @@ export function FieldContainer({
       )}
     >
       {children}
-    </div>
+    </Box>
   );
 }

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import {
+  Box,
   Button,
   PopoverContent,
   type PopoverContentProps,
+  Typography,
 } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
@@ -62,7 +64,9 @@ export function ColorPickerPopperBody({
 
   return (
     <>
-      <p className="text-md font-medium mb-2">{heading}</p>
+      <Typography variant="body1" className="font-medium mb-2">
+        {heading}
+      </Typography>
       <ColorPicker
         swatchColors={swatchColors}
         value={localColor}
@@ -73,7 +77,7 @@ export function ColorPickerPopperBody({
         {...ColorPickerProps}
       />
 
-      <div className="mt-4 flex justify-between">
+      <Box display="flex" justify="between" mt={4}>
         <Button
           tooltip={removeColorButtonTooltipTitle}
           className="px-2 py-0.5"
@@ -103,7 +107,7 @@ export function ColorPickerPopperBody({
         >
           {saveButton}
         </Button>
-      </div>
+      </Box>
     </>
   );
 }

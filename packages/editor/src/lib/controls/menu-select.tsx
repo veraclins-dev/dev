@@ -1,4 +1,5 @@
 import {
+  Box,
   DropdownMenu,
   DropdownMenuArrow,
   DropdownMenuContent,
@@ -91,7 +92,7 @@ export const MenuSelect = ({
                 value={getOptionValue(option)}
                 indicatorHidden
               >
-                <div className="flex flex-1 items-center justify-between">
+                <Box display="flex" flex="1" items="center" justify="between">
                   {getOptionLabel(option)}
                   {option.shortcutKeys && option.shortcutKeys.length > 0 && (
                     <KeyboardShortcuts
@@ -99,7 +100,7 @@ export const MenuSelect = ({
                       className="ml-2 text-xs"
                     />
                   )}
-                </div>
+                </Box>
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>

@@ -1,5 +1,6 @@
 import { type Except } from 'type-fest';
 
+import { Box } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import {
@@ -36,14 +37,16 @@ export function MenuControlsContainer({
   DebounceProps,
 }: MenuControlsContainerProps) {
   const content = (
-    <div
-      className={cn(
-        'flex h-full flex-wrap items-center gap-x-1 gap-y-3',
-        className,
-      )}
+    <Box
+      display="flex"
+      flexWrap="wrap"
+      items="center"
+      gapX={1}
+      gapY={3}
+      className={cn('h-full', className)}
     >
       {children}
-    </div>
+    </Box>
   );
   return debounced ? (
     <DebounceRender {...DebounceProps}>{content}</DebounceRender>

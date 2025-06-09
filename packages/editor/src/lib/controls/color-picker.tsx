@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { HexAlphaColorPicker, HexColorPicker } from 'react-colorful';
 
-import { TextField } from '@veraclins-dev/ui';
+import { Box, TextField } from '@veraclins-dev/ui';
 
 import { colorToHex as colorToHexDefault } from '../utils/color';
 
@@ -167,7 +167,7 @@ export function ColorPicker({
         }}
       />
       {swatchColorObjects.length > 0 && (
-        <div className="mt-2 flex flex-wrap gap-1">
+        <Box display="flex" flexWrap="wrap" gap={1} mt={2}>
           {swatchColorObjects.map((swatchColor) => (
             <ColorSwatchButton
               key={swatchColor.value}
@@ -187,7 +187,7 @@ export function ColorPicker({
               }
             />
           ))}
-        </div>
+        </Box>
       )}
     </>
   );

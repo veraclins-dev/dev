@@ -1,5 +1,6 @@
 import { EditorContent } from '@tiptap/react';
 
+import { Box } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import { useRichTextEditorContext } from './rich-text-editor-provider';
@@ -21,12 +22,13 @@ export function RichTextContent({ className, readonly }: RichTextContentProps) {
   const editor = useRichTextEditorContext();
 
   return (
-    <div
+    <Box
+      px={readonly ? 3 : undefined}
+      py={readonly ? 2 : undefined}
       className={cn(
         readonly
           ? 'readonly-editor'
-          : 'h-full rounded-lg rounded-t-none px-3 py-2 overflow-y-auto',
-
+          : 'rounded-lg h-full rounded-t-none overflow-y-auto',
         className,
       )}
       data-testid={
@@ -34,6 +36,6 @@ export function RichTextContent({ className, readonly }: RichTextContentProps) {
       }
     >
       <EditorContent editor={editor} />
-    </div>
+    </Box>
   );
 }
