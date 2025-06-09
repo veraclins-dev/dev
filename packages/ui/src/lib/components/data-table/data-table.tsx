@@ -21,6 +21,7 @@ import {
 import { useMemo, useState } from 'react';
 
 import {
+  Box,
   Table,
   TableBody,
   TableCell,
@@ -106,7 +107,7 @@ function DataTable<TData extends WithId, TValue = unknown>({
   );
 
   return (
-    <div className="space-y-4">
+    <Box display="flex" flexDirection="column" gap={4}>
       <DataTableToolbar
         table={table}
         filters={{
@@ -117,7 +118,7 @@ function DataTable<TData extends WithId, TValue = unknown>({
           ...filters,
         }}
       />
-      <div className="rounded-md border">
+      <Box className="rounded-md border">
         <DataTableDndContext dataIds={dataIds} setData={setData}>
           <Table>
             <TableHeader>
@@ -165,9 +166,9 @@ function DataTable<TData extends WithId, TValue = unknown>({
             </TableBody>
           </Table>
         </DataTableDndContext>
-      </div>
+      </Box>
       <DataTablePagination table={table} />
-    </div>
+    </Box>
   );
 }
 

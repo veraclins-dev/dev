@@ -1,8 +1,6 @@
 import { type Table } from '@tanstack/react-table';
 
-import { cn } from '@veraclins-dev/utils';
-
-import { Button, Icon, Input } from '../../ui';
+import { Box, Button, Icon, Input } from '../../ui';
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 import { DataTableViewOptions } from './data-table-view-options';
@@ -30,13 +28,12 @@ export function DataTableToolbar<TData extends WithId, TValue>({
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
-    <div
-      className={cn(
-        'flex items-center',
-        global || faceted ? 'justify-between' : 'justify-end',
-      )}
+    <Box
+      display="flex"
+      items="center"
+      justify={global || faceted ? 'between' : 'end'}
     >
-      <div className="flex flex-1 items-center space-x-2">
+      <Box display="flex" items="center" gap={2} flex="1">
         {global?.fn && (
           <Input
             placeholder="Filter tasks..."
@@ -65,8 +62,8 @@ export function DataTableToolbar<TData extends WithId, TValue>({
             <Icon name="cross-circled" />
           </Button>
         )}
-      </div>
+      </Box>
       <DataTableViewOptions table={table} />
-    </div>
+    </Box>
   );
 }

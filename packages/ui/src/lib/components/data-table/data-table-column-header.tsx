@@ -3,6 +3,7 @@ import { type Column } from '@tanstack/react-table';
 import { cn } from '@veraclins-dev/utils';
 
 import {
+  Box,
   Button,
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   Icon,
+  Typography,
 } from '../../ui';
 
 interface DataTableColumnHeaderProps<TData, TValue>
@@ -24,19 +26,19 @@ export function DataTableColumnHeader<TData, TValue>({
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
-    return <div className={cn(className)}>{title}</div>;
+    return <Box className={className}>{title}</Box>;
   }
 
   return (
-    <div className={cn('flex items-center space-x-2', className)}>
+    <Box display="flex" items="center" gap={2} className={className}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
             variant="text"
             size="sm"
-            className="-ml-3 h-8 data-[state=open]:bg-secondary"
+            className="-ml-3 h-8 data-[state=open]:bg-neutral"
           >
-            <span>{title}</span>
+            <Typography variant="body1">{title}</Typography>
             {column.getIsSorted() === 'desc' ? (
               <Icon name="chevron-down" />
             ) : column.getIsSorted() === 'asc' ? (
@@ -48,29 +50,20 @@ export function DataTableColumnHeader<TData, TValue>({
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <Icon
-              name="arrow-up"
-              className="h-3.5 w-3.5 text-neutral-foreground/70"
-            />
-            Asc
+            <Icon name="arrow-up" className="h-3.5 w-3.5" />
+            <Typography variant="body1">Asc</Typography>
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <Icon
-              name="arrow-down"
-              className="h-3.5 w-3.5 text-neutral-foreground/70"
-            />
-            Desc
+            <Icon name="arrow-down" className="h-3.5 w-3.5" />
+            <Typography variant="body1">Desc</Typography>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => column.toggleSorting()}>
-            <Icon
-              name="eye-none"
-              className="h-3.5 w-3.5 text-neutral-foreground/70"
-            />
-            Clear
+          <DropdownMenuItem onClick={() => column.clearSorting()}>
+            <Icon name="eye-none" className="h-3.5 w-3.5" />
+            <Typography variant="body1">Clear</Typography>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-    </div>
+    </Box>
   );
 }

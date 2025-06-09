@@ -1,6 +1,7 @@
 import { type Table } from '@tanstack/react-table';
 
 import {
+  Box,
   Button,
   Icon,
   Select,
@@ -8,6 +9,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
+  Typography,
 } from '../../ui';
 
 import { type WithId } from './types';
@@ -20,14 +22,18 @@ export function DataTablePagination<TData extends WithId>({
   table,
 }: DataTablePaginationProps<TData>) {
   return (
-    <div className="flex items-center justify-between px-2">
-      <div className="flex-1 text-sm text-neutral-foreground">
-        {table.getFilteredSelectedRowModel().rows.length} of{' '}
-        {table.getFilteredRowModel().rows.length} row(s) selected.
-      </div>
-      <div className="flex items-center space-x-6 lg:space-x-8">
-        <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium">Rows per page</p>
+    <Box display="flex" items="center" justify="between" className="px-2">
+      <Box flex="1">
+        <Typography variant="body2">
+          {table.getFilteredSelectedRowModel().rows.length} of{' '}
+          {table.getFilteredRowModel().rows.length} row(s) selected.
+        </Typography>
+      </Box>
+      <Box display="flex" items="center" gap={6} className="lg:gap-8">
+        <Box display="flex" items="center" gap={2}>
+          <Typography variant="body2" className="font-medium">
+            Rows per page
+          </Typography>
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
@@ -45,19 +51,28 @@ export function DataTablePagination<TData extends WithId>({
               ))}
             </SelectContent>
           </Select>
-        </div>
-        <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} of{' '}
-          {table.getPageCount()}
-        </div>
-        <div className="flex items-center space-x-2">
+        </Box>
+        <Box
+          display="flex"
+          items="center"
+          justify="center"
+          className="w-[100px]"
+        >
+          <Typography variant="body2" className="font-medium">
+            Page {table.getState().pagination.pageIndex + 1} of{' '}
+            {table.getPageCount()}
+          </Typography>
+        </Box>
+        <Box display="flex" items="center" gap={2}>
           <Button
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
           >
-            <span className="sr-only">Go to first page</span>
+            <Typography variant="caption" className="sr-only">
+              Go to first page
+            </Typography>
             <Icon name="chevron-double-left" />
           </Button>
           <Button
@@ -66,7 +81,9 @@ export function DataTablePagination<TData extends WithId>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            <span className="sr-only">Go to previous page</span>
+            <Typography variant="caption" className="sr-only">
+              Go to previous page
+            </Typography>
             <Icon name="chevron-left" />
           </Button>
           <Button
@@ -75,7 +92,9 @@ export function DataTablePagination<TData extends WithId>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            <span className="sr-only">Go to next page</span>
+            <Typography className="sr-only" variant="caption">
+              Go to next page
+            </Typography>
             <Icon name="chevron-right" />
           </Button>
           <Button
@@ -84,11 +103,13 @@ export function DataTablePagination<TData extends WithId>({
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
           >
-            <span className="sr-only">Go to last page</span>
+            <Typography className="sr-only" variant="caption">
+              Go to last page
+            </Typography>
             <Icon name="chevron-double-right" />
           </Button>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 }

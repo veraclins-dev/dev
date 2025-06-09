@@ -3,7 +3,7 @@ import {
   type ColumnDef,
 } from '@tanstack/react-table';
 
-import { Checkbox } from '../../ui';
+import { Box, type BoxVariants, Checkbox, Typography } from '../../ui';
 
 import { DataTableColumnHeader } from './data-table-column-header';
 import { DataTableDragHandle } from './data-table-drag-handle';
@@ -31,7 +31,7 @@ type ColumnConfig<TData extends WithId, TValue = unknown> = Omit<
 > & {
   accessorKey?: AccessorKeyColumnDef<TData, TValue>['accessorKey'];
   width?: string | number;
-  align?: 'left' | 'center' | 'right';
+  align?: BoxVariants['justify'];
   // For control columns
   actions?: DataTableRowActionsProps<TData>['actions'];
 } & (
@@ -78,7 +78,7 @@ const getControlColumn = <TData extends WithId, TValue>(
     case 'drag':
       return {
         id: 'drag',
-        header: () => <div />,
+        header: () => <Box />,
         cell: ({ row }) => <DataTableDragHandle id={row.original.id} />,
         enableSorting: false,
         enableHiding: false,
@@ -151,7 +151,11 @@ function generateColumnsConfig<TData extends WithId, TValue>(
 
       cell:
         config.cell ??
-        (({ row }) => <div>{row.getValue(String(accessorKey))}</div>),
+        (({ row }) => (
+          <Typography variant="body2">
+            {row.getValue(String(accessorKey))}
+          </Typography>
+        )),
       enableSorting: config.enableSorting ?? true,
       enableHiding: config.enableHiding ?? true,
       ...config, // Spread other ColumnDef properties from config
@@ -167,13 +171,13 @@ function generateColumnsConfig<TData extends WithId, TValue>(
 
     if (config.align) {
       column.cell = (props) => (
-        <div className={`flex items-center justify-${config.align}`}>
+        <Box display="flex" items="center" justify={config.align}>
           {column.cell
             ? typeof column.cell === 'function'
               ? column.cell(props)
               : column.cell
             : props.row.getValue(String(accessorKey))}
-        </div>
+        </Box>
       );
     }
 

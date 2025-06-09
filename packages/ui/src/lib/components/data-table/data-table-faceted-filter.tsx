@@ -2,6 +2,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import {
   Badge,
+  Box,
   Button,
   Checkbox,
   Command,
@@ -17,6 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Separator,
+  Typography,
 } from '../../ui';
 
 import { type DataTableFacetedFilterProps } from './types';
@@ -48,7 +50,7 @@ function DataTableFacetedFilter<TData, TValue>({
               >
                 {selectedValues.size}
               </Badge>
-              <div className="hidden space-x-1 lg:flex">
+              <Box display="hidden" gap={1} className="hidden lg:flex">
                 {selectedValues.size > 2 ? (
                   <Badge
                     color="neutral"
@@ -71,7 +73,7 @@ function DataTableFacetedFilter<TData, TValue>({
                       </Badge>
                     ))
                 )}
-              </div>
+              </Box>
             </>
           )}
         </Button>
@@ -110,13 +112,18 @@ function DataTableFacetedFilter<TData, TValue>({
                         {option.label}
                       </Icon>
                     ) : (
-                      <span>{option.label}</span>
+                      <Typography variant="body2">{option.label}</Typography>
                     )}
 
                     {facets?.get(option.value) && (
-                      <span className="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs">
+                      <Box
+                        display="flex"
+                        items="center"
+                        justify="center"
+                        className="ml-auto h-4 w-4 font-mono text-xs"
+                      >
                         {facets.get(option.value)}
-                      </span>
+                      </Box>
                     )}
                   </CommandItem>
                 );
@@ -130,7 +137,7 @@ function DataTableFacetedFilter<TData, TValue>({
                     onSelect={() => column?.setFilterValue(undefined)}
                     className="justify-center text-center"
                   >
-                    Clear filters
+                    <Typography variant="body2">Clear filters</Typography>
                   </CommandItem>
                 </CommandGroup>
               </>
