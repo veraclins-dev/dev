@@ -21,7 +21,7 @@ interface Props
   type?: 'button' | 'submit' | 'reset';
   'aria-label'?: string;
   'data-disabled'?: 'true' | 'false';
-  // loading?: boolean;
+  loadingIcon?: IconName;
   leadingIcon?: IconName;
   trailingIcon?: IconName;
 }
@@ -40,6 +40,7 @@ function Base({
   asChild = false,
   type = 'button',
   loading = false,
+  loadingIcon,
   fullWidth = false,
   'aria-label': ariaLabel,
   leadingIcon,
@@ -64,30 +65,33 @@ function Base({
       aria-label={ariaLabel}
       {...props}
     >
-      {loading && (
-        <svg
-          className="animate-spin size-5"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          role="status"
-          aria-label="Loading"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-          />
-        </svg>
-      )}
+      {loading &&
+        (loadingIcon ? (
+          <Icon name={loadingIcon} className="animate-spin" />
+        ) : (
+          <svg
+            className="animate-spin size-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            role="status"
+            aria-label="Loading"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+            />
+          </svg>
+        ))}
       {leadingIcon && <Icon name={leadingIcon} />}
       {children}
       {trailingIcon && <Icon name={trailingIcon} />}
@@ -101,6 +105,7 @@ function Component({
   color,
   size,
   loading = false,
+  loadingIcon,
   fullWidth = false,
   disabled,
   className,
@@ -154,6 +159,7 @@ function Component({
  * @param {ButtonSize} [props.size='default'] - Button size (default, sm, lg, xl, pill, icon)
  * @param {boolean} [props.asChild=false] - Render as a child component using Radix Slot
  * @param {boolean} [props.loading=false] - Show loading state with a spinner
+ * @param {IconName} [props.loadingIcon] - Custom icon to use for loading state
  * @param {IconName} [props.leadingIcon] - Icon to display before the button content
  * @param {IconName} [props.trailingIcon] - Icon to display after the button content
  * @param {string} [props.type='button'] - Button type (button, submit, reset)
