@@ -6,7 +6,7 @@ import { cn } from '@veraclins-dev/utils';
  * Avatar component for displaying user profile images with fallback support.
  * This component uses Radix UI's Avatar primitives for accessibility and
  * customization.
- * @param param0 - Props for the Avatar component.
+ * @param props - Props for the Avatar component.
  * @returns The Avatar component.
  */
 function Avatar({
