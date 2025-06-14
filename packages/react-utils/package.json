@@ -10,21 +10,25 @@
       "types": "./index.d.ts",
       "import": "./index.js",
       "require": "./index.js"
+    },
+    "./server": {
+      "types": "./server.d.ts",
+      "import": "./server.js",
+      "require": "./server.js"
     }
   },
   "peerDependencies": {
+    "@conform-to/react": "^1",
+    "@conform-to/zod": "^1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "intl-parse-accept-language": "^1",
+    "node-html-parser": "^6",
     "react": "^19",
     "react-dom": "^19",
-    "react-router": "^7"
+    "react-router": "^7",
+    "remix-utils": "^8",
+    "spin-delay": "^2"
   },
-  "dependencies": {
-    "@conform-to/react": "^1.6.1",
-    "@conform-to/zod": "^1.6.1",
-    "intl-parse-accept-language": "^1.0.0",
-    "node-html-parser": "^6.1.12",
-    "remix-utils": "^8.7.0",
-    "spin-delay": "^2.0.1"
-  }
+  "dependencies": {}
 }

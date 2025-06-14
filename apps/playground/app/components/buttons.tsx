@@ -16,7 +16,7 @@ export function Buttons() {
         <CardTitle>Buttons</CardTitle>
       </CardHeader>
       <CardContent display="flex" flexDirection="column" gap={4}>
-        <Box display="flex" flexDirection="column" flexWrap="wrap" gap={4}>
+        <Box display="flex" flexWrap="wrap" gap={4}>
           <Box display="flex" flexDirection="column" gap={3}>
             <Typography variant="h2">Solid</Typography>
             <Box display="flex" gap={2}>
@@ -368,7 +368,7 @@ export function Buttons() {
         </Box>
         <Typography variant="h2">Combination</Typography>
         <Box display="flex" gap={4}>
-          <Box display="flex" gap={4} justify="center" flex={1}>
+          <Box display="flex" gap={4} justify="center" flex="1">
             <Button variant="solid" color="secondary">
               Clear
             </Button>
@@ -377,7 +377,7 @@ export function Buttons() {
             </Button>
             <Button color="primary">Submit</Button>
           </Box>
-          <Box display="flex" gap={4} justify="center" flex={1}>
+          <Box display="flex" gap={4} justify="center" flex="1">
             <Button variant="solid" fullWidth color="secondary" size="md">
               Login
             </Button>
@@ -385,7 +385,7 @@ export function Buttons() {
               Get started
             </Button>
           </Box>
-          <Box display="flex" gap={4} justify="center" flex={1}>
+          <Box display="flex" gap={4} justify="center" flex="1">
             <Button variant="outline" fullWidth color="secondary" size="sm">
               Login
             </Button>

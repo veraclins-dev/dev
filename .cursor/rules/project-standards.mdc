@@ -1,0 +1,75 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Project Standards and Best Practices
+
+# TypeScript Guidelines
+- Always use type imports for type-only imports: `import type { Type } from 'package'` or `import { util, type UtilType } from 'package'` where mixed imports
+- Prefer interfaces for public APIs and types for internal implementations
+- Use strict type checking and avoid `any` type
+- Follow the project's module boundary rules strictly
+- Use proper type annotations for function parameters and return types
+- Use object parameters when more than 3 function parameters are needed
+
+# React Guidelines
+- Follow the established component structure in the UI library
+- Use React.memo for expensive components
+- Implement proper error boundaries
+- Follow the project's established patterns for state management
+- Use proper prop types and avoid prop drilling
+
+# Project-Specific Guidelines
+- Follow the established module boundaries:
+  - type:app can only depend on: type:auth, type:editor, type:ui, type:utils, type:react-utils
+  - type:editor can only depend on: type:editor, type:ui, type:utils, type:react-utils
+  - type:ui can only depend on: type:ui, type:utils, type:react-utils
+  - type:auth can only depend on: type:auth, type:utils
+  - type:react-utils can only depend on: type:react-utils, type:utils
+  - type:utils can only depend on: type:utils
+  - type:seo can only depend on: type:seo
+
+# Testing Guidelines
+- Write unit tests using Vitest
+- Use Playwright for E2E testing
+- Maintain good test coverage
+- Follow the testing pyramid principle
+- Use proper test naming conventions: `describe('Component', () => { it('should...') })`
+
+# Code Style Guidelines
+- Use 2 spaces for indentation
+- Use single quotes for strings
+- Follow the project's import sorting rules:
+  1. External packages
+  2. @veraclins-dev imports
+  3. Relative imports (../)
+  4. Local imports (./)
+- Keep lines under 100 characters
+- Use proper JSDoc comments for public APIs
+
+# Performance Guidelines
+- Monitor bundle sizes
+- Implement proper code splitting
+- Use proper caching strategies
+- Optimize images and assets
+- Follow React performance best practices
+
+# Security Guidelines
+- Follow security best practices for authentication
+- Implement proper input validation
+- Use environment variables for sensitive data
+- Keep dependencies updated
+- Follow OWASP security guidelines
+
+# Documentation Guidelines
+- Keep README files up to date
+- Document complex business logic
+- Use JSDoc comments for public APIs
+- Keep documentation close to the code
+- Document any non-obvious implementation details
+
+# Git Workflow Guidelines
+- Use conventional commits
+- Keep commits atomic and focused
+- Write meaningful commit messages

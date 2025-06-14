@@ -326,7 +326,7 @@ export function Boxes() {
               <Box
                 display="flex"
                 flexDirection="row"
-                justify="space-between"
+                justify="between"
                 className="bg-secondary"
                 p={2}
                 gap={2}
@@ -342,7 +342,7 @@ export function Boxes() {
               <Box
                 display="flex"
                 flexDirection="row"
-                justify="space-around"
+                justify="around"
                 className="bg-secondary"
                 p={2}
                 gap={2}
@@ -358,7 +358,7 @@ export function Boxes() {
               <Box
                 display="flex"
                 flexDirection="row"
-                justify="space-evenly"
+                justify="evenly"
                 className="bg-secondary"
                 p={2}
                 gap={2}

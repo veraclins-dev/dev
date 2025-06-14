@@ -10,7 +10,7 @@ export type Options<S extends SchemaType> = {
   request: Request;
   schema?: S;
   body?: URLSearchParams | FormData;
-  redirectTo?: string;
+  redirectToField?: string;
 };
 
 export type ValidatedFormData<

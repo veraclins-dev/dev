@@ -34,9 +34,9 @@ export default defineConfig(() => ({
     },
     lib: {
       // Could also be a dictionary or array of multiple entry points.
-      entry: 'src/index.ts',
+      entry: ['src/index.ts', 'src/server.ts'],
       name: 'react-utils',
-      fileName: 'index',
+      fileName: (_, entry) => `${entry}.js`,
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
       formats: ['es' as const],
@@ -47,6 +47,13 @@ export default defineConfig(() => ({
         'react',
         'react-dom',
         'react/jsx-runtime',
+        '@conform-to/react',
+        '@conform-to/zod',
+        'react-router',
+        'node-html-parser',
+        'remix-utils',
+        'spin-delay',
+        'intl-parse-accept-language',
         '@veraclins-dev/utils',
       ],
     },

@@ -1,9 +1,12 @@
 import type { LinksFunction, MetaFunction } from 'react-router';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
+import { HoneypotProvider } from '@veraclins-dev/react-utils';
+import { honeypot } from '@veraclins-dev/react-utils/server';
 import { IconProvider } from '@veraclins-dev/ui';
 import sprites from '@veraclins-dev/ui/sprite.svg';
 
+import { type Route } from './+types/root';
 import twStyles from './tailwind.css?url';
 
 export const meta: MetaFunction = () => [{ title: 'New Remix App' }];
@@ -47,10 +50,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
+export async function loader() {
+  const honeyProps = await honeypot.getInputProps();
+  return { honeyProps };
+}
+
+export default function App({ loaderData }: Route.ComponentProps) {
   return (
-    <IconProvider sprite={sprite}>
-      <Outlet />
-    </IconProvider>
+    <HoneypotProvider {...loaderData.honeyProps}>
+      <IconProvider sprite={sprite}>
+        <Outlet />
+      </IconProvider>
+    </HoneypotProvider>
   );
 }
