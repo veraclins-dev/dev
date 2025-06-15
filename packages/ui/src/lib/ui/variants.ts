@@ -815,8 +815,8 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
     },
     underline: {
       none: '',
-      hover: 'border-b',
-      always: 'border-b',
+      hover: 'border-b-2 border-primary/30 hover:border-primary',
+      always: 'border-b-2',
     },
     size: {
       sm: '',

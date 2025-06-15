@@ -129,7 +129,7 @@
 
 .dark {
   /* Base colors */
-  --background: oklch(0.251 0 0);
+  --background: oklch(0.281 0 0);
   --foreground: oklch(0.881 0 0);
 
   /* Secondary */

@@ -70,6 +70,7 @@ function Base({
   justify,
   children,
   flexWrap,
+  flex,
   ...props
 }: BoxProps) {
   const Component = component as React.ElementType;
@@ -102,6 +103,7 @@ function Base({
           flexWrap,
           items,
           justify,
+          flex,
         }),
         className,
       )}
