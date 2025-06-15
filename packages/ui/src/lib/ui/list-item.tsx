@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type ListItemVariants, listItemVariants } from './variants';
+import { type ListItemVariants, listItemVariants } from './utils/variants';
 
 interface ListItemProps
   extends Omit<React.HTMLAttributes<HTMLElement>, keyof ListItemVariants>,

@@ -1,12 +1,12 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { Box } from './box';
 import {
   type ProgressIndicatorVariants,
   progressIndicatorVariants,
   type ProgressVariants,
   progressVariants,
-} from './variants';
+} from './utils/variants';
+import { Box } from './box';
 
 /**
  * Props for the ProgressBar component

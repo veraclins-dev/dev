@@ -6,9 +6,9 @@ import { cn } from '@veraclins-dev/utils';
 import { type IconName } from '../icons';
 import { type ComponentWithTooltip, type WithTooltip } from '../types';
 
+import { type ButtonVariants, buttonVariants } from './utils/variants';
 import { Icon } from './icon';
 import { ComposedTooltip } from './tooltip';
-import { type ButtonVariants, buttonVariants } from './variants';
 
 export type ButtonVariant = ButtonVariants['variant'];
 export type ButtonColor = ButtonVariants['color'];

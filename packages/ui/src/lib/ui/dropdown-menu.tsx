@@ -10,13 +10,13 @@ import {
   type WithTrigger,
 } from '../types';
 
-import { Icon } from './icon';
 import {
   CONTENT_CLASSES,
   INDICATOR_CLASSES,
   ITEM_CLASSES,
   SUB_CONTENT_CLASSES,
-} from './styles';
+} from './utils/styles';
+import { Icon } from './icon';
 import { ComposedTooltip } from './tooltip';
 
 type WithHiddenIndicator = {

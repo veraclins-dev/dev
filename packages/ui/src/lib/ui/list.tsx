@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type ListVariants, listVariants } from './variants';
+import { type ListVariants, listVariants } from './utils/variants';
 
 type ListElement = 'ul' | 'ol';
 

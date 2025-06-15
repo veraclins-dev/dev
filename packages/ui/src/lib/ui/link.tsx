@@ -2,7 +2,7 @@ import React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type LinkVariants, linkVariants } from './variants';
+import { type LinkVariants, linkVariants } from './utils/variants';
 
 type Target = '_blank' | '_self' | '_parent' | '_top';
 

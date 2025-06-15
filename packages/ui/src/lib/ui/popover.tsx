@@ -11,7 +11,7 @@ import {
   type WithTrigger,
 } from '../types';
 
-import { POPUP_CONTENT_CLASSES } from './styles';
+import { POPUP_CONTENT_CLASSES } from './utils/styles';
 import { ComposedTooltip } from './tooltip';
 
 /**

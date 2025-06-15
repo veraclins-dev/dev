@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { INPUT_CLASSES } from './styles';
+import { INPUT_CLASSES } from './utils/styles';
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 

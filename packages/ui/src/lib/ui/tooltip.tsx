@@ -4,7 +4,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import { type WithTrigger } from '../types';
 
-import { TOOLTIP_CLASSES } from './styles';
+import { TOOLTIP_CLASSES } from './utils/styles';
 
 /**
  * TooltipProvider component that wraps the tooltip functionality.

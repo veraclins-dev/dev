@@ -3,10 +3,10 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { RADIO_GROUP_ITEM_CLASSES } from './utils/styles';
 import { Box } from './box';
 import { Icon } from './icon';
 import { Label, type LabelProps } from './label';
-import { RADIO_GROUP_ITEM_CLASSES } from './styles';
 
 /**
  * A group of radio buttons where only one option can be selected at a time.

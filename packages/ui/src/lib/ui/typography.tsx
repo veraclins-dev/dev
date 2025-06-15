@@ -4,7 +4,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import { type ComponentPropsWithoutColor } from '../types';
 
-import { type TypographyVariants, typographyVariants } from './variants';
+import { type TypographyVariants, typographyVariants } from './utils/variants';
 
 // Type definitions
 type Variant =

@@ -1,6 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { INPUT_CLASSES } from './styles';
+import { INPUT_CLASSES } from './utils/styles';
 
 /**
  * Props for the Textarea component.

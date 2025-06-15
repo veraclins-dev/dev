@@ -2,6 +2,7 @@ import { Command as CommandPrimitive } from 'cmdk';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { INPUT_CLASSES, SHARED_ITEM_CLASSES } from './utils/styles';
 import { Box } from './box';
 import {
   Dialog,
@@ -11,7 +12,6 @@ import {
   DialogTitle,
 } from './dialog';
 import { Icon } from './icon';
-import { INPUT_CLASSES, SHARED_ITEM_CLASSES } from './styles';
 
 function Command({
   className,

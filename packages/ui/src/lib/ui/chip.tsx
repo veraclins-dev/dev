@@ -2,9 +2,9 @@ import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { type ChipVariants, chipVariants } from './utils/variants';
 import { Box } from './box';
 import { Icon } from './icon';
-import { type ChipVariants, chipVariants } from './variants';
 
 /**
  * Props for the Chip component.

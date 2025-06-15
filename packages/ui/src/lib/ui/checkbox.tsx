@@ -2,8 +2,8 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { CHECKBOX_CLASSES } from './utils/styles';
 import { Icon } from './icon';
-import { CHECKBOX_CLASSES } from './styles';
 
 /**
  * Represents the possible checked states of a checkbox.

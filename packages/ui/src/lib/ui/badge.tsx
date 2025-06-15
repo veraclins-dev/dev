@@ -1,7 +1,7 @@
 import { cn } from '@veraclins-dev/utils';
 
+import { type BadgeVariants, badgeVariants } from './utils/variants';
 import { Box } from './box';
-import { type BadgeVariants, badgeVariants } from './variants';
 
 type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> &
   BadgeVariants;

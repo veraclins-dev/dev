@@ -5,8 +5,12 @@ import { cn } from '@veraclins-dev/utils';
 import { getOptionLabel, getOptionValue } from '../components';
 import { type ObjectOption, type Option } from '../types';
 
+import {
+  INPUT_CLASSES,
+  ITEM_CLASSES,
+  POPUP_CONTENT_CLASSES,
+} from './utils/styles';
 import { Icon } from './icon';
-import { INPUT_CLASSES, ITEM_CLASSES, POPUP_CONTENT_CLASSES } from './styles';
 
 /**
  * Root component for the Select component. Provides the context for all select-related components.

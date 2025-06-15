@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type BoxVariants, boxVariants } from './variants';
+import { type BoxVariants, boxVariants } from './utils/variants';
 
 type ContainerElement =
   | 'div'
