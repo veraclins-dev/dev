@@ -975,6 +975,192 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
   },
 });
 
+/** :::::::::: Progress Bar ::::::::: */
+
+const progressVariants = cva('relative overflow-hidden rounded-full', {
+  variants: {
+    variant: {
+      linear: 'w-full bg-neutral-soft',
+      circular: 'inline-flex items-center justify-center',
+    },
+    size: {
+      sm: 'text-[6px]',
+      md: 'text-[8px]',
+      lg: 'text-xs',
+      xl: 'text-sm',
+    },
+  },
+  compoundVariants: [
+    {
+      variant: 'linear',
+      size: 'sm',
+      className: 'h-1 ',
+    },
+    {
+      variant: 'linear',
+      size: 'md',
+      className: 'h-2',
+    },
+    {
+      variant: 'linear',
+      size: 'lg',
+      className: 'h-3',
+    },
+    {
+      variant: 'linear',
+      size: 'xl',
+      className: 'h-4',
+    },
+    {
+      variant: 'circular',
+      size: 'sm',
+      className: 'size-8 stroke-4',
+    },
+    {
+      variant: 'circular',
+      size: 'md',
+      className: 'size-12 stroke-6',
+    },
+    {
+      variant: 'circular',
+      size: 'lg',
+      className: 'size-16 stroke-8',
+    },
+    {
+      variant: 'circular',
+      size: 'xl',
+      className: 'size-20 stroke-10',
+    },
+  ],
+  defaultVariants: {
+    variant: 'linear',
+    size: 'md',
+  },
+});
+
+const progressIndicatorVariants = cva(
+  'transition-all duration-300 ease-in-out h-full',
+  {
+    variants: {
+      variant: {
+        linear: 'h-full',
+        circular: 'fill-none stroke-linecap-round',
+      },
+      size: {
+        sm: '',
+        md: '',
+        lg: '',
+        xl: '',
+      },
+      color: {
+        ...sharedBaseVariants.variants.color,
+      },
+      indeterminate: {
+        true: 'animate-progress-indeterminate',
+        false: '',
+      },
+    },
+    compoundVariants: [
+      {
+        variant: 'linear',
+        color: 'primary',
+        className: 'bg-primary',
+      },
+      {
+        variant: 'linear',
+        color: 'success',
+        className: 'bg-success',
+      },
+      {
+        variant: 'linear',
+        color: 'warning',
+        className: 'bg-warning',
+      },
+      {
+        variant: 'linear',
+        color: 'destructive',
+        className: 'bg-destructive',
+      },
+      {
+        variant: 'linear',
+        color: 'info',
+        className: 'bg-info',
+      },
+      {
+        variant: 'linear',
+        color: 'neutral',
+        className: 'bg-neutral',
+      },
+      {
+        variant: 'linear',
+        color: 'secondary',
+        className: 'bg-secondary',
+      },
+      {
+        variant: 'circular',
+        color: 'primary',
+        className: 'stroke-primary',
+      },
+      {
+        variant: 'circular',
+        color: 'success',
+        className: 'stroke-success',
+      },
+      {
+        variant: 'circular',
+        color: 'warning',
+        className: 'stroke-warning',
+      },
+      {
+        variant: 'circular',
+        color: 'destructive',
+        className: 'stroke-destructive',
+      },
+      {
+        variant: 'circular',
+        color: 'info',
+        className: 'stroke-info',
+      },
+      {
+        variant: 'circular',
+        color: 'neutral',
+        className: 'stroke-neutral',
+      },
+      {
+        variant: 'circular',
+        color: 'secondary',
+        className: 'stroke-secondary',
+      },
+      {
+        variant: 'circular',
+        size: 'sm',
+        className: 'stroke-4',
+      },
+      {
+        variant: 'circular',
+        size: 'md',
+        className: 'stroke-6',
+      },
+      {
+        variant: 'circular',
+        size: 'lg',
+        className: 'stroke-8',
+      },
+      {
+        variant: 'circular',
+        size: 'xl',
+        className: 'stroke-10',
+      },
+    ],
+    defaultVariants: {
+      variant: 'linear',
+      size: 'md',
+      color: 'primary',
+      indeterminate: false,
+    },
+  },
+);
+
 /** ::::::::: Variant Types ::::::::: */
 type BadgeVariants = VariantProps<typeof badgeVariants>;
 type BoxVariants = VariantProps<typeof boxVariants>;
@@ -984,6 +1170,8 @@ type TypographyVariants = VariantProps<typeof typographyVariants>;
 type ListVariants = VariantProps<typeof listVariants>;
 type ListItemVariants = VariantProps<typeof listItemVariants>;
 type LinkVariants = VariantProps<typeof linkVariants>;
+type ProgressVariants = VariantProps<typeof progressVariants>;
+type ProgressIndicatorVariants = VariantProps<typeof progressIndicatorVariants>;
 
 export {
   type BadgeVariants,
@@ -1000,6 +1188,10 @@ export {
   listItemVariants,
   type ListVariants,
   listVariants,
+  type ProgressIndicatorVariants,
+  progressIndicatorVariants,
+  type ProgressVariants,
+  progressVariants,
   type Spaces,
   spaces,
   type TypographyVariants,

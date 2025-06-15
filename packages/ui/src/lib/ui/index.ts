@@ -18,6 +18,7 @@ export * from './input';
 export * from './label';
 export * from './link';
 export * from './popover';
+export * from './progress-bar';
 export * from './radio-group';
 export * from './select';
 export * from './separator';
