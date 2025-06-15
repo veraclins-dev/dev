@@ -3,7 +3,7 @@ import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
 import { HoneypotProvider } from '@veraclins-dev/react-utils';
 import { honeypot } from '@veraclins-dev/react-utils/server';
-import { IconProvider } from '@veraclins-dev/ui';
+import { Box, IconProvider } from '@veraclins-dev/ui';
 import sprites from '@veraclins-dev/ui/sprite.svg';
 
 import { type Route } from './+types/root';
@@ -42,7 +42,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="bg-background h-full text-sm text-foreground w-full">
-        {children}
+        <Box
+          display="flex"
+          flexDirection="column"
+          gap={4}
+          my={8}
+          py={4}
+          className="container w-full h-full overflow-auto rounded-md"
+        >
+          {children}
+        </Box>
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -1,6 +1,13 @@
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
 
 import { cn } from '@veraclins-dev/utils';
+import { getSizeClasses, type Size } from '@veraclins-dev/utils';
+
+import { type IconName } from '../icons/name';
+import { type WithTooltip, type WithTrigger } from '../types';
+
+import { Icon } from './icon';
+import { ComposedTooltip } from './tooltip';
 
 /**
  * Avatar component for displaying user profile images with fallback support.
@@ -78,4 +85,98 @@ function AvatarFallback({
   );
 }
 
-export { Avatar, AvatarFallback, AvatarImage };
+/**
+ * Props for the ComposedAvatar component
+ */
+export interface ComposedAvatarProps
+  extends WithTooltip<Omit<React.ComponentProps<typeof Avatar>, 'className'>> {
+  /**
+   * The source URL of the avatar image.
+   */
+  src?: string;
+  /**
+   * The alt text for the avatar image.
+   */
+  alt?: string;
+  /**
+   * The size of the avatar.
+   * @default 8
+   */
+  size?: Size;
+  /**
+   * Whether the avatar should be square instead of circular.
+   * @default false
+   */
+  square?: boolean;
+  /**
+   * The icon to display in the fallback.
+   * @default "user"
+   */
+  icon?: IconName;
+  /**
+   * The fallback content to display when the image fails to load.
+   * If not provided, will use the icon prop or initials from alt text.
+   */
+  fallback?: React.ReactNode;
+  /**
+   * Additional CSS class name for the avatar.
+   */
+  className?: string;
+}
+
+/**
+ * A composed avatar component that combines Avatar, AvatarImage, and AvatarFallback
+ * with enhanced functionality like tooltips, fallback icons, and size customization.
+ *
+ * @example
+ * ```tsx
+ * <ComposedAvatar
+ *   src="/path/to/image.jpg"
+ *   alt="John Doe"
+ *   size={8}
+ *   tooltip="John Doe"
+ * />
+ * ```
+ */
+function ComposedAvatar({ tooltip, ...props }: ComposedAvatarProps) {
+  if (tooltip) {
+    return (
+      <ComposedTooltip Trigger={Comp} content={tooltip} TriggerProps={props} />
+    );
+  }
+
+  return <Comp {...props} />;
+}
+
+function Comp({
+  src,
+  alt,
+  size = 8,
+  square,
+  icon = 'user',
+  tooltip,
+  fallback,
+  className,
+  ...props
+}: ComposedAvatarProps) {
+  const classes = getSizeClasses(size, 'max');
+
+  return (
+    <Avatar
+      className={cn(
+        'relative flex shrink-0 overflow-hidden rounded-full',
+        square && 'rounded-md',
+        classes,
+        className,
+      )}
+      {...props}
+    >
+      <AvatarImage src={src} alt={alt} />
+      <AvatarFallback className={square ? 'rounded-md' : ''}>
+        {fallback ?? <Icon name={icon} className={cn('p-1', classes)} />}
+      </AvatarFallback>
+    </Avatar>
+  );
+}
+
+export { Avatar, AvatarFallback, AvatarImage, ComposedAvatar };

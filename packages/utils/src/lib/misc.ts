@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-export function getErrorMessage(error: unknown) {
+function getErrorMessage(error: unknown) {
   if (typeof error === 'string') return error;
   if (
     error &&
@@ -15,11 +15,11 @@ export function getErrorMessage(error: unknown) {
   return 'Unknown Error';
 }
 
-export function cn(...inputs: ClassValue[]) {
+function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getDomainUrl(request: Request) {
+function getDomainUrl(request: Request) {
   const host =
     request.headers.get('X-Forwarded-Host') ??
     request.headers.get('host') ??
@@ -28,7 +28,7 @@ export function getDomainUrl(request: Request) {
   return `${protocol}://${host}`;
 }
 
-export function getReferrerRoute(request: Request) {
+function getReferrerRoute(request: Request) {
   // spelling errors and whatever makes this annoyingly inconsistent
   // in my own testing, `referer` returned the right value, but 🤷‍♂️
   const referrer =
@@ -59,7 +59,7 @@ export function getReferrerRoute(request: Request) {
  *
  * @throws {Error} if condition is falsey
  */
-export function invariant<T>(
+function invariant<T>(
   condition: T,
   message: string | (() => string),
 ): asserts condition {
@@ -68,25 +68,25 @@ export function invariant<T>(
   }
 }
 
-export function callAll<Args extends Array<unknown>>(
+function callAll<Args extends Array<unknown>>(
   ...fns: Array<((...args: Args) => unknown) | undefined>
 ) {
   return (...args: Args) => fns.forEach((fn) => fn?.(...args));
 }
 
-export const roundToDecimal = (value: number | string, decimalPlaces = 2) => {
+const roundToDecimal = (value: number | string, decimalPlaces = 2) => {
   const number = Number(value) || 0;
   return Number(number.toFixed(decimalPlaces));
 };
 
-export const roundToTwo = (numb: number) =>
+const roundToTwo = (numb: number) =>
   Math.round((numb + Number.EPSILON) * 100) / 100;
 
-export async function wait(stallTime = 3000) {
+async function wait(stallTime = 3000) {
   await new Promise((resolve) => setTimeout(resolve, stallTime));
 }
 
-export async function downloadFile(url: string, retries = 0) {
+async function downloadFile(url: string, retries = 0) {
   const MAX_RETRIES = 3;
   try {
     const response = await fetch(url);
@@ -102,7 +102,7 @@ export async function downloadFile(url: string, retries = 0) {
   }
 }
 
-export const humanize = (message: string) => {
+function humanize(message: string) {
   if (!message) return '';
   message = message.replace(/_/g, ' '); // replaces underscore with space
   message = message.replace(/([A-Z]+)([A-Z][a-z]+)/g, function (_, $1, $2) {
@@ -120,9 +120,9 @@ export const humanize = (message: string) => {
     /([!?.]\s+)([a-z])/g,
     (_, $1, $2: string) => $1 + $2.toUpperCase(),
   ); // capitalizes the first letter of inner sentences
-};
+}
 
-export const truncate = (string: string, length: number) => {
+const truncate = (string: string, length: number) => {
   if (string.length <= length) return string;
   let sub = string.slice(0, length + 1);
 
@@ -133,13 +133,13 @@ export const truncate = (string: string, length: number) => {
   return sub.length < string.length ? `${sub.trim()} ...` : sub;
 };
 
-export const emailToUserName = (email: string): string => {
+const emailToUserName = (email: string): string => {
   const [username] = email.split('@');
   if (!username) return email;
   return username;
 };
 
-export function getRandom<T>(arr: T[], n: number) {
+function getRandom<T>(arr: T[], n: number) {
   let len = arr.length;
   const result: T[] = new Array(n),
     taken = new Array(len);
@@ -159,7 +159,7 @@ export function getRandom<T>(arr: T[], n: number) {
 /**
  * Truncate the middle of the given text, if it's longer than the given length.
  */
-export function truncateMiddle(text: string, length = 20): string {
+function truncateMiddle(text: string, length = 20): string {
   if (text.length <= length) {
     return text;
   }
@@ -168,9 +168,42 @@ export function truncateMiddle(text: string, length = 20): string {
   return `${text.slice(0, half).trim()}…${text.slice(-half).trim()}`;
 }
 
-export function combinePaths(...paths: string[]) {
+function combinePaths(...paths: string[]) {
   return paths
     .map((path) => path.replace(/^\/|\/$/g, ''))
     .filter(Boolean)
     .join('/');
 }
+
+/**
+ * Extracts initials from a name string.
+ * @param name - The name to extract initials from
+ * @returns The initials, up to 2 characters
+ */
+function getInitials(name: string): string {
+  return name
+    .split(/\s+/)
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+}
+export {
+  callAll,
+  cn,
+  combinePaths,
+  downloadFile,
+  emailToUserName,
+  getDomainUrl,
+  getErrorMessage,
+  getInitials,
+  getRandom,
+  getReferrerRoute,
+  humanize,
+  invariant,
+  roundToDecimal,
+  roundToTwo,
+  truncate,
+  truncateMiddle,
+  wait,
+};

@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardSubtitle,
   CardTitle,
+  ComposedAvatar,
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
@@ -105,6 +106,10 @@ export function Cards() {
                   />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
+                <ComposedAvatar
+                  src="https://github.com/leerob.png"
+                  alt="@leerob"
+                />
                 <Avatar>
                   <AvatarImage
                     src="https://github.com/leerob.png"
@@ -120,6 +125,12 @@ export function Cards() {
                   <AvatarFallback>ER</AvatarFallback>
                 </Avatar>
               </Box>
+              <ComposedAvatar
+                src="https://github.com/leerob.pngs"
+                alt="@leerob"
+                size={16}
+                square
+              />
             </CardFooter>
           </Card>
           <Card className="bg-card-inner">

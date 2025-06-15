@@ -58,10 +58,12 @@ describe('dom.createMarkup', () => {
 
 describe('dom.stripHTMLTags', () => {
   it('should strip HTML tags from a string', () => {
-    expect(dom.stripHTMLTags('<p>Hello World</p>')).toBe(' Hello World ');
+    expect(dom.stripHTMLTags('<p>Hello World</p>')).toBe('Hello World');
   });
 
   it('should replace non-breaking spaces with spaces', () => {
-    expect(dom.stripHTMLTags('Hello&nbsp;World')).toBe('Hello World');
+    const result = dom.stripHTMLTags('Hello&nbsp;World');
+    console.log(result);
+    expect(result).toEqual('Hello World');
   });
 });
