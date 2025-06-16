@@ -385,28 +385,6 @@
   max-height: var(--radix-popover-content-available-height);
 }
 
-.overflow-fade {
-  /* overflow: hidden; */
-  /* position: relative;
-	&:before {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 3rem;
-		top: -3rem;
-		background: linear-gradient(
-			0deg,
-			hsl(var(--card)) 50%,
-			rgba(255, 255, 255, 0) 100%
-		);
-	} */
-  mask-image: linear-gradient(
-    to bottom,
-    black calc(100% - 48px),
-    transparent 100%
-  );
 }
 
 .dark {
