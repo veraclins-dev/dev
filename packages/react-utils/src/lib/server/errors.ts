@@ -1,6 +1,8 @@
 import { data as dataResponse } from 'react-router';
 
-import { type SchemaType, type ValidatedFormData } from './types';
+import { type SchemaType } from '@veraclins-dev/utils';
+
+import { type ValidatedFormData } from './types';
 
 const response = <T extends Record<string, any>>({
   data,

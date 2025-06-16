@@ -1,1 +1,1 @@
-export * from './lib/utils/server';
+export * from './lib/server';

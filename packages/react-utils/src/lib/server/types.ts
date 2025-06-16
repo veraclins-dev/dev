@@ -1,10 +1,6 @@
 import { type Submission } from '@conform-to/react';
 
-import { z } from '@veraclins-dev/utils';
-
-export type SchemaType = z.ZodTypeAny;
-
-export const Empty = z.object({});
+import { type SchemaType, type z } from '@veraclins-dev/utils';
 
 export type Options<S extends SchemaType> = {
   request: Request;

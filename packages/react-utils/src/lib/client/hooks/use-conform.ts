@@ -6,9 +6,12 @@ import {
 import { getZodConstraint, parseWithZod } from '@conform-to/zod';
 import { useActionData } from 'react-router';
 
-import { type Values, type z } from '@veraclins-dev/utils';
-
-import { Empty, type SchemaType } from '../utils/types';
+import {
+  Empty,
+  type SchemaType,
+  type Values,
+  type z,
+} from '@veraclins-dev/utils';
 
 import { type useCustomFetcher } from './use-custom-fetcher';
 

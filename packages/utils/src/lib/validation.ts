@@ -62,6 +62,7 @@ function recursiveFormatZodErrors(errors: Record<string, WithError>): {
 
   return { errors: formattedErrors, success: false };
 }
+const Empty = z.object({});
 
 const validateZodSchemaSync =
   <S extends z.ZodType>(schema?: S) =>
@@ -126,6 +127,7 @@ type SchemaTypeWithId = z.ZodType & { id: string | number };
 type SchemaInfer<T extends SchemaTypeWithId = SchemaTypeWithId> = z.infer<T>;
 
 export {
+  Empty,
   formatZodError,
   type ParserType,
   type ReturnType,

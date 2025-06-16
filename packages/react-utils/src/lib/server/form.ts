@@ -3,17 +3,14 @@
 import { parseWithZod } from '@conform-to/zod';
 
 import {
+  Empty,
+  type SchemaType,
   type ValidateReturnType,
   validateZodSchema,
 } from '@veraclins-dev/utils';
 
 import { checkHoneypot } from './honeypot';
-import {
-  Empty,
-  type Options,
-  type SchemaType,
-  type ValidatedFormData,
-} from './types';
+import { type Options, type ValidatedFormData } from './types';
 
 export const processFormData = async <
   S extends SchemaType,
