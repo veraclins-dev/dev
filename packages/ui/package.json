@@ -49,7 +49,6 @@
     "vaul": "^1.1.2"
   },
   "peerDependencies": {
-    "@conform-to/react": "^1",
     "@tailwindcss/typography": "^0.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -46,20 +46,38 @@ module.exports = [
               ],
             },
             {
-              sourceTag: 'type:ui',
+              sourceTag: 'type:form',
               onlyDependOnLibsWithTags: [
+                'type:form',
                 'type:ui',
                 'type:utils',
                 'type:react-utils',
               ],
             },
             {
-              sourceTag: 'type:auth',
-              onlyDependOnLibsWithTags: ['type:auth', 'type:utils'],
+              sourceTag: 'type:image',
+              onlyDependOnLibsWithTags: [
+                'type:image',
+                'type:ui',
+                'type:utils',
+                'type:react-utils',
+              ],
             },
             {
               sourceTag: 'type:react-utils',
-              onlyDependOnLibsWithTags: ['type:react-utils', 'type:utils'],
+              onlyDependOnLibsWithTags: [
+                'type:react-utils',
+                'type:ui',
+                'type:utils',
+              ],
+            },
+            {
+              sourceTag: 'type:ui',
+              onlyDependOnLibsWithTags: ['type:ui', 'type:utils'],
+            },
+            {
+              sourceTag: 'type:auth',
+              onlyDependOnLibsWithTags: ['type:auth', 'type:utils'],
             },
             {
               sourceTag: 'type:utils',
