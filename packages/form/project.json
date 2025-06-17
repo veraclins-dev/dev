@@ -1,0 +1,11 @@
+{
+  "name": "form",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/form/src",
+  "projectType": "library",
+  "tags": [
+    "type:form",
+    "scope:lib"
+  ],
+  "targets": {}
+}

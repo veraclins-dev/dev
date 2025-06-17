@@ -1,0 +1,26 @@
+{
+  "name": "@veraclins-dev/form",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.js"
+    }
+  },
+  "peerDependencies": {
+    "@conform-to/react": "^1",
+    "@conform-to/zod": "^1",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-router": "^7"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.7"
+  }
+}
