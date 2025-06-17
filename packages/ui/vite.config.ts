@@ -28,7 +28,7 @@ export default defineConfig({
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
-      aliasesExclude: ['@veraclins-dev/utils', '@veraclins-dev/react-utils'],
+      aliasesExclude: ['@veraclins-dev/utils'],
     }),
     // libAssetsPlugin({
     //   include: ['src/lib/icons/**.svg'],
@@ -64,7 +64,6 @@ export default defineConfig({
         'react-dom',
         'react/jsx-runtime',
         '@veraclins-dev/utils',
-        '@veraclins-dev/react-utils',
       ],
     },
   },
