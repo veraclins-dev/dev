@@ -11,7 +11,7 @@ export type UseCustomFetcherReturn<T> = Fetcher<T> & {
 };
 
 export const useCustomFetcher = <
-  T extends Record<string, any>,
+  T extends object,
 >(): UseCustomFetcherReturn<T> => {
   const fetcher = useFetcher<T>();
   const [transitionLog, setTransitionLog] = useState<UseRemixSubmitStatus<T>[]>(
