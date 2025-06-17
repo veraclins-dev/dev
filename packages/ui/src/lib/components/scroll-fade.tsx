@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { getScrollPosition } from '@veraclins-dev/react-utils';
+import { getScrollPosition } from '@veraclins-dev/utils';
 import { cn } from '@veraclins-dev/utils';
 
 import { Box } from '../ui';
