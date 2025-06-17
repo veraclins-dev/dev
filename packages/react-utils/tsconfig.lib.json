@@ -36,6 +36,7 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "../ui/src/lib/components/form/form.tsx"
+    "../ui/src/lib/components/form/form.tsx",
+    "../utils/src/lib/scroll.ts"
   ]
 }

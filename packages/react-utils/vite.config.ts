@@ -16,7 +16,7 @@ export default defineConfig(() => ({
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
-      aliasesExclude: ['@veraclins-dev/utils'],
+      aliasesExclude: ['@veraclins-dev/utils', '@veraclins-dev/ui'],
     }),
   ],
   // Uncomment this if you are using workers.
@@ -55,6 +55,7 @@ export default defineConfig(() => ({
         'spin-delay',
         'intl-parse-accept-language',
         '@veraclins-dev/utils',
+        '@veraclins-dev/ui',
       ],
     },
   },
