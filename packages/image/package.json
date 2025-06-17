@@ -11,9 +11,13 @@
       "require": "./index.js"
     }
   },
+  "dependencies": {
+    "@hapi/accept": "^6.0.3",
+    "image-size": "^2.0.2",
+    "is-animated": "^2.0.2",
+    "sharp": "^0.34.2"
+  },
   "peerDependencies": {
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
     "react": "^19",
     "react-dom": "^19"
   }

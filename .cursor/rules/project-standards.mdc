@@ -5,6 +5,9 @@ alwaysApply: true
 ---
 # Project Standards and Best Practices
 
+# General
+- Do not change existing implementation unless it is strictly required for current request
+
 # TypeScript Guidelines
 - Always use type imports for type-only imports: `import type { Type } from 'package'` or `import { util, type UtilType } from 'package'` where mixed imports
 - Prefer interfaces for public APIs and types for internal implementations
