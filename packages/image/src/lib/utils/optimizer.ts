@@ -1,4 +1,5 @@
 import { mediaType } from '@hapi/accept';
+import { createHash } from 'crypto';
 import fs from 'fs';
 import { imageSize } from 'image-size';
 // @ts-expect-error no types for is-animated
@@ -29,6 +30,7 @@ const SVG = 'image/svg+xml';
 const ANIMATABLE_TYPES = [WEBP, PNG, GIF];
 const VECTOR_TYPES = [SVG];
 const BLUR_IMG_SIZE = 8;
+const CACHE_VERSION = 1;
 
 interface ImageParamsResult {
   href: string;
@@ -53,6 +55,8 @@ export interface OptimizeImageResult {
   buffer: Buffer;
   contentType: string;
   maxAge: number;
+  etag: string;
+  upstreamEtag?: string;
 }
 
 export class ImageError extends Error {
@@ -62,6 +66,32 @@ export class ImageError extends Error {
     super(message);
     this.statusCode = statusCode >= 400 ? statusCode : 500;
   }
+}
+
+export function getHash(items: (string | number | Buffer)[]): string {
+  const hash = createHash('sha256');
+  for (const item of items) {
+    if (typeof item === 'number') {
+      hash.update(String(item));
+    } else {
+      hash.update(item);
+    }
+  }
+  return hash.digest('base64url');
+}
+
+export function getImageEtag(buffer: Buffer): string {
+  return getHash([buffer]);
+}
+
+export function extractEtag(
+  etag: string | null | undefined,
+  buffer: Buffer,
+): string {
+  if (etag) {
+    return Buffer.from(etag).toString('base64url');
+  }
+  return getImageEtag(buffer);
 }
 
 export function getSupportedMimeType(options: string[], accept = ''): string {
@@ -85,6 +115,16 @@ export function validateParams(
     return { errorMessage: '"src" parameter is required' };
   } else if (Array.isArray(src)) {
     return { errorMessage: '"src" parameter cannot be an array' };
+  }
+
+  if (src.length > 3072) {
+    return { errorMessage: '"src" parameter is too long' };
+  }
+
+  if (src.startsWith('//')) {
+    return {
+      errorMessage: '"src" parameter cannot be a protocol-relative URL (//)',
+    };
   }
 
   let isAbsolute: boolean;
@@ -113,19 +153,28 @@ export function validateParams(
     return { errorMessage: '"w" parameter (width) is required' };
   } else if (Array.isArray(w)) {
     return { errorMessage: '"w" parameter (width) cannot be an array' };
+  } else if (!/^[0-9]+$/.test(w)) {
+    return {
+      errorMessage: '"w" parameter (width) must be an integer greater than 0',
+    };
   }
 
   if (!q) {
     return { errorMessage: '"q" parameter (quality) is required' };
   } else if (Array.isArray(q)) {
     return { errorMessage: '"q" parameter (quality) cannot be an array' };
+  } else if (!/^[0-9]+$/.test(q)) {
+    return {
+      errorMessage:
+        '"q" parameter (quality) must be an integer between 1 and 100',
+    };
   }
 
   const width = parseInt(w, 10);
 
-  if (!width || isNaN(width)) {
+  if (width <= 0 || isNaN(width)) {
     return {
-      errorMessage: '"w" parameter (width) must be a number greater than 0',
+      errorMessage: '"w" parameter (width) must be an integer greater than 0',
     };
   }
 
@@ -135,18 +184,19 @@ export function validateParams(
     sizes.push(BLUR_IMG_SIZE);
   }
 
-  if (!sizes.includes(width)) {
-    return {
-      errorMessage: `"w" parameter (width) of ${width} is not allowed`,
-    };
+  const isValidSize =
+    sizes.includes(width) || (isDev && width <= BLUR_IMG_SIZE);
+
+  if (!isValidSize) {
+    return { errorMessage: `"w" parameter (width) of ${width} is not allowed` };
   }
 
-  const quality = parseInt(q);
+  const quality = parseInt(q, 10);
 
   if (isNaN(quality) || quality < 1 || quality > 100) {
     return {
       errorMessage:
-        '"q" parameter (quality) must be a number between 1 and 100',
+        '"q" parameter (quality) must be an integer between 1 and 100',
     };
   }
 
@@ -169,7 +219,7 @@ export function validateParams(
 export async function imageOptimizer(
   req: Request,
   params: ImageParamsResult,
-): Promise<{ buffer: Buffer; contentType: string; maxAge: number }> {
+): Promise<OptimizeImageResult> {
   let upstreamBuffer: Buffer;
   let upstreamType: string | null;
   let maxAge = 31536000;
@@ -177,7 +227,18 @@ export async function imageOptimizer(
   const config = getImageConfig();
 
   if (isAbsolute) {
-    const upstreamRes = await fetch(href);
+    const upstreamRes = await fetch(href, {
+      signal: AbortSignal.timeout(7000),
+    }).catch((err) => {
+      if (err.name === 'TimeoutError') {
+        throw new ImageError(
+          504,
+          '"url" parameter is valid but upstream response timed out',
+        );
+      }
+      throw err;
+    });
+
     if (!upstreamRes.ok) {
       console.error('upstream image response failed', upstreamRes.status);
       throw new ImageError(
@@ -210,7 +271,12 @@ export async function imageOptimizer(
       ANIMATABLE_TYPES.includes(upstreamType) && isAnimated(upstreamBuffer);
 
     if (vector || animate) {
-      return { buffer: upstreamBuffer, contentType: upstreamType, maxAge };
+      return {
+        buffer: upstreamBuffer,
+        contentType: upstreamType,
+        maxAge,
+        etag: getImageEtag(upstreamBuffer),
+      };
     }
     if (!upstreamType.startsWith('image/')) {
       console.error(
@@ -239,15 +305,21 @@ export async function imageOptimizer(
   }
 
   try {
-    // Begin sharp transformation logic
-    const transformer = sharp(upstreamBuffer);
-
-    transformer.rotate();
+    const transformer = sharp(upstreamBuffer, {
+      limitInputPixels: config.limitInputPixels,
+      sequentialRead: config.sequentialRead,
+    })
+      .timeout({
+        seconds: config.timeoutInSeconds ?? 7,
+      })
+      .rotate();
 
     const { width: metaWidth } = await transformer.metadata();
 
     if (metaWidth && metaWidth > width) {
-      transformer.resize(width);
+      transformer.resize(width, undefined, {
+        withoutEnlargement: true,
+      });
     }
 
     if (contentType === AVIF) {
@@ -255,11 +327,11 @@ export async function imageOptimizer(
         const avifQuality = quality - 15;
         transformer.avif({
           quality: Math.max(avifQuality, 0),
-          chromaSubsampling: '4:2:0', // same as webp
+          chromaSubsampling: '4:2:0',
         });
       } else {
         console.warn(
-          "Warning: Your installed version of the 'sharp' package does not support AVIF images. Run 'yarn add sharp@latest' to upgrade to the latest version.",
+          'Your installed version of the sharp package does not support AVIF images. Run "npm install sharp@latest" to upgrade.',
         );
         transformer.webp({ quality });
       }
@@ -268,16 +340,18 @@ export async function imageOptimizer(
     } else if (contentType === PNG) {
       transformer.png({ quality });
     } else if (contentType === JPEG) {
-      transformer.jpeg({ quality });
+      transformer.jpeg({ quality, mozjpeg: true });
     }
 
     const optimizedBuffer = await transformer.toBuffer();
-    // End sharp transformation logic
+
     if (optimizedBuffer) {
       return {
         buffer: optimizedBuffer,
         contentType,
         maxAge: Math.max(maxAge, config.minimumCacheTTL),
+        etag: getImageEtag(optimizedBuffer),
+        upstreamEtag: getImageEtag(upstreamBuffer),
       };
     } else {
       throw new ImageError(500, 'Unable to optimize buffer');
@@ -285,11 +359,11 @@ export async function imageOptimizer(
   } catch (e) {
     console.warn('Error during image optimization', e);
     if (upstreamBuffer && upstreamType) {
-      // If we fail to optimize, fallback to the original image
       return {
         buffer: upstreamBuffer,
         contentType: upstreamType,
         maxAge: config.minimumCacheTTL,
+        etag: getImageEtag(upstreamBuffer),
       };
     } else {
       throw new ImageError(
@@ -316,6 +390,39 @@ function parseCacheControl(str: string | null): Map<string, string> {
     }
   }
   return map;
+}
+
+export function getMaxAge(str: string | null): number {
+  const map = parseCacheControl(str);
+  if (map) {
+    let age = map.get('s-maxage') ?? map.get('max-age') ?? '';
+    if (age.startsWith('"') && age.endsWith('"')) {
+      age = age.slice(1, -1);
+    }
+    const n = parseInt(age, 10);
+    if (!isNaN(n)) {
+      return n;
+    }
+  }
+  return 0;
+}
+
+export const fsResolver = async (src: string, basePath = 'public') => {
+  const string = src.slice(1);
+  const filePath = path.resolve(basePath, string);
+
+  const buffer = fs.readFileSync(filePath);
+
+  if (!buffer || buffer.byteLength < 2) {
+    throw new ImageError(500, 'Invalid image retrieved from resolver!');
+  }
+
+  return buffer;
+};
+
+function getExtension(mimeType: string): string | null {
+  const ext = mimeType.split('/')[1];
+  return ext || null;
 }
 
 export function detectContentType(buffer: Buffer): string | null {
@@ -352,52 +459,28 @@ export function detectContentType(buffer: Buffer): string | null {
   return null;
 }
 
-function getMaxAge(str: string | null): number {
-  const map = parseCacheControl(str);
-  if (map) {
-    let age = map.get('s-maxage') ?? map.get('max-age') ?? '';
-    if (age.startsWith('"') && age.endsWith('"')) {
-      age = age.slice(1, -1);
-    }
-    const n = parseInt(age, 10);
-    if (!isNaN(n)) {
-      return n;
-    }
-  }
-  return 0;
-}
-
-export const fsResolver = async (src: string, basePath = 'public') => {
-  const string = src.slice(1);
-  const filePath = path.resolve(basePath, string);
-
-  const buffer = fs.readFileSync(filePath);
-
-  if (!buffer || buffer.byteLength < 2) {
-    throw new ImageError(500, 'Invalid image retrieved from resolver!');
-  }
-
-  return buffer;
-};
-
-function getExtension(mimeType: string): string | null {
-  const ext = mimeType.split('/')[1];
-  return ext || null;
-}
-
 export async function optimizeImage(
   params: OptimizeImageParams,
   config: FullImageConfig,
 ): Promise<OptimizeImageResult> {
   const { buffer, contentType, width, quality, mimeType } = params;
 
-  // Handle vector and animated images
   if (VECTOR_TYPES.includes(contentType)) {
-    return { buffer, contentType, maxAge: config.minimumCacheTTL };
+    return {
+      buffer,
+      contentType,
+      maxAge: config.minimumCacheTTL,
+      etag: getImageEtag(buffer),
+    };
   }
 
   if (ANIMATABLE_TYPES.includes(contentType) && isAnimated(buffer)) {
-    return { buffer, contentType, maxAge: config.minimumCacheTTL };
+    return {
+      buffer,
+      contentType,
+      maxAge: config.minimumCacheTTL,
+      etag: getImageEtag(buffer),
+    };
   }
 
   if (!contentType.startsWith('image/')) {
@@ -418,13 +501,21 @@ export async function optimizeImage(
   }
 
   try {
-    const transformer = sharp(buffer);
-    transformer.rotate();
+    const transformer = sharp(buffer, {
+      limitInputPixels: config.limitInputPixels,
+      sequentialRead: config.sequentialRead,
+    })
+      .timeout({
+        seconds: config.timeoutInSeconds ?? 7,
+      })
+      .rotate();
 
     const { width: metaWidth } = await transformer.metadata();
 
     if (metaWidth && metaWidth > width) {
-      transformer.resize(width);
+      transformer.resize(width, undefined, {
+        withoutEnlargement: true,
+      });
     }
 
     if (finalContentType === AVIF) {
@@ -445,7 +536,7 @@ export async function optimizeImage(
     } else if (finalContentType === PNG) {
       transformer.png({ quality });
     } else if (finalContentType === JPEG) {
-      transformer.jpeg({ quality });
+      transformer.jpeg({ quality, mozjpeg: true });
     }
 
     const optimizedBuffer = await transformer.toBuffer();
@@ -455,6 +546,8 @@ export async function optimizeImage(
         buffer: optimizedBuffer,
         contentType: finalContentType,
         maxAge: config.minimumCacheTTL,
+        etag: getImageEtag(optimizedBuffer),
+        upstreamEtag: getImageEtag(buffer),
       };
     }
 
@@ -465,6 +558,7 @@ export async function optimizeImage(
       buffer,
       contentType,
       maxAge: config.minimumCacheTTL,
+      etag: getImageEtag(buffer),
     };
   }
 }
