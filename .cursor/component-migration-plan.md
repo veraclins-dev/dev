@@ -134,92 +134,41 @@ This document outlines the plan for migrating components from the edulinksng app
 3. ✅ Add vertical and horizontal support
 4. ✅ Add Storybook documentation
 
-### 4. Error Boundary Component
-
-**File:** `error-boundary.tsx`
-**Dependencies:**
-
-- Error reporting utilities (in react-utils)
-
-**Special Considerations:**
-
-- Needs to be configurable for different error types
-- Should support custom fallback UI
-
-**Action Steps:**
-
-1. Move to UI package's components directory
-2. Add error type configurations to react-utils
-3. Create error reporting utilities in react-utils
-4. Add Storybook documentation
-
-### 5. Catch Error Component
-
-**File:** `catch-error.tsx`
-**Dependencies:**
-
-- Error handling utilities (in react-utils)
-- UI components for error display
-
-**Special Considerations:**
-
-- Needs to handle different error scenarios
-- Should be customizable
-
-**Action Steps:**
-
-1. Move to UI package's components directory
-2. Add error handling utilities to react-utils
-3. Create error display components in UI package
-4. Add Storybook documentation
-
-### 6. Confetti Component
-
-**File:** `confetti.tsx`
-**Dependencies:**
-
-- Canvas API
-- Animation utilities (in utils)
-
-**Special Considerations:**
-
-- Performance optimization needed
-- Should be configurable
-
-**Action Steps:**
-
-1. Move to UI package's components directory
-2. Add performance optimizations
-3. Create configuration options
-4. Add Storybook documentation
-
 ## Utility Functions
 
-### React-Utils Package
+### React-Utils Package (`@veraclins-dev/react-utils`)
 
-1. **Error Handling Utilities**
+1. **React Hooks** (Already in place)
+   - Form hooks (use-conform, use-submit-state, use-double-check)
+   - UI hooks (use-hover, use-breakpoint, use-media-query)
+   - Navigation hooks (use-matches, use-navigate-with-redirect)
+   - State management hooks (use-debounce, use-delayed-is-pending)
 
-   - Error type definitions
-   - Error reporting functions
-   - Error boundary utilities
+### Utils Package (`@veraclins-dev/utils`)
 
-2. **Scroll Utilities**
-   - Scroll position detection
-   - Scroll event handling
-   - Scroll animation utilities
+1. **Date Utilities** (To be added)
 
-### Utils Package
+   - `date.ts` - All date-related functions including:
+     - Date manipulation
+     - Timezone handling
+     - Locale support
+     - Formatting
 
-1. **Date Utilities**
+2. **Form Utilities** (To be added)
 
-   - Date manipulation functions
-   - Locale support
-   - Timezone handling
+   - `form.ts` - All form-related functions including:
+     - Validation
+     - Data transformation
+     - State management
+     - Sanitization
 
-2. **Form Utilities**
-   - Validation functions
-   - Form state management
-   - Form data transformation
+3. **Existing Utilities** (To be enhanced)
+   - `dom.ts` - DOM manipulation and events
+   - `size.ts` - Size and responsive utilities
+   - `misc.ts` - Miscellaneous utilities
+   - `slugify.ts` - Slug generation and manipulation
+   - `types.ts` - Type definitions
+   - `validation.ts` - General validation utilities
 
 ## Implementation Phases
 
@@ -268,3 +217,4 @@ This document outlines the plan for migrating components from the edulinksng app
 - All React components go to UI package
 - React-specific utilities go to react-utils package
 - Framework-agnostic utilities go to utils package
+- Each utility category should be consolidated into a single file
