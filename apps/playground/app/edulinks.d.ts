@@ -1,3 +1,3 @@
-type Maybe<T> = T | null
+type Maybe<T> = T | null;
 
-type MaybeString = Maybe<string>
+type MaybeString = Maybe<string>;

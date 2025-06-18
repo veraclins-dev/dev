@@ -175,17 +175,6 @@
       div {
         flex: 1 1 auto;
       }
-
-      input[type='checkbox'] {
-        @apply appearance-none;
-      }
-
-      input[type='checkbox'] + span {
-        @apply border-primary ring-offset-background focus-visible:ring-current data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground inline-block h-5 w-5 shrink-0 rounded-sm border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50;
-      }
-      input[type='checkbox']:checked + span {
-        @apply bg-primary text-primary-foreground;
-      }
     }
   }
 
@@ -383,8 +372,6 @@
 .popover-content {
   width: var(--radix-popover-trigger-width);
   max-height: var(--radix-popover-content-available-height);
-}
-
 }
 
 .dark {

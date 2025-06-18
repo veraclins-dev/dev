@@ -1,6 +1,14 @@
 import type { LinksFunction, MetaFunction } from 'react-router';
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useRouteLoaderData,
+} from 'react-router';
 
+import { initImageConfig } from '@veraclins-dev/image';
 import { HoneypotProvider } from '@veraclins-dev/react-utils';
 import { honeypot } from '@veraclins-dev/react-utils/server';
 import { Box, IconProvider } from '@veraclins-dev/ui';
@@ -33,8 +41,9 @@ export const links: LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const data = useRouteLoaderData<typeof loader>('root');
   return (
-    <html lang="en" className="darks h-screen w-screen">
+    <html lang="en" className="dark h-screen w-screen">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -52,6 +61,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         >
           {children}
         </Box>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+						window.imageConfig = ${JSON.stringify(data?.imageConfig ?? initImageConfig())}
+						`,
+          }}
+        />
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -61,7 +77,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export async function loader() {
   const honeyProps = await honeypot.getInputProps();
-  return { honeyProps };
+  const imageConfig = initImageConfig();
+  return { honeyProps, imageConfig };
 }
 
 export default function App({ loaderData }: Route.ComponentProps) {

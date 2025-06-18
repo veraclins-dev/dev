@@ -61,6 +61,24 @@ export function NxWelcome({ title }: { title: string }) {
       description:
         'Card components for displaying content in a structured and visually appealing way.',
     },
+    {
+      path: '/images',
+      label: 'Images',
+      description:
+        'Optimized image components with lazy loading, blur placeholders, and responsive sizing.',
+    },
+    {
+      path: '/forms',
+      label: 'Forms',
+      description:
+        'Form components for managing user input, validation, and submission.',
+    },
+    {
+      path: '/typography',
+      label: 'Typography',
+      description:
+        'Typography components for managing text styles, headings, and body text.',
+    },
   ];
 
   return (
