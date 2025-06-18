@@ -3,9 +3,8 @@ import {
   type ImageConfig,
   type ImageLoaderProps,
   imageLoaderPropsSchema,
+  normalizePathTrailingSlash,
 } from '../../shared';
-
-import { normalizePathTrailingSlash } from './utils';
 
 export function imageLoader({
   src,

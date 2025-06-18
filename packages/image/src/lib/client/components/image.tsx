@@ -7,6 +7,7 @@ import {
 } from 'react';
 
 import {
+  emptyDataURL,
   getImageConfig,
   type ImageProps,
   imagePropsSchema,
@@ -15,7 +16,6 @@ import {
 import { generateImgAttrs } from '../utils/loader';
 import { useIntersection } from '../utils/use-intersection';
 import {
-  emptyDataURL,
   isStaticImport,
   isStaticRequire,
   loadedImageURLs,
@@ -64,6 +64,7 @@ export function Image({
       height,
       placeholder,
       blurDataURL,
+      alt,
     });
   } catch (error) {
     if (error instanceof Error) {
@@ -72,7 +73,12 @@ export function Image({
     throw error;
   }
 
-  const config = useMemo(() => getImageConfig(), []);
+  const config = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return window.imageConfig ?? getImageConfig();
+    }
+    return getImageConfig();
+  }, []);
 
   const rest: Partial<ImageProps> = all;
   let layout: ImageProps['layout'] = sizes ? 'responsive' : 'intrinsic';
