@@ -1,5 +1,6 @@
 import {
   type FullImageConfig,
+  fullImageConfigSchema,
   type ImageConfig,
   imageConfigSchema,
 } from './schema';
@@ -21,22 +22,8 @@ const defaultConfig: ImageConfig = {
   timeoutInSeconds: 7,
 };
 
-let config: ImageConfig = defaultConfig;
-
-export function getImageConfig(): ImageConfig {
-  return config;
-}
-
-export function setImageConfig(newConfig: Partial<ImageConfig>): void {
-  const result = imageConfigSchema.safeParse(newConfig);
-  if (!result.success) {
-    throw new Error(`Invalid image config: ${result.error.message}`);
-  }
-  config = { ...defaultConfig, ...newConfig };
-}
-
 export function validateConfig(config: Partial<ImageConfig>): void {
-  const result = imageConfigSchema.safeParse(config);
+  const result = fullImageConfigSchema.safeParse(config);
   if (!result.success) {
     throw new Error(`Invalid image config: ${result.error.message}`);
   }
@@ -73,18 +60,26 @@ export function getImageConfigFromEnv(): Partial<ImageConfig> {
   };
 }
 
-export function getFullImageConfig(
+export function getImageConfig(
   config: Partial<ImageConfig> = {},
 ): FullImageConfig {
   try {
+    const envConfig = getImageConfigFromEnv();
+
     const mergedConfig = {
       ...defaultConfig,
+      ...envConfig,
       ...config,
     };
 
-    validateConfig(mergedConfig);
+    const fullConfig = {
+      ...mergedConfig,
+      allSizes: mergedConfig.deviceSizes.concat(mergedConfig.imageSizes),
+    };
 
-    return mergedConfig as FullImageConfig;
+    validateConfig(fullConfig);
+
+    return fullConfig;
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Invalid image config: ${error.message}`);

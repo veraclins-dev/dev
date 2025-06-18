@@ -92,14 +92,11 @@ export function generateImgAttrs({
   width,
   quality,
   sizes,
-}: {
+}: ImageLoaderProps & {
   config: FullImageConfig;
   src: string;
   unoptimized: boolean;
-  layout: string | undefined;
-  width?: number;
-  quality?: number;
-  sizes?: string;
+  sizes: string | undefined;
 }): {
   src: string;
   srcSet: string | undefined;

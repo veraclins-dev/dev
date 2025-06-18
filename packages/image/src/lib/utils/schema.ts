@@ -23,15 +23,23 @@ export const imageConfigSchema = z.object({
   timeoutInSeconds: z.number().int().positive().optional(),
 });
 
+export const layoutSchema = z.enum([
+  'fill',
+  'fixed',
+  'intrinsic',
+  'responsive',
+]);
+
 export const fullImageConfigSchema = imageConfigSchema.extend({
   allSizes: z.array(z.number()).min(1),
 });
 
 export const imageLoaderPropsSchema = z.object({
   src: z.string(),
-  width: z.number().int().positive(),
-  quality: z.number().int().min(1).max(100),
+  width: z.number().int().positive().optional(),
+  quality: z.number().int().min(1).max(100).optional(),
   format: z.string().optional(),
+  layout: layoutSchema.optional(),
 });
 
 export const staticImageDataSchema = z.object({
@@ -47,7 +55,9 @@ export const imagePropsSchema = z.object({
   src: z.union([z.string(), staticImageDataSchema]),
   alt: z.string(),
   width: z.number().int().positive().optional(),
+  className: z.string().optional(),
   height: z.number().int().positive().optional(),
+  layout: layoutSchema.optional(),
   fill: z.boolean().optional(),
   loader: z.function().optional(),
   quality: z.number().int().min(1).max(100).optional(),
@@ -56,6 +66,10 @@ export const imagePropsSchema = z.object({
   placeholder: z.enum(['blur', 'empty']).optional(),
   blurDataURL: z.string().optional(),
   unoptimized: z.boolean().optional(),
+  objectFit: z
+    .enum(['contain', 'cover', 'fill', 'none', 'scale-down'])
+    .optional(),
+  objectPosition: z.string().optional(),
   onLoad: z.function().returns(z.void()).optional(),
   onError: z.function().returns(z.void()).optional(),
   onLoadingComplete: z
@@ -75,9 +89,7 @@ export const imagePropsSchema = z.object({
 });
 
 export type ImageConfig = z.infer<typeof imageConfigSchema>;
-export type FullImageConfig = ImageConfig & {
-  allSizes: number[];
-};
+export type FullImageConfig = z.infer<typeof fullImageConfigSchema>;
 export type ImageLoaderProps = z.infer<typeof imageLoaderPropsSchema>;
 export type StaticImageData = z.infer<typeof staticImageDataSchema>;
 export type ImageProps = z.infer<typeof imagePropsSchema>;
