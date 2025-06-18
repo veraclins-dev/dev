@@ -6,7 +6,11 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: __dirname,
-  plugins: [tailwindcss(), reactRouter(), nxViteTsPaths()],
+  plugins: [
+    tailwindcss(),
+    process.env.NODE_ENV === 'test' ? null : reactRouter(),
+    nxViteTsPaths(),
+  ],
   server: {
     port: process.env.PORT ? Number(process.env.PORT) : 3000,
   },
