@@ -6,15 +6,13 @@ import {
 } from 'react-router';
 import { HoneypotInputs } from 'remix-utils/honeypot/react';
 
-import {
-  type useConform,
-  type useCustomFetcher,
-  useDelayedIsPending,
-} from '@veraclins-dev/react-utils';
+import { useDelayedIsPending } from '@veraclins-dev/react-utils';
 import { ErrorList } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import { FormSubmitButton } from './submit-button';
+import { type useConform } from './use-conform';
+import { type useCustomFetcher } from './use-custom-fetcher';
 
 interface FormProps extends Omit<RouterFormProps, 'method'> {
   submitText?: React.ReactNode;
