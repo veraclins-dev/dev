@@ -607,7 +607,7 @@ const typographyVariants = cva('', {
       subtitle2: 'text-sm font-medium leading-normal',
       body1: 'text-base font-normal leading-relaxed',
       body2: 'text-sm font-normal leading-relaxed',
-      caption: 'text-xs font-normal leading-normal text-gray-500',
+      caption: 'text-xs font-normal leading-normal',
       overline: 'text-xs font-normal leading-normal uppercase tracking-wider',
       inherit: '',
     },
@@ -767,8 +767,8 @@ const listItemVariants = cva('', {
       selected: 'bg-neutral',
     },
     size: {
-      sm: 'text-sm',
-      md: 'text-base',
+      sm: 'text-xs',
+      md: 'text-sm',
       lg: 'text-lg',
       xl: 'text-xl',
     },
@@ -779,7 +779,7 @@ const listItemVariants = cva('', {
       bold: 'font-bold',
     },
     color: {
-      default: 'text-foreground',
+      default: '',
       primary: 'text-primary',
       secondary: 'text-secondary',
       destructive: 'text-destructive',

@@ -61,11 +61,7 @@ export const InputWrapper = ({
       >
         {children}
       </Box>
-      {errorId ? (
-        <Box>
-          <ErrorList id={errorId} errors={errors} />
-        </Box>
-      ) : null}
+      {errorId ? <ErrorList id={errorId} errors={errors} /> : null}
     </Box>
   );
 };

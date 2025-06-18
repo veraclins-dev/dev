@@ -4,7 +4,7 @@ const BASE_INPUT_CLASSES = cn(
   // Border and Shadow
   'border shadow-xs',
   // Focus Styles
-  'focus-visible:ring-current/50 focus-visible:ring-2 focus:ring-offset-1',
+  'focus-visible:ring-current/50 focus-visible:ring-2 focus:ring-offset-0.5',
   // Disabled Styles
   'disabled:cursor-not-allowed disabled:opacity-50',
   // Error States
@@ -50,11 +50,11 @@ const INPUT_CLASSES = cn(
   // Border and Shadow
   'rounded-md',
   // Focus Styles
-  'focus-visible:ring-2 focus:ring-offset-1',
+  'focus-visible:ring-2 focus:ring-offset-0.5',
   // Disabled Styles
   'disabled:pointer-events-none',
   // File Input Styles
-  'file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium',
+  'file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium',
   // SVG Styles
   '[&_svg]:shrink-0',
 );
@@ -68,7 +68,7 @@ const INPUT_CONTAINER_CLASSES = cn(
   // Border and Shadow
   'rounded-md border shadow-xs',
   // Focus Styles
-  'has-focus-visible:ring-current/50 has-focus-visible:ring-2 has-focus-visible:ring-offset-1',
+  'has-focus-visible:ring-current/50 has-focus-visible:ring-2 has-focus-visible:ring-offset-0.5',
   // Disabled Styles
   'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
   // Error States
@@ -226,7 +226,7 @@ const BUTTON_DEFAULT_CLASSES = cn(
   // Disabled Styles
   'disabled:pointer-events-none disabled:opacity-30 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-30',
   // Focus and Error States
-  'focus:outline-none focus:ring-2 focus:ring-current/50 focus:ring-offset-1 outline-none focus-visible:outline-none focus-visible:ring-current/50 focus-visible:ring-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
+  'focus:outline-none focus:ring-2 focus:ring-current/50 focus:ring-offset-0.5 outline-none focus-visible:outline-none focus-visible:ring-current/50 focus-visible:ring-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
   // SVG Styles
   '[&_svg]:pointer-events-none',
 );

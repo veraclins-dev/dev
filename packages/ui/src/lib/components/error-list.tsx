@@ -19,11 +19,13 @@ export const ErrorList = ({ errors, id }: ErrorListProps) => {
       id={id}
       role="alert"
       aria-live="polite"
-      className="list-disc pl-4 text-destructive"
+      className="list-none pl-0 -mt-1 text-destructive"
     >
       {errors.map((error, index) => (
         <ListItem key={index}>
-          <Typography variant="caption">{error}</Typography>
+          <Typography className="text-destructive" variant="caption">
+            {error}
+          </Typography>
         </ListItem>
       ))}
     </List>
