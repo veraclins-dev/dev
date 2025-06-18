@@ -53,7 +53,7 @@ type ImageElementProps = Omit<ImageProps, 'src'> & {
   config: FullImageConfig;
   unoptimized: boolean;
   placeholder: PlaceholderValue;
-  onLoadingCompleteRef: React.MutableRefObject<OnLoadingComplete | undefined>;
+  onLoadingCompleteRef: React.RefObject<OnLoadingComplete | undefined>;
   setBlurComplete: (b: boolean) => void;
   setIntersection: (img: HTMLImageElement | null) => void;
   noscriptSizes: string | undefined;
