@@ -11,6 +11,14 @@ export interface CacheEntry {
   upstreamEtag?: string;
 }
 
+export interface CacheParams {
+  href: string;
+  width: number;
+  quality: number;
+  mimeType: string;
+  method: string;
+  fit: string;
+}
 export class ImageCache {
   private cacheDir: string;
   private cacheVersion: number;
@@ -20,18 +28,15 @@ export class ImageCache {
     this.cacheVersion = cacheVersion;
   }
 
-  private getCacheKey(params: {
-    href: string;
-    width: number;
-    quality: number;
-    mimeType: string;
-  }): string {
+  private getCacheKey(params: CacheParams): string {
     return getHash([
       this.cacheVersion,
       params.href,
       params.width,
       params.quality,
       params.mimeType,
+      params.method,
+      params.fit,
     ]);
   }
 
@@ -39,12 +44,7 @@ export class ImageCache {
     return path.join(this.cacheDir, cacheKey);
   }
 
-  async get(params: {
-    href: string;
-    width: number;
-    quality: number;
-    mimeType: string;
-  }): Promise<CacheEntry | null> {
+  async get(params: CacheParams): Promise<CacheEntry | null> {
     try {
       const cacheKey = this.getCacheKey(params);
       const cachePath = this.getCachePath(cacheKey);
@@ -66,15 +66,7 @@ export class ImageCache {
     }
   }
 
-  async set(
-    params: {
-      href: string;
-      width: number;
-      quality: number;
-      mimeType: string;
-    },
-    entry: CacheEntry,
-  ): Promise<void> {
+  async set(params: CacheParams, entry: CacheEntry): Promise<void> {
     try {
       const cacheKey = this.getCacheKey(params);
       const cachePath = this.getCachePath(cacheKey);
@@ -93,12 +85,7 @@ export class ImageCache {
     }
   }
 
-  async delete(params: {
-    href: string;
-    width: number;
-    quality: number;
-    mimeType: string;
-  }): Promise<void> {
+  async delete(params: CacheParams): Promise<void> {
     try {
       const cacheKey = this.getCacheKey(params);
       const cachePath = this.getCachePath(cacheKey);

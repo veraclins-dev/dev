@@ -36,6 +36,9 @@ function parseEnvArray(envValue: string | undefined): number[] | undefined {
 }
 
 export function getImageConfigFromEnv(): Partial<ImageConfig> {
+  if (typeof process === 'undefined') {
+    return {};
+  }
   return {
     deviceSizes: parseEnvArray(process.env.IMAGE_DEVICE_SIZES),
     imageSizes: parseEnvArray(process.env.IMAGE_SIZES),
@@ -59,18 +62,29 @@ export function getImageConfigFromEnv(): Partial<ImageConfig> {
   };
 }
 
+function mergeConfigs<T extends ImageConfig>(
+  envConfig: Partial<T>,
+  defaultConfig: T,
+  config: Partial<T>,
+): T {
+  // strip all undefined values from the config and envConfig
+  const strippedEnvConfig = Object.fromEntries(
+    Object.entries(envConfig).filter(([_, value]) => value !== undefined),
+  );
+  const strippedConfig = Object.fromEntries(
+    Object.entries(config).filter(([_, value]) => value !== undefined),
+  );
+  return { ...defaultConfig, ...strippedEnvConfig, ...strippedConfig } as T;
+}
+
 export function getImageConfig(
   config: Partial<ImageConfig> = {},
 ): FullImageConfig {
   try {
     const envConfig = getImageConfigFromEnv();
 
-    const mergedConfig = {
-      ...defaultConfig,
-      ...envConfig,
-      ...config,
-    };
-
+    const mergedConfig = mergeConfigs(envConfig, defaultConfig, config);
+    console.log(mergedConfig);
     const fullConfig = {
       ...mergedConfig,
       allSizes: mergedConfig.deviceSizes.concat(mergedConfig.imageSizes),
@@ -85,4 +99,16 @@ export function getImageConfig(
     }
     throw error;
   }
+}
+
+declare global {
+  var imageConfig: FullImageConfig;
+}
+
+export function initImageConfig(config: Partial<ImageConfig> = {}) {
+  const fullConfig = getImageConfig(config);
+  if (typeof window !== 'undefined') {
+    window.imageConfig = fullConfig;
+  }
+  return fullConfig;
 }
