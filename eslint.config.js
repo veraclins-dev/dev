@@ -31,6 +31,8 @@ module.exports = [
               onlyDependOnLibsWithTags: [
                 'type:auth',
                 'type:editor',
+                'type:form',
+                'type:image',
                 'type:ui',
                 'type:utils',
                 'type:react-utils',
