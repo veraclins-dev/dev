@@ -9,6 +9,11 @@
       "types": "./index.d.ts",
       "import": "./index.js",
       "require": "./index.js"
+    },
+    "./server": {
+      "types": "./server.d.ts",
+      "import": "./server.js",
+      "require": "./server.js"
     }
   },
   "dependencies": {

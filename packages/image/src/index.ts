@@ -1,1 +1,2 @@
-export * from './lib/components/image';
+export * from './lib/client';
+export * from './lib/shared';
