@@ -54,6 +54,7 @@ export default defineConfig(() => ({
         '@veraclins-dev/ui',
         '@veraclins-dev/utils',
         '@veraclins-dev/react-utils',
+        /node:.*/,
       ],
     },
   },

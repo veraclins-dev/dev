@@ -1,9 +1,9 @@
 import { mediaType } from '@hapi/accept';
-import { createHash } from 'crypto';
-import fs from 'fs';
 // @ts-expect-error no types for is-animated
 import isAnimated from 'is-animated';
-import path from 'path';
+import { createHash } from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
 import sharp from 'sharp';
 
 import { type FullImageConfig, getImageConfig } from '../shared';
