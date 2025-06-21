@@ -16,7 +16,6 @@ export async function action({ request }: Route.ActionArgs) {
   if (submission.status !== 'success') {
     return formSubmissionErrors(submission);
   }
-  console.log(submission.value);
   return { submission: submission.reply({ resetForm: true }) };
 }
 

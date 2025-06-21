@@ -14,6 +14,12 @@ import {
 export function NxWelcome({ title }: { title: string }) {
   const routes = [
     {
+      path: '/auth',
+      label: 'Auth',
+      description:
+        'OAuth authentication strategies for popular social platforms including Google, Facebook, GitHub, and Twitter.',
+    },
+    {
       path: '/dialogs',
       label: 'Dialogs',
       description:
@@ -42,6 +48,12 @@ export function NxWelcome({ title }: { title: string }) {
       label: 'Badges',
       description:
         'Status indicators, labels, and notification badges for highlighting information.',
+    },
+    {
+      path: '/chips',
+      label: 'Chips',
+      description:
+        'Compact elements for representing inputs, attributes, or actions with remove functionality.',
     },
     {
       path: '/inputs',
@@ -78,6 +90,12 @@ export function NxWelcome({ title }: { title: string }) {
       label: 'Typography',
       description:
         'Typography components for managing text styles, headings, and body text.',
+    },
+    {
+      path: '/utils',
+      label: 'Utils',
+      description:
+        'Utility functions for common development tasks including date handling, DOM manipulation, validation, and responsive design helpers.',
     },
   ];
 
