@@ -12,90 +12,132 @@ import {
 } from '@veraclins-dev/ui';
 
 export function NxWelcome({ title }: { title: string }) {
-  const routes = [
+  const routeGroups = [
     {
-      path: '/auth',
-      label: 'Auth',
-      description:
-        'OAuth authentication strategies for popular social platforms including Google, Facebook, GitHub, and Twitter.',
+      title: 'Layout & Structure',
+      description: 'Components for page layout and content organization',
+      routes: [
+        {
+          path: '/boxes',
+          label: 'Boxes',
+          description:
+            'Layout components for creating responsive containers and grid systems.',
+        },
+        {
+          path: '/cards',
+          label: 'Cards',
+          description:
+            'Card components for displaying content in a structured and visually appealing way.',
+        },
+        {
+          path: '/typography',
+          label: 'Typography',
+          description:
+            'Typography components for managing text styles, headings, and body text.',
+        },
+      ],
     },
     {
-      path: '/dialogs',
-      label: 'Dialogs',
-      description:
-        'Modal dialogs, popovers, and other overlay components for user interactions and notifications.',
+      title: 'Interactive Elements',
+      description: 'Components for user interaction and feedback',
+      routes: [
+        {
+          path: '/buttons',
+          label: 'Buttons',
+          description:
+            'Interactive button components with various styles, states, and loading indicators.',
+        },
+        {
+          path: '/links',
+          label: 'Links',
+          description:
+            'Text and icon link components with different styles and hover effects.',
+        },
+        {
+          path: '/inputs',
+          label: 'Inputs',
+          description:
+            'Form input components including text fields, checkboxes, radio buttons, and select menus.',
+        },
+        {
+          path: '/forms',
+          label: 'Forms',
+          description:
+            'Form components for managing user input, validation, and submission.',
+        },
+      ],
     },
     {
-      path: '/colors',
-      label: 'Colors',
-      description:
-        'Color palette showcase including primary, secondary, and semantic color variations.',
+      title: 'Data & Content',
+      description: 'Components for displaying and managing data',
+      routes: [
+        {
+          path: '/badges',
+          label: 'Badges',
+          description:
+            'Status indicators, labels, and notification badges for highlighting information.',
+        },
+        {
+          path: '/chips',
+          label: 'Chips',
+          description:
+            'Compact elements for representing inputs, attributes, or actions with remove functionality.',
+        },
+        {
+          path: '/images',
+          label: 'Images',
+          description:
+            'Optimized image components with lazy loading, blur placeholders, and responsive sizing.',
+        },
+      ],
     },
     {
-      path: '/buttons',
-      label: 'Buttons',
-      description:
-        'Interactive button components with various styles, states, and loading indicators.',
+      title: 'Overlays & Modals',
+      description: 'Components for overlays, dialogs, and modal interactions',
+      routes: [
+        {
+          path: '/dialogs',
+          label: 'Dialogs',
+          description:
+            'Modal dialogs, popovers, and other overlay components for user interactions and notifications.',
+        },
+      ],
     },
     {
-      path: '/links',
-      label: 'Links',
-      description:
-        'Text and icon link components with different styles and hover effects.',
+      title: 'Design System',
+      description: 'Core design tokens and visual elements',
+      routes: [
+        {
+          path: '/colors',
+          label: 'Colors',
+          description:
+            'Color palette showcase including primary, secondary, and semantic color variations.',
+        },
+      ],
     },
     {
-      path: '/badges',
-      label: 'Badges',
-      description:
-        'Status indicators, labels, and notification badges for highlighting information.',
-    },
-    {
-      path: '/chips',
-      label: 'Chips',
-      description:
-        'Compact elements for representing inputs, attributes, or actions with remove functionality.',
-    },
-    {
-      path: '/inputs',
-      label: 'Inputs',
-      description:
-        'Form input components including text fields, checkboxes, radio buttons, and select menus.',
-    },
-    {
-      path: '/boxes',
-      label: 'Boxes',
-      description:
-        'Layout components for creating responsive containers and grid systems.',
-    },
-    {
-      path: '/cards',
-      label: 'Cards',
-      description:
-        'Card components for displaying content in a structured and visually appealing way.',
-    },
-    {
-      path: '/images',
-      label: 'Images',
-      description:
-        'Optimized image components with lazy loading, blur placeholders, and responsive sizing.',
-    },
-    {
-      path: '/forms',
-      label: 'Forms',
-      description:
-        'Form components for managing user input, validation, and submission.',
-    },
-    {
-      path: '/typography',
-      label: 'Typography',
-      description:
-        'Typography components for managing text styles, headings, and body text.',
-    },
-    {
-      path: '/utils',
-      label: 'Utils',
-      description:
-        'Utility functions for common development tasks including date handling, DOM manipulation, validation, and responsive design helpers.',
+      title: 'Packages',
+      description: 'Core utility packages and integrations',
+      routes: [
+        {
+          path: '/auth',
+          label: 'Auth',
+          description:
+            'OAuth authentication strategies for popular social platforms including Google, Facebook, GitHub, and Twitter.',
+        },
+        {
+          path: '/seo',
+          label: 'SEO',
+          description:
+            'Comprehensive SEO utilities for Remix applications including sitemap generation, robots.txt management, and metadata handling.',
+        },
+        {
+          path: '/utils',
+          label: 'Utils',
+          description:
+            'Utility functions for common development tasks including date handling, DOM manipulation, validation, and responsive design helpers.',
+        },
+      ],
     },
   ];
 
@@ -116,26 +158,44 @@ export function NxWelcome({ title }: { title: string }) {
         Available Components
       </Typography>
 
-      <Box className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
-        {routes.map((route) => (
-          <Card
-            key={route.path}
-            display="flex"
-            flexDirection="column"
-            className="h-full"
-          >
-            <CardHeader>
-              <CardTitle>{route.label}</CardTitle>
-            </CardHeader>
-            <CardContent flex="1">
-              <Typography variant="body2">{route.description}</Typography>
-            </CardContent>
-            <CardFooter>
-              <Link to={route.path} component={RouterLink}>
-                View Examples →
-              </Link>
-            </CardFooter>
-          </Card>
+      <Box className="space-y-12">
+        {routeGroups.map((group) => (
+          <Box key={group.title}>
+            <Box className="mb-6">
+              <Typography variant="h3" className="mb-2">
+                {group.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                className="text-neutral-foreground/70"
+              >
+                {group.description}
+              </Typography>
+            </Box>
+
+            <Box className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+              {group.routes.map((route) => (
+                <Card
+                  key={route.path}
+                  display="flex"
+                  flexDirection="column"
+                  className="h-full"
+                >
+                  <CardHeader>
+                    <CardTitle>{route.label}</CardTitle>
+                  </CardHeader>
+                  <CardContent flex="1">
+                    <Typography variant="body2">{route.description}</Typography>
+                  </CardContent>
+                  <CardFooter>
+                    <Link to={route.path} component={RouterLink}>
+                      View Examples →
+                    </Link>
+                  </CardFooter>
+                </Card>
+              ))}
+            </Box>
+          </Box>
         ))}
       </Box>
     </Box>
