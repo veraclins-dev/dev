@@ -84,7 +84,6 @@ export function getImageConfig(
     const envConfig = getImageConfigFromEnv();
 
     const mergedConfig = mergeConfigs(envConfig, defaultConfig, config);
-    console.log(mergedConfig);
     const fullConfig = {
       ...mergedConfig,
       allSizes: mergedConfig.deviceSizes.concat(mergedConfig.imageSizes),
