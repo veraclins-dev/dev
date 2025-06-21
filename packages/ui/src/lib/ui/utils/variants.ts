@@ -19,13 +19,14 @@ const sharedBaseVariants = {
       soft: '',
     },
     color: {
-      primary: '',
-      secondary: '',
-      destructive: '',
-      success: '',
-      warning: '',
-      info: '',
-      neutral: '',
+      primary: 'focus:ring-primary/50 focus-visible:ring-primary/50',
+      secondary: 'focus:ring-secondary/50 focus-visible:ring-secondary/50',
+      destructive:
+        'focus:ring-destructive/50 focus-visible:ring-destructive/50',
+      success: 'focus:ring-success/50 focus-visible:ring-success/50',
+      warning: 'focus:ring-warning/50 focus-visible:ring-warning/50',
+      info: 'focus:ring-info/50 focus-visible:ring-info/50',
+      neutral: 'focus:ring-neutral/50 focus-visible:ring-neutral/50',
     },
   },
   compoundVariants: [

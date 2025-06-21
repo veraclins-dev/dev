@@ -43,7 +43,7 @@ const variantMapping: Record<Variant, TypographyElement> = {
 type TypographyProps = ComponentPropsWithoutColor<TypographyBlockElement> & {
   // | ComponentPropsWithoutColor<'p' | 'span'>
   variant?: Variant;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
 } & TypographyVariants;
 

@@ -79,9 +79,7 @@ const Activity = ({
           )}
           // skipcq: JS-0440
           dangerouslySetInnerHTML={createMarkup(message)}
-        >
-          {message}
-        </Typography>
+        />
         <Typography variant="caption" className="first-letter:uppercase">
           {createdAt.toString()}
         </Typography>
