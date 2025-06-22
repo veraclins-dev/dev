@@ -2,6 +2,7 @@ export * from './accordion';
 export * from './avatar';
 export * from './badge';
 export * from './box';
+export * from './breadcrumb';
 export * from './button';
 export * from './calendar';
 export * from './card';
