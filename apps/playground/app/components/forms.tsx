@@ -8,17 +8,32 @@ import {
   Box,
   Button,
   Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Checkbox,
   HiddenField,
   Icon,
+  Input,
+  Label,
   LabeledTextField,
-  SelectField,
-  TextareaField,
+  RadioGroup,
+  RadioGroupItem,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Textarea,
   TextField,
   Typography,
 } from '@veraclins-dev/ui';
 import { z } from '@veraclins-dev/utils';
 
 import { AddComment } from '../validations/comment';
+
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
 // Validation schemas for different form types
 const BasicFormSchema = z.object({
@@ -515,6 +530,8 @@ const CommentFormExample = () => {
 export const FormsShowcase = () => {
   return (
     <Box className="space-y-8 p-6">
+      <PlaygroundBreadcrumb currentPage="Forms" className="mb-4" />
+
       <Box className="text-center">
         <Typography variant="h1" className="text-2xl font-bold mb-2">
           Form Package Showcase
