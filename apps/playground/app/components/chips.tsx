@@ -3,19 +3,25 @@ import {
   AvatarFallback,
   AvatarImage,
   Box,
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
   Chip,
+  Icon,
   Input,
   Typography,
 } from '@veraclins-dev/ui';
 
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
 export function Chips() {
   return (
     <Box display="flex" flexDirection="column" gap={6}>
+      <PlaygroundBreadcrumb currentPage="Chips" className="mb-4" />
+
       <Typography variant="h1" className="text-center">
         Chip Components
       </Typography>

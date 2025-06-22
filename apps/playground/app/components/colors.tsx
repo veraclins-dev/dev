@@ -1,8 +1,23 @@
-import { Box, Typography } from '@veraclins-dev/ui';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Typography,
+} from '@veraclins-dev/ui';
+
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
 export function Colors() {
   return (
-    <>
+    <Box display="flex" flexDirection="column" gap={6}>
+      <PlaygroundBreadcrumb currentPage="Colors" className="mb-4" />
+
+      <Typography variant="h1" className="text-center">
+        Color Palette
+      </Typography>
       <Typography variant="h2">Colors</Typography>
       <Box display="flex" flexDirection="row" gap={4} flexWrap="wrap">
         <Box className="bg-foreground p-2 rounded-md">
@@ -116,6 +131,6 @@ export function Colors() {
           Info Hover
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }

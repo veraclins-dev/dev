@@ -29,10 +29,13 @@ import {
 } from '@veraclins-dev/ui';
 
 import { exampleContent } from './data';
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
 export function Inputs() {
   return (
     <Box display="flex" flexDirection="column" gap={6}>
+      <PlaygroundBreadcrumb currentPage="Inputs" className="mb-4" />
+
       <Typography variant="h1" className="text-center">
         Input Components
       </Typography>

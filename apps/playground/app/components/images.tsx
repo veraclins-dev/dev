@@ -12,6 +12,8 @@ import {
   Typography,
 } from '@veraclins-dev/ui';
 
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
 export function Images() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -137,9 +139,11 @@ export function Images() {
   ];
 
   return (
-    <Box className="max-w-7xl mx-auto p-6">
-      <Typography variant="h1" className="text-center mb-4">
-        Image Component Showcase
+    <Box display="flex" flexDirection="column" gap={6}>
+      <PlaygroundBreadcrumb currentPage="Images" className="mb-4" />
+
+      <Typography variant="h1" className="text-center">
+        Image Components
       </Typography>
 
       <Typography variant="body1" className="text-center mb-8">

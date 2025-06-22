@@ -13,9 +13,13 @@ import {
   Typography,
 } from '@veraclins-dev/ui';
 
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
 export function Links() {
   return (
     <Box display="flex" flexDirection="column" gap={6}>
+      <PlaygroundBreadcrumb currentPage="Links" className="mb-4" />
+
       <Typography variant="h1" className="text-center">
         Link Components
       </Typography>
