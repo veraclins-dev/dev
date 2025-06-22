@@ -12,20 +12,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  Checkbox,
   HiddenField,
   Icon,
-  Input,
-  Label,
-  LabeledTextField,
-  RadioGroup,
-  RadioGroupItem,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  Textarea,
+  SelectField,
+  TextareaField,
   TextField,
   Typography,
 } from '@veraclins-dev/ui';
@@ -74,18 +64,18 @@ const BasicFormExample = () => {
   });
 
   return (
-    <Card className="p-6">
-      <Box className="space-y-4">
-        <Box className="flex items-center gap-2 mb-4">
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
           <Icon name="document-text" className="h-5 w-5 text-blue-500" />
-          <Typography variant="h3" className="text-lg font-semibold">
-            Basic Form
-          </Typography>
+          <CardTitle>Basic Form</CardTitle>
         </Box>
-        <Typography variant="body2" className="text-sm text-gray-600 mb-4">
+        <CardDescription>
           Simple form with text fields and textarea. Demonstrates basic
           validation with Zod schemas.
-        </Typography>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <Form form={form} submitText="Send Message" className="max-w-md">
           <TextField field={fields.name} placeholder="Your name" label="Name" />
           <TextField
@@ -101,7 +91,7 @@ const BasicFormExample = () => {
             rows={4}
           />
         </Form>
-      </Box>
+      </CardContent>
     </Card>
   );
 };
@@ -117,18 +107,18 @@ const AdvancedFormExample = () => {
   });
 
   return (
-    <Card className="p-6">
-      <Box className="space-y-4">
-        <Box className="flex items-center gap-2 mb-4">
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
           <Icon name="user" className="h-5 w-5 text-green-500" />
-          <Typography variant="h3" className="text-lg font-semibold">
-            Advanced Form
-          </Typography>
+          <CardTitle>Advanced Form</CardTitle>
         </Box>
-        <Typography variant="body2" className="text-sm text-gray-600 mb-4">
+        <CardDescription>
           Complex form with multiple field types, grid layout, and select
           dropdowns.
-        </Typography>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <Form form={form} submitText="Create Account" className="max-w-lg">
           <Box className="grid grid-cols-2 gap-4">
             <TextField
@@ -143,35 +133,39 @@ const AdvancedFormExample = () => {
             />
           </Box>
 
-          <TextField
-            field={fields.email}
-            placeholder="john@example.com"
-            label="Email"
-            type="email"
-          />
+          <Box className="grid grid-cols-2 gap-4">
+            <TextField
+              field={fields.email}
+              placeholder="john@example.com"
+              label="Email"
+              type="email"
+            />
 
-          <TextField
-            field={fields.phone}
-            placeholder="+1 (555) 123-4567"
-            label="Phone (Optional)"
-            type="tel"
-          />
+            <TextField
+              field={fields.phone}
+              placeholder="+1 (555) 123-4567"
+              label="Phone (Optional)"
+              type="tel"
+            />
+          </Box>
 
-          <SelectField
-            field={fields.role}
-            label="Role"
-            options={[
-              { label: 'User', value: 'user' },
-              { label: 'Moderator', value: 'moderator' },
-              { label: 'Admin', value: 'admin' },
-            ]}
-          />
+          <Box className="grid grid-cols-2 gap-4">
+            <SelectField
+              field={fields.role}
+              label="Role"
+              options={[
+                { label: 'User', value: 'user' },
+                { label: 'Moderator', value: 'moderator' },
+                { label: 'Admin', value: 'admin' },
+              ]}
+            />
 
-          <TextField
-            field={fields.department}
-            placeholder="Engineering"
-            label="Department"
-          />
+            <TextField
+              field={fields.department}
+              placeholder="Engineering"
+              label="Department"
+            />
+          </Box>
 
           <TextareaField
             field={fields.bio}
@@ -180,7 +174,7 @@ const AdvancedFormExample = () => {
             rows={3}
           />
         </Form>
-      </Box>
+      </CardContent>
     </Card>
   );
 };
@@ -197,53 +191,46 @@ const SearchFormExample = () => {
   });
 
   return (
-    <Card className="p-6">
-      <Box className="space-y-4">
-        <Box className="flex items-center gap-2 mb-4">
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
           <Icon name="magnifying-glass" className="h-5 w-5 text-purple-500" />
-          <Typography variant="h3" className="text-lg font-semibold">
-            Search Form
-          </Typography>
+          <CardTitle>Search Form</CardTitle>
         </Box>
-        <Typography variant="body2" className="text-sm text-gray-600 mb-4">
-          Form with custom buttons and no default submit button. Uses
-          FormSubmitButton component.
-        </Typography>
-        <Form form={form} submitText="Search" noButtons className="max-w-md">
+        <CardDescription>
+          Search form with filters and sorting options using select fields.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Search" className="max-w-lg">
           <TextField
             field={fields.query}
-            placeholder="Search..."
+            placeholder="Enter search terms..."
             label="Search Query"
           />
 
-          <Box className="grid grid-cols-2 gap-4">
-            <SelectField
-              field={fields.category}
-              label="Category"
-              options={[
-                { label: 'All', value: 'all' },
-                { label: 'Users', value: 'users' },
-                { label: 'Posts', value: 'posts' },
-                { label: 'Comments', value: 'comments' },
-              ]}
-            />
+          <SelectField
+            field={fields.category}
+            label="Category"
+            options={[
+              { label: 'All', value: 'all' },
+              { label: 'Users', value: 'users' },
+              { label: 'Posts', value: 'posts' },
+              { label: 'Comments', value: 'comments' },
+            ]}
+          />
 
-            <SelectField
-              field={fields.sortBy}
-              label="Sort By"
-              options={[
-                { label: 'Relevance', value: 'relevance' },
-                { label: 'Date', value: 'date' },
-                { label: 'Name', value: 'name' },
-              ]}
-            />
-          </Box>
-
-          <Box className="flex justify-end">
-            <FormSubmitButton className="px-6 py-2">Search</FormSubmitButton>
-          </Box>
+          <SelectField
+            field={fields.sortBy}
+            label="Sort By"
+            options={[
+              { label: 'Relevance', value: 'relevance' },
+              { label: 'Date', value: 'date' },
+              { label: 'Name', value: 'name' },
+            ]}
+          />
         </Form>
-      </Box>
+      </CardContent>
     </Card>
   );
 };
@@ -261,18 +248,18 @@ const SettingsFormExample = () => {
   });
 
   return (
-    <Card className="p-6">
-      <Box className="space-y-4">
-        <Box className="flex items-center gap-2 mb-4">
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
           <Icon name="cog-6-tooth" className="h-5 w-5 text-orange-500" />
-          <Typography variant="h3" className="text-lg font-semibold">
-            Settings Form
-          </Typography>
+          <CardTitle>Settings Form</CardTitle>
         </Box>
-        <Typography variant="body2" className="text-sm text-gray-600 mb-4">
+        <CardDescription>
           Form with grouped sections and multiple select fields for
           configuration.
-        </Typography>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <Form form={form} submitText="Save Settings" className="max-w-lg">
           <Box className="space-y-6">
             <Box display="flex" flexDirection="column" gap={4}>
@@ -316,7 +303,7 @@ const SettingsFormExample = () => {
             </Box>
           </Box>
         </Form>
-      </Box>
+      </CardContent>
     </Card>
   );
 };
@@ -332,17 +319,17 @@ const FetcherFormExample = () => {
   });
 
   return (
-    <Card className="p-6">
-      <Box className="space-y-4">
-        <Box className="flex items-center gap-2 mb-4">
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
           <Icon name="arrow-path" className="h-5 w-5 text-indigo-500" />
-          <Typography variant="h3" className="text-lg font-semibold">
-            Fetcher Form
-          </Typography>
+          <CardTitle>Fetcher Form</CardTitle>
         </Box>
-        <Typography variant="body2" className="text-sm text-gray-600 mb-4">
+        <CardDescription>
           Form submission without page reload using useCustomFetcher hook.
-        </Typography>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <Form
           form={form}
           fetcher={fetcher}
@@ -371,7 +358,7 @@ const FetcherFormExample = () => {
             </Typography>
           </Box>
         )}
-      </Box>
+      </CardContent>
     </Card>
   );
 };
@@ -397,18 +384,18 @@ const CustomButtonsFormExample = () => {
   );
 
   return (
-    <Card className="p-6">
-      <Box className="space-y-4">
-        <Box className="flex items-center gap-2 mb-4">
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
           <Icon name="button" className="h-5 w-5 text-teal-500" />
-          <Typography variant="h3" className="text-lg font-semibold">
-            Custom Buttons Form
-          </Typography>
+          <CardTitle>Custom Buttons Form</CardTitle>
         </Box>
-        <Typography variant="body2" className="text-sm text-gray-600 mb-4">
+        <CardDescription>
           Form with custom action buttons using the actionButtons prop and
           noButtons.
-        </Typography>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <Form form={form} actionButtons={actionButtons} className="max-w-md">
           <TextField field={fields.name} placeholder="Your name" label="Name" />
           <TextField
@@ -424,7 +411,7 @@ const CustomButtonsFormExample = () => {
             rows={3}
           />
         </Form>
-      </Box>
+      </CardContent>
     </Card>
   );
 };
@@ -437,17 +424,17 @@ const NoErrorFormExample = () => {
   });
 
   return (
-    <Card className="p-6">
-      <Box className="space-y-4">
-        <Box className="flex items-center gap-2 mb-4">
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
           <Icon name="eye-slash" className="h-5 w-5 text-red-500" />
-          <Typography variant="h3" className="text-lg font-semibold">
-            No Error Display Form
-          </Typography>
+          <CardTitle>No Error Display Form</CardTitle>
         </Box>
-        <Typography variant="body2" className="text-sm text-gray-600 mb-4">
+        <CardDescription>
           Form with noError prop to hide automatic error display.
-        </Typography>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <Form form={form} submitText="Submit" noError className="max-w-md">
           <TextField field={fields.name} placeholder="Your name" label="Name" />
           <TextField
@@ -463,7 +450,7 @@ const NoErrorFormExample = () => {
             rows={3}
           />
         </Form>
-      </Box>
+      </CardContent>
     </Card>
   );
 };
@@ -485,17 +472,17 @@ const CommentFormExample = () => {
   });
 
   return (
-    <Card className="p-6">
-      <Box className="space-y-4">
-        <Box className="flex items-center gap-2 mb-4">
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
           <Icon name="chat-bubble" className="h-5 w-5 text-pink-500" />
-          <Typography variant="h3" className="text-lg font-semibold">
-            Comment Form
-          </Typography>
+          <CardTitle>Comment Form</CardTitle>
         </Box>
-        <Typography variant="body2" className="text-sm text-gray-600 mb-4">
+        <CardDescription>
           Original example with hidden fields and custom button layout.
-        </Typography>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <Form noButtons className="max-w-md" form={form} fetcher={fetcher}>
           <TextareaField
             rows={3}
@@ -521,7 +508,7 @@ const CommentFormExample = () => {
             </FormSubmitButton>
           </Box>
         </Form>
-      </Box>
+      </CardContent>
     </Card>
   );
 };
@@ -536,12 +523,12 @@ export const FormsShowcase = () => {
         <Typography variant="h1" className="text-2xl font-bold mb-2">
           Form Package Showcase
         </Typography>
-        <Typography variant="body2" className="text-gray-600">
+        <Typography variant="body2">
           Demonstrating all features of the @veraclins-dev/form package
         </Typography>
       </Box>
 
-      <Box className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <Box className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         <BasicFormExample />
         <AdvancedFormExample />
         <SearchFormExample />
