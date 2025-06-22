@@ -313,20 +313,23 @@ function DropdownMenuShortcut({
 
 type ItemSeparator = DropdownMenuItemProps & {
   key: string;
-  isSeparator?: boolean;
+  isSeparator: true;
 };
-type ItemOption = DropdownMenuItemProps & {
+
+type BaseItemOption = {
   key: string;
   label: React.ReactNode;
   shortcutKeys?: string[];
   disabled?: boolean;
-  isSeparator?: boolean;
+  isSeparator?: never;
   icon?: IconName;
   iconPosition?: 'left' | 'right';
 };
 
+type ItemOption = DropdownMenuItemProps & BaseItemOption;
+
 type Item<P extends object> =
-  | (WithComponent<P> & { key: string })
+  | (WithComponent<P> & { key: string; isSeparator?: never })
   | ItemSeparator
   | ItemOption;
 
@@ -355,7 +358,7 @@ const ComposedDropdownMenu = <P extends object, I extends object>({
     <DropdownMenuContent align="center" className={className}>
       {arrow && <DropdownMenuArrow />}
 
-      {items.map(({ key, ...item }) => {
+      {items.map(({ key, isSeparator, ...item }) => {
         if ('Component' in item) {
           const { Component, ComponentProps, ...props } = item;
           return (
@@ -364,6 +367,16 @@ const ComposedDropdownMenu = <P extends object, I extends object>({
             </DropdownMenuItem>
           );
         }
+
+        if (isSeparator) {
+          return <DropdownMenuSeparator key={key} />;
+        }
+
+        // Type guard to check if item is ItemOption
+        if (!('label' in item)) {
+          return null;
+        }
+
         const {
           label,
           shortcutKeys,
@@ -371,13 +384,8 @@ const ComposedDropdownMenu = <P extends object, I extends object>({
           onClick,
           icon,
           iconPosition = 'left',
-          isSeparator,
           ...itemProps
         } = item;
-
-        if (isSeparator) {
-          return <DropdownMenuSeparator key={key} />;
-        }
 
         return (
           <DropdownMenuItem

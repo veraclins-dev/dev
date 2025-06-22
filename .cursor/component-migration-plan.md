@@ -80,67 +80,45 @@ This plan outlines the missing features and improvements needed to create a comp
 
 ### 1.5.1 Overlays & Modals Showcase Enhancement
 
-**Status**: ✅ Completed
+**Status**: ✅ **COMPLETED**
 **Priority**: Medium
 **Current Implementation**:
 
 - ✅ Comprehensive overlay examples:
-  - Command palettes for navigation
-  - Dropdown menus for actions
-  - Modal dialogs with forms
-  - Confirmation dialogs
-  - Alert dialogs
-  - Custom dialog content
-- ✅ Drawer examples:
-  - Side navigation drawers
-  - Settings panels
-  - Mobile navigation
-- ✅ Sheet examples:
-  - Bottom sheets for mobile
-  - Top sheets for notifications
-- ✅ Tooltip examples:
-  - Simple tooltips
-  - Rich tooltips with content
-  - Interactive tooltips
-- ✅ Hover card examples:
-  - User profile cards
-  - Product previews
-  - Rich content previews
-- ✅ Popover examples:
-  - Notifications
-  - Actions menu
-  - Search functionality
-  - Quick settings
-- ✅ Integration examples:
-  - E-commerce product page
-  - Dashboard application
+  - **Command Palette** - Basic and real-life examples (file management, application commands, search commands)
+  - **Dropdown Menus** - User profile, table actions, filter dropdowns
+  - **Modal Dialogs** - Basic, form, confirmation, alert, complex form, media dialogs
+  - **Drawers** - Navigation and settings drawers
+  - **Sheets** - Bottom, top, side, and form sheets
+  - **Tooltips** - Basic, rich, interactive, and contextual tooltips
+  - **Hover Cards** - User information and product previews
+  - **Popovers** - Quick settings and color picker
+- ✅ Real-life integration examples:
+  - E-commerce scenarios
+  - Dashboard applications
+  - Form interactions
+  - Mobile-first interactions
 - ✅ Accessibility information and usage guidelines
+- ✅ Proper layout and organization with grid layouts
+- ✅ Comprehensive documentation and examples
 
 **Implementation Steps**:
 
 1. ✅ Consolidate navigation and dialogs into single overlays showcase
-2. ✅ Add comprehensive overlay examples:
-   - Command palettes for navigation
-   - Dropdown menus for actions
-   - Modal dialogs with forms
-   - Confirmation dialogs
-   - Alert dialogs
-   - Custom dialog content
-3. ✅ Add drawer examples:
-   - Side navigation drawers
-   - Settings panels
-   - Mobile navigation
-4. ✅ Add sheet examples:
-   - Bottom sheets for mobile
-   - Top sheets for notifications
-5. ✅ Add tooltip examples:
-   - Simple tooltips
-   - Rich tooltips with content
-   - Interactive tooltips
-6. ✅ Add hover card examples:
-   - User profile cards
-   - Product previews
-   - Rich content previews
+2. ✅ Rename navigation tab to command palette for better focus
+3. ✅ Add comprehensive overlay examples:
+   - Command palettes for navigation and actions
+   - Dropdown menus for actions and navigation
+   - Modal dialogs with forms, confirmations, alerts, media
+   - Drawers for navigation and settings
+   - Sheets for content presentation and interactions
+   - Tooltips with rich content and interactions
+   - Hover cards for content previews
+   - Popovers for positioned content
+4. ✅ Add real-life examples for all overlay components
+5. ✅ Improve layout and organization throughout
+6. ✅ Fix icon names and component usage
+7. ✅ Add grid layouts for better visual organization
 
 ### 1.5.2 Real-Life Usage Examples Enhancement
 
