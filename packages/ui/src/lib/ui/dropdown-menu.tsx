@@ -4,6 +4,7 @@ import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { type IconName } from '../icons';
 import {
   type ComponentWithTooltip,
   type WithComponent,
@@ -310,14 +311,24 @@ function DropdownMenuShortcut({
   );
 }
 
+type ItemSeparator = DropdownMenuItemProps & {
+  key: string;
+  isSeparator?: boolean;
+};
 type ItemOption = DropdownMenuItemProps & {
   key: string;
   label: React.ReactNode;
   shortcutKeys?: string[];
   disabled?: boolean;
+  isSeparator?: boolean;
+  icon?: IconName;
+  iconPosition?: 'left' | 'right';
 };
 
-type Item<P extends object> = (WithComponent<P> & { key: string }) | ItemOption;
+type Item<P extends object> =
+  | (WithComponent<P> & { key: string })
+  | ItemSeparator
+  | ItemOption;
 
 type ComposedDropdownMenuProps<
   P extends object = object,
@@ -353,7 +364,20 @@ const ComposedDropdownMenu = <P extends object, I extends object>({
             </DropdownMenuItem>
           );
         }
-        const { label, shortcutKeys, disabled, onClick, ...itemProps } = item;
+        const {
+          label,
+          shortcutKeys,
+          disabled,
+          onClick,
+          icon,
+          iconPosition = 'left',
+          isSeparator,
+          ...itemProps
+        } = item;
+
+        if (isSeparator) {
+          return <DropdownMenuSeparator key={key} />;
+        }
 
         return (
           <DropdownMenuItem
@@ -362,11 +386,17 @@ const ComposedDropdownMenu = <P extends object, I extends object>({
             onClick={onClick}
             {...itemProps}
           >
+            {icon && iconPosition === 'left' && (
+              <Icon name={icon} className="size-4" />
+            )}
             {label}
             {shortcutKeys && shortcutKeys.length > 0 && (
               <DropdownMenuShortcut>
                 {shortcutKeys.join(' + ')}
               </DropdownMenuShortcut>
+            )}
+            {icon && iconPosition === 'right' && (
+              <Icon name={icon} className="size-4" />
             )}
           </DropdownMenuItem>
         );

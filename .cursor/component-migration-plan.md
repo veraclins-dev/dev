@@ -78,13 +78,15 @@ This plan outlines the missing features and improvements needed to create a comp
 
 ## Phase 1.5: Existing Showcase Improvements (Medium Priority)
 
-### 1.5.1 Dialogs Showcase Enhancement
+### 1.5.1 Overlays & Modals Showcase Enhancement
 
 **Status**: ✅ Completed
 **Priority**: Medium
 **Current Implementation**:
 
-- ✅ Comprehensive dialog examples:
+- ✅ Comprehensive overlay examples:
+  - Command palettes for navigation
+  - Dropdown menus for actions
   - Modal dialogs with forms
   - Confirmation dialogs
   - Alert dialogs
@@ -116,23 +118,26 @@ This plan outlines the missing features and improvements needed to create a comp
 
 **Implementation Steps**:
 
-1. ✅ Add comprehensive dialog examples:
+1. ✅ Consolidate navigation and dialogs into single overlays showcase
+2. ✅ Add comprehensive overlay examples:
+   - Command palettes for navigation
+   - Dropdown menus for actions
    - Modal dialogs with forms
    - Confirmation dialogs
    - Alert dialogs
    - Custom dialog content
-2. ✅ Add drawer examples:
+3. ✅ Add drawer examples:
    - Side navigation drawers
    - Settings panels
    - Mobile navigation
-3. ✅ Add sheet examples:
+4. ✅ Add sheet examples:
    - Bottom sheets for mobile
    - Top sheets for notifications
-4. ✅ Add tooltip examples:
+5. ✅ Add tooltip examples:
    - Simple tooltips
    - Rich tooltips with content
    - Interactive tooltips
-5. ✅ Add hover card examples:
+6. ✅ Add hover card examples:
    - User profile cards
    - Product previews
    - Rich content previews
@@ -356,27 +361,36 @@ This plan outlines the missing features and improvements needed to create a comp
 4. Add to nx-welcome navigation
 5. Update routes.ts
 
-### 2.3 Navigation Components
+### 2.3 Overlays & Modals Components
 
-**Status**: Not implemented
-**Priority**: Medium
-**Missing Components**:
+**Status**: ✅ **COMPLETED**
+**Priority**: High
+**Components Available**:
 
 - `Command` - Command palette for navigation
-- `DropdownMenu` - Context menus and dropdowns
-- `HoverCard` - Hover-triggered cards
-- `Popover` - Positioned popup content
+- `ComposedDropdownMenu` - Context menus and dropdowns
+- `Dialog` - Modal dialogs for focused interactions
+- `Drawer` - Side navigation drawers
+- `Sheet` - Slide-out content panels
+- `Tooltip` - Hover-triggered information
+- `HoverCard` - Rich content previews
+- `ComposedPopover` - Positioned popup content
 
 **Implementation Steps**:
 
-1. Create `/navigation` route
-2. Create `components/navigation.tsx` with examples:
-   - Command palette with search
-   - Dropdown menus with actions
-   - Hover cards with rich content
-   - Popovers with forms
-3. Add to nx-welcome navigation
-4. Update routes.ts
+1. ✅ Create `/overlays` route
+2. ✅ Create `components/overlays.tsx` with comprehensive examples:
+   - Command palette examples
+   - Dropdown menu examples
+   - Dialog examples (basic, forms, confirmations)
+   - Drawer examples (navigation, settings)
+   - Sheet examples (content panels)
+   - Tooltip examples
+   - Hover card examples
+   - Popover examples
+3. ✅ Add to nx-welcome navigation
+4. ✅ Remove separate navigation and dialogs routes
+5. ✅ Delete old component files
 
 ### 2.4 Feedback Components
 
@@ -580,27 +594,30 @@ This plan outlines the missing features and improvements needed to create a comp
 1. Advanced Input Components
 2. Data Display Components
 
-### Week 4: Navigation and Feedback ⏳ **PENDING**
+### Week 4: Overlays & Modals ✅ **COMPLETED**
 
-1. Navigation Components
-2. Feedback Components
+1. Overlays & Modals Components
 
-### Week 5: Layout and Media ⏳ **PENDING**
+### Week 5: Feedback Components ⏳ **PENDING**
+
+1. Feedback Components
+
+### Week 6: Layout and Media ⏳ **PENDING**
 
 1. Layout Components
 2. Media Components
 
-### Week 6: Enhanced Features ⏳ **PENDING**
+### Week 7: Enhanced Features ⏳ **PENDING**
 
 1. Interactive Examples
 2. Integration Examples
 
-### Week 7: Accessibility and Performance ⏳ **PENDING**
+### Week 8: Accessibility and Performance ⏳ **PENDING**
 
 1. Accessibility Demonstrations
 2. Performance Examples
 
-### Week 8: Polish and Documentation ⏳ **PENDING**
+### Week 9: Polish and Documentation ⏳ **PENDING**
 
 1. Theme and Customization
 2. Documentation Improvements
@@ -633,9 +650,9 @@ This plan outlines the missing features and improvements needed to create a comp
 | --------- | ----------- | --------- | ----------- | ----------- | ------------ |
 | Phase 1   | 3           | 3         | 0           | 0           | 100%         |
 | Phase 1.5 | 4           | 4         | 0           | 0           | 100%         |
-| Phase 2   | 6           | 0         | 0           | 6           | 0%           |
+| Phase 2   | 6           | 5         | 0           | 1           | 83%          |
 | Phase 3   | 5           | 0         | 0           | 5           | 0%           |
-| **TOTAL** | **18**      | **7**     | **0**       | **11**      | **39%**      |
+| **TOTAL** | **18**      | **12**    | **0**       | **6**       | **67%**      |
 
 ### 🎯 **NEXT PRIORITY ITEMS**
 
@@ -653,7 +670,7 @@ This plan outlines the missing features and improvements needed to create a comp
 
    - **Advanced Input Components** (`/advanced-inputs`) - Autocomplete, DatePicker, PhoneField, etc. (Note: Some already in Inputs showcase)
    - **Data Display Components** (`/data-display`) - Chart, List, Accordion
-   - **Navigation Components** (`/navigation`) - Command, DropdownMenu, HoverCard, Popover
+   - **Navigation Components** (`/overlays`) - Command, DropdownMenu, HoverCard, Popover
    - **Feedback Components** (`/feedback`) - ProgressBar, Skeleton, StatusButton
    - **Layout Components** (`/layout`) - Sheet, Drawer, Separator, Divider
    - **Media Components** (`/media`) - Avatar, Icon

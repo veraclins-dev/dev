@@ -65,6 +65,12 @@ export function NxWelcome({ title }: { title: string }) {
           description:
             'Form components for managing user input, validation, and submission.',
         },
+        {
+          path: '/feedback',
+          label: 'Feedback',
+          description:
+            'Progress indicators, loading states, and status buttons for user feedback.',
+        },
       ],
     },
     {
@@ -96,10 +102,10 @@ export function NxWelcome({ title }: { title: string }) {
       description: 'Components for overlays, dialogs, and modal interactions',
       routes: [
         {
-          path: '/dialogs',
-          label: 'Dialogs',
+          path: '/overlays',
+          label: 'Overlays & Modals',
           description:
-            'Modal dialogs, popovers, and other overlay components for user interactions and notifications.',
+            'Comprehensive collection of overlay components including command palettes, dropdowns, dialogs, drawers, sheets, tooltips, hover cards, and popovers.',
         },
       ],
     },
