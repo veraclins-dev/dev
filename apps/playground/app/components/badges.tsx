@@ -1,16 +1,11 @@
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
   Badge,
   Box,
-  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-  Icon,
   Typography,
 } from '@veraclins-dev/ui';
 
@@ -118,662 +113,611 @@ export function Badges() {
         </CardContent>
       </Card>
 
-      {/* User Profile Card */}
+      {/* Real-Life Usage Examples */}
       <Card>
         <CardHeader>
-          <CardTitle>User Profile Card</CardTitle>
+          <CardTitle>Real-Life Badge Examples</CardTitle>
           <CardDescription>
-            User status, role, and achievement badges in a profile context
+            Practical examples of badges in real-world applications
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* User Profile */}
-            <Card className="p-6">
-              <Box display="flex" items="center" gap={4} className="mb-4">
-                <Avatar className="size-16">
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>JD</AvatarFallback>
-                </Avatar>
-                <Box flex="1">
-                  <Typography variant="h4">John Doe</Typography>
-                  <Typography variant="body2" className="text-muted-foreground">
-                    Senior Developer
-                  </Typography>
-                </Box>
-              </Box>
-
-              <Box display="flex" flexDirection="column" gap={3}>
-                {/* Status Badges */}
-                <Box display="flex" gap={2} flexWrap="wrap">
-                  <Badge variant="soft" color="success">
-                    <Box className="w-2 h-2 bg-success rounded-full mr-2" />
-                    Online
-                  </Badge>
-                  <Badge variant="soft" color="primary">
-                    Admin
-                  </Badge>
-                  <Badge variant="outline" color="warning">
-                    Premium
-                  </Badge>
-                </Box>
-
-                {/* Achievement Badges */}
-                <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
-                    Achievements
-                  </Typography>
-                  <Box display="flex" gap={2} flexWrap="wrap">
-                    <Badge variant="soft" color="info" size="sm">
-                      <Icon name="star" className="size-3 mr-1" />
-                      Top Contributor
-                    </Badge>
-                    <Badge variant="soft" color="success" size="sm">
-                      <Icon name="check-circle" className="size-3 mr-1" />
-                      Verified
-                    </Badge>
-                    <Badge variant="soft" color="warning" size="sm">
-                      <Icon name="trophy" className="size-3 mr-1" />
-                      MVP 2024
-                    </Badge>
-                  </Box>
-                </Box>
-              </Box>
-            </Card>
-
-            {/* Team Member List */}
-            <Card className="p-6">
+          <Box display="flex" flexDirection="column" gap={8}>
+            {/* E-commerce Product Card */}
+            <Box>
               <Typography variant="h4" className="mb-4">
-                Team Members
+                E-commerce Product Card
               </Typography>
-              <Box display="flex" flexDirection="column" gap={3}>
-                {[
-                  {
-                    name: 'Alice Smith',
-                    role: 'Designer',
-                    status: 'online',
-                    level: 'senior',
-                  },
-                  {
-                    name: 'Bob Johnson',
-                    role: 'Developer',
-                    status: 'away',
-                    level: 'junior',
-                  },
-                  {
-                    name: 'Carol White',
-                    role: 'Manager',
-                    status: 'offline',
-                    level: 'lead',
-                  },
-                  {
-                    name: 'David Brown',
-                    role: 'QA',
-                    status: 'online',
-                    level: 'mid',
-                  },
-                ].map((member, i) => (
-                  <Box
-                    key={i}
-                    display="flex"
-                    items="center"
-                    gap={3}
-                    p={3}
-                    className="border rounded"
-                  >
-                    <Avatar>
-                      <AvatarFallback>
-                        {member.name
-                          .split(' ')
-                          .map((n) => n[0])
-                          .join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    <Box flex="1">
-                      <Typography variant="body1">{member.name}</Typography>
-                      <Typography
-                        variant="body2"
-                        className="text-muted-foreground"
-                      >
-                        {member.role}
-                      </Typography>
-                    </Box>
-                    <Box display="flex" gap={2}>
-                      <Badge
-                        variant="soft"
-                        color={
-                          member.status === 'online'
-                            ? 'success'
-                            : member.status === 'away'
-                              ? 'warning'
-                              : 'secondary'
-                        }
-                        size="sm"
-                      >
-                        {member.status}
-                      </Badge>
-                      <Badge variant="outline" color="primary" size="sm">
-                        {member.level}
-                      </Badge>
-                    </Box>
-                  </Box>
-                ))}
-              </Box>
-            </Card>
-          </Box>
-        </CardContent>
-      </Card>
-
-      {/* E-commerce Product Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>E-commerce Product Card</CardTitle>
-          <CardDescription>
-            Product status, availability, and promotional badges
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Product 1 - Sale */}
-            <Card className="overflow-hidden">
-              <Box className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center relative">
-                <Icon name="photo" className="size-16 text-muted-foreground" />
-                <Box className="absolute top-3 left-3">
-                  <Badge variant="solid" color="destructive">
-                    Sale -20%
-                  </Badge>
-                </Box>
-                <Box className="absolute top-3 right-3">
-                  <Badge variant="soft" color="success">
-                    In Stock
-                  </Badge>
-                </Box>
-              </Box>
-              <CardContent p={4}>
-                <Box
-                  display="flex"
-                  justify="between"
-                  items="start"
-                  className="mb-2"
-                >
-                  <Typography variant="h5">Premium Headphones</Typography>
-                  <Badge variant="outline" color="info" size="sm">
-                    New
-                  </Badge>
-                </Box>
-                <Typography
-                  variant="body2"
-                  className="text-muted-foreground mb-3"
-                >
-                  High-quality wireless headphones with noise cancellation.
-                </Typography>
-                <Box display="flex" justify="between" items="center">
-                  <Typography variant="h4" className="text-primary">
-                    $199.99
-                  </Typography>
-                  <Button size="sm">Add to Cart</Button>
-                </Box>
-              </CardContent>
-            </Card>
-
-            {/* Product 2 - Out of Stock */}
-            <Card className="overflow-hidden">
-              <Box className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center relative">
-                <Icon name="photo" className="size-16 text-muted-foreground" />
-                <Box className="absolute top-3 left-3">
-                  <Badge variant="solid" color="warning">
-                    Limited
-                  </Badge>
-                </Box>
-                <Box className="absolute top-3 right-3">
-                  <Badge variant="soft" color="destructive">
-                    Out of Stock
-                  </Badge>
-                </Box>
-              </Box>
-              <CardContent p={4}>
-                <Box
-                  display="flex"
-                  justify="between"
-                  items="start"
-                  className="mb-2"
-                >
-                  <Typography variant="h5">Smart Watch</Typography>
-                  <Badge variant="outline" color="success" size="sm">
-                    Popular
-                  </Badge>
-                </Box>
-                <Typography
-                  variant="body2"
-                  className="text-muted-foreground mb-3"
-                >
-                  Feature-rich smartwatch with health tracking.
-                </Typography>
-                <Box display="flex" justify="between" items="center">
-                  <Typography variant="h4" className="text-primary">
-                    $299.99
-                  </Typography>
-                  <Button size="sm" disabled>
-                    Notify Me
-                  </Button>
-                </Box>
-              </CardContent>
-            </Card>
-
-            {/* Product 3 - New Arrival */}
-            <Card className="overflow-hidden">
-              <Box className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center relative">
-                <Icon name="photo" className="size-16 text-muted-foreground" />
-                <Box className="absolute top-3 left-3">
-                  <Badge variant="solid" color="info">
-                    New Arrival
-                  </Badge>
-                </Box>
-                <Box className="absolute top-3 right-3">
-                  <Badge variant="soft" color="success">
-                    In Stock
-                  </Badge>
-                </Box>
-              </Box>
-              <CardContent p={4}>
-                <Box
-                  display="flex"
-                  justify="between"
-                  items="start"
-                  className="mb-2"
-                >
-                  <Typography variant="h5">Wireless Earbuds</Typography>
-                  <Badge variant="outline" color="warning" size="sm">
-                    Trending
-                  </Badge>
-                </Box>
-                <Typography
-                  variant="body2"
-                  className="text-muted-foreground mb-3"
-                >
-                  Compact wireless earbuds with premium sound quality.
-                </Typography>
-                <Box display="flex" justify="between" items="center">
-                  <Typography variant="h4" className="text-primary">
-                    $149.99
-                  </Typography>
-                  <Button size="sm">Add to Cart</Button>
-                </Box>
-              </CardContent>
-            </Card>
-          </Box>
-        </CardContent>
-      </Card>
-
-      {/* Notification Center */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Notification Center</CardTitle>
-          <CardDescription>
-            Notification badges with different priority levels and status
-            indicators
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Notification List */}
-            <Card className="p-6">
-              <Box
-                display="flex"
-                justify="between"
-                items="center"
-                className="mb-4"
-              >
-                <Typography variant="h4">Notifications</Typography>
-                <Badge variant="solid" color="primary">
-                  12
-                </Badge>
-              </Box>
-
-              <Box display="flex" flexDirection="column" gap={3}>
-                {[
-                  {
-                    title: 'Order Shipped',
-                    priority: 'high',
-                    unread: true,
-                    time: '2 min ago',
-                  },
-                  {
-                    title: 'Payment Received',
-                    priority: 'medium',
-                    unread: true,
-                    time: '1 hour ago',
-                  },
-                  {
-                    title: 'New Message',
-                    priority: 'low',
-                    unread: false,
-                    time: '3 hours ago',
-                  },
-                  {
-                    title: 'System Update',
-                    priority: 'info',
-                    unread: false,
-                    time: '1 day ago',
-                  },
-                ].map((notification, i) => (
-                  <Box
-                    key={i}
-                    display="flex"
-                    items="center"
-                    gap={3}
-                    p={3}
-                    className={`border rounded ${notification.unread ? 'bg-primary/5' : ''}`}
-                  >
-                    <Box className="flex-1">
-                      <Typography variant="body1">
-                        {notification.title}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        className="text-muted-foreground"
-                      >
-                        {notification.time}
-                      </Typography>
-                    </Box>
-                    <Box display="flex" gap={2}>
-                      <Badge
-                        variant="soft"
-                        color={
-                          notification.priority === 'high'
-                            ? 'destructive'
-                            : notification.priority === 'medium'
-                              ? 'warning'
-                              : notification.priority === 'low'
-                                ? 'success'
-                                : 'info'
-                        }
-                        size="sm"
-                      >
-                        {notification.priority}
-                      </Badge>
-                      {notification.unread && (
-                        <Badge variant="solid" color="primary" size="sm">
-                          New
-                        </Badge>
-                      )}
-                    </Box>
-                  </Box>
-                ))}
-              </Box>
-            </Card>
-
-            {/* Status Dashboard */}
-            <Card className="p-6">
-              <Typography variant="h4" className="mb-4">
-                System Status
-              </Typography>
-
-              <Box display="flex" flexDirection="column" gap={4}>
-                {/* Service Status */}
-                <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
-                    Services
-                  </Typography>
-                  <Box display="flex" flexDirection="column" gap={2}>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">API Gateway</Typography>
-                      <Badge variant="soft" color="success">
-                        Operational
-                      </Badge>
-                    </Box>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Database</Typography>
-                      <Badge variant="soft" color="warning">
-                        Degraded
-                      </Badge>
-                    </Box>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">CDN</Typography>
-                      <Badge variant="soft" color="success">
-                        Operational
-                      </Badge>
-                    </Box>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Email Service</Typography>
-                      <Badge variant="soft" color="destructive">
-                        Down
-                      </Badge>
-                    </Box>
-                  </Box>
-                </Box>
-
-                {/* Metrics */}
-                <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
-                    Performance
-                  </Typography>
-                  <Box display="flex" flexDirection="column" gap={2}>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Response Time</Typography>
-                      <Badge variant="outline" color="success">
-                        120ms
-                      </Badge>
-                    </Box>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Uptime</Typography>
-                      <Badge variant="outline" color="success">
-                        99.9%
-                      </Badge>
-                    </Box>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Error Rate</Typography>
-                      <Badge variant="outline" color="warning">
-                        0.1%
-                      </Badge>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-            </Card>
-          </Box>
-        </CardContent>
-      </Card>
-
-      {/* Task Management */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Task Management</CardTitle>
-          <CardDescription>
-            Task priority, status, and tag badges in a project management
-            context
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Task List */}
-            <Card className="p-6">
-              <Typography variant="h4" className="mb-4">
-                Active Tasks
-              </Typography>
-
-              <Box display="flex" flexDirection="column" gap={3}>
-                {[
-                  {
-                    title: 'Design Homepage',
-                    priority: 'high',
-                    status: 'in-progress',
-                    tags: ['design', 'frontend'],
-                    due: 'Today',
-                  },
-                  {
-                    title: 'Fix Login Bug',
-                    priority: 'critical',
-                    status: 'urgent',
-                    tags: ['bug', 'backend'],
-                    due: 'ASAP',
-                  },
-                  {
-                    title: 'Write Documentation',
-                    priority: 'medium',
-                    status: 'pending',
-                    tags: ['docs'],
-                    due: 'Tomorrow',
-                  },
-                  {
-                    title: 'Code Review',
-                    priority: 'low',
-                    status: 'completed',
-                    tags: ['review'],
-                    due: 'Done',
-                  },
-                ].map((task, i) => (
-                  <Box
-                    key={i}
-                    display="flex"
-                    flexDirection="column"
-                    gap={2}
-                    p={3}
-                    className="border rounded"
-                  >
-                    <Box display="flex" justify="between" items="start">
-                      <Typography variant="body1">{task.title}</Typography>
-                      <Box display="flex" gap={2}>
-                        <Badge
-                          variant="soft"
-                          color={
-                            task.priority === 'critical'
-                              ? 'destructive'
-                              : task.priority === 'high'
-                                ? 'warning'
-                                : task.priority === 'medium'
-                                  ? 'info'
-                                  : 'success'
-                          }
-                          size="sm"
+              <Card className="bg-card-inner">
+                <CardContent className="p-6">
+                  <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {/* Product Card 1 */}
+                    <Box className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                      <Box className="relative">
+                        <Box className="bg-neutral/10 h-48 flex items-center justify-center">
+                          <Typography
+                            variant="body2"
+                            className="text-muted-foreground"
+                          >
+                            Product Image
+                          </Typography>
+                        </Box>
+                        <Box className="absolute top-2 left-2">
+                          <Badge variant="solid" color="destructive" size="sm">
+                            Sale -20%
+                          </Badge>
+                        </Box>
+                        <Box className="absolute top-2 right-2">
+                          <Badge variant="soft" color="success" size="sm">
+                            New
+                          </Badge>
+                        </Box>
+                      </Box>
+                      <Box className="p-4">
+                        <Typography variant="h6" className="mb-2">
+                          Wireless Headphones
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          className="text-muted-foreground mb-3"
                         >
-                          {task.priority}
-                        </Badge>
-                        <Badge
-                          variant="outline"
-                          color={
-                            task.status === 'urgent'
-                              ? 'destructive'
-                              : task.status === 'in-progress'
-                                ? 'warning'
-                                : task.status === 'pending'
-                                  ? 'info'
-                                  : 'success'
-                          }
-                          size="sm"
+                          Premium noise-canceling wireless headphones with
+                          30-hour battery life.
+                        </Typography>
+                        <Box
+                          display="flex"
+                          justify="between"
+                          items="center"
+                          className="mb-3"
                         >
-                          {task.status}
-                        </Badge>
+                          <Box display="flex" gap={2} items="center">
+                            <Typography variant="h6" className="text-primary">
+                              $199.99
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              className="line-through text-muted-foreground"
+                            >
+                              $249.99
+                            </Typography>
+                          </Box>
+                          <Badge
+                            variant="outline"
+                            color="destructive"
+                            size="sm"
+                          >
+                            Only 3 left
+                          </Badge>
+                        </Box>
+                        <Box display="flex" gap={2} flexWrap="wrap">
+                          <Badge variant="soft" color="info" size="sm">
+                            Electronics
+                          </Badge>
+                          <Badge variant="soft" color="info" size="sm">
+                            Wireless
+                          </Badge>
+                          <Badge variant="soft" color="info" size="sm">
+                            Premium
+                          </Badge>
+                        </Box>
                       </Box>
                     </Box>
 
-                    <Box display="flex" gap={2} flexWrap="wrap">
-                      {task.tags.map((tag, j) => (
-                        <Badge
-                          key={j}
-                          variant="outline"
-                          color="secondary"
-                          size="sm"
+                    {/* Product Card 2 */}
+                    <Box className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                      <Box className="relative">
+                        <Box className="bg-neutral/10 h-48 flex items-center justify-center">
+                          <Typography
+                            variant="body2"
+                            className="text-muted-foreground"
+                          >
+                            Product Image
+                          </Typography>
+                        </Box>
+                        <Box className="absolute top-2 left-2">
+                          <Badge variant="solid" color="warning" size="sm">
+                            Limited Time
+                          </Badge>
+                        </Box>
+                      </Box>
+                      <Box className="p-4">
+                        <Typography variant="h6" className="mb-2">
+                          Smart Watch
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          className="text-muted-foreground mb-3"
                         >
-                          {tag}
-                        </Badge>
-                      ))}
+                          Advanced fitness tracking with heart rate monitoring
+                          and GPS.
+                        </Typography>
+                        <Box
+                          display="flex"
+                          justify="between"
+                          items="center"
+                          className="mb-3"
+                        >
+                          <Typography variant="h6" className="text-primary">
+                            $299.99
+                          </Typography>
+                          <Badge variant="soft" color="success" size="sm">
+                            In Stock
+                          </Badge>
+                        </Box>
+                        <Box display="flex" gap={2} flexWrap="wrap">
+                          <Badge variant="soft" color="info" size="sm">
+                            Wearables
+                          </Badge>
+                          <Badge variant="soft" color="info" size="sm">
+                            Fitness
+                          </Badge>
+                          <Badge variant="soft" color="info" size="sm">
+                            GPS
+                          </Badge>
+                        </Box>
+                      </Box>
                     </Box>
 
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground"
-                    >
-                      Due: {task.due}
-                    </Typography>
+                    {/* Product Card 3 */}
+                    <Box className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                      <Box className="relative">
+                        <Box className="bg-neutral/10 h-48 flex items-center justify-center">
+                          <Typography
+                            variant="body2"
+                            className="text-muted-foreground"
+                          >
+                            Product Image
+                          </Typography>
+                        </Box>
+                        <Box className="absolute top-2 left-2">
+                          <Badge variant="solid" color="destructive" size="sm">
+                            Out of Stock
+                          </Badge>
+                        </Box>
+                      </Box>
+                      <Box className="p-4">
+                        <Typography variant="h6" className="mb-2">
+                          Gaming Laptop
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          className="text-muted-foreground mb-3"
+                        >
+                          High-performance gaming laptop with RTX 4080 and 32GB
+                          RAM.
+                        </Typography>
+                        <Box
+                          display="flex"
+                          justify="between"
+                          items="center"
+                          className="mb-3"
+                        >
+                          <Typography variant="h6" className="text-primary">
+                            $1,999.99
+                          </Typography>
+                          <Badge
+                            variant="outline"
+                            color="destructive"
+                            size="sm"
+                          >
+                            Backorder
+                          </Badge>
+                        </Box>
+                        <Box display="flex" gap={2} flexWrap="wrap">
+                          <Badge variant="soft" color="info" size="sm">
+                            Gaming
+                          </Badge>
+                          <Badge variant="soft" color="info" size="sm">
+                            RTX 4080
+                          </Badge>
+                          <Badge variant="soft" color="info" size="sm">
+                            32GB RAM
+                          </Badge>
+                        </Box>
+                      </Box>
+                    </Box>
                   </Box>
-                ))}
-              </Box>
-            </Card>
+                </CardContent>
+              </Card>
+            </Box>
 
-            {/* Project Overview */}
-            <Card className="p-6">
+            {/* Notification Center */}
+            <Box>
               <Typography variant="h4" className="mb-4">
-                Project Overview
+                Notification Center
               </Typography>
+              <Card className="bg-card-inner">
+                <CardContent className="p-6">
+                  <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Notification List */}
+                    <Box>
+                      <Typography variant="h5" className="mb-4">
+                        Recent Notifications
+                      </Typography>
+                      <Box display="flex" flexDirection="column" gap={3}>
+                        {[
+                          {
+                            title: 'Order Shipped',
+                            message: 'Your order #12345 has been shipped',
+                            type: 'success',
+                            priority: 'high',
+                            unread: true,
+                            time: '2 min ago',
+                          },
+                          {
+                            title: 'Payment Failed',
+                            message: 'Payment for subscription failed',
+                            type: 'destructive',
+                            priority: 'high',
+                            unread: true,
+                            time: '1 hour ago',
+                          },
+                          {
+                            title: 'New Message',
+                            message: 'You have a new message from John',
+                            type: 'info',
+                            priority: 'medium',
+                            unread: false,
+                            time: '3 hours ago',
+                          },
+                          {
+                            title: 'System Update',
+                            message: 'System maintenance scheduled',
+                            type: 'warning',
+                            priority: 'low',
+                            unread: false,
+                            time: '1 day ago',
+                          },
+                        ].map((notification, index) => (
+                          <Box
+                            key={index}
+                            className={`border rounded p-3 ${notification.unread ? 'bg-primary/5 border-primary/20' : ''}`}
+                          >
+                            <Box
+                              display="flex"
+                              justify="between"
+                              items="start"
+                              className="mb-2"
+                            >
+                              <Typography
+                                variant="body1"
+                                className="font-medium"
+                              >
+                                {notification.title}
+                              </Typography>
+                              <Box display="flex" gap={1}>
+                                {notification.unread && (
+                                  <Badge
+                                    variant="solid"
+                                    color="primary"
+                                    size="sm"
+                                  >
+                                    New
+                                  </Badge>
+                                )}
+                                <Badge
+                                  variant="soft"
+                                  color={notification.type as any}
+                                  size="sm"
+                                >
+                                  {notification.priority}
+                                </Badge>
+                              </Box>
+                            </Box>
+                            <Typography
+                              variant="body2"
+                              className="text-muted-foreground mb-2"
+                            >
+                              {notification.message}
+                            </Typography>
+                            <Typography
+                              variant="caption"
+                              className="text-muted-foreground"
+                            >
+                              {notification.time}
+                            </Typography>
+                          </Box>
+                        ))}
+                      </Box>
+                    </Box>
 
-              <Box display="flex" flexDirection="column" gap={4}>
-                {/* Progress Stats */}
-                <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
-                    Progress
-                  </Typography>
-                  <Box display="flex" flexDirection="column" gap={2}>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Completed</Typography>
-                      <Badge variant="soft" color="success">
-                        24 tasks
-                      </Badge>
-                    </Box>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">In Progress</Typography>
-                      <Badge variant="soft" color="warning">
-                        8 tasks
-                      </Badge>
-                    </Box>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Pending</Typography>
-                      <Badge variant="soft" color="info">
-                        12 tasks
-                      </Badge>
-                    </Box>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Overdue</Typography>
-                      <Badge variant="soft" color="destructive">
-                        3 tasks
-                      </Badge>
+                    {/* Notification Stats */}
+                    <Box>
+                      <Typography variant="h5" className="mb-4">
+                        Notification Summary
+                      </Typography>
+                      <Box display="flex" flexDirection="column" gap={4}>
+                        <Box className="grid grid-cols-2 gap-4">
+                          <Box className="border rounded p-4 text-center">
+                            <Typography
+                              variant="h4"
+                              className="text-primary mb-1"
+                            >
+                              12
+                            </Typography>
+                            <Typography variant="body2">Unread</Typography>
+                            <Badge
+                              variant="solid"
+                              color="primary"
+                              size="sm"
+                              className="mt-2"
+                            >
+                              High Priority
+                            </Badge>
+                          </Box>
+                          <Box className="border rounded p-4 text-center">
+                            <Typography
+                              variant="h4"
+                              className="text-success mb-1"
+                            >
+                              45
+                            </Typography>
+                            <Typography variant="body2">Read Today</Typography>
+                            <Badge
+                              variant="soft"
+                              color="success"
+                              size="sm"
+                              className="mt-2"
+                            >
+                              All Caught Up
+                            </Badge>
+                          </Box>
+                        </Box>
+
+                        <Box>
+                          <Typography variant="h6" className="mb-3">
+                            Priority Breakdown
+                          </Typography>
+                          <Box display="flex" flexDirection="column" gap={2}>
+                            <Box
+                              display="flex"
+                              justify="between"
+                              items="center"
+                            >
+                              <Typography variant="body2">
+                                High Priority
+                              </Typography>
+                              <Badge
+                                variant="solid"
+                                color="destructive"
+                                size="sm"
+                              >
+                                3
+                              </Badge>
+                            </Box>
+                            <Box
+                              display="flex"
+                              justify="between"
+                              items="center"
+                            >
+                              <Typography variant="body2">
+                                Medium Priority
+                              </Typography>
+                              <Badge variant="solid" color="warning" size="sm">
+                                7
+                              </Badge>
+                            </Box>
+                            <Box
+                              display="flex"
+                              justify="between"
+                              items="center"
+                            >
+                              <Typography variant="body2">
+                                Low Priority
+                              </Typography>
+                              <Badge variant="solid" color="info" size="sm">
+                                2
+                              </Badge>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </Box>
                     </Box>
                   </Box>
-                </Box>
+                </CardContent>
+              </Card>
+            </Box>
 
-                {/* Team Stats */}
-                <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
-                    Team
-                  </Typography>
-                  <Box display="flex" flexDirection="column" gap={2}>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Active Members</Typography>
-                      <Badge variant="outline" color="success">
-                        8 online
-                      </Badge>
+            {/* Task Management */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Task Management System
+              </Typography>
+              <Card className="bg-card-inner">
+                <CardContent className="p-6">
+                  <Box className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* To Do Column */}
+                    <Box>
+                      <Typography variant="h5" className="mb-4">
+                        To Do
+                      </Typography>
+                      <Box display="flex" flexDirection="column" gap={3}>
+                        {[
+                          {
+                            title: 'Design Review',
+                            priority: 'high',
+                            dueDate: 'Today',
+                            tags: ['Design', 'Review'],
+                          },
+                          {
+                            title: 'Bug Fix',
+                            priority: 'medium',
+                            dueDate: 'Tomorrow',
+                            tags: ['Bug', 'Frontend'],
+                          },
+                          {
+                            title: 'Documentation',
+                            priority: 'low',
+                            dueDate: 'Next Week',
+                            tags: ['Docs', 'Technical'],
+                          },
+                        ].map((task, index) => (
+                          <Box
+                            key={index}
+                            className="border rounded p-3 bg-neutral/5"
+                          >
+                            <Typography
+                              variant="body1"
+                              className="font-medium mb-2"
+                            >
+                              {task.title}
+                            </Typography>
+                            <Box display="flex" gap={1} className="mb-2">
+                              <Badge
+                                variant="soft"
+                                color={task.priority as any}
+                                size="sm"
+                              >
+                                {task.priority}
+                              </Badge>
+                              <Badge
+                                variant="outline"
+                                color="warning"
+                                size="sm"
+                              >
+                                Due: {task.dueDate}
+                              </Badge>
+                            </Box>
+                            <Box display="flex" gap={1} flexWrap="wrap">
+                              {task.tags.map((tag) => (
+                                <Badge
+                                  key={tag}
+                                  variant="soft"
+                                  color="info"
+                                  size="sm"
+                                >
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </Box>
+                          </Box>
+                        ))}
+                      </Box>
                     </Box>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Sprint Status</Typography>
-                      <Badge variant="outline" color="warning">
-                        Week 2 of 4
-                      </Badge>
+
+                    {/* In Progress Column */}
+                    <Box>
+                      <Typography variant="h5" className="mb-4">
+                        In Progress
+                      </Typography>
+                      <Box display="flex" flexDirection="column" gap={3}>
+                        {[
+                          {
+                            title: 'API Integration',
+                            priority: 'high',
+                            progress: '75%',
+                            assignee: 'John Doe',
+                            tags: ['API', 'Backend'],
+                          },
+                          {
+                            title: 'User Testing',
+                            priority: 'medium',
+                            progress: '50%',
+                            assignee: 'Alice Smith',
+                            tags: ['Testing', 'UX'],
+                          },
+                        ].map((task, index) => (
+                          <Box
+                            key={index}
+                            className="border rounded p-3 bg-primary/5"
+                          >
+                            <Typography
+                              variant="body1"
+                              className="font-medium mb-2"
+                            >
+                              {task.title}
+                            </Typography>
+                            <Box display="flex" gap={1} className="mb-2">
+                              <Badge
+                                variant="soft"
+                                color={task.priority as any}
+                                size="sm"
+                              >
+                                {task.priority}
+                              </Badge>
+                              <Badge variant="solid" color="primary" size="sm">
+                                {task.progress}
+                              </Badge>
+                            </Box>
+                            <Typography
+                              variant="body2"
+                              className="text-muted-foreground mb-2"
+                            >
+                              Assigned to: {task.assignee}
+                            </Typography>
+                            <Box display="flex" gap={1} flexWrap="wrap">
+                              {task.tags.map((tag) => (
+                                <Badge
+                                  key={tag}
+                                  variant="soft"
+                                  color="info"
+                                  size="sm"
+                                >
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </Box>
+                          </Box>
+                        ))}
+                      </Box>
                     </Box>
-                    <Box display="flex" justify="between" items="center">
-                      <Typography variant="body1">Velocity</Typography>
-                      <Badge variant="outline" color="info">
-                        85%
-                      </Badge>
+
+                    {/* Completed Column */}
+                    <Box>
+                      <Typography variant="h5" className="mb-4">
+                        Completed
+                      </Typography>
+                      <Box display="flex" flexDirection="column" gap={3}>
+                        {[
+                          {
+                            title: 'Database Setup',
+                            completedDate: 'Yesterday',
+                            tags: ['Database', 'Setup'],
+                          },
+                          {
+                            title: 'Homepage Design',
+                            completedDate: '2 days ago',
+                            tags: ['Design', 'Frontend'],
+                          },
+                        ].map((task, index) => (
+                          <Box
+                            key={index}
+                            className="border rounded p-3 bg-success/5"
+                          >
+                            <Typography
+                              variant="body1"
+                              className="font-medium mb-2"
+                            >
+                              {task.title}
+                            </Typography>
+                            <Badge
+                              variant="solid"
+                              color="success"
+                              size="sm"
+                              className="mb-2"
+                            >
+                              Completed: {task.completedDate}
+                            </Badge>
+                            <Box display="flex" gap={1} flexWrap="wrap">
+                              {task.tags.map((tag) => (
+                                <Badge
+                                  key={tag}
+                                  variant="soft"
+                                  color="info"
+                                  size="sm"
+                                >
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </Box>
+                          </Box>
+                        ))}
+                      </Box>
                     </Box>
                   </Box>
-                </Box>
-              </Box>
-            </Card>
+                </CardContent>
+              </Card>
+            </Box>
           </Box>
         </CardContent>
       </Card>

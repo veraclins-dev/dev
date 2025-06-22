@@ -1,11 +1,14 @@
 import {
-  Badge,
   Box,
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
+  Icon,
+  Input,
+  Label,
   Typography,
 } from '@veraclins-dev/ui';
 
@@ -705,6 +708,540 @@ export function Boxes() {
                   </CardContent>
                 </Card>
               </Box>
+            </Box>
+          </Box>
+        </CardContent>
+      </Card>
+
+      {/* Real-Life Usage Examples */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Real-Life Layout Examples</CardTitle>
+          <CardDescription>
+            Practical examples of Box layouts in real-world applications
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Box display="flex" flexDirection="column" gap={8}>
+            {/* Dashboard Layout Card */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Dashboard Layout
+              </Typography>
+              <Card className="bg-card-inner">
+                <CardContent className="p-6">
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    gap={4}
+                    className="h-96"
+                  >
+                    {/* Header */}
+                    <Box
+                      display="flex"
+                      justify="between"
+                      items="center"
+                      className="border-b pb-4"
+                    >
+                      <Typography variant="h5">Analytics Dashboard</Typography>
+                      <Box display="flex" gap={2}>
+                        <Button variant="outline" size="sm">
+                          <Icon name="calendar" className="mr-1" />
+                          Date Range
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          <Icon name="download" className="mr-1" />
+                          Export
+                        </Button>
+                      </Box>
+                    </Box>
+
+                    {/* Main Content */}
+                    <Box display="flex" gap={4} flex="1">
+                      {/* Sidebar */}
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        gap={2}
+                        className="w-64 border-r pr-4"
+                      >
+                        <Typography variant="h6" className="mb-2">
+                          Navigation
+                        </Typography>
+                        <Box display="flex" flexDirection="column" gap={1}>
+                          <Box className="bg-primary/10 p-2 rounded cursor-pointer">
+                            <Typography variant="body2">Overview</Typography>
+                          </Box>
+                          <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
+                            <Typography variant="body2">Analytics</Typography>
+                          </Box>
+                          <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
+                            <Typography variant="body2">Reports</Typography>
+                          </Box>
+                          <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
+                            <Typography variant="body2">Settings</Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+
+                      {/* Content Area */}
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        gap={4}
+                        flex="1"
+                      >
+                        {/* Stats Grid */}
+                        <Box className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <Box className="bg-success/10 p-4 rounded border">
+                            <Typography variant="h4" className="text-success">
+                              $12,345
+                            </Typography>
+                            <Typography variant="body2">
+                              Total Revenue
+                            </Typography>
+                          </Box>
+                          <Box className="bg-info/10 p-4 rounded border">
+                            <Typography variant="h4" className="text-info">
+                              1,234
+                            </Typography>
+                            <Typography variant="body2">
+                              Active Users
+                            </Typography>
+                          </Box>
+                          <Box className="bg-warning/10 p-4 rounded border">
+                            <Typography variant="h4" className="text-warning">
+                              89%
+                            </Typography>
+                            <Typography variant="body2">
+                              Conversion Rate
+                            </Typography>
+                          </Box>
+                        </Box>
+
+                        {/* Chart Area */}
+                        <Box className="bg-neutral/5 p-4 rounded border flex-1">
+                          <Typography variant="h6" className="mb-2">
+                            Revenue Chart
+                          </Typography>
+                          <Box className="bg-neutral/10 h-32 rounded flex items-center justify-center">
+                            <Typography
+                              variant="body2"
+                              className="text-muted-foreground"
+                            >
+                              Chart visualization would go here
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
+
+            {/* Product Grid Card */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                E-commerce Product Grid
+              </Typography>
+              <Card className="bg-card-inner">
+                <CardContent className="p-6">
+                  <Box display="flex" flexDirection="column" gap={4}>
+                    {/* Header with Search and Filters */}
+                    <Box
+                      display="flex"
+                      justify="between"
+                      items="center"
+                      className="border-b pb-4"
+                    >
+                      <Typography variant="h5">Product Catalog</Typography>
+                      <Box display="flex" gap={2}>
+                        <Input
+                          placeholder="Search products..."
+                          className="w-64"
+                        />
+                        <Button variant="outline" size="sm">
+                          <Icon name="funnel" className="mr-1" />
+                          Filter
+                        </Button>
+                      </Box>
+                    </Box>
+
+                    {/* Main Layout */}
+                    <Box display="flex" gap={6}>
+                      {/* Filter Sidebar */}
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        gap={4}
+                        className="w-64"
+                      >
+                        <Box>
+                          <Typography variant="h6" className="mb-2">
+                            Categories
+                          </Typography>
+                          <Box display="flex" flexDirection="column" gap={1}>
+                            <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
+                              <Typography variant="body2">
+                                Electronics
+                              </Typography>
+                            </Box>
+                            <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
+                              <Typography variant="body2">Clothing</Typography>
+                            </Box>
+                            <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
+                              <Typography variant="body2">
+                                Home & Garden
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+
+                        <Box>
+                          <Typography variant="h6" className="mb-2">
+                            Price Range
+                          </Typography>
+                          <Box display="flex" flexDirection="column" gap={1}>
+                            <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
+                              <Typography variant="body2">$0 - $50</Typography>
+                            </Box>
+                            <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
+                              <Typography variant="body2">
+                                $50 - $100
+                              </Typography>
+                            </Box>
+                            <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
+                              <Typography variant="body2">$100+</Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </Box>
+
+                      {/* Product Grid */}
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        gap={4}
+                        flex="1"
+                      >
+                        <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {/* Product Cards */}
+                          {[1, 2, 3, 4, 5, 6].map((item) => (
+                            <Box
+                              key={item}
+                              className="border rounded p-4 hover:shadow-md transition-shadow"
+                            >
+                              <Box className="bg-neutral/10 h-32 rounded mb-3 flex items-center justify-center">
+                                <Typography
+                                  variant="body2"
+                                  className="text-muted-foreground"
+                                >
+                                  Product Image {item}
+                                </Typography>
+                              </Box>
+                              <Typography variant="h6" className="mb-1">
+                                Product {item}
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                className="text-muted-foreground mb-2"
+                              >
+                                Product description goes here
+                              </Typography>
+                              <Box
+                                display="flex"
+                                justify="between"
+                                items="center"
+                              >
+                                <Typography
+                                  variant="h6"
+                                  className="text-primary"
+                                >
+                                  $99.99
+                                </Typography>
+                                <Button size="sm">Add to Cart</Button>
+                              </Box>
+                            </Box>
+                          ))}
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
+
+            {/* Form Layout Card */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Multi-Step Form Layout
+              </Typography>
+              <Card className="bg-card-inner">
+                <CardContent className="p-6">
+                  <Box display="flex" flexDirection="column" gap={6}>
+                    {/* Progress Steps */}
+                    <Box display="flex" justify="center" gap={4}>
+                      {['Personal Info', 'Address', 'Payment', 'Review'].map(
+                        (step, index) => (
+                          <Box key={step} display="flex" items="center" gap={2}>
+                            <Box
+                              className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                                index === 0
+                                  ? 'bg-primary text-primary-foreground'
+                                  : 'bg-neutral/20'
+                              }`}
+                            >
+                              {index + 1}
+                            </Box>
+                            <Typography variant="body2">{step}</Typography>
+                          </Box>
+                        ),
+                      )}
+                    </Box>
+
+                    {/* Form Content */}
+                    <Box display="flex" gap={6}>
+                      {/* Form Fields */}
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        gap={4}
+                        flex="1"
+                      >
+                        <Typography variant="h5">
+                          Personal Information
+                        </Typography>
+
+                        <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <Box display="flex" flexDirection="column" gap={2}>
+                            <Label>First Name</Label>
+                            <Input placeholder="Enter first name" />
+                          </Box>
+                          <Box display="flex" flexDirection="column" gap={2}>
+                            <Label>Last Name</Label>
+                            <Input placeholder="Enter last name" />
+                          </Box>
+                        </Box>
+
+                        <Box display="flex" flexDirection="column" gap={2}>
+                          <Label>Email</Label>
+                          <Input placeholder="Enter email address" />
+                        </Box>
+
+                        <Box display="flex" flexDirection="column" gap={2}>
+                          <Label>Phone</Label>
+                          <Input placeholder="Enter phone number" />
+                        </Box>
+                      </Box>
+
+                      {/* Help Section */}
+                      <Box className="w-80 bg-neutral/5 p-4 rounded">
+                        <Typography variant="h6" className="mb-2">
+                          Help & Tips
+                        </Typography>
+                        <Box display="flex" flexDirection="column" gap={2}>
+                          <Typography variant="body2">
+                            • All fields marked with * are required
+                          </Typography>
+                          <Typography variant="body2">
+                            • Use your legal name as it appears on official
+                            documents
+                          </Typography>
+                          <Typography variant="body2">
+                            • We'll use this email for important communications
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </Box>
+
+                    {/* Form Actions */}
+                    <Box
+                      display="flex"
+                      justify="between"
+                      className="border-t pt-4"
+                    >
+                      <Button variant="outline">Back</Button>
+                      <Box display="flex" gap={2}>
+                        <Button variant="outline">Save Draft</Button>
+                        <Button>Next Step</Button>
+                      </Box>
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
+
+            {/* Mobile App Layout Card */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Mobile App Layout Patterns
+              </Typography>
+              <Card className="bg-card-inner">
+                <CardContent className="p-6">
+                  <Box display="flex" flexDirection="column" gap={6}>
+                    {/* Mobile Navigation */}
+                    <Box>
+                      <Typography variant="h5" className="mb-3">
+                        Mobile Navigation
+                      </Typography>
+                      <Box className="bg-neutral/10 rounded-lg p-4 max-w-sm mx-auto">
+                        <Box
+                          display="flex"
+                          flexDirection="column"
+                          gap={4}
+                          className="h-96"
+                        >
+                          {/* Header */}
+                          <Box display="flex" justify="between" items="center">
+                            <Typography variant="h6">My App</Typography>
+                            <Button size="icon" variant="outline">
+                              <Icon name="bell" />
+                            </Button>
+                          </Box>
+
+                          {/* Content Area */}
+                          <Box
+                            display="flex"
+                            flexDirection="column"
+                            gap={3}
+                            flex="1"
+                          >
+                            <Box className="bg-primary/10 p-3 rounded">
+                              <Typography variant="body1">
+                                Welcome back!
+                              </Typography>
+                            </Box>
+                            <Box className="grid grid-cols-2 gap-3">
+                              <Box className="bg-neutral/20 p-3 rounded text-center">
+                                <Icon name="home" className="mx-auto mb-1" />
+                                <Typography variant="body2">Home</Typography>
+                              </Box>
+                              <Box className="bg-neutral/20 p-3 rounded text-center">
+                                <Icon name="search" className="mx-auto mb-1" />
+                                <Typography variant="body2">Search</Typography>
+                              </Box>
+                              <Box className="bg-neutral/20 p-3 rounded text-center">
+                                <Icon name="heart" className="mx-auto mb-1" />
+                                <Typography variant="body2">
+                                  Favorites
+                                </Typography>
+                              </Box>
+                              <Box className="bg-neutral/20 p-3 rounded text-center">
+                                <Icon name="user" className="mx-auto mb-1" />
+                                <Typography variant="body2">Profile</Typography>
+                              </Box>
+                            </Box>
+                          </Box>
+
+                          {/* Bottom Navigation */}
+                          <Box
+                            display="flex"
+                            justify="around"
+                            className="border-t pt-3"
+                          >
+                            <Box className="text-center">
+                              <Icon name="home" className="mx-auto mb-1" />
+                              <Typography variant="caption">Home</Typography>
+                            </Box>
+                            <Box className="text-center">
+                              <Icon name="search" className="mx-auto mb-1" />
+                              <Typography variant="caption">Search</Typography>
+                            </Box>
+                            <Box className="text-center">
+                              <Icon name="plus" className="mx-auto mb-1" />
+                              <Typography variant="caption">Add</Typography>
+                            </Box>
+                            <Box className="text-center">
+                              <Icon name="heart" className="mx-auto mb-1" />
+                              <Typography variant="caption">
+                                Favorites
+                              </Typography>
+                            </Box>
+                            <Box className="text-center">
+                              <Icon name="user" className="mx-auto mb-1" />
+                              <Typography variant="caption">Profile</Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </Box>
+
+                    {/* Responsive Breakpoints */}
+                    <Box>
+                      <Typography variant="h5" className="mb-3">
+                        Responsive Breakpoints
+                      </Typography>
+                      <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <Box className="border rounded p-4 text-center">
+                          <Typography variant="h6" className="mb-2">
+                            Mobile
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            className="text-muted-foreground"
+                          >
+                            &lt; 768px
+                          </Typography>
+                          <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
+                            <Typography variant="caption">
+                              Single Column
+                            </Typography>
+                          </Box>
+                        </Box>
+                        <Box className="border rounded p-4 text-center">
+                          <Typography variant="h6" className="mb-2">
+                            Tablet
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            className="text-muted-foreground"
+                          >
+                            768px - 1024px
+                          </Typography>
+                          <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
+                            <Typography variant="caption">
+                              Two Columns
+                            </Typography>
+                          </Box>
+                        </Box>
+                        <Box className="border rounded p-4 text-center">
+                          <Typography variant="h6" className="mb-2">
+                            Desktop
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            className="text-muted-foreground"
+                          >
+                            1024px - 1440px
+                          </Typography>
+                          <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
+                            <Typography variant="caption">
+                              Three Columns
+                            </Typography>
+                          </Box>
+                        </Box>
+                        <Box className="border rounded p-4 text-center">
+                          <Typography variant="h6" className="mb-2">
+                            Large
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            className="text-muted-foreground"
+                          >
+                            &gt; 1440px
+                          </Typography>
+                          <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
+                            <Typography variant="caption">
+                              Four Columns
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
             </Box>
           </Box>
         </CardContent>
