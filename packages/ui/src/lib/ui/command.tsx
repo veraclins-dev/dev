@@ -2,7 +2,12 @@ import { Command as CommandPrimitive } from 'cmdk';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { INPUT_CLASSES, SHARED_ITEM_CLASSES } from './utils/styles';
+import {
+  INPUT_CLASS_OVERRIDES,
+  INPUT_CLASSES,
+  INPUT_CONTAINER_CLASSES,
+  SHARED_ITEM_CLASSES,
+} from './utils/styles';
 import { Box } from './box';
 import {
   Dialog,
@@ -21,7 +26,7 @@ function Command({
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        'bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md',
+        'bg-popover text-popover-foreground flex w-full flex-col overflow-hidden rounded-md',
         className,
       )}
       {...props}
@@ -67,16 +72,20 @@ function CommandInput({
       display="flex"
       items="center"
       gap={2}
-      flex="1"
+      // flex="1"
       data-slot="command-input-wrapper"
-      className={cn('w-full min-w-30', wrapperClassName)}
+      className={cn(
+        'w-full min-w-30',
+        INPUT_CONTAINER_CLASSES,
+        wrapperClassName,
+      )}
     >
       {withIcon && (
         <Icon name="search" className="size-4 shrink-0 opacity-50" />
       )}
       <CommandPrimitive.Input
         data-slot="command-input"
-        className={cn(INPUT_CLASSES, className)}
+        className={cn(INPUT_CLASSES, INPUT_CLASS_OVERRIDES, className)}
         {...props}
       />
     </Box>
@@ -90,7 +99,7 @@ function CommandList({
     <CommandPrimitive.List
       data-slot="command-list"
       className={cn(
-        'max-h-[300px] scroll-py-1 overflow-x-hidden overflow-y-auto',
+        'max-h-[300px] mt-1 scroll-py-1 overflow-x-hidden overflow-y-auto',
         className,
       )}
       {...props}

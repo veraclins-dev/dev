@@ -55,7 +55,7 @@ import {
 
 export function Overlays() {
   const [activeTab, setActiveTab] = useState<
-    | 'navigation'
+    | 'command-palette'
     | 'dropdowns'
     | 'dialogs'
     | 'drawers'
@@ -63,7 +63,7 @@ export function Overlays() {
     | 'tooltips'
     | 'hovercards'
     | 'popovers'
-  >('navigation');
+  >('command-palette');
 
   return (
     <Box display="flex" flexDirection="column" gap={6}>
@@ -82,15 +82,14 @@ export function Overlays() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Badge color="primary" variant="soft">
-                Navigation
+                Command
               </Badge>
-              Command & Dropdowns
+              Command Palette
             </CardTitle>
           </CardHeader>
           <CardContent>
             <Typography variant="body2">
-              Command palettes, dropdown menus, and navigation components for
-              advanced user interactions.
+              Command palettes for quick navigation and application actions.
             </Typography>
           </CardContent>
         </Card>
@@ -133,11 +132,11 @@ export function Overlays() {
       {/* Tab Navigation */}
       <Box className="flex gap-2 py-2 mb-4 overflow-x-auto">
         <Button
-          variant={activeTab === 'navigation' ? 'solid' : 'outline'}
+          variant={activeTab === 'command-palette' ? 'solid' : 'outline'}
           color="primary"
-          onClick={() => setActiveTab('navigation')}
+          onClick={() => setActiveTab('command-palette')}
         >
-          Navigation
+          Command Palette
         </Button>
         <Button
           variant={activeTab === 'dropdowns' ? 'solid' : 'outline'}
@@ -190,88 +189,214 @@ export function Overlays() {
         </Button>
       </Box>
 
-      {/* Navigation Tab */}
-      {activeTab === 'navigation' && (
+      {/* Command Palette Tab */}
+      {activeTab === 'command-palette' && (
         <Box display="flex" flexDirection="column" gap={8}>
-          {/* Command Palette Showcase */}
+          {/* Basic Command Palette */}
           <Card>
             <CardHeader>
-              <CardTitle>Command Palette</CardTitle>
+              <CardTitle>Basic Command Palette</CardTitle>
               <CardDescription>
-                Command palette for quick navigation and actions
+                Simple command palette for quick navigation and actions
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Box display="flex" flexDirection="column" gap={8}>
-                {/* Basic Command Palette */}
-                <Box>
-                  <Typography variant="h4" className="mb-4">
-                    Basic Command Palette
-                  </Typography>
-                  <Command className="max-w-md">
-                    <CommandInput placeholder="Search commands..." />
-                    <CommandList>
-                      <CommandItem value="dashboard">
-                        <Icon name="home" className="mr-2" />
-                        Dashboard
-                      </CommandItem>
-                      <CommandItem value="settings">
-                        <Icon name="cog" className="mr-2" />
-                        Settings
-                      </CommandItem>
-                      <CommandItem value="profile">
-                        <Icon name="user" className="mr-2" />
-                        Profile
-                      </CommandItem>
-                      <CommandItem value="help">
-                        <Icon name="question-mark-circled" className="mr-2" />
-                        Help
-                      </CommandItem>
-                    </CommandList>
-                  </Command>
-                </Box>
+              <Box display="flex" flexDirection="column" gap={6}>
+                <Typography variant="body2">
+                  Command palettes provide quick access to application functions
+                  through keyboard shortcuts and search.
+                </Typography>
 
-                {/* Real-Life Command Palette Examples */}
-                <Box>
-                  <Typography variant="h4" className="mb-4">
-                    Real-Life Command Palette Examples
-                  </Typography>
-                  <Box display="flex" flexDirection="column" gap={6}>
-                    {/* File Management */}
-                    <Card className="bg-card-inner">
-                      <CardContent className="p-4">
-                        <Typography variant="h5" className="mb-3">
-                          File Management Commands
-                        </Typography>
-                        <Command className="max-w-lg">
-                          <CommandInput placeholder="Search files and actions..." />
-                          <CommandList>
-                            <CommandItem value="new-file">
-                              <Icon name="document-plus" className="mr-2" />
-                              New File
-                            </CommandItem>
-                            <CommandItem value="open-file">
-                              <Icon name="folder-open" className="mr-2" />
-                              Open File
-                            </CommandItem>
-                            <CommandItem value="save">
-                              <Icon name="check" className="mr-2" />
-                              Save
-                            </CommandItem>
-                            <CommandItem value="export">
-                              <Icon name="arrow-down-tray" className="mr-2" />
-                              Export
-                            </CommandItem>
-                            <CommandItem value="print">
-                              <Icon name="printer" className="mr-2" />
-                              Print
-                            </CommandItem>
-                          </CommandList>
-                        </Command>
-                      </CardContent>
-                    </Card>
-                  </Box>
-                </Box>
+                <Command className="max-w-md">
+                  <CommandInput placeholder="Search commands..." />
+                  <CommandList>
+                    <CommandItem value="dashboard">
+                      <Icon name="home" className="mr-2" />
+                      Dashboard
+                    </CommandItem>
+                    <CommandItem value="settings">
+                      <Icon name="cog" className="mr-2" />
+                      Settings
+                    </CommandItem>
+                    <CommandItem value="profile">
+                      <Icon name="user" className="mr-2" />
+                      Profile
+                    </CommandItem>
+                    <CommandItem value="help">
+                      <Icon name="question-mark-circled" className="mr-2" />
+                      Help
+                    </CommandItem>
+                  </CommandList>
+                </Command>
+              </Box>
+            </CardContent>
+          </Card>
+
+          {/* Real-Life Command Palette Examples */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Real-Life Command Palette Examples</CardTitle>
+              <CardDescription>
+                Practical command palette examples for different use cases
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Box
+                display="grid"
+                className="grid-cols-1 md:grid-cols-2"
+                gap={6}
+              >
+                {/* File Management */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      File Management Commands
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Command palette for file operations and document
+                      management.
+                    </Typography>
+                    <Command className="max-w-lg">
+                      <CommandInput placeholder="Search files and actions..." />
+                      <CommandList>
+                        <CommandItem value="new-file">
+                          <Icon name="document-plus" className="mr-2" />
+                          New File
+                        </CommandItem>
+                        <CommandItem value="open-file">
+                          <Icon name="folder-open" className="mr-2" />
+                          Open File
+                        </CommandItem>
+                        <CommandItem value="save">
+                          <Icon name="check" className="mr-2" />
+                          Save
+                        </CommandItem>
+                        <CommandItem value="export">
+                          <Icon name="arrow-down-tray" className="mr-2" />
+                          Export
+                        </CommandItem>
+                        <CommandItem value="print">
+                          <Icon name="printer" className="mr-2" />
+                          Print
+                        </CommandItem>
+                      </CommandList>
+                    </Command>
+                  </CardContent>
+                </Card>
+
+                {/* Application Commands */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Application Commands
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Command palette for application-specific actions and
+                      navigation.
+                    </Typography>
+                    <Command className="max-w-lg">
+                      <CommandInput placeholder="Search application commands..." />
+                      <CommandList>
+                        <CommandItem value="new-project">
+                          <Icon name="plus" className="mr-2" />
+                          New Project
+                        </CommandItem>
+                        <CommandItem value="open-recent">
+                          <Icon name="clock" className="mr-2" />
+                          Open Recent
+                        </CommandItem>
+                        <CommandItem value="preferences">
+                          <Icon name="cog" className="mr-2" />
+                          Preferences
+                        </CommandItem>
+                        <CommandItem value="extensions">
+                          <Icon name="puzzle-piece" className="mr-2" />
+                          Extensions
+                        </CommandItem>
+                        <CommandItem value="command-palette">
+                          <Icon name="keyboard" className="mr-2" />
+                          Command Palette
+                        </CommandItem>
+                      </CommandList>
+                    </Command>
+                  </CardContent>
+                </Card>
+
+                {/* Search Commands */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Search Commands
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Command palette for global search and content discovery.
+                    </Typography>
+                    <Command className="max-w-lg">
+                      <CommandInput placeholder="Search everything..." />
+                      <CommandList>
+                        <CommandItem value="search-files">
+                          <Icon name="document" className="mr-2" />
+                          Search Files
+                        </CommandItem>
+                        <CommandItem value="search-symbols">
+                          <Icon name="symbol" className="mr-2" />
+                          Search Symbols
+                        </CommandItem>
+                        <CommandItem value="search-commands">
+                          <Icon name="search" className="mr-2" />
+                          Search Commands
+                        </CommandItem>
+                        <CommandItem value="search-settings">
+                          <Icon name="cog" className="mr-2" />
+                          Search Settings
+                        </CommandItem>
+                        <CommandItem value="search-extensions">
+                          <Icon name="puzzle-piece" className="mr-2" />
+                          Search Extensions
+                        </CommandItem>
+                      </CommandList>
+                    </Command>
+                  </CardContent>
+                </Card>
+                {/* Search Commands with Icon */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Search Commands
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Command palette for global search and content discovery.
+                    </Typography>
+                    <Command className="max-w-lg">
+                      <CommandInput
+                        placeholder="Search everything..."
+                        withIcon
+                      />
+                      <CommandList>
+                        <CommandItem value="search-files">
+                          <Icon name="document" className="mr-2" />
+                          Search Files
+                        </CommandItem>
+                        <CommandItem value="search-symbols">
+                          <Icon name="symbol" className="mr-2" />
+                          Search Symbols
+                        </CommandItem>
+                        <CommandItem value="search-commands">
+                          <Icon name="search" className="mr-2" />
+                          Search Commands
+                        </CommandItem>
+                        <CommandItem value="search-settings">
+                          <Icon name="cog" className="mr-2" />
+                          Search Settings
+                        </CommandItem>
+                        <CommandItem value="search-extensions">
+                          <Icon name="puzzle-piece" className="mr-2" />
+                          Search Extensions
+                        </CommandItem>
+                      </CommandList>
+                    </Command>
+                  </CardContent>
+                </Card>
               </Box>
             </CardContent>
           </Card>
@@ -634,6 +759,345 @@ export function Overlays() {
               </Box>
             </CardContent>
           </Card>
+
+          {/* Real-Life Dialog Examples */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Real-Life Dialog Examples</CardTitle>
+              <CardDescription>
+                Practical dialog examples for common use cases
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Box display="flex" flexDirection="column" gap={6}>
+                {/* Confirmation Dialog */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Confirmation Dialog
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Use confirmation dialogs for destructive actions that
+                      require user confirmation.
+                    </Typography>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="solid" color="destructive">
+                          Delete Project
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Delete Project</DialogTitle>
+                          <DialogDescription>
+                            Are you sure you want to delete "My Awesome
+                            Project"? This action cannot be undone.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <Box className="py-4">
+                          <Typography
+                            variant="body2"
+                            className="text-destructive"
+                          >
+                            This will permanently delete the project and all
+                            associated data.
+                          </Typography>
+                        </Box>
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                          </DialogClose>
+                          <Button variant="solid" color="destructive">
+                            Delete Project
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  </CardContent>
+                </Card>
+
+                {/* Alert Dialog */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Alert Dialog
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Alert dialogs for important notifications and warnings.
+                    </Typography>
+                    <Box display="flex" gap={2}>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="outline">Show Warning</Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle className="flex items-center gap-2">
+                              <Icon
+                                name="exclamation-triangle"
+                                className="text-warning"
+                              />
+                              Warning
+                            </DialogTitle>
+                            <DialogDescription>
+                              You have unsaved changes that will be lost if you
+                              continue.
+                            </DialogDescription>
+                          </DialogHeader>
+                          <Box className="py-4">
+                            <Typography variant="body2">
+                              Please save your work before proceeding with this
+                              action.
+                            </Typography>
+                          </Box>
+                          <DialogFooter>
+                            <DialogClose asChild>
+                              <Button variant="outline">Cancel</Button>
+                            </DialogClose>
+                            <Button>Continue Anyway</Button>
+                          </DialogFooter>
+                        </DialogContent>
+                      </Dialog>
+
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="outline">Show Error</Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle className="flex items-center gap-2">
+                              <Icon
+                                name="cross-circled"
+                                className="text-destructive"
+                              />
+                              Error
+                            </DialogTitle>
+                            <DialogDescription>
+                              Something went wrong while processing your
+                              request.
+                            </DialogDescription>
+                          </DialogHeader>
+                          <Box className="py-4">
+                            <Typography
+                              variant="body2"
+                              className="text-destructive"
+                            >
+                              Unable to connect to the server. Please check your
+                              internet connection and try again.
+                            </Typography>
+                          </Box>
+                          <DialogFooter>
+                            <DialogClose asChild>
+                              <Button variant="outline">Close</Button>
+                            </DialogClose>
+                            <Button>Retry</Button>
+                          </DialogFooter>
+                        </DialogContent>
+                      </Dialog>
+                    </Box>
+                  </CardContent>
+                </Card>
+
+                {/* Complex Form Dialog */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Complex Form Dialog
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Multi-step form dialog with validation and complex
+                      interactions.
+                    </Typography>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline">Create User Account</Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl">
+                        <DialogHeader>
+                          <DialogTitle>Create New User Account</DialogTitle>
+                          <DialogDescription>
+                            Set up a new user account with detailed information
+                            and preferences.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <Box className="py-4 space-y-6">
+                          {/* Personal Information */}
+                          <Box>
+                            <Typography variant="h6" className="mb-3">
+                              Personal Information
+                            </Typography>
+                            <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <Box>
+                                <Label htmlFor="firstName">First Name</Label>
+                                <Input
+                                  id="firstName"
+                                  placeholder="Enter first name"
+                                />
+                              </Box>
+                              <Box>
+                                <Label htmlFor="lastName">Last Name</Label>
+                                <Input
+                                  id="lastName"
+                                  placeholder="Enter last name"
+                                />
+                              </Box>
+                            </Box>
+                            <Box className="mt-4">
+                              <Label htmlFor="email">Email Address</Label>
+                              <Input
+                                id="email"
+                                type="email"
+                                placeholder="Enter email address"
+                              />
+                            </Box>
+                          </Box>
+
+                          {/* Account Settings */}
+                          <Box>
+                            <Typography variant="h6" className="mb-3">
+                              Account Settings
+                            </Typography>
+                            <Box className="space-y-4">
+                              <Box>
+                                <Label htmlFor="username">Username</Label>
+                                <Input
+                                  id="username"
+                                  placeholder="Choose a username"
+                                />
+                              </Box>
+                              <Box>
+                                <Label htmlFor="role">Role</Label>
+                                <Box className="flex gap-2 mt-2">
+                                  <Button variant="outline" size="sm">
+                                    Admin
+                                  </Button>
+                                  <Button variant="outline" size="sm">
+                                    Editor
+                                  </Button>
+                                  <Button variant="outline" size="sm">
+                                    Viewer
+                                  </Button>
+                                </Box>
+                              </Box>
+                              <Box>
+                                <Label htmlFor="department">Department</Label>
+                                <Input
+                                  id="department"
+                                  placeholder="Enter department"
+                                />
+                              </Box>
+                            </Box>
+                          </Box>
+
+                          {/* Preferences */}
+                          <Box>
+                            <Typography variant="h6" className="mb-3">
+                              Preferences
+                            </Typography>
+                            <Box className="space-y-3">
+                              <Box className="flex items-center gap-2">
+                                <input type="checkbox" id="notifications" />
+                                <Label htmlFor="notifications">
+                                  Enable email notifications
+                                </Label>
+                              </Box>
+                              <Box className="flex items-center gap-2">
+                                <input type="checkbox" id="newsletter" />
+                                <Label htmlFor="newsletter">
+                                  Subscribe to newsletter
+                                </Label>
+                              </Box>
+                              <Box className="flex items-center gap-2">
+                                <input type="checkbox" id="twoFactor" />
+                                <Label htmlFor="twoFactor">
+                                  Enable two-factor authentication
+                                </Label>
+                              </Box>
+                            </Box>
+                          </Box>
+                        </Box>
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                          </DialogClose>
+                          <Button>Create Account</Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  </CardContent>
+                </Card>
+
+                {/* Media Dialog */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Media Dialog
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Dialog for displaying images, videos, and other media
+                      content.
+                    </Typography>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline">View Image</Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl">
+                        <DialogHeader>
+                          <DialogTitle>Product Image</DialogTitle>
+                          <DialogDescription>
+                            High-resolution product image with zoom
+                            capabilities.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <Box className="py-4">
+                          <Box className="bg-neutral/10 h-64 rounded flex items-center justify-center">
+                            <Typography
+                              variant="body2"
+                              className="text-muted-foreground"
+                            >
+                              Product Image Display
+                            </Typography>
+                          </Box>
+                          <Box className="mt-4 space-y-2">
+                            <Typography variant="h6">
+                              Premium Widget Pro
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              className="text-muted-foreground"
+                            >
+                              High-quality product image with detailed
+                              specifications and features.
+                            </Typography>
+                            <Box className="flex gap-2 mt-3">
+                              <Button variant="outline" size="sm">
+                                <Icon name="zoom-in" className="mr-1" />
+                                Zoom
+                              </Button>
+                              <Button variant="outline" size="sm">
+                                <Icon name="download" className="mr-1" />
+                                Download
+                              </Button>
+                              <Button variant="outline" size="sm">
+                                <Icon name="share" className="mr-1" />
+                                Share
+                              </Button>
+                            </Box>
+                          </Box>
+                        </Box>
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <Button variant="outline">Close</Button>
+                          </DialogClose>
+                          <Button>Add to Cart</Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  </CardContent>
+                </Card>
+              </Box>
+            </CardContent>
+          </Card>
         </Box>
       )}
 
@@ -808,6 +1272,348 @@ export function Overlays() {
                     </SheetContent>
                   </Sheet>
                 </Box>
+
+                {/* Bottom Sheet */}
+                <Box>
+                  <Typography variant="h6" className="mb-2">
+                    Bottom Sheet
+                  </Typography>
+                  <Sheet>
+                    <SheetTrigger asChild>
+                      <Button variant="outline">Open Bottom Sheet</Button>
+                    </SheetTrigger>
+                    <SheetContent side="bottom" className="h-96">
+                      <SheetHeader>
+                        <SheetTitle>Mobile Actions</SheetTitle>
+                        <SheetDescription>
+                          Bottom sheet for mobile-first interactions
+                        </SheetDescription>
+                      </SheetHeader>
+                      <Box className="py-4 space-y-4">
+                        <Box className="space-y-2">
+                          <Button
+                            variant="soft"
+                            className="w-full justify-start"
+                          >
+                            <Icon name="camera" className="mr-2" />
+                            Take Photo
+                          </Button>
+                          <Button
+                            variant="soft"
+                            className="w-full justify-start"
+                          >
+                            <Icon name="image" className="mr-2" />
+                            Choose from Gallery
+                          </Button>
+                          <Button
+                            variant="soft"
+                            className="w-full justify-start"
+                          >
+                            <Icon name="document" className="mr-2" />
+                            Upload File
+                          </Button>
+                        </Box>
+                      </Box>
+                      <SheetFooter>
+                        <SheetClose asChild>
+                          <Button variant="outline">Cancel</Button>
+                        </SheetClose>
+                      </SheetFooter>
+                    </SheetContent>
+                  </Sheet>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+
+          {/* Real-Life Sheet Examples */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Real-Life Sheet Examples</CardTitle>
+              <CardDescription>
+                Practical sheet examples for common use cases
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Box display="flex" flexDirection="column" gap={6}>
+                {/* Top Sheet - Notifications */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Top Sheet - Notifications
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Top sheet for displaying notifications and alerts.
+                    </Typography>
+                    <Sheet>
+                      <SheetTrigger asChild>
+                        <Button variant="outline">Show Notifications</Button>
+                      </SheetTrigger>
+                      <SheetContent side="top" className="h-80">
+                        <SheetHeader>
+                          <SheetTitle>Notifications</SheetTitle>
+                          <SheetDescription>
+                            Recent notifications and updates
+                          </SheetDescription>
+                        </SheetHeader>
+                        <Box className="py-4 space-y-3">
+                          <Box className="flex items-start gap-3 p-3 bg-success/10 rounded">
+                            <Icon
+                              name="check-circle"
+                              className="text-success mt-1"
+                            />
+                            <Box>
+                              <Typography
+                                variant="body2"
+                                className="font-medium"
+                              >
+                                Project Updated
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                className="text-muted-foreground"
+                              >
+                                Your project has been successfully updated.
+                              </Typography>
+                            </Box>
+                          </Box>
+                          <Box className="flex items-start gap-3 p-3 bg-info/10 rounded">
+                            <Icon
+                              name="info-circled"
+                              className="text-info mt-1"
+                            />
+                            <Box>
+                              <Typography
+                                variant="body2"
+                                className="font-medium"
+                              >
+                                New Message
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                className="text-muted-foreground"
+                              >
+                                You have a new message from John Doe.
+                              </Typography>
+                            </Box>
+                          </Box>
+                          <Box className="flex items-start gap-3 p-3 bg-warning/10 rounded">
+                            <Icon
+                              name="exclamation-triangle"
+                              className="text-warning mt-1"
+                            />
+                            <Box>
+                              <Typography
+                                variant="body2"
+                                className="font-medium"
+                              >
+                                Storage Warning
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                className="text-muted-foreground"
+                              >
+                                You're running low on storage space.
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+                        <SheetFooter>
+                          <SheetClose asChild>
+                            <Button variant="outline">Close</Button>
+                          </SheetClose>
+                          <Button>View All</Button>
+                        </SheetFooter>
+                      </SheetContent>
+                    </Sheet>
+                  </CardContent>
+                </Card>
+
+                {/* Side Sheet - Settings */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Side Sheet - Settings Panel
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Side sheet for complex settings and configuration panels.
+                    </Typography>
+                    <Sheet>
+                      <SheetTrigger asChild>
+                        <Button variant="outline">Open Settings</Button>
+                      </SheetTrigger>
+                      <SheetContent side="right" className="w-96">
+                        <SheetHeader>
+                          <SheetTitle>Application Settings</SheetTitle>
+                          <SheetDescription>
+                            Configure your application preferences
+                          </SheetDescription>
+                        </SheetHeader>
+                        <Box className="py-4 space-y-6">
+                          {/* Appearance */}
+                          <Box>
+                            <Typography variant="h6" className="mb-3">
+                              Appearance
+                            </Typography>
+                            <Box className="space-y-3">
+                              <Box>
+                                <Label>Theme</Label>
+                                <Box className="flex gap-2 mt-2">
+                                  <Button variant="outline" size="sm">
+                                    Light
+                                  </Button>
+                                  <Button variant="outline" size="sm">
+                                    Dark
+                                  </Button>
+                                  <Button variant="outline" size="sm">
+                                    Auto
+                                  </Button>
+                                </Box>
+                              </Box>
+                              <Box>
+                                <Label>Font Size</Label>
+                                <Box className="flex gap-2 mt-2">
+                                  <Button variant="outline" size="sm">
+                                    Small
+                                  </Button>
+                                  <Button variant="outline" size="sm">
+                                    Medium
+                                  </Button>
+                                  <Button variant="outline" size="sm">
+                                    Large
+                                  </Button>
+                                </Box>
+                              </Box>
+                            </Box>
+                          </Box>
+
+                          {/* Notifications */}
+                          <Box>
+                            <Typography variant="h6" className="mb-3">
+                              Notifications
+                            </Typography>
+                            <Box className="space-y-3">
+                              <Box className="flex items-center justify-between">
+                                <Label>Email Notifications</Label>
+                                <input type="checkbox" defaultChecked />
+                              </Box>
+                              <Box className="flex items-center justify-between">
+                                <Label>Push Notifications</Label>
+                                <input type="checkbox" />
+                              </Box>
+                              <Box className="flex items-center justify-between">
+                                <Label>Sound Alerts</Label>
+                                <input type="checkbox" defaultChecked />
+                              </Box>
+                            </Box>
+                          </Box>
+
+                          {/* Privacy */}
+                          <Box>
+                            <Typography variant="h6" className="mb-3">
+                              Privacy
+                            </Typography>
+                            <Box className="space-y-3">
+                              <Box className="flex items-center justify-between">
+                                <Label>Analytics</Label>
+                                <input type="checkbox" defaultChecked />
+                              </Box>
+                              <Box className="flex items-center justify-between">
+                                <Label>Location Services</Label>
+                                <input type="checkbox" />
+                              </Box>
+                            </Box>
+                          </Box>
+                        </Box>
+                        <SheetFooter>
+                          <SheetClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                          </SheetClose>
+                          <Button>Save Changes</Button>
+                        </SheetFooter>
+                      </SheetContent>
+                    </Sheet>
+                  </CardContent>
+                </Card>
+
+                {/* Form Sheet */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Form Sheet
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Sheet for complex form interactions and data entry.
+                    </Typography>
+                    <Sheet>
+                      <SheetTrigger asChild>
+                        <Button variant="outline">Create Event</Button>
+                      </SheetTrigger>
+                      <SheetContent side="right" className="w-96">
+                        <SheetHeader>
+                          <SheetTitle>Create New Event</SheetTitle>
+                          <SheetDescription>
+                            Schedule a new event with detailed information
+                          </SheetDescription>
+                        </SheetHeader>
+                        <Box className="py-4 space-y-4">
+                          <Box>
+                            <Label htmlFor="eventTitle">Event Title</Label>
+                            <Input
+                              id="eventTitle"
+                              placeholder="Enter event title"
+                            />
+                          </Box>
+                          <Box>
+                            <Label htmlFor="eventDate">Date</Label>
+                            <Input id="eventDate" type="date" />
+                          </Box>
+                          <Box>
+                            <Label htmlFor="eventTime">Time</Label>
+                            <Input id="eventTime" type="time" />
+                          </Box>
+                          <Box>
+                            <Label htmlFor="eventLocation">Location</Label>
+                            <Input
+                              id="eventLocation"
+                              placeholder="Enter location"
+                            />
+                          </Box>
+                          <Box>
+                            <Label htmlFor="eventDescription">
+                              Description
+                            </Label>
+                            <Textarea
+                              id="eventDescription"
+                              placeholder="Enter event description"
+                              rows={3}
+                            />
+                          </Box>
+                          <Box>
+                            <Label>Event Type</Label>
+                            <Box className="flex gap-2 mt-2">
+                              <Button variant="outline" size="sm">
+                                Meeting
+                              </Button>
+                              <Button variant="outline" size="sm">
+                                Conference
+                              </Button>
+                              <Button variant="outline" size="sm">
+                                Workshop
+                              </Button>
+                            </Box>
+                          </Box>
+                        </Box>
+                        <SheetFooter>
+                          <SheetClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                          </SheetClose>
+                          <Button>Create Event</Button>
+                        </SheetFooter>
+                      </SheetContent>
+                    </Sheet>
+                  </CardContent>
+                </Card>
               </Box>
             </CardContent>
           </Card>
@@ -866,6 +1672,396 @@ export function Overlays() {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
+              </Box>
+            </CardContent>
+          </Card>
+
+          {/* Real-Life Tooltip Examples */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Real-Life Tooltip Examples</CardTitle>
+              <CardDescription>
+                Practical tooltip examples for common use cases
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Box display="flex" flexDirection="column" gap={6}>
+                {/* Rich Tooltips */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Rich Tooltips
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Tooltips with rich content including images and detailed
+                      information.
+                    </Typography>
+                    <Box display="flex" gap={4} flexWrap="wrap">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button variant="outline">
+                              <Icon name="user" className="mr-2" />
+                              John Doe
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent className="w-64">
+                            <Box className="p-2">
+                              <Box className="flex items-center gap-3 mb-2">
+                                <Box className="w-10 h-10 bg-primary rounded-full" />
+                                <Box>
+                                  <Typography
+                                    variant="body2"
+                                    className="font-medium"
+                                  >
+                                    John Doe
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    className="text-muted-foreground"
+                                  >
+                                    Senior Developer
+                                  </Typography>
+                                </Box>
+                              </Box>
+                              <Typography variant="body2" className="mb-2">
+                                Works on the frontend team. Specializes in React
+                                and TypeScript.
+                              </Typography>
+                              <Box className="flex gap-1">
+                                <Badge variant="soft" size="sm">
+                                  React
+                                </Badge>
+                                <Badge variant="soft" size="sm">
+                                  TypeScript
+                                </Badge>
+                                <Badge variant="soft" size="sm">
+                                  UI/UX
+                                </Badge>
+                              </Box>
+                            </Box>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button variant="outline">
+                              <Icon name="star" className="mr-2" />
+                              Premium Feature
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent className="w-56">
+                            <Box className="p-2">
+                              <Box className="flex items-center gap-2 mb-2">
+                                <Icon name="star" className="text-warning" />
+                                <Typography
+                                  variant="body2"
+                                  className="font-medium"
+                                >
+                                  Premium Feature
+                                </Typography>
+                              </Box>
+                              <Typography variant="body2" className="mb-2">
+                                This feature is available for premium
+                                subscribers only.
+                              </Typography>
+                              <Button size="sm" className="w-full">
+                                Upgrade Now
+                              </Button>
+                            </Box>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </Box>
+                  </CardContent>
+                </Card>
+
+                {/* Interactive Tooltips */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Interactive Tooltips
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Tooltips with interactive elements and actions.
+                    </Typography>
+                    <Box display="flex" gap={4} flexWrap="wrap">
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button variant="outline">
+                              <Icon name="share" className="mr-2" />
+                              Share
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent className="w-48">
+                            <Box className="p-2">
+                              <Typography variant="body2" className="mb-2">
+                                Share this content
+                              </Typography>
+                              <Box className="flex gap-1">
+                                <Button size="sm" variant="soft">
+                                  <Icon name="link" />
+                                </Button>
+                                <Button size="sm" variant="soft">
+                                  <Icon name="share" />
+                                </Button>
+                                <Button size="sm" variant="soft">
+                                  <Icon name="facebook" />
+                                </Button>
+                                <Button size="sm" variant="soft">
+                                  <Icon name="linkedin" />
+                                </Button>
+                              </Box>
+                            </Box>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button variant="outline">
+                              <Icon name="cog" className="mr-2" />
+                              Quick Settings
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent className="w-52">
+                            <Box className="p-2">
+                              <Typography variant="body2" className="mb-2">
+                                Quick settings
+                              </Typography>
+                              <Box className="space-y-1">
+                                <Button
+                                  size="sm"
+                                  variant="soft"
+                                  className="w-full justify-start"
+                                >
+                                  <Icon name="moon" className="mr-2" />
+                                  Dark Mode
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="soft"
+                                  className="w-full justify-start"
+                                >
+                                  <Icon name="bell" className="mr-2" />
+                                  Notifications
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="soft"
+                                  className="w-full justify-start"
+                                >
+                                  <Icon name="cog" className="mr-2" />
+                                  Settings
+                                </Button>
+                              </Box>
+                            </Box>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </Box>
+                  </CardContent>
+                </Card>
+
+                {/* Contextual Tooltips */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Contextual Tooltips
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Tooltips for different UI elements and contexts.
+                    </Typography>
+                    <Box display="flex" flexDirection="column" gap={4}>
+                      {/* Form Field Tooltips */}
+                      <Box>
+                        <Typography variant="h6" className="mb-2">
+                          Form Field Help
+                        </Typography>
+                        <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <Box>
+                            <Label
+                              htmlFor="password"
+                              className="flex items-center gap-2"
+                            >
+                              Password
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <Icon
+                                      name="question-mark-circled"
+                                      className="text-muted-foreground"
+                                    />
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>
+                                      Password must be at least 8 characters
+                                      with uppercase, lowercase, and numbers
+                                    </p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </Label>
+                            <Input
+                              id="password"
+                              type="password"
+                              placeholder="Enter password"
+                            />
+                          </Box>
+                          <Box>
+                            <Label
+                              htmlFor="email"
+                              className="flex items-center gap-2"
+                            >
+                              Email
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <Icon
+                                      name="question-mark-circled"
+                                      className="text-muted-foreground"
+                                    />
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    <p>
+                                      We'll use this email for important
+                                      communications
+                                    </p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </Label>
+                            <Input
+                              id="email"
+                              type="email"
+                              placeholder="Enter email"
+                            />
+                          </Box>
+                        </Box>
+                      </Box>
+
+                      {/* Status Tooltips */}
+                      <Box>
+                        <Typography variant="h6" className="mb-2">
+                          Status Indicators
+                        </Typography>
+                        <Box className="flex gap-4">
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Box className="flex items-center gap-2">
+                                  <Box className="w-3 h-3 bg-success rounded-full" />
+                                  <Typography variant="body2">
+                                    Online
+                                  </Typography>
+                                </Box>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>User is currently online and active</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Box className="flex items-center gap-2">
+                                  <Box className="w-3 h-3 bg-warning rounded-full" />
+                                  <Typography variant="body2">Away</Typography>
+                                </Box>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>User is away but may return soon</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Box className="flex items-center gap-2">
+                                  <Box className="w-3 h-3 bg-neutral rounded-full" />
+                                  <Typography variant="body2">
+                                    Offline
+                                  </Typography>
+                                </Box>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>User is currently offline</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        </Box>
+                      </Box>
+
+                      {/* Action Tooltips */}
+                      <Box>
+                        <Typography variant="h6" className="mb-2">
+                          Action Buttons
+                        </Typography>
+                        <Box className="flex gap-2">
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Button size="icon" variant="outline">
+                                  <Icon name="pencil" />
+                                </Button>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Edit this item</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Button size="icon" variant="outline">
+                                  <Icon name="copy" />
+                                </Button>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Copy to clipboard</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Button size="icon" variant="outline">
+                                  <Icon name="download" />
+                                </Button>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Download file</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Button size="icon" variant="outline" disabled>
+                                  <Icon name="trash" />
+                                </Button>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>
+                                  Delete (disabled - insufficient permissions)
+                                </p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        </Box>
+                      </Box>
+                    </Box>
+                  </CardContent>
+                </Card>
               </Box>
             </CardContent>
           </Card>

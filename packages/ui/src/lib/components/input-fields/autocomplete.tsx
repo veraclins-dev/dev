@@ -18,7 +18,6 @@ import {
   Popover,
   PopoverAnchor,
   PopoverContent,
-  Typography,
 } from '../../ui';
 
 import { type TextFieldProps } from './textfield';
