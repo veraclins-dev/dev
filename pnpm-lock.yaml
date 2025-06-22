@@ -237,6 +237,9 @@ importers:
       react-dom:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
+      recharts:
+        specifier: ^2.15.3
+        version: 2.15.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       remix-utils:
         specifier: ^8.7.0
         version: 8.7.0(@oslojs/crypto@1.0.1)(@oslojs/encoding@1.1.0)(intl-parse-accept-language@1.0.0)(react-router@7.6.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(zod@3.25.67)
@@ -733,7 +736,7 @@ importers:
         specifier: ^3.4.12
         version: 3.4.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       recharts:
-        specifier: ^2.15.3
+        specifier: ^2
         version: 2.15.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       spin-delay:
         specifier: ^2.0.1

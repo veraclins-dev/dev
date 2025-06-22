@@ -64,6 +64,7 @@ export default defineConfig({
         'react-dom',
         'react/jsx-runtime',
         '@veraclins-dev/utils',
+        'recharts',
       ],
     },
   },

@@ -102,6 +102,12 @@ export function NxWelcome({ title }: { title: string }) {
             'Compact elements for representing inputs, attributes, or actions with remove functionality.',
         },
         {
+          path: '/chart',
+          label: 'Charts',
+          description:
+            'Data visualization components built on Recharts with theming, tooltips, and responsive design.',
+        },
+        {
           path: '/images',
           label: 'Images',
           description:
