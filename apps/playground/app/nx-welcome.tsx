@@ -24,6 +24,12 @@ export function NxWelcome({ title }: { title: string }) {
             'Layout components for creating responsive containers and grid systems.',
         },
         {
+          path: '/breadcrumbs',
+          label: 'Breadcrumbs',
+          description:
+            'Hierarchical navigation components that help users understand their location within a website or application structure.',
+        },
+        {
           path: '/cards',
           label: 'Cards',
           description:
