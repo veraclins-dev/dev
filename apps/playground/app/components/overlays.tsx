@@ -10,9 +10,12 @@ import {
   CardHeader,
   CardTitle,
   Command,
+  CommandEmpty,
+  CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
+  CommandSeparator,
   ComposedDropdownMenu,
   ComposedPopover,
   Dialog,
@@ -31,12 +34,21 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
   Icon,
   Input,
   Label,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
   Sheet,
   SheetClose,
   SheetContent,
@@ -53,6 +65,8 @@ import {
   Typography,
 } from '@veraclins-dev/ui';
 
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
 export function Overlays() {
   const [activeTab, setActiveTab] = useState<
     | 'command-palette'
@@ -67,6 +81,8 @@ export function Overlays() {
 
   return (
     <Box display="flex" flexDirection="column" gap={6}>
+      <PlaygroundBreadcrumb currentPage="Overlays & Modals" className="mb-4" />
+
       <Typography variant="h1" className="text-center">
         Overlays & Modals
       </Typography>

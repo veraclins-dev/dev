@@ -1,19 +1,25 @@
 import {
   Box,
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
+  Icon,
   ProgressBar,
   Skeleton,
   StatusButton,
   Typography,
 } from '@veraclins-dev/ui';
 
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
 export function Feedback() {
   return (
     <Box display="flex" flexDirection="column" gap={6}>
+      <PlaygroundBreadcrumb currentPage="Feedback" className="mb-4" />
+
       <Typography variant="h1" className="text-center">
         Feedback Components
       </Typography>

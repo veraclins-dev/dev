@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardSubtitle,
   CardTitle,
+  Chip,
   ComposedAvatar,
   HoverCard,
   HoverCardContent,
@@ -22,9 +23,13 @@ import {
   Typography,
 } from '@veraclins-dev/ui';
 
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
 export function Cards() {
   return (
     <Box display="flex" flexDirection="column" gap={6}>
+      <PlaygroundBreadcrumb currentPage="Cards" className="mb-4" />
+
       <Typography variant="h1" className="text-center">
         Card Components
       </Typography>

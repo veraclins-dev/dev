@@ -1,17 +1,26 @@
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
   Badge,
   Box,
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
+  Icon,
   Typography,
 } from '@veraclins-dev/ui';
+
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
 export function Badges() {
   return (
     <Box display="flex" flexDirection="column" gap={6}>
+      <PlaygroundBreadcrumb currentPage="Badges" className="mb-4" />
+
       <Typography variant="h1" className="text-center">
         Badge Components
       </Typography>
