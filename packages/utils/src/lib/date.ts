@@ -1,4 +1,5 @@
 import {
+  addDays as addDaysFns,
   addHours as addHoursFns,
   addMonths,
   addWeeks,
@@ -12,6 +13,7 @@ import {
   isValid,
   isYesterday,
   parseISO,
+  startOfDay,
   startOfMonth,
   startOfYear,
   subDays,
@@ -268,4 +270,18 @@ export const getFutureDateFromPeriod = (
     default:
       return null;
   }
+};
+
+/**
+ * Adds days to a date
+ */
+export const addDays = (date: Date | number | string, days: number): Date => {
+  return addDaysFns(new Date(date), days);
+};
+
+/**
+ * Gets the start of today (midnight)
+ */
+export const startOfToday = (): Date => {
+  return startOfDay(new Date());
 };

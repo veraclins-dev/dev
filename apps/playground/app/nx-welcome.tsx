@@ -66,6 +66,12 @@ export function NxWelcome({ title }: { title: string }) {
             'Form input components including text fields, checkboxes, radio buttons, and select menus.',
         },
         {
+          path: '/calendar',
+          label: 'Calendar',
+          description:
+            'Date selection components including calendars, date pickers, and range selectors for various use cases.',
+        },
+        {
           path: '/forms',
           label: 'Forms',
           description:
