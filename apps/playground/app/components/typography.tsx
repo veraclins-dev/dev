@@ -1,3 +1,4 @@
+import { Image } from '@veraclins-dev/image';
 import {
   Badge,
   Box,
@@ -209,12 +210,14 @@ export function TypographyShowcase() {
         </CardHeader>
         <CardContent>
           <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Product Image Placeholder */}
-            <Box className="bg-muted rounded-lg p-8 flex items-center justify-center">
-              <Typography variant="body2" className="text-muted-foreground">
-                Product Image
-              </Typography>
-            </Box>
+            {/* Product Image */}
+            <Image
+              src="https://picsum.photos/400/400?random=20"
+              alt="Premium Wireless Headphones"
+              width={400}
+              height={400}
+              className="w-full h-auto rounded-lg"
+            />
 
             {/* Product Details */}
             <Box display="flex" flexDirection="column" gap={4}>

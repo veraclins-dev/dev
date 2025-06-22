@@ -1,3 +1,4 @@
+import { Image } from '@veraclins-dev/image';
 import {
   Avatar,
   AvatarFallback,
@@ -143,14 +144,14 @@ export function Badges() {
                     {/* Product Card 1 */}
                     <Box className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
                       <Box className="relative">
-                        <Box className="bg-neutral/10 h-48 flex items-center justify-center">
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground"
-                          >
-                            Product Image
-                          </Typography>
-                        </Box>
+                        <Image
+                          src="https://picsum.photos/400/200?random=1"
+                          alt="Wireless Headphones"
+                          width={400}
+                          height={200}
+                          className="w-full h-48 object-cover"
+                          layout="responsive"
+                        />
                         <Box className="absolute top-2 left-2">
                           <Badge variant="solid" color="destructive" size="sm">
                             Sale -20%
@@ -215,14 +216,14 @@ export function Badges() {
                     {/* Product Card 2 */}
                     <Box className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
                       <Box className="relative">
-                        <Box className="bg-neutral/10 h-48 flex items-center justify-center">
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground"
-                          >
-                            Product Image
-                          </Typography>
-                        </Box>
+                        <Image
+                          src="https://picsum.photos/400/200?random=2"
+                          alt="Smart Watch"
+                          width={400}
+                          height={200}
+                          className="w-full h-48 object-cover"
+                          layout="responsive"
+                        />
                         <Box className="absolute top-2 left-2">
                           <Badge variant="solid" color="warning" size="sm">
                             Limited Time
@@ -270,14 +271,14 @@ export function Badges() {
                     {/* Product Card 3 */}
                     <Box className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
                       <Box className="relative">
-                        <Box className="bg-neutral/10 h-48 flex items-center justify-center">
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground"
-                          >
-                            Product Image
-                          </Typography>
-                        </Box>
+                        <Image
+                          src="https://picsum.photos/400/200?random=3"
+                          alt="Gaming Laptop"
+                          width={400}
+                          height={200}
+                          className="w-full h-48 object-cover"
+                          layout="responsive"
+                        />
                         <Box className="absolute top-2 left-2">
                           <Badge variant="solid" color="destructive" size="sm">
                             Out of Stock

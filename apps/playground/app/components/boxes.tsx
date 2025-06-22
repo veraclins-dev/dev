@@ -1,3 +1,4 @@
+import { Image } from '@veraclins-dev/image';
 import {
   Box,
   Button,
@@ -828,14 +829,13 @@ export function Boxes() {
                           <Typography variant="h6" className="mb-2">
                             Revenue Chart
                           </Typography>
-                          <Box className="bg-neutral/10 h-32 rounded flex items-center justify-center">
-                            <Typography
-                              variant="body2"
-                              className="text-muted-foreground"
-                            >
-                              Chart visualization would go here
-                            </Typography>
-                          </Box>
+                          <Image
+                            src="https://picsum.photos/600/200?random=30&blur=1"
+                            alt="Revenue Chart"
+                            width={600}
+                            height={200}
+                            className="w-full h-32 object-cover rounded"
+                          />
                         </Box>
                       </Box>
                     </Box>
@@ -936,14 +936,13 @@ export function Boxes() {
                               key={item}
                               className="border rounded p-4 hover:shadow-md transition-shadow"
                             >
-                              <Box className="bg-neutral/10 h-32 rounded mb-3 flex items-center justify-center">
-                                <Typography
-                                  variant="body2"
-                                  className="text-muted-foreground"
-                                >
-                                  Product Image {item}
-                                </Typography>
-                              </Box>
+                              <Image
+                                src={`https://picsum.photos/300/200?random=${item}`}
+                                alt={`Product ${item}`}
+                                width={300}
+                                height={200}
+                                className="w-full h-32 object-cover rounded mb-3"
+                              />
                               <Typography variant="h6" className="mb-1">
                                 Product {item}
                               </Typography>

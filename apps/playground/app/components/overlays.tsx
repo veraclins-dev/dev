@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { Image } from '@veraclins-dev/image';
 import {
   Badge,
   Box,
@@ -1066,14 +1067,13 @@ export function Overlays() {
                           </DialogDescription>
                         </DialogHeader>
                         <Box className="py-4">
-                          <Box className="bg-neutral/10 h-64 rounded flex items-center justify-center">
-                            <Typography
-                              variant="body2"
-                              className="text-muted-foreground"
-                            >
-                              Product Image Display
-                            </Typography>
-                          </Box>
+                          <Image
+                            src="https://picsum.photos/600/400?random=10"
+                            alt="Premium Widget Pro"
+                            width={600}
+                            height={400}
+                            className="w-full h-64 object-cover rounded"
+                          />
                           <Box className="mt-4 space-y-2">
                             <Typography variant="h6">
                               Premium Widget Pro
