@@ -89,6 +89,7 @@ export const DataTableWithDnd = () => (
           faceted: {
             status: { options: statuses, type: 'dropdown' },
             priority: { options: priorities, type: 'dropdown' },
+            archived: { title: 'Show Archived', type: 'boolean' },
           },
         }}
         bulkActions={bulkActions}
@@ -143,7 +144,8 @@ export const DataTableStandard = () => (
         filters={{
           faceted: {
             status: { options: statuses, type: 'dropdown' },
-            priority: { type: 'dropdown' },
+            priority: { options: priorities, type: 'dropdown' },
+            archived: { title: 'Show Archived', type: 'boolean' },
           },
         }}
         bulkActions={bulkActions}

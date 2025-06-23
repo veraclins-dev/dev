@@ -14,14 +14,17 @@ import {
   CommandSeparator,
   Icon,
   INPUT_CLASS_OVERRIDES,
+  Label,
   Popover,
   PopoverContent,
   PopoverTrigger,
   Separator,
+  Switch,
   Typography,
 } from '../../ui';
 
 import {
+  type DataTableFacetedBooleanFilterProps,
   type DataTableFacetedDropdownFilterOption,
   type DataTableFacetedDropdownFilterProps,
   type DataTableFacetedFilterProps,
@@ -40,12 +43,14 @@ function DataTableFacetedDropdownFilter<TData, TValue>({
       label: humanize(value),
       value,
     }));
+  const isFiltered = selectedValues.size > 0;
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
           size="sm"
+          color={isFiltered ? 'primary' : 'secondary'}
           className="h-8 items-center border-dashed"
         >
           <Icon name="plus-circle">{title}</Icon>
@@ -53,7 +58,7 @@ function DataTableFacetedDropdownFilter<TData, TValue>({
             <>
               <Separator orientation="vertical" />
               <Badge
-                color="neutral"
+                color="primary"
                 variant="soft"
                 className="text-xs rounded-sm py-0.5 font-normal lg:hidden"
               >
@@ -62,7 +67,7 @@ function DataTableFacetedDropdownFilter<TData, TValue>({
               <Box display="hidden" gap={1} className="hidden lg:flex">
                 {selectedValues.size > 2 ? (
                   <Badge
-                    color="neutral"
+                    color="primary"
                     variant="soft"
                     className="text-xs rounded-sm py-0.5 font-normal"
                   >
@@ -73,7 +78,7 @@ function DataTableFacetedDropdownFilter<TData, TValue>({
                     .filter((option) => selectedValues.has(option.value))
                     .map((option) => (
                       <Badge
-                        color="neutral"
+                        color="primary"
                         variant="soft"
                         key={option.value}
                         className="text-xs rounded-sm py-0.5 font-normal"
@@ -115,7 +120,7 @@ function DataTableFacetedDropdownFilter<TData, TValue>({
                       );
                     }}
                   >
-                    <Checkbox checked={isSelected} className="size-4" />
+                    <Checkbox checked={isSelected} />
                     {option.icon ? (
                       <Icon name={option.icon} className="size-4">
                         {option.label}
@@ -158,22 +163,35 @@ function DataTableFacetedDropdownFilter<TData, TValue>({
   );
 }
 
-function DataTableFacetedFilter<TData, TValue>({
+function DataTableFacetedBooleanFilter<TData, TValue>({
   column,
   title,
-  options,
-  type,
-}: DataTableFacetedFilterProps<TData, TValue>) {
-  if (type === 'dropdown') {
-    return (
-      <DataTableFacetedDropdownFilter
-        column={column}
-        title={title}
-        options={options}
-        type={type}
+}: DataTableFacetedBooleanFilterProps<TData, TValue>) {
+  return (
+    <Box display="flex" items="center" gap={2}>
+      <Switch
+        id={`${column?.id}-switch`}
+        checked={(column?.getFilterValue() as boolean) ?? false}
+        onCheckedChange={(value) =>
+          column?.setFilterValue(value ? true : undefined)
+        }
       />
-    );
+      {title ? <Label htmlFor={`${column?.id}-switch`}>{title}</Label> : null}
+    </Box>
+  );
+}
+
+function DataTableFacetedFilter<TData, TValue>(
+  props: DataTableFacetedFilterProps<TData, TValue>,
+) {
+  if (props.type === 'dropdown') {
+    return <DataTableFacetedDropdownFilter {...props} />;
   }
+
+  if (props.type === 'boolean') {
+    return <DataTableFacetedBooleanFilter {...props} />;
+  }
+
   // TODO: Add other types of filters
   return null;
 }

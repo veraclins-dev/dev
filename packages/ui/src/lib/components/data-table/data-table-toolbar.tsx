@@ -24,6 +24,7 @@ export interface DataTableToolbarProps<TData extends WithId, TValue> {
       [key: string]: {
         options?: DataTableFacetedFilterProps<TData, TValue>['options'];
         type: DataTableFacetedFilterProps<TData, TValue>['type'];
+        title?: string;
       };
     };
   };
@@ -54,16 +55,18 @@ export function DataTableToolbar<TData extends WithId, TValue>({
           />
         )}
         {faceted &&
-          Object.entries(faceted).map(([key, { options, type, ...rest }]) => (
-            <DataTableFacetedFilter
-              key={key}
-              column={table.getColumn(key)}
-              title={key.charAt(0).toUpperCase() + key.slice(1)}
-              options={options}
-              type={type as 'dropdown'}
-              {...rest}
-            />
-          ))}
+          Object.entries(faceted).map(
+            ([key, { options, type, title, ...rest }]) => (
+              <DataTableFacetedFilter
+                key={key}
+                column={table.getColumn(key)}
+                title={title ?? key.charAt(0).toUpperCase() + key.slice(1)}
+                options={options}
+                type={type as 'dropdown'}
+                {...rest}
+              />
+            ),
+          )}
 
         {isFiltered && (
           <Button

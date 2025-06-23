@@ -101,4 +101,18 @@ export const columns: DataTableProps<Task>['columnsConfig'] = [
       return value.includes(row.getValue(id));
     },
   },
+  {
+    accessorKey: 'archived',
+    header: () => null,
+    cell: () => null,
+    filterFn: (row, _, value) => {
+      if (value) {
+        return row.original.archived === true;
+      }
+      return true;
+    },
+    enableGlobalFilter: false,
+    enableSorting: false,
+    enableHiding: true,
+  },
 ];
