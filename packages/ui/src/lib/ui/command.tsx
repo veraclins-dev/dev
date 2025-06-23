@@ -17,6 +17,7 @@ import {
   DialogTitle,
 } from './dialog';
 import { Icon } from './icon';
+import { Label } from './label';
 
 function Command({
   className,
@@ -80,14 +81,16 @@ function CommandInput({
         wrapperClassName,
       )}
     >
-      {withIcon && (
-        <Icon name="search" className="size-4 shrink-0 opacity-50" />
-      )}
-      <CommandPrimitive.Input
-        data-slot="command-input"
-        className={cn(INPUT_CLASSES, INPUT_CLASS_OVERRIDES, className)}
-        {...props}
-      />
+      <Label>
+        {withIcon && (
+          <Icon name="search" className="size-4 shrink-0 opacity-50" />
+        )}
+        <CommandPrimitive.Input
+          data-slot="command-input"
+          className={cn(INPUT_CLASSES, INPUT_CLASS_OVERRIDES, className)}
+          {...props}
+        />
+      </Label>
     </Box>
   );
 }

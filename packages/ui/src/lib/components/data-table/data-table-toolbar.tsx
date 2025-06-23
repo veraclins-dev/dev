@@ -22,7 +22,8 @@ export interface DataTableToolbarProps<TData extends WithId, TValue> {
     };
     faceted?: {
       [key: string]: {
-        options: DataTableFacetedFilterProps<TData, TValue>['options'];
+        options?: DataTableFacetedFilterProps<TData, TValue>['options'];
+        type: DataTableFacetedFilterProps<TData, TValue>['type'];
       };
     };
   };
@@ -53,12 +54,14 @@ export function DataTableToolbar<TData extends WithId, TValue>({
           />
         )}
         {faceted &&
-          Object.entries(faceted).map(([key, { options }]) => (
+          Object.entries(faceted).map(([key, { options, type, ...rest }]) => (
             <DataTableFacetedFilter
               key={key}
               column={table.getColumn(key)}
               title={key.charAt(0).toUpperCase() + key.slice(1)}
               options={options}
+              type={type as 'dropdown'}
+              {...rest}
             />
           ))}
 
