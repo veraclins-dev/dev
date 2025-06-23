@@ -24,7 +24,8 @@
 
 ### Next Priority Items:
 
-1.  **Missing Component Showcases** - Create individual showcases for List, Separator, Avatar, Accordion, and Chart.
+1.  **Enhance `DataTable` Showcase** - Implement advanced features like bulk actions, column resizing, and improved filtering.
+2.  **Missing Component Showcases** - Create individual showcases for List, Separator, Avatar, Accordion, and Chart.
 
 ## Overview
 
@@ -292,8 +293,8 @@ This plan outlines the missing features and improvements needed to create a comp
 
 ### 2.2 Data Display Components
 
-**Status**: Partially implemented (basic DataTable showcase exists)
-**Priority**: Medium
+**Status**: In Progress
+**Priority**: High
 **Current Implementation**:
 
 - Basic `DataTable` showcase in `apps/playground/app/routes/table.tsx`
@@ -311,47 +312,37 @@ This plan outlines the missing features and improvements needed to create a comp
 - `List` - Ordered and unordered lists
 - `Accordion` - Collapsible content sections
 
-**Available DataTable Features Not Yet Showcased**:
+**`DataTable` Enhancement Plan**:
 
-- `DataTableToolbar` - Advanced filtering and search
-- `DataTablePagination` - Page navigation and size controls
-- `DataTableFacetedFilter` - Multi-select filtering
-- `DataTableColumnHeader` - Sortable column headers
-- `DataTableViewOptions` - Column visibility controls
-- `DataTableRowActions` - Contextual row actions
-- `DataTableDndProvider` - Drag and drop reordering
-- `DataTableRow` - Custom row components
-- Global search functionality
-- Export capabilities (CSV, Excel)
-- Bulk actions
-- Row grouping and expansion
-- Virtual scrolling for large datasets
-- Custom cell renderers
-- Advanced sorting (multi-column)
-- Column resizing
-- Row selection with bulk operations
+1.  **Improve Showcase Structure**:
 
-**Implementation Steps**:
+    - Rename `DataTableComponent` and `DataTableComponent2` to `DataTableWithDnd` and `DataTableStandard`.
+    - Wrap each table in a `Card` with a `CardHeader` and `CardDescription` to clearly explain the features being demonstrated.
 
-1. Expand existing `/table` route with comprehensive DataTable examples:
-   - Basic table with all core features
-   - Advanced filtering and search examples
-   - Pagination and view options
-   - Drag and drop reordering
-   - Bulk actions and row selection
-   - Export functionality
-   - Custom cell renderers
-   - Virtual scrolling for performance
-   - Row grouping and expansion
-   - Column resizing and visibility
-2. Create `/data-display` route for other data components
-3. Create `components/data-display.tsx` with examples:
-   - Chart examples (line, bar, pie, area)
-   - List variations (ordered, unordered, nested)
-   - Accordion with nested content
-   - Data visualization combinations
-4. Add to nx-welcome navigation
-5. Update routes.ts
+2.  **Implement Bulk Actions**:
+
+    - Enhance the `DataTableToolbar` to show a "Bulk Actions" dropdown when at least one row is selected.
+    - Include actions like "Delete Selected", "Update Status", and "Export Selected".
+
+3.  **Add Advanced Filtering**:
+
+    - Integrate a `Switch` in the toolbar to toggle "Show Archived" items, demonstrating boolean filtering.
+    - Add a `DatePicker` with range selection for filtering by date.
+
+4.  **Introduce Interactive Row Actions**:
+
+    - Modify the "Edit" or add a "View" action to open a `Dialog` or `Sheet`.
+    - The modal will display the full details of the selected row, showcasing integration with other components.
+
+5.  **Showcase Column Resizing**:
+    - Create a new `DataTable` example with column resizing enabled to demonstrate layout flexibility.
+
+**Next Steps**:
+
+1.  Create `/data-display` route for other data components
+2.  Create `components/data-display.tsx` with examples:
+    - Chart examples (line, bar, pie, area)
+    - List variations (ordered, unordered, nested)
 
 ### 2.3 Overlays & Modals Components
 

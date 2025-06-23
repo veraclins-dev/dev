@@ -76,3 +76,4 @@ alwaysApply: true
 - Use conventional commits
 - Keep commits atomic and focused
 - Write meaningful commit messages
+- Keep every commit message line to below 100 characters
