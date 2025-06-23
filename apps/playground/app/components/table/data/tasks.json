@@ -4,7 +4,8 @@
     "title": "You can't compress the program without quantifying the open-source SSD pixel!",
     "status": "in progress",
     "label": "documentation",
-    "priority": "medium"
+    "priority": "medium",
+    "archived": true
   },
   {
     "id": "TASK-7878",
@@ -705,5 +706,20 @@
     "status": "in progress",
     "label": "bug",
     "priority": "low"
+  },
+  {
+    "id": "TASK-4333",
+    "title": "Calculating the interface won't do anything, we need to bypass the back-end HDD panel!",
+    "label": "feature",
+    "priority": "high",
+    "status": "in progress",
+    "archived": true
+  },
+  {
+    "id": "TASK-8943",
+    "title": "If we connect the sensor, we can get to the HDD port through the redundant IB firewall!",
+    "status": "in progress",
+    "label": "feature",
+    "priority": "high"
   }
 ]

@@ -314,20 +314,25 @@ This plan outlines the missing features and improvements needed to create a comp
 
 **`DataTable` Enhancement Plan**:
 
-1.  **Improve Showcase Structure**:
+1.  **Improve Showcase Structure**: ✅ **COMPLETED**
 
-    - Rename `DataTableComponent` and `DataTableComponent2` to `DataTableWithDnd` and `DataTableStandard`.
-    - Wrap each table in a `Card` with a `CardHeader` and `CardDescription` to clearly explain the features being demonstrated.
+    - Renamed `DataTableComponent` and `DataTableComponent2` to `DataTableWithDnd` and `DataTableStandard`.
+    - Wrapped each table in a `Card` with a `CardHeader` and `CardDescription` to clearly explain the features being demonstrated.
 
-2.  **Implement Bulk Actions**:
+2.  **Implement Bulk Actions**: ✅ **COMPLETED**
 
-    - Enhance the `DataTableToolbar` to show a "Bulk Actions" dropdown when at least one row is selected.
-    - Include actions like "Delete Selected", "Update Status", and "Export Selected".
+    - Enhanced the `DataTableToolbar` to show a "Bulk Actions" dropdown when at least one row is selected.
+    - The `bulkActions` prop now accepts a function for full customization.
+    - Added "Delete Selected" and "Download Selected" examples.
 
-3.  **Add Advanced Filtering**:
+3.  **Add Advanced Filtering (New Pattern)**:
 
-    - Integrate a `Switch` in the toolbar to toggle "Show Archived" items, demonstrating boolean filtering.
-    - Add a `DatePicker` with range selection for filtering by date.
+    - **Implemented a type-safe, extensible filtering architecture.** The main `DataTableFacetedFilter` component now acts as a router, dynamically rendering specialized filter components based on a `type` property (`dropdown`, `boolean`, `dateRange`, etc.).
+    - **Dropdown filters are now more flexible.** The `options` prop is optional; if not provided, options are automatically generated from the table's facets. This simplifies common use cases while still allowing for custom labels and icons.
+    - **Future Implementation Steps**:
+      - Create a `DataTableFacetedBooleanFilter` component to render a `Switch` for boolean-based columns (e.g., "Show Archived").
+      - Create a `DataTableFacetedRangeFilter` component for numerical or date ranges.
+      - Integrate these new filter types into the `DataTableFacetedFilter` router.
 
 4.  **Introduce Interactive Row Actions**:
 
