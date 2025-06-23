@@ -188,12 +188,33 @@ function getInitials(name: string): string {
     .toUpperCase()
     .slice(0, 2);
 }
+
+let counter = 0;
+
+function generateCUID() {
+  // Timestamp (base36)
+  const timestamp = Date.now().toString(36);
+
+  // Counter (increment per call, reset after a threshold)
+  counter = (counter + 1) % 10000;
+  const count = counter.toString(36).padStart(4, '0');
+
+  // Random block (8 characters)
+  const random = Math.random().toString(36).substr(2, 8);
+
+  // Fingerprint (simplified, using random for demo purposes)
+  const fingerprint = Math.random().toString(36).substr(2, 4);
+
+  return `c${timestamp}${count}${fingerprint}${random}`;
+}
+
 export {
   callAll,
   cn,
   combinePaths,
   downloadFile,
   emailToUserName,
+  generateCUID,
   getDomainUrl,
   getErrorMessage,
   getInitials,
