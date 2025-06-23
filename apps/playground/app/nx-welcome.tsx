@@ -137,6 +137,12 @@ export function NxWelcome({ title }: { title: string }) {
           description:
             'Color palette showcase including primary, secondary, and semantic color variations.',
         },
+        {
+          path: '/icons',
+          label: 'Icons',
+          description:
+            'Comprehensive icon library with 661+ icons, searchable interface, and real-life usage examples.',
+        },
       ],
     },
     {
