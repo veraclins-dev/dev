@@ -15,6 +15,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   type SortingState,
+  type Table as TanstackTable,
   useReactTable,
   type VisibilityState,
 } from '@tanstack/react-table';
@@ -22,6 +23,7 @@ import { useMemo, useState } from 'react';
 
 import {
   Box,
+  type ItemOption,
   Table,
   TableBody,
   TableCell,
@@ -44,6 +46,7 @@ interface DataTableProps<TData extends WithId, TValue = unknown> {
   columnsConfig: ColumnConfig<TData, TValue>[];
   data: TData[];
   filters?: DataTableToolbarProps<TData, TValue>['filters'];
+  bulkActions?: (table: TanstackTable<TData>) => ItemOption[];
 }
 
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
@@ -61,6 +64,7 @@ function DataTable<TData extends WithId, TValue = unknown>({
   columnsConfig,
   data: initialData,
   filters,
+  bulkActions,
 }: DataTableProps<TData, TValue>) {
   const [data, setData] = useState(() => initialData);
   const [rowSelection, setRowSelection] = useState({});
@@ -117,6 +121,7 @@ function DataTable<TData extends WithId, TValue = unknown>({
           },
           ...filters,
         }}
+        bulkActions={bulkActions?.(table)}
       />
       <Box className="rounded-md border">
         <DataTableDndContext dataIds={dataIds} setData={setData}>

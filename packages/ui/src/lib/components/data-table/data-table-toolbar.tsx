@@ -1,6 +1,13 @@
 import { type Table } from '@tanstack/react-table';
 
-import { Box, Button, Icon, Input } from '../../ui';
+import {
+  Box,
+  Button,
+  ComposedDropdownMenu,
+  Icon,
+  Input,
+  type ItemOption,
+} from '../../ui';
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 import { DataTableViewOptions } from './data-table-view-options';
@@ -19,13 +26,16 @@ export interface DataTableToolbarProps<TData extends WithId, TValue> {
       };
     };
   };
+  bulkActions?: ItemOption[];
 }
 
 export function DataTableToolbar<TData extends WithId, TValue>({
   table,
   filters: { global, faceted } = {},
+  bulkActions,
 }: DataTableToolbarProps<TData, TValue>) {
   const isFiltered = table.getState().columnFilters.length > 0;
+  const hasSelectedRows = table.getFilteredSelectedRowModel().rows.length > 0;
 
   return (
     <Box
@@ -63,7 +73,21 @@ export function DataTableToolbar<TData extends WithId, TValue>({
           </Button>
         )}
       </Box>
-      <DataTableViewOptions table={table} />
+
+      <Box display="flex" items="center" gap={2}>
+        {hasSelectedRows && bulkActions && bulkActions.length > 0 && (
+          <ComposedDropdownMenu
+            Trigger={Button}
+            TriggerProps={{
+              children: 'Bulk Actions',
+              variant: 'outline',
+              className: 'h-8',
+            }}
+            items={bulkActions}
+          />
+        )}
+        <DataTableViewOptions table={table} />
+      </Box>
     </Box>
   );
 }

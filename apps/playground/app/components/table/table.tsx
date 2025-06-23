@@ -7,11 +7,39 @@ import {
   CardTitle,
   DataTable,
   Icon,
+  type ItemOption,
+  type TanstackTable,
 } from '@veraclins-dev/ui';
 
 import { priorities, statuses } from './data/data';
+import { type Task } from './data/schema';
 import data from './data/tasks.json';
 import { columns } from './columns';
+
+const bulkActions = (table: TanstackTable<Task>): ItemOption[] => [
+  {
+    key: 'delete',
+    label: 'Delete Selected',
+    icon: 'trash-can',
+    onClick: () => {
+      const selectedRows = table.getFilteredSelectedRowModel().rows;
+      console.log(
+        'Delete',
+        selectedRows.map((r) => r.original),
+      );
+      // setData((prev) => prev.filter((row) => !selectedRows.find((r) => r.id === row.id)));
+      table.resetRowSelection();
+    },
+  },
+  {
+    key: 'download',
+    label: 'Download Selected',
+    icon: 'download',
+    onClick: () => {
+      console.log('Download', table.getFilteredSelectedRowModel().rows);
+    },
+  },
+];
 
 export const DataTableWithDnd = () => (
   <Card>
@@ -63,6 +91,7 @@ export const DataTableWithDnd = () => (
             priority: { options: priorities },
           },
         }}
+        bulkActions={bulkActions}
       />
     </CardContent>
   </Card>
@@ -117,6 +146,7 @@ export const DataTableStandard = () => (
             priority: { options: priorities },
           },
         }}
+        bulkActions={bulkActions}
       />
     </CardContent>
   </Card>
@@ -130,7 +160,7 @@ export function Page() {
       gap={4}
       my={8}
       py={4}
-      className="container w-full h-full overflow-auto rounded-md"
+      className="container bg-card w-full h-full overflow-auto rounded-md"
     >
       <DataTableWithDnd />
       <DataTableStandard />
