@@ -11,7 +11,7 @@ import {
 import { initImageConfig } from '@veraclins-dev/image';
 import { HoneypotProvider } from '@veraclins-dev/react-utils';
 import { honeypot } from '@veraclins-dev/react-utils/server';
-import { Box, IconProvider } from '@veraclins-dev/ui';
+import { Box, IconProvider, VeraclinsToaster } from '@veraclins-dev/ui';
 import sprites from '@veraclins-dev/ui/sprite.svg';
 
 import { type Route } from './+types/root';
@@ -86,6 +86,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
     <HoneypotProvider {...loaderData.honeyProps}>
       <IconProvider sprite={sprite}>
         <Outlet />
+        <VeraclinsToaster />
       </IconProvider>
     </HoneypotProvider>
   );

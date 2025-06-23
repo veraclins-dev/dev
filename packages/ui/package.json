@@ -54,6 +54,7 @@
     "react": "^19",
     "react-dom": "^19",
     "recharts": "^2",
+    "sonner": "^2",
     "tailwindcss": "^4",
     "tailwindcss-animate": "^1",
     "tailwindcss-radix": "^4"
