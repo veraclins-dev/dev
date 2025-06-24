@@ -8,13 +8,11 @@ import {
   Box,
   Button,
   Chip,
-  Command,
-  CommandEmpty,
-  CommandInput,
-  CommandItem,
-  CommandList,
   Icon,
+  Input,
   INPUT_CLASS_OVERRIDES,
+  List,
+  ListItem,
   Popover,
   PopoverAnchor,
   PopoverContent,
@@ -66,7 +64,6 @@ const filter = ({
   if (disableSorting) {
     config.baseSort = () => 0;
   }
-  // config.threshold = !multiple ? matchSorter.rankings.NO_MATCH : undefined;
 
   return matchSorter(options, value, config);
 };
@@ -168,43 +165,50 @@ const Autocomplete = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const anchorRef = useRef<Maybe<HTMLDivElement>>(null);
   const wrapperRef = useRef<Maybe<HTMLDivElement>>(null);
-  const firstItemRef = useRef<Maybe<HTMLDivElement>>(null);
 
   const [localValue, setLocalValue] = useState<string>('');
   const [formValue, setFormValue] = useState<string>('');
   const [filteredOptions, setFilteredOptions] = useState<Options>(options);
   const [selected, setSelected] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
   const canSelect = !maxOptions || selected.length < maxOptions;
   const dependent = !!(dependsOn && !options.length);
 
+  const refocusInput = useCallback(() => {
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
+  }, []);
+
   const handleChange = (value: string) => {
     setLocalValue(value);
+    setFocusedIndex(-1); // Reset focus when typing
     if (value && !open) {
       setOpen(true);
     }
-    scrollIntoView(firstItemRef);
   };
 
   const handleCreateOption = () => {
-    console.debug('Creating option:', { localValue, canSelect, multiple });
     if (freeSolo && localValue && canSelect) {
       if (multiple) {
         setSelected([...selected, localValue]);
         setLocalValue('');
-        inputRef.current?.focus();
+        refocusInput();
       } else {
         setSelected([localValue]);
         setLocalValue(localValue);
         setOpen(false);
+        refocusInput();
       }
     }
   };
 
-  const handleBlur = () => {
+  const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     mainRef.current?.blur();
     setOpen(false);
+    setFocusedIndex(-1);
     // When freeSolo is enabled and input has value, select it on blur
     if (freeSolo && localValue && canSelect && !multiple) {
       handleCreateOption();
@@ -221,18 +225,19 @@ const Autocomplete = ({
         const all = [...selected, val];
         setSelected(all);
         setLocalValue('');
-        inputRef.current?.focus();
+        refocusInput();
       } else {
         setSelected([val]);
         setLocalValue(getOptionLabel(option));
         setOpen(false);
+        refocusInput();
       }
     }
   };
 
   const handleRemove = (value: string) => {
     setSelected(selected.filter((val) => val !== value));
-    inputRef.current?.focus();
+    refocusInput();
   };
 
   const changeValue = useCallback((value: string) => {
@@ -251,7 +256,7 @@ const Autocomplete = ({
 
   const clear = () => {
     reset();
-    inputRef.current?.focus();
+    refocusInput();
   };
 
   const handleKeyDown = useCallback(
@@ -280,9 +285,30 @@ const Autocomplete = ({
           e.preventDefault();
           handleCreateOption();
         }
+        // Handle arrow keys for navigation
+        if (e.key === 'ArrowDown' && open) {
+          e.preventDefault();
+          setFocusedIndex((prev) =>
+            prev < filteredOptions.length - 1 ? prev + 1 : 0,
+          );
+        }
+        if (e.key === 'ArrowUp' && open) {
+          e.preventDefault();
+          setFocusedIndex((prev) =>
+            prev > 0 ? prev - 1 : filteredOptions.length - 1,
+          );
+        }
+        // Handle Enter key for selecting focused option
+        if (e.key === 'Enter' && focusedIndex >= 0 && open) {
+          e.preventDefault();
+          const option = filteredOptions[focusedIndex];
+          if (option) {
+            handleSelect(option);
+          }
+        }
       }
     },
-    [freeSolo, localValue, filteredOptions],
+    [freeSolo, localValue, filteredOptions, focusedIndex, open, refocusInput],
   );
 
   const handleFocus = useCallback(() => {
@@ -360,129 +386,174 @@ const Autocomplete = ({
       labelProps={labelProps}
       wrapperClassName={wrapperClassName}
       ref={ref ?? wrapperRef}
+      onKeyDown={handleKeyDown}
+      onBlur={handleBlur}
     >
-      <Command
-        onKeyDown={handleKeyDown}
-        className="overflow-visible bg-transparent flex"
-        shouldFilter={false}
-        onBlur={handleBlur}
+      <Box
+        ref={anchorRef}
+        display="flex"
+        justify="between"
+        items="center"
+        className="w-full h-full"
       >
-        <Box
-          ref={anchorRef}
-          display="flex"
-          justify="between"
-          items="center"
-          className="w-full h-full"
-        >
-          <Box display="flex" flexWrap="wrap" flex="1" gap={1}>
-            {multiple && selected.length ? (
-              <>
-                {selected.map((value) => {
-                  return (
-                    <Chip
-                      key={value}
-                      label={getOptionLabel(
-                        options.find(
-                          (option) => getOptionValue(option) === value,
-                        ) ?? { label: value, value }, // Use value as label for freeSolo created options
-                      )}
-                      variant="soft"
-                      color="primary"
-                      size="sm"
-                      className="p-0.5 text-xs border-none"
-                      onRemove={() => handleRemove(value)}
-                    />
-                  );
-                })}
-              </>
-            ) : null}
-            {canSelect && (
-              <CommandInput
-                ref={inputRef}
-                name={`${formProps.name}-input`}
-                aria-describedby={errorId}
-                aria-label={formProps.name ?? 'autocomplete-field'}
-                aria-labelledby={formProps.id ?? 'autocomplete-field'}
-                data-testid={formProps.id ?? 'autocomplete-field'}
-                aria-invalid={errorId ? true : undefined}
-                value={localValue}
-                onValueChange={handleChange}
-                onFocus={handleFocus}
-                onClick={handleFocus}
-                placeholder={placeholder}
-                className={INPUT_CLASS_OVERRIDES}
-                disabled={!canSelect}
-              />
-            )}
-          </Box>
-          <Box display="flex" gap={2}>
-            {selected.length ? (
-              <Button
-                onClick={clear}
-                variant="text"
-                className="p-0.5 rounded-full"
-              >
-                <Icon name="cross-2" className="opacity-70" />
-              </Button>
-            ) : null}
-
-            <Icon
-              name="chevron-down"
-              data-state={open ? 'open' : 'closed'}
-              className={cn({ 'rotate-180': open })}
+        <Box display="flex" flexWrap="wrap" flex="1" gap={1}>
+          {multiple && selected.length ? (
+            <>
+              {selected.map((value) => {
+                return (
+                  <Chip
+                    key={value}
+                    label={getOptionLabel(
+                      options.find(
+                        (option) => getOptionValue(option) === value,
+                      ) ?? { label: value, value }, // Use value as label for freeSolo created options
+                    )}
+                    variant="soft"
+                    color="primary"
+                    size="sm"
+                    onMouseDown={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                    }}
+                    className="px-1 text-xs border-none"
+                    onRemove={() => handleRemove(value)}
+                  />
+                );
+              })}
+            </>
+          ) : null}
+          {canSelect && (
+            <Input
+              ref={inputRef}
+              name={`${formProps.name}-input`}
+              aria-describedby={errorId}
+              aria-label={formProps.name ?? 'autocomplete-field'}
+              aria-labelledby={formProps.id ?? 'autocomplete-field'}
+              data-testid={formProps.id ?? 'autocomplete-field'}
+              aria-invalid={errorId ? true : undefined}
+              value={localValue}
+              onChange={(e) => handleChange(e.target.value)}
+              onFocus={handleFocus}
               onClick={handleFocus}
+              placeholder={placeholder}
+              className={cn(
+                INPUT_CLASS_OVERRIDES,
+                'flex-1 bg-transparent border-none outline-none',
+              )}
+              disabled={!canSelect}
             />
-          </Box>
+          )}
         </Box>
-        <input
-          {...props}
-          {...formProps}
-          ref={mainRef}
-          key={key}
-          value={formValue}
-          type="text"
-          className="h-0 w-0 border-none p-0"
-          readOnly
-        />
-        <Popover open={open && canSelect}>
-          <PopoverAnchor
-            virtualRef={(ref ?? wrapperRef) as React.RefObject<HTMLDivElement>}
+        <Box display="flex" gap={2}>
+          {selected.length ? (
+            <Button
+              onClick={clear}
+              variant="text"
+              className="p-0.5 rounded-full"
+            >
+              <Icon name="cross-2" className="opacity-70" />
+            </Button>
+          ) : null}
+
+          <Icon
+            name="chevron-down"
+            data-state={open ? 'open' : 'closed'}
+            className={cn({ 'rotate-180': open })}
+            onClick={handleFocus}
           />
-          <PopoverContent
-            onOpenAutoFocus={(e) => e.preventDefault()}
-            className="p-2"
-            sideOffset={5}
+        </Box>
+      </Box>
+      <input
+        {...props}
+        {...formProps}
+        ref={mainRef}
+        key={key}
+        value={formValue}
+        type="text"
+        className="h-0 w-0 border-none p-0"
+        readOnly
+      />
+      <Popover open={open && canSelect}>
+        <PopoverAnchor
+          virtualRef={(ref ?? wrapperRef) as React.RefObject<HTMLDivElement>}
+        />
+        <PopoverContent
+          onOpenAutoFocus={(e) => e.preventDefault()}
+          onCloseAutoFocus={(e) => e.preventDefault()}
+          className="p-2"
+          sideOffset={5}
+        >
+          <List
+            role="listbox"
+            selectable={true}
+            className="max-h-52 overflow-auto"
+            variant="none"
           >
-            <CommandList className="max-h-52 overflow-auto">
-              <CommandEmpty>
-                {dependent
-                  ? `Select a value for "${humanize(dependsOn)}" first`
-                  : freeSolo && localValue
-                    ? `Press Enter to add "${localValue}"`
-                    : freeSolo && !localValue
-                      ? 'Type a value and press Enter to accept it'
-                      : 'No options found'}
-              </CommandEmpty>
-              {filteredOptions.map((option, index) => (
-                <CommandItem
+            {dependent ? (
+              <ListItem
+                variant="selectable"
+                disabled={true}
+                className="text-muted-foreground"
+              >
+                Select a value for "{humanize(dependsOn)}" first
+              </ListItem>
+            ) : freeSolo && localValue ? (
+              <ListItem
+                variant="selectable"
+                focused={focusedIndex === -1}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                onSelect={() => handleCreateOption()}
+              >
+                Press Enter to add "{localValue}"
+              </ListItem>
+            ) : freeSolo && !localValue ? (
+              <ListItem
+                variant="selectable"
+                disabled={true}
+                className="text-muted-foreground"
+              >
+                Type a value and press Enter to accept it
+              </ListItem>
+            ) : filteredOptions.length === 0 ? (
+              <ListItem
+                variant="selectable"
+                disabled={true}
+                className="text-muted-foreground"
+              >
+                No options found
+              </ListItem>
+            ) : (
+              filteredOptions.map((option, index) => (
+                <ListItem
                   key={getOptionValue(option)}
+                  value={getOptionValue(option)}
+                  role="option"
+                  selected={isSelected(option)}
+                  focused={focusedIndex === index}
+                  variant="selectable"
                   onMouseDown={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                   }}
-                  onSelect={() => handleSelect(option)}
-                  className={cn('cursor-pointer px-3 py-2 my-0.5', {
-                    'bg-secondary': isSelected(option),
-                  })}
-                  ref={index === 0 ? firstItemRef : undefined}
+                  onSelect={(value) => {
+                    const option = filteredOptions.find(
+                      (opt) => getOptionValue(opt) === value,
+                    );
+                    if (option) {
+                      handleSelect(option);
+                    }
+                  }}
                 >
                   {getOptionLabel(option)}
-                </CommandItem>
-              ))}
-            </CommandList>
-          </PopoverContent>
-        </Popover>
-      </Command>
+                </ListItem>
+              ))
+            )}
+          </List>
+        </PopoverContent>
+      </Popover>
     </InputWrapper>
   );
 };
