@@ -640,8 +640,8 @@ const typographyVariants = cva('', {
 const listVariants = cva('', {
   variants: {
     variant: {
-      ul: 'list-disc',
-      ol: 'list-decimal',
+      ul: 'list-disc pl-6',
+      ol: 'list-decimal pl-6',
       none: 'list-none',
     },
     // Short-form spacing props
@@ -754,49 +754,90 @@ const listVariants = cva('', {
   ],
   defaultVariants: {
     variant: 'ul',
-    pl: 6,
     marker: 'default',
   },
 });
 
 /** ::::::::: List Item ::::::::: */
-const listItemVariants = cva('', {
-  variants: {
-    variant: {
-      default: '',
-      interactive: 'cursor-pointer hover:bg-neutral-hover',
-      selected: 'bg-neutral',
+const listItemVariants = cva(
+  // Base styles matching ITEM_CLASSES
+  'relative flex items-center gap-2 rounded-sm px-2 py-1.5 text-sm select-none',
+  {
+    variants: {
+      variant: {
+        default: '',
+        clickable:
+          'cursor-pointer hover:bg-neutral-hover hover:text-neutral-foreground-hover focus:bg-neutral-hover focus:text-neutral-foreground-hover focus:outline-none',
+        selectable:
+          'cursor-pointer transition-colors focus:outline-none focus:bg-neutral-hover focus:text-neutral-foreground-hover hover:bg-neutral-hover hover:text-neutral-foreground-hover',
+      },
+      size: {
+        sm: 'text-xs',
+        md: 'text-sm',
+        lg: 'text-lg',
+        xl: 'text-xl',
+      },
+      weight: {
+        normal: 'font-normal',
+        medium: 'font-medium',
+        semibold: 'font-semibold',
+        bold: 'font-bold',
+      },
+      color: {
+        default: '',
+        primary: 'text-primary',
+        secondary: 'text-secondary',
+        destructive: 'text-destructive',
+        success: 'text-success',
+        warning: 'text-warning',
+        info: 'text-info',
+        neutral: 'text-neutral',
+      },
+      selected: {
+        true: 'bg-neutral text-neutral-foreground',
+        false: '',
+      },
+      focused: {
+        true: 'bg-neutral-hover text-neutral-foreground-hover',
+        false: '',
+      },
+      disabled: {
+        true: 'opacity-50 cursor-not-allowed pointer-events-none',
+        false: '',
+      },
     },
-    size: {
-      sm: 'text-xs',
-      md: 'text-sm',
-      lg: 'text-lg',
-      xl: 'text-xl',
-    },
-    weight: {
-      normal: 'font-normal',
-      medium: 'font-medium',
-      semibold: 'font-semibold',
-      bold: 'font-bold',
-    },
-    color: {
-      default: '',
-      primary: 'text-primary',
-      secondary: 'text-secondary',
-      destructive: 'text-destructive',
-      success: 'text-success',
-      warning: 'text-warning',
-      info: 'text-info',
-      neutral: 'text-neutral',
+    compoundVariants: [
+      // Handle conflicts - selected takes precedence over focused
+      {
+        selected: true,
+        focused: true,
+        className: 'bg-neutral text-neutral-foreground', // selected wins
+      },
+      // Disabled state overrides other states
+      {
+        disabled: true,
+        selected: true,
+        className:
+          'opacity-50 cursor-not-allowed pointer-events-none bg-neutral text-neutral-foreground',
+      },
+      {
+        disabled: true,
+        focused: true,
+        className:
+          'opacity-50 cursor-not-allowed pointer-events-none bg-neutral-hover text-neutral-foreground-hover',
+      },
+    ],
+    defaultVariants: {
+      variant: 'default',
+      size: 'md',
+      weight: 'normal',
+      color: 'default',
+      selected: false,
+      focused: false,
+      disabled: false,
     },
   },
-  defaultVariants: {
-    variant: 'default',
-    size: 'md',
-    weight: 'normal',
-    color: 'default',
-  },
-});
+);
 
 /** ::::::::: Link ::::::::: */
 const linkVariants = cva(LINK_DEFAULT_CLASSES, {

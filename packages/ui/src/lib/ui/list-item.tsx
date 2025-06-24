@@ -5,8 +5,24 @@ import { cn } from '@veraclins-dev/utils';
 import { type ListItemVariants, listItemVariants } from './utils/variants';
 
 interface ListItemProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, keyof ListItemVariants>,
-    ListItemVariants {}
+  extends Omit<
+      React.HTMLAttributes<HTMLElement>,
+      keyof ListItemVariants | 'onSelect'
+    >,
+    ListItemVariants {
+  /** The value this item represents (for selection) */
+  value?: string;
+  /** Whether this item is currently selected */
+  selected?: boolean;
+  /** Whether this item is currently focused */
+  focused?: boolean;
+  /** Whether this item is disabled */
+  disabled?: boolean;
+  /** ARIA role for accessibility. Useful for 'option' in listbox. */
+  role?: string;
+  /** Callback when this item is selected */
+  onSelect?: (value?: string) => void;
+}
 
 /**
  * A list item component that supports various styling options and states.
@@ -18,21 +34,40 @@ function BaseListItem({
   size,
   weight,
   color,
+  selected = false,
+  focused = false,
+  disabled = false,
+  value,
+  role,
+  onSelect,
   children,
   ...props
 }: ListItemProps) {
+  const handleClick = () => {
+    if (!disabled && onSelect) {
+      onSelect(value);
+    }
+  };
+
   return (
     <li
       data-slot="list-item"
+      role={role}
+      aria-selected={selected}
+      tabIndex={focused ? 0 : -1}
       className={cn(
         listItemVariants({
           variant,
           size,
           weight,
           color,
+          selected,
+          focused,
+          disabled,
         }),
         className,
       )}
+      onClick={handleClick}
       {...props}
     >
       {children}

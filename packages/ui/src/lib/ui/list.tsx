@@ -11,6 +11,10 @@ interface ListProps
     ListVariants {
   /** The HTML element to render the List as. Defaults to 'ul'. */
   component?: ListElement;
+  /** ARIA role for accessibility. Useful for 'listbox' in autocomplete. */
+  role?: string;
+  /** Whether this list is used for selection (adds selection-related ARIA attributes) */
+  selectable?: boolean;
 }
 
 /**
@@ -20,6 +24,8 @@ interface ListProps
 function BaseList({
   component = 'ul',
   className,
+  role,
+  selectable = false,
   // List variant props
   variant,
   marker,
@@ -61,6 +67,8 @@ function BaseList({
   return (
     <Component
       data-slot="list"
+      role={role}
+      aria-label={selectable ? 'Options' : undefined}
       className={cn(
         listVariants({
           variant,
