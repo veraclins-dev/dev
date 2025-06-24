@@ -24,6 +24,7 @@ export const InputWrapper = ({
   ref,
   wrapperClassName,
   plain,
+  ...props
 }: InputWrapperProps) => {
   const { errorId, id, errors } = useFieldProperties(field);
 
@@ -35,6 +36,7 @@ export const InputWrapper = ({
       className={cn('relative w-full', wrapperClassName)}
       ref={ref}
       data-slot="input-wrapper"
+      {...props}
     >
       {(label || topText) && (
         <Box display="flex" justify="between">

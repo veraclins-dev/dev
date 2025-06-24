@@ -1,10 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
-import {
-  ComposedSelect,
-  INPUT_CLASS_OVERRIDES,
-  type SelectProps as BaseSelectProps,
-} from '../../ui';
+import { ComposedSelect, type SelectProps as BaseSelectProps } from '../../ui';
 
 import {
   type BaseInputProps,

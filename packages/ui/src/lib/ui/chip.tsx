@@ -76,7 +76,10 @@ const Chip = memo(
               size === 'lg' && 'size-6',
               size === 'xl' && 'size-7',
             )}
-            onClick={onRemove}
+            onClick={(e) => {
+              e.stopPropagation();
+              onRemove(e);
+            }}
             name="cancel"
             aria-label="Remove"
             tooltip="Remove"

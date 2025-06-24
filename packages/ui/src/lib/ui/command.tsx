@@ -63,25 +63,27 @@ function CommandInput({
   className,
   withIcon,
   wrapperClassName,
+  standalone = true,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input> & {
   withIcon?: boolean;
   wrapperClassName?: string;
+  standalone?: boolean;
 }) {
   return (
     <Box
       display="flex"
       items="center"
       gap={2}
-      // flex="1"
+      flex="1"
       data-slot="command-input-wrapper"
       className={cn(
-        'w-full min-w-30',
-        INPUT_CONTAINER_CLASSES,
+        'min-w-30',
+        standalone ? INPUT_CONTAINER_CLASSES : '',
         wrapperClassName,
       )}
     >
-      <Label>
+      <Label className="w-full">
         {withIcon && (
           <Icon name="search" className="size-4 shrink-0 opacity-50" />
         )}
