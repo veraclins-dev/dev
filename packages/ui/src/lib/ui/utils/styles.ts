@@ -42,7 +42,7 @@ const RADIO_GROUP_ITEM_CLASSES = cn(
 const INPUT_CLASSES = cn(
   BASE_INPUT_CLASSES,
   // Layout and Base
-  'flex flex-1 min-w-0 bg-transparent',
+  'flex flex-1 min-w-24 bg-transparent',
   // Text and Selection
   'text-base data-[placeholder]:text-current/50 md:text-sm placeholder:text-current/50 selection:bg-primary selection:text-primary-foreground',
   // Spacing

@@ -1,9 +1,8 @@
-import { matchSorter, type MatchSorterOptions } from 'match-sorter';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useId, useRef } from 'react';
 
-import { cn, humanize, setReactInputValue } from '@veraclins-dev/utils';
+import { cn, humanize } from '@veraclins-dev/utils';
 
-import { type Maybe, type Option } from '../../types';
+import { type Maybe } from '../../../types';
 import {
   Box,
   Button,
@@ -11,62 +10,23 @@ import {
   Icon,
   Input,
   INPUT_CLASS_OVERRIDES,
+  INPUT_CONTAINER_CLASSES,
   List,
   ListItem,
   Popover,
   PopoverAnchor,
   PopoverContent,
-} from '../../ui';
-
-import { type TextFieldProps } from './textfield';
+} from '../../../ui';
 import {
   getInputProps,
   getOptionLabel,
   getOptionValue,
-  isStringOption,
-  scrollIntoView,
   useFieldProperties,
-} from './utils';
-import { InputWrapper } from './wrapper';
+} from '../utils';
+import { InputWrapper } from '../wrapper';
 
-type Options = Option<string>[];
-
-interface AutocompleteProps extends Omit<TextFieldProps, 'value' | 'onChange'> {
-  options: Options;
-  maxOptions?: number;
-  dependsOn?: string;
-  value?: string;
-  defaultValue?: string;
-  onChange?: (value: string) => void;
-  disableSorting?: boolean;
-  shouldReset?: boolean;
-  freeSolo?: boolean; // Added freeSolo prop
-}
-
-const filter = ({
-  options,
-  value,
-  keys = ['label', 'value'],
-  disableSorting = false,
-}: {
-  options: Options;
-  value: string;
-  keys?: string[];
-  disableSorting?: boolean;
-}) => {
-  const isObject = options.length && !isStringOption(options[0]);
-
-  const config: MatchSorterOptions<Option> = {};
-
-  if (isObject) {
-    config.keys = keys;
-  }
-  if (disableSorting) {
-    config.baseSort = () => 0;
-  }
-
-  return matchSorter(options, value, config);
-};
+import { type AutocompleteProps } from './types';
+import { useAutocomplete } from './use-autocomplete';
 
 /**
  * A flexible and customizable Autocomplete component that allows users to select one or multiple options
@@ -97,6 +57,11 @@ const filter = ({
  * @param {string} [props.wrapperClassName] - Additional CSS classes for the wrapper element.
  * @param {boolean} [props.freeSolo=false] - Enables freeSolo mode, allowing users to create new options by typing
  *   and pressing Enter or blurring the input (for single selection).
+ * @param {string} [props.separator='comma'] - The separator used for adding multiple values in freeSolo mode.
+ *   Users can type values separated by this character (e.g., "apple,banana") or paste comma-separated lists.
+ *   Available separators: 'comma', 'semicolon', 'pipe', 'space'. Separator characters are filtered out
+ *   from the input unless escaped with a backslash (e.g., "apple\,banana" to include a comma in the value).
+ *   Only works when both `freeSolo` and `multiple` are true.
  * @param {string} [props.className] - Additional CSS classes for the root element.
  * @param {...any} props - Additional props are spread onto the hidden input element for form integration.
  * @returns {JSX.Element} The rendered Autocomplete component.
@@ -115,6 +80,7 @@ const filter = ({
  *   label="Select Fruits"
  *   placeholder="Type to search or add..."
  *   freeSolo
+ *   separator="comma" // Allows typing "apple,banana" or pasting "apple, banana, orange"
  *   onChange={(value) => console.log('Selected:', value)}
  * />
  * ```
@@ -125,6 +91,10 @@ const filter = ({
  *   selected options are displayed as removable chips, and new options can be added in freeSolo mode.
  * - **FreeSolo Mode**: When `freeSolo=true`, users can type a custom value and press Enter (or blur for single
  *   selection) to add it as a new option, even if it doesn't exist in the provided `options`.
+ *   In multiple mode, users can also type values separated by the separator character (e.g., "apple,banana")
+ *   or paste comma-separated lists (or custom separator via `separator`) to add multiple items at once.
+ *   Separator characters are filtered out from typing unless escaped with a backslash, but can be included
+ *   in pasted text or by escaping them.
  * - **Filtering**: Options are filtered using the `match-sorter` library based on the input value. Filtering
  *   can be customized with `disableSorting` to preserve the original order.
  * - **Dependency Handling**: If `dependsOn` is specified and no options are available, a message prompts the
@@ -132,13 +102,16 @@ const filter = ({
  * - **Accessibility**: The component includes ARIA attributes (`aria-describedby`, `aria-label`, etc.) for
  *   accessibility and integrates with form libraries via a hidden input.
  * - **Keyboard Navigation**: Supports keyboard interactions like `Enter` for creating new options in freeSolo
- *   mode, `Delete`/`Backspace` for removing selections, and `Escape` to close the dropdown.
+ *   mode, `Delete`/`Backspace` for removing selections, `Escape` to close the dropdown, arrow keys for
+ *   navigation, `Home`/`End` for jumping to first/last option, and `Tab` for selecting focused options or
+ *   accepting the current value in freeSolo mode.
  * - **Form Integration**: Works with form libraries (e.g., React Hook Form) via the `field` prop and a hidden
  *   input that stores the selected value(s) joined by `|`.
  * - **Reset and Clear**: The component can be reset programmatically via `shouldReset` or cleared using the
  *   clear button (displayed when selections exist).
+ * - **Performance**: Uses memoization for filtered options and form value updates to prevent unnecessary re-renders.
  */
-const Autocomplete = ({
+export const Autocomplete = ({
   className,
   options,
   multiple,
@@ -157,227 +130,61 @@ const Autocomplete = ({
   shouldReset,
   wrapperClassName,
   freeSolo = false,
+  separator = 'comma',
   ref,
   ...props
 }: AutocompleteProps) => {
   const { errorId } = useFieldProperties(field);
-  const mainRef = useRef<Maybe<HTMLInputElement>>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
   const anchorRef = useRef<Maybe<HTMLDivElement>>(null);
   const wrapperRef = useRef<Maybe<HTMLDivElement>>(null);
 
-  const [localValue, setLocalValue] = useState<string>('');
-  const [formValue, setFormValue] = useState<string>('');
-  const [filteredOptions, setFilteredOptions] = useState<Options>(options);
-  const [selected, setSelected] = useState<string[]>([]);
-  const [open, setOpen] = useState(false);
-  const [focusedIndex, setFocusedIndex] = useState<number>(-1);
+  const {
+    // Refs
+    mainRef,
+    inputRef,
 
-  const canSelect = !maxOptions || selected.length < maxOptions;
-  const dependent = !!(dependsOn && !options.length);
+    // State
+    localValue,
+    formValue,
+    selected,
+    open,
+    focusedIndex,
+    filteredOptions,
 
-  const refocusInput = useCallback(() => {
-    setTimeout(() => {
-      inputRef.current?.focus();
-    }, 0);
-  }, []);
+    // Computed values
+    separatorChar,
+    canSelect,
+    dependent,
 
-  const handleChange = (value: string) => {
-    setLocalValue(value);
-    setFocusedIndex(-1); // Reset focus when typing
-    if (value && !open) {
-      setOpen(true);
-    }
-  };
-
-  const handleCreateOption = () => {
-    if (freeSolo && localValue && canSelect) {
-      if (multiple) {
-        setSelected([...selected, localValue]);
-        setLocalValue('');
-        refocusInput();
-      } else {
-        setSelected([localValue]);
-        setLocalValue(localValue);
-        setOpen(false);
-        refocusInput();
-      }
-    }
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
-    mainRef.current?.blur();
-    setOpen(false);
-    setFocusedIndex(-1);
-    // When freeSolo is enabled and input has value, select it on blur
-    if (freeSolo && localValue && canSelect && !multiple) {
-      handleCreateOption();
-    }
-  };
-
-  const value = supplied ?? field?.initialValue ?? defaultValue ?? '';
-  delete field?.initialValue;
-
-  const handleSelect = (option: Option) => {
-    const val = getOptionValue(option);
-    if (canSelect) {
-      if (multiple) {
-        const all = [...selected, val];
-        setSelected(all);
-        setLocalValue('');
-        refocusInput();
-      } else {
-        setSelected([val]);
-        setLocalValue(getOptionLabel(option));
-        setOpen(false);
-        refocusInput();
-      }
-    }
-  };
-
-  const handleRemove = (value: string) => {
-    setSelected(selected.filter((val) => val !== value));
-    refocusInput();
-  };
-
-  const changeValue = useCallback((value: string) => {
-    if (value !== undefined) {
-      setFormValue(value);
-      setReactInputValue(mainRef.current, value);
-      onChange?.(value);
-    }
-  }, []);
-
-  const reset = () => {
-    setSelected([]);
-    setLocalValue('');
-    changeValue('');
-  };
-
-  const clear = () => {
-    reset();
-    refocusInput();
-  };
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      const input = inputRef.current;
-      if (input) {
-        if (e.key === 'Delete' || e.key === 'Backspace') {
-          if (input.value === '') {
-            setSelected((prev) => {
-              const newSelected = [...prev];
-              newSelected.pop();
-              return newSelected;
-            });
-          }
-        }
-        if (e.key === 'Escape') {
-          input.blur();
-        }
-        // Handle Enter key for creating new option in freeSolo mode
-        if (
-          e.key === 'Enter' &&
-          freeSolo &&
-          localValue &&
-          filteredOptions.length === 0
-        ) {
-          e.preventDefault();
-          handleCreateOption();
-        }
-        // Handle arrow keys for navigation
-        if (e.key === 'ArrowDown' && open) {
-          e.preventDefault();
-          setFocusedIndex((prev) =>
-            prev < filteredOptions.length - 1 ? prev + 1 : 0,
-          );
-        }
-        if (e.key === 'ArrowUp' && open) {
-          e.preventDefault();
-          setFocusedIndex((prev) =>
-            prev > 0 ? prev - 1 : filteredOptions.length - 1,
-          );
-        }
-        // Handle Enter key for selecting focused option
-        if (e.key === 'Enter' && focusedIndex >= 0 && open) {
-          e.preventDefault();
-          const option = filteredOptions[focusedIndex];
-          if (option) {
-            handleSelect(option);
-          }
-        }
-      }
-    },
-    [freeSolo, localValue, filteredOptions, focusedIndex, open, refocusInput],
-  );
-
-  const handleFocus = useCallback(() => {
-    setOpen(true);
-    inputRef.current?.select();
-  }, []);
-
-  useEffect(() => {
-    if (!selected.length && value?.length) {
-      const val = Array.isArray(value) ? (value as string[]) : value.split('|');
-      setSelected(val);
-    }
-  }, [value]);
-
-  useEffect(() => {
-    let filtered = options;
-    if (multiple) {
-      filtered = options.filter(
-        (option) => !selected.includes(getOptionValue(option)),
-      );
-    }
-
-    const filteredOptions = filter({
-      options: filtered,
-      value: localValue,
-      disableSorting,
-    });
-
-    setFilteredOptions(filteredOptions);
-  }, [disableSorting, localValue, options, selected]);
-
-  useEffect(() => {
-    const value = selected.join('|');
-    changeValue(value);
-  }, [selected]);
-
-  useEffect(() => {
-    if (value) {
-      changeValue(value);
-      if (!multiple) {
-        setLocalValue(value);
-      }
-    }
-  }, [value, multiple]);
-
-  useEffect(() => {
-    const found = selected.reduce((acc, val) => {
-      return acc && options.some((option) => getOptionValue(option) === val);
-    }, true);
-
-    if (!found && !freeSolo) {
-      reset();
-    }
-  }, [options, freeSolo]);
-
-  useEffect(() => {
-    if (shouldReset && selected.length) {
-      reset();
-    }
-  }, [shouldReset]);
+    // Handlers
+    refocusInput,
+    handlePaste,
+    handleChange,
+    handleCreateOption,
+    handleBlur,
+    handleSelect,
+    handleRemove,
+    handleKeyDown,
+    handleFocus,
+    clear,
+    isSelected,
+  } = useAutocomplete({
+    options,
+    multiple,
+    maxOptions,
+    dependsOn,
+    value: supplied,
+    defaultValue,
+    onChange,
+    disableSorting,
+    shouldReset,
+    freeSolo,
+    separator,
+  });
 
   const { key, ...formProps } = getInputProps({ field, name });
   delete formProps.defaultValue;
-
-  const isSelected = useCallback(
-    (option: Option) => selected.includes(getOptionValue(option)),
-    [selected],
-  );
-
+  const inputId = useId();
   return (
     <InputWrapper
       className={className}
@@ -388,13 +195,15 @@ const Autocomplete = ({
       ref={ref ?? wrapperRef}
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}
+      onClick={refocusInput}
+      plain
     >
       <Box
         ref={anchorRef}
         display="flex"
         justify="between"
         items="center"
-        className="w-full h-full"
+        className={cn('w-full', INPUT_CONTAINER_CLASSES)}
       >
         <Box display="flex" flexWrap="wrap" flex="1" gap={1}>
           {multiple && selected.length ? (
@@ -441,6 +250,7 @@ const Autocomplete = ({
                 'flex-1 bg-transparent border-none outline-none',
               )}
               disabled={!canSelect}
+              onPaste={handlePaste}
             />
           )}
         </Box>
@@ -470,12 +280,13 @@ const Autocomplete = ({
         key={key}
         value={formValue}
         type="text"
-        className="h-0 w-0 border-none p-0"
+        id={inputId}
+        className="h-0 w-0 border-none p-0 absolute bottom-0 left-0"
         readOnly
       />
       <Popover open={open && canSelect}>
         <PopoverAnchor
-          virtualRef={(ref ?? wrapperRef) as React.RefObject<HTMLDivElement>}
+          virtualRef={(ref ?? anchorRef) as React.RefObject<HTMLDivElement>}
         />
         <PopoverContent
           onOpenAutoFocus={(e) => e.preventDefault()}
@@ -495,7 +306,8 @@ const Autocomplete = ({
                 disabled={true}
                 className="text-muted-foreground"
               >
-                Select a value for "{humanize(dependsOn)}" first
+                Select a value for "
+                {dependsOn ? humanize(dependsOn) : 'dependent field'}" first
               </ListItem>
             ) : freeSolo && localValue ? (
               <ListItem
@@ -507,7 +319,9 @@ const Autocomplete = ({
                 }}
                 onSelect={() => handleCreateOption()}
               >
-                Press Enter to add "{localValue}"
+                {multiple
+                  ? `Press Enter, type "${separatorChar}" or click to accept "${localValue}"`
+                  : `Press Enter or click to accept "${localValue}"`}
               </ListItem>
             ) : freeSolo && !localValue ? (
               <ListItem
@@ -515,7 +329,9 @@ const Autocomplete = ({
                 disabled={true}
                 className="text-muted-foreground"
               >
-                Type a value and press Enter to accept it
+                {multiple
+                  ? `Type a value and press Enter, type "${separatorChar}" or click to accept it`
+                  : 'Type a value and press Enter or click to accept it'}
               </ListItem>
             ) : filteredOptions.length === 0 ? (
               <ListItem
@@ -557,5 +373,3 @@ const Autocomplete = ({
     </InputWrapper>
   );
 };
-
-export { Autocomplete, type AutocompleteProps };
