@@ -28,7 +28,7 @@ function BaseList({
   selectable = false,
   // List variant props
   variant,
-  marker,
+  marker = 'default',
   // Short-form spacing props
   m,
   mx,
@@ -69,6 +69,7 @@ function BaseList({
       data-slot="list"
       role={role}
       aria-label={selectable ? 'Options' : undefined}
+      data-marker={marker}
       className={cn(
         listVariants({
           variant,
