@@ -1,3 +1,5 @@
+import { createContext, useContext } from 'react';
+
 import { cn } from '@veraclins-dev/utils';
 
 import { Box } from './box';
@@ -13,6 +15,9 @@ import { Typography, type TypographyProps } from './typography';
  * @packageDocumentation
  */
 
+// Create a context to track Card nesting depth
+const CardDepthContext = createContext({ depth: 0 });
+
 /**
  * Renders a card container with optional borderless style.
  *
@@ -24,18 +29,25 @@ function Card({
   borderless = true,
   ...props
 }: React.ComponentProps<typeof Box> & { borderless?: boolean }) {
+  // Get the current depth from context
+  const { depth } = useContext(CardDepthContext);
+  const useCardBg = depth % 2 === 0;
+  const bgClass = useCardBg ? 'bg-card' : 'bg-card-inner';
   return (
-    <Box
-      data-slot="card"
-      className={cn(
-        'bg-card text-card-foreground gap-4 rounded-xl border py-4 shadow-sm',
-        borderless && 'border-0',
-        className,
-      )}
-      flexDirection="column"
-      display="flex"
-      {...props}
-    />
+    <CardDepthContext.Provider value={{ depth: depth + 1 }}>
+      <Box
+        data-slot="card"
+        className={cn(
+          'text-card-foreground gap-4 rounded-xl border py-4 shadow-sm',
+          borderless && 'border-0',
+          bgClass,
+          className,
+        )}
+        flexDirection="column"
+        display="flex"
+        {...props}
+      />
+    </CardDepthContext.Provider>
   );
 }
 /**

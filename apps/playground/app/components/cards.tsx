@@ -793,6 +793,346 @@ export function Cards() {
           </Box>
         </CardContent>
       </Card>
+
+      {/* Nested Card Examples */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Nested Card Examples</CardTitle>
+          <CardDescription>
+            Demonstrating automatic background alternation for nested cards
+            using Tailwind group classes
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Box display="flex" flexDirection="column" gap={8}>
+            {/* Project Management Example */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Project Management Dashboard
+              </Typography>
+              <Card className="group">
+                <CardHeader>
+                  <CardTitle>Project: E-commerce Platform</CardTitle>
+                  <CardDescription>
+                    Main project overview with nested components
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Card className="group">
+                      <CardHeader>
+                        <CardTitle>Frontend Development</CardTitle>
+                        <CardDescription>
+                          React components and UI
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-3">
+                        <Card className="group">
+                          <CardHeader>
+                            <CardTitle>User Interface</CardTitle>
+                            <CardDescription>
+                              Core UI components
+                            </CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <Card className="group">
+                              <CardHeader>
+                                <CardTitle>Authentication Forms</CardTitle>
+                                <CardDescription>
+                                  Login and registration
+                                </CardDescription>
+                              </CardHeader>
+                              <CardContent>
+                                <Box className="space-y-2">
+                                  <Box className="flex items-center gap-2">
+                                    <Icon
+                                      name="check-circle"
+                                      className="text-success"
+                                    />
+                                    <Typography variant="body2">
+                                      Login form completed
+                                    </Typography>
+                                  </Box>
+                                  <Box className="flex items-center gap-2">
+                                    <Icon
+                                      name="check-circle"
+                                      className="text-success"
+                                    />
+                                    <Typography variant="body2">
+                                      Registration form completed
+                                    </Typography>
+                                  </Box>
+                                  <Box className="flex items-center gap-2">
+                                    <Icon
+                                      name="clock"
+                                      className="text-warning"
+                                    />
+                                    <Typography variant="body2">
+                                      Password reset in progress
+                                    </Typography>
+                                  </Box>
+                                </Box>
+                              </CardContent>
+                            </Card>
+                          </CardContent>
+                        </Card>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="group">
+                      <CardHeader>
+                        <CardTitle>Backend Development</CardTitle>
+                        <CardDescription>API and database</CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-3">
+                        <Card className="group">
+                          <CardHeader>
+                            <CardTitle>API Endpoints</CardTitle>
+                            <CardDescription>RESTful services</CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <Card className="group">
+                              <CardHeader>
+                                <CardTitle>User Management</CardTitle>
+                                <CardDescription>
+                                  User CRUD operations
+                                </CardDescription>
+                              </CardHeader>
+                              <CardContent>
+                                <Box className="space-y-2">
+                                  <Box className="flex items-center gap-2">
+                                    <Icon
+                                      name="check-circle"
+                                      className="text-success"
+                                    />
+                                    <Typography variant="body2">
+                                      GET /api/users
+                                    </Typography>
+                                  </Box>
+                                  <Box className="flex items-center gap-2">
+                                    <Icon
+                                      name="check-circle"
+                                      className="text-success"
+                                    />
+                                    <Typography variant="body2">
+                                      POST /api/users
+                                    </Typography>
+                                  </Box>
+                                  <Box className="flex items-center gap-2">
+                                    <Icon
+                                      name="clock"
+                                      className="text-warning"
+                                    />
+                                    <Typography variant="body2">
+                                      PUT /api/users/:id
+                                    </Typography>
+                                  </Box>
+                                </Box>
+                              </CardContent>
+                            </Card>
+                          </CardContent>
+                        </Card>
+                      </CardContent>
+                    </Card>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
+
+            {/* Documentation Example */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Documentation Structure
+              </Typography>
+              <Card className="group">
+                <CardHeader>
+                  <CardTitle>API Documentation</CardTitle>
+                  <CardDescription>
+                    Nested documentation sections with examples
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <Card className="group">
+                    <CardHeader>
+                      <CardTitle>Authentication</CardTitle>
+                      <CardDescription>
+                        How to authenticate with the API
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <Card className="group">
+                        <CardHeader>
+                          <CardTitle>OAuth 2.0 Flow</CardTitle>
+                          <CardDescription>
+                            Standard OAuth implementation
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <Card className="group">
+                            <CardHeader>
+                              <CardTitle>Authorization Code Flow</CardTitle>
+                              <CardDescription>
+                                Most secure OAuth flow
+                              </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <Box className="space-y-3">
+                                <Box className="bg-neutral/50 p-3 rounded">
+                                  <Typography
+                                    variant="body2"
+                                    className="font-mono text-sm"
+                                  >
+                                    1. Redirect to /oauth/authorize
+                                  </Typography>
+                                </Box>
+                                <Box className="bg-neutral/50 p-3 rounded">
+                                  <Typography
+                                    variant="body2"
+                                    className="font-mono text-sm"
+                                  >
+                                    2. Exchange code for token
+                                  </Typography>
+                                </Box>
+                                <Box className="bg-neutral/50 p-3 rounded">
+                                  <Typography
+                                    variant="body2"
+                                    className="font-mono text-sm"
+                                  >
+                                    3. Use token in requests
+                                  </Typography>
+                                </Box>
+                              </Box>
+                            </CardContent>
+                          </Card>
+                        </CardContent>
+                      </Card>
+                    </CardContent>
+                  </Card>
+                </CardContent>
+              </Card>
+            </Box>
+
+            {/* Settings Configuration Example */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Application Settings
+              </Typography>
+              <Card className="group">
+                <CardHeader>
+                  <CardTitle>System Configuration</CardTitle>
+                  <CardDescription>
+                    Hierarchical settings with nested options
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <Card className="group">
+                      <CardHeader>
+                        <CardTitle>User Preferences</CardTitle>
+                        <CardDescription>Personal settings</CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-3">
+                        <Card className="group">
+                          <CardHeader>
+                            <CardTitle>Display Settings</CardTitle>
+                            <CardDescription>UI customization</CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <Card className="group">
+                              <CardHeader>
+                                <CardTitle>Theme Configuration</CardTitle>
+                                <CardDescription>
+                                  Color and appearance
+                                </CardDescription>
+                              </CardHeader>
+                              <CardContent>
+                                <Box className="space-y-2">
+                                  <Box className="flex items-center justify-between">
+                                    <Typography variant="body2">
+                                      Dark Mode
+                                    </Typography>
+                                    <Box className="w-8 h-4 bg-primary rounded-full relative">
+                                      <Box className="w-3 h-3 bg-white rounded-full absolute top-0.5 right-0.5" />
+                                    </Box>
+                                  </Box>
+                                  <Box className="flex items-center justify-between">
+                                    <Typography variant="body2">
+                                      Compact Layout
+                                    </Typography>
+                                    <Box className="w-8 h-4 bg-neutral/20 rounded-full relative">
+                                      <Box className="w-3 h-3 bg-white rounded-full absolute top-0.5 left-0.5" />
+                                    </Box>
+                                  </Box>
+                                </Box>
+                              </CardContent>
+                            </Card>
+                          </CardContent>
+                        </Card>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="group">
+                      <CardHeader>
+                        <CardTitle>System Settings</CardTitle>
+                        <CardDescription>Global configuration</CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-3">
+                        <Card className="group">
+                          <CardHeader>
+                            <CardTitle>Security Settings</CardTitle>
+                            <CardDescription>Access control</CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <Card className="group">
+                              <CardHeader>
+                                <CardTitle>Two-Factor Authentication</CardTitle>
+                                <CardDescription>
+                                  Enhanced security
+                                </CardDescription>
+                              </CardHeader>
+                              <CardContent>
+                                <Box className="space-y-2">
+                                  <Box className="flex items-center gap-2">
+                                    <Icon
+                                      name="shield-check"
+                                      className="text-success"
+                                    />
+                                    <Typography variant="body2">
+                                      SMS verification enabled
+                                    </Typography>
+                                  </Box>
+                                  <Box className="flex items-center gap-2">
+                                    <Icon
+                                      name="shield-check"
+                                      className="text-success"
+                                    />
+                                    <Typography variant="body2">
+                                      Authenticator app enabled
+                                    </Typography>
+                                  </Box>
+                                  <Box className="flex items-center gap-2">
+                                    <Icon
+                                      name="clock"
+                                      className="text-warning"
+                                    />
+                                    <Typography variant="body2">
+                                      Backup codes pending
+                                    </Typography>
+                                  </Box>
+                                </Box>
+                              </CardContent>
+                            </Card>
+                          </CardContent>
+                        </Card>
+                      </CardContent>
+                    </Card>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
+          </Box>
+        </CardContent>
+      </Card>
     </Box>
   );
 }
