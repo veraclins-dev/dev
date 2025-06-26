@@ -13,6 +13,8 @@ import {
   Typography,
 } from '@veraclins-dev/ui';
 
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
 export function SeoShowcase() {
   const [activeTab, setActiveTab] = useState<'sitemap' | 'robots' | 'metadata'>(
     'sitemap',
@@ -81,15 +83,15 @@ export const meta: MetaFunction = () => {
 };`;
 
   return (
-    <Box className="max-w-6xl mx-auto p-6">
-      <Typography variant="h1" className="text-center mb-4">
-        SEO Package Showcase
-      </Typography>
+    <Box className="max-w-6xl mx-auto space-y-8">
+      <PlaygroundBreadcrumb currentPage="SEO" className="mb-4" />
 
-      <Typography variant="body1" className="text-center mb-8">
-        Comprehensive SEO utilities for Remix applications including sitemap
-        generation, robots.txt management, and metadata handling.
-      </Typography>
+      <Box className="text-center space-y-4">
+        <Typography variant="h1">SEO Components</Typography>
+        <Typography variant="body1" className="text-neutral-foreground/70">
+          Comprehensive SEO utilities for Remix applications.
+        </Typography>
+      </Box>
 
       {/* Features Overview */}
       <Box className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
