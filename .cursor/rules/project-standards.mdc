@@ -22,6 +22,7 @@ alwaysApply: true
 - Implement proper error boundaries
 - Follow the project's established patterns for state management
 - Use proper prop types and avoid prop drilling
+- Do not use forwardRef, use react 19 ref prop instead
 
 # Project-Specific Guidelines
 - Follow the established module boundaries:

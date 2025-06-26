@@ -102,6 +102,30 @@ export function NxWelcome({ title }: { title: string }) {
             'Compact elements for representing inputs, attributes, or actions with remove functionality.',
         },
         {
+          path: '/list',
+          label: 'List',
+          description:
+            'Ordered and unordered list components for displaying structured content with proper semantic markup.',
+        },
+        {
+          path: '/separator',
+          label: 'Separator',
+          description:
+            'Visual divider components for organizing content and creating clear sections.',
+        },
+        {
+          path: '/avatar',
+          label: 'Avatar',
+          description:
+            'User profile image components with fallback support and various display options.',
+        },
+        {
+          path: '/accordion',
+          label: 'Accordion',
+          description:
+            'Collapsible content sections for organizing information in an expandable format.',
+        },
+        {
           path: '/chart',
           label: 'Charts',
           description:

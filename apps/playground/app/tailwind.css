@@ -1,6 +1,6 @@
 @import '../../../packages/ui/public/css/styles.css';
 
-@source '../../../packages/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}';
+@source '../../../packages/**/*.{ts,tsx}';
 
 .title,
 .description {
