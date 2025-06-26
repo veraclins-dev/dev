@@ -637,11 +637,11 @@ const typographyVariants = cva('', {
 });
 
 /** ::::::::: List ::::::::: */
-const listVariants = cva('', {
+const listVariants = cva('group', {
   variants: {
     variant: {
-      ul: 'list-disc pl-6',
-      ol: 'list-decimal pl-6',
+      ul: 'list-disc',
+      ol: 'list-decimal',
       none: 'list-none',
     },
     // Short-form spacing props
@@ -732,12 +732,12 @@ const listVariants = cva('', {
     },
     marker: {
       default: '',
-      circle: 'list-[circle]',
-      square: 'list-[square]',
-      roman: 'list-[lower-roman]',
-      alpha: 'list-[lower-alpha]',
-      decimal: 'list-decimal',
-      disc: 'list-disc',
+      circle: 'list-[circle] pl-6',
+      square: 'list-[square] pl-6',
+      roman: 'list-[lower-roman] pl-6',
+      alpha: 'list-[lower-alpha] pl-6',
+      decimal: 'list-decimal pl-6',
+      disc: 'list-disc pl-6',
     },
   },
   compoundVariants: [
@@ -760,8 +760,8 @@ const listVariants = cva('', {
 
 /** ::::::::: List Item ::::::::: */
 const listItemVariants = cva(
-  // Base styles matching ITEM_CLASSES
-  'relative flex items-center gap-2 rounded-sm px-2 py-1.5 text-sm select-none',
+  // if the list item is a link, it should have a hover state
+  'relative group-data-[marker=default]:flex',
   {
     variants: {
       variant: {
@@ -1209,6 +1209,45 @@ const progressIndicatorVariants = cva(
   },
 );
 
+const separatorVariants = cva('shrink-0', {
+  variants: {
+    variant: {
+      solid: 'bg-border',
+      dashed: 'border-t border-dashed border-border',
+      dotted: 'border-t border-dotted border-border',
+      gradient: 'bg-gradient-to-r from-transparent via-border to-transparent',
+    },
+    orientation: {
+      horizontal: 'w-full h-px min-w-3',
+      vertical: 'h-full w-px min-h-3',
+    },
+  },
+  compoundVariants: [
+    // Vertical orientation with dashed variant
+    {
+      orientation: 'vertical',
+      variant: 'dashed',
+      className: 'border-l border-dashed border-border',
+    },
+    // Vertical orientation with dotted variant
+    {
+      orientation: 'vertical',
+      variant: 'dotted',
+      className: 'border-l border-dotted border-border',
+    },
+    // Vertical orientation with gradient variant
+    {
+      orientation: 'vertical',
+      variant: 'gradient',
+      className: 'bg-gradient-to-b from-transparent via-border to-transparent',
+    },
+  ],
+  defaultVariants: {
+    variant: 'solid',
+    orientation: 'horizontal',
+  },
+} as const);
+
 /** ::::::::: Variant Types ::::::::: */
 type BadgeVariants = VariantProps<typeof badgeVariants>;
 type BoxVariants = VariantProps<typeof boxVariants>;
@@ -1220,6 +1259,7 @@ type ListItemVariants = VariantProps<typeof listItemVariants>;
 type LinkVariants = VariantProps<typeof linkVariants>;
 type ProgressVariants = VariantProps<typeof progressVariants>;
 type ProgressIndicatorVariants = VariantProps<typeof progressIndicatorVariants>;
+type SeparatorVariants = VariantProps<typeof separatorVariants>;
 
 export {
   type BadgeVariants,
@@ -1240,6 +1280,8 @@ export {
   progressIndicatorVariants,
   type ProgressVariants,
   progressVariants,
+  type SeparatorVariants,
+  separatorVariants,
   type Spaces,
   spaces,
   type TypographyVariants,
