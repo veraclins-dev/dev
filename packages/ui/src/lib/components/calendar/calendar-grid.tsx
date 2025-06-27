@@ -98,7 +98,6 @@ export function CalendarGrid({
     onMonthChange: context.setCurrentMonth,
     onDaySelect: (date: Date) => {
       // Handle day selection via keyboard (Enter/Space)
-      console.log('handleDaySelect', date, onDayClick);
       handleDayClick(date);
     },
     onDayNavigate: (date: Date) => {
