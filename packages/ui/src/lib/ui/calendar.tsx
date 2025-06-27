@@ -12,14 +12,25 @@ import { cn } from '@veraclins-dev/utils';
 
 import { buttonVariants } from './utils/variants';
 
-type CalendarProps = DayPickerProps;
+type LegacyCalendarProps = DayPickerProps;
 
-function Calendar({
+/**
+ * @deprecated This component is deprecated and will be removed in a future version.
+ * Use the new Calendar component from @veraclins-dev/ui/components/calendar instead.
+ *
+ * The new Calendar component provides:
+ * - Better customization options
+ * - Improved performance
+ * - Enhanced accessibility
+ * - Smaller bundle size (no external dependencies)
+ * - Consistent design system integration
+ */
+function LegacyCalendar({
   className,
   classNames,
   showOutsideDays = true,
   ...props
-}: CalendarProps) {
+}: LegacyCalendarProps) {
   const defaultClassNames = getDefaultClassNames();
   return (
     <DayPicker
@@ -98,4 +109,10 @@ function Calendar({
   );
 }
 
-export { Calendar, type CalendarProps, type DateRange, type Modifiers };
+// Export both for backward compatibility during transition
+export {
+  LegacyCalendar,
+  type LegacyCalendarProps,
+  type DateRange as LegacyDateRange,
+  type Modifiers,
+};

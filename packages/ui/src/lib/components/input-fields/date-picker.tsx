@@ -8,12 +8,12 @@ import { cn, setReactInputValue } from '@veraclins-dev/utils';
 
 import {
   Button,
-  Calendar,
-  type CalendarProps,
-  type DateRange,
   Icon,
   INPUT_CLASS_OVERRIDES,
   INPUT_CLASSES,
+  LegacyCalendar,
+  type LegacyCalendarProps,
+  type LegacyDateRange,
   type Modifiers,
   Popover,
   PopoverContent,
@@ -29,7 +29,7 @@ import {
 import { InputWrapper } from './wrapper';
 
 type DateValue = Date | undefined;
-type RangeValue = DateRange | undefined;
+type RangeValue = LegacyDateRange | undefined;
 type ValueType = DateValue | RangeValue;
 
 // Utility types
@@ -41,7 +41,7 @@ type PickerProps = {
   className?: string;
   wrapperClassName?: string;
   defaultValue?: string;
-} & CalendarProps;
+} & LegacyCalendarProps;
 
 type BaseDatePickerProps<T extends ValueType> = PickerProps & {
   value?: string;
@@ -56,7 +56,7 @@ type BaseDatePickerProps<T extends ValueType> = PickerProps & {
 };
 
 // Utility functions for range handling
-const getValueFromRange = (range: DateRange | undefined) => {
+const getValueFromRange = (range: LegacyDateRange | undefined) => {
   if (!range) return '';
   const from = range.from ? range.from.toISOString() : '';
   const to = range.to ? range.to.toISOString() : '';
@@ -166,7 +166,7 @@ function BaseDatePicker<T extends ValueType>({
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
-          <Calendar
+          <LegacyCalendar
             {...calendarProps}
             onDayFocus={handleDayFocus}
             onDayBlur={handleDayBlur}
@@ -200,7 +200,7 @@ function DatePickerField({
   onChange,
   ...calendarProps
 }: PickerProps &
-  CalendarProps & {
+  LegacyCalendarProps & {
     value?: string;
     onChange?: (date: Date | undefined) => void;
   }) {
@@ -274,9 +274,9 @@ function DateRangePickerField({
   onChange,
   ...calendarProps
 }: PickerProps &
-  CalendarProps & {
+  LegacyCalendarProps & {
     value?: string;
-    onChange?: (range: DateRange | undefined) => void;
+    onChange?: (range: LegacyDateRange | undefined) => void;
   }) {
   const { control, mainRef, ...baseProps } = useDatePicker({ field, name });
   const defaultValue = suppliedDefaultValue ?? field?.initialValue;
@@ -284,7 +284,7 @@ function DateRangePickerField({
     ? getRangeFromValue(defaultValue)
     : undefined;
 
-  const [range, setRange] = useState<DateRange | undefined>(initialRange);
+  const [range, setRange] = useState<LegacyDateRange | undefined>(initialRange);
   const [formValue, setFormValue] = useState<string>('');
 
   useEffect(() => {
@@ -297,7 +297,7 @@ function DateRangePickerField({
     }
   }, [suppliedValue]);
 
-  const handleSelect = (newRange: DateRange | undefined) => {
+  const handleSelect = (newRange: LegacyDateRange | undefined) => {
     setRange(newRange);
     const newFormValue = getValueFromRange(newRange);
     setFormValue(newFormValue);
