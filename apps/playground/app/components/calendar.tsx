@@ -9,12 +9,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  DatePickerField,
-  DateRangePickerField,
+  type DateRange,
   Icon,
   Typography,
 } from '@veraclins-dev/ui';
-import { type DateRange } from '@veraclins-dev/ui';
 import { addDays, formatAsDate, startOfToday } from '@veraclins-dev/utils';
 
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
@@ -56,8 +54,10 @@ export function CalendarShowcase() {
               </Typography>
               <Calendar
                 mode="single"
-                selected={date}
-                onSelect={setDate}
+                value={date}
+                onValueChange={(value) => {
+                  if (value instanceof Date) setDate(value);
+                }}
                 className="rounded-md border"
               />
               <Box className="mt-4">
@@ -75,8 +75,10 @@ export function CalendarShowcase() {
               </Typography>
               <Calendar
                 mode="single"
-                selected={date}
-                onSelect={setDate}
+                value={date}
+                onValueChange={(value) => {
+                  if (value instanceof Date) setDate(value);
+                }}
                 numberOfMonths={2}
                 className="rounded-md border"
               />
@@ -102,8 +104,12 @@ export function CalendarShowcase() {
               </Typography>
               <Calendar
                 mode="range"
-                selected={dateRange}
-                onSelect={setDateRange}
+                value={dateRange}
+                onValueChange={(value) => {
+                  if (value && typeof value === 'object' && 'from' in value) {
+                    setDateRange(value as DateRange);
+                  }
+                }}
                 className="rounded-md border"
               />
               <Box className="mt-4">
@@ -131,49 +137,14 @@ export function CalendarShowcase() {
               </Typography>
               <Calendar
                 mode="range"
-                selected={dateRange}
-                onSelect={setDateRange}
+                value={dateRange}
+                onValueChange={(value) => {
+                  if (value && typeof value === 'object' && 'from' in value) {
+                    setDateRange(value as DateRange);
+                  }
+                }}
                 numberOfMonths={2}
                 className="rounded-md border"
-              />
-            </Box>
-          </Box>
-        </CardContent>
-      </Card>
-
-      {/* Date Picker Fields */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Date Picker Fields</CardTitle>
-          <CardDescription>
-            Form-integrated date picker components with popover calendars
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Single Date Picker */}
-            <Box>
-              <Typography variant="h4" className="mb-4">
-                Single Date Picker
-              </Typography>
-              <DatePickerField
-                label="Select Date"
-                selected={date}
-                onSelect={setDate}
-                mode="single"
-              />
-            </Box>
-
-            {/* Date Range Picker */}
-            <Box>
-              <Typography variant="h4" className="mb-4">
-                Date Range Picker
-              </Typography>
-              <DateRangePickerField
-                label="Select Date Range"
-                selected={dateRange}
-                onSelect={setDateRange}
-                mode="range"
               />
             </Box>
           </Box>
@@ -197,8 +168,10 @@ export function CalendarShowcase() {
               </Typography>
               <Calendar
                 mode="single"
-                selected={date}
-                onSelect={setDate}
+                value={date}
+                onValueChange={(value) => {
+                  if (value instanceof Date) setDate(value);
+                }}
                 disabled={(date) => {
                   // Disable weekends and past dates
                   const today = startOfToday();
@@ -222,20 +195,9 @@ export function CalendarShowcase() {
               </Typography>
               <Calendar
                 mode="single"
-                selected={date}
-                onSelect={setDate}
-                modifiers={{
-                  highlighted: [
-                    addDays(startOfToday(), 1),
-                    addDays(startOfToday(), 3),
-                    addDays(startOfToday(), 5),
-                  ],
-                }}
-                modifiersStyles={{
-                  highlighted: {
-                    backgroundColor: 'hsl(var(--warning))',
-                    color: 'hsl(var(--warning-foreground))',
-                  },
+                value={date}
+                onValueChange={(value) => {
+                  if (value instanceof Date) setDate(value);
                 }}
                 className="rounded-md border"
               />
@@ -243,7 +205,7 @@ export function CalendarShowcase() {
                 variant="body2"
                 className="text-muted-foreground mt-2"
               >
-                Highlighted dates are marked in warning color
+                Custom styling and modifiers coming soon
               </Typography>
             </Box>
           </Box>
@@ -275,8 +237,10 @@ export function CalendarShowcase() {
                 <Box className="space-y-4">
                   <Calendar
                     mode="single"
-                    selected={date}
-                    onSelect={setDate}
+                    value={date}
+                    onValueChange={(value) => {
+                      if (value instanceof Date) setDate(value);
+                    }}
                     disabled={(date) => {
                       // Disable past dates and weekends
                       const today = startOfToday();
@@ -314,8 +278,16 @@ export function CalendarShowcase() {
                 <Box className="space-y-4">
                   <Calendar
                     mode="range"
-                    selected={dateRange}
-                    onSelect={setDateRange}
+                    value={dateRange}
+                    onValueChange={(value) => {
+                      if (
+                        value &&
+                        typeof value === 'object' &&
+                        'from' in value
+                      ) {
+                        setDateRange(value as DateRange);
+                      }
+                    }}
                     numberOfMonths={2}
                     className="rounded-md border"
                   />
@@ -332,72 +304,304 @@ export function CalendarShowcase() {
                 </Box>
               </CardContent>
             </Card>
+          </Box>
+        </CardContent>
+      </Card>
 
-            {/* Meeting Scheduler */}
-            <Card className="bg-card-inner">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Icon name="users" className="h-5 w-5" />
-                  Meeting Scheduler
-                </CardTitle>
-                <CardDescription>
-                  Calendar for scheduling team meetings and calls
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Box className="space-y-4">
-                  <DatePickerField
-                    label="Meeting Date"
-                    selected={date}
-                    onSelect={setDate}
+      {/* Custom Calendar Component */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Custom Calendar Component</CardTitle>
+          <CardDescription>
+            Our new custom calendar component with improved performance, better
+            customization, and no external dependencies
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Box className="space-y-6">
+            {/* Single Selection */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Single Date Selection
+              </Typography>
+              <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    Basic single selection
+                  </Typography>
+                  <Calendar
+                    value={date}
+                    onValueChange={(value) => {
+                      if (value instanceof Date) setDate(value);
+                    }}
                     mode="single"
+                    className="border rounded-lg"
                   />
-                  <Box className="grid grid-cols-2 gap-2">
-                    <Button variant="outline" size="sm">
-                      <Icon name="video" className="mr-1" />
-                      Video Call
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      <Icon name="phone" className="mr-1" />
-                      Phone Call
-                    </Button>
-                  </Box>
                 </Box>
-              </CardContent>
-            </Card>
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    With disabled dates (weekends)
+                  </Typography>
+                  <Calendar
+                    value={date}
+                    onValueChange={(value) => {
+                      if (value instanceof Date) setDate(value);
+                    }}
+                    mode="single"
+                    disabled={(date) => {
+                      const day = date.getDay();
+                      return day === 0 || day === 6; // Disable weekends
+                    }}
+                    className="border rounded-lg"
+                    numberOfMonths={1}
+                  />
+                </Box>
+              </Box>
+            </Box>
 
-            {/* Project Timeline */}
-            <Card className="bg-card-inner">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Icon name="chart-bar" className="h-5 w-5" />
-                  Project Timeline
-                </CardTitle>
-                <CardDescription>
-                  Date range for project planning and milestones
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Box className="space-y-4">
-                  <DateRangePickerField
-                    label="Project Duration"
-                    selected={dateRange}
-                    onSelect={setDateRange}
-                    mode="range"
+            {/* Multiple Selection */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Multiple Date Selection
+              </Typography>
+              <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    Select multiple dates
+                  </Typography>
+                  <Calendar
+                    value={[]}
+                    onValueChange={(value) => {
+                      if (Array.isArray(value)) {
+                        console.log(
+                          'Select multiple dates Selected dates:',
+                          value,
+                        );
+                      }
+                    }}
+                    mode="multiple"
+                    className="border rounded-lg"
                   />
-                  <Box className="flex gap-2">
-                    <Button variant="outline" size="sm">
-                      <Icon name="flag" className="mr-1" />
-                      Add Milestone
-                    </Button>
-                    <Button size="sm">
-                      <Icon name="check" className="mr-1" />
-                      Save Timeline
-                    </Button>
-                  </Box>
                 </Box>
-              </CardContent>
-            </Card>
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    With date constraints
+                  </Typography>
+                  <Calendar
+                    value={[]}
+                    onValueChange={(value) => {
+                      if (Array.isArray(value)) {
+                        console.log(
+                          'With date constraints Selected dates:',
+                          value,
+                        );
+                      }
+                    }}
+                    mode="multiple"
+                    minDate={startOfToday()}
+                    maxDate={addDays(startOfToday(), 30)}
+                    className="border rounded-lg"
+                  />
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Range Selection */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Date Range Selection
+              </Typography>
+              <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    Date range with hover preview
+                  </Typography>
+                  <Calendar
+                    value={dateRange}
+                    onValueChange={(value) => {
+                      if (
+                        value &&
+                        typeof value === 'object' &&
+                        'from' in value
+                      ) {
+                        setDateRange(value as DateRange);
+                      }
+                    }}
+                    mode="range"
+                    className="border rounded-lg"
+                  />
+                </Box>
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    Range with disabled dates
+                  </Typography>
+                  <Calendar
+                    value={dateRange}
+                    onValueChange={(value) => {
+                      if (
+                        value &&
+                        typeof value === 'object' &&
+                        'from' in value
+                      ) {
+                        setDateRange(value as DateRange);
+                      }
+                    }}
+                    mode="range"
+                    disabled={(date) => {
+                      const day = date.getDay();
+                      return day === 0 || day === 6; // Disable weekends
+                    }}
+                    className="border rounded-lg"
+                  />
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Features Comparison */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Features Comparison
+              </Typography>
+              <Box className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Card className="bg-card-inner">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm">Performance</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <Typography
+                      variant="body2"
+                      className="text-muted-foreground"
+                    >
+                      • No external dependencies
+                      <br />
+                      • Optimized rendering
+                      <br />
+                      • Smaller bundle size
+                      <br />• Better tree-shaking
+                    </Typography>
+                  </CardContent>
+                </Card>
+                <Card className="bg-card-inner">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm">Customization</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <Typography
+                      variant="body2"
+                      className="text-muted-foreground"
+                    >
+                      • Full styling control
+                      <br />
+                      • Multiple themes
+                      <br />
+                      • Flexible variants
+                      <br />• Design system integration
+                    </Typography>
+                  </CardContent>
+                </Card>
+                <Card className="bg-card-inner">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm">Accessibility</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <Typography
+                      variant="body2"
+                      className="text-muted-foreground"
+                    >
+                      • WCAG 2.1 AA compliant
+                      <br />
+                      • Keyboard navigation
+                      <br />
+                      • Screen reader support
+                      <br />• Focus management
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Box>
+            </Box>
+
+            {/* Navigation Features */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Navigation Features
+              </Typography>
+              <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    Month/Year Navigation
+                  </Typography>
+                  <Calendar
+                    value={date}
+                    onValueChange={(value) => {
+                      if (value instanceof Date) setDate(value);
+                    }}
+                    mode="single"
+                    showNavigation={true}
+                    className="border rounded-lg"
+                  />
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mt-2 text-xs"
+                  >
+                    • Previous/Next month buttons
+                    <br />
+                    • Month dropdown selector
+                    <br />
+                    • Year dropdown selector
+                    <br />• Keyboard navigation support
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    Keyboard Navigation
+                  </Typography>
+                  <Calendar
+                    value={date}
+                    onValueChange={(value) => {
+                      if (value instanceof Date) setDate(value);
+                    }}
+                    mode="single"
+                    showNavigation={true}
+                    className="border rounded-lg"
+                  />
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mt-2 text-xs"
+                  >
+                    • Arrow keys to navigate days
+                    <br />
+                    • Home/End for month start/end
+                    <br />
+                    • Page Up/Down for month changes
+                    <br />• Enter/Space to select dates
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
           </Box>
         </CardContent>
       </Card>
