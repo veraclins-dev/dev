@@ -1,6 +1,9 @@
-import { type DataTableFacetedFilterProps } from '../types';
+import {
+  type DataTableFacetedDropdownFilterOption,
+  type DataTableFacetedFilterProps,
+} from '../types';
 
-type Options = DataTableFacetedFilterProps<any, any>['options'];
+type Options = DataTableFacetedDropdownFilterOption[];
 
 export const labels: Options = [
   {

@@ -132,6 +132,12 @@ export function NxWelcome({ title }: { title: string }) {
             'Data visualization components built on Recharts with theming, tooltips, and responsive design.',
         },
         {
+          path: '/table',
+          label: 'Table',
+          description:
+            'Advanced data table components with sorting, filtering, bulk actions, and interactive row operations.',
+        },
+        {
           path: '/images',
           label: 'Images',
           description:
