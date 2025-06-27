@@ -144,6 +144,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
+      '@types/luxon':
+        specifier: ^3.6.2
+        version: 3.6.2
       '@types/node':
         specifier: 22.15.21
         version: 22.15.21
@@ -219,6 +222,9 @@ importers:
       jsdom:
         specifier: ~26.1.0
         version: 26.1.0
+      luxon:
+        specifier: ^3.6.1
+        version: 3.6.1
       node-html-parser:
         specifier: ^6.1.12
         version: 6.1.13
@@ -784,6 +790,9 @@ importers:
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
+      luxon:
+        specifier: ^3.6.1
+        version: 3.6.1
       sanitize-html:
         specifier: ^2.17.0
         version: 2.17.0
@@ -4609,6 +4618,9 @@ packages:
 
   '@types/linkify-it@5.0.0':
     resolution: {integrity: sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==}
+
+  '@types/luxon@3.6.2':
+    resolution: {integrity: sha512-R/BdP7OxEMc44l2Ex5lSXHoIXTB2JLNa3y2QISIbr58U/YcsffyQrYW//hZSdrfxrjRZj3GcUoxMPGdO8gSYuw==}
 
   '@types/markdown-it@14.1.2':
     resolution: {integrity: sha512-promo4eFwuiW+TfGxhi+0x3czqTYJkG8qB17ZUJiVF10Xm7NLVRSLUsfRTU/6h1e24VvRnXCx+hG7li58lkzog==}
@@ -15359,6 +15371,8 @@ snapshots:
   '@types/json5@0.0.29': {}
 
   '@types/linkify-it@5.0.0': {}
+
+  '@types/luxon@3.6.2': {}
 
   '@types/markdown-it@14.1.2':
     dependencies:
