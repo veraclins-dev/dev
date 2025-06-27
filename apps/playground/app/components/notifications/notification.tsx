@@ -7,7 +7,6 @@ import {
   type ButtonProps,
   ComposedDropdownMenu,
   Icon,
-  type IconName,
   ITEM_CLASSES,
   Link,
   Typography,
@@ -15,7 +14,15 @@ import {
 import { cn, createMarkup } from '@veraclins-dev/utils';
 
 interface NotificationDetailProps {
-  notification: any;
+  notification: {
+    id: string;
+    isRead: boolean;
+    message: string;
+    target: string;
+    profileImage?: string | null;
+    createdAt: Date | string;
+    targetLink?: string;
+  };
   onClick?: () => void;
 }
 
@@ -25,31 +32,14 @@ interface ActivityProps {
   profileImage: string | null | undefined;
   createdAt: Date | string;
   isRead?: boolean;
-  showTime?: boolean;
 }
 
 const Activity = ({
   message,
-  target,
   profileImage,
   createdAt,
   isRead,
-  showTime,
 }: ActivityProps) => {
-  let iconType: Extract<
-    IconName,
-    'user-circle' | 'group' | 'file-text' | 'info'
-  >;
-  if (target === 'profile') {
-    iconType = 'user-circle';
-  } else if (target === 'group') {
-    iconType = 'group';
-  } else if (['question', 'answer'].includes(target)) {
-    iconType = 'file-text';
-  } else {
-    iconType = 'info';
-  }
-
   return (
     <>
       <Box className="relative h-14 w-14">
@@ -145,13 +135,7 @@ const ActionItem = (props: ButtonProps) => {
   );
 };
 
-const Actions = ({
-  notificationId,
-  isRead,
-}: {
-  notificationId: any['id'];
-  isRead: any['isRead'];
-}) => {
+const Actions = ({ isRead }: { isRead: boolean }) => {
   // const fetcher = useCustomFetcher();
 
   // const submit = useCallback(
@@ -196,10 +180,7 @@ const Actions = ({
   );
 };
 
-export const Notification = ({
-  notification,
-  onClick,
-}: NotificationDetailProps) => {
+export const Notification = ({ notification }: NotificationDetailProps) => {
   // const fetcher = useCustomFetcher();
 
   // const submit = useCallback(
@@ -220,18 +201,18 @@ export const Notification = ({
 
   return (
     <ActivityLink
-      targetLink={notification.activity.targetLink}
+      targetLink={notification.targetLink}
       // onClick={handleClick}
     >
       <Activity
         message={notification.message}
-        target={notification.activity.targetType}
-        profileImage={notification.activity.actor.profileImage}
+        target={notification.target}
+        profileImage={notification.profileImage}
         createdAt={notification.createdAt}
         isRead={notification.isRead}
       />
 
-      <Actions notificationId={notification.id} isRead={notification.isRead} />
+      <Actions isRead={notification.isRead} />
       {!notification.isRead && (
         <Box
           display="flex"

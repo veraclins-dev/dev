@@ -16,7 +16,10 @@ import {
 } from '@veraclins-dev/ui';
 import {
   // Date utilities
+  addDays,
   addHours,
+  addMonths,
+  addYears,
   breakpoints,
   combinePaths,
   createMarkup,
@@ -27,15 +30,20 @@ import {
   // Lodash utilities
   debounce,
   emailToUserName,
-  formatAsDate,
-  formatAsDateTime,
-  formatAsTime,
+  formatDate,
+  formatDateTime,
+  formatMonth,
   formatRelativeDate,
-  fromNow,
-  getDateFromPeriod,
+  formatRelativeTime,
+  formatTime,
+  formatYear,
+  getDaysInMonth,
   getDomainUrl,
-  getFutureDateFromPeriod,
+  getFirstDayOfMonth,
   getInitials,
+  getLastDayOfMonth,
+  getPeriodEndDate,
+  getPeriodStartDate,
   getRandom,
   getReferrerRoute,
   getSize,
@@ -43,21 +51,35 @@ import {
   getSizeClasses,
   highlight,
   humanize,
+  isAfter,
+  isBefore,
+  isBetween,
   isLastWeek,
   isObject,
   isObjectLike,
+  isSameDay,
+  isSameMonth,
+  isSameYear,
   isSymbol,
   isThisWeek,
   isToday,
+  isValidDate,
+  isWeekend,
   now,
+  parseDate,
+  parseToDateTime,
   roundToDecimal,
   roundToTwo,
   sizeScale,
   // Slugify utilities
   slugify,
+  startOfToday,
   stripHTMLTags,
   subtractDays,
+  subtractMonths,
+  subtractYears,
   throttle,
+  toDate,
   toNumber,
   truncate,
   truncateMiddle,
@@ -71,6 +93,7 @@ export function UtilsShowcase() {
   const [debouncedValue, setDebouncedValue] = useState('');
   const [throttledValue, setThrottledValue] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [validationResult, setValidationResult] = useState<any>(null);
   const [activeTab, setActiveTab] = useState('date');
 
@@ -182,23 +205,31 @@ export function UtilsShowcase() {
                     <h4 className="font-semibold mb-2">Basic Formatting</h4>
                     <div className="space-y-2 text-sm">
                       <div>
-                        <strong>formatAsDate:</strong>{' '}
-                        {formatAsDate(new Date())}
+                        <strong>formatDate:</strong>{' '}
+                        {formatDate(new Date(), 'MMM dd, yyyy')}
                       </div>
                       <div>
-                        <strong>formatAsDateTime:</strong>{' '}
-                        {formatAsDateTime(new Date('2025-05-19T12:00:00Z'))}
+                        <strong>formatDateTime:</strong>{' '}
+                        {formatDateTime(new Date('2025-05-19T12:00:00Z'))}
                       </div>
                       <div>
-                        <strong>formatAsTime:</strong>{' '}
-                        {formatAsTime(new Date())}
+                        <strong>formatTime:</strong> {formatTime(new Date())}
+                      </div>
+                      <div>
+                        <strong>formatRelativeTime:</strong>{' '}
+                        {formatRelativeTime(new Date('2025-06-27T17:00:00Z'))}
+                      </div>
+                      <div>
+                        <strong>formatRelativeTime:</strong>{' '}
+                        {formatRelativeTime(new Date('2025-06-27T18:00:00Z'))}
                       </div>
                       <div>
                         <strong>formatRelativeDate:</strong>{' '}
-                        {formatRelativeDate(new Date())}
+                        {formatRelativeDate(new Date('2025-06-27T19:00:00Z'))}
                       </div>
                       <div>
-                        <strong>fromNow:</strong> {fromNow(new Date())}
+                        <strong>formatRelativeDate:</strong>{' '}
+                        {formatRelativeDate(new Date('2025-06-27T20:00:00Z'))}
                       </div>
                     </div>
                   </Box>
@@ -219,12 +250,127 @@ export function UtilsShowcase() {
                         {isLastWeek(new Date()) ? 'Yes' : 'No'}
                       </div>
                       <div>
-                        <strong>addHours:</strong>{' '}
-                        {formatAsDateTime(addHours(new Date(), 2))}
+                        <strong>isWeekend:</strong>{' '}
+                        {isWeekend(new Date()) ? 'Yes' : 'No'}
                       </div>
                       <div>
-                        <strong>subtractDays:</strong>{' '}
-                        {formatAsDate(subtractDays(new Date(), 7))}
+                        <strong>isValidDate:</strong>{' '}
+                        {isValidDate(new Date()) ? 'Yes' : 'No'}
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">Date Manipulation</h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>addDays (+7):</strong>{' '}
+                        {formatDate(addDays(new Date(), 7), 'MMM dd, yyyy')}
+                      </div>
+                      <div>
+                        <strong>addMonths (+2):</strong>{' '}
+                        {formatDate(addMonths(new Date(), 2), 'MMM dd, yyyy')}
+                      </div>
+                      <div>
+                        <strong>addYears (+1):</strong>{' '}
+                        {formatDate(addYears(new Date(), 1), 'MMM dd, yyyy')}
+                      </div>
+                      <div>
+                        <strong>addHours (+2):</strong>{' '}
+                        {formatDateTime(addHours(new Date(), 2))}
+                      </div>
+                      <div>
+                        <strong>subtractDays (-7):</strong>{' '}
+                        {formatDate(
+                          subtractDays(new Date(), 7),
+                          'MMM dd, yyyy',
+                        )}
+                      </div>
+                      <div>
+                        <strong>subtractMonths (-1):</strong>{' '}
+                        {formatDate(
+                          subtractMonths(new Date(), 1),
+                          'MMM dd, yyyy',
+                        )}
+                      </div>
+                      <div>
+                        <strong>subtractYears (-1):</strong>{' '}
+                        {formatDate(
+                          subtractYears(new Date(), 1),
+                          'MMM dd, yyyy',
+                        )}
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">Date Comparisons</h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>isSameDay:</strong>{' '}
+                        {isSameDay(new Date(), new Date()) ? 'Yes' : 'No'}
+                      </div>
+                      <div>
+                        <strong>isSameMonth:</strong>{' '}
+                        {isSameMonth(new Date(), new Date()) ? 'Yes' : 'No'}
+                      </div>
+                      <div>
+                        <strong>isSameYear:</strong>{' '}
+                        {isSameYear(new Date(), new Date()) ? 'Yes' : 'No'}
+                      </div>
+                      <div>
+                        <strong>isAfter (future):</strong>{' '}
+                        {isAfter(addDays(new Date(), 1), new Date())
+                          ? 'Yes'
+                          : 'No'}
+                      </div>
+                      <div>
+                        <strong>isBefore (past):</strong>{' '}
+                        {isBefore(subtractDays(new Date(), 1), new Date())
+                          ? 'Yes'
+                          : 'No'}
+                      </div>
+                      <div>
+                        <strong>isBetween:</strong>{' '}
+                        {isBetween(
+                          new Date(),
+                          subtractDays(new Date(), 1),
+                          addDays(new Date(), 1),
+                        )
+                          ? 'Yes'
+                          : 'No'}
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">
+                      Month/Year Operations
+                    </h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>formatMonth:</strong> {formatMonth(new Date())}
+                      </div>
+                      <div>
+                        <strong>formatYear:</strong> {formatYear(new Date())}
+                      </div>
+                      <div>
+                        <strong>getDaysInMonth:</strong>{' '}
+                        {getDaysInMonth(new Date())}
+                      </div>
+                      <div>
+                        <strong>getFirstDayOfMonth:</strong>{' '}
+                        {formatDate(
+                          getFirstDayOfMonth(new Date()),
+                          'MMM dd, yyyy',
+                        )}
+                      </div>
+                      <div>
+                        <strong>getLastDayOfMonth:</strong>{' '}
+                        {formatDate(
+                          getLastDayOfMonth(new Date()),
+                          'MMM dd, yyyy',
+                        )}
                       </div>
                     </div>
                   </Box>
@@ -234,21 +380,49 @@ export function UtilsShowcase() {
                     <div className="space-y-2 text-sm">
                       <div>
                         <strong>Last 7 days:</strong>{' '}
-                        {formatAsDate(
-                          getDateFromPeriod('Last 7 days') || new Date(),
+                        {formatDate(
+                          getPeriodStartDate('Last 7 days') || new Date(),
+                          'MMM dd, yyyy',
                         )}
                       </div>
                       <div>
                         <strong>This month:</strong>{' '}
-                        {formatAsDate(
-                          getDateFromPeriod('This month') || new Date(),
+                        {formatDate(
+                          getPeriodStartDate('This month') || new Date(),
+                          'MMM dd, yyyy',
                         )}
                       </div>
                       <div>
                         <strong>Next 30 days:</strong>{' '}
-                        {formatAsDate(
-                          getFutureDateFromPeriod('Next 30 days') || new Date(),
+                        {formatDate(
+                          getPeriodEndDate('Next 30 days') || new Date(),
+                          'MMM dd, yyyy',
                         )}
+                      </div>
+                      <div>
+                        <strong>startOfToday:</strong>{' '}
+                        {formatDateTime(startOfToday())}
+                      </div>
+                      <div>
+                        <strong>now():</strong> {now()}
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">Date Parsing</h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>parseDate:</strong>{' '}
+                        {formatDateTime(parseDate('2024-01-15'))}
+                      </div>
+                      <div>
+                        <strong>parseToDateTime:</strong>{' '}
+                        {parseToDateTime('2024-01-15T10:30:00Z').toISO()}
+                      </div>
+                      <div>
+                        <strong>toDate:</strong>{' '}
+                        {formatDateTime(toDate(parseToDateTime(new Date())))}
                       </div>
                     </div>
                   </Box>
@@ -258,11 +432,11 @@ export function UtilsShowcase() {
                     <div className="space-y-2 text-sm">
                       <div>
                         <strong>Custom format:</strong>{' '}
-                        {formatAsDate(new Date(), 'yyyy-MM-dd')}
+                        {formatDate(new Date(), 'yyyy-MM-dd')}
                       </div>
                       <div>
                         <strong>With bullet:</strong>{' '}
-                        {formatRelativeDate(new Date(), '•')}
+                        {formatRelativeTime(new Date())}
                       </div>
                     </div>
                   </Box>
@@ -323,6 +497,71 @@ export function UtilsShowcase() {
                       <div>
                         <strong>Humanized:</strong> {humanize('phone_number')}
                       </div>
+                      <div>
+                        <strong>Humanized:</strong> {humanize('first_name')}
+                      </div>
+                      <div>
+                        <strong>Humanized:</strong> {humanize('last_name')}
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">Validation Examples</h4>
+                    <div className="space-y-4">
+                      <div>
+                        <Button
+                          onClick={() => {
+                            const invalidData = {
+                              name: 'J',
+                              email: 'invalid',
+                              age: 15,
+                            };
+                            const result = validateZodSchema(
+                              userSchema,
+                              'sync',
+                            )(invalidData);
+                            setValidationResult(result);
+                          }}
+                          variant="outline"
+                          size="sm"
+                        >
+                          Test Invalid Data
+                        </Button>
+                      </div>
+                      <div>
+                        <Button
+                          onClick={() => {
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            const partialData = { name: 'John' } as any;
+                            const result = validateZodSchema(
+                              userSchema,
+                              'sync',
+                            )(partialData);
+                            setValidationResult(result);
+                          }}
+                          variant="outline"
+                          size="sm"
+                        >
+                          Test Partial Data
+                        </Button>
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">Schema Examples</h4>
+                    <div className="text-sm space-y-2">
+                      <div>
+                        <strong>User Schema:</strong> Name (min 2), Email, Age
+                        (min 18)
+                      </div>
+                      <div>
+                        <strong>Validation Modes:</strong> sync, async, safe
+                      </div>
+                      <div>
+                        <strong>Error Handling:</strong> Formatted, humanized
+                      </div>
                     </div>
                   </Box>
                 </div>
@@ -363,6 +602,14 @@ export function UtilsShowcase() {
                       </div>
                       <div>
                         <strong>Initials:</strong> {getInitials(sampleName)}
+                      </div>
+                      <div>
+                        <strong>Highlight 'text':</strong>{' '}
+                        <span
+                          dangerouslySetInnerHTML={createMarkup(
+                            highlight(sampleText, 'text'),
+                          )}
+                        />
                       </div>
                     </div>
                   </Box>
@@ -451,6 +698,43 @@ export function UtilsShowcase() {
                         <strong>Round to Two (3.14159):</strong>{' '}
                         {roundToTwo(3.14159)}
                       </div>
+                      <div>
+                        <strong>Round to Decimal (2.71828, 3):</strong>{' '}
+                        {roundToDecimal(2.71828, 3)}
+                      </div>
+                      <div>
+                        <strong>Round to Two (1.99999):</strong>{' '}
+                        {roundToTwo(1.99999)}
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">Type Checking</h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>isObject({}):</strong>{' '}
+                        {isObject({}) ? 'Yes' : 'No'}
+                      </div>
+                      <div>
+                        <strong>isObjectLike([]):</strong>{' '}
+                        {isObjectLike([]) ? 'Yes' : 'No'}
+                      </div>
+                      <div>
+                        <strong>isSymbol('test'):</strong>{' '}
+                        {isSymbol('test') ? 'Yes' : 'No'}
+                      </div>
+                      <div>
+                        <strong>isSymbol(Symbol()):</strong>{' '}
+                        {isSymbol(Symbol()) ? 'Yes' : 'No'}
+                      </div>
+                      <div>
+                        <strong>toNumber('123.45'):</strong>{' '}
+                        {toNumber('123.45')}
+                      </div>
+                      <div>
+                        <strong>toNumber('abc'):</strong> {toNumber('abc')}
+                      </div>
                     </div>
                   </Box>
 
@@ -513,6 +797,55 @@ export function UtilsShowcase() {
                           )}
                         />
                       </div>
+                      <div>
+                        <strong>Highlight 'strong':</strong>{' '}
+                        <span
+                          dangerouslySetInnerHTML={createMarkup(
+                            highlight(sampleHTML, 'strong'),
+                          )}
+                        />
+                      </div>
+                      <div>
+                        <strong>Highlight 'links':</strong>{' '}
+                        <span
+                          dangerouslySetInnerHTML={createMarkup(
+                            highlight(sampleHTML, 'links'),
+                          )}
+                        />
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">Text Highlighting</h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>Original Text:</strong> {sampleText}
+                      </div>
+                      <div>
+                        <strong>Highlight 'sample':</strong>{' '}
+                        <span
+                          dangerouslySetInnerHTML={createMarkup(
+                            highlight(sampleText, 'sample'),
+                          )}
+                        />
+                      </div>
+                      <div>
+                        <strong>Highlight 'text':</strong>{' '}
+                        <span
+                          dangerouslySetInnerHTML={createMarkup(
+                            highlight(sampleText, 'text'),
+                          )}
+                        />
+                      </div>
+                      <div>
+                        <strong>Highlight 'utility':</strong>{' '}
+                        <span
+                          dangerouslySetInnerHTML={createMarkup(
+                            highlight(sampleText, 'utility'),
+                          )}
+                        />
+                      </div>
                     </div>
                   </Box>
 
@@ -530,6 +863,32 @@ export function UtilsShowcase() {
                       <div>
                         <strong>closestParent:</strong> Finds closest parent
                         element by selector
+                      </div>
+                      <div>
+                        <strong>getScrollPosition:</strong> Detects scroll
+                        position in elements
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">Usage Examples</h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>Search Highlighting:</strong> Highlight search
+                        terms in content
+                      </div>
+                      <div>
+                        <strong>HTML Sanitization:</strong> Remove unwanted HTML
+                        tags
+                      </div>
+                      <div>
+                        <strong>DOM Traversal:</strong> Find parent elements by
+                        class/ID
+                      </div>
+                      <div>
+                        <strong>Scroll Detection:</strong> Monitor scroll
+                        position for UI updates
                       </div>
                     </div>
                   </Box>
@@ -591,6 +950,106 @@ export function UtilsShowcase() {
                       <div>
                         <strong>Random String (15):</strong>{' '}
                         {createRandomString(15)}
+                      </div>
+                      <div>
+                        <strong>Random String (20):</strong>{' '}
+                        {createRandomString(20)}
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">
+                      Different Text Examples
+                    </h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>Simple:</strong> {slugify('Hello World')}
+                      </div>
+                      <div>
+                        <strong>With Numbers:</strong>{' '}
+                        {slugify('Product 123 - Special Edition')}
+                      </div>
+                      <div>
+                        <strong>With Special Chars:</strong>{' '}
+                        {slugify('User@Domain.com & Co.')}
+                      </div>
+                      <div>
+                        <strong>With Spaces:</strong>{' '}
+                        {slugify('Multiple   Spaces   Here')}
+                      </div>
+                      <div>
+                        <strong>With Punctuation:</strong>{' '}
+                        {slugify("What's up, world?!")}
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">Unique Slug Examples</h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>Simple Unique:</strong>{' '}
+                        {createUniqueSlug({ string: 'Hello World' })}
+                      </div>
+                      <div>
+                        <strong>With Options:</strong>{' '}
+                        {createUniqueSlug({ string: 'Hello World' })}
+                      </div>
+                      <div>
+                        <strong>With Options:</strong>{' '}
+                        {createUniqueSlug({ string: 'Hello World' })}
+                      </div>
+                      <div>
+                        <strong>Complex Unique:</strong>{' '}
+                        {createUniqueSlug({
+                          string: 'Product Name with Special Characters!@#$%',
+                        })}
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">URI String Examples</h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>Simple URI:</strong>{' '}
+                        {createUriString('Hello World')}
+                      </div>
+                      <div>
+                        <strong>With Protocol:</strong>{' '}
+                        {createUriString('https://example.com')}
+                      </div>
+                      <div>
+                        <strong>With Path:</strong>{' '}
+                        {createUriString('/api/users/profile')}
+                      </div>
+                      <div>
+                        <strong>Complex URI:</strong>{' '}
+                        {createUriString(
+                          'https://example.com/api/users?name=john&age=25',
+                        )}
+                      </div>
+                    </div>
+                  </Box>
+
+                  <Box className="p-4 border rounded-lg">
+                    <h4 className="font-semibold mb-2">Use Cases</h4>
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <strong>URL Slugs:</strong> Blog posts, product pages
+                      </div>
+                      <div>
+                        <strong>File Names:</strong> Safe file naming
+                      </div>
+                      <div>
+                        <strong>CSS Classes:</strong> Dynamic class generation
+                      </div>
+                      <div>
+                        <strong>API Endpoints:</strong> Resource identifiers
+                      </div>
+                      <div>
+                        <strong>Database Keys:</strong> Unique identifiers
                       </div>
                     </div>
                   </Box>
@@ -814,7 +1273,7 @@ export function UtilsShowcase() {
                   </div>
                   <div>
                     <strong>Joined:</strong>{' '}
-                    {formatRelativeDate(subtractDays(new Date(), 30))}
+                    {formatRelativeTime(subtractDays(new Date(), 30))}
                   </div>
                 </div>
               </Box>
@@ -834,10 +1293,10 @@ export function UtilsShowcase() {
                     {truncate(sampleText, 50)}
                   </div>
                   <div>
-                    <strong>Published:</strong> {formatAsDateTime(new Date())}
+                    <strong>Published:</strong> {formatDateTime(new Date())}
                   </div>
                   <div>
-                    <strong>Time Ago:</strong> {fromNow(new Date())}
+                    <strong>Time Ago:</strong> {formatRelativeTime(new Date())}
                   </div>
                 </div>
               </Box>

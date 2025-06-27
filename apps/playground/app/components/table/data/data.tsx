@@ -1,6 +1,8 @@
 import { type DataTableFacetedFilterProps } from '@veraclins-dev/ui';
 
-type Options = NonNullable<DataTableFacetedFilterProps<any, any>['options']>;
+type Options = NonNullable<
+  DataTableFacetedFilterProps<unknown, unknown>['options']
+>;
 
 export const labels: Options = [
   {

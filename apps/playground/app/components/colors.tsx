@@ -1,5 +1,4 @@
 import {
-  Badge,
   Box,
   Button,
   Card,
@@ -7,7 +6,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  Separator,
   Typography,
 } from '@veraclins-dev/ui';
 

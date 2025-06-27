@@ -1,21 +1,38 @@
 import { Image } from '@veraclins-dev/image';
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
   Badge,
   Box,
-  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-  Icon,
   Typography,
 } from '@veraclins-dev/ui';
 
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
+type NotificationType =
+  | 'primary'
+  | 'secondary'
+  | 'destructive'
+  | 'success'
+  | 'warning'
+  | 'info';
+type TaskPriority = 'high' | 'medium' | 'low';
+
+const getPriorityColor = (priority: TaskPriority): NotificationType => {
+  switch (priority) {
+    case 'high':
+      return 'destructive';
+    case 'medium':
+      return 'warning';
+    case 'low':
+      return 'info';
+    default:
+      return 'secondary';
+  }
+};
 
 export function Badges() {
   return (
@@ -407,7 +424,7 @@ export function Badges() {
                                 )}
                                 <Badge
                                   variant="soft"
-                                  color={notification.type as any}
+                                  color={notification.type as NotificationType}
                                   size="sm"
                                 >
                                   {notification.priority}
@@ -575,7 +592,9 @@ export function Badges() {
                             <Box display="flex" gap={1} className="mb-2">
                               <Badge
                                 variant="soft"
-                                color={task.priority as any}
+                                color={getPriorityColor(
+                                  task.priority as TaskPriority,
+                                )}
                                 size="sm"
                               >
                                 {task.priority}
@@ -640,7 +659,9 @@ export function Badges() {
                             <Box display="flex" gap={1} className="mb-2">
                               <Badge
                                 variant="soft"
-                                color={task.priority as any}
+                                color={getPriorityColor(
+                                  task.priority as TaskPriority,
+                                )}
                                 size="sm"
                               >
                                 {task.priority}

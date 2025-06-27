@@ -13,7 +13,7 @@ import {
   Icon,
   Typography,
 } from '@veraclins-dev/ui';
-import { addDays, formatAsDate, startOfToday } from '@veraclins-dev/utils';
+import { addDays, formatDate, startOfToday } from '@veraclins-dev/utils';
 
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
@@ -63,7 +63,7 @@ export function CalendarShowcase() {
               <Box className="mt-4">
                 <Typography variant="body2" className="text-muted-foreground">
                   Selected:{' '}
-                  {date ? formatAsDate(date, 'PPP') : 'No date selected'}
+                  {date ? formatDate(date, 'PPP') : 'No date selected'}
                 </Typography>
               </Box>
             </Box>
@@ -117,11 +117,11 @@ export function CalendarShowcase() {
                   {dateRange?.from ? (
                     dateRange.to ? (
                       <>
-                        From: {formatAsDate(dateRange.from, 'PPP')} - To:{' '}
-                        {formatAsDate(dateRange.to, 'PPP')}
+                        From: {formatDate(dateRange.from, 'PPP')} - To:{' '}
+                        {formatDate(dateRange.to, 'PPP')}
                       </>
                     ) : (
-                      <>From: {formatAsDate(dateRange.from, 'PPP')}</>
+                      <>From: {formatDate(dateRange.from, 'PPP')}</>
                     )
                   ) : (
                     'No date range selected'

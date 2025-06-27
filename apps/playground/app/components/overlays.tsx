@@ -11,12 +11,9 @@ import {
   CardHeader,
   CardTitle,
   Command,
-  CommandEmpty,
-  CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
   ComposedDropdownMenu,
   ComposedPopover,
   Dialog,
@@ -35,21 +32,12 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
   Icon,
   Input,
   Label,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
   Sheet,
   SheetClose,
   SheetContent,
@@ -1819,16 +1807,10 @@ export function Overlays() {
                               </Typography>
                               <Box className="flex gap-1">
                                 <Button size="sm" variant="soft">
+                                  <Icon name="globe" />
+                                </Button>
+                                <Button size="sm" variant="soft">
                                   <Icon name="link" />
-                                </Button>
-                                <Button size="sm" variant="soft">
-                                  <Icon name="share" />
-                                </Button>
-                                <Button size="sm" variant="soft">
-                                  <Icon name="facebook" />
-                                </Button>
-                                <Button size="sm" variant="soft">
-                                  <Icon name="linkedin" />
                                 </Button>
                               </Box>
                             </Box>

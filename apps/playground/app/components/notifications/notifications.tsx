@@ -4,15 +4,25 @@ import { Box, Button, Typography } from '@veraclins-dev/ui';
 
 import { Notification } from './notification';
 
+interface NotificationItem {
+  id: string;
+  isRead: boolean;
+  message: string;
+  target: string;
+  profileImage?: string | null;
+  createdAt: Date | string;
+  targetLink?: string;
+}
+
 type NotificationsProps = {
-  notifications: any[];
-  onTabChange: (tab: any) => void;
-  activeTab: any;
+  notifications: NotificationItem[];
+  onTabChange: (tab: string) => void;
+  activeTab: string;
   onClick?: () => void;
 };
 
 interface ShowNotificationProps {
-  notifications: any[];
+  notifications: NotificationItem[];
   title: string;
   onClick?: () => void;
 }
@@ -42,7 +52,6 @@ export const ShowNotification = ({
 
 export const Notifications = ({
   notifications,
-  activeTab,
   onTabChange,
   onClick,
 }: NotificationsProps) => {
@@ -57,14 +66,14 @@ export const Notifications = ({
         return acc;
       },
       {
-        latest: [] as any[],
-        earlier: [] as any[],
+        latest: [] as NotificationItem[],
+        earlier: [] as NotificationItem[],
       },
     );
   }, [notifications]);
 
   const changeTab = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>, tab: any) => {
+    (e: React.MouseEvent<HTMLButtonElement>, tab: string) => {
       e.stopPropagation();
       onTabChange(tab);
     },

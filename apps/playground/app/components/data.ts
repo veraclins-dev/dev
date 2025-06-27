@@ -87,6 +87,7 @@ export const notifications = [
     },
     message:
       "Edulinks Men answered your question in the group: <b>Veraclins's default group</b>",
+    target: "Veraclins's default group",
   },
   {
     id: 'cm87mdzfv000k87936jxpv9az',
@@ -137,6 +138,7 @@ export const notifications = [
     },
     message:
       "Edulinks Men answered your question in the group: <b>Veraclins's default group</b>",
+    target: "Veraclins's default group",
   },
   {
     id: 'cm7zbtoa2000c87myrf7wu2bn',
@@ -187,6 +189,7 @@ export const notifications = [
     },
     message:
       "Clinton Agada accepted your invitation to the group: <b>Veraclins's default group</b>",
+    target: "Veraclins's default group",
   },
   {
     id: 'cm7kpe0u9000b87wvlfrbegq3',
@@ -236,6 +239,7 @@ export const notifications = [
     },
     message:
       "Someone Test accepted your invitation to the group: <b>Veraclins's default group</b>",
+    target: "Veraclins's default group",
   },
   {
     id: 'cm7kpciok000587wvcwrvc2zu',
@@ -285,6 +289,7 @@ export const notifications = [
     },
     message:
       "Test User accepted your invitation to the group: <b>Veraclins's default group</b>",
+    target: "Veraclins's default group",
   },
   {
     id: 'cm7hnqthv0009873eierk7hdt',
@@ -334,6 +339,7 @@ export const notifications = [
     },
     message:
       "Edulinks Men invited a member to the group: <b>Veraclins's default group</b>",
+    target: "Veraclins's default group",
   },
   {
     id: 'cm7gfonrj000w87xmz7fhiitt',
@@ -383,6 +389,7 @@ export const notifications = [
     },
     message:
       'New User accepted your invitation to the group: <b>Quite literally interesting for all</b>',
+    target: 'Quite literally interesting for all',
   },
   {
     id: 'cm7eiw874001d87a3j2148wrf',
@@ -432,6 +439,7 @@ export const notifications = [
     },
     message:
       "Edulinks User approved your request to join the group: <b>EdulinksTest_23's default group</b>",
+    target: "EdulinksTest_23's default group",
   },
   {
     id: 'cm7eiu83s001787a31xyvbts3',
@@ -481,6 +489,7 @@ export const notifications = [
     },
     message:
       "Someone Test approved your request to join the group: <b>EdulinksTest_12d's default group</b>",
+    target: "EdulinksTest_12d's default group",
   },
   {
     id: 'cm7eisnyd000t87a3f5u03fxg',
@@ -530,5 +539,6 @@ export const notifications = [
     },
     message:
       "Test User approved your request to join the group: <b>EdulinksTest_1's default group</b>",
+    target: "EdulinksTest_1's default group",
   },
 ];

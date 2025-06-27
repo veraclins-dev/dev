@@ -12,7 +12,6 @@ import {
   CardHeader,
   CardSubtitle,
   CardTitle,
-  Chip,
   ComposedAvatar,
   HoverCard,
   HoverCardContent,
