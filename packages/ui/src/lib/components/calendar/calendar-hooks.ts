@@ -27,7 +27,7 @@ export function useCalendarState(props: {
   } = props;
 
   const [currentMonth, setCurrentMonth] = useState(() => {
-    return dateUtils.getInitialMonth(value, defaultValue);
+    return dateUtils.getDefaultMonth(value, defaultValue);
   });
 
   const [selectedDates, setSelectedDates] = useState(() => {

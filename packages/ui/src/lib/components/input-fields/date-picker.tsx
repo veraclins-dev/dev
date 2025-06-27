@@ -1,7 +1,7 @@
 'use client';
 
 import { type FieldMetadata } from '@conform-to/react';
-import { addDays, format } from 'date-fns';
+import { DateTime } from 'luxon';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { cn, setReactInputValue } from '@veraclins-dev/utils';
@@ -206,56 +206,44 @@ function DatePickerField({
   }) {
   const { control, mainRef, ...baseProps } = useDatePicker({ field, name });
   const defaultValue = suppliedDefaultValue ?? field?.initialValue;
-  const initialDate = defaultValue
-    ? typeof defaultValue === 'string'
-      ? new Date(defaultValue)
-      : defaultValue
-    : undefined;
+  const initialDate = defaultValue ? new Date(defaultValue) : undefined;
 
-  const [date, setDate] = useState<Date | undefined>(initialDate);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    initialDate,
+  );
   const [formValue, setFormValue] = useState<string>('');
 
   useEffect(() => {
-    if (suppliedValue) {
-      const newDate =
-        typeof suppliedValue === 'string'
-          ? new Date(suppliedValue)
-          : suppliedValue;
-      setDate(newDate);
-      const newFormValue = newDate ? newDate.toISOString() : '';
-      setFormValue(newFormValue);
-      setReactInputValue(mainRef.current, newFormValue);
+    if (suppliedValue !== undefined) {
+      const newDate = suppliedValue ? new Date(suppliedValue) : undefined;
+      setSelectedDate(newDate);
+      setFormValue(suppliedValue || '');
     }
   }, [suppliedValue]);
 
   const handleSelect = (selectedDate: Date | undefined) => {
-    setDate(selectedDate);
+    setSelectedDate(selectedDate);
     const newFormValue = selectedDate ? selectedDate.toISOString() : '';
     setFormValue(newFormValue);
     setReactInputValue(mainRef.current, newFormValue);
-    control?.change(newFormValue);
     onChange?.(selectedDate);
   };
 
   const displayText = () => {
-    return date ? format(date, 'PPP') : 'Pick a date';
+    if (!selectedDate) {
+      return 'Pick a date';
+    }
+    return DateTime.fromJSDate(selectedDate).toFormat('MMM dd, yyyy');
   };
 
   return (
-    <BaseDatePicker<DateValue>
+    <BaseDatePicker
       {...baseProps}
       {...calendarProps}
-      field={field}
-      label={label}
-      labelProps={labelProps}
-      className={className}
-      wrapperClassName={wrapperClassName}
       mode="single"
-      selected={date}
+      selected={selectedDate}
       onSelect={handleSelect}
       displayText={displayText}
-      defaultMonth={date}
-      numberOfMonths={1}
       formValue={formValue}
     />
   );
@@ -288,12 +276,10 @@ function DateRangePickerField({
   const [formValue, setFormValue] = useState<string>('');
 
   useEffect(() => {
-    if (suppliedValue) {
+    if (suppliedValue !== undefined) {
       const newRange = getRangeFromValue(suppliedValue);
       setRange(newRange);
-      const newFormValue = getValueFromRange(newRange);
-      setFormValue(newFormValue);
-      setReactInputValue(mainRef.current, newFormValue);
+      setFormValue(suppliedValue || '');
     }
   }, [suppliedValue]);
 
@@ -302,32 +288,29 @@ function DateRangePickerField({
     const newFormValue = getValueFromRange(newRange);
     setFormValue(newFormValue);
     setReactInputValue(mainRef.current, newFormValue);
-    control?.change(newFormValue);
     onChange?.(newRange);
   };
 
   const displayText = () => {
-    if (!range) return 'Pick a date range';
-    const from = range.from ? format(range.from, 'LLL dd, y') : '';
-    const to = range.to ? format(range.to, 'LLL dd, y') : '';
-    return from && to ? `${from} - ${to}` : from || to;
+    if (!range?.from) {
+      return 'Pick a date range';
+    }
+    const fromText = DateTime.fromJSDate(range.from).toFormat('MMM dd, yyyy');
+    if (!range.to) {
+      return fromText;
+    }
+    const toText = DateTime.fromJSDate(range.to).toFormat('MMM dd, yyyy');
+    return `${fromText} - ${toText}`;
   };
 
   return (
-    <BaseDatePicker<RangeValue>
+    <BaseDatePicker
       {...baseProps}
       {...calendarProps}
-      field={field}
-      label={label}
-      labelProps={labelProps}
-      className={className}
-      wrapperClassName={wrapperClassName}
       mode="range"
       selected={range}
       onSelect={handleSelect}
       displayText={displayText}
-      defaultMonth={range?.from}
-      numberOfMonths={2}
       formValue={formValue}
     />
   );

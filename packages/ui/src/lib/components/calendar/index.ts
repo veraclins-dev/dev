@@ -18,35 +18,6 @@ export {
 
 // Utilities
 export { dateUtils } from './calendar-utils';
-export {
-  addDays,
-  addMonths,
-  addYears,
-  formatDate,
-  formatMonth,
-  formatYear,
-  getDaysInMonth,
-  getFirstDayOfMonth,
-  getFirstDayOfWeek,
-  getInitialMonth,
-  getLastDayOfMonth,
-  getLastDayOfWeek,
-  getMonthGrid,
-  getWeekDays,
-  getWeekNumber,
-  isAfter,
-  isBefore,
-  isBetween,
-  isSameDay,
-  isSameMonth,
-  isSameYear,
-  isToday,
-  isValidDate,
-  isWeekend,
-  subtractDays,
-  subtractMonths,
-  subtractYears,
-} from './calendar-utils';
 
 // Types
 export type {
