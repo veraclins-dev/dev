@@ -125,6 +125,42 @@
 
   /* Border */
   --border: oklch(0.65 0 0);
+
+  /* Calendar tokens - using existing design system tokens */
+  --calendar-border: 1px solid var(--border);
+  --calendar-border-radius: 0.5rem;
+  --calendar-padding: 1rem;
+  --calendar-gap: 0.5rem;
+  --calendar-day-size: 2.5rem;
+  --calendar-day-border-radius: 0.375rem;
+  --calendar-day-font-size: 0.875rem;
+  --calendar-day-font-weight: 400;
+  --calendar-day-color: var(--foreground);
+  --calendar-day-bg: transparent;
+  --calendar-day-hover-bg: var(--accent);
+  --calendar-day-hover-color: var(--accent-foreground);
+  --calendar-day-selected-bg: var(--primary);
+  --calendar-day-selected-color: var(--primary-foreground);
+  --calendar-day-today-bg: var(--secondary);
+  --calendar-day-today-color: var(--secondary-foreground);
+  --calendar-day-disabled-color: var(--muted-foreground);
+  --calendar-day-outside-color: var(--muted-foreground);
+  --calendar-day-outside-opacity: 0.5;
+  --calendar-range-bg: var(--accent);
+  --calendar-range-color: var(--accent-foreground);
+  --calendar-range-start-bg: var(--primary);
+  --calendar-range-start-color: var(--primary-foreground);
+  --calendar-range-end-bg: var(--primary);
+  --calendar-range-end-color: var(--primary-foreground);
+  --calendar-nav-button-size: 2rem;
+  --calendar-nav-button-bg: transparent;
+  --calendar-nav-button-color: var(--foreground);
+  --calendar-nav-button-hover-bg: var(--accent);
+  --calendar-nav-button-hover-color: var(--accent-foreground);
+  --calendar-day-focus-ring: 0 0 0 2px var(--ring);
+  --calendar-day-focus-ring-offset: 2px;
+  --calendar-transition:
+    color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .dark {
@@ -241,6 +277,42 @@
 
   /* Border */
   --border: oklch(0.848 0.033 260.7);
+
+  /* Calendar tokens - using existing design system tokens */
+  --calendar-border: 1px solid var(--border);
+  --calendar-border-radius: 0.5rem;
+  --calendar-padding: 1rem;
+  --calendar-gap: 0.5rem;
+  --calendar-day-size: 2.5rem;
+  --calendar-day-border-radius: 0.375rem;
+  --calendar-day-font-size: 0.875rem;
+  --calendar-day-font-weight: 400;
+  --calendar-day-color: var(--foreground);
+  --calendar-day-bg: transparent;
+  --calendar-day-hover-bg: var(--accent);
+  --calendar-day-hover-color: var(--accent-foreground);
+  --calendar-day-selected-bg: var(--primary);
+  --calendar-day-selected-color: var(--primary-foreground);
+  --calendar-day-today-bg: var(--secondary);
+  --calendar-day-today-color: var(--secondary-foreground);
+  --calendar-day-disabled-color: var(--muted-foreground);
+  --calendar-day-outside-color: var(--muted-foreground);
+  --calendar-day-outside-opacity: 0.5;
+  --calendar-range-bg: var(--accent);
+  --calendar-range-color: var(--accent-foreground);
+  --calendar-range-start-bg: var(--primary);
+  --calendar-range-start-color: var(--primary-foreground);
+  --calendar-range-end-bg: var(--primary);
+  --calendar-range-end-color: var(--primary-foreground);
+  --calendar-nav-button-size: 2rem;
+  --calendar-nav-button-bg: transparent;
+  --calendar-nav-button-color: var(--foreground);
+  --calendar-nav-button-hover-bg: var(--accent);
+  --calendar-nav-button-hover-color: var(--accent-foreground);
+  --calendar-day-focus-ring: 0 0 0 2px var(--ring);
+  --calendar-day-focus-ring-offset: 2px;
+  --calendar-transition:
+    color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
 @theme inline {
