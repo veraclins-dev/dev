@@ -47,7 +47,6 @@ export function CalendarGrid({
           onDayMouseLeave={onDayMouseLeave}
           className={classNames?.calendarGrid}
           classNames={classNames}
-          showMonthHeader={context.numberOfMonths > 1}
         />
       ))}
     </Box>

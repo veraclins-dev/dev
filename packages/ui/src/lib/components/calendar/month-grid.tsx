@@ -25,7 +25,6 @@ interface MonthGridProps {
   onDayMouseLeave?: (date: Date) => void;
   className?: string;
   classNames?: CalendarGridProps['classNames'];
-  showMonthHeader?: boolean;
 }
 
 /**
@@ -39,7 +38,6 @@ export const MonthGrid = memo(function MonthGrid({
   onDayMouseLeave,
   className,
   classNames,
-  showMonthHeader = false,
 }: MonthGridProps) {
   const context = useCalendarContext();
 
@@ -51,12 +49,6 @@ export const MonthGrid = memo(function MonthGrid({
       context.showOutsideDays,
     );
   }, [month, context.weekStartsOn, context.showOutsideDays]);
-
-  // Memoize month header text
-  const monthHeaderText = useMemo(() => {
-    if (!showMonthHeader) return null;
-    return `${dateUtils.formatMonth(month, context.locale)} ${dateUtils.formatYear(month, context.locale)}`;
-  }, [showMonthHeader, month, context.locale]);
 
   // Memoize aria label
   const ariaLabel = useMemo(() => {
@@ -262,13 +254,6 @@ export const MonthGrid = memo(function MonthGrid({
         monthIndex > 0 && 'ml-4', // Add spacing between months
       )}
     >
-      {/* Month header for multi-month display */}
-      {showMonthHeader && monthHeaderText && (
-        <Box className="mb-2 text-center font-medium text-sm">
-          {monthHeaderText}
-        </Box>
-      )}
-
       {/* Week header */}
       <CalendarWeekHeader
         className={classNames?.weekHeader}

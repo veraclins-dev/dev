@@ -9,6 +9,7 @@ import {
   addYears,
   formatDate,
   formatMonth,
+  formatMonthShort,
   formatYear,
   getDaysInMonth,
   getDefaultMonth,
@@ -115,7 +116,7 @@ export const dateUtils = {
   formatDate,
   formatMonth,
   formatYear,
-
+  formatMonthShort,
   // Validation and checks
   isValidDate,
   isWeekend,

@@ -3,87 +3,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { useCalendarContext } from './calendar-context';
-import type { CalendarMode, DateRange } from './calendar-types';
+import type { DateRange } from './calendar-types';
 import { dateUtils } from './calendar-utils';
-
-/**
- * Hook for managing calendar state
- */
-export function useCalendarState(props: {
-  value?: Date | Date[] | DateRange;
-  defaultValue?: Date | Date[] | DateRange;
-  mode?: CalendarMode;
-  weekStartsOn?: number;
-  locale?: string;
-  showOutsideDays?: boolean;
-}) {
-  const {
-    value,
-    defaultValue,
-    mode = 'single',
-    weekStartsOn = 0,
-    locale = 'en-US',
-    showOutsideDays = true,
-  } = props;
-
-  const [currentMonth, setCurrentMonth] = useState(() => {
-    return dateUtils.getDefaultMonth(value, defaultValue);
-  });
-
-  const [selectedDates, setSelectedDates] = useState(() => {
-    return value || defaultValue;
-  });
-
-  const [hoveredDate, setHoveredDate] = useState<Date | undefined>();
-  const [focusedDate, setFocusedDate] = useState<Date | undefined>(() => {
-    // Set initial focused date to today or first day of current month
-    const today = new Date();
-    const firstDayOfMonth = dateUtils.getFirstDayOfMonth(currentMonth);
-    return dateUtils.isSameMonth(today, currentMonth) ? today : firstDayOfMonth;
-  });
-
-  // Update selected dates when value prop changes
-  useEffect(() => {
-    if (value !== undefined) {
-      setSelectedDates(value);
-    }
-  }, [value]);
-
-  // Update current month when selected dates change
-  useEffect(() => {
-    if (selectedDates) {
-      let newMonth: Date;
-      if (selectedDates instanceof Date) {
-        newMonth = selectedDates;
-      } else if (Array.isArray(selectedDates) && selectedDates.length > 0) {
-        newMonth = selectedDates[0];
-      } else if ('from' in selectedDates && selectedDates.from) {
-        newMonth = selectedDates.from;
-      } else {
-        return;
-      }
-
-      if (!dateUtils.isSameMonth(newMonth, currentMonth)) {
-        setCurrentMonth(newMonth);
-      }
-    }
-  }, [selectedDates, currentMonth]);
-
-  return {
-    currentMonth,
-    setCurrentMonth,
-    selectedDates,
-    setSelectedDates,
-    hoveredDate,
-    setHoveredDate,
-    focusedDate,
-    setFocusedDate,
-    mode,
-    weekStartsOn,
-    locale,
-    showOutsideDays,
-  };
-}
 
 /**
  * Hook for date range selection
