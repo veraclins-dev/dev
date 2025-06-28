@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
@@ -15,9 +15,9 @@ import { calendarVariants } from './calendar-variants';
 import { CalendarWeekHeader } from './calendar-week-header';
 
 /**
- * Calendar component
+ * Calendar component - optimized with memoization
  */
-export function Calendar({
+export const Calendar = memo(function Calendar({
   value,
   onValueChange,
   defaultValue,
@@ -50,43 +50,83 @@ export function Calendar({
   ref,
   ...props
 }: CalendarProps & { ref?: React.Ref<HTMLDivElement> }) {
+  // Memoize provider props to prevent unnecessary re-renders
+  const providerProps = useMemo(
+    () => ({
+      value,
+      onValueChange,
+      defaultValue,
+      mode,
+      numberOfMonths,
+      showOutsideDays,
+      disabled,
+      minDate,
+      maxDate,
+      locale,
+      weekStartsOn,
+    }),
+    [
+      value,
+      onValueChange,
+      defaultValue,
+      mode,
+      numberOfMonths,
+      showOutsideDays,
+      disabled,
+      minDate,
+      maxDate,
+      locale,
+      weekStartsOn,
+    ],
+  );
+
+  // Memoize content props
+  const contentProps = useMemo(
+    () => ({
+      numberOfMonths,
+      className,
+      classNames,
+      size,
+      theme,
+      onDayClick,
+      onDayMouseEnter,
+      onDayMouseLeave,
+      onMonthChange,
+      onYearChange,
+      ariaLabel,
+      ariaDescribedby,
+      ref,
+      ...props,
+    }),
+    [
+      numberOfMonths,
+      className,
+      classNames,
+      size,
+      theme,
+      onDayClick,
+      onDayMouseEnter,
+      onDayMouseLeave,
+      onMonthChange,
+      onYearChange,
+      ariaLabel,
+      ariaDescribedby,
+      ref,
+      props,
+    ],
+  );
+
   return (
-    <CalendarProvider
-      value={value}
-      onValueChange={onValueChange}
-      defaultValue={defaultValue}
-      mode={mode}
-      showOutsideDays={showOutsideDays}
-      disabled={disabled}
-      minDate={minDate}
-      maxDate={maxDate}
-      locale={locale}
-      weekStartsOn={weekStartsOn}
-    >
-      <CalendarContent
-        numberOfMonths={numberOfMonths}
-        className={className}
-        classNames={classNames}
-        size={size}
-        theme={theme}
-        onDayClick={onDayClick}
-        onDayMouseEnter={onDayMouseEnter}
-        onDayMouseLeave={onDayMouseLeave}
-        onMonthChange={onMonthChange}
-        onYearChange={onYearChange}
-        aria-label={ariaLabel}
-        aria-describedby={ariaDescribedby}
-        ref={ref}
-        {...props}
-      />
+    <CalendarProvider {...providerProps}>
+      <CalendarContent {...contentProps} />
     </CalendarProvider>
   );
-}
+});
 
 /**
- * Calendar content component that uses context
+ * Calendar content component that uses context - optimized with memoization
  */
-function CalendarContent({
+const CalendarContent = memo(function CalendarContent({
   numberOfMonths = 1,
   className,
   classNames,
@@ -127,15 +167,32 @@ function CalendarContent({
     context.setFocusedDate(undefined);
   }, [context]);
 
+  // Memoize calendar variants
+  const calendarClassName = useMemo(() => {
+    return cn(
+      calendarVariants({
+        size,
+        theme,
+        layout: context.mode,
+        multiMonth: numberOfMonths > 1,
+      }),
+      className,
+      classNames?.calendar,
+    );
+  }, [
+    size,
+    theme,
+    context.mode,
+    numberOfMonths,
+    className,
+    classNames?.calendar,
+  ]);
+
   return (
     <Box
       ref={ref}
       onBlur={handleBlur}
-      className={cn(
-        calendarVariants({ size, theme, layout: context.mode }),
-        className,
-        classNames?.calendar,
-      )}
+      className={calendarClassName}
       role="application"
       aria-label={ariaLabel || 'Calendar'}
       aria-describedby={ariaDescribedby}
@@ -144,12 +201,6 @@ function CalendarContent({
       {/* Navigation Header */}
       <CalendarHeader
         className={classNames?.calendarHeader}
-        classNames={classNames}
-      />
-
-      {/* Week Header */}
-      <CalendarWeekHeader
-        className={classNames?.weekHeader}
         classNames={classNames}
       />
 
@@ -163,6 +214,6 @@ function CalendarContent({
       />
     </Box>
   );
-}
+});
 
 Calendar.displayName = 'Calendar';

@@ -6,6 +6,7 @@ export { CalendarDay } from './calendar-day';
 export { CalendarGrid } from './calendar-grid';
 export { CalendarHeader } from './calendar-header';
 export { CalendarWeekHeader } from './calendar-week-header';
+export { MonthGrid } from './month-grid';
 
 // Context and hooks
 export { CalendarProvider, useCalendarContext } from './calendar-context';

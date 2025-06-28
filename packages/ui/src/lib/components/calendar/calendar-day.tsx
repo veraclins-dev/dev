@@ -1,5 +1,7 @@
 'use client';
 
+import { memo, useMemo } from 'react';
+
 import { cn } from '@veraclins-dev/utils';
 
 import { Button } from '../../ui/button';
@@ -8,9 +10,9 @@ import type { CalendarDayProps } from './calendar-types';
 import { dateUtils } from './calendar-utils';
 
 /**
- * Calendar day component
+ * Calendar day component - optimized with memoization
  */
-export function CalendarDay({
+export const CalendarDay = memo(function CalendarDay({
   date,
   isSelected,
   isToday,
@@ -31,8 +33,8 @@ export function CalendarDay({
   ref,
   ...props
 }: CalendarDayProps & { ref?: React.Ref<HTMLButtonElement> }) {
-  // Determine Button variant and color based on day state
-  const getButtonProps = () => {
+  // Memoize Button variant and color based on day state
+  const buttonProps = useMemo(() => {
     if (isInRange && !(isRangeStart || isRangeEnd)) {
       return { variant: 'soft' as const, color: 'primary' as const };
     }
@@ -50,9 +52,57 @@ export function CalendarDay({
     }
 
     return { variant: 'text' as const, color: 'neutral' as const };
-  };
+  }, [
+    isInRange,
+    isRangeStart,
+    isRangeEnd,
+    isSelected,
+    isOutsideMonth,
+    isToday,
+  ]);
 
-  const { variant, color } = getButtonProps();
+  // Memoize className to prevent unnecessary re-computations
+  const buttonClassName = useMemo(() => {
+    return cn(
+      // Base calendar day styles
+      'h-8 w-8 p-0 text-sm font-normal',
+      // Range start/end rounded corner adjustments
+      isRangeStart && !isRangeEnd && 'rounded-r-none',
+      isRangeEnd && !isRangeStart && 'rounded-l-none',
+      isRangeStart && isRangeEnd && 'rounded-md',
+      isInRange && !isRangeStart && !isRangeEnd && 'rounded-none',
+      isOutsideMonth && 'opacity-50',
+      isFocused && 'ring-1 ring-foreground ring-offset-0.5',
+      className,
+    );
+  }, [
+    isRangeStart,
+    isRangeEnd,
+    isInRange,
+    isOutsideMonth,
+    isFocused,
+    className,
+  ]);
+
+  // Memoize aria label
+  const ariaLabel = useMemo(() => {
+    return dateUtils.formatDate(date, 'en-US');
+  }, [date]);
+
+  // Memoize day number
+  const dayNumber = useMemo(() => {
+    return date.getDate();
+  }, [date]);
+
+  // Memoize data attributes
+  const dataAttributes = useMemo(() => {
+    return {
+      'data-date': date.toISOString(),
+      'aria-label': ariaLabel,
+      'aria-selected': isSelected,
+      'aria-current': isToday ? ('date' as const) : undefined,
+    };
+  }, [date, ariaLabel, isSelected, isToday]);
 
   // Determine size based on common calendar sizes
   const size = 'sm' as const;
@@ -95,8 +145,8 @@ export function CalendarDay({
     <Button
       ref={ref}
       type="button"
-      variant={variant}
-      color={color}
+      variant={buttonProps.variant}
+      color={buttonProps.color}
       size={size}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
@@ -105,27 +155,13 @@ export function CalendarDay({
       onFocus={handleFocus}
       onBlur={handleBlur}
       disabled={isDisabled}
-      data-date={date.toISOString()}
-      className={cn(
-        // Base calendar day styles
-        'h-8 w-8 p-0 text-sm font-normal',
-        // Range start/end rounded corner adjustments
-        isRangeStart && !isRangeEnd && 'rounded-r-none',
-        isRangeEnd && !isRangeStart && 'rounded-l-none',
-        isRangeStart && isRangeEnd && 'rounded-md',
-        isInRange && !isRangeStart && !isRangeEnd && 'rounded-none',
-        isOutsideMonth && 'opacity-50',
-        isFocused && 'ring-1 ring-foreground ring-offset-0.5',
-        className,
-      )}
-      aria-label={dateUtils.formatDate(date, 'en-US')}
-      aria-selected={isSelected}
-      aria-current={isToday ? 'date' : undefined}
+      className={buttonClassName}
+      {...dataAttributes}
       {...props}
     >
-      {date.getDate()}
+      {dayNumber}
     </Button>
   );
-}
+});
 
 CalendarDay.displayName = 'CalendarDay';

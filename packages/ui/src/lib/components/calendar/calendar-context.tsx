@@ -26,6 +26,7 @@ interface CalendarProviderProps {
   children: React.ReactNode;
   // Calendar configuration
   mode?: CalendarMode;
+  numberOfMonths?: number;
   showOutsideDays?: boolean;
   locale?: string;
   weekStartsOn?: WeekStartsOn;
@@ -44,6 +45,7 @@ interface CalendarProviderProps {
 export function CalendarProvider({
   children,
   mode = 'single',
+  numberOfMonths = 1,
   showOutsideDays = true,
   locale = 'en-US',
   weekStartsOn = 0,
@@ -58,6 +60,15 @@ export function CalendarProvider({
   const [currentMonth, setCurrentMonth] = useState(() => {
     return dateUtils.getDefaultMonth(value, defaultValue);
   });
+
+  // Generate array of months for multi-month display - memoized
+  const currentMonths = useMemo(() => {
+    const months: Date[] = [];
+    for (let i = 0; i < numberOfMonths; i++) {
+      months.push(dateUtils.addMonths(currentMonth, i));
+    }
+    return months;
+  }, [currentMonth, numberOfMonths]);
 
   const [selectedDates, setSelectedDates] = useState(() => {
     return value || defaultValue;
@@ -76,6 +87,25 @@ export function CalendarProvider({
   const isUpdatingFromProps = useRef(false);
   const previousValue = useRef(value);
 
+  // Memoize disabled dates set for faster lookups
+  const disabledDatesSet = useMemo(() => {
+    if (Array.isArray(disabled)) {
+      return new Set(
+        disabled.map((date) => dateUtils.formatDate(date, 'yyyy-MM-dd')),
+      );
+    }
+    return null;
+  }, [disabled]);
+
+  // Memoize min/max date constraints
+  const dateConstraints = useMemo(
+    () => ({
+      minDate: minDate ? minDate : null,
+      maxDate: maxDate ? maxDate : null,
+    }),
+    [minDate, maxDate],
+  );
+
   // Update selected dates when value prop changes
   useEffect(() => {
     if (value !== undefined && value !== previousValue.current) {
@@ -85,17 +115,6 @@ export function CalendarProvider({
       isUpdatingFromProps.current = false;
     }
   }, [value]);
-
-  // Call onValueChange when selectedDates changes (but not when updating from props)
-  // useEffect(() => {
-  //   if (
-  //     selectedDates !== undefined &&
-  //     onValueChange &&
-  //     !isUpdatingFromProps.current
-  //   ) {
-  //     onValueChange(selectedDates);
-  //   }
-  // }, [selectedDates, onValueChange]);
 
   // Update current month when selected dates change
   useEffect(() => {
@@ -115,20 +134,24 @@ export function CalendarProvider({
         setCurrentMonth(newMonth);
       }
     }
-  }, [selectedDates]);
+  }, [selectedDates, currentMonth]);
 
-  // Check if a date is selected
+  // Optimized isSelected function with memoization
   const isSelected = useCallback(
     (date: Date): boolean => {
       if (!selectedDates) return false;
 
+      const dateKey = dateUtils.formatDate(date, 'yyyy-MM-dd');
+
       switch (mode) {
         case 'single':
           return dateUtils.isSameDay(date, selectedDates as Date);
-        case 'multiple':
-          return (selectedDates as Date[]).some((selectedDate) =>
+        case 'multiple': {
+          const dates = selectedDates as Date[];
+          return dates.some((selectedDate) =>
             dateUtils.isSameDay(date, selectedDate),
           );
+        }
         case 'range': {
           const range = selectedDates as DateRange;
           if (!range.from) return false;
@@ -144,7 +167,7 @@ export function CalendarProvider({
     [selectedDates, mode],
   );
 
-  // Check if a date is in range (for range selection)
+  // Optimized isInRange function
   const isInRange = useCallback(
     (date: Date): boolean => {
       if (mode !== 'range' || !selectedDates || !('from' in selectedDates)) {
@@ -173,7 +196,7 @@ export function CalendarProvider({
     [mode, selectedDates, hoveredDate],
   );
 
-  // Check if a date is the start of a range
+  // Optimized isRangeStart function
   const isRangeStart = useCallback(
     (date: Date): boolean => {
       if (mode !== 'range' || !selectedDates || !('from' in selectedDates)) {
@@ -202,7 +225,7 @@ export function CalendarProvider({
     [mode, selectedDates, hoveredDate],
   );
 
-  // Check if a date is the end of a range
+  // Optimized isRangeEnd function
   const isRangeEnd = useCallback(
     (date: Date): boolean => {
       if (mode !== 'range' || !selectedDates || !('from' in selectedDates)) {
@@ -231,19 +254,26 @@ export function CalendarProvider({
     [mode, selectedDates, hoveredDate],
   );
 
-  // Check if a date is disabled
+  // Optimized isDisabled function with fast path for common cases
   const isDisabled = useCallback(
     (date: Date): boolean => {
-      // Check min/max date constraints
-      if (minDate && dateUtils.isBefore(date, minDate)) return true;
-      if (maxDate && dateUtils.isAfter(date, maxDate)) return true;
-
-      // Check disabled dates array
-      if (Array.isArray(disabled)) {
-        return disabled.some((disabledDate) =>
-          dateUtils.isSameDay(date, disabledDate),
-        );
+      // Fast path: check disabled dates set first
+      if (disabledDatesSet) {
+        const dateKey = dateUtils.formatDate(date, 'yyyy-MM-dd');
+        if (disabledDatesSet.has(dateKey)) return true;
       }
+
+      // Check min/max date constraints
+      if (
+        dateConstraints.minDate &&
+        dateUtils.isBefore(date, dateConstraints.minDate)
+      )
+        return true;
+      if (
+        dateConstraints.maxDate &&
+        dateUtils.isAfter(date, dateConstraints.maxDate)
+      )
+        return true;
 
       // Check disabled function
       if (typeof disabled === 'function') {
@@ -252,26 +282,25 @@ export function CalendarProvider({
 
       return false;
     },
-    [disabled, minDate, maxDate],
+    [disabledDatesSet, dateConstraints, disabled],
   );
 
-  // Check if a date is today
+  // Optimized isToday function - memoized
   const isToday = useCallback((date: Date): boolean => {
     return dateUtils.isToday(date);
   }, []);
 
-  // Check if a date is outside the current month
-  const isOutsideMonth = useCallback(
-    (date: Date): boolean => {
-      return !dateUtils.isSameMonth(date, currentMonth);
-    },
-    [currentMonth],
-  );
+  // Optimized isOutsideMonth function
+  const isOutsideMonth = useCallback((date: Date, month: Date): boolean => {
+    return !dateUtils.isSameMonth(date, month);
+  }, []);
 
+  // Memoized context value to prevent unnecessary re-renders
   const contextValue = useMemo<CalendarContextValue>(
     () => ({
       // State
       currentMonth,
+      currentMonths,
       selectedDates,
       hoveredDate,
       focusedDate,
@@ -293,12 +322,14 @@ export function CalendarProvider({
 
       // Configuration
       mode,
+      numberOfMonths,
       showOutsideDays,
       locale,
       weekStartsOn,
     }),
     [
       currentMonth,
+      currentMonths,
       selectedDates,
       hoveredDate,
       focusedDate,
@@ -314,6 +345,7 @@ export function CalendarProvider({
       isToday,
       isOutsideMonth,
       mode,
+      numberOfMonths,
       showOutsideDays,
       locale,
       weekStartsOn,

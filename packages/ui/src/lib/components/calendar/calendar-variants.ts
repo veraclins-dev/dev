@@ -20,11 +20,16 @@ export const calendarVariants = cva('calendar inline-flex flex-col gap-2 p-3', {
       multiple: 'calendar-multiple',
       range: 'calendar-range',
     },
+    multiMonth: {
+      true: 'calendar-multi-month',
+      false: 'calendar-single-month',
+    },
   },
   defaultVariants: {
     size: 'md',
     theme: 'default',
     layout: 'single',
+    multiMonth: false,
   },
 });
 

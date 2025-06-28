@@ -227,6 +227,7 @@ export interface CalendarOverlayProps {
 export interface CalendarContextValue {
   // State
   currentMonth: Date;
+  currentMonths: Date[]; // Array of months for multi-month display
   selectedDates: Date | Date[] | DateRange | undefined;
   hoveredDate: Date | undefined;
   focusedDate: Date | undefined;
@@ -244,10 +245,11 @@ export interface CalendarContextValue {
   isRangeEnd: (date: Date) => boolean;
   isDisabled: (date: Date) => boolean;
   isToday: (date: Date) => boolean;
-  isOutsideMonth: (date: Date) => boolean;
+  isOutsideMonth: (date: Date, month: Date) => boolean;
 
   // Configuration
   mode: CalendarMode;
+  numberOfMonths: number;
   showOutsideDays: boolean;
   locale: string;
   weekStartsOn: WeekStartsOn;
