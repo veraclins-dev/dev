@@ -590,7 +590,6 @@ export const getMonthGrid = (
   const firstDayToShow = showOutsideDays
     ? getFirstDayOfWeek(firstDayOfMonth, weekStartsOn)
     : firstDayOfMonth;
-
   // Get the last day to display (might be from next month)
   const lastDayToShow = showOutsideDays
     ? getLastDayOfWeek(lastDayOfMonth, weekStartsOn)
@@ -636,8 +635,8 @@ export const getMonthGrid = (
 export const getWeekDays = (locale: string, weekStartsOn: number): string[] => {
   const weekDays = [];
   const baseDate = DateTime.fromISO('2017-01-01').plus({
-    days: weekStartsOn - 1,
-  }); // Adjust for weekStartsOn
+    days: weekStartsOn,
+  });
 
   for (let i = 0; i < 7; i++) {
     weekDays.push(
@@ -693,6 +692,27 @@ export const formatMonth = (
 ): string => {
   const dt = parseToDateTime(date);
   return dt.toLocaleString({ month: 'long' }, { locale });
+};
+
+/**
+ * Format a month name in short form
+ *
+ * @param date - The date to get the month for. Can be a Date object, number, or string
+ * @param locale - The locale to use (default: 'en-US')
+ * @returns The short month name
+ *
+ * @example
+ * ```typescript
+ * formatMonthShort('2023-12-25') // "Dec"
+ * formatMonthShort('2023-12-25', 'es-ES') // "dic"
+ * ```
+ */
+export const formatMonthShort = (
+  date: Date | number | string,
+  locale = 'en-US',
+): string => {
+  const dt = parseToDateTime(date);
+  return dt.toLocaleString({ month: 'short' }, { locale });
 };
 
 /**

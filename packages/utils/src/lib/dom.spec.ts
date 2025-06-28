@@ -63,7 +63,6 @@ describe('dom.stripHTMLTags', () => {
 
   it('should replace non-breaking spaces with spaces', () => {
     const result = dom.stripHTMLTags('Hello&nbsp;World');
-    console.log(result);
     expect(result).toEqual('Hello World');
   });
 });

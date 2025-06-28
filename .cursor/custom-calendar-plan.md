@@ -45,17 +45,23 @@ This document outlines the plan to replace the current `react-day-picker` depend
    - Gradual migration strategy ✅
 
 6. **✅ Playground Integration**
+
    - Basic showcase with core features ✅
    - Performance and accessibility comparisons ✅
    - Real-world usage examples ✅
+
+7. **🟡 Multi-Month Display & Core Performance Optimizations (Partially Complete)**
+   - Two-month (multi-month) side-by-side display for range selection: **Implemented**
+   - Core memoization, handler optimization, and Set lookups: **Implemented**
+   - Advanced range logic, auto-navigation, and range preview: **In Progress**
+   - Virtual scrolling, lazy loading, debounced hover: **Planned**
 
 ### 🔄 In Progress / Planned Features
 
 1. **🔄 Advanced Range Selection**
 
-   - Two-month side-by-side display for range selection
    - Automatic month navigation when selecting outside current month
-   - Range preview across month boundaries
+   - Range preview across month boundaries (advanced logic)
    - Smart range completion logic
 
 2. **🔄 Enhanced Navigation**
@@ -76,7 +82,6 @@ This document outlines the plan to replace the current `react-day-picker` depend
 
    - Virtual scrolling for large date ranges
    - Lazy loading of adjacent months
-   - Memoization of expensive calculations
    - Debounced hover events
 
 5. **🔄 Internationalization**
@@ -809,13 +814,23 @@ export { useCalendar, useDateRange, useCalendarKeyboard } from './calendar-hooks
 
 ### Next Steps
 
-1. **🔄 Implement Advanced Range Selection**: Two-month side-by-side display
-2. **🔄 Add Auto-Navigation**: Navigate when selecting outside current month
-3. **🔄 Enhance Accessibility**: Screen reader support and ARIA live regions
-4. **🔄 Performance Optimizations**: Virtual scrolling and lazy loading
-5. **🔄 Internationalization**: Advanced locale support
-6. **🔄 Edge Case Handling**: Complex date scenarios and timezone support
-7. **🔄 Final Cleanup**: Remove legacy components when safe
+1. **Continue Advanced Range Selection**
+
+   - Implement automatic month navigation when selecting outside the visible months
+   - Add advanced range preview logic across month boundaries
+   - Complete smart range completion logic
+
+2. **Continue Performance Optimizations**
+
+   - Implement virtual scrolling and lazy loading for large date ranges
+   - Add debounced hover events for better UX
+
+3. **Enhance Accessibility and Internationalization**
+
+   - Add screen reader support, ARIA live regions, and RTL/locale support
+
+4. **Edge Case Handling and Final Cleanup**
+   - Address complex date scenarios, timezone support, and finalize migration from legacy
 
 ### Conclusion
 
