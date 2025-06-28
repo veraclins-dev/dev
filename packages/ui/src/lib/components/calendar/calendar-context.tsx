@@ -130,18 +130,14 @@ export function CalendarProvider({
         return;
       }
 
-      if (!dateUtils.isSameMonth(newMonth, currentMonth)) {
-        setCurrentMonth(newMonth);
-      }
+      setCurrentMonth(newMonth);
     }
-  }, [selectedDates, currentMonth]);
+  }, [selectedDates]);
 
   // Optimized isSelected function with memoization
   const isSelected = useCallback(
     (date: Date): boolean => {
       if (!selectedDates) return false;
-
-      const dateKey = dateUtils.formatDate(date, 'yyyy-MM-dd');
 
       switch (mode) {
         case 'single':

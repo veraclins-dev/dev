@@ -1,9 +1,10 @@
 'use client';
 
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Icon } from '../../ui';
 import { Box } from '../../ui/box';
 import { Button } from '../../ui/button';
 
@@ -14,6 +15,8 @@ import {
   calendarHeaderVariants,
   calendarNavButtonVariants,
 } from './calendar-variants';
+import { MonthSelector } from './month-selector';
+import { YearSelector } from './year-selector';
 
 /**
  * Calendar header component with navigation - optimized with memoization
@@ -25,29 +28,11 @@ export const CalendarHeader = memo(function CalendarHeader({
   ...props
 }: CalendarHeaderProps & { ref?: React.Ref<HTMLDivElement> }) {
   const context = useCalendarContext();
-
-  // Memoize month options
-  const months = useMemo(() => {
-    return Array.from({ length: 12 }, (_, i) => {
-      const date = new Date(2024, i, 1);
-      return {
-        value: i,
-        label: dateUtils.formatMonth(date, context.locale),
-      };
-    });
-  }, [context.locale]);
-
-  // Memoize year options (current year ± 10 years)
-  const years = useMemo(() => {
-    const currentYear = new Date().getFullYear();
-    return Array.from({ length: 21 }, (_, i) => {
-      const year = currentYear - 10 + i;
-      return {
-        value: year,
-        label: year.toString(),
-      };
-    });
-  }, []);
+  const [monthPopoverOpen, setMonthPopoverOpen] = useState(false);
+  const [yearPopoverOpen, setYearPopoverOpen] = useState(false);
+  const [secondMonthPopoverOpen, setSecondMonthPopoverOpen] = useState(false);
+  const [secondYearPopoverOpen, setSecondYearPopoverOpen] = useState(false);
+  const [selectedYear, setSelectedYear] = useState<number | undefined>();
 
   // Memoize end month display for multi-month
   const endMonthDisplay = useMemo(() => {
@@ -59,6 +44,15 @@ export const CalendarHeader = memo(function CalendarHeader({
     );
     return `${dateUtils.formatMonth(endMonth, context.locale)} ${dateUtils.formatYear(endMonth, context.locale)}`;
   }, [context.numberOfMonths, context.currentMonth, context.locale]);
+
+  // Calculate second month for multi-month display
+  const secondMonth = useMemo(() => {
+    if (context.numberOfMonths <= 1) return null;
+    return dateUtils.addMonths(
+      context.currentMonth,
+      context.numberOfMonths - 1,
+    );
+  }, [context.currentMonth, context.numberOfMonths]);
 
   // Optimized navigation handlers
   const handlePreviousMonth = useCallback(() => {
@@ -73,19 +67,97 @@ export const CalendarHeader = memo(function CalendarHeader({
 
   const handleMonthSelect = useCallback(
     (month: number) => {
-      const newMonth = new Date(context.currentMonth.getFullYear(), month, 1);
+      // Use selectedYear if available, otherwise use current year
+      const year = selectedYear ?? context.currentMonth.getFullYear();
+      const newMonth = new Date(year, month, 1);
       context.setCurrentMonth(newMonth);
+      setMonthPopoverOpen(false);
+      setSelectedYear(undefined); // Clear selected year after use
     },
-    [context.currentMonth, context.setCurrentMonth],
+    [selectedYear, context],
   );
 
-  const handleYearSelect = useCallback(
-    (year: number) => {
-      const newMonth = new Date(year, context.currentMonth.getMonth(), 1);
-      context.setCurrentMonth(newMonth);
+  const handleYearSelect = useCallback((year: number) => {
+    // Store the selected year and open month selector
+    setSelectedYear(year);
+    setYearPopoverOpen(false);
+    setMonthPopoverOpen(true);
+  }, []);
+
+  const handleSecondMonthSelect = useCallback(
+    (month: number) => {
+      if (!secondMonth) return;
+
+      // Calculate the offset to maintain the same gap between months
+      const newSecondMonth = new Date(secondMonth.getFullYear(), month, 1);
+      const offset = context.numberOfMonths - 1;
+      const newFirstMonth = dateUtils.subtractMonths(newSecondMonth, offset);
+      context.setCurrentMonth(newFirstMonth);
+      setSecondMonthPopoverOpen(false);
     },
-    [context.currentMonth, context],
+    [secondMonth, context],
   );
+
+  const handleSecondYearSelect = useCallback(
+    (year: number) => {
+      if (!secondMonth) return;
+
+      // Calculate the offset to maintain the same gap between months
+      const newSecondMonth = new Date(year, secondMonth.getMonth(), 1);
+      const offset = context.numberOfMonths - 1;
+      const newFirstMonth = dateUtils.subtractMonths(newSecondMonth, offset);
+      context.setCurrentMonth(newFirstMonth);
+      setSecondYearPopoverOpen(false);
+    },
+    [secondMonth, context],
+  );
+
+  const handleMonthPopoverChange = useCallback(
+    (open: boolean) => {
+      setMonthPopoverOpen(open);
+      if (open) {
+        setYearPopoverOpen(false);
+        setSecondMonthPopoverOpen(false);
+        setSecondYearPopoverOpen(false);
+      } else {
+        // If we have a selected year but no month was chosen, navigate to that year with current month
+        if (selectedYear !== undefined) {
+          const currentMonth = context.currentMonth.getMonth();
+          const newMonth = new Date(selectedYear, currentMonth, 1);
+          context.setCurrentMonth(newMonth);
+          setSelectedYear(undefined); // Clear selected year after use
+        }
+      }
+    },
+    [selectedYear, context],
+  );
+
+  const handleYearPopoverChange = useCallback((open: boolean) => {
+    setYearPopoverOpen(open);
+    if (open) {
+      setMonthPopoverOpen(false);
+      setSecondMonthPopoverOpen(false);
+      setSecondYearPopoverOpen(false);
+    }
+  }, []);
+
+  const handleSecondMonthPopoverChange = useCallback((open: boolean) => {
+    setSecondMonthPopoverOpen(open);
+    if (open) {
+      setMonthPopoverOpen(false);
+      setYearPopoverOpen(false);
+      setSecondYearPopoverOpen(false);
+    }
+  }, []);
+
+  const handleSecondYearPopoverChange = useCallback((open: boolean) => {
+    setSecondYearPopoverOpen(open);
+    if (open) {
+      setMonthPopoverOpen(false);
+      setYearPopoverOpen(false);
+      setSecondMonthPopoverOpen(false);
+    }
+  }, []);
 
   return (
     <Box
@@ -106,97 +178,92 @@ export const CalendarHeader = memo(function CalendarHeader({
         )}
         aria-label="Go to previous month"
       >
-        <svg
-          className="h-4 w-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
+        <Icon name="chevron-left" />
       </Button>
 
       {/* Month/Year Display */}
-      <Box className="flex items-center gap-2">
+      <Box className="flex flex-1 justify-center items-center gap-2">
         {context.numberOfMonths > 1 ? (
-          // Multi-month display: show range
-          <Box className="flex items-center gap-1">
-            <select
-              value={context.currentMonth.getMonth()}
-              onChange={(e) => handleMonthSelect(parseInt(e.target.value, 10))}
-              className={cn(
-                'bg-transparent border-none text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded px-2 py-1',
-                classNames?.monthSelect,
-              )}
-              aria-label="Select start month"
-            >
-              {months.map((month) => (
-                <option key={month.value} value={month.value}>
-                  {month.label}
-                </option>
-              ))}
-            </select>
+          // Multi-month display: single line with coordinated months
+          <Box className="flex flex-1 justify-around items-center gap-1">
+            <Box>
+              <MonthSelector
+                currentMonth={context.currentMonth}
+                locale={context.locale}
+                onMonthSelect={handleMonthSelect}
+                open={monthPopoverOpen}
+                onOpenChange={handleMonthPopoverChange}
+                triggerLabel={dateUtils.formatMonth(
+                  context.currentMonth,
+                  context.locale,
+                )}
+                triggerAriaLabel="Select first month"
+                selectedYear={selectedYear}
+              />
 
-            <select
-              value={context.currentMonth.getFullYear()}
-              onChange={(e) => handleYearSelect(parseInt(e.target.value, 10))}
-              className={cn(
-                'bg-transparent border-none text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded px-2 py-1',
-                classNames?.yearSelect,
-              )}
-              aria-label="Select start year"
-            >
-              {years.map((year) => (
-                <option key={year.value} value={year.value}>
-                  {year.label}
-                </option>
-              ))}
-            </select>
+              <YearSelector
+                currentMonth={context.currentMonth}
+                onYearSelect={handleYearSelect}
+                open={yearPopoverOpen}
+                onOpenChange={handleYearPopoverChange}
+                triggerLabel={context.currentMonth.getFullYear().toString()}
+                triggerAriaLabel="Select first year"
+              />
+            </Box>
 
-            <span className="text-muted-foreground">-</span>
+            <span className="text-muted-foreground mx-1">to</span>
 
-            <span className="text-sm font-medium">{endMonthDisplay}</span>
+            {secondMonth && (
+              <Box>
+                <MonthSelector
+                  currentMonth={secondMonth}
+                  locale={context.locale}
+                  onMonthSelect={handleSecondMonthSelect}
+                  open={secondMonthPopoverOpen}
+                  onOpenChange={handleSecondMonthPopoverChange}
+                  triggerLabel={dateUtils.formatMonth(
+                    secondMonth,
+                    context.locale,
+                  )}
+                  triggerAriaLabel="Select second month"
+                />
+
+                <YearSelector
+                  currentMonth={secondMonth}
+                  onYearSelect={handleSecondYearSelect}
+                  open={secondYearPopoverOpen}
+                  onOpenChange={handleSecondYearPopoverChange}
+                  triggerLabel={secondMonth.getFullYear().toString()}
+                  triggerAriaLabel="Select second year"
+                />
+              </Box>
+            )}
           </Box>
         ) : (
           // Single month display
           <>
-            <select
-              value={context.currentMonth.getMonth()}
-              onChange={(e) => handleMonthSelect(parseInt(e.target.value, 10))}
-              className={cn(
-                'bg-transparent border-none text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded px-2 py-1',
-                classNames?.monthSelect,
+            <MonthSelector
+              currentMonth={context.currentMonth}
+              locale={context.locale}
+              onMonthSelect={handleMonthSelect}
+              open={monthPopoverOpen}
+              onOpenChange={handleMonthPopoverChange}
+              triggerLabel={dateUtils.formatMonth(
+                context.currentMonth,
+                context.locale,
               )}
-              aria-label="Select month"
-            >
-              {months.map((month) => (
-                <option key={month.value} value={month.value}>
-                  {month.label}
-                </option>
-              ))}
-            </select>
+              triggerAriaLabel="Select month"
+              selectedYear={selectedYear}
+            />
 
-            <select
-              value={context.currentMonth.getFullYear()}
-              onChange={(e) => handleYearSelect(parseInt(e.target.value, 10))}
-              className={cn(
-                'bg-transparent border-none text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded px-2 py-1',
-                classNames?.yearSelect,
-              )}
-              aria-label="Select year"
-            >
-              {years.map((year) => (
-                <option key={year.value} value={year.value}>
-                  {year.label}
-                </option>
-              ))}
-            </select>
+            <YearSelector
+              currentMonth={context.currentMonth}
+              onYearSelect={handleYearSelect}
+              open={yearPopoverOpen}
+              onOpenChange={handleYearPopoverChange}
+              triggerLabel={context.currentMonth.getFullYear().toString()}
+              triggerAriaLabel="Select year"
+            />
           </>
         )}
       </Box>
@@ -214,20 +281,7 @@ export const CalendarHeader = memo(function CalendarHeader({
         )}
         aria-label="Go to next month"
       >
-        <svg
-          className="h-4 w-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
+        <Icon name="chevron-right" />
       </Button>
     </Box>
   );

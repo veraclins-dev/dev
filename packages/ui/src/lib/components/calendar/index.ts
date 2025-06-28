@@ -7,12 +7,14 @@ export { CalendarGrid } from './calendar-grid';
 export { CalendarHeader } from './calendar-header';
 export { CalendarWeekHeader } from './calendar-week-header';
 export { MonthGrid } from './month-grid';
+export { MonthSelector } from './month-selector';
+export { Selector } from './selector';
+export { YearSelector } from './year-selector';
 
 // Context and hooks
 export { CalendarProvider, useCalendarContext } from './calendar-context';
 export {
   useCalendarKeyboard,
-  useCalendarState,
   useDateRange,
   useMonthNavigation,
 } from './calendar-hooks';
