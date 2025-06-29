@@ -29,8 +29,8 @@ export function CalendarGrid({
     <Box
       ref={ref}
       className={cn(
-        'flex',
-        context.numberOfMonths > 1 ? 'justify-start' : 'flex-col',
+        'flex w-full max-w-fit overflow-x-auto',
+        context.numberOfMonths > 1 ? 'gap-8' : 'flex-col',
         className,
       )}
       role="application"

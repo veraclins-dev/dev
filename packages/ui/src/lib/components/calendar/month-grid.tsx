@@ -248,12 +248,7 @@ export const MonthGrid = memo(function MonthGrid({
   ]);
 
   return (
-    <Box
-      className={cn(
-        'flex flex-col',
-        monthIndex > 0 && 'ml-4', // Add spacing between months
-      )}
-    >
+    <Box className={cn('flex flex-col')}>
       {/* Week header */}
       <CalendarWeekHeader
         className={classNames?.weekHeader}
