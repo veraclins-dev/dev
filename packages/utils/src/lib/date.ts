@@ -789,6 +789,29 @@ export const startOfToday = (): Date => {
 };
 
 /**
+ * Creates a date from year and month
+ *
+ * @param year - The year (e.g., 2023)
+ * @param month - The month (0-11, where 0 is January)
+ * @param day - The day of the month (default: 1)
+ * @returns A Date object representing the first day of the specified month and year
+ *
+ * @example
+ * ```typescript
+ * createDateFromYearMonth(2023, 11) // December 1, 2023
+ * createDateFromYearMonth(2024, 0, 15) // January 15, 2024
+ * createDateFromYearMonth(2023, 1) // February 1, 2023
+ * ```
+ */
+export const createDateFromYearMonth = (
+  year: number,
+  month: number,
+  day = 1,
+): Date => {
+  return toDate(DateTime.fromObject({ year, month: month + 1, day }));
+};
+
+/**
  * Adds days to a date
  *
  * @param date - The base date. Can be a Date object, number, or string
@@ -799,7 +822,6 @@ export const startOfToday = (): Date => {
  * ```typescript
  * addDays(new Date(), 7) // Date 7 days from now
  * addDays('2023-12-25', 1) // Date 1 day after
- * addDays(1703520000000, 30) // Date 30 days after
  * ```
  */
 export const addDays = (date: Date | number | string, days: number): Date => {

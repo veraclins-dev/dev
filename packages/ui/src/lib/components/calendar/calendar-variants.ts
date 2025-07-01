@@ -1,61 +1,6 @@
 import { cva } from 'class-variance-authority';
 
 /**
- * Calendar component variants
- */
-export const calendarVariants = cva(
-  'calendar inline-flex flex-col gap-2 p-3 w-full max-w-fit',
-  {
-    variants: {
-      size: {
-        sm: 'calendar-sm text-sm',
-        md: 'calendar-md text-base',
-        lg: 'calendar-lg text-lg',
-      },
-      theme: {
-        default: 'calendar-default',
-        minimal: 'calendar-minimal',
-        colorful: 'calendar-colorful',
-      },
-      layout: {
-        single: 'calendar-single',
-        multiple: 'calendar-multiple',
-        range: 'calendar-range',
-      },
-      multiMonth: {
-        true: 'calendar-multi-month',
-        false: 'calendar-single-month',
-      },
-    },
-    defaultVariants: {
-      size: 'md',
-      theme: 'default',
-      layout: 'single',
-      multiMonth: false,
-    },
-  },
-);
-
-/**
- * Calendar header variants
- */
-export const calendarHeaderVariants = cva(
-  'calendar-header flex items-center justify-between',
-  {
-    variants: {
-      size: {
-        sm: 'calendar-header-sm',
-        md: 'calendar-header-md',
-        lg: 'calendar-header-lg',
-      },
-    },
-    defaultVariants: {
-      size: 'md',
-    },
-  },
-);
-
-/**
  * Calendar navigation button variants
  */
 export const calendarNavButtonVariants = cva(

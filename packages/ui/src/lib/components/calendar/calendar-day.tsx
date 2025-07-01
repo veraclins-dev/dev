@@ -6,88 +6,96 @@ import { cn } from '@veraclins-dev/utils';
 
 import { Button } from '../../ui/button';
 
-import type { CalendarDayProps } from './calendar-types';
+import { useCalendarContext } from './calendar-context';
 import { dateUtils } from './calendar-utils';
 
+/**
+ * Calendar day component props
+ */
+export interface CalendarDayProps {
+  date: Date;
+  month: Date;
+  className?: string;
+}
 /**
  * Calendar day component - optimized with memoization
  */
 export const CalendarDay = memo(function CalendarDay({
   date,
-  isSelected,
-  isToday,
-  isOutsideMonth,
-  isDisabled,
-  isInRange,
-  isRangeStart,
-  isRangeEnd,
-  isHovered,
-  isFocused,
-  onClick,
-  onMouseEnter,
-  onMouseLeave,
-  onKeyDown,
-  onFocus,
-  onBlur,
+  month,
   className,
   ref,
   ...props
 }: CalendarDayProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  const context = useCalendarContext();
+
+  const state = useMemo(() => {
+    return {
+      isInRange: context.isInRange(date),
+      isRangeStart: context.isRangeStart(date),
+      isRangeEnd: context.isRangeEnd(date),
+      isSelected: context.isSelected(date),
+      isOutsideMonth: context.isOutsideMonth(date, month),
+      isToday: context.isToday(date),
+      isFocused:
+        context.focusedDate && dateUtils.isSameDay(date, context.focusedDate),
+      isHovered:
+        context.hoveredDate && dateUtils.isSameDay(date, context.hoveredDate),
+    };
+  }, [context, date, month]);
   // Memoize Button variant and color based on day state
   const buttonProps = useMemo(() => {
-    if (isInRange && !(isRangeStart || isRangeEnd)) {
+    if (state.isInRange && !(state.isRangeStart || state.isRangeEnd)) {
       return { variant: 'soft' as const, color: 'primary' as const };
     }
 
-    if (isSelected || isRangeStart || isRangeEnd) {
+    if (
+      (state.isSelected || state.isRangeStart || state.isRangeEnd) &&
+      !state.isOutsideMonth
+    ) {
       return { variant: 'solid' as const, color: 'primary' as const };
     }
 
-    if (isOutsideMonth) {
+    if (state.isInRange && state.isOutsideMonth) {
+      return { variant: 'soft' as const, color: 'primary' as const };
+    }
+    if (state.isOutsideMonth) {
       return { variant: 'soft' as const, color: 'neutral' as const };
     }
 
-    if (isToday) {
+    if (state.isToday) {
       return { variant: 'soft' as const, color: 'secondary' as const };
     }
 
     return { variant: 'text' as const, color: 'neutral' as const };
-  }, [
-    isInRange,
-    isRangeStart,
-    isRangeEnd,
-    isSelected,
-    isOutsideMonth,
-    isToday,
-  ]);
+  }, [state]);
 
   // Memoize className to prevent unnecessary re-computations
   const buttonClassName = useMemo(() => {
     return cn(
       // Base calendar day styles
-      'h-8 w-8 p-0 text-sm font-normal',
+      'size-8 text-sm font-normal',
       // Range start/end rounded corner adjustments
-      isRangeStart && !isRangeEnd && 'rounded-r-none',
-      isRangeEnd && !isRangeStart && 'rounded-l-none',
-      isRangeStart && isRangeEnd && 'rounded-md',
-      isInRange && !isRangeStart && !isRangeEnd && 'rounded-none',
-      isOutsideMonth && 'opacity-50',
-      isFocused && 'ring-1 ring-foreground ring-offset-0.5',
+      state.isRangeStart &&
+        !state.isRangeEnd &&
+        !state.isOutsideMonth &&
+        'rounded-r-none',
+      state.isRangeEnd &&
+        !state.isRangeStart &&
+        !state.isOutsideMonth &&
+        'rounded-l-none',
+      state.isInRange &&
+        !state.isRangeStart &&
+        !state.isRangeEnd &&
+        !state.isOutsideMonth &&
+        'rounded-none',
+      state.isOutsideMonth && 'opacity-50',
+      state.isFocused &&
+        !state.isOutsideMonth &&
+        'ring-1 ring-foreground ring-offset-0.5',
       className,
     );
-  }, [
-    isRangeStart,
-    isRangeEnd,
-    isInRange,
-    isOutsideMonth,
-    isFocused,
-    className,
-  ]);
-
-  // Memoize aria label
-  const ariaLabel = useMemo(() => {
-    return dateUtils.formatDate(date, 'en-US');
-  }, [date]);
+  }, [state, className]);
 
   // Memoize day number
   const dayNumber = useMemo(() => {
@@ -96,50 +104,17 @@ export const CalendarDay = memo(function CalendarDay({
 
   // Memoize data attributes
   const dataAttributes = useMemo(() => {
+    const ariaLabel = dateUtils.formatDate(date, 'en-US');
     return {
       'data-date': date.toISOString(),
       'aria-label': ariaLabel,
-      'aria-selected': isSelected,
-      'aria-current': isToday ? ('date' as const) : undefined,
+      'aria-selected': state.isSelected,
+      'aria-current': state.isToday ? ('date' as const) : undefined,
     };
-  }, [date, ariaLabel, isSelected, isToday]);
+  }, [date, state]);
 
   // Determine size based on common calendar sizes
   const size = 'sm' as const;
-
-  const handleClick = () => {
-    if (!isDisabled && !isOutsideMonth) {
-      onClick?.(date);
-    }
-  };
-
-  const handleMouseEnter = () => {
-    if (!isDisabled) {
-      onMouseEnter?.(date);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (!isDisabled) {
-      onMouseLeave?.(date);
-    }
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    onKeyDown?.(event);
-  };
-
-  const handleFocus = () => {
-    if (!isDisabled) {
-      onFocus?.(date);
-    }
-  };
-
-  const handleBlur = () => {
-    if (!isDisabled) {
-      onBlur?.(date);
-    }
-  };
 
   return (
     <Button
@@ -148,13 +123,13 @@ export const CalendarDay = memo(function CalendarDay({
       variant={buttonProps.variant}
       color={buttonProps.color}
       size={size}
-      onClick={handleClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onKeyDown={handleKeyDown}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      disabled={isDisabled}
+      onClick={() => context.onDayClick(date, month)}
+      onMouseEnter={() => context.onDayMouseEnter(date)}
+      onMouseLeave={context.onDayMouseLeave}
+      onKeyDown={context.onDayKeyDown}
+      onFocus={() => context.onDayFocus(date)}
+      onBlur={context.onDayBlur}
+      disabled={context.isDisabled(date)}
       className={buttonClassName}
       {...dataAttributes}
       {...props}

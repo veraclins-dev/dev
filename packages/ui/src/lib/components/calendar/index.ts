@@ -13,11 +13,6 @@ export { YearSelector } from './year-selector';
 
 // Context and hooks
 export { CalendarProvider, useCalendarContext } from './calendar-context';
-export {
-  useCalendarKeyboard,
-  useDateRange,
-  useMonthNavigation,
-} from './calendar-hooks';
 
 // Utilities
 export { dateUtils } from './calendar-utils';
@@ -25,18 +20,11 @@ export { dateUtils } from './calendar-utils';
 // Types
 export type {
   CalendarClassNames,
-  CalendarContextValue,
-  CalendarDayProps,
   CalendarDayState,
   CalendarFooterProps,
-  CalendarGridProps,
   CalendarHeaderProps,
-  CalendarLayout,
   CalendarMode,
   CalendarOverlayProps,
-  CalendarProps,
-  CalendarSize,
-  CalendarTheme,
   CalendarWeekHeaderProps,
   DateRange,
   WeekStartsOn,
@@ -46,10 +34,8 @@ export type {
 export {
   calendarFooterVariants,
   calendarGridVariants,
-  calendarHeaderVariants,
   calendarNavButtonVariants,
   calendarTodayButtonVariants,
-  calendarVariants,
   calendarWeekHeaderCellVariants,
   calendarWeekHeaderVariants,
   calendarWeekVariants,

@@ -13,14 +13,21 @@ import {
   Icon,
   Typography,
 } from '@veraclins-dev/ui';
-import { addDays, formatDate, startOfToday } from '@veraclins-dev/utils';
+import {
+  addDays,
+  formatDate,
+  startOfToday,
+  subtractDays,
+} from '@veraclins-dev/utils';
 
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
 export function CalendarShowcase() {
-  const [date, setDate] = useState<Date | undefined>(startOfToday());
+  const [date, setDate] = useState<Date | undefined>(
+    subtractDays(startOfToday(), 3),
+  );
   const [dateRange, setDateRange] = useState<DateRange | undefined>({
-    from: startOfToday(),
+    from: subtractDays(startOfToday(), 3),
     to: addDays(startOfToday(), 7),
   });
 
@@ -58,7 +65,7 @@ export function CalendarShowcase() {
                 onValueChange={(value) => {
                   if (value instanceof Date) setDate(value);
                 }}
-                className="rounded-md border"
+                className="rounded-lg border"
               />
               <Box className="mt-4">
                 <Typography variant="body2" className="text-muted-foreground">
@@ -656,6 +663,72 @@ export function CalendarShowcase() {
                 • Swipe gestures for month navigation
                 <br />• Optimized popover positioning
               </Typography>
+            </Box>
+          </Box>
+        </CardContent>
+      </Card>
+
+      {/* Advanced Range Selection */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Advanced Range Selection</CardTitle>
+          <CardDescription>
+            Calendar with automatic month navigation and smart range completion
+            (enabled by default)
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Multi-Month Range with Advanced Features */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Multi-Month Range (Advanced Features)
+              </Typography>
+              <Calendar
+                mode="range"
+                value={dateRange}
+                onValueChange={(value) => {
+                  if (value && typeof value === 'object' && 'from' in value) {
+                    setDateRange(value as DateRange);
+                  }
+                }}
+                numberOfMonths={2}
+                className="rounded-md border"
+              />
+              <Box className="mt-4">
+                <Typography variant="body2" className="text-muted-foreground">
+                  Features enabled by default:
+                  <br />
+                  • Automatic month navigation when selecting outside visible
+                  range
+                  <br />
+                  • Smart range completion with proper date ordering
+                  <br />• Enhanced range preview across month boundaries
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* Single Month Range for Comparison */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Single Month Range
+              </Typography>
+              <Calendar
+                mode="range"
+                value={dateRange}
+                onValueChange={(value) => {
+                  if (value && typeof value === 'object' && 'from' in value) {
+                    setDateRange(value as DateRange);
+                  }
+                }}
+                numberOfMonths={1}
+                className="rounded-md border"
+              />
+              <Box className="mt-4">
+                <Typography variant="body2" className="text-muted-foreground">
+                  Single month range selection with same advanced features
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </CardContent>

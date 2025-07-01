@@ -7,6 +7,7 @@ import {
   addDays,
   addMonths,
   addYears,
+  createDateFromYearMonth,
   formatDate,
   formatMonth,
   formatMonthShort,
@@ -93,6 +94,9 @@ export const dateUtils = {
   subtractDays,
   subtractMonths,
   subtractYears,
+
+  // Date creation
+  createDateFromYearMonth,
 
   // Date comparisons
   isSameDay,

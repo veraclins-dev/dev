@@ -10,13 +10,53 @@ import {
   useState,
 } from 'react';
 
-import type {
-  CalendarContextValue,
-  CalendarMode,
-  DateRange,
-  WeekStartsOn,
-} from './calendar-types';
+import type { CalendarMode, DateRange, WeekStartsOn } from './calendar-types';
 import { dateUtils } from './calendar-utils';
+
+/**
+ * Calendar context value
+ */
+export interface CalendarContextValue {
+  // State
+  currentMonth: Date;
+  currentMonths: Date[]; // Array of months for multi-month display
+  selectedDates: Date | Date[] | DateRange | undefined;
+  hoveredDate: Date | undefined;
+  focusedDate: Date | undefined;
+
+  // Actions
+  setCurrentMonth: (date: Date) => void;
+  setSelectedDates: (dates: Date | Date[] | DateRange | undefined) => void;
+  setHoveredDate: (date: Date | undefined) => void;
+  setFocusedDate: (date: Date | undefined) => void;
+  onDayClick: (date: Date, month: Date) => void;
+  onDayMouseEnter: (date: Date) => void;
+  onDayMouseLeave: () => void;
+  onDayFocus: (date: Date) => void;
+  onDayBlur: () => void;
+  onDayKeyDown: (event: React.KeyboardEvent) => void;
+  gotoPreviousMonth: () => void;
+  gotoNextMonth: () => void;
+  gotoToday: () => void;
+  onMonthSelect: (month: number, monthIndex?: number) => void;
+  onYearSelect: (year: number, monthIndex?: number) => void;
+
+  // Utilities
+  isSelected: (date: Date) => boolean;
+  isInRange: (date: Date) => boolean;
+  isRangeStart: (date: Date) => boolean;
+  isRangeEnd: (date: Date) => boolean;
+  isDisabled: (date: Date) => boolean;
+  isToday: (date: Date) => boolean;
+  isOutsideMonth: (date: Date, month: Date) => boolean;
+
+  // Configuration
+  mode: CalendarMode;
+  showOutsideDays: boolean;
+  locale: string;
+  weekStartsOn: WeekStartsOn;
+  numberOfMonths: number;
+}
 
 const CalendarContext = createContext<CalendarContextValue | undefined>(
   undefined,
@@ -26,7 +66,6 @@ interface CalendarProviderProps {
   children: React.ReactNode;
   // Calendar configuration
   mode?: CalendarMode;
-  numberOfMonths?: number;
   showOutsideDays?: boolean;
   locale?: string;
   weekStartsOn?: WeekStartsOn;
@@ -37,7 +76,175 @@ interface CalendarProviderProps {
   value?: Date | Date[] | DateRange;
   defaultValue?: Date | Date[] | DateRange;
   onValueChange?: (value: Date | Date[] | DateRange) => void;
+  numberOfMonths: number;
 }
+
+// ===== UTILITY FUNCTIONS (Pure functions outside component scope) =====
+
+/**
+ * Check if a date is today
+ */
+const isToday = (date: Date): boolean => {
+  return dateUtils.isToday(date);
+};
+
+/**
+ * Check if a date is outside the specified month
+ */
+const isOutsideMonth = (date: Date, month: Date): boolean => {
+  return !dateUtils.isSameMonth(date, month);
+};
+
+/**
+ * Check if a date is selected based on mode and selected dates
+ */
+const isSelected = (
+  date: Date,
+  selectedDates: Date | Date[] | DateRange | undefined,
+  mode: CalendarMode,
+): boolean => {
+  if (!selectedDates) return false;
+
+  switch (mode) {
+    case 'single':
+      return dateUtils.isSameDay(date, selectedDates as Date);
+    case 'multiple': {
+      const dates = selectedDates as Date[];
+      return dates.some((selectedDate) =>
+        dateUtils.isSameDay(date, selectedDate),
+      );
+    }
+    case 'range': {
+      const range = selectedDates as DateRange;
+      if (!range.from) return false;
+      if (range.to) {
+        return dateUtils.isBetween(date, range.from, range.to);
+      }
+      return dateUtils.isSameDay(date, range.from);
+    }
+    default:
+      return false;
+  }
+};
+
+/**
+ * Check if a date is in range (for range selection mode)
+ */
+const isInRange = (
+  date: Date,
+  selectedDates: Date | Date[] | DateRange | undefined,
+  hoveredDate: Date | undefined,
+  mode: CalendarMode,
+): boolean => {
+  if (mode !== 'range' || !selectedDates || !('from' in selectedDates)) {
+    return false;
+  }
+
+  const range = selectedDates as DateRange;
+  if (!range.from) return false;
+
+  if (hoveredDate && !range.to) {
+    if (dateUtils.isBefore(hoveredDate, range.from)) {
+      return dateUtils.isBetween(date, hoveredDate, range.from);
+    } else {
+      return dateUtils.isBetween(date, range.from, hoveredDate);
+    }
+  }
+
+  if (range.to) {
+    return dateUtils.isBetween(date, range.from, range.to);
+  }
+
+  return false;
+};
+
+/**
+ * Check if a date is the start of a range
+ */
+const isRangeStart = (
+  date: Date,
+  selectedDates: Date | Date[] | DateRange | undefined,
+  hoveredDate: Date | undefined,
+  mode: CalendarMode,
+): boolean => {
+  if (mode !== 'range' || !selectedDates || !('from' in selectedDates)) {
+    return false;
+  }
+
+  const range = selectedDates as DateRange;
+  if (!range.from) return false;
+
+  if (hoveredDate && !range.to) {
+    return dateUtils.isSameDay(date, range.from);
+  }
+
+  if (range.to) {
+    return dateUtils.isSameDay(date, range.from);
+  }
+
+  return dateUtils.isSameDay(date, range.from);
+};
+
+/**
+ * Check if a date is the end of a range
+ */
+const isRangeEnd = (
+  date: Date,
+  selectedDates: Date | Date[] | DateRange | undefined,
+  hoveredDate: Date | undefined,
+  mode: CalendarMode,
+): boolean => {
+  if (mode !== 'range' || !selectedDates || !('from' in selectedDates)) {
+    return false;
+  }
+
+  const range = selectedDates as DateRange;
+  if (!range.from) return false;
+
+  if (hoveredDate && !range.to) {
+    return dateUtils.isSameDay(date, hoveredDate);
+  }
+
+  if (range.to) {
+    return dateUtils.isSameDay(date, range.to);
+  }
+
+  return false;
+};
+
+/**
+ * Check if a date is disabled based on constraints
+ */
+const isDisabled = (
+  date: Date,
+  disabledDatesSet: Set<string> | null,
+  dateConstraints: { minDate: Date | null; maxDate: Date | null },
+  disabled?: Date[] | ((date: Date) => boolean),
+): boolean => {
+  if (disabledDatesSet) {
+    const dateKey = dateUtils.formatDate(date, 'yyyy-MM-dd');
+    if (disabledDatesSet.has(dateKey)) return true;
+  }
+
+  if (
+    dateConstraints.minDate &&
+    dateUtils.isBefore(date, dateConstraints.minDate)
+  ) {
+    return true;
+  }
+  if (
+    dateConstraints.maxDate &&
+    dateUtils.isAfter(date, dateConstraints.maxDate)
+  ) {
+    return true;
+  }
+
+  if (typeof disabled === 'function') {
+    return disabled(date);
+  }
+
+  return false;
+};
 
 /**
  * Calendar context provider with built-in state management
@@ -45,7 +252,6 @@ interface CalendarProviderProps {
 export function CalendarProvider({
   children,
   mode = 'single',
-  numberOfMonths = 1,
   showOutsideDays = true,
   locale = 'en-US',
   weekStartsOn = 0,
@@ -55,12 +261,29 @@ export function CalendarProvider({
   value,
   defaultValue,
   onValueChange,
+  numberOfMonths = 1,
 }: CalendarProviderProps) {
-  // State management
+  // ===== STATE VARIABLES =====
   const [currentMonth, setCurrentMonth] = useState(() => {
     return dateUtils.getDefaultMonth(value, defaultValue);
   });
 
+  const [selectedDates, setSelectedDates] = useState(() => {
+    return value || defaultValue;
+  });
+
+  const [hoveredDate, setHoveredDate] = useState<Date | undefined>();
+
+  const [focusedDate, setFocusedDate] = useState<Date | undefined>(() => {
+    const today = new Date();
+    const firstDayOfMonth = dateUtils.getFirstDayOfMonth(currentMonth);
+    return dateUtils.isSameMonth(today, currentMonth) ? today : firstDayOfMonth;
+  });
+
+  const isUpdatingFromProps = useRef(false);
+  const previousValue = useRef(value);
+
+  // ===== USE MEMO VARIABLES =====
   // Generate array of months for multi-month display - memoized
   const currentMonths = useMemo(() => {
     const months: Date[] = [];
@@ -70,24 +293,6 @@ export function CalendarProvider({
     return months;
   }, [currentMonth, numberOfMonths]);
 
-  const [selectedDates, setSelectedDates] = useState(() => {
-    return value || defaultValue;
-  });
-
-  const [hoveredDate, setHoveredDate] = useState<Date | undefined>();
-
-  const [focusedDate, setFocusedDate] = useState<Date | undefined>(() => {
-    // Set initial focused date to today or first day of current month
-    const today = new Date();
-    const firstDayOfMonth = dateUtils.getFirstDayOfMonth(currentMonth);
-    return dateUtils.isSameMonth(today, currentMonth) ? today : firstDayOfMonth;
-  });
-
-  // Ref to track if we're updating from props
-  const isUpdatingFromProps = useRef(false);
-  const previousValue = useRef(value);
-
-  // Memoize disabled dates set for faster lookups
   const disabledDatesSet = useMemo(() => {
     if (Array.isArray(disabled)) {
       return new Set(
@@ -97,7 +302,6 @@ export function CalendarProvider({
     return null;
   }, [disabled]);
 
-  // Memoize min/max date constraints
   const dateConstraints = useMemo(
     () => ({
       minDate: minDate ? minDate : null,
@@ -106,7 +310,265 @@ export function CalendarProvider({
     [minDate, maxDate],
   );
 
-  // Update selected dates when value prop changes
+  // ===== HANDLERS =====
+  // Centralized day click handler with automatic navigation
+  const onDayClick = useCallback(
+    (date: Date, month: Date) => {
+      // Skip if date is disabled
+      if (isDisabled(date, disabledDatesSet, dateConstraints, disabled)) {
+        return;
+      }
+
+      // Check if date is outside current month
+      const isOutsideMonth = !dateUtils.isSameMonth(date, month);
+
+      let newSelectedDates: Date | Date[] | DateRange | undefined;
+
+      switch (mode) {
+        case 'single':
+          newSelectedDates = date;
+          break;
+
+        case 'multiple': {
+          const currentMultiple = (selectedDates as Date[]) || [];
+          const isAlreadySelected = currentMultiple.some((selectedDate) =>
+            dateUtils.isSameDay(date, selectedDate),
+          );
+          if (isAlreadySelected) {
+            newSelectedDates = currentMultiple.filter(
+              (selectedDate) => !dateUtils.isSameDay(date, selectedDate),
+            );
+          } else {
+            newSelectedDates = [...currentMultiple, date];
+          }
+          break;
+        }
+
+        case 'range': {
+          const currentRange = (selectedDates as DateRange) || {};
+          if (!currentRange.from || (currentRange.from && currentRange.to)) {
+            // Start new range
+            newSelectedDates = { from: date, to: undefined };
+          } else {
+            // Complete range
+            if (dateUtils.isBefore(date, currentRange.from)) {
+              newSelectedDates = { from: date, to: currentRange.from };
+            } else {
+              newSelectedDates = { from: currentRange.from, to: date };
+            }
+          }
+          break;
+        }
+
+        default:
+          newSelectedDates = date;
+      }
+
+      setSelectedDates(newSelectedDates);
+
+      // Handle navigation for outside month dates
+      if (isOutsideMonth) {
+        // For multiple months view, check if the date is in any of the visible months
+        if (numberOfMonths > 1) {
+          const visibleMonths = currentMonths;
+          const isDateInAnyVisibleMonth = visibleMonths.some((visibleMonth) =>
+            dateUtils.isSameMonth(date, visibleMonth),
+          );
+
+          // Only navigate if the date is not in any visible month
+          if (!isDateInAnyVisibleMonth) {
+            // Determine navigation direction based on date position
+            const firstVisibleMonth = visibleMonths[0];
+
+            let targetMonth: Date;
+            if (dateUtils.isBefore(date, firstVisibleMonth)) {
+              // Date is before visible range - navigate to show the date at the start
+              targetMonth = dateUtils.getFirstDayOfMonth(date);
+            } else {
+              // Date is after visible range - navigate to show the date at the end
+              // Calculate the offset to maintain the same number of months
+              const offset = numberOfMonths - 1;
+              targetMonth = dateUtils.subtractMonths(
+                dateUtils.getFirstDayOfMonth(date),
+                offset,
+              );
+            }
+
+            setCurrentMonth(targetMonth);
+          }
+        } else {
+          // Single month view - simple navigation
+          const targetMonth = dateUtils.getFirstDayOfMonth(date);
+          setCurrentMonth(targetMonth);
+        }
+      }
+      // onValueChange?.(newSelectedDates);
+    },
+
+    [
+      disabledDatesSet,
+      dateConstraints,
+      disabled,
+      mode,
+      selectedDates,
+      numberOfMonths,
+      currentMonths,
+      setSelectedDates,
+      setCurrentMonth,
+    ],
+  );
+
+  const onDayBlur = useCallback(() => {
+    setFocusedDate(undefined);
+    if (selectedDates) {
+      onValueChange?.(selectedDates);
+    }
+  }, [selectedDates, onValueChange]);
+
+  // Centralized keyboard navigation handler
+  const onDayKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      if (!focusedDate) return;
+
+      let newDate: Date;
+
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          newDate = dateUtils.addDays(focusedDate, -1);
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          newDate = dateUtils.addDays(focusedDate, 1);
+          break;
+        case 'ArrowUp':
+          event.preventDefault();
+          newDate = dateUtils.addDays(focusedDate, -7);
+          break;
+        case 'ArrowDown':
+          event.preventDefault();
+          newDate = dateUtils.addDays(focusedDate, 7);
+          break;
+        case 'Home':
+          event.preventDefault();
+          newDate = dateUtils.getFirstDayOfMonth(currentMonth);
+          break;
+        case 'End':
+          event.preventDefault();
+          newDate = dateUtils.getLastDayOfMonth(currentMonth);
+          break;
+        case 'PageUp':
+          event.preventDefault();
+          newDate = dateUtils.addMonths(focusedDate, -1);
+          break;
+        case 'PageDown':
+          event.preventDefault();
+          newDate = dateUtils.addMonths(focusedDate, 1);
+          break;
+        case 'Enter':
+        case ' ': {
+          event.preventDefault();
+          // Use the first visible month for selection
+          const firstMonth = currentMonths[0];
+          onDayClick(focusedDate, firstMonth);
+          return;
+        }
+        case 'Escape':
+          // Let the parent component handle escape
+          return;
+        default:
+          return;
+      }
+
+      if (!isDisabled(newDate, disabledDatesSet, dateConstraints, disabled)) {
+        setFocusedDate(newDate);
+      }
+    },
+    [
+      currentMonth,
+      currentMonths,
+      disabledDatesSet,
+      dateConstraints,
+      disabled,
+      onDayClick,
+      setFocusedDate,
+      focusedDate,
+    ],
+  );
+
+  // Month navigation handlers
+  const gotoPreviousMonth = useCallback(() => {
+    const newMonth = dateUtils.subtractMonths(currentMonth, 1);
+    setCurrentMonth(newMonth);
+  }, [currentMonth, setCurrentMonth]);
+
+  const gotoNextMonth = useCallback(() => {
+    const newMonth = dateUtils.addMonths(currentMonth, 1);
+    setCurrentMonth(dateUtils.getFirstDayOfMonth(newMonth));
+  }, [currentMonth, setCurrentMonth]);
+
+  const gotoToday = useCallback(() => {
+    const today = new Date();
+    if (!isDisabled(today, disabledDatesSet, dateConstraints, disabled)) {
+      setCurrentMonth(today);
+      setFocusedDate(today);
+    }
+  }, [
+    disabledDatesSet,
+    dateConstraints,
+    disabled,
+    setCurrentMonth,
+    setFocusedDate,
+  ]);
+
+  // Month and year selection handlers
+  const onMonthSelect = useCallback(
+    (month: number, monthIndex = 0) => {
+      if (monthIndex === 0) {
+        // First month selection - navigate directly to the selected month
+        const year = currentMonths[0].getFullYear();
+        const newMonth = dateUtils.createDateFromYearMonth(year, month);
+        setCurrentMonth(newMonth);
+      } else if (monthIndex > 0 && currentMonths[monthIndex]) {
+        // Other month selection - calculate offset to maintain the same gap
+        const currentMonth = currentMonths[monthIndex];
+        const currentYear = currentMonth.getFullYear();
+        const newTargetMonth = dateUtils.createDateFromYearMonth(
+          currentYear,
+          month,
+        );
+        const offset = monthIndex;
+        const newFirstMonth = dateUtils.subtractMonths(newTargetMonth, offset);
+        setCurrentMonth(newFirstMonth);
+      }
+    },
+    [currentMonths, setCurrentMonth],
+  );
+
+  const onYearSelect = useCallback(
+    (year: number, monthIndex = 0) => {
+      if (monthIndex === 0) {
+        // First month year selection - navigate to the selected year with current month
+        const currentMonth = currentMonths[0].getMonth();
+        const newMonth = dateUtils.createDateFromYearMonth(year, currentMonth);
+        setCurrentMonth(newMonth);
+      } else if (monthIndex > 0 && currentMonths[monthIndex]) {
+        // Other month year selection - calculate offset to maintain the same gap
+        const currentMonth = currentMonths[monthIndex];
+        const currentMonthNumber = currentMonth.getMonth();
+        const newTargetMonth = dateUtils.createDateFromYearMonth(
+          year,
+          currentMonthNumber,
+        );
+        const offset = monthIndex;
+        const newFirstMonth = dateUtils.subtractMonths(newTargetMonth, offset);
+        setCurrentMonth(newFirstMonth);
+      }
+    },
+    [currentMonths, setCurrentMonth],
+  );
+
+  // ===== USE EFFECTS =====
   useEffect(() => {
     if (value !== undefined && value !== previousValue.current) {
       isUpdatingFromProps.current = true;
@@ -116,182 +578,7 @@ export function CalendarProvider({
     }
   }, [value]);
 
-  // Update current month when selected dates change
-  useEffect(() => {
-    if (selectedDates) {
-      let newMonth: Date;
-      if (selectedDates instanceof Date) {
-        newMonth = selectedDates;
-      } else if (Array.isArray(selectedDates) && selectedDates.length > 0) {
-        newMonth = selectedDates[0];
-      } else if ('from' in selectedDates && selectedDates.from) {
-        newMonth = selectedDates.from;
-      } else {
-        return;
-      }
-
-      setCurrentMonth(newMonth);
-    }
-  }, [selectedDates]);
-
-  // Optimized isSelected function with memoization
-  const isSelected = useCallback(
-    (date: Date): boolean => {
-      if (!selectedDates) return false;
-
-      switch (mode) {
-        case 'single':
-          return dateUtils.isSameDay(date, selectedDates as Date);
-        case 'multiple': {
-          const dates = selectedDates as Date[];
-          return dates.some((selectedDate) =>
-            dateUtils.isSameDay(date, selectedDate),
-          );
-        }
-        case 'range': {
-          const range = selectedDates as DateRange;
-          if (!range.from) return false;
-          if (range.to) {
-            return dateUtils.isBetween(date, range.from, range.to);
-          }
-          return dateUtils.isSameDay(date, range.from);
-        }
-        default:
-          return false;
-      }
-    },
-    [selectedDates, mode],
-  );
-
-  // Optimized isInRange function
-  const isInRange = useCallback(
-    (date: Date): boolean => {
-      if (mode !== 'range' || !selectedDates || !('from' in selectedDates)) {
-        return false;
-      }
-
-      const range = selectedDates as DateRange;
-      if (!range.from) return false;
-
-      // If we have a hovered date and no end date, show preview range
-      if (hoveredDate && !range.to) {
-        if (dateUtils.isBefore(hoveredDate, range.from)) {
-          return dateUtils.isBetween(date, hoveredDate, range.from);
-        } else {
-          return dateUtils.isBetween(date, range.from, hoveredDate);
-        }
-      }
-
-      // If we have a complete range
-      if (range.to) {
-        return dateUtils.isBetween(date, range.from, range.to);
-      }
-
-      return false;
-    },
-    [mode, selectedDates, hoveredDate],
-  );
-
-  // Optimized isRangeStart function
-  const isRangeStart = useCallback(
-    (date: Date): boolean => {
-      if (mode !== 'range' || !selectedDates || !('from' in selectedDates)) {
-        return false;
-      }
-
-      const range = selectedDates as DateRange;
-      if (!range.from) return false;
-
-      // If we have a hovered date and no end date, show preview range
-      if (hoveredDate && !range.to) {
-        if (dateUtils.isBefore(hoveredDate, range.from)) {
-          return dateUtils.isSameDay(date, hoveredDate);
-        } else {
-          return dateUtils.isSameDay(date, range.from);
-        }
-      }
-
-      // If we have a complete range
-      if (range.to) {
-        return dateUtils.isSameDay(date, range.from);
-      }
-
-      return dateUtils.isSameDay(date, range.from);
-    },
-    [mode, selectedDates, hoveredDate],
-  );
-
-  // Optimized isRangeEnd function
-  const isRangeEnd = useCallback(
-    (date: Date): boolean => {
-      if (mode !== 'range' || !selectedDates || !('from' in selectedDates)) {
-        return false;
-      }
-
-      const range = selectedDates as DateRange;
-      if (!range.from) return false;
-
-      // If we have a hovered date and no end date, show preview range
-      if (hoveredDate && !range.to) {
-        if (dateUtils.isBefore(hoveredDate, range.from)) {
-          return dateUtils.isSameDay(date, range.from);
-        } else {
-          return dateUtils.isSameDay(date, hoveredDate);
-        }
-      }
-
-      // If we have a complete range
-      if (range.to) {
-        return dateUtils.isSameDay(date, range.to);
-      }
-
-      return false;
-    },
-    [mode, selectedDates, hoveredDate],
-  );
-
-  // Optimized isDisabled function with fast path for common cases
-  const isDisabled = useCallback(
-    (date: Date): boolean => {
-      // Fast path: check disabled dates set first
-      if (disabledDatesSet) {
-        const dateKey = dateUtils.formatDate(date, 'yyyy-MM-dd');
-        if (disabledDatesSet.has(dateKey)) return true;
-      }
-
-      // Check min/max date constraints
-      if (
-        dateConstraints.minDate &&
-        dateUtils.isBefore(date, dateConstraints.minDate)
-      )
-        return true;
-      if (
-        dateConstraints.maxDate &&
-        dateUtils.isAfter(date, dateConstraints.maxDate)
-      )
-        return true;
-
-      // Check disabled function
-      if (typeof disabled === 'function') {
-        return disabled(date);
-      }
-
-      return false;
-    },
-    [disabledDatesSet, dateConstraints, disabled],
-  );
-
-  // Optimized isToday function - memoized
-  const isToday = useCallback((date: Date): boolean => {
-    return dateUtils.isToday(date);
-  }, []);
-
-  // Optimized isOutsideMonth function
-  const isOutsideMonth = useCallback((date: Date, month: Date): boolean => {
-    return !dateUtils.isSameMonth(date, month);
-  }, []);
-
-  // Memoized context value to prevent unnecessary re-renders
+  // ===== CONTEXT VALUE =====
   const contextValue = useMemo<CalendarContextValue>(
     () => ({
       // State
@@ -306,13 +593,28 @@ export function CalendarProvider({
       setSelectedDates,
       setHoveredDate,
       setFocusedDate,
+      onDayClick,
+      onDayMouseEnter: setHoveredDate,
+      onDayMouseLeave: () => setHoveredDate(undefined),
+      onDayFocus: setFocusedDate,
+      onDayBlur,
+      onDayKeyDown,
+      gotoPreviousMonth,
+      gotoNextMonth,
+      gotoToday,
+      onMonthSelect,
+      onYearSelect,
 
       // Utilities
-      isSelected,
-      isInRange,
-      isRangeStart,
-      isRangeEnd,
-      isDisabled,
+      isSelected: (date: Date) => isSelected(date, selectedDates, mode),
+      isInRange: (date: Date) =>
+        isInRange(date, selectedDates, hoveredDate, mode),
+      isRangeStart: (date: Date) =>
+        isRangeStart(date, selectedDates, hoveredDate, mode),
+      isRangeEnd: (date: Date) =>
+        isRangeEnd(date, selectedDates, hoveredDate, mode),
+      isDisabled: (date: Date) =>
+        isDisabled(date, disabledDatesSet, dateConstraints, disabled),
       isToday,
       isOutsideMonth,
 
@@ -333,18 +635,22 @@ export function CalendarProvider({
       setSelectedDates,
       setHoveredDate,
       setFocusedDate,
-      isSelected,
-      isInRange,
-      isRangeStart,
-      isRangeEnd,
-      isDisabled,
-      isToday,
-      isOutsideMonth,
+      onDayClick,
+      onDayKeyDown,
+      gotoPreviousMonth,
+      gotoNextMonth,
+      gotoToday,
+      onMonthSelect,
+      onYearSelect,
+      disabledDatesSet,
+      dateConstraints,
+      disabled,
       mode,
       numberOfMonths,
       showOutsideDays,
       locale,
       weekStartsOn,
+      onDayBlur,
     ],
   );
 

@@ -1,6 +1,7 @@
 'use client';
 
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback } from 'react';
+import React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
@@ -10,12 +11,47 @@ import { CalendarProvider } from './calendar-context';
 import { useCalendarContext } from './calendar-context';
 import { CalendarGrid } from './calendar-grid';
 import { CalendarHeader } from './calendar-header';
-import type { CalendarProps } from './calendar-types';
-import { calendarVariants } from './calendar-variants';
-import { CalendarWeekHeader } from './calendar-week-header';
+import type {
+  CalendarClassNames,
+  CalendarMode,
+  DateRange,
+  WeekStartsOn,
+} from './calendar-types';
+
+export interface CalendarProps {
+  // Date handling
+  value?: Date | Date[] | DateRange;
+  onValueChange?: (value: Date | Date[] | DateRange) => void;
+  defaultValue?: Date | Date[] | DateRange;
+
+  // Display options
+  mode?: CalendarMode;
+  showOutsideDays?: boolean;
+  showTodayButton?: boolean;
+  showNavigation?: boolean;
+
+  // Navigation constraints
+  disabled?: Date[] | ((date: Date) => boolean);
+  minDate?: Date;
+  maxDate?: Date;
+
+  // Styling
+  className?: string;
+  classNames?: CalendarClassNames;
+
+  // Accessibility
+  'aria-label'?: string;
+  'aria-describedby'?: string;
+
+  // Advanced options
+  locale?: string;
+  weekStartsOn?: WeekStartsOn;
+  fixedWeeks?: boolean;
+  numberOfMonths?: number;
+}
 
 /**
- * Calendar component - optimized with memoization
+ * Calendar component with advanced range selection features
  */
 export const Calendar = memo(function Calendar({
   value,
@@ -24,101 +60,52 @@ export const Calendar = memo(function Calendar({
   mode = 'single',
   numberOfMonths = 1,
   showOutsideDays = true,
-  showWeekNumbers = false,
   showTodayButton = false,
   showNavigation = true,
-  fromDate,
-  toDate,
   disabled,
   minDate,
   maxDate,
   className,
   classNames,
-  size = 'md',
-  theme = 'default',
-  onDayClick,
-  onDayMouseEnter,
-  onDayMouseLeave,
-  onMonthChange,
-  onYearChange,
   'aria-label': ariaLabel,
   'aria-describedby': ariaDescribedby,
   locale = 'en-US',
   weekStartsOn = 0,
   fixedWeeks = false,
-  pagedNavigation = false,
   ref,
   ...props
 }: CalendarProps & { ref?: React.Ref<HTMLDivElement> }) {
-  // Memoize provider props to prevent unnecessary re-renders
-  const providerProps = useMemo(
-    () => ({
-      value,
-      onValueChange,
-      defaultValue,
-      mode,
-      numberOfMonths,
-      showOutsideDays,
-      disabled,
-      minDate,
-      maxDate,
-      locale,
-      weekStartsOn,
-    }),
-    [
-      value,
-      onValueChange,
-      defaultValue,
-      mode,
-      numberOfMonths,
-      showOutsideDays,
-      disabled,
-      minDate,
-      maxDate,
-      locale,
-      weekStartsOn,
-    ],
-  );
-
-  // Memoize content props
-  const contentProps = useMemo(
-    () => ({
-      numberOfMonths,
-      className,
-      classNames,
-      size,
-      theme,
-      onDayClick,
-      onDayMouseEnter,
-      onDayMouseLeave,
-      onMonthChange,
-      onYearChange,
-      'aria-label': ariaLabel,
-      'aria-describedby': ariaDescribedby,
-      ref,
-      ...props,
-    }),
-    [
-      numberOfMonths,
-      className,
-      classNames,
-      size,
-      theme,
-      onDayClick,
-      onDayMouseEnter,
-      onDayMouseLeave,
-      onMonthChange,
-      onYearChange,
-      ariaLabel,
-      ariaDescribedby,
-      ref,
-      props,
-    ],
+  // Memoize the onValueChange handler to prevent unnecessary re-renders
+  const handleValueChange = useCallback(
+    (newValue: Date | Date[] | DateRange) => {
+      onValueChange?.(newValue);
+    },
+    [onValueChange],
   );
 
   return (
-    <CalendarProvider {...providerProps}>
-      <CalendarContent {...contentProps} />
+    <CalendarProvider
+      mode={mode}
+      numberOfMonths={numberOfMonths}
+      showOutsideDays={showOutsideDays}
+      locale={locale}
+      weekStartsOn={weekStartsOn}
+      disabled={disabled}
+      minDate={minDate}
+      maxDate={maxDate}
+      value={value}
+      defaultValue={defaultValue}
+      onValueChange={handleValueChange}
+    >
+      <CalendarContent
+        ref={ref}
+        numberOfMonths={numberOfMonths}
+        className={className}
+        classNames={classNames}
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescribedby}
+        {...props}
+      />
     </CalendarProvider>
   );
 });
@@ -127,16 +114,9 @@ export const Calendar = memo(function Calendar({
  * Calendar content component that uses context - optimized with memoization
  */
 const CalendarContent = memo(function CalendarContent({
-  numberOfMonths = 1,
+  numberOfMonths,
   className,
   classNames,
-  size = 'md',
-  theme = 'default',
-  onDayClick,
-  onDayMouseEnter,
-  onDayMouseLeave,
-  onMonthChange,
-  onYearChange,
   'aria-label': ariaLabel,
   'aria-describedby': ariaDescribedby,
   ref,
@@ -148,51 +128,26 @@ const CalendarContent = memo(function CalendarContent({
   | 'defaultValue'
   | 'mode'
   | 'showOutsideDays'
-  | 'showWeekNumbers'
   | 'showTodayButton'
   | 'showNavigation'
-  | 'fromDate'
-  | 'toDate'
   | 'disabled'
   | 'minDate'
   | 'maxDate'
   | 'locale'
   | 'weekStartsOn'
   | 'fixedWeeks'
-  | 'pagedNavigation'
 > & { ref?: React.Ref<HTMLDivElement> }) {
   const context = useCalendarContext();
-
-  const handleBlur = useCallback(() => {
-    context.setFocusedDate(undefined);
-  }, [context]);
-
-  // Memoize calendar variants
-  const calendarClassName = useMemo(() => {
-    return cn(
-      calendarVariants({
-        size,
-        theme,
-        layout: context.mode,
-        multiMonth: numberOfMonths > 1,
-      }),
-      className,
-      classNames?.calendar,
-    );
-  }, [
-    size,
-    theme,
-    context.mode,
-    numberOfMonths,
-    className,
-    classNames?.calendar,
-  ]);
 
   return (
     <Box
       ref={ref}
-      onBlur={handleBlur}
-      className={calendarClassName}
+      onBlur={context.onDayBlur}
+      className={cn(
+        'inline-flex flex-col rounded-lg border gap-2 p-3 w-full max-w-fit',
+        className,
+        classNames?.calendar,
+      )}
       role="application"
       aria-label={ariaLabel || 'Calendar'}
       aria-describedby={ariaDescribedby}
@@ -206,9 +161,6 @@ const CalendarContent = memo(function CalendarContent({
 
       {/* Calendar Grid */}
       <CalendarGrid
-        onDayClick={onDayClick}
-        onDayMouseEnter={onDayMouseEnter}
-        onDayMouseLeave={onDayMouseLeave}
         className={classNames?.calendarGrid}
         classNames={classNames}
       />
