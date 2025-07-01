@@ -566,7 +566,7 @@ export const getWeekNumber = (date: Date | number | string): number => {
  * @param date - The date to generate the grid for. Can be a Date object, number, or string
  * @param weekStartsOn - The day the week starts on (0 = Sunday, 1 = Monday, etc.)
  * @param showOutsideDays - Whether to include days from adjacent months
- * @returns A 2D array of Date objects representing the calendar grid
+ * @returns A 2D array of Date objects representing the calendar grid (always 6 weeks)
  *
  * @example
  * ```typescript
@@ -574,7 +574,7 @@ export const getWeekNumber = (date: Date | number | string): number => {
  * // Returns 6 weeks of dates, including November and January dates
  *
  * const grid = getMonthGrid('2023-12-25', 1, false);
- * // Returns only December dates, starting from the first Monday
+ * // Returns 6 weeks of dates, starting from the first Monday
  * ```
  */
 export const getMonthGrid = (
@@ -584,34 +584,24 @@ export const getMonthGrid = (
 ): Date[][] => {
   const dt = parseToDateTime(date);
   const firstDayOfMonth = toDate(dt.startOf('month'));
-  const lastDayOfMonth = toDate(dt.endOf('month'));
 
   // Get the first day to display (might be from previous month)
   const firstDayToShow = showOutsideDays
     ? getFirstDayOfWeek(firstDayOfMonth, weekStartsOn)
     : firstDayOfMonth;
-  // Get the last day to display (might be from next month)
-  const lastDayToShow = showOutsideDays
-    ? getLastDayOfWeek(lastDayOfMonth, weekStartsOn)
-    : lastDayOfMonth;
 
   const weeks: Date[][] = [];
-  let currentWeek: Date[] = [];
   let currentDate = new Date(firstDayToShow);
 
-  while (currentDate <= lastDayToShow) {
-    currentWeek.push(new Date(currentDate));
+  // Always generate exactly 6 weeks (42 days)
+  for (let weekIndex = 0; weekIndex < 6; weekIndex++) {
+    const currentWeek: Date[] = [];
 
-    if (currentWeek.length === 7) {
-      weeks.push(currentWeek);
-      currentWeek = [];
+    for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
+      currentWeek.push(new Date(currentDate));
+      currentDate = addDays(currentDate, 1);
     }
 
-    currentDate = addDays(currentDate, 1);
-  }
-
-  // Add any remaining days to complete the last week
-  if (currentWeek.length > 0) {
     weeks.push(currentWeek);
   }
 
