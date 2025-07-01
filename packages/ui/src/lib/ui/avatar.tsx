@@ -4,7 +4,7 @@ import { cn } from '@veraclins-dev/utils';
 import { getSizeClasses, type Size } from '@veraclins-dev/utils';
 
 import { type IconName } from '../icons/name';
-import { type WithTooltip, type WithTrigger } from '../types';
+import { type WithTooltip } from '../types';
 
 import { Icon } from './icon';
 import { ComposedTooltip } from './tooltip';

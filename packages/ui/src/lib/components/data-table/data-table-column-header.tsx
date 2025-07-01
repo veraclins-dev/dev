@@ -1,7 +1,5 @@
 import { type Column } from '@tanstack/react-table';
 
-import { cn } from '@veraclins-dev/utils';
-
 import {
   Box,
   Button,

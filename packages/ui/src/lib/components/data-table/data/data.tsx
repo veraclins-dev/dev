@@ -1,7 +1,4 @@
-import {
-  type DataTableFacetedDropdownFilterOption,
-  type DataTableFacetedFilterProps,
-} from '../types';
+import { type DataTableFacetedDropdownFilterOption } from '../types';
 
 type Options = DataTableFacetedDropdownFilterOption[];
 

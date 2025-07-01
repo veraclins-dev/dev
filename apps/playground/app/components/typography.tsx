@@ -47,14 +47,64 @@ export function TypographyShowcase() {
               <Box display="flex" flexDirection="column" gap={2}>
                 <Typography variant="h1">
                   Heading 1 - Main Page Title
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 36px (2.25rem) • Weight: 700 (Bold) • Line Height:
+                    1.25 (Tight)
+                  </Typography>
                 </Typography>
-                <Typography variant="h2">Heading 2 - Section Title</Typography>
+                <Typography variant="h2">
+                  Heading 2 - Section Title
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 30px (1.875rem) • Weight: 700 (Bold) • Line Height:
+                    1.25 (Tight)
+                  </Typography>
+                </Typography>
                 <Typography variant="h3">
                   Heading 3 - Subsection Title
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 24px (1.5rem) • Weight: 600 (Semibold) • Line Height:
+                    1.375 (Snug)
+                  </Typography>
                 </Typography>
-                <Typography variant="h4">Heading 4 - Card Title</Typography>
-                <Typography variant="h5">Heading 5 - Small Title</Typography>
-                <Typography variant="h6">Heading 6 - Tiny Title</Typography>
+                <Typography variant="h4">
+                  Heading 4 - Card Title
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 20px (1.25rem) • Weight: 600 (Semibold) • Line Height:
+                    1.375 (Snug)
+                  </Typography>
+                </Typography>
+                <Typography variant="h5">
+                  Heading 5 - Small Title
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 18px (1.125rem) • Weight: 500 (Medium) • Line Height:
+                    1.5 (Normal)
+                  </Typography>
+                </Typography>
+                <Typography variant="h6">
+                  Heading 6 - Tiny Title
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 16px (1rem) • Weight: 500 (Medium) • Line Height: 1.5
+                    (Normal)
+                  </Typography>
+                </Typography>
               </Box>
             </Box>
 
@@ -69,23 +119,51 @@ export function TypographyShowcase() {
                   most content on the page, including paragraphs, descriptions,
                   and general text content. This variant provides good
                   readability and is suitable for most reading contexts.
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 16px (1rem) • Weight: 400 (Normal) • Line Height:
+                    1.625 (Relaxed)
+                  </Typography>
                 </Typography>
                 <Typography variant="body2">
                   This is body2 text - a smaller variant used for secondary
                   content, captions, and less prominent information. It's
                   perfect for metadata, timestamps, and supplementary details
                   that don't need the same visual weight as primary content.
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 14px (0.875rem) • Weight: 400 (Normal) • Line Height:
+                    1.625 (Relaxed)
+                  </Typography>
                 </Typography>
                 <Typography variant="caption">
                   This is caption text - the smallest text variant used for very
                   small details like copyright notices, fine print, and metadata
                   that should be present but not prominent.
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 12px (0.75rem) • Weight: 400 (Normal) • Line Height:
+                    1.5 (Normal)
+                  </Typography>
                 </Typography>
                 <Typography variant="overline">
                   This is overline text - used for labels, categories, and small
                   uppercase text that appears above content. It's perfect for
                   section labels, tags, and metadata that need to be visually
                   distinct but not prominent.
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 12px (0.75rem) • Weight: 400 (Normal) • Line Height:
+                    1.5 (Normal) • Uppercase • Letter Spacing: 0.05em
+                  </Typography>
                 </Typography>
               </Box>
             </Box>
