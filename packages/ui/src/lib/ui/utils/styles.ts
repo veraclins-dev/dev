@@ -224,7 +224,7 @@ const BUTTON_DEFAULT_CLASSES = cn(
   // Border and Shape
   'rounded-md',
   // Disabled Styles
-  'disabled:pointer-events-none disabled:opacity-30 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-30',
+  'disabled:pointer-events-none disabled:opacity-50 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
   // Focus and Error States
   'focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-0.5 outline-none focus-visible:outline-none focus-visible:ring-primary/50 focus-visible:ring-0 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
   // SVG Styles
@@ -240,7 +240,7 @@ const LINK_DEFAULT_CLASSES = cn(
   // Focus Styles
   'focus-visible:outline-none focus-visible:ring-0',
   // Disabled Styles
-  'disabled:pointer-events-none disabled:opacity-30 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-30',
+  'disabled:pointer-events-none disabled:opacity-50 data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
   // Text
   'font-medium no-underline',
 );
