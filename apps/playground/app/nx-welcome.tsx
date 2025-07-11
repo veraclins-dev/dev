@@ -72,6 +72,18 @@ export function NxWelcome({ title }: { title: string }) {
             'Date selection components including calendars, date pickers, and range selectors for various use cases.',
         },
         {
+          path: '/time-picker',
+          label: 'Time Picker',
+          description:
+            'Time selection components with both traditional and wheel-based interfaces.',
+        },
+        {
+          path: '/wheel-time-picker',
+          label: 'Wheel Time Picker',
+          description:
+            'iOS-style wheel-based time picker with smooth animations and drag interactions.',
+        },
+        {
           path: '/forms',
           label: 'Forms',
           description:

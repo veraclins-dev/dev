@@ -74,6 +74,30 @@ export function Buttons() {
                   Loading
                 </Button>
               </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="solid" color="warning">
+                  Warning
+                </Button>
+                <Button variant="solid" color="warning" loading>
+                  Loading
+                </Button>
+              </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="solid" color="info">
+                  Info
+                </Button>
+                <Button variant="solid" color="info" loading>
+                  Loading
+                </Button>
+              </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="solid" color="neutral">
+                  Neutral
+                </Button>
+                <Button variant="solid" color="neutral" loading>
+                  Loading
+                </Button>
+              </Box>
             </Box>
             <Box display="flex" flexDirection="column" gap={3}>
               <Typography variant="h4">Soft</Typography>
@@ -106,6 +130,30 @@ export function Buttons() {
                   Success
                 </Button>
                 <Button variant="soft" color="success" loading>
+                  Loading
+                </Button>
+              </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="soft" color="warning">
+                  Warning
+                </Button>
+                <Button variant="soft" color="warning" loading>
+                  Loading
+                </Button>
+              </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="soft" color="info">
+                  Info
+                </Button>
+                <Button variant="soft" color="info" loading>
+                  Loading
+                </Button>
+              </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="soft" color="neutral">
+                  Neutral
+                </Button>
+                <Button variant="soft" color="neutral" loading>
                   Loading
                 </Button>
               </Box>
@@ -144,6 +192,30 @@ export function Buttons() {
                   Loading
                 </Button>
               </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="outline" color="warning">
+                  Warning
+                </Button>
+                <Button variant="outline" color="warning" loading>
+                  Loading
+                </Button>
+              </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="outline" color="info">
+                  Info
+                </Button>
+                <Button variant="outline" color="info" loading>
+                  Loading
+                </Button>
+              </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="outline" color="neutral">
+                  Neutral
+                </Button>
+                <Button variant="outline" color="neutral" loading>
+                  Loading
+                </Button>
+              </Box>
             </Box>
             <Box display="flex" flexDirection="column" gap={3}>
               <Typography variant="h4">Text</Typography>
@@ -176,6 +248,30 @@ export function Buttons() {
                   Success
                 </Button>
                 <Button variant="text" color="success" loading>
+                  Loading
+                </Button>
+              </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="text" color="warning">
+                  Warning
+                </Button>
+                <Button variant="text" color="warning" loading>
+                  Loading
+                </Button>
+              </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="text" color="info">
+                  Info
+                </Button>
+                <Button variant="text" color="info" loading>
+                  Loading
+                </Button>
+              </Box>
+              <Box display="flex" gap={2}>
+                <Button variant="text" color="neutral">
+                  Neutral
+                </Button>
+                <Button variant="text" color="neutral" loading>
                   Loading
                 </Button>
               </Box>

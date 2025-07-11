@@ -23,10 +23,10 @@ export function PlaygroundBreadcrumb({
     <Breadcrumb className={className}>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link component={RouterLink} to="/">
-              Playground
-            </Link>
+          <BreadcrumbLink component={RouterLink} to="/">
+            {/* <Link component={RouterLink} to="/"> */}
+            Playground
+            {/* </Link> */}
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
