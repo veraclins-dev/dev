@@ -94,8 +94,6 @@ export const TimePickerInput = ({
     setInputValue(value ?? '');
   }, [value]);
 
-  console.log('inputValue ->>>>>>>>>', { inputValue, value });
-
   return (
     <Input
       ref={ref}

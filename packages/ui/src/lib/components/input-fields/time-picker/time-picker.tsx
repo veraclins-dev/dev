@@ -73,19 +73,20 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
   const hours = useMemo(() => (use24Hour ? HOURS_24 : HOURS_12), [use24Hour]);
 
-  // const time = useMemo(() => {
-  //   return getPartsFromTimeString({
-  //     timeString: value ?? '',
-  //     use24Hour,
-  //   });
-  // }, [value, use24Hour]);
-
   const handleSelect = useCallback(
     (key: keyof Time, value: string | number) => {
-      console.log('handleSelect', key, value);
-      setTime((prev) => ({ ...prev, [key]: value }));
+      const newTime = { ...time, [key]: value };
+      setTime(newTime);
+      if (onChange) {
+        const formattedValue = formatTimeStringFromParts(
+          newTime,
+          use24Hour,
+          showSeconds,
+        );
+        onChange(formattedValue);
+      }
     },
-    [],
+    [time, use24Hour, showSeconds, onChange],
   );
 
   // Handle input change
@@ -95,10 +96,12 @@ export const TimePicker: React.FC<TimePickerProps> = ({
         timeString,
         use24Hour,
       });
-      console.log('parts', parts);
       setTime(parts);
+      if (onChange) {
+        onChange(timeString);
+      }
     },
-    [use24Hour],
+    [use24Hour, onChange],
   );
 
   // Format input value
@@ -119,7 +122,15 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
   const handleBlur = useCallback(() => {
     setIsOpen(false);
-  }, []);
+    if (onChange) {
+      const formattedValue = formatTimeStringFromParts(
+        time,
+        use24Hour,
+        showSeconds,
+      );
+      onChange(formattedValue);
+    }
+  }, [onChange, time, use24Hour, showSeconds]);
 
   useEffect(() => {
     setTime(
@@ -128,7 +139,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
         use24Hour,
       }),
     );
-  }, [value, use24Hour]);
+  }, [value, use24Hour, showSeconds]);
 
   return (
     <Box onBlur={handleBlur} className={className}>
