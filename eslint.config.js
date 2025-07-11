@@ -67,15 +67,15 @@ module.exports = [
             },
             {
               sourceTag: 'type:react-utils',
-              onlyDependOnLibsWithTags: [
-                'type:react-utils',
-                'type:ui',
-                'type:utils',
-              ],
+              onlyDependOnLibsWithTags: ['type:react-utils', 'type:utils'],
             },
             {
               sourceTag: 'type:ui',
-              onlyDependOnLibsWithTags: ['type:ui', 'type:utils'],
+              onlyDependOnLibsWithTags: [
+                'type:ui',
+                'type:utils',
+                'type:react-utils',
+              ],
             },
             {
               sourceTag: 'type:auth',

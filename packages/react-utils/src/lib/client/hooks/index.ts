@@ -3,6 +3,7 @@ export * from './use-debounce';
 export * from './use-delayed-is-pending';
 export * from './use-double-check';
 export * from './use-hover';
+export * from './use-intersection-observer';
 export * from './use-is-pending';
 export * from './use-long-press';
 export * from './use-matches';
