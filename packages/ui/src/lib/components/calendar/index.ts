@@ -3,6 +3,7 @@ export { Calendar } from './calendar';
 
 // Sub-components
 export { CalendarDay } from './calendar-day';
+export { CalendarFooter } from './calendar-footer';
 export { CalendarGrid } from './calendar-grid';
 export { CalendarHeader } from './calendar-header';
 export { CalendarWeekHeader } from './calendar-week-header';

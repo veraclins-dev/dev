@@ -109,6 +109,9 @@ export interface CalendarWeekHeaderProps {
  */
 export interface CalendarFooterProps {
   onTodayClick?: () => void;
+  showTimePicker?: boolean;
+  timeValue?: string;
+  onTimeChange?: (time: string) => void;
   className?: string;
   classNames?: CalendarClassNames;
 }

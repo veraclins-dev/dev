@@ -9,6 +9,7 @@ import { Box } from '../../ui/box';
 
 import { CalendarProvider } from './calendar-context';
 import { useCalendarContext } from './calendar-context';
+import { CalendarFooter } from './calendar-footer';
 import { CalendarGrid } from './calendar-grid';
 import { CalendarHeader } from './calendar-header';
 import type {
@@ -29,6 +30,11 @@ export interface CalendarProps {
   showOutsideDays?: boolean;
   showTodayButton?: boolean;
   showNavigation?: boolean;
+
+  // Time selection
+  showTimePicker?: boolean;
+  timeValue?: string;
+  onTimeChange?: (time: string) => void;
 
   // Navigation constraints
   disabled?: Date[] | ((date: Date) => boolean);
@@ -62,6 +68,9 @@ export const Calendar = memo(function Calendar({
   showOutsideDays = true,
   showTodayButton = false,
   showNavigation = true,
+  showTimePicker = false,
+  timeValue,
+  onTimeChange,
   disabled,
   minDate,
   maxDate,
@@ -100,6 +109,10 @@ export const Calendar = memo(function Calendar({
       <CalendarContent
         ref={ref}
         numberOfMonths={numberOfMonths}
+        showTodayButton={showTodayButton}
+        showTimePicker={showTimePicker}
+        timeValue={timeValue}
+        onTimeChange={onTimeChange}
         className={className}
         classNames={classNames}
         aria-label={ariaLabel}
@@ -115,6 +128,10 @@ export const Calendar = memo(function Calendar({
  */
 const CalendarContent = memo(function CalendarContent({
   numberOfMonths,
+  showTodayButton,
+  showTimePicker,
+  timeValue,
+  onTimeChange,
   className,
   classNames,
   'aria-label': ariaLabel,
@@ -128,7 +145,6 @@ const CalendarContent = memo(function CalendarContent({
   | 'defaultValue'
   | 'mode'
   | 'showOutsideDays'
-  | 'showTodayButton'
   | 'showNavigation'
   | 'disabled'
   | 'minDate'
@@ -164,6 +180,17 @@ const CalendarContent = memo(function CalendarContent({
         className={classNames?.calendarGrid}
         classNames={classNames}
       />
+
+      {/* Calendar Footer */}
+      {showTodayButton && (
+        <CalendarFooter
+          showTimePicker={showTimePicker}
+          timeValue={timeValue}
+          onTimeChange={onTimeChange}
+          className={classNames?.calendarFooter}
+          classNames={classNames}
+        />
+      )}
     </Box>
   );
 });
