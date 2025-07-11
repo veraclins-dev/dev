@@ -3,6 +3,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@veraclins-dev/utils';
 
 import { Icon } from './icon';
+import { Link, type LinkProps } from './link';
 
 /**
  * Breadcrumb navigation component that provides hierarchical navigation context.
@@ -74,6 +75,7 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
     />
   );
 }
+type CustomComponent = React.ComponentType<any>;
 
 /**
  * Clickable breadcrumb link for navigation. Supports both regular links and custom components.
@@ -90,19 +92,21 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
  * </BreadcrumbLink>
  * ```
  */
-function BreadcrumbLink({
+function BreadcrumbLink<C extends 'a' | CustomComponent = 'a'>({
   asChild,
   className,
+  color,
   ...props
-}: React.ComponentProps<'a'> & {
+}: LinkProps<C> & {
   asChild?: boolean;
 }) {
-  const Comp = asChild ? Slot : 'a';
+  const Comp = asChild ? Slot : Link;
 
   return (
     <Comp
+      color={color as NonNullable<LinkProps['color']>}
       data-slot="breadcrumb-link"
-      className={cn('hover:text-foreground transition-colors', className)}
+      className={cn('transition-colors', className)}
       {...props}
     />
   );

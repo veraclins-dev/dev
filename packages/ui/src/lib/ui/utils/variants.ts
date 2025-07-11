@@ -843,7 +843,7 @@ const listItemVariants = cva(
 const linkVariants = cva(LINK_DEFAULT_CLASSES, {
   variants: {
     type: {
-      link: 'border-0 border-primary/30 hover: border-primary w-fit justify-start',
+      link: 'border-0 border-primary/30 hover:border-primary w-fit justify-start',
       button:
         'border border-transparent rounded-md text-sm font-medium ring-offset-background transition-colors',
     },
@@ -901,6 +901,16 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
     // Link type styles
     {
       type: 'link',
+      underline: 'hover',
+      className: 'border-b-2 border-transparent hover:border-border',
+    },
+    {
+      type: 'link',
+      underline: 'always',
+      className: 'border-b-2 border-border',
+    },
+    {
+      type: 'link',
       color: 'primary',
       underline: 'none',
       className: 'text-primary',
@@ -916,7 +926,7 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'primary',
       underline: 'always',
-      className: 'border-b-2 text-primary border-primary hover:border-primary',
+      className: 'border-b-2 text-primary border-primary',
     },
     {
       type: 'link',
@@ -935,8 +945,7 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'secondary',
       underline: 'always',
-      className:
-        'border-b-2 text-secondary border-secondary hover:border-secondary',
+      className: 'border-b-2 text-secondary border-secondary',
     },
     {
       type: 'link',
@@ -955,8 +964,7 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'destructive',
       underline: 'always',
-      className:
-        'border-b-2 text-destructive border-destructive hover:border-destructive',
+      className: 'border-b-2 text-destructive border-destructive',
     },
     {
       type: 'link',
@@ -975,7 +983,7 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'success',
       underline: 'always',
-      className: 'border-b-2 text-success border-success hover:border-success',
+      className: 'border-b-2 text-success border-success',
     },
     {
       type: 'link',
@@ -994,7 +1002,7 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'warning',
       underline: 'always',
-      className: 'border-b-2 text-warning border-warning hover:border-warning',
+      className: 'border-b-2 text-warning border-warning',
     },
     {
       type: 'link',
@@ -1012,7 +1020,7 @@ const linkVariants = cva(LINK_DEFAULT_CLASSES, {
       type: 'link',
       color: 'info',
       underline: 'always',
-      className: 'border-b-2 text-info border-info hover:border-info',
+      className: 'border-b-2 text-info border-info',
     },
   ],
   defaultVariants: {
