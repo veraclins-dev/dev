@@ -78,12 +78,6 @@ export function NxWelcome({ title }: { title: string }) {
             'Time selection components with both traditional and wheel-based interfaces.',
         },
         {
-          path: '/wheel-time-picker',
-          label: 'Wheel Time Picker',
-          description:
-            'iOS-style wheel-based time picker with smooth animations and drag interactions.',
-        },
-        {
           path: '/forms',
           label: 'Forms',
           description:
