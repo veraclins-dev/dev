@@ -8,16 +8,13 @@ import React, {
 
 import {
   cn,
-  debounce,
-  formatTimeStringFromParts,
   getPartsFromTimeString,
+  getTimeStringFromParts,
   type Time,
 } from '@veraclins-dev/utils';
 
 import {
   Box,
-  Input,
-  type InputProps,
   Popover,
   PopoverAnchor,
   PopoverContent,
@@ -73,39 +70,32 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
   const hours = useMemo(() => (use24Hour ? HOURS_24 : HOURS_12), [use24Hour]);
 
+  const updateTime = useCallback(
+    (time: Time) => {
+      setTime(time);
+      if (onChange && time.string) {
+        onChange(time.string);
+      }
+    },
+    [onChange],
+  );
+
   const handleSelect = useCallback(
     (key: keyof Time, value: string | number) => {
       const newTime = { ...time, [key]: value };
-      setTime(newTime);
-      if (onChange) {
-        const formattedValue = formatTimeStringFromParts(
-          newTime,
-          use24Hour,
-          showSeconds,
-        );
-        onChange(formattedValue);
-      }
+      newTime.string = getTimeStringFromParts(newTime, use24Hour, showSeconds);
+      updateTime(newTime);
     },
-    [time, use24Hour, showSeconds, onChange],
+    [time, updateTime],
   );
 
   // Handle input change
   const handleInputChange = useCallback(
-    (timeString: string) => {
-      const parts = getPartsFromTimeString({
-        timeString,
-        use24Hour,
-      });
-      setTime(parts);
-      if (onChange) {
-        onChange(timeString);
-      }
+    (time: Time) => {
+      updateTime(time);
     },
-    [use24Hour, onChange],
+    [updateTime],
   );
-
-  // Format input value
-  const inputValue = formatTimeStringFromParts(time, use24Hour, showSeconds);
 
   // Generate placeholder text
   const placeholderText = useMemo(() => {
@@ -122,15 +112,8 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
   const handleBlur = useCallback(() => {
     setIsOpen(false);
-    if (onChange) {
-      const formattedValue = formatTimeStringFromParts(
-        time,
-        use24Hour,
-        showSeconds,
-      );
-      onChange(formattedValue);
-    }
-  }, [onChange, time, use24Hour, showSeconds]);
+    updateTime(time);
+  }, [time, updateTime]);
 
   useEffect(() => {
     setTime(
@@ -146,11 +129,13 @@ export const TimePicker: React.FC<TimePickerProps> = ({
       <TimePickerInput
         {...inputProps}
         ref={anchorRef}
-        value={inputValue}
+        time={time}
         onChange={handleInputChange}
         placeholder={placeholderText}
         className={cn(inputProps?.className)}
         onFocus={handleFocus}
+        use24Hour={use24Hour}
+        showSeconds={showSeconds}
       />
       <Popover open={isOpen}>
         <PopoverAnchor

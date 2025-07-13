@@ -10,6 +10,7 @@ import {
   type Period,
   type Time,
   type TimeFormatPattern,
+  timeUtil,
 } from './definitions';
 
 /**
@@ -31,6 +32,8 @@ import {
 export const parseTimeString = (
   timeString: string,
   format?: TimeFormatPattern,
+  use24Hour = false,
+  showSeconds = false,
 ): DateTime | null => {
   if (!timeString || typeof timeString !== 'string') {
     return null;
@@ -54,7 +57,11 @@ export const parseTimeString = (
   }
 
   // Use smart filtering to reduce the number of patterns to try
-  const filteredPatterns = getFilteredPatterns(normalizedTime);
+  const filteredPatterns = getFilteredPatterns(
+    normalizedTime,
+    use24Hour,
+    showSeconds,
+  );
 
   // Try filtered format patterns for auto-detection
   for (const { pattern } of filteredPatterns) {
@@ -140,25 +147,61 @@ export const getPartsFromTimeString = ({
   timeString,
   format,
   use24Hour,
+  showSeconds,
 }: {
   timeString: string;
   format?: TimeFormatPattern;
   use24Hour?: boolean;
+  showSeconds?: boolean;
 }): Time => {
-  const date = parseTimeString(timeString, format);
+  const date = parseTimeString(timeString, format, use24Hour, showSeconds);
   if (!date) {
-    return {
+    const time: Time = {
       hr: use24Hour ? '00' : '01',
       min: '00',
       sec: '00',
       mil: '000',
       period: 'AM',
     };
+
+    return {
+      hr: use24Hour ? '00' : '01',
+      min: '00',
+      sec: '00',
+      mil: '000',
+      period: 'AM',
+      string: getTimeStringFromParts(time, use24Hour, showSeconds),
+    };
   }
 
   const { hour, minute, second, millisecond } = date;
 
-  const period = hour >= 12 ? 'PM' : 'AM';
+  // For 12-hour format, we need to determine the period from the original string
+  // or from the parsed DateTime's period information
+  let period: Period = 'AM';
+
+  if (!use24Hour) {
+    // Check if the original string contains period information
+    const normalizedTime = timeString.trim().toLowerCase();
+    if (/[ap]m?/i.test(normalizedTime)) {
+      // Extract period from the original string
+      const periodMatch = normalizedTime.match(/[ap]m?/i);
+      if (periodMatch) {
+        const periodStr = periodMatch[0].toUpperCase();
+        if (periodStr.startsWith('P')) {
+          period = 'PM';
+        } else if (periodStr.startsWith('A')) {
+          period = 'AM';
+        }
+      }
+    } else {
+      // Fallback to hour-based period detection
+      period = hour >= 12 ? 'PM' : 'AM';
+    }
+  } else {
+    // For 24-hour format, period is not relevant
+    period = 'AM';
+  }
 
   const hour12 = hour % 12 || 12;
 
@@ -169,6 +212,7 @@ export const getPartsFromTimeString = ({
     period,
     mil: millisecond?.toString().padStart(3, '0') as Millisecond,
   };
+  time.string = getTimeStringFromParts(time, use24Hour, showSeconds);
 
   return time;
 };
@@ -234,6 +278,41 @@ export const getDateTimeFromParts = ({
 };
 
 /**
+ * Format a DateTime object to a time string
+ *
+ * @param dt - DateTime object to format
+ * @param use24Hour - Whether to use 24-hour format
+ * @param showSeconds - Whether to show seconds
+ * @returns Formatted time string
+ *
+ * @example
+ * ```typescript
+ * formatTimeString(
+ *   DateTime.fromObject({ hour: 14, minute: 30 }),
+ *   false,
+ *   false
+ * ) // "2:30 PM"
+ * ```
+ */
+export function formatTimeString(
+  dt: DateTime,
+  use24Hour?: boolean,
+  showSeconds?: boolean,
+): string {
+  if (use24Hour && showSeconds) {
+    return dt.toFormat(timeUtil['24h-with-seconds']);
+  }
+  if (use24Hour) {
+    return dt.toFormat(timeUtil['24h']);
+  }
+  if (showSeconds) {
+    return dt.toFormat(timeUtil['12h-with-seconds']);
+  }
+
+  return dt.toFormat(timeUtil['12h']);
+}
+
+/**
  * Format time string from parts
  *
  * @param time - Time object with parts
@@ -257,17 +336,22 @@ export function formatTimeStringFromParts(
 ): string {
   const dt = getDateTimeFromParts({ time });
 
-  const timeUtil = {
-    '12h': 'hh:mm a',
-    '24h': 'HH:mm',
-    '12h-with-seconds': 'hh:mm:ss a',
-    '24h-with-seconds': 'HH:mm:ss',
-  } as const;
+  return formatTimeString(dt, use24Hour, showSeconds);
+}
 
-  let format: keyof typeof timeUtil = use24Hour ? '24h' : '12h';
-  if (showSeconds) {
-    format = use24Hour ? '24h-with-seconds' : '12h-with-seconds';
+export function getTimeStringFromParts(
+  time: Time,
+  use24Hour?: boolean,
+  showSeconds?: boolean,
+): string {
+  if (use24Hour && showSeconds) {
+    return `${time.hr}:${time.min}:${time.sec}`;
   }
-
-  return dt.toFormat(timeUtil[format]);
+  if (use24Hour) {
+    return `${time.hr}:${time.min}`;
+  }
+  if (showSeconds) {
+    return `${time.hr}:${time.min}:${time.sec} ${time.period}`;
+  }
+  return `${time.hr}:${time.min} ${time.period}`;
 }

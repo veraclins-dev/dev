@@ -120,6 +120,7 @@ export type Time = {
   sec?: Minute;
   mil?: Millisecond;
   period: Period;
+  string?: string;
 };
 
 export type Period = 'AM' | 'PM';
@@ -1696,79 +1697,210 @@ export type TimeFormatPattern =
   (typeof CATEGORIZED_PATTERNS)[number]['pattern'];
 
 /**
- * Smart pattern filtering based on input characteristics
- * Optimized to minimize regex usage for better performance
+ * Pre-computed pattern index for O(1) lookups
+ * Built once at module load time
  */
-export const getFilteredPatterns = (input: string): CategorizedPattern[] => {
+const PATTERN_INDEX = (() => {
+  const index = new Map<string, CategorizedPattern[]>();
+
+  CATEGORIZED_PATTERNS.forEach((pattern) => {
+    const key = `${pattern.length}-${pattern.colonCount}-${pattern.hasPeriod}-${pattern.hasSeconds}-${pattern.is24Hour}`;
+    if (!index.has(key)) index.set(key, []);
+    index.get(key)?.push(pattern);
+  });
+
+  return index;
+})();
+
+/**
+ * Analyze the structure of a time input string
+ */
+interface TimeStructure {
+  hourFormat: 'single' | 'double' | 'unknown';
+  minuteFormat: 'single' | 'double' | 'unknown';
+  secondFormat: 'single' | 'double' | 'unknown';
+  hasPeriod: boolean;
+  hasSeconds: boolean;
+  colonCount: number;
+  is24Hour: boolean;
+}
+
+/**
+ * Analyze the structure of a time input string
+ */
+const analyzeTimeStructure = (input: string): TimeStructure => {
   const normalized = input.trim().toLowerCase();
-  const length = normalized.length;
+  const parts = normalized.split(':');
+  const colonCount = parts.length - 1;
 
-  // Use string operations instead of regex where possible
-  const colonCount = normalized.split(':').length - 1;
-  const hasPeriod =
-    normalized.includes('am') ||
-    normalized.includes('pm') ||
-    normalized.includes('a') ||
-    normalized.includes('p');
-  const hasSeconds = colonCount >= 2;
-
-  // Optimized 24-hour detection without complex regex
-  let is24Hour = false;
-  if (!hasPeriod && length > 0) {
-    const firstChar = normalized[0];
-    const secondChar = normalized[1];
-
-    // Check if it starts with a digit that could be 24-hour format
-    if (firstChar >= '0' && firstChar <= '2') {
-      if (secondChar >= '0' && secondChar <= '9') {
-        // Two digits: check if it's 00-23 (optimized logic)
-        is24Hour = (firstChar === '2' && secondChar <= '3') || firstChar <= '1';
-      } else {
-        // Single digit: could be 0-2 (24-hour) or 1-2 (12-hour)
-        if (colonCount > 0) {
-          // If there's a colon, it's likely 24-hour format
-          is24Hour = true;
-        } else {
-          // Single digit without colon - could be either, default to 12-hour
-          is24Hour = false;
-        }
-      }
-    } else if (firstChar >= '3' && firstChar <= '9') {
-      // Single digit 3-9: could be 24-hour if there's a colon
-      if (colonCount > 0) {
-        is24Hour = true;
-      } else {
-        is24Hour = false;
-      }
+  // Analyze hour format
+  let hourFormat: 'single' | 'double' | 'unknown' = 'unknown';
+  if (parts[0]) {
+    if (parts[0].length === 1) {
+      hourFormat = 'single';
+    } else if (parts[0].length === 2) {
+      hourFormat = 'double';
     }
   }
 
+  // Analyze minute format
+  let minuteFormat: 'single' | 'double' | 'unknown' = 'unknown';
+  if (parts[1]) {
+    const minutePart = parts[1].replace(/[ap]m?/i, '').trim();
+    if (minutePart.length === 1) {
+      minuteFormat = 'single';
+    } else if (minutePart.length === 2) {
+      minuteFormat = 'double';
+    }
+  }
+
+  // Analyze second format
+  let secondFormat: 'single' | 'double' | 'unknown' = 'unknown';
+  if (parts[2]) {
+    const secondPart = parts[2].replace(/[ap]m?/i, '').trim();
+    if (secondPart.length === 1) {
+      secondFormat = 'single';
+    } else if (secondPart.length === 2) {
+      secondFormat = 'double';
+    }
+  }
+
+  const hasPeriod = /[ap]m?/i.test(normalized);
+  const hasSeconds = colonCount >= 2;
+
+  // Determine if 24-hour format
+  let is24Hour = false;
+  if (!hasPeriod && parts[0]) {
+    const hour = parseInt(parts[0], 10);
+    is24Hour = hour >= 0 && hour <= 23;
+  }
+
+  return {
+    hourFormat,
+    minuteFormat,
+    secondFormat,
+    hasPeriod,
+    hasSeconds,
+    colonCount,
+    is24Hour,
+  };
+};
+
+/**
+ * Check if a pattern is compatible with the input structure
+ */
+const isPatternCompatible = (
+  pattern: string,
+  structure: TimeStructure,
+): boolean => {
+  // Extract format parts from pattern
+  const patternParts = pattern.split(':');
+
+  // Check hour format compatibility
+  if (structure.hourFormat !== 'unknown') {
+    const patternHour = patternParts[0];
+    if (structure.hourFormat === 'single' && patternHour.startsWith('hh')) {
+      return false; // Single-digit input with double-digit pattern
+    }
+    if (structure.hourFormat === 'double' && patternHour === 'h') {
+      return false; // Double-digit input with single-digit pattern
+    }
+  }
+
+  // Check minute format compatibility
+  if (structure.minuteFormat !== 'unknown' && patternParts[1]) {
+    const patternMinute = patternParts[1].replace(/[ap]m?/i, '');
+    if (structure.minuteFormat === 'single' && patternMinute.startsWith('mm')) {
+      return false; // Single-digit minutes with double-digit pattern
+    }
+    if (structure.minuteFormat === 'double' && patternMinute === 'm') {
+      return false; // Double-digit minutes with single-digit pattern
+    }
+  }
+
+  // Check second format compatibility
+  if (structure.secondFormat !== 'unknown' && patternParts[2]) {
+    const patternSecond = patternParts[2].replace(/[ap]m?/i, '');
+    if (structure.secondFormat === 'single' && patternSecond.startsWith('ss')) {
+      return false; // Single-digit seconds with double-digit pattern
+    }
+    if (structure.secondFormat === 'double' && patternSecond === 's') {
+      return false; // Double-digit seconds with single-digit pattern
+    }
+  }
+
+  return true;
+};
+
+/**
+ * Smart pattern filtering based on input structure analysis
+ * Optimized to match patterns based on actual input format
+ */
+export const getFilteredPatterns = (
+  input: string,
+  use24Hour = false,
+  showSeconds = false,
+): CategorizedPattern[] => {
+  const normalized = input.trim().toLowerCase();
+  const length = normalized.length;
+
+  // Early exit for obvious cases
+  if (length === 0) return [];
+  if (length > 20) return []; // No pattern is this long
+  if (normalized.split(':').length > 3) return []; // No pattern has more than 2 colons
+
+  // Analyze the input structure
+  const structure = analyzeTimeStructure(normalized);
+
+  // Override structure analysis with provided parameters when available
+  if (use24Hour !== undefined) {
+    structure.is24Hour = use24Hour;
+  }
+  if (showSeconds !== undefined) {
+    structure.hasSeconds = showSeconds;
+  }
+
+  // Use pattern index for O(1) lookup first
+  const key = `${length}-${structure.colonCount}-${structure.hasPeriod}-${structure.hasSeconds}-${structure.is24Hour}`;
+
+  const exactMatches = PATTERN_INDEX.get(key) || [];
+
+  // Filter exact matches by structure compatibility
+  const compatibleExactMatches = exactMatches.filter((pattern) =>
+    isPatternCompatible(pattern.pattern, structure),
+  );
+
+  if (compatibleExactMatches.length > 0) {
+    return compatibleExactMatches;
+  }
+
+  // Fallback to filtering all patterns with structure-based compatibility
   return CATEGORIZED_PATTERNS.filter((pattern) => {
-    // Filter by length (allow some tolerance for partial input)
+    // Basic filters
     if (pattern.length < length - 2 || pattern.length > length + 2) {
       return false;
     }
-
-    // Filter by colon count
-    if (pattern.colonCount !== colonCount) {
+    if (pattern.colonCount !== structure.colonCount) {
+      return false;
+    }
+    if (pattern.hasPeriod !== structure.hasPeriod) {
+      return false;
+    }
+    if (pattern.hasSeconds !== structure.hasSeconds) {
+      return false;
+    }
+    if (pattern.is24Hour !== structure.is24Hour) {
       return false;
     }
 
-    // Filter by period presence
-    if (pattern.hasPeriod !== hasPeriod) {
-      return false;
-    }
-
-    // Filter by seconds presence
-    if (pattern.hasSeconds !== hasSeconds) {
-      return false;
-    }
-
-    // Filter by 24-hour format
-    if (pattern.is24Hour !== is24Hour) {
-      return false;
-    }
-
-    return true;
+    // Structure-based compatibility check
+    return isPatternCompatible(pattern.pattern, structure);
   });
 };
+
+export const timeUtil = {
+  '12h': 'hh:mm a',
+  '24h': 'HH:mm',
+  '12h-with-seconds': 'hh:mm:ss a',
+  '24h-with-seconds': 'HH:mm:ss',
+} as const;

@@ -7,7 +7,6 @@ export * from './labeled-textarea';
 export * from './labeled-textfield';
 export * from './phone-field';
 export * from './radio-field';
-export * from './scroller';
 export * from './select-field';
 export * from './textarea';
 export * from './textfield';

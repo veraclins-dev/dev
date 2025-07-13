@@ -22,6 +22,12 @@ export const runPerformanceTest = () => {
     '14:30:',
     '2:3:',
     '14:3:',
+    '02:30 p', // Partial period test
+    '02:30 P', // Partial period test
+    'am',
+    'pm',
+    'AM',
+    'PM',
   ];
 
   console.log('=== Performance Test Results ===\n');
