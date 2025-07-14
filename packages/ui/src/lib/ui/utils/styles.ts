@@ -50,7 +50,7 @@ const INPUT_CLASSES = cn(
   // Border and Shadow
   'rounded-md',
   // Focus Styles
-  'focus-visible:ring-2 focus:ring-offset-0.5',
+  'focus-visible:ring-2 focus:ring-offset-0.5 has-focus-visible:ring-primary/50 has-focus-visible:ring-2 has-focus-visible:ring-offset-0.5',
   // Disabled Styles
   'disabled:pointer-events-none',
   // File Input Styles
@@ -84,7 +84,7 @@ const INPUT_CLASS_OVERRIDES = cn(
   // Border and Shadow
   'border-none rounded-none shadow-none',
   // Focus Styles
-  'focus-visible:border-none focus-visible:ring-0 focus:ring-offset-0',
+  'focus-visible:border-none focus-visible:ring-0 focus:ring-offset-0 has-focus-visible:border-none has-focus-visible:ring-0 has-focus-visible:ring-offset-0',
   // Error States
   'aria-invalid:border-none aria-invalid:ring-0',
 );

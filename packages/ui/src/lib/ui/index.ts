@@ -31,6 +31,7 @@ export * from './status-button';
 export * from './switch';
 export * from './table';
 export * from './textarea';
+export * from './time-picker';
 export * from './tooltip';
 export * from './typography';
 export * from './utils/styles';

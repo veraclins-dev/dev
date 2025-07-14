@@ -2,7 +2,6 @@ import { DateTime } from 'luxon';
 
 import { parseToDateTime, toDate } from './date';
 import {
-  CATEGORIZED_PATTERNS,
   getFilteredPatterns,
   type Hour,
   type Millisecond,
@@ -355,3 +354,32 @@ export function getTimeStringFromParts(
   }
   return `${time.hr}:${time.min} ${time.period}`;
 }
+
+/**
+ * Get the current time as a Time object
+ *
+ * @param use24Hour - Whether to use 24-hour format
+ * @param showSeconds - Whether to include seconds
+ * @returns Time object with current time parts
+ *
+ * @example
+ * ```typescript
+ * getCurrentTime(false, false) // { hr: '02', min: '30', period: 'PM', ... }
+ * getCurrentTime(true, true) // { hr: '14', min: '30', sec: '45', ... }
+ * ```
+ */
+export const getCurrentTime = (
+  use24Hour = false,
+  showSeconds = false,
+): Time => {
+  const now = DateTime.now();
+  const currentTimeString = use24Hour
+    ? now.toFormat(showSeconds ? 'HH:mm:ss' : 'HH:mm')
+    : now.toFormat(showSeconds ? 'hh:mm:ss a' : 'hh:mm a');
+
+  return getPartsFromTimeString({
+    timeString: currentTimeString,
+    use24Hour,
+    showSeconds,
+  });
+};
