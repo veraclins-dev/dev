@@ -12,6 +12,7 @@ import {
   CardTitle,
   Icon,
   TimePicker,
+  TimePickerField,
   type TimePickerProps,
   Typography,
 } from '@veraclins-dev/ui';
@@ -22,6 +23,19 @@ export function TimePickerShowcase() {
   const [timeValue12, setTimeValue12] = useState<string>('02:00 PM');
   const [timeValue24, setTimeValue24] = useState<string>('14:30');
   const [size, setSize] = useState<TimePickerProps['size']>('md');
+
+  // Form field states
+  const [formData, setFormData] = useState({
+    startTime: '09:00 AM',
+    endTime: '05:30 PM',
+    breakTime: '12:00 PM',
+    workTime: '08:30',
+  });
+
+  const handleFormChange = (field: string, value: string) => {
+    console.log('field', field, value);
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
     <Box display="flex" flexDirection="column" gap={8}>
@@ -114,6 +128,92 @@ export function TimePickerShowcase() {
                   XLarge
                 </Button>
               </Box>
+            </Box>
+          </Box>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Icon name="input" className="h-6 w-6" />
+            TimePickerField Form Integration
+          </CardTitle>
+          <CardDescription>
+            TimePickerField with form integration, labels, and validation.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Work Schedule
+              </Typography>
+              <Box className="space-y-4">
+                <TimePickerField
+                  name="startTime"
+                  label="Start Time"
+                  value={formData.startTime}
+                  onChange={(value) => handleFormChange('startTime', value)}
+                  placeholder="Select start time"
+                  size={size}
+                />
+
+                <TimePickerField
+                  name="endTime"
+                  label="End Time"
+                  value={formData.endTime}
+                  onChange={(value) => handleFormChange('endTime', value)}
+                  placeholder="Select end time"
+                  size={size}
+                />
+              </Box>
+            </Box>
+
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                24-Hour Format
+              </Typography>
+              <Box className="space-y-4">
+                <TimePickerField
+                  name="workTime"
+                  label="Work Time"
+                  value={formData.workTime}
+                  onChange={(value) => handleFormChange('workTime', value)}
+                  placeholder="Select work time"
+                  use24Hour={true}
+                  size={size}
+                />
+
+                <TimePickerField
+                  name="breakTime"
+                  label="Break Time"
+                  value={formData.breakTime}
+                  onChange={(value) => handleFormChange('breakTime', value)}
+                  placeholder="Select break time"
+                  size={size}
+                />
+              </Box>
+            </Box>
+          </Box>
+
+          <Box className="mt-6 p-4 bg-muted rounded-lg">
+            <Typography variant="h5" className="mb-2">
+              Form Data
+            </Typography>
+            <Box className="space-y-1 text-sm">
+              <Typography variant="body2">
+                Start Time: {formData.startTime}
+              </Typography>
+              <Typography variant="body2">
+                End Time: {formData.endTime}
+              </Typography>
+              <Typography variant="body2">
+                Work Time: {formData.workTime}
+              </Typography>
+              <Typography variant="body2">
+                Break Time: {formData.breakTime}
+              </Typography>
             </Box>
           </Box>
         </CardContent>
