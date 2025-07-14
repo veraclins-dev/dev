@@ -17,13 +17,13 @@ import {
   PopoverAnchor,
   PopoverContent,
 } from '../../../ui';
+import { InputFieldWrapper } from '../input-field-wrapper';
 import {
   getInputProps,
   getOptionLabel,
   getOptionValue,
   useFieldProperties,
 } from '../utils';
-import { InputWrapper } from '../wrapper';
 
 import { type AutocompleteProps } from './types';
 import { useAutocomplete } from './use-autocomplete';
@@ -186,7 +186,7 @@ export const Autocomplete = ({
   delete formProps.defaultValue;
   const inputId = useId();
   return (
-    <InputWrapper
+    <InputFieldWrapper
       className={className}
       field={field}
       label={label}
@@ -370,6 +370,6 @@ export const Autocomplete = ({
           </List>
         </PopoverContent>
       </Popover>
-    </InputWrapper>
+    </InputFieldWrapper>
   );
 };

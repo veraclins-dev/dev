@@ -9,13 +9,13 @@ import {
   Label,
 } from '../../ui';
 
+import { InputFieldWrapper } from './input-field-wrapper';
 import { type TextFieldProps } from './textfield';
 import {
   getInputProps,
   useFieldProperties,
   useInputControlProps,
 } from './utils';
-import { InputWrapper } from './wrapper';
 
 interface CheckboxFieldProps
   extends Omit<CheckboxProps, 'onChange' | 'onCheckedChange' | 'ref'>,
@@ -66,7 +66,7 @@ export function CheckboxField({
 
   const { errorId, id } = useFieldProperties(field);
   return (
-    <InputWrapper
+    <InputFieldWrapper
       className={className}
       field={field}
       wrapperClassName={wrapperClassName}
@@ -101,6 +101,6 @@ export function CheckboxField({
           {label}
         </Label>
       </Box>
-    </InputWrapper>
+    </InputFieldWrapper>
   );
 }

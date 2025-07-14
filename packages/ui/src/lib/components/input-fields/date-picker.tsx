@@ -21,12 +21,12 @@ import {
   Typography,
 } from '../../ui';
 
+import { InputFieldWrapper } from './input-field-wrapper';
 import {
   getInputProps,
   useFieldProperties,
   useInputControlProps,
 } from './utils';
-import { InputWrapper } from './wrapper';
 
 type DateValue = Date | undefined;
 type RangeValue = LegacyDateRange | undefined;
@@ -136,7 +136,7 @@ function BaseDatePicker<T extends ValueType>({
   }, [calendarProps.selected, calendarProps.mode]);
 
   return (
-    <InputWrapper
+    <InputFieldWrapper
       className={cn(
         'has-focus:border-ring has-focus:ring-current/50 has-focus:ring-1',
         className,
@@ -183,7 +183,7 @@ function BaseDatePicker<T extends ValueType>({
         className="h-0 w-0 border-none p-0"
         readOnly
       />
-    </InputWrapper>
+    </InputFieldWrapper>
   );
 }
 

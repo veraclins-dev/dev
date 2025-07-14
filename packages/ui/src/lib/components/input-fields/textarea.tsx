@@ -2,12 +2,12 @@ import { cn } from '@veraclins-dev/utils';
 
 import { INPUT_CLASS_OVERRIDES, Textarea, Typography } from '../../ui';
 
+import { InputFieldWrapper } from './input-field-wrapper';
 import {
   type BaseInputProps,
   getInputProps,
   useFieldProperties,
 } from './utils';
-import { InputWrapper } from './wrapper';
 
 export interface TextareaFieldProps
   extends Omit<React.ComponentProps<'textarea'>, 'ref'>,
@@ -36,7 +36,7 @@ export const TextareaField = ({
   const { key, ...inputProps } = getInputProps({ field, name });
 
   return (
-    <InputWrapper
+    <InputFieldWrapper
       className={className}
       field={field}
       label={label}
@@ -60,6 +60,6 @@ export const TextareaField = ({
           {rightInlay}
         </Typography>
       ) : null}
-    </InputWrapper>
+    </InputFieldWrapper>
   );
 };

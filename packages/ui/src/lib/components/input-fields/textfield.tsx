@@ -4,13 +4,13 @@ import { cn } from '@veraclins-dev/utils';
 
 import { Icon, Input, INPUT_CLASS_OVERRIDES } from '../../ui';
 
+import { InputFieldWrapper } from './input-field-wrapper';
 import {
   type BaseInputProps,
   getInputProps,
   type InputFieldProps,
   useFieldProperties,
 } from './utils';
-import { InputWrapper } from './wrapper';
 
 export interface TextFieldProps
   extends React.ComponentProps<'input'>,
@@ -51,7 +51,7 @@ export const TextField = ({
   const { key, ...inputProps } = getInputProps({ field, type, name });
 
   return (
-    <InputWrapper
+    <InputFieldWrapper
       className={cn('gap-2', className)}
       field={field}
       label={label}
@@ -83,6 +83,6 @@ export const TextField = ({
         <Icon size="sm" name={rightIcon} className="cursor-pointer" />
       ) : null}
       {rightAddon}
-    </InputWrapper>
+    </InputFieldWrapper>
   );
 };

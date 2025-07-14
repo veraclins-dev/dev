@@ -5,6 +5,7 @@ import {
   // type RadioGroupProps,
 } from '../../ui/radio-group';
 
+import { InputFieldWrapper } from './input-field-wrapper';
 import { type TextFieldProps } from './textfield';
 import {
   getInputProps,
@@ -14,7 +15,6 @@ import {
   useFieldProperties,
   useInputControlProps,
 } from './utils';
-import { InputWrapper } from './wrapper';
 
 type Options = OptionWithId[];
 
@@ -61,7 +61,7 @@ const RadioField = ({
   const { control, ...controlProps } = useInputControlProps(field, name);
 
   return (
-    <InputWrapper
+    <InputFieldWrapper
       className={className}
       field={field}
       label={label}
@@ -102,7 +102,7 @@ const RadioField = ({
           />
         ))}
       </RadioGroup>
-    </InputWrapper>
+    </InputFieldWrapper>
   );
 };
 

@@ -2,13 +2,13 @@ import { cn } from '@veraclins-dev/utils';
 
 import { ComposedSelect, type SelectProps as BaseSelectProps } from '../../ui';
 
+import { InputFieldWrapper } from './input-field-wrapper';
 import {
   type BaseInputProps,
   getSelectProps,
   useFieldProperties,
   useSelectControlProps,
 } from './utils';
-import { InputWrapper } from './wrapper';
 
 interface SelectFieldProps
   extends React.ComponentProps<'select'>,
@@ -42,7 +42,7 @@ const SelectField = ({
   const { key, ...formProps } = field ? getSelectProps(field) : {};
 
   return (
-    <InputWrapper
+    <InputFieldWrapper
       className={className}
       field={field}
       wrapperClassName={wrapperClassName}
@@ -67,7 +67,7 @@ const SelectField = ({
         dir={dir}
         sideOffset={0}
       />
-    </InputWrapper>
+    </InputFieldWrapper>
   );
 };
 

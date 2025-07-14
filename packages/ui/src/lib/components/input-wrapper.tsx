@@ -1,17 +1,21 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { Box, Typography } from '../../ui';
-import { INPUT_CONTAINER_CLASSES } from '../../ui';
-import { Label } from '../../ui/label';
-import { ErrorList } from '../error-list';
+import { Box, Typography } from '../ui';
+import { INPUT_CONTAINER_CLASSES } from '../ui';
+import { Label } from '../ui/label';
 
-import { type BaseInputProps, useFieldProperties } from './utils';
+import { ErrorList } from './error-list';
+import { type BaseInputProps } from './input-fields';
 
 export interface InputWrapperProps
   extends React.ComponentProps<'div'>,
-    BaseInputProps {
+    Omit<BaseInputProps, 'field'> {
   children: React.ReactNode;
   plain?: boolean;
+  errorId?: string;
+  id: string;
+  errors?: string[];
+  containerRef?: React.Ref<HTMLDivElement>;
 }
 
 export const InputWrapper = ({
@@ -20,14 +24,15 @@ export const InputWrapper = ({
   label,
   labelProps,
   topText,
-  field,
   ref,
   wrapperClassName,
   plain,
+  errorId,
+  id,
+  errors,
+  containerRef,
   ...props
 }: InputWrapperProps) => {
-  const { errorId, id, errors } = useFieldProperties(field);
-
   return (
     <Box
       display="flex"
@@ -60,6 +65,7 @@ export const InputWrapper = ({
         aria-invalid={errorId ? true : undefined}
         data-state={errorId ? 'error' : undefined}
         className={cn(!plain && INPUT_CONTAINER_CLASSES, className)}
+        ref={containerRef}
       >
         {children}
       </Box>

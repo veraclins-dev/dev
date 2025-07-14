@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { InputWrapper } from './wrapper';
+import { InputFieldWrapper } from './input-field-wrapper';
 
-const meta: Meta<typeof InputWrapper> = {
-  component: InputWrapper,
+const meta: Meta<typeof InputFieldWrapper> = {
+  component: InputFieldWrapper,
   title: 'Components/InputWrapper',
 };
 export default meta;
-type Story = StoryObj<typeof InputWrapper>;
+type Story = StoryObj<typeof InputFieldWrapper>;
 
 export const Primary: Story = {
   args: {

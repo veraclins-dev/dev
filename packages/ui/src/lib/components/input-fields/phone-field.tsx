@@ -17,13 +17,13 @@ import {
   Typography,
 } from '../../ui';
 
+import { InputFieldWrapper } from './input-field-wrapper';
 import { type TextFieldProps } from './textfield';
 import {
   getInputProps,
   useFieldProperties,
   useInputControlProps,
 } from './utils';
-import { InputWrapper } from './wrapper';
 
 type CountryCode = Parameters<typeof getCountryCallingCode>[0];
 
@@ -118,7 +118,7 @@ export const PhoneField = ({
   }, [control?.value]);
 
   return (
-    <InputWrapper
+    <InputFieldWrapper
       className={className}
       field={field}
       label={label}
@@ -159,6 +159,6 @@ export const PhoneField = ({
         className="h-0 w-0 border-none p-0"
         readOnly
       />
-    </InputWrapper>
+    </InputFieldWrapper>
   );
 };

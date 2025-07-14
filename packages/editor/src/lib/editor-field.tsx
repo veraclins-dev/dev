@@ -3,7 +3,7 @@ import { type Except } from 'type-fest';
 
 import {
   getInputProps,
-  InputWrapper,
+  InputFieldWrapper,
   type TextareaFieldProps,
   useFieldProperties,
 } from '@veraclins-dev/ui';
@@ -68,7 +68,7 @@ const EditorField = ({
   }, [val]);
 
   return (
-    <InputWrapper
+    <InputFieldWrapper
       className={cn('px-0 py-0', className)}
       wrapperClassName={wrapperClassName}
       field={field}
@@ -102,7 +102,7 @@ const EditorField = ({
             : {}),
         }}
       />
-    </InputWrapper>
+    </InputFieldWrapper>
   );
 };
 

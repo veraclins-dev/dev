@@ -6,7 +6,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import { Box } from '../../ui/box';
 import { Button } from '../../ui/button';
-import { TimePicker } from '../input-fields/time-picker';
+import { TimePicker } from '../../ui/time-picker';
 
 import { useCalendarContext } from './calendar-context';
 import type { CalendarFooterProps } from './calendar-types';
