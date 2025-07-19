@@ -9,11 +9,18 @@ import { Button } from '../../ui/button';
 import { TimePicker } from '../../ui/time-picker';
 
 import { useCalendarContext } from './calendar-context';
-import type { CalendarFooterProps } from './calendar-types';
-import {
-  calendarFooterVariants,
-  calendarTodayButtonVariants,
-} from './calendar-variants';
+import { type CalendarClassNames } from './calendar-types';
+import { calendarFooterVariants } from './calendar-variants';
+
+/**
+ * Calendar footer component props
+ */
+export interface CalendarFooterProps {
+  onTodayClick?: () => void;
+  showTimePicker?: boolean;
+  className?: string;
+  classNames?: CalendarClassNames;
+}
 
 /**
  * Calendar footer component with Today button and time selection
@@ -21,14 +28,28 @@ import {
 export const CalendarFooter = memo(function CalendarFooter({
   onTodayClick,
   showTimePicker = false,
-  timeValue,
-  onTimeChange,
   className,
   classNames,
   ref,
   ...props
 }: CalendarFooterProps & { ref?: React.Ref<HTMLDivElement> }) {
   const context = useCalendarContext();
+
+  // Extract date from selected dates
+  const getDateFromSelectedDates = (): Date | undefined => {
+    if (!context.selectedDates) return undefined;
+
+    if (context.selectedDates instanceof Date) {
+      return context.selectedDates;
+    } else if (Array.isArray(context.selectedDates)) {
+      if (context.selectedDates.length === 0) return undefined;
+      return context.selectedDates[0];
+    } else {
+      // DateRange
+      if (!context.selectedDates.from) return undefined;
+      return context.selectedDates.from;
+    }
+  };
 
   const handleTodayClick = useCallback(() => {
     if (onTodayClick) {
@@ -43,6 +64,8 @@ export const CalendarFooter = memo(function CalendarFooter({
     }
   }, [onTodayClick, context]);
 
+  const selectedDate = getDateFromSelectedDates();
+
   return (
     <Box
       ref={ref}
@@ -52,15 +75,11 @@ export const CalendarFooter = memo(function CalendarFooter({
       <Box className="flex items-center justify-between w-full gap-2">
         {/* Today Button */}
         <Button
-          type="button"
-          variant="outline"
-          color="neutral"
+          variant="text"
+          color="primary"
           size="sm"
           onClick={handleTodayClick}
-          className={cn(
-            calendarTodayButtonVariants({ size: 'sm', variant: 'outline' }),
-            classNames?.todayButton,
-          )}
+          className={cn(classNames?.todayButton)}
         >
           Today
         </Button>
@@ -69,12 +88,11 @@ export const CalendarFooter = memo(function CalendarFooter({
         {showTimePicker && (
           <Box className="flex items-center gap-2">
             <TimePicker
-              value={timeValue || ''}
-              onChange={onTimeChange}
+              value={selectedDate}
+              onChange={context.onTimeChange}
               placeholder="Select time"
               use24Hour
-              showSeconds
-              className="w-32"
+              inputProps={{ className: 'w-28' }}
             />
           </Box>
         )}

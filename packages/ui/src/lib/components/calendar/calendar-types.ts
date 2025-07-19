@@ -105,18 +105,6 @@ export interface CalendarWeekHeaderProps {
 }
 
 /**
- * Calendar footer component props
- */
-export interface CalendarFooterProps {
-  onTodayClick?: () => void;
-  showTimePicker?: boolean;
-  timeValue?: string;
-  onTimeChange?: (time: string) => void;
-  className?: string;
-  classNames?: CalendarClassNames;
-}
-
-/**
  * Calendar overlay component props (for popover/date picker mode)
  */
 export interface CalendarOverlayProps {

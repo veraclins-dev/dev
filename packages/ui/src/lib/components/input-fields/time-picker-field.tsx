@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { TimePicker, type TimePickerProps } from '../../ui';
+import { type Time, TimePicker, type TimePickerProps } from '../../ui';
 
 import {
   type BaseInputProps,
@@ -37,7 +37,7 @@ export const TimePickerField = ({
   value: supplied,
   ...props
 }: TimePickerFieldProps) => {
-  const { errorId, id, errors } = useFieldProperties(field);
+  const { errorId, errors } = useFieldProperties(field);
   const { key, ...inputFieldProps } = getInputProps({
     field,
     type: 'text',
@@ -47,9 +47,9 @@ export const TimePickerField = ({
 
   // Handle time changes
   const handleChange = useCallback(
-    (timeString: string) => {
-      control?.change(timeString);
-      onChange?.(timeString);
+    (time: Time) => {
+      control?.change(time.string);
+      onChange?.(time);
     },
     [control, onChange],
   );
@@ -65,7 +65,6 @@ export const TimePickerField = ({
       ...inputFieldProps,
       ...inputProps,
       className: cn(inputProps?.className, inputClass),
-      id,
       'aria-describedby': errorId,
       'aria-invalid': errorId ? true : undefined,
       label,

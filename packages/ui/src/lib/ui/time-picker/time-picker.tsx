@@ -1,6 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { cn, getPartsFromTimeString, type Time } from '@veraclins-dev/utils';
+import {
+  cn,
+  getPartsFromDate,
+  getPartsFromTimeString,
+  getTimeStringFromParts,
+  type Time,
+} from '@veraclins-dev/utils';
 
 import { Box } from '..';
 
@@ -8,17 +14,50 @@ import { type Size } from './definitions';
 import { TimePickerInput, type TimePickerInputProps } from './input';
 import { TimePopover, type TimePopoverProps } from './time-popover';
 
+type TimePickerValue = string | Omit<Time, 'string'> | Date;
+
 export interface TimePickerProps {
   className?: string;
   inputProps?: TimePickerInputProps;
   contentProps?: TimePopoverProps['contentProps'];
   showSeconds?: boolean;
   use24Hour?: boolean;
-  value?: string;
-  onChange?: (value: string) => void;
+  value?: TimePickerValue;
+  onChange?: (value: Time) => void;
   placeholder?: string;
   size?: Size;
 }
+
+const getTime = (
+  value: TimePickerValue,
+  use24Hour: boolean,
+  showSeconds: boolean,
+): Time => {
+  if (!value || typeof value === 'string') {
+    return getPartsFromTimeString({
+      timeString: value ?? '',
+      use24Hour,
+      showSeconds,
+    });
+  }
+  if (value instanceof Date) {
+    return getPartsFromDate({
+      date: value,
+      use24Hour,
+      showSeconds,
+    });
+  }
+  return {
+    ...value,
+    sec: value.sec ?? '00',
+    mil: value.mil ?? '000',
+    string: getTimeStringFromParts(
+      { ...value, string: '' },
+      use24Hour,
+      showSeconds,
+    ),
+  };
+};
 
 export const TimePicker: React.FC<TimePickerProps> = ({
   className,
@@ -26,7 +65,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
   contentProps,
   showSeconds = false,
   use24Hour = false,
-  value,
+  value = '',
   onChange,
   placeholder,
   size = 'md',
@@ -36,14 +75,14 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [time, setTime] = useState<Time>(() =>
-    getPartsFromTimeString({ timeString: value ?? '', use24Hour }),
+    getTime(value, use24Hour, showSeconds),
   );
 
   const updateTime = useCallback(
     (time: Time) => {
       setTime(time);
       if (onChange && time.string) {
-        onChange(time.string);
+        onChange(time);
       }
     },
     [onChange],
@@ -78,12 +117,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
   );
 
   useEffect(() => {
-    setTime(
-      getPartsFromTimeString({
-        timeString: value ?? '',
-        use24Hour,
-      }),
-    );
+    setTime(getTime(value, use24Hour, showSeconds));
   }, [value, use24Hour, showSeconds]);
 
   return (
@@ -116,3 +150,5 @@ export const TimePicker: React.FC<TimePickerProps> = ({
     </Box>
   );
 };
+
+export { type Time };

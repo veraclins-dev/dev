@@ -10,6 +10,8 @@ import {
   useState,
 } from 'react';
 
+import { getDateTimeFromParts, type Time, toDate } from '@veraclins-dev/utils';
+
 import type { CalendarMode, DateRange, WeekStartsOn } from './calendar-types';
 import { dateUtils } from './calendar-utils';
 
@@ -25,10 +27,6 @@ export interface CalendarContextValue {
   focusedDate: Date | undefined;
 
   // Actions
-  setCurrentMonth: (date: Date) => void;
-  setSelectedDates: (dates: Date | Date[] | DateRange | undefined) => void;
-  setHoveredDate: (date: Date | undefined) => void;
-  setFocusedDate: (date: Date | undefined) => void;
   onDayClick: (date: Date, month: Date) => void;
   onDayMouseEnter: (date: Date) => void;
   onDayMouseLeave: () => void;
@@ -40,6 +38,7 @@ export interface CalendarContextValue {
   gotoToday: () => void;
   onMonthSelect: (month: number, monthIndex?: number) => void;
   onYearSelect: (year: number, monthIndex?: number) => void;
+  onTimeChange: (time: Time) => void;
 
   // Utilities
   isSelected: (date: Date) => boolean;
@@ -311,6 +310,14 @@ export function CalendarProvider({
   );
 
   // ===== HANDLERS =====
+  // Method to update selected dates
+  const updateSelectedDates = useCallback(
+    (dates: Date | Date[] | DateRange | undefined) => {
+      setSelectedDates(dates);
+    },
+    [],
+  );
+
   // Centralized day click handler with automatic navigation
   const onDayClick = useCallback(
     (date: Date, month: Date) => {
@@ -364,7 +371,7 @@ export function CalendarProvider({
           newSelectedDates = date;
       }
 
-      setSelectedDates(newSelectedDates);
+      updateSelectedDates(newSelectedDates);
 
       // Handle navigation for outside month dates
       if (isOutsideMonth) {
@@ -402,7 +409,7 @@ export function CalendarProvider({
           setCurrentMonth(targetMonth);
         }
       }
-      // onValueChange?.(newSelectedDates);
+      onValueChange?.(newSelectedDates);
     },
 
     [
@@ -413,17 +420,15 @@ export function CalendarProvider({
       selectedDates,
       numberOfMonths,
       currentMonths,
-      setSelectedDates,
+      updateSelectedDates,
       setCurrentMonth,
+      onValueChange,
     ],
   );
 
   const onDayBlur = useCallback(() => {
     setFocusedDate(undefined);
-    if (selectedDates) {
-      onValueChange?.(selectedDates);
-    }
-  }, [selectedDates, onValueChange]);
+  }, []);
 
   // Centralized keyboard navigation handler
   const onDayKeyDown = useCallback(
@@ -568,71 +573,128 @@ export function CalendarProvider({
     [currentMonths, setCurrentMonth],
   );
 
+  // Time change handler
+  const onTimeChange = useCallback(
+    (time: Time) => {
+      if (!selectedDates) return;
+
+      let newSelectedDates: Date | Date[] | DateRange;
+
+      switch (mode) {
+        case 'single': {
+          const singleDate = selectedDates as Date;
+          const dateTime = getDateTimeFromParts({
+            time,
+            baseDate: singleDate,
+          });
+          newSelectedDates = toDate(dateTime);
+          break;
+        }
+        case 'multiple': {
+          const multipleDates = selectedDates as Date[];
+          newSelectedDates = multipleDates.map((date) => {
+            const dateTime = getDateTimeFromParts({ time, baseDate: date });
+            return toDate(dateTime);
+          });
+          break;
+        }
+        case 'range': {
+          const range = selectedDates as DateRange;
+
+          if (!range.from) {
+            return; // Cannot set time without a from date
+          }
+
+          const fromDateTime = getDateTimeFromParts({
+            time,
+            baseDate: range.from,
+          });
+
+          const newRange: DateRange = {
+            from: toDate(fromDateTime),
+          };
+
+          if (range.to) {
+            const toDateTime = getDateTimeFromParts({
+              time,
+              baseDate: range.to,
+            });
+            newRange.to = toDate(toDateTime);
+          }
+
+          newSelectedDates = newRange;
+          break;
+        }
+        default:
+          return;
+      }
+
+      updateSelectedDates(newSelectedDates);
+      onValueChange?.(newSelectedDates);
+    },
+    [selectedDates, mode, updateSelectedDates, onValueChange],
+  );
+
   // ===== USE EFFECTS =====
   useEffect(() => {
     if (value !== undefined && value !== previousValue.current) {
       isUpdatingFromProps.current = true;
-      setSelectedDates(value);
+      updateSelectedDates(value);
       previousValue.current = value;
       isUpdatingFromProps.current = false;
     }
-  }, [value]);
+  }, [value, updateSelectedDates]);
 
   // ===== CONTEXT VALUE =====
   const contextValue = useMemo<CalendarContextValue>(
-    () => ({
-      // State
-      currentMonth,
-      currentMonths,
-      selectedDates,
-      hoveredDate,
-      focusedDate,
+    () =>
+      ({
+        // State
+        currentMonth,
+        currentMonths,
+        selectedDates,
+        hoveredDate,
+        focusedDate,
+        // Actions
+        onDayClick,
+        onDayMouseEnter: setHoveredDate,
+        onDayMouseLeave: () => setHoveredDate(undefined),
+        onDayFocus: setFocusedDate,
+        onDayBlur,
+        onDayKeyDown,
+        gotoPreviousMonth,
+        gotoNextMonth,
+        gotoToday,
+        onMonthSelect,
+        onYearSelect,
+        onTimeChange,
 
-      // Actions
-      setCurrentMonth,
-      setSelectedDates,
-      setHoveredDate,
-      setFocusedDate,
-      onDayClick,
-      onDayMouseEnter: setHoveredDate,
-      onDayMouseLeave: () => setHoveredDate(undefined),
-      onDayFocus: setFocusedDate,
-      onDayBlur,
-      onDayKeyDown,
-      gotoPreviousMonth,
-      gotoNextMonth,
-      gotoToday,
-      onMonthSelect,
-      onYearSelect,
+        // Utilities
+        isSelected: (date: Date) => isSelected(date, selectedDates, mode),
+        isInRange: (date: Date) =>
+          isInRange(date, selectedDates, hoveredDate, mode),
+        isRangeStart: (date: Date) =>
+          isRangeStart(date, selectedDates, hoveredDate, mode),
+        isRangeEnd: (date: Date) =>
+          isRangeEnd(date, selectedDates, hoveredDate, mode),
+        isDisabled: (date: Date) =>
+          isDisabled(date, disabledDatesSet, dateConstraints, disabled),
+        isToday,
+        isOutsideMonth,
 
-      // Utilities
-      isSelected: (date: Date) => isSelected(date, selectedDates, mode),
-      isInRange: (date: Date) =>
-        isInRange(date, selectedDates, hoveredDate, mode),
-      isRangeStart: (date: Date) =>
-        isRangeStart(date, selectedDates, hoveredDate, mode),
-      isRangeEnd: (date: Date) =>
-        isRangeEnd(date, selectedDates, hoveredDate, mode),
-      isDisabled: (date: Date) =>
-        isDisabled(date, disabledDatesSet, dateConstraints, disabled),
-      isToday,
-      isOutsideMonth,
-
-      // Configuration
-      mode,
-      numberOfMonths,
-      showOutsideDays,
-      locale,
-      weekStartsOn,
-    }),
+        // Configuration
+        mode,
+        numberOfMonths,
+        showOutsideDays,
+        locale,
+        weekStartsOn,
+      }) satisfies CalendarContextValue,
     [
       currentMonth,
       currentMonths,
       selectedDates,
       hoveredDate,
       focusedDate,
-      setCurrentMonth,
-      setSelectedDates,
       setHoveredDate,
       setFocusedDate,
       onDayClick,
@@ -642,6 +704,7 @@ export function CalendarProvider({
       gotoToday,
       onMonthSelect,
       onYearSelect,
+      onTimeChange,
       disabledDatesSet,
       dateConstraints,
       disabled,

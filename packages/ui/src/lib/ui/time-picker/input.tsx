@@ -1,6 +1,7 @@
 import React, {
   useCallback,
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -45,15 +46,19 @@ const isValidPartialInput = ({
 
 export type TimePickerInputProps = Omit<
   InputWrapperProps,
-  'ref' | 'onChange' | 'children'
+  'ref' | 'onChange' | 'children' | 'id'
 > &
-  Omit<InputProps, 'value' | 'onChange' | 'onFocus' | 'pattern' | 'ref'> & {
+  Omit<
+    InputProps,
+    'value' | 'onChange' | 'onFocus' | 'pattern' | 'ref' | 'id'
+  > & {
     time?: Time;
     onChange?: (time: Time) => void;
     onFocus?: () => void;
     use24Hour?: boolean;
     showSeconds?: boolean;
     icon?: IconName;
+    id?: string;
   };
 
 export const TimePickerInput = ({
@@ -86,6 +91,7 @@ export const TimePickerInput = ({
           use24Hour,
           showSeconds,
         });
+
         onChange(time);
       }
     },
@@ -129,15 +135,16 @@ export const TimePickerInput = ({
     setInputValue(time?.string ?? '');
   }, [time]);
 
+  const inputId = useId();
   return (
     <InputWrapper
       className={className}
       label={label}
       labelProps={labelProps}
       topText={topText}
-      wrapperClassName={cn('w-fit gap-2', wrapperClassName)}
+      wrapperClassName={cn('w-fit max-w-full gap-2', wrapperClassName)}
       containerRef={containerRef}
-      id={id}
+      id={id ?? `time-picker-input-${inputId}`}
       errors={errors}
       errorId={errorId}
     >
@@ -146,9 +153,10 @@ export const TimePickerInput = ({
         value={inputValue}
         onChange={handleChange}
         placeholder={placeholderText}
-        className={cn(INPUT_CLASS_OVERRIDES)}
+        className={cn('min-w-16', INPUT_CLASS_OVERRIDES)}
         onFocus={onFocus}
         onBlur={handleBlur}
+        id={id ?? `time-picker-input-${inputId}`}
         {...inputProps}
       />
       {icon && (

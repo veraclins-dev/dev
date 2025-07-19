@@ -350,12 +350,14 @@ const ComposedDropdownMenu = <P extends object, I extends object>({
   TriggerProps,
   items,
   arrow = true,
+  align = 'center',
+  ...props
 }: ComposedDropdownMenuProps<P, I>) => (
   <DropdownMenu open={open} onOpenChange={onOpenChange}>
     <DropdownMenuTrigger asChild>
       <Trigger {...TriggerProps} />
     </DropdownMenuTrigger>
-    <DropdownMenuContent align="center" className={className}>
+    <DropdownMenuContent align={align} className={className} {...props}>
       {arrow && <DropdownMenuArrow />}
 
       {items.map(({ key, isSeparator, ...item }) => {

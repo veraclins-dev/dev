@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useState } from 'react';
 import React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
@@ -33,8 +33,6 @@ export interface CalendarProps {
 
   // Time selection
   showTimePicker?: boolean;
-  timeValue?: string;
-  onTimeChange?: (time: string) => void;
 
   // Navigation constraints
   disabled?: Date[] | ((date: Date) => boolean);
@@ -69,8 +67,6 @@ export const Calendar = memo(function Calendar({
   showTodayButton = false,
   showNavigation = true,
   showTimePicker = false,
-  timeValue,
-  onTimeChange,
   disabled,
   minDate,
   maxDate,
@@ -84,14 +80,6 @@ export const Calendar = memo(function Calendar({
   ref,
   ...props
 }: CalendarProps & { ref?: React.Ref<HTMLDivElement> }) {
-  // Memoize the onValueChange handler to prevent unnecessary re-renders
-  const handleValueChange = useCallback(
-    (newValue: Date | Date[] | DateRange) => {
-      onValueChange?.(newValue);
-    },
-    [onValueChange],
-  );
-
   return (
     <CalendarProvider
       mode={mode}
@@ -104,15 +92,13 @@ export const Calendar = memo(function Calendar({
       maxDate={maxDate}
       value={value}
       defaultValue={defaultValue}
-      onValueChange={handleValueChange}
+      onValueChange={onValueChange}
     >
       <CalendarContent
         ref={ref}
         numberOfMonths={numberOfMonths}
         showTodayButton={showTodayButton}
         showTimePicker={showTimePicker}
-        timeValue={timeValue}
-        onTimeChange={onTimeChange}
         className={className}
         classNames={classNames}
         aria-label={ariaLabel}
@@ -130,8 +116,6 @@ const CalendarContent = memo(function CalendarContent({
   numberOfMonths,
   showTodayButton,
   showTimePicker,
-  timeValue,
-  onTimeChange,
   className,
   classNames,
   'aria-label': ariaLabel,
@@ -182,11 +166,9 @@ const CalendarContent = memo(function CalendarContent({
       />
 
       {/* Calendar Footer */}
-      {showTodayButton && (
+      {(showTodayButton || showTimePicker) && (
         <CalendarFooter
           showTimePicker={showTimePicker}
-          timeValue={timeValue}
-          onTimeChange={onTimeChange}
           className={classNames?.calendarFooter}
           classNames={classNames}
         />

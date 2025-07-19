@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
-import { TimePicker } from './time-picker';
+import { type Time, TimePicker } from './time-picker';
 
 const meta: Meta<typeof TimePicker> = {
   title: 'Input Fields/TimePicker',
@@ -67,13 +67,18 @@ export const TwentyFourHourWithSeconds: Story = {
 
 export const Controlled: Story = {
   render: function ControlledStory(args) {
-    const [value, setValue] = useState('2:30 PM');
+    const [value, setValue] = useState<Time>({
+      hr: '02',
+      min: '30',
+      period: 'PM',
+      string: '2:30 PM',
+    });
 
     return (
       <div className="space-y-4">
         <TimePicker {...args} value={value} onChange={setValue} />
         <div className="text-sm text-muted-foreground">
-          <p>Selected time: {value}</p>
+          <p>Selected time: {value.string}</p>
         </div>
       </div>
     );
@@ -85,13 +90,18 @@ export const Controlled: Story = {
 
 export const Controlled24Hour: Story = {
   render: function Controlled24HourStory(args) {
-    const [value, setValue] = useState('14:30');
+    const [value, setValue] = useState<Time>({
+      hr: '14',
+      min: '30',
+      period: 'PM',
+      string: '14:30 PM',
+    });
 
     return (
       <div className="space-y-4">
         <TimePicker {...args} value={value} onChange={setValue} />
         <div className="text-sm text-muted-foreground">
-          <p>Selected time: {value}</p>
+          <p>Selected time: {value.string}</p>
         </div>
       </div>
     );
@@ -106,8 +116,18 @@ export const Controlled24Hour: Story = {
 
 export const SchedulingExample: Story = {
   render: function SchedulingStory(args) {
-    const [startTime, setStartTime] = useState('9:00 AM');
-    const [endTime, setEndTime] = useState('5:00 PM');
+    const [startTime, setStartTime] = useState<Time>({
+      hr: '09',
+      min: '00',
+      period: 'AM',
+      string: '9:00 AM',
+    });
+    const [endTime, setEndTime] = useState<Time>({
+      hr: '17',
+      min: '00',
+      period: 'PM',
+      string: '5:00 PM',
+    });
 
     return (
       <div className="space-y-4 w-80">
@@ -139,8 +159,18 @@ export const SchedulingExample: Story = {
 
 export const InternationalExample: Story = {
   render: function InternationalStory(args) {
-    const [localTime, setLocalTime] = useState('2:30 PM');
-    const [utcTime, setUtcTime] = useState('14:30');
+    const [localTime, setLocalTime] = useState<Time>({
+      hr: '02',
+      min: '30',
+      period: 'PM',
+      string: '2:30 PM',
+    });
+    const [utcTime, setUtcTime] = useState<Time>({
+      hr: '14',
+      min: '30',
+      period: 'PM',
+      string: '14:30 PM',
+    });
 
     return (
       <div className="space-y-4 w-80">
@@ -159,8 +189,8 @@ export const InternationalExample: Story = {
           use24Hour={true}
         />
         <div className="text-sm text-muted-foreground">
-          <p>Local time: {localTime}</p>
-          <p>UTC time: {utcTime}</p>
+          <p>Local time: {localTime.string}</p>
+          <p>UTC time: {utcTime.string}</p>
         </div>
       </div>
     );

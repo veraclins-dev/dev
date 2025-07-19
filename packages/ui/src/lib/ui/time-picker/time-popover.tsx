@@ -58,7 +58,7 @@ export const TimePopover: React.FC<TimePopoverProps> = ({
   const handleNowClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    const currentTime = getCurrentTime(use24Hour, showSeconds);
+    const currentTime = getCurrentTime({ use24Hour, showSeconds });
     updateTime(currentTime);
   };
 
