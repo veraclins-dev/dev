@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { Fragment, useCallback } from 'react';
 
 import { type ImageElementProps } from '../types';
 import { generateImgAttrs } from '../utils/loader';
@@ -31,7 +31,7 @@ function ImageElement({
   loading = isLazy ? 'lazy' : loading;
 
   return (
-    <>
+    <Fragment key={srcString}>
       <img
         {...rest}
         {...imgAttributes}
@@ -116,7 +116,7 @@ function ImageElement({
           />
         </noscript>
       )}
-    </>
+    </Fragment>
   );
 }
 
