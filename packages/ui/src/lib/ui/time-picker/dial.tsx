@@ -14,8 +14,8 @@ type DialProps = {
   onSelect: (value: Value) => void;
   items: Option[];
   value?: Value;
-  size?: Size;
-} & Omit<BoxProps, 'items' | 'onSelect'>;
+  size: Size;
+} & Omit<BoxProps, 'items' | 'onSelect' | 'size'>;
 
 export function Dial({
   onSelect,

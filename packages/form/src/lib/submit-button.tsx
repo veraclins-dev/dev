@@ -35,4 +35,4 @@ const FormSubmitButton = ({
   );
 };
 
-export { FormSubmitButton, FormSubmitButtonProps };
+export { FormSubmitButton, type FormSubmitButtonProps };
