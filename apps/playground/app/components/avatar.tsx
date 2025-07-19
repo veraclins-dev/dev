@@ -18,7 +18,7 @@ import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
 export function Avatars() {
   return (
-    <Box className="max-w-6xl mx-auto space-y-8">
+    <Box className="w-full max-w-6xl mx-auto space-y-8">
       <PlaygroundBreadcrumb currentPage="Avatar" className="mb-4" />
 
       <Box className="text-center space-y-4">

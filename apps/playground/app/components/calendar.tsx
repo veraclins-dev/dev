@@ -13,6 +13,7 @@ import {
   Icon,
   List,
   ListItem,
+  type Time,
   TimePicker,
   Typography,
 } from '@veraclins-dev/ui';
@@ -37,8 +38,12 @@ export function CalendarShowcase() {
   const [multipleDates, setMultipleDates] = useState<Date[]>([]);
 
   // State for time picker
-  const [timeValue, setTimeValue] = useState<string>('12:00 PM');
-
+  const [timeValue, setTimeValue] = useState<Time>({
+    hr: '12',
+    min: '00',
+    period: 'PM',
+    string: '12:00 PM',
+  });
   // State for real-world examples
   const [bookingDate, setBookingDate] = useState<Date | undefined>();
   const [vacationRange, setVacationRange] = useState<DateRange | undefined>();
@@ -70,7 +75,6 @@ export function CalendarShowcase() {
         </CardHeader>
         <CardContent>
           <Box className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Single Date Selection */}
             <Box>
               <Typography variant="h4" className="mb-4">
                 Single Date Selection
@@ -87,13 +91,12 @@ export function CalendarShowcase() {
                 <Typography variant="body2" className="text-muted-foreground">
                   Selected:{' '}
                   {singleDate
-                    ? formatDate(singleDate, 'PPP')
+                    ? formatDate(singleDate, 'MMMM dd, yyyy')
                     : 'No date selected'}
                 </Typography>
               </Box>
             </Box>
 
-            {/* Date Range Selection */}
             <Box>
               <Typography variant="h4" className="mb-4">
                 Date Range Selection
@@ -113,11 +116,11 @@ export function CalendarShowcase() {
                   {dateRange?.from ? (
                     dateRange.to ? (
                       <>
-                        From: {formatDate(dateRange.from, 'PPP')} - To:{' '}
-                        {formatDate(dateRange.to, 'PPP')}
+                        From: {formatDate(dateRange.from, 'MMMM dd, yyyy')} -
+                        To: {formatDate(dateRange.to, 'MMMM dd, yyyy')}
                       </>
                     ) : (
-                      <>From: {formatDate(dateRange.from, 'PPP')}</>
+                      <>From: {formatDate(dateRange.from, 'MMMM dd, yyyy')}</>
                     )
                   ) : (
                     'No date range selected'
@@ -126,7 +129,6 @@ export function CalendarShowcase() {
               </Box>
             </Box>
 
-            {/* Multiple Date Selection */}
             <Box>
               <Typography variant="h4" className="mb-4">
                 Multiple Date Selection
@@ -167,7 +169,6 @@ export function CalendarShowcase() {
         </CardHeader>
         <CardContent>
           <Box className="space-y-8">
-            {/* Multi-Month Display */}
             <Box>
               <Typography variant="h4" className="mb-4">
                 Multi-Month Display
@@ -216,7 +217,6 @@ export function CalendarShowcase() {
               </Box>
             </Box>
 
-            {/* Date Constraints */}
             <Box>
               <Typography variant="h4" className="mb-4">
                 Date Constraints & Validation
@@ -282,7 +282,6 @@ export function CalendarShowcase() {
               </Box>
             </Box>
 
-            {/* Navigation Features */}
             <Box>
               <Typography variant="h4" className="mb-4">
                 Navigation & Interaction
@@ -370,7 +369,6 @@ export function CalendarShowcase() {
         </CardHeader>
         <CardContent>
           <Box className="space-y-8">
-            {/* Standalone Time Picker */}
             <Box>
               <Typography variant="h4" className="mb-4">
                 Standalone Time Picker
@@ -400,6 +398,7 @@ export function CalendarShowcase() {
                     value={timeValue}
                     onChange={setTimeValue}
                     placeholder="Select time"
+                    use24Hour={true}
                   />
                 </Box>
                 <Box>
@@ -420,7 +419,6 @@ export function CalendarShowcase() {
               </Box>
             </Box>
 
-            {/* Calendar with Time Picker */}
             <Box>
               <Typography variant="h4" className="mb-4">
                 Calendar with Time Picker
@@ -441,8 +439,6 @@ export function CalendarShowcase() {
                     }}
                     showTodayButton={true}
                     showTimePicker={true}
-                    timeValue={timeValue}
-                    onTimeChange={setTimeValue}
                     className="rounded-lg border"
                   />
                   <Box className="mt-4">
@@ -451,8 +447,10 @@ export function CalendarShowcase() {
                       className="text-muted-foreground"
                     >
                       Selected:{' '}
-                      {singleDate ? formatDate(singleDate, 'PPP') : 'No date'}{' '}
-                      at {timeValue}
+                      {singleDate
+                        ? formatDate(singleDate, 'MMMM dd, yyyy')
+                        : 'No date'}{' '}
+                      at {timeValue.string}
                     </Typography>
                   </Box>
                 </Box>
@@ -530,8 +528,6 @@ export function CalendarShowcase() {
                     }}
                     showTodayButton={true}
                     showTimePicker={true}
-                    timeValue={timeValue}
-                    onTimeChange={setTimeValue}
                     className="rounded-md border"
                   />
                   <Box className="flex gap-2">
@@ -567,7 +563,6 @@ export function CalendarShowcase() {
               </CardContent>
             </Card>
 
-            {/* Vacation Planning */}
             <Card className="bg-card-inner">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">

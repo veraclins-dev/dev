@@ -11,29 +11,58 @@ import {
   CardHeader,
   CardTitle,
   Icon,
+  type Time,
   TimePicker,
   TimePickerField,
   type TimePickerProps,
   Typography,
 } from '@veraclins-dev/ui';
+import { getCurrentTime } from '@veraclins-dev/utils';
 
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
 export function TimePickerShowcase() {
-  const [timeValue12, setTimeValue12] = useState<string>('02:00 PM');
-  const [timeValue24, setTimeValue24] = useState<string>('14:30');
+  const [timeValue12, setTimeValue12] = useState<Time>(() =>
+    getCurrentTime({ use24Hour: false }),
+  );
+
+  const [timeValue24, setTimeValue24] = useState<Time>({
+    hr: '14',
+    min: '30',
+    period: 'PM',
+    string: '14:30',
+  });
   const [size, setSize] = useState<TimePickerProps['size']>('md');
 
   // Form field states
   const [formData, setFormData] = useState({
-    startTime: '09:00 AM',
-    endTime: '05:30 PM',
-    breakTime: '12:00 PM',
-    workTime: '08:30',
+    startTime: {
+      hr: '09',
+      min: '00',
+      period: 'AM',
+      string: '09:00 AM',
+    },
+    endTime: {
+      hr: '05',
+      min: '30',
+      period: 'PM',
+      string: '05:30 PM',
+    },
+    breakTime: {
+      hr: '12',
+      min: '00',
+      period: 'PM',
+      string: '12:00 PM',
+    },
+    workTime: {
+      hr: '08',
+      min: '30',
+      period: 'PM',
+      string: '08:30 PM',
+    },
   });
 
-  const handleFormChange = (field: string, value: string) => {
-    console.log('field', field, value);
+  const handleFormChange = (field: string, value: Time) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -75,7 +104,7 @@ export function TimePickerShowcase() {
               />
               <Box className="mt-4">
                 <Typography variant="body2" className="text-muted-foreground">
-                  Selected: {timeValue12}
+                  Selected: {timeValue12.string}
                 </Typography>
               </Box>
             </Box>
@@ -93,7 +122,7 @@ export function TimePickerShowcase() {
               />
               <Box className="mt-4">
                 <Typography variant="body2" className="text-muted-foreground">
-                  Selected: {timeValue24}
+                  Selected: {timeValue24.string}
                 </Typography>
               </Box>
             </Box>
@@ -153,7 +182,7 @@ export function TimePickerShowcase() {
                 <TimePickerField
                   name="startTime"
                   label="Start Time"
-                  value={formData.startTime}
+                  value={formData.startTime.string}
                   onChange={(value) => handleFormChange('startTime', value)}
                   placeholder="Select start time"
                   size={size}
@@ -162,7 +191,7 @@ export function TimePickerShowcase() {
                 <TimePickerField
                   name="endTime"
                   label="End Time"
-                  value={formData.endTime}
+                  value={formData.endTime as Time}
                   onChange={(value) => handleFormChange('endTime', value)}
                   placeholder="Select end time"
                   size={size}
@@ -178,7 +207,7 @@ export function TimePickerShowcase() {
                 <TimePickerField
                   name="workTime"
                   label="Work Time"
-                  value={formData.workTime}
+                  value={formData.workTime as Time}
                   onChange={(value) => handleFormChange('workTime', value)}
                   placeholder="Select work time"
                   use24Hour={true}
@@ -188,7 +217,7 @@ export function TimePickerShowcase() {
                 <TimePickerField
                   name="breakTime"
                   label="Break Time"
-                  value={formData.breakTime}
+                  value={formData.breakTime as Time}
                   onChange={(value) => handleFormChange('breakTime', value)}
                   placeholder="Select break time"
                   size={size}
@@ -203,16 +232,16 @@ export function TimePickerShowcase() {
             </Typography>
             <Box className="space-y-1 text-sm">
               <Typography variant="body2">
-                Start Time: {formData.startTime}
+                Start Time: {formData.startTime.string}
               </Typography>
               <Typography variant="body2">
-                End Time: {formData.endTime}
+                End Time: {formData.endTime.string}
               </Typography>
               <Typography variant="body2">
-                Work Time: {formData.workTime}
+                Work Time: {formData.workTime.string}
               </Typography>
               <Typography variant="body2">
-                Break Time: {formData.breakTime}
+                Break Time: {formData.breakTime.string}
               </Typography>
             </Box>
           </Box>

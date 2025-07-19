@@ -60,7 +60,7 @@ export function AuthShowcase() {
   };
 
   return (
-    <Box className="max-w-6xl mx-auto space-y-8">
+    <Box className="w-full max-w-6xl mx-auto space-y-8">
       <PlaygroundBreadcrumb currentPage="Auth" className="mb-4" />
 
       <Box className="text-center space-y-4">

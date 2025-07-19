@@ -339,7 +339,7 @@ export const DataTableWithInteractiveActions = () => {
 
 export function Page() {
   return (
-    <Box className="max-w-6xl mx-auto space-y-8">
+    <Box className="w-full max-w-6xl mx-auto space-y-8">
       <PlaygroundBreadcrumb currentPage="Table" className="mb-4" />
 
       <Box className="text-center space-y-4">
