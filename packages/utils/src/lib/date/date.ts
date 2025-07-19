@@ -243,38 +243,6 @@ export const getPeriodStartDate = (period: DatePeriod): Date | null => {
 };
 
 /**
- * Creates a DateTimeFormat instance for custom formatting
- *
- * @param locale - The locale to use (default: 'en-US')
- * @param timeZone - The timezone to use (default: 'UTC')
- * @param options - Additional DateTimeFormat options
- * @returns A configured Intl.DateTimeFormat instance
- *
- * @example
- * ```typescript
- * const formatter = createDateTimeFormatter('en-US', 'America/New_York');
- * formatter.format(new Date()) // "12/25/2023"
- *
- * const customFormatter = createDateTimeFormatter('en-US', 'UTC', {
- *   year: 'numeric',
- *   month: 'long',
- *   day: 'numeric'
- * });
- * customFormatter.format(new Date()) // "December 25, 2023"
- * ```
- */
-export const createDateTimeFormatter = (
-  locale = 'en-US',
-  timeZone = 'UTC',
-  options?: Intl.DateTimeFormatOptions,
-): Intl.DateTimeFormat => {
-  return new Intl.DateTimeFormat(locale, {
-    timeZone,
-    ...options,
-  });
-};
-
-/**
  * Predefined future date periods for filtering
  */
 export type FutureDatePeriod =
@@ -490,7 +458,8 @@ export const getFirstDayOfWeek = (
   const dt = parseToDateTime(date);
   const currentWeekday = dt.weekday; // 1-7 (Monday-Sunday)
   const daysToSubtract = (currentWeekday - weekStartsOn + 7) % 7;
-  return toDate(dt.minus({ days: daysToSubtract }));
+
+  return toDate(dt.minus({ days: daysToSubtract }).startOf('day'));
 };
 
 /**
@@ -512,7 +481,7 @@ export const getLastDayOfWeek = (
 ): Date => {
   const firstDay = getFirstDayOfWeek(date, weekStartsOn);
   const dt = parseToDateTime(firstDay);
-  return toDate(dt.plus({ days: 6 }));
+  return toDate(dt.plus({ days: 6 }).endOf('day'));
 };
 
 /**
@@ -628,11 +597,11 @@ export const getWeekDays = (locale: string, weekStartsOn: number): string[] => {
  */
 export const formatDate = (
   date: Date | number | string,
-  format: string,
+  format = 'MMM dd, yyyy',
   locale = 'en-US',
 ): string => {
   const dt = parseToDateTime(date);
-  return dt.toFormat(format);
+  return dt.toFormat(format, { locale });
 };
 
 /**

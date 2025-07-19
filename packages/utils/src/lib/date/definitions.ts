@@ -120,7 +120,7 @@ export type Time = {
   sec?: Minute;
   mil?: Millisecond;
   period: Period;
-  string?: string;
+  string: string;
 };
 
 export type Period = 'AM' | 'PM';
@@ -154,7 +154,7 @@ export interface CategorizedPattern {
  * Categorized patterns for smart filtering
  */
 export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
-  // 12-hour formats with seconds
+  // 12-hour complete formats with seconds
   {
     pattern: 'h:mm:ss a',
     example: '2:30:45 pm',
@@ -162,7 +162,7 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 8,
+    length: 10, // '2:30:45 pm' = 10 chars
     colonCount: 2,
   },
   {
@@ -172,27 +172,67 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 7,
+    length: 9, // '2:30:45pm' = 9 chars
     colonCount: 2,
   },
   {
-    pattern: 'h:mm:ss A',
-    example: '2:30:45 PM',
+    pattern: 'h:m:ss a',
+    example: '2:3:45 pm',
     category: '12h-complete',
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 8,
+    length: 9, // '2:3:45 pm' = 9 chars
     colonCount: 2,
   },
   {
-    pattern: 'h:mm:ssA',
-    example: '2:30:45PM',
+    pattern: 'h:m:ssa',
+    example: '2:3:45pm',
     category: '12h-complete',
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 7,
+    length: 8, // '2:3:45pm' = 8 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'h:mm:s a',
+    example: '2:30:4 pm',
+    category: '12h-complete',
+    hasSeconds: true,
+    hasPeriod: true,
+    is24Hour: false,
+    length: 9, // '2:30:4 pm' = 9 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'h:mm:sa',
+    example: '2:30:4pm',
+    category: '12h-complete',
+    hasSeconds: true,
+    hasPeriod: true,
+    is24Hour: false,
+    length: 8, // '2:30:4pm' = 8 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'h:m:s a',
+    example: '2:3:4 pm',
+    category: '12h-complete',
+    hasSeconds: true,
+    hasPeriod: true,
+    is24Hour: false,
+    length: 8, // '2:3:4 pm' = 8 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'h:m:sa',
+    example: '2:3:4pm',
+    category: '12h-complete',
+    hasSeconds: true,
+    hasPeriod: true,
+    is24Hour: false,
+    length: 7, // '2:3:4pm' = 7 chars
     colonCount: 2,
   },
   {
@@ -202,7 +242,7 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 9,
+    length: 11, // '02:30:45 pm' = 11 chars
     colonCount: 2,
   },
   {
@@ -212,30 +252,70 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 8,
+    length: 10, // '02:30:45pm' = 10 chars
     colonCount: 2,
   },
   {
-    pattern: 'hh:mm:ss A',
-    example: '02:30:45 PM',
+    pattern: 'hh:m:ss a',
+    example: '02:3:45 pm',
     category: '12h-complete',
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 9,
+    length: 10, // '02:3:45 pm' = 10 chars
     colonCount: 2,
   },
   {
-    pattern: 'hh:mm:ssA',
-    example: '02:30:45PM',
+    pattern: 'hh:m:ssa',
+    example: '02:3:45pm',
     category: '12h-complete',
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 8,
+    length: 9, // '02:3:45pm' = 9 chars
     colonCount: 2,
   },
-  // 12-hour formats without seconds
+  {
+    pattern: 'hh:mm:s a',
+    example: '02:30:4 pm',
+    category: '12h-complete',
+    hasSeconds: true,
+    hasPeriod: true,
+    is24Hour: false,
+    length: 10, // '02:30:4 pm' = 10 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'hh:mm:sa',
+    example: '02:30:4pm',
+    category: '12h-complete',
+    hasSeconds: true,
+    hasPeriod: true,
+    is24Hour: false,
+    length: 9, // '02:30:4pm' = 9 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'hh:m:s a',
+    example: '02:3:4 pm',
+    category: '12h-complete',
+    hasSeconds: true,
+    hasPeriod: true,
+    is24Hour: false,
+    length: 9, // '02:3:4 pm' = 9 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'hh:m:sa',
+    example: '02:3:4pm',
+    category: '12h-complete',
+    hasSeconds: true,
+    hasPeriod: true,
+    is24Hour: false,
+    length: 8, // '02:3:4pm' = 8 chars
+    colonCount: 2,
+  },
+  // 12-hour complete formats without seconds
   {
     pattern: 'h:mm a',
     example: '2:30 pm',
@@ -243,7 +323,7 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 6,
+    length: 7, // '2:30 pm' = 7 chars
     colonCount: 1,
   },
   {
@@ -253,27 +333,27 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 5,
+    length: 6, // '2:30pm' = 6 chars
     colonCount: 1,
   },
   {
-    pattern: 'h:mm A',
-    example: '2:30 PM',
+    pattern: 'h:m a',
+    example: '2:3 pm',
     category: '12h-complete',
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 6,
+    length: 6, // '2:3 pm' = 6 chars
     colonCount: 1,
   },
   {
-    pattern: 'h:mA',
-    example: '2:30PM',
+    pattern: 'h:ma',
+    example: '2:3pm',
     category: '12h-complete',
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 5,
+    length: 5, // '2:3pm' = 5 chars
     colonCount: 1,
   },
   {
@@ -283,7 +363,7 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 7,
+    length: 8, // '02:30 pm' = 8 chars
     colonCount: 1,
   },
   {
@@ -293,153 +373,30 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 6,
+    length: 7, // '02:30pm' = 7 chars
     colonCount: 1,
   },
   {
-    pattern: 'hh:mm A',
-    example: '02:30 PM',
+    pattern: 'hh:m a',
+    example: '02:3 pm',
     category: '12h-complete',
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 7,
+    length: 7, // '02:3 pm' = 7 chars
     colonCount: 1,
   },
   {
-    pattern: 'hh:mA',
-    example: '02:30PM',
+    pattern: 'hh:ma',
+    example: '02:3pm',
     category: '12h-complete',
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 6,
+    length: 6, // '02:3pm' = 6 chars
     colonCount: 1,
   },
-  // 24-hour formats with seconds
-  {
-    pattern: 'H:mm:ss',
-    example: '14:30:45',
-    category: '24h-complete',
-    hasSeconds: true,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'HH:mm:ss',
-    example: '14:30:45',
-    category: '24h-complete',
-    hasSeconds: true,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 8,
-    colonCount: 2,
-  },
-  // 24-hour formats without seconds
-  {
-    pattern: 'H:mm',
-    example: '4:30',
-    category: '24h-complete',
-    hasSeconds: false,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'HH:mm',
-    example: '14:30',
-    category: '24h-complete',
-    hasSeconds: false,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 5,
-    colonCount: 1,
-  },
-  // Edge cases
-  {
-    pattern: 'h a',
-    example: '2 pm',
-    category: 'edge-cases',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 3,
-    colonCount: 0,
-  },
-  {
-    pattern: 'h A',
-    example: '2 PM',
-    category: 'edge-cases',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 3,
-    colonCount: 0,
-  },
-  {
-    pattern: 'ha',
-    example: '2pm',
-    category: 'edge-cases',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 2,
-    colonCount: 0,
-  },
-  {
-    pattern: 'hA',
-    example: '2PM',
-    category: 'edge-cases',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 2,
-    colonCount: 0,
-  },
-  {
-    pattern: 'hh a',
-    example: '02 pm',
-    category: 'edge-cases',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 0,
-  },
-  {
-    pattern: 'hh A',
-    example: '02 PM',
-    category: 'edge-cases',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 0,
-  },
-  {
-    pattern: 'hha',
-    example: '02pm',
-    category: 'edge-cases',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 3,
-    colonCount: 0,
-  },
-  {
-    pattern: 'hhA',
-    example: '02PM',
-    category: 'edge-cases',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 3,
-    colonCount: 0,
-  },
-  // Partial formats - missing minutes default to :00
+  // 12-hour partial formats - missing minutes
   {
     pattern: 'h: a',
     example: '2: pm',
@@ -447,17 +404,7 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h: A',
-    example: '2: PM',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
+    length: 5, // '2: pm' = 5 chars
     colonCount: 1,
   },
   {
@@ -467,17 +414,7 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 3,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:A',
-    example: '2:PM',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 3,
+    length: 4, // '2:pm' = 4 chars
     colonCount: 1,
   },
   {
@@ -487,17 +424,7 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh: A',
-    example: '02: PM',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
+    length: 6, // '02: pm' = 6 chars
     colonCount: 1,
   },
   {
@@ -507,40 +434,10 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 4,
+    length: 5, // '02:pm' = 5 chars
     colonCount: 1,
   },
-  {
-    pattern: 'hh:A',
-    example: '02:PM',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'H:',
-    example: '4:',
-    category: '24h-partial',
-    hasSeconds: false,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 2,
-    colonCount: 1,
-  },
-  {
-    pattern: 'HH:',
-    example: '14:',
-    category: '24h-partial',
-    hasSeconds: false,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 3,
-    colonCount: 1,
-  },
-  // Partial formats - missing seconds default to :00
+  // 12-hour partial formats - missing seconds
   {
     pattern: 'h:mm: a',
     example: '2:30: pm',
@@ -548,17 +445,7 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm: A',
-    example: '2:30: PM',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
+    length: 8, // '2:30: pm' = 8 chars
     colonCount: 2,
   },
   {
@@ -568,17 +455,27 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 6,
+    length: 7, // '2:30:pm' = 7 chars
     colonCount: 2,
   },
   {
-    pattern: 'h:mm:A',
-    example: '2:30:PM',
+    pattern: 'h:m: a',
+    example: '2:3: pm',
     category: '12h-partial',
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 6,
+    length: 7, // '2:3: pm' = 7 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'h:m:a',
+    example: '2:3:pm',
+    category: '12h-partial',
+    hasSeconds: true,
+    hasPeriod: true,
+    is24Hour: false,
+    length: 6, // '2:3:pm' = 6 chars
     colonCount: 2,
   },
   {
@@ -588,17 +485,7 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm: A',
-    example: '02:30: PM',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
+    length: 9, // '02:30: pm' = 9 chars
     colonCount: 2,
   },
   {
@@ -608,27 +495,191 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 7,
+    length: 8, // '02:30:pm' = 8 chars
     colonCount: 2,
   },
   {
-    pattern: 'hh:mm:A',
-    example: '02:30:PM',
+    pattern: 'hh:m: a',
+    example: '02:3: pm',
     category: '12h-partial',
     hasSeconds: true,
     hasPeriod: true,
     is24Hour: false,
-    length: 7,
+    length: 8, // '02:3: pm' = 8 chars
     colonCount: 2,
   },
   {
+    pattern: 'hh:m:a',
+    example: '02:3:pm',
+    category: '12h-partial',
+    hasSeconds: true,
+    hasPeriod: true,
+    is24Hour: false,
+    length: 7, // '02:3:pm' = 7 chars
+    colonCount: 2,
+  },
+  // 24-hour complete formats with seconds
+  {
+    pattern: 'H:mm:ss',
+    example: '14:30:45',
+    category: '24h-complete',
+    hasSeconds: true,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 8, // '14:30:45' = 8 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'H:m:ss',
+    example: '14:3:45',
+    category: '24h-complete',
+    hasSeconds: true,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 7, // '14:3:45' = 7 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'H:mm:s',
+    example: '14:30:4',
+    category: '24h-complete',
+    hasSeconds: true,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 7, // '14:30:4' = 7 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'H:m:s',
+    example: '14:3:4',
+    category: '24h-complete',
+    hasSeconds: true,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 6, // '14:3:4' = 6 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'HH:mm:ss',
+    example: '14:30:45',
+    category: '24h-complete',
+    hasSeconds: true,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 8, // '14:30:45' = 8 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'HH:m:ss',
+    example: '14:3:45',
+    category: '24h-complete',
+    hasSeconds: true,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 7, // '14:3:45' = 7 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'HH:mm:s',
+    example: '14:30:4',
+    category: '24h-complete',
+    hasSeconds: true,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 7, // '14:30:4' = 7 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'HH:m:s',
+    example: '14:3:4',
+    category: '24h-complete',
+    hasSeconds: true,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 6, // '14:3:4' = 6 chars
+    colonCount: 2,
+  },
+  // 24-hour complete formats without seconds
+  {
+    pattern: 'H:mm',
+    example: '14:30',
+    category: '24h-complete',
+    hasSeconds: false,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 5, // '14:30' = 5 chars
+    colonCount: 1,
+  },
+  {
+    pattern: 'H:m',
+    example: '14:3',
+    category: '24h-complete',
+    hasSeconds: false,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 4, // '14:3' = 4 chars
+    colonCount: 1,
+  },
+  {
+    pattern: 'HH:mm',
+    example: '14:30',
+    category: '24h-complete',
+    hasSeconds: false,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 5, // '14:30' = 5 chars
+    colonCount: 1,
+  },
+  {
+    pattern: 'HH:m',
+    example: '14:3',
+    category: '24h-complete',
+    hasSeconds: false,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 4, // '14:3' = 4 chars
+    colonCount: 1,
+  },
+  // 24-hour partial formats - missing minutes
+  {
+    pattern: 'H:',
+    example: '14:',
+    category: '24h-partial',
+    hasSeconds: false,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 3, // '14:' = 3 chars
+    colonCount: 1,
+  },
+  {
+    pattern: 'HH:',
+    example: '14:',
+    category: '24h-partial',
+    hasSeconds: false,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 3, // '14:' = 3 chars
+    colonCount: 1,
+  },
+  // 24-hour partial formats - missing seconds
+  {
     pattern: 'H:mm:',
-    example: '4:30:',
+    example: '14:30:',
     category: '24h-partial',
     hasSeconds: true,
     hasPeriod: false,
     is24Hour: true,
-    length: 5,
+    length: 6, // '14:30:' = 6 chars
+    colonCount: 2,
+  },
+  {
+    pattern: 'H:m:',
+    example: '14:3:',
+    category: '24h-partial',
+    hasSeconds: true,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 5, // '14:3:' = 5 chars
     colonCount: 2,
   },
   {
@@ -638,313 +689,61 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: true,
     hasPeriod: false,
     is24Hour: true,
-    length: 6,
-    colonCount: 2,
-  },
-  // Partial formats - single digit minutes
-  {
-    pattern: 'h:m a',
-    example: '2:3 pm',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:m A',
-    example: '2:3 PM',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:ma',
-    example: '2:3pm',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:mA',
-    example: '2:3PM',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:m a',
-    example: '02:3 pm',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:m A',
-    example: '02:3 PM',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:ma',
-    example: '02:3pm',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:mA',
-    example: '02:3PM',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'H:m',
-    example: '4:3',
-    category: '24h-partial',
-    hasSeconds: false,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 3,
-    colonCount: 1,
-  },
-  {
-    pattern: 'HH:m',
-    example: '14:3',
-    category: '24h-partial',
-    hasSeconds: false,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 4,
-    colonCount: 1,
-  },
-  // Partial formats - single digit seconds
-  {
-    pattern: 'h:mm:s a',
-    example: '2:30:4 pm',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
+    length: 6, // '14:30:' = 6 chars
     colonCount: 2,
   },
   {
-    pattern: 'h:mm:s A',
-    example: '2:30:4 PM',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:sa',
-    example: '2:30:4pm',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:sA',
-    example: '2:30:4PM',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:s a',
-    example: '02:30:4 pm',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 9,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:s A',
-    example: '02:30:4 PM',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 9,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:sa',
-    example: '02:30:4pm',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:sA',
-    example: '02:30:4PM',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'H:mm:s',
-    example: '4:30:4',
+    pattern: 'HH:m:',
+    example: '14:3:',
     category: '24h-partial',
     hasSeconds: true,
     hasPeriod: false,
     is24Hour: true,
-    length: 6,
+    length: 5, // '14:3:' = 5 chars
     colonCount: 2,
   },
+  // Edge cases
   {
-    pattern: 'HH:mm:s',
-    example: '14:30:4',
-    category: '24h-partial',
-    hasSeconds: true,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 7,
-    colonCount: 2,
-  },
-  // Partial formats - single digit minutes and seconds
-  {
-    pattern: 'h:m:s a',
-    example: '2:3:4 pm',
-    category: '12h-partial',
-    hasSeconds: true,
+    pattern: 'h a',
+    example: '2 pm',
+    category: 'edge-cases',
+    hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 7,
-    colonCount: 2,
+    length: 4, // '2 pm' = 4 chars
+    colonCount: 0,
   },
   {
-    pattern: 'h:m:s A',
-    example: '2:3:4 PM',
-    category: '12h-partial',
-    hasSeconds: true,
+    pattern: 'ha',
+    example: '2pm',
+    category: 'edge-cases',
+    hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 7,
-    colonCount: 2,
+    length: 3, // '2pm' = 3 chars
+    colonCount: 0,
   },
   {
-    pattern: 'h:m:sa',
-    example: '2:3:4pm',
-    category: '12h-partial',
-    hasSeconds: true,
+    pattern: 'hh a',
+    example: '02 pm',
+    category: 'edge-cases',
+    hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 6,
-    colonCount: 2,
+    length: 5, // '02 pm' = 5 chars
+    colonCount: 0,
   },
   {
-    pattern: 'h:m:sA',
-    example: '2:3:4PM',
-    category: '12h-partial',
-    hasSeconds: true,
+    pattern: 'hha',
+    example: '02pm',
+    category: 'edge-cases',
+    hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 6,
-    colonCount: 2,
+    length: 4, // '02pm' = 4 chars
+    colonCount: 0,
   },
-  {
-    pattern: 'hh:m:s a',
-    example: '02:3:4 pm',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:s A',
-    example: '02:3:4 PM',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:sa',
-    example: '02:3:4pm',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:sA',
-    example: '02:3:4PM',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'H:m:s',
-    example: '4:3:4',
-    category: '24h-partial',
-    hasSeconds: true,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 5,
-    colonCount: 2,
-  },
-  {
-    pattern: 'HH:m:s',
-    example: '14:3:4',
-    category: '24h-partial',
-    hasSeconds: true,
-    hasPeriod: false,
-    is24Hour: true,
-    length: 6,
-    colonCount: 2,
-  },
-  // Single digit formats (will be padded to double digits)
+  // Single-digit formats
   {
     pattern: 'h',
     example: '2',
@@ -952,17 +751,37 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: false,
     is24Hour: false,
-    length: 1,
+    length: 1, // '2' = 1 char
+    colonCount: 0,
+  },
+  {
+    pattern: 'hh',
+    example: '02',
+    category: 'single-digit',
+    hasSeconds: false,
+    hasPeriod: false,
+    is24Hour: false,
+    length: 2, // '02' = 2 chars
     colonCount: 0,
   },
   {
     pattern: 'H',
-    example: '4',
+    example: '14',
     category: 'single-digit',
     hasSeconds: false,
     hasPeriod: false,
     is24Hour: true,
-    length: 1,
+    length: 2, // '14' = 2 chars
+    colonCount: 0,
+  },
+  {
+    pattern: 'HH',
+    example: '14',
+    category: 'single-digit',
+    hasSeconds: false,
+    hasPeriod: false,
+    is24Hour: true,
+    length: 2, // '14' = 2 chars
     colonCount: 0,
   },
   {
@@ -972,17 +791,37 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: false,
     is24Hour: false,
-    length: 2,
+    length: 2, // '30' = 2 chars
+    colonCount: 0,
+  },
+  {
+    pattern: 'mm',
+    example: '30',
+    category: 'single-digit',
+    hasSeconds: false,
+    hasPeriod: false,
+    is24Hour: false,
+    length: 2, // '30' = 2 chars
     colonCount: 0,
   },
   {
     pattern: 's',
     example: '45',
     category: 'single-digit',
-    hasSeconds: false,
+    hasSeconds: true,
     hasPeriod: false,
     is24Hour: false,
-    length: 2,
+    length: 2, // '45' = 2 chars
+    colonCount: 0,
+  },
+  {
+    pattern: 'ss',
+    example: '45',
+    category: 'single-digit',
+    hasSeconds: true,
+    hasPeriod: false,
+    is24Hour: false,
+    length: 2, // '45' = 2 chars
     colonCount: 0,
   },
   {
@@ -992,700 +831,7 @@ export const CATEGORIZED_PATTERNS: CategorizedPattern[] = [
     hasSeconds: false,
     hasPeriod: true,
     is24Hour: false,
-    length: 2,
-    colonCount: 0,
-  },
-  {
-    pattern: 'A',
-    example: 'PM',
-    category: 'single-digit',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 2,
-    colonCount: 0,
-  },
-  // Partial period formats (single character AM/PM)
-  {
-    pattern: 'h: a',
-    example: '2: a',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h: A',
-    example: '2: A',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:a',
-    example: '2:a',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 3,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:A',
-    example: '2:A',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 3,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh: a',
-    example: '02: a',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh: A',
-    example: '02: A',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:a',
-    example: '02:a',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:A',
-    example: '02:A',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:mm: a',
-    example: '2:30: a',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm: A',
-    example: '2:30: A',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:a',
-    example: '2:30:a',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:A',
-    example: '2:30:A',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm: a',
-    example: '02:30: a',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm: A',
-    example: '02:30: A',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:a',
-    example: '02:30:a',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:A',
-    example: '02:30:A',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:s a',
-    example: '2:30:4 a',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:s A',
-    example: '2:30:4 A',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:sa',
-    example: '2:30:4a',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:sA',
-    example: '2:30:4A',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:s a',
-    example: '02:30:4 a',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 9,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:s A',
-    example: '02:30:4 A',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 9,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:sa',
-    example: '02:30:4a',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:sA',
-    example: '02:30:4A',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:m:s a',
-    example: '2:3:4 a',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:m:s A',
-    example: '2:3:4 A',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:m:sa',
-    example: '2:3:4a',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:m:sA',
-    example: '2:3:4A',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:s a',
-    example: '02:3:4 a',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:s A',
-    example: '02:3:4 A',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:sa',
-    example: '02:3:4a',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:sA',
-    example: '02:3:4A',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  // Additional partial period patterns for complete time formats
-  {
-    pattern: 'h:mm p',
-    example: '2:30 p',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:mm P',
-    example: '2:30 P',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:mmp',
-    example: '2:30p',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:mmP',
-    example: '2:30P',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:mm p',
-    example: '02:30 p',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:mm P',
-    example: '02:30 P',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:mmp',
-    example: '02:30p',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:mmP',
-    example: '02:30P',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:m p',
-    example: '2:3 p',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:m P',
-    example: '2:3 P',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:mp',
-    example: '2:3p',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:mP',
-    example: '2:3P',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 4,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:m p',
-    example: '02:3 p',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:m P',
-    example: '02:3 P',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:mp',
-    example: '02:3p',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'hh:mP',
-    example: '02:3P',
-    category: '12h-partial',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 5,
-    colonCount: 1,
-  },
-  {
-    pattern: 'h:mm:s p',
-    example: '2:30:4 p',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:s P',
-    example: '2:30:4 P',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:sp',
-    example: '2:30:4p',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:mm:sP',
-    example: '2:30:4P',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:s p',
-    example: '02:30:4 p',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 9,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:s P',
-    example: '02:30:4 P',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 9,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:sp',
-    example: '02:30:4p',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:mm:sP',
-    example: '02:30:4P',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:m:s p',
-    example: '2:3:4 p',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:m:s P',
-    example: '2:3:4 P',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:m:sp',
-    example: '2:3:4p',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 2,
-  },
-  {
-    pattern: 'h:m:sP',
-    example: '2:3:4P',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 6,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:s p',
-    example: '02:3:4 p',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:s P',
-    example: '02:3:4 P',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 8,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:sp',
-    example: '02:3:4p',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  {
-    pattern: 'hh:m:sP',
-    example: '02:3:4P',
-    category: '12h-partial',
-    hasSeconds: true,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 7,
-    colonCount: 2,
-  },
-  // Standalone partial period
-  {
-    pattern: 'a',
-    example: 'a',
-    category: 'single-digit',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 1,
-    colonCount: 0,
-  },
-  {
-    pattern: 'A',
-    example: 'A',
-    category: 'single-digit',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 1,
-    colonCount: 0,
-  },
-  {
-    pattern: 'p',
-    example: 'p',
-    category: 'single-digit',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 1,
-    colonCount: 0,
-  },
-  {
-    pattern: 'P',
-    example: 'P',
-    category: 'single-digit',
-    hasSeconds: false,
-    hasPeriod: true,
-    is24Hour: false,
-    length: 1,
+    length: 2, // 'pm' = 2 chars
     colonCount: 0,
   },
 ] as const;
@@ -1728,8 +874,7 @@ interface TimeStructure {
 /**
  * Analyze the structure of a time input string
  */
-const analyzeTimeStructure = (input: string): TimeStructure => {
-  const normalized = input.trim().toLowerCase();
+const analyzeTimeStructure = (normalized: string): TimeStructure => {
   const parts = normalized.split(':');
   const colonCount = parts.length - 1;
 
@@ -1746,7 +891,7 @@ const analyzeTimeStructure = (input: string): TimeStructure => {
   // Analyze minute format
   let minuteFormat: 'single' | 'double' | 'unknown' = 'unknown';
   if (parts[1]) {
-    const minutePart = parts[1].replace(/[ap]m?/i, '').trim();
+    const minutePart = parts[1].replace(/[ap]m/i, '').trim();
     if (minutePart.length === 1) {
       minuteFormat = 'single';
     } else if (minutePart.length === 2) {
@@ -1757,7 +902,7 @@ const analyzeTimeStructure = (input: string): TimeStructure => {
   // Analyze second format
   let secondFormat: 'single' | 'double' | 'unknown' = 'unknown';
   if (parts[2]) {
-    const secondPart = parts[2].replace(/[ap]m?/i, '').trim();
+    const secondPart = parts[2].replace(/[ap]m/i, '').trim();
     if (secondPart.length === 1) {
       secondFormat = 'single';
     } else if (secondPart.length === 2) {
@@ -1765,14 +910,14 @@ const analyzeTimeStructure = (input: string): TimeStructure => {
     }
   }
 
-  const hasPeriod = /[ap]m?/i.test(normalized);
+  const hasPeriod = /[ap]m/i.test(normalized);
   const hasSeconds = colonCount >= 2;
 
   // Determine if 24-hour format
-  let is24Hour = false;
-  if (!hasPeriod && parts[0]) {
+  let is24Hour = !hasPeriod;
+  if (hasPeriod && parts[0]) {
     const hour = parseInt(parts[0], 10);
-    is24Hour = hour >= 0 && hour <= 23;
+    is24Hour = hour > 12 && !hasPeriod; // Only consider 24-hour if hour > 12 and no period
   }
 
   return {
@@ -1838,10 +983,13 @@ const isPatternCompatible = (
  */
 export const getFilteredPatterns = (
   input: string,
-  use24Hour = false,
-  showSeconds = false,
+  use24Hour?: boolean,
+  showSeconds?: boolean,
 ): CategorizedPattern[] => {
+  // Preprocess input to handle partial periods
   const normalized = input.trim().toLowerCase();
+  const originalLength = normalized.length;
+
   const length = normalized.length;
 
   // Early exit for obvious cases
@@ -1849,20 +997,25 @@ export const getFilteredPatterns = (
   if (length > 20) return []; // No pattern is this long
   if (normalized.split(':').length > 3) return []; // No pattern has more than 2 colons
 
+  // Handle period-only input
+  if (normalized === 'am' || normalized === 'pm') {
+    return CATEGORIZED_PATTERNS.filter((p) => p.pattern === 'a');
+  }
+
   // Analyze the input structure
   const structure = analyzeTimeStructure(normalized);
 
   // Override structure analysis with provided parameters when available
   if (use24Hour !== undefined) {
     structure.is24Hour = use24Hour;
+    if (use24Hour) structure.hasPeriod = false; // Force no period for 24-hour format
   }
   if (showSeconds !== undefined) {
     structure.hasSeconds = showSeconds;
   }
 
-  // Use pattern index for O(1) lookup first
+  // Use pattern index for O(1) lookup
   const key = `${length}-${structure.colonCount}-${structure.hasPeriod}-${structure.hasSeconds}-${structure.is24Hour}`;
-
   const exactMatches = PATTERN_INDEX.get(key) || [];
 
   // Filter exact matches by structure compatibility
@@ -1876,8 +1029,8 @@ export const getFilteredPatterns = (
 
   // Fallback to filtering all patterns with structure-based compatibility
   return CATEGORIZED_PATTERNS.filter((pattern) => {
-    // Basic filters
-    if (pattern.length < length - 2 || pattern.length > length + 2) {
+    // Allow wider length range due to preprocessing
+    if (pattern.length < originalLength - 3 || pattern.length > length + 3) {
       return false;
     }
     if (pattern.colonCount !== structure.colonCount) {

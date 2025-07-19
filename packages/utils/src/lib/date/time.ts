@@ -31,16 +31,20 @@ import {
 export const parseTimeString = (
   timeString: string,
   format?: TimeFormatPattern,
-  use24Hour = false,
-  showSeconds = false,
+  use24Hour?: boolean,
+  showSeconds?: boolean,
 ): DateTime | null => {
   if (!timeString || typeof timeString !== 'string') {
     return null;
   }
 
   // Normalize the time string
-  const normalizedTime = timeString.trim().toLowerCase();
-
+  let normalizedTime = timeString.trim().toLowerCase();
+  normalizedTime = normalizedTime
+    .replace(/\b(p|P)\b$/, ($1) => ($1 === 'p' ? 'pm' : 'PM'))
+    .replace(/\b(a|A)\b$/, ($1) => ($1 === 'a' ? 'am' : 'AM'))
+    .replace(/(\s|:)(p|P)$/, ($1, $2, $3) => $2 + ($3 === 'p' ? 'pm' : 'PM'))
+    .replace(/(\s|:)(a|A)$/, ($1, $2, $3) => $2 + ($3 === 'a' ? 'am' : 'AM'));
   // If a specific format is provided, use it directly
   if (format) {
     try {
@@ -54,7 +58,6 @@ export const parseTimeString = (
     }
     return null;
   }
-
   // Use smart filtering to reduce the number of patterns to try
   const filteredPatterns = getFilteredPatterns(
     normalizedTime,
@@ -129,17 +132,108 @@ export const parseTimeStringToDate = (
 };
 
 /**
- * Get time parts from a time string
+ * Get time parts from a DateTime object
  *
- * @param timeString - The time string to parse
+ * @param date - The DateTime object to extract time parts from
+ * @param format - Optional specific format pattern (not used in current implementation)
+ * @param use24Hour - Whether to use 24-hour format (default: false)
+ * @param showSeconds - Whether to include seconds in the output (default: false)
+ * @returns Time object with parts
+ *
+ * @example
+ * ```typescript
+ * getPartsFromDateTime({
+ *   date: DateTime.fromObject({ hour: 14, minute: 30 }),
+ *   use24Hour: false
+ * })
+ * // { hr: '02', min: '30', period: 'PM', string: '02:30 PM' }
+ * ```
+ */
+export const getPartsFromDateTime = ({
+  date,
+  use24Hour,
+  showSeconds,
+}: {
+  date: DateTime;
+  use24Hour?: boolean;
+  showSeconds?: boolean;
+}): Time => {
+  const { hour, minute, second, millisecond } = date;
+  let period: Period = 'AM';
+
+  if (!use24Hour) {
+    period = hour >= 12 ? 'PM' : 'AM';
+  } else {
+    period = 'AM';
+  }
+
+  const hour12 = hour % 12 || 12;
+
+  const time: Time = {
+    hr: (use24Hour ? hour : hour12).toString().padStart(2, '0') as Hour,
+    min: minute.toString().padStart(2, '0') as Minute,
+    sec: second?.toString().padStart(2, '0') as Minute,
+    period,
+    mil: millisecond?.toString().padStart(3, '0') as Millisecond,
+    string: '',
+  };
+  time.string = getTimeStringFromParts(time, use24Hour, showSeconds);
+  return time;
+};
+
+/**
+ * Get time parts from a JavaScript Date or ISO string
+ *
+ * @param date - The Date object or ISO string to extract time parts from
+ * @param use24Hour - Whether to use 24-hour format (default: false)
+ * @param showSeconds - Whether to include seconds in the output (default: false)
+ * @returns Time object with parts
+ *
+ * @example
+ * ```typescript
+ * getPartsFromDate({
+ *   date: new Date('2023-12-25T14:30:45'),
+ *   use24Hour: false
+ * })
+ * // { hr: '02', min: '30', period: 'PM', string: '02:30 PM' }
+ *
+ * getPartsFromDate({
+ *   date: '2023-12-25T14:30:45.123Z',
+ *   use24Hour: true,
+ *   showSeconds: true
+ * })
+ * // { hr: '14', min: '30', sec: '45', string: '14:30:45' }
+ * ```
+ */
+export const getPartsFromDate = ({
+  date,
+  use24Hour = false,
+  showSeconds = false,
+}: {
+  date: Date | string;
+  use24Hour?: boolean;
+  showSeconds?: boolean;
+}): Time => {
+  const dateTime = parseToDateTime(date);
+  return getPartsFromDateTime({ date: dateTime, use24Hour, showSeconds });
+};
+
+/**
+ * Get time parts from a time string or date ISO string
+ *
+ * @param timeString - The time string to parse (e.g., "2:30 PM", "14:30") or date ISO string (e.g., "2024-03-20T14:30:45.123Z")
  * @param format - Optional specific format pattern
  * @param use24Hour - Whether to use 24-hour format
+ * @param showSeconds - Whether to include seconds in the output
  * @returns Time object with parts
  *
  * @example
  * ```typescript
  * getPartsFromTimeString({ timeString: '2:30 PM', use24Hour: false })
- * // { hr: '02', min: 30, period: 'PM' }
+ * // { hr: '02', min: '30', period: 'PM', string: '02:30 PM' }
+ *
+ * getPartsFromTimeString({ timeString: '2024-03-20T14:30:45.123Z', use24Hour: true, showSeconds: true })
+ * // { hr: '14', min: '30', sec: '45', string: '14:30:45' }
  * ```
  */
 export const getPartsFromTimeString = ({
@@ -153,6 +247,21 @@ export const getPartsFromTimeString = ({
   use24Hour?: boolean;
   showSeconds?: boolean;
 }): Time => {
+  // Check if the input looks like a date ISO string (contains 'T' and time components)
+  const normalizedTime = timeString.trim().toLowerCase();
+  if (
+    normalizedTime.includes('t') &&
+    /^\d{4}-\d{2}-\d{2}t\d{2}:\d{2}/i.test(normalizedTime)
+  ) {
+    // Use getPartsFromDate for ISO strings
+    return getPartsFromDate({
+      date: timeString,
+      use24Hour,
+      showSeconds,
+    });
+  }
+
+  // Use parseTimeString for regular time strings
   const date = parseTimeString(timeString, format, use24Hour, showSeconds);
   if (!date) {
     const time: Time = {
@@ -161,6 +270,7 @@ export const getPartsFromTimeString = ({
       sec: '00',
       mil: '000',
       period: 'AM',
+      string: '',
     };
 
     return {
@@ -173,47 +283,7 @@ export const getPartsFromTimeString = ({
     };
   }
 
-  const { hour, minute, second, millisecond } = date;
-
-  // For 12-hour format, we need to determine the period from the original string
-  // or from the parsed DateTime's period information
-  let period: Period = 'AM';
-
-  if (!use24Hour) {
-    // Check if the original string contains period information
-    const normalizedTime = timeString.trim().toLowerCase();
-    if (/[ap]m?/i.test(normalizedTime)) {
-      // Extract period from the original string
-      const periodMatch = normalizedTime.match(/[ap]m?/i);
-      if (periodMatch) {
-        const periodStr = periodMatch[0].toUpperCase();
-        if (periodStr.startsWith('P')) {
-          period = 'PM';
-        } else if (periodStr.startsWith('A')) {
-          period = 'AM';
-        }
-      }
-    } else {
-      // Fallback to hour-based period detection
-      period = hour >= 12 ? 'PM' : 'AM';
-    }
-  } else {
-    // For 24-hour format, period is not relevant
-    period = 'AM';
-  }
-
-  const hour12 = hour % 12 || 12;
-
-  const time: Time = {
-    hr: (use24Hour ? hour : hour12).toString().padStart(2, '0') as Hour,
-    min: minute.toString().padStart(2, '0') as Minute,
-    sec: second?.toString().padStart(2, '0') as Minute,
-    period,
-    mil: millisecond?.toString().padStart(3, '0') as Millisecond,
-  };
-  time.string = getTimeStringFromParts(time, use24Hour, showSeconds);
-
-  return time;
+  return getPartsFromDateTime({ date, use24Hour, showSeconds });
 };
 
 /**
@@ -344,13 +414,13 @@ export function getTimeStringFromParts(
   showSeconds?: boolean,
 ): string {
   if (use24Hour && showSeconds) {
-    return `${time.hr}:${time.min}:${time.sec}`;
+    return `${time.hr}:${time.min}:${time.sec ?? '00'}`;
   }
   if (use24Hour) {
     return `${time.hr}:${time.min}`;
   }
   if (showSeconds) {
-    return `${time.hr}:${time.min}:${time.sec} ${time.period}`;
+    return `${time.hr}:${time.min}:${time.sec ?? '00'} ${time.period}`;
   }
   return `${time.hr}:${time.min} ${time.period}`;
 }
@@ -368,11 +438,16 @@ export function getTimeStringFromParts(
  * getCurrentTime(true, true) // { hr: '14', min: '30', sec: '45', ... }
  * ```
  */
-export const getCurrentTime = (
-  use24Hour = false,
+export const getCurrentTime = ({
+  use24Hour = true,
   showSeconds = false,
-): Time => {
-  const now = DateTime.now();
+  useLocalTime = true,
+}: {
+  use24Hour?: boolean;
+  showSeconds?: boolean;
+  useLocalTime?: boolean;
+} = {}): Time => {
+  const now = useLocalTime ? DateTime.now() : DateTime.utc();
   const currentTimeString = use24Hour
     ? now.toFormat(showSeconds ? 'HH:mm:ss' : 'HH:mm')
     : now.toFormat(showSeconds ? 'hh:mm:ss a' : 'hh:mm a');
