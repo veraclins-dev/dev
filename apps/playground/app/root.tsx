@@ -11,10 +11,17 @@ import {
 import { initImageConfig } from '@veraclins-dev/image';
 import { HoneypotProvider } from '@veraclins-dev/react-utils';
 import { honeypot } from '@veraclins-dev/react-utils/server';
-import { Box, IconProvider, VeraclinsToaster } from '@veraclins-dev/ui';
+import {
+  Box,
+  IconProvider,
+  SidebarProvider,
+  SidebarTrigger,
+  VeraclinsToaster,
+} from '@veraclins-dev/ui';
 import sprites from '@veraclins-dev/ui/sprite.svg';
 
 import { type Route } from './+types/root';
+import { AppSidebar } from './components/sidebar';
 import twStyles from './tailwind.css?url';
 
 export const meta: MetaFunction = () => [{ title: 'New Remix App' }];
@@ -51,16 +58,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="bg-background h-full text-sm text-foreground w-full">
-        <Box
-          display="flex"
-          flexDirection="column"
-          gap={4}
-          my={8}
-          py={4}
-          className="container w-full h-full overflow-auto rounded-md"
-        >
-          {children}
-        </Box>
+        {children}
+
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -85,7 +84,25 @@ export default function App({ loaderData }: Route.ComponentProps) {
   return (
     <HoneypotProvider {...loaderData.honeyProps}>
       <IconProvider sprite={sprite}>
-        <Outlet />
+        <SidebarProvider>
+          <AppSidebar />
+          <Box component="main" w="full" h="full" flex="1">
+            <SidebarTrigger />
+            <Box
+              component="main"
+              display="flex"
+              flexDirection="column"
+              gap={4}
+              my={8}
+              py={4}
+              w="full"
+              h="full"
+              className="container overflow-auto rounded-md"
+            >
+              <Outlet />
+            </Box>
+          </Box>
+        </SidebarProvider>
         <VeraclinsToaster />
       </IconProvider>
     </HoneypotProvider>
