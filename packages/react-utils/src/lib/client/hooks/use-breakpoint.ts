@@ -1,4 +1,4 @@
-import { type Breakpoint } from '@veraclins-dev/utils';
+import { type Breakpoint, breakpoints } from '@veraclins-dev/utils';
 
 import { useMediaQuery } from './use-media-query';
 
@@ -22,7 +22,6 @@ const useBreakpoint = () => {
 
   return (matched?.[0] || 'xl') as Breakpoint;
 };
-const breakpoints: Array<Breakpoint> = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
 
 const getResponsiveValues = (
   baseValue: number,
