@@ -110,6 +110,7 @@ export const iconNames = [
   'size',
   'signal',
   'signal-slash',
+  'side-panel-left',
   'shuffle',
   'shopping-cart',
   'shopping-bag',

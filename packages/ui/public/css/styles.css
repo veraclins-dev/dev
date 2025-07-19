@@ -124,43 +124,16 @@
   --info-soft-foreground-hover: oklch(0.332 0.313214 264.052);
 
   /* Border */
-  --border: oklch(0.65 0 0);
+  --border: oklch(0.85 0 0);
 
-  /* Calendar tokens - using existing design system tokens */
-  --calendar-border: 1px solid var(--border);
-  --calendar-border-radius: 0.5rem;
-  --calendar-padding: 1rem;
-  --calendar-gap: 0.5rem;
-  --calendar-day-size: 2.5rem;
-  --calendar-day-border-radius: 0.375rem;
-  --calendar-day-font-size: 0.875rem;
-  --calendar-day-font-weight: 400;
-  --calendar-day-color: var(--foreground);
-  --calendar-day-bg: transparent;
-  --calendar-day-hover-bg: var(--accent);
-  --calendar-day-hover-color: var(--accent-foreground);
-  --calendar-day-selected-bg: var(--primary);
-  --calendar-day-selected-color: var(--primary-foreground);
-  --calendar-day-today-bg: var(--secondary);
-  --calendar-day-today-color: var(--secondary-foreground);
-  --calendar-day-disabled-color: var(--muted-foreground);
-  --calendar-day-outside-color: var(--muted-foreground);
-  --calendar-day-outside-opacity: 0.5;
-  --calendar-range-bg: var(--accent);
-  --calendar-range-color: var(--accent-foreground);
-  --calendar-range-start-bg: var(--primary);
-  --calendar-range-start-color: var(--primary-foreground);
-  --calendar-range-end-bg: var(--primary);
-  --calendar-range-end-color: var(--primary-foreground);
-  --calendar-nav-button-size: 2rem;
-  --calendar-nav-button-bg: transparent;
-  --calendar-nav-button-color: var(--foreground);
-  --calendar-nav-button-hover-bg: var(--accent);
-  --calendar-nav-button-hover-color: var(--accent-foreground);
-  --calendar-day-focus-ring: 0 0 0 2px var(--ring);
-  --calendar-day-focus-ring-offset: 2px;
-  --calendar-transition:
-    color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
@@ -276,43 +249,16 @@
   --info-soft-foreground-hover: oklch(0.93 0.15 250);
 
   /* Border */
-  --border: oklch(0.848 0.033 260.7);
+  --border: oklch(0.448 0.033 260.7);
 
-  /* Calendar tokens - using existing design system tokens */
-  --calendar-border: 1px solid var(--border);
-  --calendar-border-radius: 0.5rem;
-  --calendar-padding: 1rem;
-  --calendar-gap: 0.5rem;
-  --calendar-day-size: 2.5rem;
-  --calendar-day-border-radius: 0.375rem;
-  --calendar-day-font-size: 0.875rem;
-  --calendar-day-font-weight: 400;
-  --calendar-day-color: var(--foreground);
-  --calendar-day-bg: transparent;
-  --calendar-day-hover-bg: var(--accent);
-  --calendar-day-hover-color: var(--accent-foreground);
-  --calendar-day-selected-bg: var(--primary);
-  --calendar-day-selected-color: var(--primary-foreground);
-  --calendar-day-today-bg: var(--secondary);
-  --calendar-day-today-color: var(--secondary-foreground);
-  --calendar-day-disabled-color: var(--muted-foreground);
-  --calendar-day-outside-color: var(--muted-foreground);
-  --calendar-day-outside-opacity: 0.5;
-  --calendar-range-bg: var(--accent);
-  --calendar-range-color: var(--accent-foreground);
-  --calendar-range-start-bg: var(--primary);
-  --calendar-range-start-color: var(--primary-foreground);
-  --calendar-range-end-bg: var(--primary);
-  --calendar-range-end-color: var(--primary-foreground);
-  --calendar-nav-button-size: 2rem;
-  --calendar-nav-button-bg: transparent;
-  --calendar-nav-button-color: var(--foreground);
-  --calendar-nav-button-hover-bg: var(--accent);
-  --calendar-nav-button-hover-color: var(--accent-foreground);
-  --calendar-day-focus-ring: 0 0 0 2px var(--ring);
-  --calendar-day-focus-ring-offset: 2px;
-  --calendar-transition:
-    color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 
 @theme inline {
@@ -418,6 +364,15 @@
   --color-info-soft-foreground: var(--info-soft-foreground);
   --color-info-soft-foreground-hover: var(--info-soft-foreground-hover);
 
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
   --color-border: var(--border);
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
@@ -498,8 +453,9 @@
 ::-webkit-scrollbar {
   width: 0px;
   height: 0px;
-  background: transparent; /* make scrollbar transparent */
+  background: transparent;
 }
+
 input,
 textarea {
   &:where(:autofill, [data-com-onepassword-filled], :-moz-autofill) {
