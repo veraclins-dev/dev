@@ -35,7 +35,6 @@ import {
   formatMonth,
   formatRelativeDate,
   formatRelativeTime,
-  formatTime,
   formatYear,
   getDaysInMonth,
   getDomainUrl,
@@ -211,9 +210,6 @@ export function UtilsShowcase() {
                       <div>
                         <strong>formatDateTime:</strong>{' '}
                         {formatDateTime(new Date('2025-05-19T12:00:00Z'))}
-                      </div>
-                      <div>
-                        <strong>formatTime:</strong> {formatTime(new Date())}
                       </div>
                       <div>
                         <strong>formatRelativeTime:</strong>{' '}

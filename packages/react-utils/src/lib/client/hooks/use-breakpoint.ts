@@ -1,6 +1,6 @@
-import { useMediaQuery } from './use-media-query';
+import { type Breakpoint } from '@veraclins-dev/utils';
 
-type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+import { useMediaQuery } from './use-media-query';
 
 const useBreakpoint = () => {
   const isXs = useMediaQuery('(max-width: 639px)');
@@ -39,4 +39,4 @@ const getResponsiveValues = (
   );
 };
 
-export { type Breakpoint, getResponsiveValues, useBreakpoint };
+export { getResponsiveValues, useBreakpoint };

@@ -358,7 +358,7 @@ export function Links() {
                   variant="soft"
                   color="primary"
                 >
-                  <Icon name="facebook" className="size-5" />
+                  <Icon name="facebook-logo" className="size-5" />
                 </Link>
                 <Link
                   href="https://instagram.com"
@@ -376,7 +376,7 @@ export function Links() {
                   variant="soft"
                   color="primary"
                 >
-                  <Icon name="linkedin" className="size-5" />
+                  <Icon name="linkedin-logo" className="size-5" />
                 </Link>
                 <Link
                   href="https://github.com"
@@ -420,7 +420,7 @@ export function Links() {
                   rel="noopener noreferrer"
                   variant="text"
                 >
-                  <Icon name="facebook" className="mr-2" />
+                  <Icon name="facebook-logo" className="mr-2" />
                   Like us on Facebook
                 </Link>
                 <Link
@@ -438,7 +438,7 @@ export function Links() {
                   rel="noopener noreferrer"
                   variant="text"
                 >
-                  <Icon name="linkedin" className="mr-2" />
+                  <Icon name="linkedin-logo" className="mr-2" />
                   Connect on LinkedIn
                 </Link>
               </Box>
