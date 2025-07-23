@@ -5,8 +5,8 @@ import { type Breakpoint } from './types';
  * Each number represents a size unit that can be used for width, height, or both.
  */
 const sizeScale = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 20, 24, 28, 32, 36, 40, 44, 48,
-  52, 56, 60, 64, 72, 80, 96,
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 20, 24, 28, 32, 36, 40, 44,
+  48, 52, 56, 60, 64, 72, 80, 96,
 ] as const;
 
 /** Type representing a single value from the sizeScale array */
