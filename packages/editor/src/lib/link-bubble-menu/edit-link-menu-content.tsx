@@ -174,13 +174,13 @@ export function EditLinkMenuContent({
       />
 
       <Box display="flex" justify="end" gapX={3}>
-        <Button onClick={onCancel} variant="outline" size="sm">
+        <Button onClick={onCancel} variant="outline" buttonSize="sm">
           {labels?.editLinkCancelButtonLabel ?? 'Cancel'}
         </Button>
 
         <Button
           type="button"
-          size="sm"
+          buttonSize="sm"
           disabled={isSubmitting}
           variant="soft"
           color="primary"
