@@ -2,7 +2,11 @@ import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type BoxVariants, boxVariants } from './utils/variants';
+import {
+  type BoxVariants,
+  boxVariants,
+  extractStyleProps,
+} from './utils/variants';
 
 type ContainerElement =
   | 'div'
@@ -29,76 +33,25 @@ interface BoxProps extends React.HTMLAttributes<HTMLElement>, BoxVariants {
 function Base({
   component = 'div',
   className,
-  // Short-form spacing props
-  m,
-  mx,
-  my,
-  mt,
-  mr,
-  mb,
-  ml,
-  p,
-  px,
-  py,
-  pt,
-  pr,
-  pb,
-  pl,
-  // Long-form spacing props
-  margin,
-  marginX,
-  marginY,
-  marginTop,
-  marginRight,
-  marginBottom,
-  marginLeft,
-  padding,
-  paddingX,
-  paddingY,
-  paddingTop,
-  paddingRight,
-  paddingBottom,
-  paddingLeft,
-  // Gap props
-  gap,
-  gapX,
-  gapY,
   // Layout props
-  display,
   flexDirection,
   items,
   justify,
-  children,
   flexWrap,
   flex,
   ...props
 }: BoxProps) {
   const Component = component as React.ElementType;
 
+  // Extract style props from the remaining props
+  const { styleProps, others } = extractStyleProps(props);
+
   return (
     <Component
       data-slot="box"
       className={cn(
         boxVariants({
-          // Use long-form props if provided, otherwise fall back to short-form
-          m: margin ?? m,
-          mx: marginX ?? mx,
-          my: marginY ?? my,
-          mt: marginTop ?? mt,
-          mr: marginRight ?? mr,
-          mb: marginBottom ?? mb,
-          ml: marginLeft ?? ml,
-          p: padding ?? p,
-          px: paddingX ?? px,
-          py: paddingY ?? py,
-          pt: paddingTop ?? pt,
-          pr: paddingRight ?? pr,
-          pb: paddingBottom ?? pb,
-          pl: paddingLeft ?? pl,
-          gap,
-          gapX,
-          gapY,
-          display,
+          ...styleProps,
           flexDirection,
           flexWrap,
           items,
@@ -107,10 +60,8 @@ function Base({
         }),
         className,
       )}
-      {...props}
-    >
-      {children}
-    </Component>
+      {...others}
+    />
   );
 }
 

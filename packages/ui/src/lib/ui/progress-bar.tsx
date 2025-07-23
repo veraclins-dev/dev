@@ -8,6 +8,11 @@ import {
 } from './utils/variants';
 import { Box } from './box';
 
+type ProgressIndicatorProps = ProgressIndicatorVariants & {
+  value: number;
+  className?: string;
+};
+
 /**
  * Props for the ProgressBar component
  */
@@ -31,6 +36,76 @@ export interface ProgressBarProps
    * @default false
    */
   indeterminate?: boolean;
+
+  indicatorProps?: ProgressIndicatorProps;
+}
+
+function ProgressIndicator({
+  value,
+  variant = 'linear',
+  progressSize: indicatorSize = 'md',
+  color = 'primary',
+  indeterminate = false,
+  className,
+  // ...props
+}: ProgressIndicatorProps) {
+  if (variant === 'circular') {
+    const radius =
+      indicatorSize === 'sm'
+        ? 16
+        : indicatorSize === 'md'
+          ? 24
+          : indicatorSize === 'lg'
+            ? 32
+            : 40;
+    const circumference = 2 * Math.PI * radius;
+    const strokeDashoffset = indeterminate
+      ? circumference - 0.5 * circumference
+      : circumference - (value / 100) * circumference;
+
+    return (
+      <circle
+        data-slot="progress-indicator"
+        className={cn(
+          progressIndicatorVariants({
+            variant,
+            progressSize: indicatorSize,
+            color,
+          }),
+        )}
+        fill="none"
+        cx={radius}
+        cy={radius}
+        r={radius}
+        style={{
+          strokeDasharray: circumference,
+          strokeDashoffset,
+        }}
+      />
+    );
+  }
+
+  return (
+    <Box
+      data-slot="progress-indicator"
+      className={cn(
+        progressIndicatorVariants({
+          variant,
+          progressSize: indicatorSize,
+          color,
+          indeterminate,
+          className,
+        }),
+      )}
+      style={
+        !indeterminate
+          ? {
+              width: `${value}%`,
+            }
+          : undefined
+      }
+    />
+  );
 }
 
 /**
@@ -55,7 +130,7 @@ export interface ProgressBarProps
 function ProgressBar({
   value,
   variant = 'linear',
-  size = 'md',
+  progressSize = 'md',
   showValue = false,
   color = 'primary',
   indeterminate = false,
@@ -64,30 +139,34 @@ function ProgressBar({
 }: ProgressBarProps) {
   if (variant === 'circular') {
     const radius =
-      size === 'sm' ? 16 : size === 'md' ? 24 : size === 'lg' ? 32 : 40;
-    const circumference = 2 * Math.PI * radius;
-    const strokeDashoffset = indeterminate
-      ? circumference - 0.5 * circumference
-      : circumference - (value / 100) * circumference;
+      progressSize === 'sm'
+        ? 16
+        : progressSize === 'md'
+          ? 24
+          : progressSize === 'lg'
+            ? 32
+            : 40;
 
     return (
       <Box
         data-slot="progress-bar"
         data-variant={variant}
-        data-size={size}
+        data-size={progressSize}
         data-color={color}
         data-indeterminate={indeterminate}
-        className={cn(progressVariants({ variant, size, className }))}
+        className={cn(
+          progressVariants({ variant, progressSize: progressSize, className }),
+        )}
         {...props}
       >
         <svg
           className={cn(
             'transform -rotate-90',
-            size === 'sm'
+            progressSize === 'sm'
               ? 'size-8'
-              : size === 'md'
+              : progressSize === 'md'
                 ? 'size-12'
-                : size === 'lg'
+                : progressSize === 'lg'
                   ? 'size-16'
                   : 'size-20',
             indeterminate && 'animate-spin',
@@ -96,7 +175,7 @@ function ProgressBar({
         >
           <circle
             className={cn(
-              progressVariants({ variant, size }),
+              progressVariants({ variant, progressSize: progressSize }),
               'stroke-neutral',
             )}
             fill="none"
@@ -104,23 +183,12 @@ function ProgressBar({
             cy={radius}
             r={radius}
           />
-          <circle
-            data-slot="progress-indicator"
-            className={cn(
-              progressIndicatorVariants({
-                variant,
-                size,
-                color,
-              }),
-            )}
-            fill="none"
-            cx={radius}
-            cy={radius}
-            r={radius}
-            style={{
-              strokeDasharray: circumference,
-              strokeDashoffset,
-            }}
+          <ProgressIndicator
+            value={value}
+            variant={variant}
+            progressSize={progressSize}
+            color={color}
+            indeterminate={indeterminate}
           />
         </svg>
         {showValue && !indeterminate && (
@@ -134,30 +202,22 @@ function ProgressBar({
     <Box
       data-slot="progress-bar"
       data-variant={variant}
-      data-size={size}
+      data-size={progressSize}
       data-color={color}
       data-indeterminate={indeterminate}
-      className={cn(progressVariants({ variant, size, className }))}
+      className={cn(
+        progressVariants({ variant, progressSize: progressSize, className }),
+      )}
       {...props}
     >
-      <Box
+      <ProgressIndicator
         data-slot="progress-indicator"
-        className={cn(
-          progressIndicatorVariants({
-            variant,
-            size,
-            color,
-            indeterminate,
-            className,
-          }),
-        )}
-        style={
-          !indeterminate
-            ? {
-                width: `${value}%`,
-              }
-            : undefined
-        }
+        value={value}
+        variant={variant}
+        progressSize={progressSize}
+        color={color}
+        indeterminate={indeterminate}
+        className={className}
       />
       {showValue && !indeterminate && (
         <span className="absolute right-2 top-1/2 -translate-y-1/2">

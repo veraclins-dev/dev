@@ -4,7 +4,11 @@ import { cn } from '@veraclins-dev/utils';
 
 import { type ComponentPropsWithoutColor } from '../types';
 
-import { type TypographyVariants, typographyVariants } from './utils/variants';
+import {
+  extractStyleProps,
+  type TypographyVariants,
+  typographyVariants,
+} from './utils/variants';
 
 // Type definitions
 type Variant =
@@ -64,6 +68,7 @@ function Base({
 }: TypographyProps) {
   const variant = va ?? 'body2';
   const Component = variantMapping[variant] || 'p';
+  const { styleProps, ...rest } = extractStyleProps(props);
 
   return (
     <Component
@@ -73,6 +78,7 @@ function Base({
           align,
           gutterBottom,
           noWrap,
+          ...styleProps,
           className,
         }),
       )}
@@ -80,7 +86,7 @@ function Base({
       aria-level={
         variant.startsWith('h') ? Number(variant.replace('h', '')) : undefined
       }
-      {...props}
+      {...rest}
     >
       {children}
     </Component>
@@ -134,7 +140,7 @@ function Base({
  * @remarks
  * - **Variant Mapping**: The component maps typography variants to HTML elements (e.g., `h1` for `variant='h1'`,
  *   `p` for `variant='body1'`, `span` for `variant='caption'`).
- * - **Styling**: Styles are applied using the `typographyVariants` utility (based on `class-variance-authority`),
+ * - **Styling**: Styles are applied using the `typographyVariants` utility (based on `@veraclins-dev/cva`),
  *   which defines font sizes, weights, line heights, and other properties for each variant.
  * - **Accessibility**: Heading variants (`h1`–`h6`) include `role="heading"` and `aria-level` attributes to
  *   ensure proper accessibility for screen readers.

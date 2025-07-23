@@ -372,7 +372,7 @@ export const WithActions: Story = {
             <SidebarGroupLabel>
               Projects
               <SidebarGroupAction>
-                <Button variant="text" size="sm">
+                <Button variant="text" buttonSize="sm">
                   <Icon name="plus" className="h-4 w-4" />
                 </Button>
               </SidebarGroupAction>
@@ -384,7 +384,7 @@ export const WithActions: Story = {
                     <Icon name="folder" />
                     <span>Project Alpha</span>
                     <SidebarMenuAction>
-                      <Button variant="text" size="sm">
+                      <Button variant="text" buttonSize="sm">
                         <Icon name="dots-horizontal" className="h-4 w-4" />
                       </Button>
                     </SidebarMenuAction>
@@ -395,7 +395,7 @@ export const WithActions: Story = {
                     <Icon name="folder" />
                     <span>Project Beta</span>
                     <SidebarMenuAction>
-                      <Button variant="text" size="sm">
+                      <Button variant="text" buttonSize="sm">
                         <Icon name="dots-horizontal" className="h-4 w-4" />
                       </Button>
                     </SidebarMenuAction>

@@ -2,7 +2,11 @@ import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type ListVariants, listVariants } from './utils/variants';
+import {
+  extractStyleProps,
+  type ListVariants,
+  listVariants,
+} from './utils/variants';
 
 type ListElement = 'ul' | 'ol';
 
@@ -29,40 +33,11 @@ function BaseList({
   // List variant props
   variant,
   marker = 'default',
-  // Short-form spacing props
-  m,
-  mx,
-  my,
-  mt,
-  mr,
-  mb,
-  ml,
-  p,
-  px,
-  py,
-  pt,
-  pr,
-  pb,
-  pl,
-  // Long-form spacing props
-  margin,
-  marginX,
-  marginY,
-  marginTop,
-  marginRight,
-  marginBottom,
-  marginLeft,
-  padding,
-  paddingX,
-  paddingY,
-  paddingTop,
-  paddingRight,
-  paddingBottom,
-  paddingLeft,
   children,
   ...props
 }: ListProps) {
   const Component = component;
+  const { styleProps, ...rest } = extractStyleProps(props);
 
   return (
     <Component
@@ -74,25 +49,11 @@ function BaseList({
         listVariants({
           variant,
           marker,
-          // Use long-form props if provided, otherwise fall back to short-form
-          m: margin ?? m,
-          mx: marginX ?? mx,
-          my: marginY ?? my,
-          mt: marginTop ?? mt,
-          mr: marginRight ?? mr,
-          mb: marginBottom ?? mb,
-          ml: marginLeft ?? ml,
-          p: padding ?? p,
-          px: paddingX ?? px,
-          py: paddingY ?? py,
-          pt: paddingTop ?? pt,
-          pr: paddingRight ?? pr,
-          pb: paddingBottom ?? pb,
-          pl: paddingLeft ?? pl,
+          ...styleProps,
+          className,
         }),
-        className,
       )}
-      {...props}
+      {...rest}
     >
       {children}
     </Component>

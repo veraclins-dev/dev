@@ -174,7 +174,7 @@ export const NavigationMenu: Story = {
   render: () => (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" buttonSize="icon">
           <Icon name="hamburger-menu" className="h-4 w-4" />
           <span className="sr-only">Open menu</span>
         </Button>

@@ -33,7 +33,7 @@ const meta: Meta<typeof Link> = {
       options: ['none', 'hover', 'always'],
       description: 'Underline behavior',
     },
-    size: {
+    linkSize: {
       control: 'select',
       options: ['sm', 'md', 'lg', 'xl'],
       description: 'Size of the link text',
@@ -199,7 +199,7 @@ export const UnderlineNone: Story = {
 export const Small: Story = {
   args: {
     href: '#',
-    size: 'sm',
+    linkSize: 'sm',
     children: 'Small Link',
   },
   play: async ({ canvasElement }) => {
@@ -212,7 +212,7 @@ export const Small: Story = {
 export const Large: Story = {
   args: {
     href: '#',
-    size: 'lg',
+    linkSize: 'lg',
     children: 'Large Link',
   },
   play: async ({ canvasElement }) => {
@@ -336,13 +336,13 @@ export const FooterLinks: Story = {
   render: () => (
     <footer className="space-y-4">
       <div className="flex space-x-6">
-        <Link href="/privacy" variant="text" size="sm">
+        <Link href="/privacy" variant="text" linkSize="sm">
           Privacy Policy
         </Link>
-        <Link href="/terms" variant="text" size="sm">
+        <Link href="/terms" variant="text" linkSize="sm">
           Terms of Service
         </Link>
-        <Link href="/cookies" variant="text" size="sm">
+        <Link href="/cookies" variant="text" linkSize="sm">
           Cookie Policy
         </Link>
       </div>
@@ -352,7 +352,7 @@ export const FooterLinks: Story = {
           type="link"
           target="_blank"
           variant="text"
-          size="sm"
+          linkSize="sm"
         >
           Twitter
         </Link>
@@ -361,7 +361,7 @@ export const FooterLinks: Story = {
           type="link"
           target="_blank"
           variant="text"
-          size="sm"
+          linkSize="sm"
         >
           GitHub
         </Link>
@@ -370,7 +370,7 @@ export const FooterLinks: Story = {
           type="link"
           target="_blank"
           variant="text"
-          size="sm"
+          linkSize="sm"
         >
           LinkedIn
         </Link>

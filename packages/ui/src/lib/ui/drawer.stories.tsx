@@ -126,7 +126,7 @@ export const DrawerBottom: Story = {
               <Box display="flex" items="center" justify="center" gap={2}>
                 <Button
                   variant="outline"
-                  size="icon"
+                  buttonSize="icon"
                   className="h-8 w-8 shrink-0 rounded-full"
                   // onClick={() => onClick(-10)}
                   // disabled={goal <= 200}
@@ -144,7 +144,7 @@ export const DrawerBottom: Story = {
                 </Box>
                 <Button
                   variant="outline"
-                  size="icon"
+                  buttonSize="icon"
                   className="h-8 w-8 shrink-0 rounded-full"
                   // onClick={() => onClick(10)}
                   // disabled={goal >= 400}

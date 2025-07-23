@@ -2,7 +2,11 @@ import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type ListItemVariants, listItemVariants } from './utils/variants';
+import {
+  extractStyleProps,
+  type ListItemVariants,
+  listItemVariants,
+} from './utils/variants';
 
 interface ListItemProps
   extends Omit<
@@ -31,7 +35,7 @@ interface ListItemProps
 function BaseListItem({
   className,
   variant,
-  size,
+  itemSize,
   weight,
   color,
   selected = false,
@@ -49,6 +53,8 @@ function BaseListItem({
     }
   };
 
+  const { styleProps, ...rest } = extractStyleProps(props);
+
   return (
     <li
       data-slot="list-item"
@@ -58,17 +64,18 @@ function BaseListItem({
       className={cn(
         listItemVariants({
           variant,
-          size,
+          itemSize,
           weight,
           color,
           selected,
           focused,
           disabled,
+          ...styleProps,
+          className,
         }),
-        className,
       )}
       onClick={handleClick}
-      {...props}
+      {...rest}
     >
       {children}
     </li>

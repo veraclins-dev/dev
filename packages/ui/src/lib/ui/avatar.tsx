@@ -124,30 +124,6 @@ export interface ComposedAvatarProps
   className?: string;
 }
 
-/**
- * A composed avatar component that combines Avatar, AvatarImage, and AvatarFallback
- * with enhanced functionality like tooltips, fallback icons, and size customization.
- *
- * @example
- * ```tsx
- * <ComposedAvatar
- *   src="/path/to/image.jpg"
- *   alt="John Doe"
- *   size={8}
- *   tooltip="John Doe"
- * />
- * ```
- */
-function ComposedAvatar({ tooltip, ...props }: ComposedAvatarProps) {
-  if (tooltip) {
-    return (
-      <ComposedTooltip Trigger={Comp} content={tooltip} TriggerProps={props} />
-    );
-  }
-
-  return <Comp {...props} />;
-}
-
 function Comp({
   src,
   alt,
@@ -177,6 +153,30 @@ function Comp({
       </AvatarFallback>
     </Avatar>
   );
+}
+
+/**
+ * A composed avatar component that combines Avatar, AvatarImage, and AvatarFallback
+ * with enhanced functionality like tooltips, fallback icons, and size customization.
+ *
+ * @example
+ * ```tsx
+ * <ComposedAvatar
+ *   src="/path/to/image.jpg"
+ *   alt="John Doe"
+ *   size={8}
+ *   tooltip="John Doe"
+ * />
+ * ```
+ */
+function ComposedAvatar({ tooltip, ...props }: ComposedAvatarProps) {
+  if (tooltip) {
+    return (
+      <ComposedTooltip Trigger={Comp} content={tooltip} TriggerProps={props} />
+    );
+  }
+
+  return <Comp {...props} />;
 }
 
 export { Avatar, AvatarFallback, AvatarImage, ComposedAvatar };

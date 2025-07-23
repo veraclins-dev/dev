@@ -6,13 +6,17 @@ import { cn } from '@veraclins-dev/utils';
 import { type IconName } from '../icons';
 import { type ComponentWithTooltip, type WithTooltip } from '../types';
 
-import { type ButtonVariants, buttonVariants } from './utils/variants';
+import {
+  type ButtonVariants,
+  buttonVariants,
+  extractStyleProps,
+} from './utils/variants';
 import { Icon } from './icon';
 import { ComposedTooltip } from './tooltip';
 
 export type ButtonVariant = ButtonVariants['variant'];
 export type ButtonColor = ButtonVariants['color'];
-export type ButtonSize = ButtonVariants['size'];
+export type ButtonSize = ButtonVariants['buttonSize'];
 
 interface Props
   extends Omit<React.ComponentProps<'button'>, 'color'>,
@@ -36,7 +40,7 @@ function Base({
   className,
   variant,
   color,
-  size,
+  buttonSize,
   asChild = false,
   type = 'button',
   loading = false,
@@ -51,7 +55,7 @@ function Base({
 }: Props) {
   const Comp = asChild ? Slot : 'button';
   const isIconOnly =
-    size === 'icon' && !children && !leadingIcon && !trailingIcon;
+    buttonSize === 'icon' && !children && !leadingIcon && !trailingIcon;
   if (isIconOnly && !ariaLabel && !props['aria-labelledby']) {
     console.warn(
       'Icon-only buttons require an aria-label or aria-labelledby for accessibility.',
@@ -103,7 +107,7 @@ function Component({
   tooltip,
   variant = 'solid',
   color,
-  size,
+  buttonSize,
   loading = false,
   loadingIcon,
   fullWidth = false,
@@ -111,17 +115,26 @@ function Component({
   className,
   ...props
 }: ComponentWithTooltip<typeof Base>) {
+  const { styleProps, ...rest } = extractStyleProps(props);
   const classes = cn(
-    buttonVariants({ variant, color, size, loading, className, fullWidth }),
+    buttonVariants({
+      variant,
+      color,
+      buttonSize,
+      loading,
+      className,
+      fullWidth,
+      ...styleProps,
+    }),
   );
   const isDisabled = Boolean(disabled || loading);
   return tooltip ? (
     <ComposedTooltip
       Trigger={Base}
       TriggerProps={{
-        ...props,
+        ...rest,
         className: classes,
-        size,
+        buttonSize,
         loading,
         fullWidth,
         variant,
@@ -134,9 +147,9 @@ function Component({
     />
   ) : (
     <Base
-      {...props}
+      {...rest}
       className={classes}
-      size={size}
+      buttonSize={buttonSize}
       loading={loading}
       fullWidth={fullWidth}
       variant={variant}

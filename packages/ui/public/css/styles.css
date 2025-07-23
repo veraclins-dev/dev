@@ -415,25 +415,27 @@
   width: 100%;
 
   @variant sm {
-    max-width: var(--breakpoint-sm);
-  }
-  @variant md {
     max-width: var(--breakpoint-md);
   }
-  @variant lg {
+  @variant md {
     max-width: var(--breakpoint-lg);
   }
-  @variant vl {
+  @variant lg {
     max-width: var(--breakpoint-vl);
+  }
+  @variant vl {
+    max-width: var(--breakpoint-xl);
+    padding-inline: calc(var(--spacing) * 6);
   }
 
   @variant xl {
     padding-inline: calc(var(--spacing) * 6);
-    max-width: var(--breakpoint-xl);
+    max-width: var(--breakpoint-2xl);
   }
 
   @variant 2xl {
     max-width: var(--breakpoint-2xl);
+    padding-inline: calc(var(--spacing) * 8);
   }
 }
 

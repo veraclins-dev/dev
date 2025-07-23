@@ -1,6 +1,10 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { type BadgeVariants, badgeVariants } from './utils/variants';
+import {
+  type BadgeVariants,
+  badgeVariants,
+  extractStyleProps,
+} from './utils/variants';
 import { Box } from './box';
 
 type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> &
@@ -10,7 +14,7 @@ type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> &
  * Badge component for displaying status or contextual information.
  *
  * Renders a stylized badge with configurable variants, colors, and sizes.
- * Uses `class-variance-authority` for variant-based styling and supports
+ * Uses `@veraclins-dev/cva` for variant-based styling and supports
  * custom class names and additional HTML div attributes.
  *
  * @remarks
@@ -33,9 +37,13 @@ type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> &
  *
  * @returns A React div element styled as a badge.
  */
-function Badge({ className, variant, color, size, ...props }: BadgeProps) {
-  const badgeClass = cn(badgeVariants({ variant, color, size }), className);
-  return <Box className={badgeClass} {...props} />;
+function Badge({ className, variant, color, badgeSize, ...props }: BadgeProps) {
+  const { styleProps, others } = extractStyleProps(props);
+  const badgeClass = cn(
+    badgeVariants({ ...styleProps, variant, color, badgeSize }),
+    className,
+  );
+  return <Box className={badgeClass} {...others} />;
 }
 
 export { Badge, type BadgeProps };

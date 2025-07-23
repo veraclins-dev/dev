@@ -20,7 +20,7 @@ export const PrimarySolid: Story = {
   args: {
     variant: 'solid',
     color: 'primary',
-    size: 'md',
+    buttonSize: 'md',
     children: 'Primary Button',
   },
   play: async ({ canvasElement }) => {
@@ -34,7 +34,7 @@ export const OutlineDestructive: Story = {
   args: {
     variant: 'outline',
     color: 'destructive',
-    size: 'lg',
+    buttonSize: 'lg',
     children: 'Delete',
     leadingIcon: 'trash',
   },
@@ -50,7 +50,7 @@ export const TextInfo: Story = {
   args: {
     variant: 'text',
     color: 'info',
-    size: 'md',
+    buttonSize: 'md',
     children: 'Learn More',
   },
   play: async ({ canvasElement }) => {
@@ -64,7 +64,7 @@ export const SoftSuccess: Story = {
   args: {
     variant: 'soft',
     color: 'success',
-    size: 'lg',
+    buttonSize: 'lg',
     children: 'Save',
     trailingIcon: 'check',
   },
@@ -80,7 +80,7 @@ export const IconOnly: Story = {
   args: {
     variant: 'solid',
     color: 'secondary',
-    size: 'icon',
+    buttonSize: 'icon',
     'aria-label': 'Add item',
     children: <Icon name="plus" data-testid="svg" />,
   },
@@ -104,7 +104,7 @@ export const IconOnly: Story = {
       ],
       description: 'Semantic color of the button',
     },
-    size: {
+    buttonSize: {
       control: 'select',
       options: ['default', 'sm', 'lg', 'xl', 'pill', 'icon'],
       description: 'Size of the button',
@@ -122,7 +122,7 @@ export const LoadingPrimary: Story = {
   args: {
     variant: 'solid',
     color: 'primary',
-    size: 'md',
+    buttonSize: 'md',
     loading: true,
     children: 'Submitting',
   },
@@ -139,7 +139,7 @@ export const DisabledSecondary: Story = {
   args: {
     variant: 'outline',
     color: 'secondary',
-    size: 'lg',
+    buttonSize: 'lg',
     disabled: true,
     children: 'Disabled Button',
   },

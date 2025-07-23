@@ -127,7 +127,7 @@ export const TimePopover: React.FC<TimePopoverProps> = ({
             <Button
               variant="text"
               color="primary"
-              size="sm"
+              buttonSize="sm"
               onMouseDown={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -139,7 +139,7 @@ export const TimePopover: React.FC<TimePopoverProps> = ({
             </Button>
             <Button
               color="primary"
-              size="sm"
+              buttonSize="sm"
               onClick={onClose}
               className={cn('w-fit', NOW_BUTTON_CLASSES[size])}
             >

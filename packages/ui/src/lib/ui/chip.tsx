@@ -2,7 +2,11 @@ import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type ChipVariants, chipVariants } from './utils/variants';
+import {
+  type ChipVariants,
+  chipVariants,
+  extractStyleProps,
+} from './utils/variants';
 import { Box } from './box';
 import { Icon } from './icon';
 
@@ -56,25 +60,29 @@ const Chip = memo(
     className,
     variant,
     color,
-    size = 'md',
+    chipSize = 'md',
     onRemove,
     label,
     ...props
   }: ChipProps) => {
+    const { styleProps, ...rest } = extractStyleProps(props);
     return (
       <Box
-        className={cn(chipVariants({ variant, color, size }), className)}
-        {...props}
+        className={cn(
+          chipVariants({ variant, color, chipSize, ...styleProps }),
+          className,
+        )}
+        {...rest}
       >
         <span className="align-middle">{label}</span>
         {onRemove && (
           <Icon
             className={cn(
               'cursor-pointer opacity-60 p-0.5 hover:opacity-100 focus:outline-none size-4',
-              size === 'sm' && 'size-4',
-              size === 'md' && 'size-5',
-              size === 'lg' && 'size-6',
-              size === 'xl' && 'size-7',
+              chipSize === 'sm' && 'size-4',
+              chipSize === 'md' && 'size-5',
+              chipSize === 'lg' && 'size-6',
+              chipSize === 'xl' && 'size-7',
             )}
             onClick={(e) => {
               e.stopPropagation();

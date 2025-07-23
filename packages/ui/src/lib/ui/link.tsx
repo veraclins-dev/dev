@@ -2,7 +2,11 @@ import React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type LinkVariants, linkVariants } from './utils/variants';
+import {
+  extractStyleProps,
+  type LinkVariants,
+  linkVariants,
+} from './utils/variants';
 
 type Target = '_blank' | '_self' | '_parent' | '_top';
 
@@ -31,7 +35,7 @@ function Link<C extends 'a' | CustomComponent = 'a'>({
   type,
   color,
   underline,
-  size,
+  linkSize,
   variant,
   className,
   children,
@@ -40,6 +44,7 @@ function Link<C extends 'a' | CustomComponent = 'a'>({
   ...props
 }: LinkProps<C>) {
   const Component = component as React.ComponentType<any>;
+  const { styleProps, ...rest } = extractStyleProps(props);
 
   // Ensure rel includes 'noopener noreferrer' for external links when target is '_blank'
   const computedRel =
@@ -56,11 +61,19 @@ function Link<C extends 'a' | CustomComponent = 'a'>({
     <Component
       data-slot="link"
       className={cn(
-        linkVariants({ type, color, underline, size, variant, className }),
+        linkVariants({
+          type,
+          color,
+          underline,
+          linkSize,
+          variant,
+          ...styleProps,
+          className,
+        }),
       )}
       target={target}
       rel={computedRel}
-      {...props}
+      {...rest}
     >
       {children}
     </Component>
