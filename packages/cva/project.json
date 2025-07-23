@@ -1,0 +1,11 @@
+{
+  "name": "cva",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/cva/src",
+  "projectType": "library",
+  "tags": [
+    "type:cva",
+    "scope:lib"
+  ],
+  "targets": {}
+}
