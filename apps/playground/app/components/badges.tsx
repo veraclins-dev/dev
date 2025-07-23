@@ -123,16 +123,16 @@ export function Badges() {
             </Box>
             <Box display="flex" flexDirection="column" gap={3}>
               <Typography variant="h4">Sizes</Typography>
-              <Badge variant="outline" color="primary" size="sm">
+              <Badge variant="outline" color="primary" badgeSize="sm">
                 Small
               </Badge>
-              <Badge variant="outline" color="secondary" size="md">
+              <Badge variant="outline" color="secondary" badgeSize="md">
                 Medium
               </Badge>
-              <Badge variant="outline" color="destructive" size="lg">
+              <Badge variant="outline" color="destructive" badgeSize="lg">
                 Large
               </Badge>
-              <Badge variant="outline" color="success" size="xl">
+              <Badge variant="outline" color="success" badgeSize="xl">
                 Extra Large
               </Badge>
             </Box>
@@ -170,12 +170,16 @@ export function Badges() {
                           layout="responsive"
                         />
                         <Box className="absolute top-2 left-2">
-                          <Badge variant="solid" color="destructive" size="sm">
+                          <Badge
+                            variant="solid"
+                            color="destructive"
+                            badgeSize="sm"
+                          >
                             Sale -20%
                           </Badge>
                         </Box>
                         <Box className="absolute top-2 right-2">
-                          <Badge variant="soft" color="success" size="sm">
+                          <Badge variant="soft" color="success" badgeSize="sm">
                             New
                           </Badge>
                         </Box>
@@ -211,19 +215,19 @@ export function Badges() {
                           <Badge
                             variant="outline"
                             color="destructive"
-                            size="sm"
+                            badgeSize="sm"
                           >
                             Only 3 left
                           </Badge>
                         </Box>
                         <Box display="flex" gap={2} flexWrap="wrap">
-                          <Badge variant="soft" color="info" size="sm">
+                          <Badge variant="soft" color="info" badgeSize="sm">
                             Electronics
                           </Badge>
-                          <Badge variant="soft" color="info" size="sm">
+                          <Badge variant="soft" color="info" badgeSize="sm">
                             Wireless
                           </Badge>
-                          <Badge variant="soft" color="info" size="sm">
+                          <Badge variant="soft" color="info" badgeSize="sm">
                             Premium
                           </Badge>
                         </Box>
@@ -242,7 +246,7 @@ export function Badges() {
                           layout="responsive"
                         />
                         <Box className="absolute top-2 left-2">
-                          <Badge variant="solid" color="warning" size="sm">
+                          <Badge variant="solid" color="warning" badgeSize="sm">
                             Limited Time
                           </Badge>
                         </Box>
@@ -267,18 +271,18 @@ export function Badges() {
                           <Typography variant="h6" className="text-primary">
                             $299.99
                           </Typography>
-                          <Badge variant="soft" color="success" size="sm">
+                          <Badge variant="soft" color="success" badgeSize="sm">
                             In Stock
                           </Badge>
                         </Box>
                         <Box display="flex" gap={2} flexWrap="wrap">
-                          <Badge variant="soft" color="info" size="sm">
+                          <Badge variant="soft" color="info" badgeSize="sm">
                             Wearables
                           </Badge>
-                          <Badge variant="soft" color="info" size="sm">
+                          <Badge variant="soft" color="info" badgeSize="sm">
                             Fitness
                           </Badge>
-                          <Badge variant="soft" color="info" size="sm">
+                          <Badge variant="soft" color="info" badgeSize="sm">
                             GPS
                           </Badge>
                         </Box>
@@ -297,7 +301,11 @@ export function Badges() {
                           layout="responsive"
                         />
                         <Box className="absolute top-2 left-2">
-                          <Badge variant="solid" color="destructive" size="sm">
+                          <Badge
+                            variant="solid"
+                            color="destructive"
+                            badgeSize="sm"
+                          >
                             Out of Stock
                           </Badge>
                         </Box>
@@ -325,19 +333,19 @@ export function Badges() {
                           <Badge
                             variant="outline"
                             color="destructive"
-                            size="sm"
+                            badgeSize="sm"
                           >
                             Backorder
                           </Badge>
                         </Box>
                         <Box display="flex" gap={2} flexWrap="wrap">
-                          <Badge variant="soft" color="info" size="sm">
+                          <Badge variant="soft" color="info" badgeSize="sm">
                             Gaming
                           </Badge>
-                          <Badge variant="soft" color="info" size="sm">
+                          <Badge variant="soft" color="info" badgeSize="sm">
                             RTX 4080
                           </Badge>
-                          <Badge variant="soft" color="info" size="sm">
+                          <Badge variant="soft" color="info" badgeSize="sm">
                             32GB RAM
                           </Badge>
                         </Box>
@@ -417,7 +425,7 @@ export function Badges() {
                                   <Badge
                                     variant="solid"
                                     color="primary"
-                                    size="sm"
+                                    badgeSize="sm"
                                   >
                                     New
                                   </Badge>
@@ -425,7 +433,7 @@ export function Badges() {
                                 <Badge
                                   variant="soft"
                                   color={notification.type as NotificationType}
-                                  size="sm"
+                                  badgeSize="sm"
                                 >
                                   {notification.priority}
                                 </Badge>
@@ -466,7 +474,7 @@ export function Badges() {
                             <Badge
                               variant="solid"
                               color="primary"
-                              size="sm"
+                              badgeSize="sm"
                               className="mt-2"
                             >
                               High Priority
@@ -483,7 +491,7 @@ export function Badges() {
                             <Badge
                               variant="soft"
                               color="success"
-                              size="sm"
+                              badgeSize="sm"
                               className="mt-2"
                             >
                               All Caught Up
@@ -507,7 +515,7 @@ export function Badges() {
                               <Badge
                                 variant="solid"
                                 color="destructive"
-                                size="sm"
+                                badgeSize="sm"
                               >
                                 3
                               </Badge>
@@ -520,7 +528,11 @@ export function Badges() {
                               <Typography variant="body2">
                                 Medium Priority
                               </Typography>
-                              <Badge variant="solid" color="warning" size="sm">
+                              <Badge
+                                variant="solid"
+                                color="warning"
+                                badgeSize="sm"
+                              >
                                 7
                               </Badge>
                             </Box>
@@ -532,7 +544,11 @@ export function Badges() {
                               <Typography variant="body2">
                                 Low Priority
                               </Typography>
-                              <Badge variant="solid" color="info" size="sm">
+                              <Badge
+                                variant="solid"
+                                color="info"
+                                badgeSize="sm"
+                              >
                                 2
                               </Badge>
                             </Box>
@@ -595,14 +611,14 @@ export function Badges() {
                                 color={getPriorityColor(
                                   task.priority as TaskPriority,
                                 )}
-                                size="sm"
+                                badgeSize="sm"
                               >
                                 {task.priority}
                               </Badge>
                               <Badge
                                 variant="outline"
                                 color="warning"
-                                size="sm"
+                                badgeSize="sm"
                               >
                                 Due: {task.dueDate}
                               </Badge>
@@ -613,7 +629,7 @@ export function Badges() {
                                   key={tag}
                                   variant="soft"
                                   color="info"
-                                  size="sm"
+                                  badgeSize="sm"
                                 >
                                   {tag}
                                 </Badge>
@@ -662,11 +678,15 @@ export function Badges() {
                                 color={getPriorityColor(
                                   task.priority as TaskPriority,
                                 )}
-                                size="sm"
+                                badgeSize="sm"
                               >
                                 {task.priority}
                               </Badge>
-                              <Badge variant="solid" color="primary" size="sm">
+                              <Badge
+                                variant="solid"
+                                color="primary"
+                                badgeSize="sm"
+                              >
                                 {task.progress}
                               </Badge>
                             </Box>
@@ -682,7 +702,7 @@ export function Badges() {
                                   key={tag}
                                   variant="soft"
                                   color="info"
-                                  size="sm"
+                                  badgeSize="sm"
                                 >
                                   {tag}
                                 </Badge>
@@ -724,7 +744,7 @@ export function Badges() {
                             <Badge
                               variant="solid"
                               color="success"
-                              size="sm"
+                              badgeSize="sm"
                               className="mb-2"
                             >
                               Completed: {task.completedDate}
@@ -735,7 +755,7 @@ export function Badges() {
                                   key={tag}
                                   variant="soft"
                                   color="info"
-                                  size="sm"
+                                  badgeSize="sm"
                                 >
                                   {tag}
                                 </Badge>

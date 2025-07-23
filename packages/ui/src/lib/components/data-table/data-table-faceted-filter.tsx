@@ -49,7 +49,7 @@ function DataTableFacetedDropdownFilter<TData, TValue>({
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          size="sm"
+          buttonSize="sm"
           color={isFiltered ? 'primary' : 'secondary'}
           className="h-8 items-center border-dashed"
         >

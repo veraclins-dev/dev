@@ -286,7 +286,12 @@ export function Links() {
                 Breadcrumbs
               </Typography>
               <Box display="flex" gap={2} className="items-center flex-wrap">
-                <Link to="/" component={RouterLink} variant="text" size="sm">
+                <Link
+                  to="/"
+                  component={RouterLink}
+                  variant="text"
+                  linkSize="sm"
+                >
                   Home
                 </Link>
                 <Icon
@@ -297,7 +302,7 @@ export function Links() {
                   to="/products"
                   component={RouterLink}
                   variant="text"
-                  size="sm"
+                  linkSize="sm"
                 >
                   Products
                 </Link>
@@ -309,7 +314,7 @@ export function Links() {
                   to="/electronics"
                   component={RouterLink}
                   variant="text"
-                  size="sm"
+                  linkSize="sm"
                 >
                   Electronics
                 </Link>
@@ -546,18 +551,18 @@ export function Links() {
                     document.pdf
                   </Typography>
                   <Box display="flex" gap={2}>
-                    <Link type="button" variant="text" size="sm">
+                    <Link type="button" variant="text" linkSize="sm">
                       <Icon name="eye-slash" className="mr-1" />
                       Preview
                     </Link>
-                    <Link type="button" variant="text" size="sm">
+                    <Link type="button" variant="text" linkSize="sm">
                       <Icon name="arrow-down-tray" className="mr-1" />
                       Download
                     </Link>
                     <Link
                       type="button"
                       variant="text"
-                      size="sm"
+                      linkSize="sm"
                       color="destructive"
                     >
                       <Icon name="trash" className="mr-1" />
@@ -571,15 +576,15 @@ export function Links() {
                     image.jpg
                   </Typography>
                   <Box display="flex" gap={2}>
-                    <Link type="button" variant="text" size="sm">
+                    <Link type="button" variant="text" linkSize="sm">
                       <Icon name="eye-slash" className="mr-1" />
                       View
                     </Link>
-                    <Link type="button" variant="text" size="sm">
+                    <Link type="button" variant="text" linkSize="sm">
                       <Icon name="arrow-down-tray" className="mr-1" />
                       Download
                     </Link>
-                    <Link type="button" variant="text" size="sm">
+                    <Link type="button" variant="text" linkSize="sm">
                       <Icon name="share" className="mr-1" />
                       Share
                     </Link>
@@ -631,25 +636,35 @@ export function Links() {
               <Typography variant="h5" className="mb-2">
                 Company
               </Typography>
-              <Link to="/about" component={RouterLink} variant="text" size="sm">
+              <Link
+                to="/about"
+                component={RouterLink}
+                variant="text"
+                linkSize="sm"
+              >
                 About Us
               </Link>
               <Link
                 to="/careers"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 Careers
               </Link>
-              <Link to="/press" component={RouterLink} variant="text" size="sm">
+              <Link
+                to="/press"
+                component={RouterLink}
+                variant="text"
+                linkSize="sm"
+              >
                 Press
               </Link>
               <Link
                 to="/contact"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 Contact
               </Link>
@@ -664,7 +679,7 @@ export function Links() {
                 to="/features"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 Features
               </Link>
@@ -672,7 +687,7 @@ export function Links() {
                 to="/pricing"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 Pricing
               </Link>
@@ -680,7 +695,7 @@ export function Links() {
                 to="/integrations"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 Integrations
               </Link>
@@ -688,7 +703,7 @@ export function Links() {
                 to="/roadmap"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 Roadmap
               </Link>
@@ -699,17 +714,27 @@ export function Links() {
               <Typography variant="h5" className="mb-2">
                 Support
               </Typography>
-              <Link to="/help" component={RouterLink} variant="text" size="sm">
+              <Link
+                to="/help"
+                component={RouterLink}
+                variant="text"
+                linkSize="sm"
+              >
                 Help Center
               </Link>
-              <Link to="/docs" component={RouterLink} variant="text" size="sm">
+              <Link
+                to="/docs"
+                component={RouterLink}
+                variant="text"
+                linkSize="sm"
+              >
                 Documentation
               </Link>
               <Link
                 to="/community"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 Community
               </Link>
@@ -717,7 +742,7 @@ export function Links() {
                 to="/status"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 System Status
               </Link>
@@ -732,18 +757,23 @@ export function Links() {
                 to="/privacy"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 Privacy Policy
               </Link>
-              <Link to="/terms" component={RouterLink} variant="text" size="sm">
+              <Link
+                to="/terms"
+                component={RouterLink}
+                variant="text"
+                linkSize="sm"
+              >
                 Terms of Service
               </Link>
               <Link
                 to="/cookies"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 Cookie Policy
               </Link>
@@ -751,7 +781,7 @@ export function Links() {
                 to="/security"
                 component={RouterLink}
                 variant="text"
-                size="sm"
+                linkSize="sm"
               >
                 Security
               </Link>
@@ -784,7 +814,12 @@ export function Links() {
                   <Typography variant="body2" className="flex-1">
                     You have 3 new messages
                   </Typography>
-                  <Link type="button" variant="text" size="sm" color="primary">
+                  <Link
+                    type="button"
+                    variant="text"
+                    linkSize="sm"
+                    color="primary"
+                  >
                     View All
                   </Link>
                 </Box>
@@ -799,7 +834,7 @@ export function Links() {
                   <Link
                     type="button"
                     variant="text"
-                    size="sm"
+                    linkSize="sm"
                     color="destructive"
                   >
                     Fix Now
@@ -821,7 +856,12 @@ export function Links() {
                   <Typography variant="body2" className="text-muted-foreground">
                     75%
                   </Typography>
-                  <Link type="button" variant="text" size="sm" color="primary">
+                  <Link
+                    type="button"
+                    variant="text"
+                    linkSize="sm"
+                    color="primary"
+                  >
                     Complete Profile
                   </Link>
                 </Box>
@@ -832,7 +872,12 @@ export function Links() {
                   <Typography variant="body2" className="text-muted-foreground">
                     Pending
                   </Typography>
-                  <Link type="button" variant="text" size="sm" color="warning">
+                  <Link
+                    type="button"
+                    variant="text"
+                    linkSize="sm"
+                    color="warning"
+                  >
                     Resend Email
                   </Link>
                 </Box>

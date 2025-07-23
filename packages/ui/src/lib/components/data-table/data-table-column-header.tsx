@@ -33,7 +33,7 @@ export function DataTableColumnHeader<TData, TValue>({
         <DropdownMenuTrigger asChild>
           <Button
             variant="text"
-            size="sm"
+            buttonSize="sm"
             className="-ml-3 h-8 data-[state=open]:bg-neutral"
           >
             <Typography variant="body1">{title}</Typography>

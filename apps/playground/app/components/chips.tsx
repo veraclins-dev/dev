@@ -68,24 +68,29 @@ export function Chips() {
             </Box>
             <Box display="flex" flexDirection="column" gap={3}>
               <Typography variant="h4">Sizes</Typography>
-              <Chip variant="outline" color="primary" label="Small" size="sm" />
+              <Chip
+                variant="outline"
+                color="primary"
+                label="Small"
+                chipSize="sm"
+              />
               <Chip
                 variant="outline"
                 color="secondary"
                 label="Medium"
-                size="md"
+                chipSize="md"
               />
               <Chip
                 variant="outline"
                 color="destructive"
                 label="Large"
-                size="lg"
+                chipSize="lg"
               />
               <Chip
                 variant="outline"
                 color="success"
                 label="Extra Large"
-                size="xl"
+                chipSize="xl"
               />
             </Box>
           </Box>

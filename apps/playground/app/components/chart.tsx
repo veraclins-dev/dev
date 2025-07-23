@@ -573,11 +573,11 @@ export function ChartShowcase() {
                     </AreaChart>
                   </ChartContainer>
                   <Box className="flex gap-2">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" buttonSize="sm">
                       <Icon name="download" className="mr-1" />
                       Export Data
                     </Button>
-                    <Button size="sm">
+                    <Button buttonSize="sm">
                       <Icon name="reload" className="mr-1" />
                       Refresh
                     </Button>
@@ -638,11 +638,11 @@ export function ChartShowcase() {
                     </LineChart>
                   </ChartContainer>
                   <Box className="flex gap-2">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" buttonSize="sm">
                       <Icon name="file-text" className="mr-1" />
                       Generate Report
                     </Button>
-                    <Button size="sm">
+                    <Button buttonSize="sm">
                       <Icon name="share" className="mr-1" />
                       Share
                     </Button>

@@ -340,10 +340,10 @@ export function Colors() {
                   </Typography>
                 </Box>
                 <Box className="flex gap-2">
-                  <Button size="sm" variant="solid" color="primary">
+                  <Button buttonSize="sm" variant="solid" color="primary">
                     Primary Action
                   </Button>
-                  <Button size="sm" variant="outline">
+                  <Button buttonSize="sm" variant="outline">
                     Secondary Action
                   </Button>
                 </Box>
@@ -372,10 +372,10 @@ export function Colors() {
                   </Typography>
                 </Box>
                 <Box className="flex gap-2">
-                  <Button size="sm" variant="solid" color="primary">
+                  <Button buttonSize="sm" variant="solid" color="primary">
                     Primary Action
                   </Button>
-                  <Button size="sm" variant="outline">
+                  <Button buttonSize="sm" variant="outline">
                     Secondary Action
                   </Button>
                 </Box>

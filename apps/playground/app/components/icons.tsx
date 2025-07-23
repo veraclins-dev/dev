@@ -604,7 +604,7 @@ export function Icons() {
                   <Button
                     key={key}
                     variant={selectedCategory === key ? 'solid' : 'outline'}
-                    size="sm"
+                    buttonSize="sm"
                     onClick={() => setSelectedCategory(key)}
                   >
                     {label}
@@ -623,7 +623,7 @@ export function Icons() {
                   <Button
                     key={size}
                     variant={selectedSize === size ? 'solid' : 'outline'}
-                    size="sm"
+                    buttonSize="sm"
                     onClick={() => setSelectedSize(size)}
                   >
                     {size.toUpperCase()}
@@ -800,11 +800,11 @@ export function Icons() {
                 >
                   <Typography variant="h6">App Navigation</Typography>
                   <Box display="flex" gap={2}>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" buttonSize="sm">
                       <Icon name="search" className="mr-2" />
                       Search
                     </Button>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" buttonSize="sm">
                       <Icon name="notification" className="mr-2" />
                       Notifications
                     </Button>
@@ -948,13 +948,13 @@ export function Icons() {
                       <Typography variant="body2">document.pdf</Typography>
                     </Box>
                     <Box display="flex" gap={1}>
-                      <Button variant="plain" size="sm">
+                      <Button variant="plain" buttonSize="sm">
                         <Icon name="eye-open" size="sm" />
                       </Button>
-                      <Button variant="plain" size="sm">
+                      <Button variant="plain" buttonSize="sm">
                         <Icon name="download" size="sm" />
                       </Button>
-                      <Button variant="plain" size="sm">
+                      <Button variant="plain" buttonSize="sm">
                         <Icon name="trash" size="sm" />
                       </Button>
                     </Box>
@@ -970,13 +970,13 @@ export function Icons() {
                       <Typography variant="body2">photo.jpg</Typography>
                     </Box>
                     <Box display="flex" gap={1}>
-                      <Button variant="plain" size="sm">
+                      <Button variant="plain" buttonSize="sm">
                         <Icon name="eye-open" size="sm" />
                       </Button>
-                      <Button variant="plain" size="sm">
+                      <Button variant="plain" buttonSize="sm">
                         <Icon name="download" size="sm" />
                       </Button>
-                      <Button variant="plain" size="sm">
+                      <Button variant="plain" buttonSize="sm">
                         <Icon name="trash" size="sm" />
                       </Button>
                     </Box>

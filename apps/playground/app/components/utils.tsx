@@ -520,7 +520,7 @@ export function UtilsShowcase() {
                             setValidationResult(result);
                           }}
                           variant="outline"
-                          size="sm"
+                          buttonSize="sm"
                         >
                           Test Invalid Data
                         </Button>
@@ -537,7 +537,7 @@ export function UtilsShowcase() {
                             setValidationResult(result);
                           }}
                           variant="outline"
-                          size="sm"
+                          buttonSize="sm"
                         >
                           Test Partial Data
                         </Button>

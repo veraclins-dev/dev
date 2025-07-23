@@ -307,13 +307,13 @@ export function CalendarShowcase() {
                     className="text-muted-foreground text-sm mt-2"
                     variant="ul"
                   >
-                    <ListItem variant="default" size="sm">
+                    <ListItem variant="default" itemSize="sm">
                       Month/Year dropdown selectors
                     </ListItem>
-                    <ListItem variant="default" size="sm">
+                    <ListItem variant="default" itemSize="sm">
                       Previous/Next month buttons
                     </ListItem>
-                    <ListItem variant="default" size="sm">
+                    <ListItem variant="default" itemSize="sm">
                       Keyboard navigation support
                     </ListItem>
                   </List>
@@ -338,13 +338,13 @@ export function CalendarShowcase() {
                     className="text-muted-foreground text-sm mt-2"
                     variant="ul"
                   >
-                    <ListItem variant="default" size="sm">
+                    <ListItem variant="default" itemSize="sm">
                       Quick navigation to today
                     </ListItem>
-                    <ListItem variant="default" size="sm">
+                    <ListItem variant="default" itemSize="sm">
                       Respects disabled constraints
                     </ListItem>
-                    <ListItem variant="default" size="sm">
+                    <ListItem variant="default" itemSize="sm">
                       Customizable behavior
                     </ListItem>
                   </List>
@@ -471,13 +471,13 @@ export function CalendarShowcase() {
                     className="text-muted-foreground text-sm mt-2"
                     variant="ul"
                   >
-                    <ListItem variant="default" size="sm">
+                    <ListItem variant="default" itemSize="sm">
                       Business hours only (9 AM - 5 PM)
                     </ListItem>
-                    <ListItem variant="default" size="sm">
+                    <ListItem variant="default" itemSize="sm">
                       Lunch break disabled (12-1 PM)
                     </ListItem>
-                    <ListItem variant="default" size="sm">
+                    <ListItem variant="default" itemSize="sm">
                       Format toggle and "Now" button
                     </ListItem>
                   </List>
@@ -531,11 +531,11 @@ export function CalendarShowcase() {
                     className="rounded-md border"
                   />
                   <Box className="flex gap-2">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" buttonSize="sm">
                       <Icon name="clock" className="mr-1" />
                       Check Availability
                     </Button>
-                    <Button size="sm">
+                    <Button buttonSize="sm">
                       <Icon name="plus" className="mr-1" />
                       Book Appointment
                     </Button>
@@ -545,16 +545,16 @@ export function CalendarShowcase() {
                       Features:
                     </Typography>
                     <List variant="ul">
-                      <ListItem variant="default" size="sm">
+                      <ListItem variant="default" itemSize="sm">
                         Business days only (Mon-Fri)
                       </ListItem>
-                      <ListItem variant="default" size="sm">
+                      <ListItem variant="default" itemSize="sm">
                         Past dates disabled
                       </ListItem>
-                      <ListItem variant="default" size="sm">
+                      <ListItem variant="default" itemSize="sm">
                         Time selection included
                       </ListItem>
-                      <ListItem variant="default" size="sm">
+                      <ListItem variant="default" itemSize="sm">
                         Availability checking
                       </ListItem>
                     </List>
@@ -593,11 +593,11 @@ export function CalendarShowcase() {
                     className="rounded-md border"
                   />
                   <Box className="flex gap-2">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" buttonSize="sm">
                       <Icon name="search" className="mr-1" />
                       Search Flights
                     </Button>
-                    <Button size="sm">
+                    <Button buttonSize="sm">
                       <Icon name="heart" className="mr-1" />
                       Save Trip
                     </Button>
@@ -607,16 +607,16 @@ export function CalendarShowcase() {
                       Features:
                     </Typography>
                     <List variant="ul">
-                      <ListItem variant="default" size="sm">
+                      <ListItem variant="default" itemSize="sm">
                         Multi-month range selection
                       </ListItem>
-                      <ListItem variant="default" size="sm">
+                      <ListItem variant="default" itemSize="sm">
                         Future dates only (up to 1 year)
                       </ListItem>
-                      <ListItem variant="default" size="sm">
+                      <ListItem variant="default" itemSize="sm">
                         Visual range indicators
                       </ListItem>
-                      <ListItem variant="default" size="sm">
+                      <ListItem variant="default" itemSize="sm">
                         Trip planning integration
                       </ListItem>
                     </List>
@@ -647,22 +647,22 @@ export function CalendarShowcase() {
                 Keyboard Navigation
               </Typography>
               <List className="text-muted-foreground" variant="ul">
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Arrow keys to navigate between dates
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Enter or Space to select a date
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Tab to navigate between elements
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Escape key closes popovers
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Home/End for month start/end
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Page Up/Down for month changes
                 </ListItem>
               </List>
@@ -673,22 +673,22 @@ export function CalendarShowcase() {
                 Screen Reader Support
               </Typography>
               <List className="text-muted-foreground" variant="ul">
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Proper ARIA labels on all elements
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Selected dates announced to screen readers
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Disabled dates properly marked
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Date ranges clearly communicated
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Focus management and indicators
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   WCAG 2.1 AA compliant
                 </ListItem>
               </List>
@@ -699,22 +699,22 @@ export function CalendarShowcase() {
                 Mobile & Responsive
               </Typography>
               <List className="text-muted-foreground" variant="ul">
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Touch-friendly date selection
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Responsive design for all screen sizes
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Optimized popover positioning
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Swipe gestures for navigation
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   High contrast mode support
                 </ListItem>
-                <ListItem variant="default" size="sm">
+                <ListItem variant="default" itemSize="sm">
                   Reduced motion preferences
                 </ListItem>
               </List>
@@ -743,22 +743,22 @@ export function CalendarShowcase() {
               </CardHeader>
               <CardContent className="pt-0">
                 <List className="text-muted-foreground" variant="ul">
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Single, range, and multiple selection
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Multi-month display
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Date constraints and validation
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Today button integration
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Keyboard navigation
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Custom styling support
                   </ListItem>
                 </List>
@@ -771,22 +771,22 @@ export function CalendarShowcase() {
               </CardHeader>
               <CardContent className="pt-0">
                 <List className="text-muted-foreground" variant="ul">
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     12h and 24h format support
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Configurable minute intervals
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Manual input with validation
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Time range restrictions
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     "Now" button and format toggle
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Timezone support
                   </ListItem>
                 </List>
@@ -799,22 +799,22 @@ export function CalendarShowcase() {
               </CardHeader>
               <CardContent className="pt-0">
                 <List className="text-muted-foreground" variant="ul">
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     No external dependencies
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Optimized rendering
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Smaller bundle size
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Better tree-shaking
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Efficient state management
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Minimal re-renders
                   </ListItem>
                 </List>
@@ -827,22 +827,22 @@ export function CalendarShowcase() {
               </CardHeader>
               <CardContent className="pt-0">
                 <List className="text-muted-foreground" variant="ul">
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Form library integration
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Design system compatible
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     TypeScript support
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Customizable themes
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Event handling
                   </ListItem>
-                  <ListItem variant="default" size="sm">
+                  <ListItem variant="default" itemSize="sm">
                     Accessibility ready
                   </ListItem>
                 </List>

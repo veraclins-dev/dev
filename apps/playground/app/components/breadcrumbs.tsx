@@ -286,15 +286,15 @@ export function Breadcrumbs() {
                         Last modified: 2 hours ago • Size: 2.4 MB
                       </Typography>
                       <Box display="flex" gap={2}>
-                        <Button size="sm">
+                        <Button buttonSize="sm">
                           <Icon name="search" className="mr-1" />
                           Preview
                         </Button>
-                        <Button size="sm" variant="outline">
+                        <Button buttonSize="sm" variant="outline">
                           <Icon name="download" className="mr-1" />
                           Download
                         </Button>
-                        <Button size="sm" variant="outline">
+                        <Button buttonSize="sm" variant="outline">
                           <Icon name="share" className="mr-1" />
                           Share
                         </Button>

@@ -135,11 +135,11 @@ export function Cards() {
               </CardContent>
               <CardFooter>
                 <Box display="flex" gap={2} flexWrap="wrap">
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" buttonSize="sm">
                     <Icon name="chat-bubble" className="mr-1" />
                     Message
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" buttonSize="sm">
                     <Icon name="user-plus" className="mr-1" />
                     Follow
                   </Button>
@@ -183,11 +183,11 @@ export function Cards() {
               </CardContent>
               <CardFooter>
                 <Box display="flex" gap={2} flexWrap="wrap">
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" buttonSize="sm">
                     <Icon name="eye-slash" className="mr-1" />
                     View Portfolio
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" buttonSize="sm">
                     <Icon name="calendar" className="mr-1" />
                     Schedule
                   </Button>

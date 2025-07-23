@@ -55,7 +55,7 @@ export const Selector = memo(function Selector({
           type="button"
           variant="text"
           color="neutral"
-          size="sm"
+          buttonSize="sm"
           className="font-medium rounded px-2 py-1"
           aria-label={triggerAriaLabel}
         >
@@ -69,7 +69,7 @@ export const Selector = memo(function Selector({
               type="button"
               variant="text"
               color="neutral"
-              size="sm"
+              buttonSize="sm"
               onClick={onNavigatePrevious}
               className="p-1 h-6 w-6"
               aria-label="Previous range"
@@ -85,7 +85,7 @@ export const Selector = memo(function Selector({
               type="button"
               variant="text"
               color="neutral"
-              size="sm"
+              buttonSize="sm"
               onClick={onNavigateNext}
               className="p-1 h-6 w-6"
               aria-label="Next range"
@@ -105,7 +105,7 @@ export const Selector = memo(function Selector({
                 type="button"
                 variant={isSelected ? 'solid' : 'text'}
                 color={isSelected ? 'primary' : 'neutral'}
-                size="sm"
+                buttonSize="sm"
                 onClick={() => onSelect(item.value)}
                 className="text-xs p-3"
               >

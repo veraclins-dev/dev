@@ -13,7 +13,7 @@ export function DataTableDragHandle({ id }: WithId) {
       {...listeners}
       variant="text"
       color="neutral"
-      size="icon"
+      buttonSize="icon"
       className="hover:bg-transparent p-0"
     >
       <Icon name="drag-handle-dots-2" size="md" />

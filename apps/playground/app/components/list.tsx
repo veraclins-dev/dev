@@ -266,10 +266,10 @@ export function Lists() {
                     <span>John Doe</span>
                   </Box>
                   <Box className="flex gap-2">
-                    <Button size="sm" variant="outline">
+                    <Button buttonSize="sm" variant="outline">
                       Edit
                     </Button>
-                    <Button size="sm" variant="soft" color="destructive">
+                    <Button buttonSize="sm" variant="soft" color="destructive">
                       Delete
                     </Button>
                   </Box>
@@ -280,10 +280,10 @@ export function Lists() {
                     <span>Jane Smith</span>
                   </Box>
                   <Box className="flex gap-2">
-                    <Button size="sm" variant="outline">
+                    <Button buttonSize="sm" variant="outline">
                       Edit
                     </Button>
-                    <Button size="sm" variant="soft" color="destructive">
+                    <Button buttonSize="sm" variant="soft" color="destructive">
                       Delete
                     </Button>
                   </Box>
@@ -294,10 +294,10 @@ export function Lists() {
                     <span>Bob Johnson</span>
                   </Box>
                   <Box className="flex gap-2">
-                    <Button size="sm" variant="outline">
+                    <Button buttonSize="sm" variant="outline">
                       Edit
                     </Button>
-                    <Button size="sm" variant="soft" color="destructive">
+                    <Button buttonSize="sm" variant="soft" color="destructive">
                       Delete
                     </Button>
                   </Box>

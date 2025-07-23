@@ -295,28 +295,28 @@ export function Buttons() {
                 Action Icons
               </Typography>
               <Box display="flex" gap={2} flexWrap="wrap">
-                <Button size="icon" color="primary" variant="solid">
+                <Button buttonSize="icon" color="primary" variant="solid">
                   <Icon name="plus" />
                 </Button>
-                <Button size="icon" color="primary" variant="soft">
+                <Button buttonSize="icon" color="primary" variant="soft">
                   <Icon name="pencil-square" />
                 </Button>
-                <Button size="icon" color="primary" variant="outline">
+                <Button buttonSize="icon" color="primary" variant="outline">
                   <Icon name="trash" />
                 </Button>
-                <Button size="icon" color="primary" variant="text">
+                <Button buttonSize="icon" color="primary" variant="text">
                   <Icon name="heart" />
                 </Button>
-                <Button size="icon" color="secondary" variant="solid">
+                <Button buttonSize="icon" color="secondary" variant="solid">
                   <Icon name="download" />
                 </Button>
-                <Button size="icon" color="success" variant="solid">
+                <Button buttonSize="icon" color="success" variant="solid">
                   <Icon name="check" />
                 </Button>
-                <Button size="icon" color="warning" variant="solid">
+                <Button buttonSize="icon" color="warning" variant="solid">
                   <Icon name="exclamation-triangle" />
                 </Button>
-                <Button size="icon" color="destructive" variant="solid">
+                <Button buttonSize="icon" color="destructive" variant="solid">
                   <Icon name="x-mark" />
                 </Button>
               </Box>
@@ -327,22 +327,22 @@ export function Buttons() {
                 Navigation Icons
               </Typography>
               <Box display="flex" gap={2} flexWrap="wrap">
-                <Button size="icon" color="primary" variant="outline">
+                <Button buttonSize="icon" color="primary" variant="outline">
                   <Icon name="home" />
                 </Button>
-                <Button size="icon" color="primary" variant="outline">
+                <Button buttonSize="icon" color="primary" variant="outline">
                   <Icon name="search" />
                 </Button>
-                <Button size="icon" color="primary" variant="outline">
+                <Button buttonSize="icon" color="primary" variant="outline">
                   <Icon name="bell" />
                 </Button>
-                <Button size="icon" color="primary" variant="outline">
+                <Button buttonSize="icon" color="primary" variant="outline">
                   <Icon name="user" />
                 </Button>
-                <Button size="icon" color="primary" variant="outline">
+                <Button buttonSize="icon" color="primary" variant="outline">
                   <Icon name="cog-6-tooth" />
                 </Button>
-                <Button size="icon" color="primary" variant="outline">
+                <Button buttonSize="icon" color="primary" variant="outline">
                   <Icon name="question-mark-circled" />
                 </Button>
               </Box>
@@ -387,7 +387,7 @@ export function Buttons() {
                     <Icon name="globe-alt" className="mr-2" />
                     Continue with Google
                   </Button>
-                  <Button variant="text" size="sm">
+                  <Button variant="text" buttonSize="sm">
                     Forgot password?
                   </Button>
                 </Box>
@@ -446,15 +446,15 @@ export function Buttons() {
                     Bulk Actions
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
-                    <Button variant="soft" color="success" size="sm">
+                    <Button variant="soft" color="success" buttonSize="sm">
                       <Icon name="check" className="mr-1" />
                       Approve Selected
                     </Button>
-                    <Button variant="soft" color="destructive" size="sm">
+                    <Button variant="soft" color="destructive" buttonSize="sm">
                       <Icon name="trash" className="mr-1" />
                       Delete Selected
                     </Button>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" buttonSize="sm">
                       <Icon name="download" className="mr-1" />
                       Export
                     </Button>
@@ -469,16 +469,20 @@ export function Buttons() {
                     Row Actions
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
-                    <Button size="icon" variant="outline" color="primary">
+                    <Button buttonSize="icon" variant="outline" color="primary">
                       <Icon name="pencil-square" />
                     </Button>
-                    <Button size="icon" variant="outline" color="info">
+                    <Button buttonSize="icon" variant="outline" color="info">
                       <Icon name="eye-slash" />
                     </Button>
-                    <Button size="icon" variant="outline" color="success">
+                    <Button buttonSize="icon" variant="outline" color="success">
                       <Icon name="check" />
                     </Button>
-                    <Button size="icon" variant="outline" color="destructive">
+                    <Button
+                      buttonSize="icon"
+                      variant="outline"
+                      color="destructive"
+                    >
                       <Icon name="trash" />
                     </Button>
                   </Box>
@@ -500,16 +504,16 @@ export function Buttons() {
                     Time Range
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" buttonSize="sm">
                       Today
                     </Button>
-                    <Button variant="solid" color="primary" size="sm">
+                    <Button variant="solid" color="primary" buttonSize="sm">
                       This Week
                     </Button>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" buttonSize="sm">
                       This Month
                     </Button>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" buttonSize="sm">
                       This Year
                     </Button>
                   </Box>
@@ -578,7 +582,7 @@ export function Buttons() {
                     <Icon name="heart" className="mr-2" />
                     Add to Wishlist
                   </Button>
-                  <Button variant="text" size="sm">
+                  <Button variant="text" buttonSize="sm">
                     <Icon name="eye-slash" className="mr-1" />
                     Quick View
                   </Button>
@@ -626,7 +630,7 @@ export function Buttons() {
                   <Button variant="outline" fullWidth>
                     Continue Shopping
                   </Button>
-                  <Button variant="text" size="sm">
+                  <Button variant="text" buttonSize="sm">
                     <Icon name="trash" className="mr-1" />
                     Clear Cart
                   </Button>
@@ -739,23 +743,23 @@ export function Buttons() {
                 Bottom Navigation
               </Typography>
               <Box display="flex" justify="center" gap={4}>
-                <Button variant="text" size="sm">
+                <Button variant="text" buttonSize="sm">
                   <Icon name="home" className="mb-1" />
                   <Typography variant="caption">Home</Typography>
                 </Button>
-                <Button variant="text" size="sm">
+                <Button variant="text" buttonSize="sm">
                   <Icon name="search" className="mb-1" />
                   <Typography variant="caption">Search</Typography>
                 </Button>
-                <Button variant="text" size="sm">
+                <Button variant="text" buttonSize="sm">
                   <Icon name="plus" className="mb-1" />
                   <Typography variant="caption">Add</Typography>
                 </Button>
-                <Button variant="text" size="sm">
+                <Button variant="text" buttonSize="sm">
                   <Icon name="bell" className="mb-1" />
                   <Typography variant="caption">Notifications</Typography>
                 </Button>
-                <Button variant="text" size="sm">
+                <Button variant="text" buttonSize="sm">
                   <Icon name="user" className="mb-1" />
                   <Typography variant="caption">Profile</Typography>
                 </Button>
@@ -774,7 +778,7 @@ export function Buttons() {
                 className="h-32"
               >
                 <Button
-                  size="icon"
+                  buttonSize="icon"
                   color="primary"
                   className="rounded-full shadow-lg"
                 >

@@ -86,7 +86,7 @@ export const CalendarHeader = memo(function CalendarHeader({
         type="button"
         variant="text"
         color="neutral"
-        size="sm"
+        buttonSize="sm"
         onClick={context.gotoPreviousMonth}
         className={cn(
           calendarNavButtonVariants({ size: 'md', variant: 'ghost' }),
@@ -170,7 +170,7 @@ export const CalendarHeader = memo(function CalendarHeader({
         type="button"
         variant="text"
         color="neutral"
-        size="sm"
+        buttonSize="sm"
         onClick={context.gotoNextMonth}
         className={cn(
           calendarNavButtonVariants({ size: 'md', variant: 'ghost' }),

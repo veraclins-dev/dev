@@ -122,7 +122,7 @@ export const CalendarDay = memo(function CalendarDay({
       type="button"
       variant={buttonProps.variant}
       color={buttonProps.color}
-      size={size}
+      buttonSize={size}
       onClick={() => context.onDayClick(date, month)}
       onMouseEnter={() => context.onDayMouseEnter(date)}
       onMouseLeave={context.onDayMouseLeave}

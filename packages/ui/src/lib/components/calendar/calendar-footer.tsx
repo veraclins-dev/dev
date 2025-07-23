@@ -77,7 +77,7 @@ export const CalendarFooter = memo(function CalendarFooter({
         <Button
           variant="text"
           color="primary"
-          size="sm"
+          buttonSize="sm"
           onClick={handleTodayClick}
           className={cn(classNames?.todayButton)}
         >

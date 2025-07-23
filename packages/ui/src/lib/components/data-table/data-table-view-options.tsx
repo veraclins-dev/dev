@@ -25,7 +25,7 @@ export function DataTableViewOptions<TData extends WithId>({
       <DropdownMenuTrigger tooltip="Customize column visibility" asChild>
         <Button
           variant="outline"
-          size="sm"
+          buttonSize="sm"
           className="ml-auto hidden h-8 lg:flex"
         >
           <Icon name="mixer-horizontal">View</Icon>

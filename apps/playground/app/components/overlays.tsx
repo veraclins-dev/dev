@@ -571,7 +571,7 @@ export function Overlays() {
                           <ComposedDropdownMenu
                             Trigger={Button}
                             TriggerProps={{
-                              size: 'icon',
+                              buttonSize: 'icon',
                               variant: 'soft',
                               color: 'neutral',
                               children: <Icon name="ellipsis-horizontal" />,
@@ -973,13 +973,13 @@ export function Overlays() {
                               <Box>
                                 <Label htmlFor="role">Role</Label>
                                 <Box className="flex gap-2 mt-2">
-                                  <Button variant="outline" size="sm">
+                                  <Button variant="outline" buttonSize="sm">
                                     Admin
                                   </Button>
-                                  <Button variant="outline" size="sm">
+                                  <Button variant="outline" buttonSize="sm">
                                     Editor
                                   </Button>
-                                  <Button variant="outline" size="sm">
+                                  <Button variant="outline" buttonSize="sm">
                                     Viewer
                                   </Button>
                                 </Box>
@@ -1074,15 +1074,15 @@ export function Overlays() {
                               specifications and features.
                             </Typography>
                             <Box className="flex gap-2 mt-3">
-                              <Button variant="outline" size="sm">
+                              <Button variant="outline" buttonSize="sm">
                                 <Icon name="zoom-in" className="mr-1" />
                                 Zoom
                               </Button>
-                              <Button variant="outline" size="sm">
+                              <Button variant="outline" buttonSize="sm">
                                 <Icon name="download" className="mr-1" />
                                 Download
                               </Button>
-                              <Button variant="outline" size="sm">
+                              <Button variant="outline" buttonSize="sm">
                                 <Icon name="share" className="mr-1" />
                                 Share
                               </Button>
@@ -1181,13 +1181,13 @@ export function Overlays() {
                         <Box>
                           <Label>Theme</Label>
                           <Box className="flex gap-2 mt-2">
-                            <Button variant="outline" size="sm">
+                            <Button variant="outline" buttonSize="sm">
                               Light
                             </Button>
-                            <Button variant="outline" size="sm">
+                            <Button variant="outline" buttonSize="sm">
                               Dark
                             </Button>
-                            <Button variant="outline" size="sm">
+                            <Button variant="outline" buttonSize="sm">
                               Auto
                             </Button>
                           </Box>
@@ -1195,10 +1195,10 @@ export function Overlays() {
                         <Box>
                           <Label>Notifications</Label>
                           <Box className="flex gap-2 mt-2">
-                            <Button variant="outline" size="sm">
+                            <Button variant="outline" buttonSize="sm">
                               On
                             </Button>
-                            <Button variant="outline" size="sm">
+                            <Button variant="outline" buttonSize="sm">
                               Off
                             </Button>
                           </Box>
@@ -1463,13 +1463,13 @@ export function Overlays() {
                               <Box>
                                 <Label>Theme</Label>
                                 <Box className="flex gap-2 mt-2">
-                                  <Button variant="outline" size="sm">
+                                  <Button variant="outline" buttonSize="sm">
                                     Light
                                   </Button>
-                                  <Button variant="outline" size="sm">
+                                  <Button variant="outline" buttonSize="sm">
                                     Dark
                                   </Button>
-                                  <Button variant="outline" size="sm">
+                                  <Button variant="outline" buttonSize="sm">
                                     Auto
                                   </Button>
                                 </Box>
@@ -1477,13 +1477,13 @@ export function Overlays() {
                               <Box>
                                 <Label>Font Size</Label>
                                 <Box className="flex gap-2 mt-2">
-                                  <Button variant="outline" size="sm">
+                                  <Button variant="outline" buttonSize="sm">
                                     Small
                                   </Button>
-                                  <Button variant="outline" size="sm">
+                                  <Button variant="outline" buttonSize="sm">
                                     Medium
                                   </Button>
-                                  <Button variant="outline" size="sm">
+                                  <Button variant="outline" buttonSize="sm">
                                     Large
                                   </Button>
                                 </Box>
@@ -1596,13 +1596,13 @@ export function Overlays() {
                           <Box>
                             <Label>Event Type</Label>
                             <Box className="flex gap-2 mt-2">
-                              <Button variant="outline" size="sm">
+                              <Button variant="outline" buttonSize="sm">
                                 Meeting
                               </Button>
-                              <Button variant="outline" size="sm">
+                              <Button variant="outline" buttonSize="sm">
                                 Conference
                               </Button>
-                              <Button variant="outline" size="sm">
+                              <Button variant="outline" buttonSize="sm">
                                 Workshop
                               </Button>
                             </Box>
@@ -1733,13 +1733,13 @@ export function Overlays() {
                                 and TypeScript.
                               </Typography>
                               <Box className="flex gap-1">
-                                <Badge variant="soft" size="sm">
+                                <Badge variant="soft" badgeSize="sm">
                                   React
                                 </Badge>
-                                <Badge variant="soft" size="sm">
+                                <Badge variant="soft" badgeSize="sm">
                                   TypeScript
                                 </Badge>
-                                <Badge variant="soft" size="sm">
+                                <Badge variant="soft" badgeSize="sm">
                                   UI/UX
                                 </Badge>
                               </Box>
@@ -1771,7 +1771,7 @@ export function Overlays() {
                                 This feature is available for premium
                                 subscribers only.
                               </Typography>
-                              <Button size="sm" className="w-full">
+                              <Button buttonSize="sm" className="w-full">
                                 Upgrade Now
                               </Button>
                             </Box>
@@ -1806,10 +1806,10 @@ export function Overlays() {
                                 Share this content
                               </Typography>
                               <Box className="flex gap-1">
-                                <Button size="sm" variant="soft">
+                                <Button buttonSize="sm" variant="soft">
                                   <Icon name="globe" />
                                 </Button>
-                                <Button size="sm" variant="soft">
+                                <Button buttonSize="sm" variant="soft">
                                   <Icon name="link" />
                                 </Button>
                               </Box>
@@ -1833,7 +1833,7 @@ export function Overlays() {
                               </Typography>
                               <Box className="space-y-1">
                                 <Button
-                                  size="sm"
+                                  buttonSize="sm"
                                   variant="soft"
                                   className="w-full justify-start"
                                 >
@@ -1841,7 +1841,7 @@ export function Overlays() {
                                   Dark Mode
                                 </Button>
                                 <Button
-                                  size="sm"
+                                  buttonSize="sm"
                                   variant="soft"
                                   className="w-full justify-start"
                                 >
@@ -1849,7 +1849,7 @@ export function Overlays() {
                                   Notifications
                                 </Button>
                                 <Button
-                                  size="sm"
+                                  buttonSize="sm"
                                   variant="soft"
                                   className="w-full justify-start"
                                 >
@@ -2005,7 +2005,7 @@ export function Overlays() {
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <Button size="icon" variant="outline">
+                                <Button buttonSize="icon" variant="outline">
                                   <Icon name="pencil" />
                                 </Button>
                               </TooltipTrigger>
@@ -2018,7 +2018,7 @@ export function Overlays() {
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <Button size="icon" variant="outline">
+                                <Button buttonSize="icon" variant="outline">
                                   <Icon name="copy" />
                                 </Button>
                               </TooltipTrigger>
@@ -2031,7 +2031,7 @@ export function Overlays() {
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <Button size="icon" variant="outline">
+                                <Button buttonSize="icon" variant="outline">
                                   <Icon name="download" />
                                 </Button>
                               </TooltipTrigger>
@@ -2044,7 +2044,11 @@ export function Overlays() {
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <Button size="icon" variant="outline" disabled>
+                                <Button
+                                  buttonSize="icon"
+                                  variant="outline"
+                                  disabled
+                                >
                                   <Icon name="trash" />
                                 </Button>
                               </TooltipTrigger>
@@ -2164,7 +2168,7 @@ export function Overlays() {
                     <Box display="flex" flexDirection="column" gap={2}>
                       <Button
                         variant="soft"
-                        size="sm"
+                        buttonSize="sm"
                         className="justify-start"
                       >
                         <Icon name="moon" className="mr-2" />
@@ -2172,7 +2176,7 @@ export function Overlays() {
                       </Button>
                       <Button
                         variant="soft"
-                        size="sm"
+                        buttonSize="sm"
                         className="justify-start"
                       >
                         <Icon name="bell" className="mr-2" />
@@ -2180,7 +2184,7 @@ export function Overlays() {
                       </Button>
                       <Button
                         variant="soft"
-                        size="sm"
+                        buttonSize="sm"
                         className="justify-start"
                       >
                         <Icon name="cog" className="mr-2" />

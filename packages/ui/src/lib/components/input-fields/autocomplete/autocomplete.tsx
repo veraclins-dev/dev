@@ -219,7 +219,7 @@ export const Autocomplete = ({
                     )}
                     variant="soft"
                     color="primary"
-                    size="sm"
+                    chipSize="sm"
                     onMouseDown={(e) => {
                       e.stopPropagation();
                       e.preventDefault();

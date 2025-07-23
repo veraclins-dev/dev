@@ -377,10 +377,10 @@ export function TypographyShowcase() {
               </Box>
 
               <Box display="flex" gap={3}>
-                <Button color="primary" size="lg">
+                <Button color="primary" buttonSize="lg">
                   Add to Cart
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" buttonSize="lg">
                   <Icon name="heart" className="mr-2" />
                   Wishlist
                 </Button>

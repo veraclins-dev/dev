@@ -36,6 +36,7 @@ module.exports = [
                 'type:ui',
                 'type:utils',
                 'type:react-utils',
+                'type:cva',
               ],
             },
             {
@@ -45,6 +46,7 @@ module.exports = [
                 'type:ui',
                 'type:utils',
                 'type:react-utils',
+                'type:cva',
               ],
             },
             {
@@ -54,6 +56,7 @@ module.exports = [
                 'type:ui',
                 'type:utils',
                 'type:react-utils',
+                'type:cva',
               ],
             },
             {
@@ -63,11 +66,16 @@ module.exports = [
                 'type:ui',
                 'type:utils',
                 'type:react-utils',
+                'type:cva',
               ],
             },
             {
               sourceTag: 'type:react-utils',
-              onlyDependOnLibsWithTags: ['type:react-utils', 'type:utils'],
+              onlyDependOnLibsWithTags: [
+                'type:react-utils',
+                'type:utils',
+                'type:cva',
+              ],
             },
             {
               sourceTag: 'type:ui',
@@ -75,6 +83,7 @@ module.exports = [
                 'type:ui',
                 'type:utils',
                 'type:react-utils',
+                'type:cva',
               ],
             },
             {
@@ -88,6 +97,10 @@ module.exports = [
             {
               sourceTag: 'type:seo',
               onlyDependOnLibsWithTags: ['type:seo'],
+            },
+            {
+              sourceTag: 'type:cva',
+              onlyDependOnLibsWithTags: ['type:cva', 'type:utils'],
             },
           ],
         },

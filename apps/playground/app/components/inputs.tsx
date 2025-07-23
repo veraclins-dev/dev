@@ -495,7 +495,7 @@ export function Inputs() {
                   4+ Stars
                   <Icon name="x-mark" className="ml-1 size-3" />
                 </Badge>
-                <Button variant="text" size="sm">
+                <Button variant="text" buttonSize="sm">
                   Clear All
                 </Button>
               </Box>

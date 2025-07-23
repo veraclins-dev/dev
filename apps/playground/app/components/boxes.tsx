@@ -750,11 +750,11 @@ export function Boxes() {
                     >
                       <Typography variant="h5">Analytics Dashboard</Typography>
                       <Box display="flex" gap={2}>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" buttonSize="sm">
                           <Icon name="calendar" className="mr-1" />
                           Date Range
                         </Button>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" buttonSize="sm">
                           <Icon name="download" className="mr-1" />
                           Export
                         </Button>
@@ -865,7 +865,7 @@ export function Boxes() {
                           placeholder="Search products..."
                           className="w-64"
                         />
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" buttonSize="sm">
                           <Icon name="funnel" className="mr-1" />
                           Filter
                         </Button>
@@ -963,7 +963,7 @@ export function Boxes() {
                                 >
                                   $99.99
                                 </Typography>
-                                <Button size="sm">Add to Cart</Button>
+                                <Button buttonSize="sm">Add to Cart</Button>
                               </Box>
                             </Box>
                           ))}
@@ -1098,7 +1098,7 @@ export function Boxes() {
                           {/* Header */}
                           <Box display="flex" justify="between" items="center">
                             <Typography variant="h6">My App</Typography>
-                            <Button size="icon" variant="outline">
+                            <Button buttonSize="icon" variant="outline">
                               <Icon name="bell" />
                             </Button>
                           </Box>

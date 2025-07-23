@@ -61,7 +61,7 @@ export function AuthShowcase() {
 
   return (
     <Box className="w-full max-w-6xl mx-auto space-y-8">
-      <PlaygroundBreadcrumb currentPage="Auth" className="mb-4" />
+      <PlaygroundBreadcrumb currentPage="Auth" />
 
       <Box className="text-center space-y-4">
         <Typography variant="h1">Authentication Components</Typography>

@@ -57,7 +57,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="bg-background h-full text-sm text-foreground w-full">
+      <body className="bg-background h-full text-sm text-foreground relative w-ful">
         {children}
 
         <script
@@ -89,15 +89,15 @@ export default function App({ loaderData }: Route.ComponentProps) {
           <Box component="main" w="full" h="full" flex="1">
             <SidebarTrigger />
             <Box
-              component="main"
-              display="flex"
+              display={{ xs: 'flex' }}
               flexDirection="column"
-              gap={4}
-              my={8}
               py={4}
-              w="full"
-              h="full"
-              className="container overflow-auto rounded-md"
+              px={{ xs: 4, sm: 6, md: 8, lg: 10, xl: 12, '2xl': 14 }}
+              h={{ sm: 'screen' }}
+              gap={{ sm: 4 }}
+              overflow="auto"
+              className="rounded-md"
+              pe={{ xs: 4 }}
             >
               <Outlet />
             </Box>

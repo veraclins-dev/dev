@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@veraclins-dev/cva": ["packages/cva/src/index.ts"],
       "@veraclins-dev/editor": ["packages/editor/src/index.ts"],
       "@veraclins-dev/form": ["packages/form/src/index.ts"],
       "@veraclins-dev/image": ["packages/image/src/index.ts"],

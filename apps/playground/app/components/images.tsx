@@ -172,7 +172,7 @@ export function Images() {
                 <CardTitle className="flex items-center gap-2">
                   {example.title}
                   {example.priority && (
-                    <Badge color="secondary" size="sm">
+                    <Badge color="secondary" badgeSize="sm">
                       Priority
                     </Badge>
                   )}

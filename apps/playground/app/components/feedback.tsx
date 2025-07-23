@@ -337,16 +337,16 @@ export function Feedback() {
                       Form Submission
                     </Typography>
                     <Box display="flex" gap={3}>
-                      <StatusButton status="idle" size="sm">
+                      <StatusButton status="idle" buttonSize="sm">
                         Save Draft
                       </StatusButton>
-                      <StatusButton status="pending" size="sm">
+                      <StatusButton status="pending" buttonSize="sm">
                         Submitting...
                       </StatusButton>
-                      <StatusButton status="success" size="sm">
+                      <StatusButton status="success" buttonSize="sm">
                         Saved!
                       </StatusButton>
-                      <StatusButton status="error" size="sm">
+                      <StatusButton status="error" buttonSize="sm">
                         Failed
                       </StatusButton>
                     </Box>
@@ -360,16 +360,16 @@ export function Feedback() {
                       File Upload
                     </Typography>
                     <Box display="flex" gap={3}>
-                      <StatusButton status="idle" size="sm">
+                      <StatusButton status="idle" buttonSize="sm">
                         Upload File
                       </StatusButton>
-                      <StatusButton status="pending" size="sm">
+                      <StatusButton status="pending" buttonSize="sm">
                         Uploading...
                       </StatusButton>
-                      <StatusButton status="success" size="sm">
+                      <StatusButton status="success" buttonSize="sm">
                         Uploaded!
                       </StatusButton>
-                      <StatusButton status="error" size="sm">
+                      <StatusButton status="error" buttonSize="sm">
                         Upload Failed
                       </StatusButton>
                     </Box>
@@ -383,16 +383,16 @@ export function Feedback() {
                       API Connection
                     </Typography>
                     <Box display="flex" gap={3}>
-                      <StatusButton status="idle" size="sm">
+                      <StatusButton status="idle" buttonSize="sm">
                         Connect
                       </StatusButton>
-                      <StatusButton status="pending" size="sm">
+                      <StatusButton status="pending" buttonSize="sm">
                         Connecting...
                       </StatusButton>
-                      <StatusButton status="success" size="sm">
+                      <StatusButton status="success" buttonSize="sm">
                         Connected
                       </StatusButton>
-                      <StatusButton status="error" size="sm">
+                      <StatusButton status="error" buttonSize="sm">
                         Connection Failed
                       </StatusButton>
                     </Box>
@@ -459,7 +459,7 @@ export function Feedback() {
                           </Box>
                           <ProgressBar value={67} color="primary" />
                         </Box>
-                        <StatusButton status="pending" size="sm">
+                        <StatusButton status="pending" buttonSize="sm">
                           Processing...
                         </StatusButton>
                       </Box>
@@ -501,7 +501,7 @@ export function Feedback() {
 
                     {/* Actions */}
                     <Box display="flex" flexDirection="column" gap={3}>
-                      <StatusButton status="pending" size="sm">
+                      <StatusButton status="pending" buttonSize="sm">
                         Loading Profile...
                       </StatusButton>
                       <Skeleton className="h-8 w-24" />

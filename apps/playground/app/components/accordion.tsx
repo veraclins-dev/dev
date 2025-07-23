@@ -20,7 +20,7 @@ import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 export function Accordions() {
   return (
     <Box className="w-full max-w-6xl mx-auto space-y-8">
-      <PlaygroundBreadcrumb currentPage="Accordion" className="mb-4" />
+      <PlaygroundBreadcrumb currentPage="Accordion" />
 
       <Box className="text-center space-y-4">
         <Typography variant="h1">Accordion Components</Typography>
