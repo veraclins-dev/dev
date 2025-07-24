@@ -134,14 +134,9 @@ export function useIntersectionObserver({
 
     const observer = new IntersectionObserver(
       (entries: IntersectionObserverEntry[]): void => {
-        console.log(entries, 'entries');
         const thresholds = Array.isArray(observer.thresholds)
           ? observer.thresholds
           : [observer.thresholds];
-        // console.log({ threshold, thresholds, root });
-        const allIntersecting = entries.filter((entry) => entry.isIntersecting);
-
-        console.log(allIntersecting);
 
         entries.forEach((entry) => {
           const isIntersecting =

@@ -43,7 +43,11 @@ export function Boxes() {
             <Box display="flex" flexDirection="column" gap={4}>
               <Typography variant="h4">Display Types</Typography>
 
-              <Box className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Box
+                display="grid"
+                gap={4}
+                className="grid-cols-1 md:grid-cols-3"
+              >
                 {/* Block Display */}
                 <Card>
                   <CardHeader>

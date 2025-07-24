@@ -53,7 +53,7 @@ function BaseListItem({
     }
   };
 
-  const { styleProps, ...rest } = extractStyleProps(props);
+  const { styleProps, others } = extractStyleProps(props);
 
   return (
     <li
@@ -75,7 +75,7 @@ function BaseListItem({
         }),
       )}
       onClick={handleClick}
-      {...rest}
+      {...others}
     >
       {children}
     </li>

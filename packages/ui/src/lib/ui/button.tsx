@@ -115,7 +115,7 @@ function Component({
   className,
   ...props
 }: ComponentWithTooltip<typeof Base>) {
-  const { styleProps, ...rest } = extractStyleProps(props);
+  const { styleProps, others } = extractStyleProps(props);
   const classes = cn(
     buttonVariants({
       variant,
@@ -132,7 +132,7 @@ function Component({
     <ComposedTooltip
       Trigger={Base}
       TriggerProps={{
-        ...rest,
+        ...others,
         className: classes,
         buttonSize,
         loading,
@@ -147,7 +147,7 @@ function Component({
     />
   ) : (
     <Base
-      {...rest}
+      {...others}
       className={classes}
       buttonSize={buttonSize}
       loading={loading}

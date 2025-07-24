@@ -68,7 +68,7 @@ function Base({
 }: TypographyProps) {
   const variant = va ?? 'body2';
   const Component = variantMapping[variant] || 'p';
-  const { styleProps, ...rest } = extractStyleProps(props);
+  const { styleProps, others } = extractStyleProps(props);
 
   return (
     <Component
@@ -86,7 +86,7 @@ function Base({
       aria-level={
         variant.startsWith('h') ? Number(variant.replace('h', '')) : undefined
       }
-      {...rest}
+      {...others}
     >
       {children}
     </Component>

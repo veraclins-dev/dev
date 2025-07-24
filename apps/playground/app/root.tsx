@@ -57,8 +57,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="bg-background h-full text-sm text-foreground relative w-ful">
-        {children}
+      <body className="bg-background h-full text-sm text-foreground">
+        <div className="overflow-hidden h-full w-full container relative">
+          {children}
+        </div>
 
         <script
           dangerouslySetInnerHTML={{
@@ -93,9 +95,9 @@ export default function App({ loaderData }: Route.ComponentProps) {
               flexDirection="column"
               py={4}
               px={{ xs: 4, sm: 6, md: 8, lg: 10, xl: 12, '2xl': 14 }}
-              h={{ sm: 'screen' }}
               gap={{ sm: 4 }}
               overflow="auto"
+              h="full"
               className="rounded-md"
               pe={{ xs: 4 }}
             >

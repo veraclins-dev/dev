@@ -44,7 +44,7 @@ function Link<C extends 'a' | CustomComponent = 'a'>({
   ...props
 }: LinkProps<C>) {
   const Component = component as React.ComponentType<any>;
-  const { styleProps, ...rest } = extractStyleProps(props);
+  const { styleProps, others } = extractStyleProps(props);
 
   // Ensure rel includes 'noopener noreferrer' for external links when target is '_blank'
   const computedRel =
@@ -73,7 +73,7 @@ function Link<C extends 'a' | CustomComponent = 'a'>({
       )}
       target={target}
       rel={computedRel}
-      {...rest}
+      {...others}
     >
       {children}
     </Component>

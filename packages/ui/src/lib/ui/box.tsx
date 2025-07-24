@@ -45,7 +45,6 @@ function Base({
 
   // Extract style props from the remaining props
   const { styleProps, others } = extractStyleProps(props);
-
   return (
     <Component
       data-slot="box"
@@ -57,8 +56,8 @@ function Base({
           items,
           justify,
           flex,
+          className,
         }),
-        className,
       )}
       {...others}
     />

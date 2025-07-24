@@ -65,14 +65,14 @@ const Chip = memo(
     label,
     ...props
   }: ChipProps) => {
-    const { styleProps, ...rest } = extractStyleProps(props);
+    const { styleProps, others } = extractStyleProps(props);
     return (
       <Box
         className={cn(
           chipVariants({ variant, color, chipSize, ...styleProps }),
           className,
         )}
-        {...rest}
+        {...others}
       >
         <span className="align-middle">{label}</span>
         {onRemove && (

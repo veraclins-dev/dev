@@ -37,7 +37,7 @@ function BaseList({
   ...props
 }: ListProps) {
   const Component = component;
-  const { styleProps, ...rest } = extractStyleProps(props);
+  const { styleProps, others } = extractStyleProps(props);
 
   return (
     <Component
@@ -53,7 +53,7 @@ function BaseList({
           className,
         }),
       )}
-      {...rest}
+      {...others}
     >
       {children}
     </Component>
