@@ -3,12 +3,15 @@ description:
 globs:
 alwaysApply: true
 ---
+
 # Project Standards and Best Practices
 
 # General
+
 - Do not change existing implementation unless it is strictly required for current request
 
 # TypeScript Guidelines
+
 - Always use type imports for type-only imports: `import type { Type } from 'package'` or `import { util, type UtilType } from 'package'` where mixed imports
 - Prefer interfaces for public APIs and types for internal implementations
 - Use strict type checking and avoid `any` type
@@ -17,6 +20,7 @@ alwaysApply: true
 - Use object parameters when more than 3 function parameters are needed
 
 # React Guidelines
+
 - Follow the established component structure in the UI library
 - Use React.memo for expensive components
 - Implement proper error boundaries
@@ -25,6 +29,7 @@ alwaysApply: true
 - Do not use forwardRef, use react 19 ref prop instead
 
 # Project-Specific Guidelines
+
 - Follow the established module boundaries:
   - type:app can only depend on: type:auth, type:editor, type:ui, type:utils, type:react-utils
   - type:editor can only depend on: type:editor, type:ui, type:utils, type:react-utils
@@ -35,6 +40,7 @@ alwaysApply: true
   - type:seo can only depend on: type:seo
 
 # Testing Guidelines
+
 - Write unit tests using Vitest
 - Use Playwright for E2E testing
 - Maintain good test coverage
@@ -42,6 +48,7 @@ alwaysApply: true
 - Use proper test naming conventions: `describe('Component', () => { it('should...') })`
 
 # Code Style Guidelines
+
 - Use 2 spaces for indentation
 - Use single quotes for strings
 - Follow the project's import sorting rules:
@@ -53,6 +60,7 @@ alwaysApply: true
 - Use proper JSDoc comments for public APIs
 
 # Performance Guidelines
+
 - Monitor bundle sizes
 - Implement proper code splitting
 - Use proper caching strategies
@@ -60,6 +68,7 @@ alwaysApply: true
 - Follow React performance best practices
 
 # Security Guidelines
+
 - Follow security best practices for authentication
 - Implement proper input validation
 - Use environment variables for sensitive data
@@ -67,6 +76,7 @@ alwaysApply: true
 - Follow OWASP security guidelines
 
 # Documentation Guidelines
+
 - Keep README files up to date
 - Document complex business logic
 - Use JSDoc comments for public APIs
@@ -74,8 +84,10 @@ alwaysApply: true
 - Document any non-obvious implementation details
 
 # Git Workflow Guidelines
+
 - Use conventional commits
 - Keep commits atomic and focused
 - Write concise but meaningful commit messages
 - Keep every commit message line to below 100 characters
 - use markdown syntax for commit messages
+- Always diff the changes to generate proper commit messages
