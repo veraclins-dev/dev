@@ -1099,6 +1099,187 @@ export function Overlays() {
                     </Dialog>
                   </CardContent>
                 </Card>
+
+                {/* Scrollable Search Dialog */}
+                <Card className="bg-card-inner">
+                  <CardContent className="p-4">
+                    <Typography variant="h5" className="mb-3">
+                      Scrollable Search Dialog
+                    </Typography>
+                    <Typography variant="body2" className="mb-4">
+                      Dialog with fixed search field and scrollable results
+                      below.
+                    </Typography>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline">Search Users</Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl h-96 flex flex-col">
+                        <DialogHeader className="flex-shrink-0">
+                          <DialogTitle>Search Users</DialogTitle>
+                          <DialogDescription>
+                            Search and select users from the database
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        {/* Fixed Search Field */}
+                        <Command className="px-2">
+                          <Box className="flex-shrink-0 py-4 border-b">
+                            <CommandInput placeholder="Search users by name, email, or role..." />
+                          </Box>
+
+                          {/* Scrollable Results */}
+                          <Box className="flex-1 overflow-y-auto py-2">
+                            <CommandList>
+                              {[
+                                {
+                                  id: '1',
+                                  name: 'John Doe',
+                                  email: 'john.doe@example.com',
+                                  role: 'Admin',
+                                  avatar: 'JD',
+                                },
+                                {
+                                  id: '2',
+                                  name: 'Jane Smith',
+                                  email: 'jane.smith@example.com',
+                                  role: 'Editor',
+                                  avatar: 'JS',
+                                },
+                                {
+                                  id: '3',
+                                  name: 'Mike Johnson',
+                                  email: 'mike.johnson@example.com',
+                                  role: 'Viewer',
+                                  avatar: 'MJ',
+                                },
+                                {
+                                  id: '4',
+                                  name: 'Sarah Wilson',
+                                  email: 'sarah.wilson@example.com',
+                                  role: 'Editor',
+                                  avatar: 'SW',
+                                },
+                                {
+                                  id: '5',
+                                  name: 'David Brown',
+                                  email: 'david.brown@example.com',
+                                  role: 'Admin',
+                                  avatar: 'DB',
+                                },
+                                {
+                                  id: '6',
+                                  name: 'Emily Davis',
+                                  email: 'emily.davis@example.com',
+                                  role: 'Viewer',
+                                  avatar: 'ED',
+                                },
+                                {
+                                  id: '7',
+                                  name: 'Chris Miller',
+                                  email: 'chris.miller@example.com',
+                                  role: 'Editor',
+                                  avatar: 'CM',
+                                },
+                                {
+                                  id: '8',
+                                  name: 'Lisa Garcia',
+                                  email: 'lisa.garcia@example.com',
+                                  role: 'Viewer',
+                                  avatar: 'LG',
+                                },
+                                {
+                                  id: '9',
+                                  name: 'Tom Anderson',
+                                  email: 'tom.anderson@example.com',
+                                  role: 'Admin',
+                                  avatar: 'TA',
+                                },
+                                {
+                                  id: '10',
+                                  name: 'Amy Taylor',
+                                  email: 'amy.taylor@example.com',
+                                  role: 'Editor',
+                                  avatar: 'AT',
+                                },
+                                {
+                                  id: '11',
+                                  name: 'Ryan Martinez',
+                                  email: 'ryan.martinez@example.com',
+                                  role: 'Viewer',
+                                  avatar: 'RM',
+                                },
+                                {
+                                  id: '12',
+                                  name: 'Jessica Lee',
+                                  email: 'jessica.lee@example.com',
+                                  role: 'Editor',
+                                  avatar: 'JL',
+                                },
+                                {
+                                  id: '13',
+                                  name: 'Kevin White',
+                                  email: 'kevin.white@example.com',
+                                  role: 'Admin',
+                                  avatar: 'KW',
+                                },
+                                {
+                                  id: '14',
+                                  name: 'Rachel Green',
+                                  email: 'rachel.green@example.com',
+                                  role: 'Viewer',
+                                  avatar: 'RG',
+                                },
+                                {
+                                  id: '15',
+                                  name: 'Daniel Clark',
+                                  email: 'daniel.clark@example.com',
+                                  role: 'Editor',
+                                  avatar: 'DC',
+                                },
+                              ].map((user) => (
+                                <CommandItem
+                                  key={user.id}
+                                  value={`${user.name} ${user.email} ${user.role}`}
+                                >
+                                  <Box className="flex items-center gap-3 w-full">
+                                    <Box className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-medium">
+                                      {user.avatar}
+                                    </Box>
+                                    <Box className="flex-1 min-w-0">
+                                      <Typography
+                                        variant="body2"
+                                        className="font-medium truncate"
+                                      >
+                                        {user.name}
+                                      </Typography>
+                                      <Typography
+                                        variant="body2"
+                                        className="text-muted-foreground truncate"
+                                      >
+                                        {user.email}
+                                      </Typography>
+                                    </Box>
+                                    <Badge variant="soft" badgeSize="sm">
+                                      {user.role}
+                                    </Badge>
+                                  </Box>
+                                </CommandItem>
+                              ))}
+                            </CommandList>
+                          </Box>
+                        </Command>
+
+                        <DialogFooter className="flex-shrink-0 border-t pt-4">
+                          <DialogClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                          </DialogClose>
+                          <Button>Select User</Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  </CardContent>
+                </Card>
               </Box>
             </CardContent>
           </Card>

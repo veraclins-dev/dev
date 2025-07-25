@@ -76,6 +76,7 @@ const EditorField = ({
       labelProps={labelProps}
       topText={topText}
       ref={ref}
+      inputProps={rest}
     >
       <textarea
         {...rest}

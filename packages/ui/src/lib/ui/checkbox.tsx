@@ -4,6 +4,8 @@ import { cn } from '@veraclins-dev/utils';
 
 import { CHECKBOX_CLASSES } from './utils/styles';
 import { Icon } from './icon';
+import { checkboxVariants, CheckboxVariants } from './utils/variants/input';
+import { extractStyleProps } from './utils/variants';
 
 /**
  * Represents the possible checked states of a checkbox.
@@ -23,7 +25,7 @@ type CheckboxProps = Omit<
 > & {
   /** The checked state of the checkbox */
   value?: CheckedValue;
-};
+} & CheckboxVariants;
 
 /** Type representing the checked state from Radix UI's CheckboxPrimitive */
 type CheckedState = CheckboxPrimitive.CheckedState;
@@ -57,13 +59,22 @@ type CheckedState = CheckboxPrimitive.CheckedState;
 function Checkbox({
   className,
   checked,
+  checkboxSize,
   ...props
-}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
+}: CheckboxProps) {
+  const { styleProps, others } = extractStyleProps(props);
+  props.defaultChecked;
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
-      className={cn(CHECKBOX_CLASSES, className)}
-      {...props}
+      className={cn(
+        checkboxVariants({
+          ...styleProps,
+          className,
+          checkboxSize,
+        }),
+      )}
+      {...others}
       checked={checked}
     >
       <CheckboxPrimitive.Indicator

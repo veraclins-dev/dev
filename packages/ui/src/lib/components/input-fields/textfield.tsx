@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { Icon, Input, INPUT_CLASS_OVERRIDES } from '../../ui';
+import { Icon, Input, INPUT_CLASS_OVERRIDES, type InputProps } from '../../ui';
 
 import { InputFieldWrapper } from './input-field-wrapper';
 import {
@@ -12,9 +12,7 @@ import {
   useFieldProperties,
 } from './utils';
 
-export interface TextFieldProps
-  extends React.ComponentProps<'input'>,
-    BaseInputProps {
+export interface TextFieldProps extends InputProps, BaseInputProps {
   inputRef?: React.Ref<HTMLInputElement>;
   type?: InputFieldProps['type'];
 }
@@ -59,8 +57,9 @@ export const TextField = ({
       topText={topText}
       wrapperClassName={wrapperClassName}
       ref={ref}
+      inputProps={props}
     >
-      {leftIcon && <Icon name={leftIcon} className="mr-3" size="sm" />}
+      {leftIcon && <Icon name={leftIcon} size="sm" />}
       <Input
         {...props}
         {...inputProps}

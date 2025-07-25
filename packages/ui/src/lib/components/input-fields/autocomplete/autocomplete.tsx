@@ -7,16 +7,17 @@ import {
   Box,
   Button,
   Chip,
+  extractStyleProps,
   Icon,
   Input,
   INPUT_CLASS_OVERRIDES,
-  INPUT_CONTAINER_CLASSES,
   List,
   ListItem,
   Popover,
   PopoverAnchor,
   PopoverContent,
 } from '../../../ui';
+import { inputContainerVariants } from '../../../ui/utils/variants/input';
 import { InputFieldWrapper } from '../input-field-wrapper';
 import {
   getInputProps,
@@ -132,6 +133,7 @@ export const Autocomplete = ({
   freeSolo = false,
   separator = 'comma',
   ref,
+  inputSize,
   ...props
 }: AutocompleteProps) => {
   const { errorId } = useFieldProperties(field);
@@ -185,6 +187,8 @@ export const Autocomplete = ({
   const { key, ...formProps } = getInputProps({ field, name });
   delete formProps.defaultValue;
   const inputId = useId();
+  const { styleProps, others } = extractStyleProps(props);
+
   return (
     <InputFieldWrapper
       className={className}
@@ -203,7 +207,13 @@ export const Autocomplete = ({
         display="flex"
         justify="between"
         items="center"
-        className={cn('w-full', INPUT_CONTAINER_CLASSES)}
+        className={cn(
+          inputContainerVariants({
+            ...styleProps,
+            inputSize,
+            className: 'w-full',
+          }),
+        )}
       >
         <Box display="flex" flexWrap="wrap" flex="1" gap={1}>
           {multiple && selected.length ? (
@@ -274,7 +284,7 @@ export const Autocomplete = ({
         </Box>
       </Box>
       <input
-        {...props}
+        {...others}
         {...formProps}
         ref={mainRef}
         key={key}

@@ -108,6 +108,35 @@ export function TypographyShowcase() {
               </Box>
             </Box>
 
+            {/* Subtitles */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Subtitles
+              </Typography>
+              <Box display="flex" flexDirection="column" gap={2}>
+                <Typography variant="subtitle1">
+                  Subtitle 1 - Section Subtitle
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 16px (1rem) • Weight: 500 (Medium) • Line Height: 1.5
+                    (Normal)
+                  </Typography>
+                </Typography>
+                <Typography variant="subtitle2">
+                  Subtitle 2 - Small Subtitle
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 14px (0.875rem) • Weight: 500 (Medium) • Line Height:
+                    1.5 (Normal)
+                  </Typography>
+                </Typography>
+              </Box>
+            </Box>
+
             {/* Body Text */}
             <Box>
               <Typography variant="h4" className="mb-4">
@@ -164,6 +193,160 @@ export function TypographyShowcase() {
                     Font: 12px (0.75rem) • Weight: 400 (Normal) • Line Height:
                     1.5 (Normal) • Uppercase • Letter Spacing: 0.05em
                   </Typography>
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* Inherit Variant */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Inherit Variant
+              </Typography>
+              <Box display="flex" flexDirection="column" gap={2}>
+                <Typography
+                  variant="inherit"
+                  className="text-lg font-bold text-primary"
+                >
+                  Inherit variant - inherits styles from parent element
+                  <Typography
+                    variant="caption"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    This variant inherits all typography styles from its parent
+                    element
+                  </Typography>
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* Text Alignment */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Text Alignment
+              </Typography>
+              <Box display="flex" flexDirection="column" gap={3}>
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    Left aligned (default):
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    align="left"
+                    className="border p-2"
+                  >
+                    This text is left aligned. This is the default alignment for
+                    most text content. When text wraps to multiple lines, each
+                    line starts at the left margin, creating a ragged right
+                    edge. This alignment is commonly used for body text,
+                    paragraphs, and general content where readability is the
+                    primary concern.
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    Center aligned:
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    align="center"
+                    className="border p-2"
+                  >
+                    This text is center aligned. Perfect for headings and
+                    important messages. When text wraps to multiple lines, each
+                    line is centered within the container, creating ragged edges
+                    on both sides. This alignment is often used for titles,
+                    headings, and content that needs to be visually balanced and
+                    prominent.
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    Right aligned:
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    align="right"
+                    className="border p-2"
+                  >
+                    This text is right aligned. Often used for numbers and
+                    dates. When text wraps to multiple lines, each line ends at
+                    the right margin, creating a ragged left edge. This
+                    alignment is commonly used for numerical data, timestamps,
+                    and content that needs to be aligned with the right side of
+                    a container.
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography
+                    variant="body2"
+                    className="text-muted-foreground mb-2"
+                  >
+                    Justified:
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    align="justify"
+                    className="border p-2"
+                  >
+                    This text is justified. It creates even margins on both
+                    sides and is often used for longer paragraphs and articles.
+                    When text wraps to multiple lines, the spacing between words
+                    is adjusted so that each line (except the last line) extends
+                    to both the left and right margins. This creates a clean,
+                    block-like appearance that is commonly used in newspapers,
+                    magazines, and formal documents.
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Gutter Bottom */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Gutter Bottom
+              </Typography>
+              <Box display="flex" flexDirection="column" gap={2}>
+                <Typography variant="body1" gutterBottom>
+                  This text has gutter bottom enabled (adds margin-bottom)
+                </Typography>
+                <Typography variant="body1">
+                  This text follows the one above with gutter bottom
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  Another text with gutter bottom
+                </Typography>
+                <Typography variant="body1">
+                  This text follows the one above with gutter bottom
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* No Wrap */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                No Wrap (Truncate)
+              </Typography>
+              <Box display="flex" flexDirection="column" gap={2}>
+                <Typography
+                  variant="body1"
+                  noWrap
+                  className="border p-2 max-w-xs"
+                >
+                  This is a very long text that will be truncated with ellipsis
+                  when it exceeds the container width
+                </Typography>
+                <Typography variant="body1" className="border p-2 max-w-xs">
+                  This is a very long text that will wrap to multiple lines when
+                  it exceeds the container width
                 </Typography>
               </Box>
             </Box>
@@ -612,6 +795,121 @@ export function TypographyShowcase() {
                   Privacy Policy
                 </Link>
                 .
+              </Typography>
+            </Box>
+          </Box>
+        </CardContent>
+      </Card>
+
+      {/* Search Results */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Search Results</CardTitle>
+          <CardDescription>
+            Typography in search results with subtitles and multi-line content
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Box display="flex" flexDirection="column" gap={4}>
+            <Typography variant="h4" className="mb-4">
+              Search Results for "React Components"
+            </Typography>
+
+            {/* Search Result Item 1 */}
+            <Box className="border-b pb-4">
+              <Typography variant="subtitle1" className="text-primary mb-1">
+                React Component Best Practices
+              </Typography>
+              <Typography
+                variant="body2"
+                className="text-muted-foreground mb-2"
+              >
+                https://example.com/react-best-practices
+              </Typography>
+              <Typography variant="body2" className="text-muted-foreground">
+                Learn the essential best practices for creating React components
+                that are maintainable, performant, and follow industry
+                standards. This comprehensive guide covers component structure,
+                prop validation, state management, and performance optimization
+                techniques.
+              </Typography>
+            </Box>
+
+            {/* Search Result Item 2 */}
+            <Box className="border-b pb-4">
+              <Typography variant="subtitle1" className="text-primary mb-1">
+                Building Reusable UI Components
+              </Typography>
+              <Typography
+                variant="body2"
+                className="text-muted-foreground mb-2"
+              >
+                https://example.com/reusable-components
+              </Typography>
+              <Typography variant="body2" className="text-muted-foreground">
+                Discover how to build a robust component library that can be
+                shared across multiple projects. This tutorial covers component
+                design patterns, documentation strategies, and testing
+                approaches to ensure your components are reliable and easy to
+                use.
+              </Typography>
+            </Box>
+
+            {/* Search Result Item 3 */}
+            <Box className="border-b pb-4">
+              <Typography variant="subtitle1" className="text-primary mb-1">
+                React Component Lifecycle Methods
+              </Typography>
+              <Typography
+                variant="body2"
+                className="text-muted-foreground mb-2"
+              >
+                https://example.com/lifecycle-methods
+              </Typography>
+              <Typography variant="body2" className="text-muted-foreground">
+                Understand the complete lifecycle of React components from
+                mounting to unmounting. This detailed guide explains when and
+                how to use lifecycle methods, hooks, and modern React patterns
+                for optimal component behavior and performance.
+              </Typography>
+            </Box>
+
+            {/* Search Result Item 4 */}
+            <Box className="border-b pb-4">
+              <Typography variant="subtitle1" className="text-primary mb-1">
+                TypeScript with React Components
+              </Typography>
+              <Typography
+                variant="body2"
+                className="text-muted-foreground mb-2"
+              >
+                https://example.com/typescript-react
+              </Typography>
+              <Typography variant="body2" className="text-muted-foreground">
+                Master TypeScript integration with React components for better
+                type safety and developer experience. Learn how to properly type
+                props, state, events, and complex component patterns while
+                maintaining clean and readable code.
+              </Typography>
+            </Box>
+
+            {/* Search Result Item 5 */}
+            <Box>
+              <Typography variant="subtitle1" className="text-primary mb-1">
+                Testing React Components
+              </Typography>
+              <Typography
+                variant="body2"
+                className="text-muted-foreground mb-2"
+              >
+                https://example.com/testing-components
+              </Typography>
+              <Typography variant="body2" className="text-muted-foreground">
+                Comprehensive guide to testing React components using Jest,
+                React Testing Library, and other modern testing tools. Learn
+                unit testing, integration testing, and end-to-end testing
+                strategies to ensure your components work correctly in all
+                scenarios.
               </Typography>
             </Box>
           </Box>

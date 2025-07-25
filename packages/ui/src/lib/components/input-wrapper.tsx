@@ -1,17 +1,14 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { Box, Typography } from '../ui';
-import { INPUT_CONTAINER_CLASSES } from '../ui';
+import { Box, extractStyleProps, Typography } from '../ui';
 import { Label } from '../ui/label';
+import { inputContainerVariants } from '../ui/utils/variants/input';
 
 import { ErrorList } from './error-list';
-import { type BaseInputProps } from './input-fields';
+import { type InputFieldWrapperProps } from './input-fields';
 
 export interface InputWrapperProps
-  extends React.ComponentProps<'div'>,
-    Omit<BaseInputProps, 'field'> {
-  children: React.ReactNode;
-  plain?: boolean;
+  extends Omit<InputFieldWrapperProps, 'field'> {
   errorId?: string;
   id: string;
   errors?: string[];
@@ -31,8 +28,10 @@ export const InputWrapper = ({
   id,
   errors,
   containerRef,
+  inputProps,
   ...props
 }: InputWrapperProps) => {
+  const { styleProps, others } = extractStyleProps(inputProps ?? {});
   return (
     <Box
       display="flex"
@@ -64,7 +63,15 @@ export const InputWrapper = ({
       <Box
         aria-invalid={errorId ? true : undefined}
         data-state={errorId ? 'error' : undefined}
-        className={cn(!plain && INPUT_CONTAINER_CLASSES, className)}
+        className={cn(
+          !plain &&
+            inputContainerVariants({
+              ...styleProps,
+              inputSize: others.inputSize,
+              className: others.className,
+            }),
+          className,
+        )}
         ref={containerRef}
       >
         {children}

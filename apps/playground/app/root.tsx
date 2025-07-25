@@ -91,15 +91,13 @@ export default function App({ loaderData }: Route.ComponentProps) {
           <Box component="main" w="full" h="full" flex="1">
             <SidebarTrigger />
             <Box
-              display={{ xs: 'flex' }}
+              display="flex"
               flexDirection="column"
               py={4}
-              px={{ xs: 4, sm: 6, md: 8, lg: 10, xl: 12, '2xl': 14 }}
+              px={{ md: 6 }}
               gap={{ sm: 4 }}
               overflow="auto"
-              h="full"
-              className="rounded-md"
-              pe={{ xs: 4 }}
+              className="rounded-md h-[calc(100%-30px)]"
             >
               <Outlet />
             </Box>

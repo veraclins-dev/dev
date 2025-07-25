@@ -1,3 +1,4 @@
+import { type InputVariants } from '../../ui/utils/variants/input';
 import { InputWrapper } from '../input-wrapper';
 
 import { type BaseInputProps, useFieldProperties } from './utils';
@@ -7,6 +8,9 @@ export interface InputFieldWrapperProps
     BaseInputProps {
   children: React.ReactNode;
   plain?: boolean;
+  inputProps?: InputVariants & {
+    className?: string;
+  };
 }
 
 export const InputFieldWrapper = ({

@@ -4,6 +4,10 @@ import {
   RadioGroupItem,
   // type RadioGroupProps,
 } from '../../ui/radio-group';
+import {
+  extractRadioGroupItemVariants,
+  type RadioGroupItemVariants,
+} from '../../ui/utils/variants/input';
 
 import { InputFieldWrapper } from './input-field-wrapper';
 import { type TextFieldProps } from './textfield';
@@ -22,6 +26,7 @@ type RadioGroupProps = React.ComponentProps<typeof RadioGroup>;
 
 interface RadioFieldProps
   extends Omit<RadioGroupProps, 'onChange' | 'defaultChecked'>,
+    RadioGroupItemVariants,
     Pick<
       TextFieldProps,
       'label' | 'labelProps' | 'field' | 'inputClass' | 'wrapperClassName'
@@ -99,6 +104,7 @@ const RadioField = ({
             aria-invalid={errorId ? true : undefined}
             value={getOptionValue(option)}
             label={getOptionLabel(option)}
+            {...extractRadioGroupItemVariants(props)}
           />
         ))}
       </RadioGroup>

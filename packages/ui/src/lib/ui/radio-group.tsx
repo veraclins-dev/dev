@@ -4,6 +4,11 @@ import * as React from 'react';
 import { cn } from '@veraclins-dev/utils';
 
 import { RADIO_GROUP_ITEM_CLASSES } from './utils/styles';
+import { extractStyleProps } from './utils/variants';
+import {
+  type RadioGroupItemVariants,
+  radioGroupItemVariants,
+} from './utils/variants/input';
 import { Box } from './box';
 import { Icon } from './icon';
 import { Label, type LabelProps } from './label';
@@ -75,24 +80,33 @@ function RadioGroupItem({
   id,
   labelProps,
   label,
+  radioSize,
   ...props
 }: React.ComponentProps<typeof RadioGroupPrimitive.Item> & {
   labelProps?: LabelProps;
   label?: React.ReactNode;
-}) {
+} & RadioGroupItemVariants) {
+  const { styleProps, others } = extractStyleProps(props);
   return (
     <Box display="flex" items="center" gap={2}>
       <RadioGroupPrimitive.Item
         data-slot="radio-group-item"
-        className={cn(RADIO_GROUP_ITEM_CLASSES, className)}
+        className={cn(
+          radioGroupItemVariants({ ...styleProps, className, radioSize }),
+        )}
+        data-size={radioSize}
         id={id}
-        {...props}
+        {...others}
       >
         <RadioGroupPrimitive.Indicator
           data-slot="radio-group-indicator"
           className="flex items-center justify-center"
         >
-          <Icon name="circle-solid" className="size-3.5" />
+          <Icon
+            data-size={radioSize}
+            name="circle-solid"
+            className="data-[size=sm]:size-3 data-[size=md]:size-3.5 data-[size=lg]:size-4 data-[size=xl]:size-5"
+          />
         </RadioGroupPrimitive.Indicator>
       </RadioGroupPrimitive.Item>
       {label && (

@@ -10,6 +10,8 @@ import {
   ITEM_CLASSES,
   POPUP_CONTENT_CLASSES,
 } from './utils/styles';
+import { type InputVariants, inputVariants } from './utils/variants/input';
+import { extractStyleProps } from './utils/variants/styles';
 import { Icon } from './icon';
 
 /**
@@ -298,9 +300,11 @@ type GroupOptions = {
  * @property {string} [className] - Additional CSS classes
  */
 export type SelectProps = SelectPrimitive.SelectProps &
-  Pick<SelectContentProps, 'className' | 'position' | 'sideOffset'> & {
+  InputVariants &
+  Pick<SelectContentProps, 'className' | 'sideOffset'> & {
     placeholder?: string;
     showLabel?: boolean;
+    contentPosition?: SelectContentProps['position'];
   } & (
     | {
         options: Option<React.ReactNode>[];
@@ -349,25 +353,45 @@ const ComposedSelect = ({
   className,
   placeholder,
   showLabel = true,
-  position,
+  contentPosition,
   sideOffset,
   value,
+  inputSize,
   ...props
-}: SelectProps) => (
-  <Select {...props} value={value}>
-    <SelectTrigger className={cn(INPUT_CLASSES, className)}>
-      {showLabel ? (
-        <SelectValue placeholder={placeholder} />
-      ) : (
-        (value ?? placeholder)
-      )}
-    </SelectTrigger>
-    <SelectContent position={position} sideOffset={sideOffset}>
-      {grouped ? (
-        options.map((group) => (
-          <SelectGroup key={group.id}>
-            <SelectLabel>{group.label}</SelectLabel>
-            {group.options.map((option) => (
+}: SelectProps) => {
+  const { styleProps, others } = extractStyleProps(props);
+  return (
+    <Select {...others} value={value}>
+      <SelectTrigger
+        className={cn(
+          'w-full',
+          inputVariants({ ...styleProps, inputSize, className }),
+        )}
+      >
+        {showLabel ? (
+          <SelectValue placeholder={placeholder} />
+        ) : (
+          (value ?? placeholder)
+        )}
+      </SelectTrigger>
+      <SelectContent position={contentPosition} sideOffset={sideOffset}>
+        {grouped ? (
+          options.map((group) => (
+            <SelectGroup key={group.id}>
+              <SelectLabel>{group.label}</SelectLabel>
+              {group.options.map((option) => (
+                <SelectItem
+                  key={getOptionValue(option)}
+                  value={getOptionValue(option)}
+                >
+                  {getOptionLabel(option)}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          ))
+        ) : (
+          <>
+            {options.map((option) => (
               <SelectItem
                 key={getOptionValue(option)}
                 value={getOptionValue(option)}
@@ -375,23 +399,12 @@ const ComposedSelect = ({
                 {getOptionLabel(option)}
               </SelectItem>
             ))}
-          </SelectGroup>
-        ))
-      ) : (
-        <>
-          {options.map((option) => (
-            <SelectItem
-              key={getOptionValue(option)}
-              value={getOptionValue(option)}
-            >
-              {getOptionLabel(option)}
-            </SelectItem>
-          ))}
-        </>
-      )}
-    </SelectContent>
-  </Select>
-);
+          </>
+        )}
+      </SelectContent>
+    </Select>
+  );
+};
 
 export {
   ComposedSelect,

@@ -126,6 +126,7 @@ export const PhoneField = ({
       topText={topText}
       wrapperClassName={wrapperClassName}
       ref={ref}
+      inputProps={props}
     >
       <CountrySelect
         countries={getCountries()}

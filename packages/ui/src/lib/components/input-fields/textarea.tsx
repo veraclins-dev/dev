@@ -1,6 +1,11 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { INPUT_CLASS_OVERRIDES, Textarea, Typography } from '../../ui';
+import {
+  INPUT_CLASS_OVERRIDES,
+  Textarea,
+  type TextareaProps,
+  Typography,
+} from '../../ui';
 
 import { InputFieldWrapper } from './input-field-wrapper';
 import {
@@ -10,7 +15,7 @@ import {
 } from './utils';
 
 export interface TextareaFieldProps
-  extends Omit<React.ComponentProps<'textarea'>, 'ref'>,
+  extends Omit<TextareaProps, 'ref'>,
     Pick<React.ComponentProps<'div'>, 'ref'>,
     BaseInputProps {
   rightInlay?: React.ReactNode;
@@ -44,6 +49,7 @@ export const TextareaField = ({
       topText={topText}
       wrapperClassName={wrapperClassName}
       ref={ref}
+      inputProps={props}
     >
       <Textarea
         {...props}
@@ -53,7 +59,7 @@ export const TextareaField = ({
         aria-describedby={errorId}
         id={id}
         rows={rows}
-        className={cn(INPUT_CLASS_OVERRIDES, inputClass)}
+        className={cn('h-full', INPUT_CLASS_OVERRIDES, inputClass)}
       />
       {rightInlay ? (
         <Typography className="absolute bottom-0.5 right-0.5">

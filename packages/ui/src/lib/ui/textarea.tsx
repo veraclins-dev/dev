@@ -1,12 +1,14 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { INPUT_CLASSES } from './utils/styles';
+import { extractStyleProps } from './utils/variants';
+import { type InputVariants, inputVariants } from './utils/variants/input';
 
 /**
  * Props for the Textarea component.
  * Extends the native textarea HTML attributes.
  */
-export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> &
+  InputVariants;
 
 /**
  * Textarea component for multi-line text input.
@@ -40,11 +42,18 @@ export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
  * @param props - Props for the Textarea component
  * @returns A styled textarea element
  */
-const Textarea = ({ className, ...props }: TextareaProps) => (
-  <textarea
-    className={cn('resize-none', INPUT_CLASSES, className)}
-    {...props}
-  />
-);
+const Textarea = ({ className, inputSize, ...props }: TextareaProps) => {
+  const { styleProps, others } = extractStyleProps(props);
+
+  return (
+    <textarea
+      className={cn(
+        'resize-none',
+        inputVariants({ ...styleProps, className, inputSize }),
+      )}
+      {...others}
+    />
+  );
+};
 
 export { Textarea };
