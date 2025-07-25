@@ -3,7 +3,6 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { RADIO_GROUP_ITEM_CLASSES } from './utils/styles';
 import { extractStyleProps } from './utils/variants';
 import {
   type RadioGroupItemVariants,

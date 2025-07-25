@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useCallback, useState } from 'react';
+import { memo } from 'react';
 import React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
