@@ -88,12 +88,6 @@ type CVAVariantSchema<V extends CVAVariantShape, R extends CVAVariantShape> = {
   [Variant in keyof R]?: ResponsiveValue<StringToBoolean<keyof R[Variant]>>;
 };
 
-type CVAResponsiveSchema<V extends CVAVariantShape> = {
-  [Variant in keyof V]?:
-    | ResponsiveValue<StringToBoolean<keyof V[Variant]>>
-    | undefined;
-};
-
 type CVAClassProp =
   | {
       class?: ClassValue;
@@ -156,7 +150,6 @@ export interface CVA {
           responsive?: never;
           compoundVariants?: never;
           defaultVariants?: never;
-          defaultResponsive?: never;
         },
   ): (
     props?: V extends CVAVariantShape
@@ -287,8 +280,8 @@ export const defineConfig: DefineConfig = (options) => {
     return cx(
       config?.base,
       getVariantClassNames,
-      getResponsiveClassNames,
       getCompoundVariantClassNames,
+      getResponsiveClassNames,
       props?.class,
       props?.className,
     );

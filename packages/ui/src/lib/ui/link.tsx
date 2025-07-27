@@ -57,6 +57,10 @@ function Link<C extends 'a' | CustomComponent = 'a'>({
         })()
       : rel;
 
+  if (Object.keys(styleProps).length > 0) {
+    console.log(styleProps);
+  }
+
   return (
     <Component
       data-slot="link"

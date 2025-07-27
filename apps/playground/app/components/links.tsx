@@ -123,12 +123,7 @@ export function Links() {
               <Link type="button" variant="text">
                 Default Color
               </Link>
-              <Link
-                type="button"
-                underline="always"
-                variant="text"
-                color="primary"
-              >
+              <Link type="button" variant="text" color="primary" py={6}>
                 Primary
               </Link>
               <Link type="button" variant="text" color="secondary">
