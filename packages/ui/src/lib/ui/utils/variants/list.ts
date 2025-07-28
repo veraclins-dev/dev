@@ -1,5 +1,4 @@
-import { type VariantProps } from '@veraclins-dev/cva';
-import { cva } from '@veraclins-dev/cva';
+import { cva, type VariantProps } from '@veraclins-dev/cva';
 
 import { styleProps } from './styles';
 
