@@ -2,6 +2,12 @@ import { createContext, useContext } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import {
+  CustomComponent,
+  OverrideComponentProps,
+  type WithComponent,
+} from '../types';
+
 import { Box } from './box';
 import { Typography, type TypographyProps } from './typography';
 
@@ -18,24 +24,32 @@ import { Typography, type TypographyProps } from './typography';
 // Create a context to track Card nesting depth
 const CardDepthContext = createContext({ depth: 0 });
 
+type CardProps<P extends typeof Box | CustomComponent = typeof Box> =
+  OverrideComponentProps<
+    P,
+    React.ComponentProps<typeof Box> & { borderless?: boolean }
+  >;
+
 /**
  * Renders a card container with optional borderless style.
  *
  * @param props - Standard div props and an optional `borderless` boolean to remove the border.
  * @returns The card container element.
  */
-function Card({
+function Card<P extends typeof Box | CustomComponent = typeof Box>({
   className,
   borderless = true,
+  component,
   ...props
-}: React.ComponentProps<typeof Box> & { borderless?: boolean }) {
+}: CardProps<P>) {
   // Get the current depth from context
   const { depth } = useContext(CardDepthContext);
   const useCardBg = depth % 2 === 0;
   const bgClass = useCardBg ? 'bg-card' : 'bg-card-inner';
+  const Comp = component ?? Box;
   return (
     <CardDepthContext.Provider value={{ depth: depth + 1 }}>
-      <Box
+      <Comp
         data-slot="card"
         className={cn(
           'text-card-foreground gap-4 rounded-xl border shadow-sm',

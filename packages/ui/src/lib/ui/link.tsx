@@ -2,6 +2,8 @@ import React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { CustomComponent, type OverrideComponentProps } from '../types';
+
 import {
   extractStyleProps,
   type LinkVariants,
@@ -19,16 +21,9 @@ interface BaseLinkProps extends LinkVariants {
 }
 
 // Define a type for custom components
-type CustomComponent = React.ComponentType<any>;
 
-// Define LinkProps using OverrideProps
-type LinkProps<RootComponent extends 'a' | CustomComponent = 'a'> = {
-  component?: RootComponent;
-} & (RootComponent extends 'a'
-  ? BaseLinkProps & Omit<React.ComponentProps<'a'>, keyof BaseLinkProps>
-  : RootComponent extends React.ComponentType<infer P>
-    ? BaseLinkProps & Omit<P, keyof BaseLinkProps>
-    : never);
+type LinkProps<RootComponent extends 'a' | CustomComponent = 'a'> =
+  OverrideComponentProps<RootComponent, BaseLinkProps>;
 
 function Link<C extends 'a' | CustomComponent = 'a'>({
   component = 'a' as C,

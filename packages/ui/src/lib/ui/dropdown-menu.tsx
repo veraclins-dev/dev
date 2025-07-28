@@ -361,7 +361,7 @@ const ComposedDropdownMenu = <P extends object, I extends object>({
       {arrow && <DropdownMenuArrow />}
 
       {items.map(({ key, isSeparator, ...item }) => {
-        if ('Component' in item) {
+        if ('Component' in item && item.Component) {
           const { Component, ComponentProps, ...props } = item;
           return (
             <DropdownMenuItem asChild key={key}>

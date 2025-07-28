@@ -1,3 +1,5 @@
+import { Form } from 'react-router';
+
 import {
   Avatar,
   AvatarFallback,
@@ -598,7 +600,12 @@ export function Cards() {
             </Card>
 
             {/* Form Card */}
-            <Card className="bg-card-inner">
+            <Card
+              className="bg-card-inner"
+              component={Form}
+              action="/api/contact"
+              method="post"
+            >
               <CardHeader>
                 <CardTitle>Contact Form</CardTitle>
                 <CardDescription>

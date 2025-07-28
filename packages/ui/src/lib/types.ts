@@ -25,10 +25,15 @@ export type WithTrigger<T extends object> = {
   TriggerProps: T;
 };
 
-export type WithComponent<T extends object> = {
-  Component: React.ComponentType<T>;
-  ComponentProps: T;
-};
+export type WithComponent<T extends object> =
+  | {
+      Component: React.ComponentType<T>;
+      ComponentProps: T;
+    }
+  | {
+      Component?: never;
+      ComponentProps?: never;
+    };
 
 export type WithTooltip<T extends object> = T & {
   tooltip?: React.ReactNode;
@@ -46,3 +51,16 @@ export type ComponentPropsWithoutColor<
     | keyof React.JSX.IntrinsicElements
     | React.JSXElementConstructor<any>,
 > = Omit<React.ComponentProps<T>, 'color'>;
+
+export type CustomComponent = React.ComponentType<any>;
+
+export type OverrideComponentProps<
+  DefaultComponent extends React.ElementType,
+  BaseProps extends object,
+> = {
+  component?: DefaultComponent;
+} & (DefaultComponent extends keyof React.JSX.IntrinsicElements
+  ? BaseProps & Omit<React.ComponentProps<DefaultComponent>, keyof BaseProps>
+  : DefaultComponent extends React.ComponentType<infer P>
+    ? BaseProps & Omit<P, keyof BaseProps>
+    : never);
