@@ -32,6 +32,13 @@ const variantMapping: Record<Variant, TypographyElement> = {
   inherit: 'p',
 };
 
+/**
+ * Props for the Typography component.
+ * @param {TypographyBlockElement} [props.component='p'] - The HTML element to render the text as.
+ * @param {React.ReactNode} props.children - The content to render inside the Typography component.
+ * @param {string} [props.className] - Additional CSS classes to apply to the component.
+ * @param {string} [props.variant='body2'] - The typography variant to apply, controlling font size, weight,
+ */
 type TypographyProps = ComponentPropsWithoutColor<TypographyBlockElement> & {
   children?: React.ReactNode;
   className?: string;
