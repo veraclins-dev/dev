@@ -27,10 +27,10 @@
   --card-soft-foreground: oklch(0.35 0 0);
   --card-soft-foreground-hover: oklch(0.3 0 0);
 
-  --card-inner: oklch(0.955 0 0);
-  --card-inner-hover: oklch(0.9 0 0);
-  --card-inner-soft: oklch(0.94 0 0);
-  --card-inner-soft-hover: oklch(0.92 0 0);
+  --card-inner: oklch(0.925 0 0);
+  --card-inner-hover: oklch(0.88 0 0);
+  --card-inner-soft: oklch(0.9 0 0);
+  --card-inner-soft-hover: oklch(0.87 0 0);
 
   --card-inner-soft-foreground: oklch(0.35 0 0);
   --card-inner-soft-foreground-hover: oklch(0.3 0 0);
@@ -152,10 +152,10 @@
   --card-soft-foreground: oklch(0.85 0 0);
   --card-soft-foreground-hover: oklch(0.8 0 0);
 
-  --card-inner: oklch(0.23 0.01 260);
-  --card-inner-hover: oklch(0.3 0.02 260);
-  --card-inner-soft: oklch(0.22 0.01 260);
-  --card-inner-soft-hover: oklch(0.25 0.015 260);
+  --card-inner: oklch(0.3 0.01 260);
+  --card-inner-hover: oklch(0.35 0.02 260);
+  --card-inner-soft: oklch(0.28 0.01 260);
+  --card-inner-soft-hover: oklch(0.3 0.015 260);
 
   --card-inner-soft-foreground: oklch(0.85 0 0);
   --card-inner-soft-foreground-hover: oklch(0.8 0 0);

@@ -11,20 +11,8 @@ import {
 } from './utils/variants';
 
 // Type definitions
-type Variant =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'subtitle1'
-  | 'subtitle2'
-  | 'body1'
-  | 'body2'
-  | 'caption'
-  | 'overline'
-  | 'inherit';
+type Variant = NonNullable<TypographyVariants['variant']>;
+
 type TypographyBlockElement = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 type TypographyElement = TypographyBlockElement | 'span';
 
@@ -45,10 +33,9 @@ const variantMapping: Record<Variant, TypographyElement> = {
 };
 
 type TypographyProps = ComponentPropsWithoutColor<TypographyBlockElement> & {
-  // | ComponentPropsWithoutColor<'p' | 'span'>
-  variant?: Variant;
   children?: React.ReactNode;
   className?: string;
+  component?: 'p' | 'span';
 } & TypographyVariants;
 
 /**
@@ -58,16 +45,19 @@ type TypographyProps = ComponentPropsWithoutColor<TypographyBlockElement> & {
  * ARIA attributes for headings.
  */
 function Base({
-  variant: va = 'body2',
+  variant = 'body2',
   align = 'inherit',
   gutterBottom = false,
   noWrap = false,
   className,
   children,
+  component,
   ...props
 }: TypographyProps) {
-  const variant = va ?? 'body2';
-  const Component = variantMapping[variant] || 'p';
+  const Component =
+    variant.includes('body') && component
+      ? component
+      : variantMapping[variant] || 'p';
   const { styleProps, others } = extractStyleProps(props);
 
   return (
