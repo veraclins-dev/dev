@@ -34,7 +34,11 @@ export const useConform = <
   id,
   defaultValue,
   fetcher,
-}: ConformOptions<S>) => {
+}: ConformOptions<S>): {
+  form: ReturnType<typeof useForm<z.infer<S>>>[0];
+  fields: ReturnType<typeof useForm<z.infer<S>>>[1];
+  success: boolean;
+} => {
   const actionData = useActionData<L>();
   const schema = sch ?? Empty;
 

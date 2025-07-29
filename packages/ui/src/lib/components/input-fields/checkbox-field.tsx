@@ -94,8 +94,7 @@ export function CheckboxField({
             props.onBlur?.(event);
           }}
           defaultValue={defaultValue}
-          type="button"
-          value={controlProps.value ?? value}
+          value={(controlProps.value as CheckedValue) ?? value}
         />
         <Label htmlFor={id} {...labelProps} className="self-center text-sm">
           {label}
