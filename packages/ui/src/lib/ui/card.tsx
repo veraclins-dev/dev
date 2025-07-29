@@ -42,13 +42,13 @@ function Card<P extends ContainerElement | CustomComponent = typeof Box>({
   const { depth } = useContext(CardDepthContext);
   const useCardBg = depth % 2 === 0;
   const bgClass = useCardBg ? 'bg-card' : 'bg-card-inner';
-  const Comp = (component as React.ElementType) ?? Box;
   return (
     <CardDepthContext.Provider value={{ depth: depth + 1 }}>
-      <Comp
+      <Box
+        component={component}
         data-slot="card"
         className={cn(
-          'text-card-foreground gap-4 rounded-xl border shadow-sm',
+          'text-card-foreground rounded-xl border shadow-round',
           borderless && 'border-0',
           bgClass,
           className,
@@ -70,10 +70,25 @@ function CardHeader({ className, ...props }: React.ComponentProps<typeof Box>) {
   return (
     <Box
       data-slot="card-header"
+      display="grid"
+      p={4}
+      pb={0}
+      items="start"
       className={cn(
-        '@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 p-4 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-4',
+        '@container/card-header auto-rows-min grid-rows-[auto_auto] has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-4',
         className,
       )}
+      {...props}
+    />
+  );
+}
+
+function CardImage({ className, ...props }: React.ComponentProps<typeof Box>) {
+  return (
+    <Box
+      data-slot="card-image"
+      className={cn('object-cover', className)}
+      w="full"
       {...props}
     />
   );
@@ -86,7 +101,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<typeof Box>) {
  * @returns The card title element.
  */
 function CardTitle({ className, ...props }: TypographyProps) {
-  return <Typography data-slot="card-title" variant="h3" {...props} />;
+  return <Typography data-slot="card-title" variant="h4" {...props} />;
 }
 /**
  * Renders the card subtitle using the Typography component.
@@ -131,8 +146,10 @@ function CardDescription({
 function CardAction({ className, ...props }: React.ComponentProps<typeof Box>) {
   return (
     <Box
+      display="flex"
+      gap={3}
       data-slot="card-action"
-      className={cn('flex self-end justify-self-end gap-3', className)}
+      className={cn('self-end justify-self-end', className)}
       {...props}
     />
   );
@@ -149,7 +166,13 @@ function CardContent({
   ...props
 }: React.ComponentProps<typeof Box>) {
   return (
-    <Box data-slot="card-content" className={cn('p-4', className)} {...props} />
+    <Box
+      p={4}
+      flex="1"
+      data-slot="card-content"
+      className={cn(className)}
+      {...props}
+    />
   );
 }
 /**
@@ -162,7 +185,12 @@ function CardFooter({ className, ...props }: React.ComponentProps<typeof Box>) {
   return (
     <Box
       data-slot="card-footer"
-      className={cn('flex w-full items-center p-4 [.border-t]:pt-4', className)}
+      p={4}
+      pt={0}
+      display="flex"
+      items="center"
+      w="full"
+      className={cn('[.border-t]:pt-4', className)}
       {...props}
     />
   );
@@ -175,6 +203,7 @@ export {
   CardDescription,
   CardFooter,
   CardHeader,
+  CardImage,
   CardSubtitle,
   CardTitle,
 };

@@ -12,6 +12,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
+  CardImage,
   CardSubtitle,
   CardTitle,
   ComposedAvatar,
@@ -212,7 +213,7 @@ export function Cards() {
           <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Product Card */}
             <Card className="bg-card-inner overflow-hidden">
-              <Box className="relative h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+              <CardImage className="relative h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
                 <Icon name="photo" className="size-16 text-muted-foreground" />
                 <Badge
                   variant="solid"
@@ -221,7 +222,7 @@ export function Cards() {
                 >
                   Sale
                 </Badge>
-              </Box>
+              </CardImage>
               <CardHeader>
                 <CardTitle>iPhone 15 Pro</CardTitle>
                 <CardDescription>
