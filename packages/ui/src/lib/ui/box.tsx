@@ -8,7 +8,7 @@ import {
   extractStyleProps,
 } from './utils/variants';
 
-type ContainerElement =
+export type ContainerElement =
   | 'div'
   | 'section'
   | 'article'
