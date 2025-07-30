@@ -40,7 +40,7 @@ const buttonVariants = cva({
   ],
   defaultVariants: {
     variant: 'solid',
-    color: 'secondary',
+    color: 'neutral',
     buttonSize: 'md',
     loading: false,
   },

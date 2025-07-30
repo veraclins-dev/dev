@@ -32,7 +32,7 @@ interface RadioFieldProps
   defaultValue?: string;
   shouldReset?: boolean;
   onChange?: (value: string) => void;
-  itemProps?: React.ComponentProps<typeof RadioGroupItem>;
+  itemProps?: Omit<React.ComponentProps<typeof RadioGroupItem>, 'id' | 'value'>;
 }
 
 const RadioField = ({
