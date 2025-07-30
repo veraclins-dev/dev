@@ -8,7 +8,7 @@ import {
   type RadioGroupItemVariants,
   radioGroupItemVariants,
 } from './utils/variants/input';
-import { Box } from './box';
+import { Box, type BoxProps } from './box';
 import { Icon } from './icon';
 import { Label, type LabelProps } from './label';
 
@@ -80,14 +80,22 @@ function RadioGroupItem({
   labelProps,
   label,
   radioSize,
+  component,
   ...props
 }: React.ComponentProps<typeof RadioGroupPrimitive.Item> & {
   labelProps?: LabelProps;
   label?: React.ReactNode;
+  component?: BoxProps['component'];
 } & RadioGroupItemVariants) {
   const { styleProps, others } = extractStyleProps(props);
   return (
-    <Box display="flex" items="center" gap={2} className={className}>
+    <Box
+      display="flex"
+      items="center"
+      gap={2}
+      className={className}
+      component={component}
+    >
       <RadioGroupPrimitive.Item
         data-slot="radio-group-item"
         className={cn(radioGroupItemVariants({ ...styleProps, radioSize }))}
