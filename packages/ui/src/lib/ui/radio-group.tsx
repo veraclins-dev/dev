@@ -87,12 +87,10 @@ function RadioGroupItem({
 } & RadioGroupItemVariants) {
   const { styleProps, others } = extractStyleProps(props);
   return (
-    <Box display="flex" items="center" gap={2}>
+    <Box display="flex" items="center" gap={2} className={className}>
       <RadioGroupPrimitive.Item
         data-slot="radio-group-item"
-        className={cn(
-          radioGroupItemVariants({ ...styleProps, className, radioSize }),
-        )}
+        className={cn(radioGroupItemVariants({ ...styleProps, radioSize }))}
         data-size={radioSize}
         id={id}
         {...others}

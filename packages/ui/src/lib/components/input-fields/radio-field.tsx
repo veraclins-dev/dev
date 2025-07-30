@@ -32,6 +32,7 @@ interface RadioFieldProps
   defaultValue?: string;
   shouldReset?: boolean;
   onChange?: (value: string) => void;
+  itemProps?: React.ComponentProps<typeof RadioGroupItem>;
 }
 
 const RadioField = ({
@@ -48,6 +49,7 @@ const RadioField = ({
   shouldReset,
   wrapperClassName,
   ref,
+  itemProps,
   ...props
 }: RadioFieldProps) => {
   const { errorId, id } = useFieldProperties(field);
@@ -101,6 +103,7 @@ const RadioField = ({
             value={getOptionValue(option)}
             label={getOptionLabel(option)}
             {...extractRadioGroupItemVariants(props)}
+            {...itemProps}
           />
         ))}
       </RadioGroup>
