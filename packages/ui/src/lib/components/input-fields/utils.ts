@@ -149,7 +149,7 @@ const getOptionLabel = <T extends InputLabel = string>(option: Option<T>) =>
 
 const getOptionValue = <T extends InputLabel = string>(option: Option<T>) =>
   isStringOption(option) ? option : option.value;
-const getOptionId = (option: OptionWithId) =>
+const getOptionId = <T extends InputLabel = string>(option: OptionWithId<T>) =>
   isStringOption(option)
     ? slugify(option)
     : option.id

@@ -1,9 +1,5 @@
 import { type OptionWithId } from '../../types';
-import {
-  RadioGroup,
-  RadioGroupItem,
-  // type RadioGroupProps,
-} from '../../ui/radio-group';
+import { RadioGroup, RadioGroupItem } from '../../ui/radio-group';
 import {
   extractRadioGroupItemVariants,
   type RadioGroupItemVariants,
@@ -20,7 +16,7 @@ import {
   useInputControlProps,
 } from './utils';
 
-type Options = OptionWithId[];
+type Options = OptionWithId<React.ReactNode>[];
 
 type RadioGroupProps = React.ComponentProps<typeof RadioGroup>;
 

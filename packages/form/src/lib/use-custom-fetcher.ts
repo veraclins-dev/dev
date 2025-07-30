@@ -19,7 +19,6 @@ export const useCustomFetcher = <
   const [transitionLog, setTransitionLog] = useState<UseRemixSubmitStatus<T>[]>(
     ['idle'],
   );
-  const [submitted, setSubmitted] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -27,21 +26,21 @@ export const useCustomFetcher = <
     const shouldReset = transitionLog.length > 1 && fetcher.state === 'idle';
 
     if (shouldAppend) {
-      setSubmitted(false);
       setLoaded(false);
       setTransitionLog((curr) => [...curr, fetcher.state]);
     } else if (shouldReset) {
+      const hadLoading =
+        transitionLog.includes('submitting') ||
+        transitionLog.includes('loading');
+
       setTransitionLog(['idle']);
-      setLoaded(false);
-      setSubmitted(transitionLog.includes('submitting'));
-      setLoaded(transitionLog.includes('loading'));
+      setLoaded(hadLoading);
     }
-  }, [fetcher.state]);
+  }, [fetcher.state, transitionLog]);
 
   const data = fetcher as UseCustomFetcherReturn<T>;
 
   data.loading = fetcher.state !== 'idle';
-  data.submitted = submitted;
   data.loaded = loaded;
 
   return data;
