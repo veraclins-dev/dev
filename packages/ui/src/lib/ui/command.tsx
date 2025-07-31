@@ -26,10 +26,7 @@ function Command({
   return (
     <CommandPrimitive
       data-slot="command"
-      className={cn(
-        'flex w-full flex-col overflow-hidden rounded-md',
-        className,
-      )}
+      className={cn('flex w-full flex-col rounded-md', className)}
       {...props}
     />
   );
@@ -163,7 +160,7 @@ function CommandItem({
       data-slot="command-item"
       className={cn(
         SHARED_ITEM_CLASSES,
-        'data-[selected=true]:bg-neutral data-[selected=true]:text-neutral-foreground',
+        'data-[selected=true]:bg-neutral-soft data-[selected=true]:text-neutral-foreground',
         className,
       )}
       {...props}

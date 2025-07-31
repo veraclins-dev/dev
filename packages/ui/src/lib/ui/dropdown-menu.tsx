@@ -142,7 +142,7 @@ const DropdownMenuArrow = ({
   inset?: boolean;
 }) => (
   <DropdownMenuPrimitive.Arrow
-    className={cn('fill-current', className)}
+    className={cn('fill-border', className)}
     {...props}
   />
 );

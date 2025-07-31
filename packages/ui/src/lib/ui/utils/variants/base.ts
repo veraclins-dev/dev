@@ -161,7 +161,7 @@ const baseVariants = {
       className: [
         'border-neutral-foreground',
         'text-neutral-foreground',
-        'hover:bg-neutral-soft-hover',
+        'hover:bg-neutral-soft',
         'data-[active=true]:bg-neutral-soft',
         'hover:text-neutral-soft-foreground',
       ],

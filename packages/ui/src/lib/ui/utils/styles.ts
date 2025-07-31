@@ -44,7 +44,7 @@ const INPUT_CLASSES = cn(
   // Layout and Base
   'flex flex-1 min-w-24 bg-transparent',
   // Text and Selection
-  'text-base data-[placeholder]:text-current/50 md:text-sm placeholder:text-current/50 selection:bg-primary selection:text-primary-foreground',
+  'text-base data-[placeholder]:text-current/50 md:text-sm placeholder:text-current/70 selection:bg-primary selection:text-primary-foreground',
   // Spacing
   'min-h-7 px-3 py-2',
   // Border and Shadow
@@ -151,14 +151,14 @@ const ITEM_CLASSES = cn(
   // Base Shared Styles
   SHARED_ITEM_CLASSES,
   // Focus and Hover States
-  'focus:bg-neutral-hover focus:text-neutral-foreground-hover hover:bg-neutral-hover hover:text-neutral-foreground-hover',
+  'focus:bg-neutral-soft-hover focus:text-neutral-foreground-hover hover:bg-neutral-soft hover:text-neutral-foreground-hover',
   // Destructive Variant
   'data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive',
   // Inset Spacing
   'data-[inset]:pl-8',
 
   // Checked and Selected States
-  'data-[state=checked]:bg-neutral data-[state=checked]:text-neutral-foreground data-[selected=true]:bg-neutral data-[selected=true]:text-neutral-foreground',
+  'data-[state=checked]:bg-neutral-soft data-[state=checked]:text-neutral-foreground data-[selected=true]:bg-neutral-soft data-[selected=true]:text-neutral-foreground',
 );
 
 // Indicator Classes
@@ -247,7 +247,7 @@ const LINK_DEFAULT_CLASSES = cn(
 
 const TOOLTIP_CLASSES = cn(
   // Appearance
-  'bg-neutral text-neutral-foreground rounded-md border border-neutral shadow-md',
+  'bg-neutral-soft text-neutral-foreground rounded-md border border-neutral-soft shadow-md',
   // Layout and Base
   'px-2 py-1 text-center text-sm max-w-60',
   // Overflow

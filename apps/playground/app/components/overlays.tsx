@@ -16,6 +16,7 @@ import {
   CommandList,
   ComposedDropdownMenu,
   ComposedPopover,
+  ComposedTooltip,
   Dialog,
   DialogClose,
   DialogContent,
@@ -1857,6 +1858,218 @@ export function Overlays() {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
+              </Box>
+            </CardContent>
+          </Card>
+
+          {/* Composed Tooltip */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Composed Tooltip</CardTitle>
+              <CardDescription>
+                Tooltip with custom triggers, rich content, and arrow
+                configurations
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Box display="flex" flexDirection="column" gap={6}>
+                {/* Basic Examples */}
+                <Box>
+                  <Typography variant="h6" className="mb-3">
+                    Basic Examples
+                  </Typography>
+                  <Box display="flex" gap={4} flexWrap="wrap">
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content="Simple tooltip without arrow"
+                      arrow={false}
+                      TriggerProps={{
+                        variant: 'outline',
+                        buttonSize: 'sm',
+                        children: 'No Arrow',
+                      }}
+                    />
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content="Tooltip with arrow pointing to trigger"
+                      arrow={true}
+                      TriggerProps={{
+                        variant: 'outline',
+                        buttonSize: 'sm',
+                        children: 'With Arrow',
+                      }}
+                    />
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content="Custom delay tooltip (500ms)"
+                      TriggerProps={{
+                        variant: 'outline',
+                        buttonSize: 'sm',
+                        children: 'Delayed',
+                      }}
+                    />
+                  </Box>
+                </Box>
+
+                {/* Rich Content Examples */}
+                <Box>
+                  <Typography variant="h6" className="mb-3">
+                    Rich Content Examples
+                  </Typography>
+                  <Box display="flex" gap={4} flexWrap="wrap">
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content={
+                        <Box className="p-2 text-left">
+                          <Typography variant="subtitle1">
+                            Rich Content Tooltip
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            className="text-muted-foreground"
+                          >
+                            This tooltip contains multiple lines and styled
+                            content
+                          </Typography>
+                        </Box>
+                      }
+                      TriggerProps={{
+                        variant: 'outline',
+                        buttonSize: 'sm',
+                        children: 'Rich Content',
+                      }}
+                    />
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content={
+                        <Box className="p-2 text-left">
+                          <Box className="flex items-center gap-2 mb-2">
+                            <Icon name="info" className="text-info" />
+                            <Typography variant="body2" className="font-medium">
+                              Information Tooltip
+                            </Typography>
+                          </Box>
+                          <Typography
+                            variant="body2"
+                            className="text-muted-foreground"
+                          >
+                            Contains an icon and structured information
+                          </Typography>
+                        </Box>
+                      }
+                      TriggerProps={{
+                        variant: 'outline',
+                        buttonSize: 'sm',
+                        children: 'With Icon',
+                      }}
+                    />
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content={
+                        <Box className="p-2 text-left">
+                          <Box className="flex items-center gap-2 mb-2">
+                            <Icon name="check" className="text-success" />
+                            <Typography
+                              variant="body2"
+                              className="font-medium text-success"
+                            >
+                              Success State
+                            </Typography>
+                          </Box>
+                          <Typography
+                            variant="body2"
+                            className="text-muted-foreground"
+                          >
+                            Operation completed successfully
+                          </Typography>
+                        </Box>
+                      }
+                      TriggerProps={{
+                        variant: 'outline',
+                        buttonSize: 'sm',
+                        children: 'Success State',
+                      }}
+                    />
+                  </Box>
+                </Box>
+
+                {/* Different Triggers */}
+                <Box>
+                  <Typography variant="h6" className="mb-3">
+                    Different Triggers
+                  </Typography>
+                  <Box display="flex" gap={4} flexWrap="wrap">
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content="Button trigger with primary styling"
+                      TriggerProps={{
+                        variant: 'solid',
+                        color: 'primary',
+                        buttonSize: 'sm',
+                        children: 'Primary Button',
+                      }}
+                    />
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content="Icon button trigger"
+                      TriggerProps={{
+                        variant: 'text',
+                        buttonSize: 'sm',
+                        children: <Icon name="question-mark" />,
+                      }}
+                    />
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content="Destructive action tooltip"
+                      TriggerProps={{
+                        variant: 'outline',
+                        color: 'destructive',
+                        buttonSize: 'sm',
+                        children: 'Delete',
+                      }}
+                    />
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content="Disabled state tooltip"
+                      TriggerProps={{
+                        variant: 'outline',
+                        buttonSize: 'sm',
+                        disabled: true,
+                        children: 'Disabled',
+                      }}
+                    />
+                  </Box>
+                </Box>
+
+                {/* Side offsets */}
+                <Box>
+                  <Typography variant="h6" className="mb-3">
+                    Side Offsets
+                  </Typography>
+                  <Box display="flex" gap={4} flexWrap="wrap">
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content="Tooltip with side offset 5 with arrow"
+                      sideOffset={5}
+                      TriggerProps={{
+                        variant: 'outline',
+                        buttonSize: 'sm',
+                        children: 'Side Offset',
+                      }}
+                    />
+                    <ComposedTooltip
+                      Trigger={Button}
+                      content="Tooltip with side offset 10 without arrow"
+                      arrow={false}
+                      sideOffset={10}
+                      TriggerProps={{
+                        variant: 'outline',
+                        buttonSize: 'sm',
+                        children: 'Side Offset',
+                      }}
+                    />
+                  </Box>
+                </Box>
               </Box>
             </CardContent>
           </Card>

@@ -33,6 +33,8 @@ function TooltipProvider({
   );
 }
 
+type TooltipProps = React.ComponentProps<typeof TooltipPrimitive.Root>;
+
 /**
  * Root Tooltip component that manages the tooltip state and positioning.
  *
@@ -44,9 +46,7 @@ function TooltipProvider({
  * </Tooltip>
  * ```
  */
-function Tooltip({
-  ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Root>) {
+function Tooltip({ ...props }: TooltipProps) {
   return (
     <TooltipProvider>
       <TooltipPrimitive.Root data-slot="tooltip" {...props} />
@@ -84,6 +84,10 @@ const TooltipArrow = ({
   <TooltipPrimitive.Arrow className={cn(className)} {...props} />
 );
 
+type TooltipContentProps = React.ComponentProps<
+  typeof TooltipPrimitive.Content
+>;
+
 /**
  * TooltipContent component that renders the tooltip content.
  *
@@ -98,7 +102,7 @@ const TooltipContent = ({
   className,
   sideOffset = 2,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content>) => (
+}: TooltipContentProps) => (
   <TooltipPrimitive.Content
     sideOffset={sideOffset}
     className={cn(TOOLTIP_CLASSES, className)}
@@ -114,7 +118,8 @@ type ComposedTooltipProps<P extends object> = WithTrigger<P> & {
   content: React.ReactNode;
   /** Whether to show an arrow on the tooltip */
   arrow?: boolean;
-};
+  delayDuration?: TooltipProps['delayDuration'];
+} & Omit<TooltipContentProps, 'content'>;
 
 /**
  * ComposedTooltip component that combines all tooltip parts into a single component.
@@ -134,6 +139,8 @@ const ComposedTooltip = <P extends { disabled?: boolean; className?: string }>({
   content,
   arrow = true,
   TriggerProps,
+  delayDuration = 200,
+  ...props
 }: ComposedTooltipProps<P>) => {
   const className = TriggerProps?.disabled
     ? cn(
@@ -141,13 +148,13 @@ const ComposedTooltip = <P extends { disabled?: boolean; className?: string }>({
         'disabled:pointer-events-auto data-[disabled=true]:pointer-events-auto',
       )
     : TriggerProps.className;
-
+  console.log(className, { arrow });
   return (
-    <Tooltip delayDuration={200}>
+    <Tooltip delayDuration={delayDuration}>
       <TooltipTrigger asChild>
         <Trigger {...TriggerProps} className={className} />
       </TooltipTrigger>
-      <TooltipContent>
+      <TooltipContent {...props}>
         {content}
         {arrow && <TooltipArrow className="fill-current" />}
       </TooltipContent>

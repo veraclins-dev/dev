@@ -1,5 +1,5 @@
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
-import * as React from 'react';
+import { useId } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
@@ -76,7 +76,7 @@ function RadioGroup({
  */
 function RadioGroupItem({
   className,
-  id,
+  id: idProp,
   labelProps,
   label,
   radioSize,
@@ -88,6 +88,8 @@ function RadioGroupItem({
   component?: BoxProps['component'];
 } & RadioGroupItemVariants) {
   const { styleProps, others } = extractStyleProps(props);
+  const fallbackId = useId();
+  const id = idProp ?? fallbackId;
   return (
     <Box
       display="flex"
