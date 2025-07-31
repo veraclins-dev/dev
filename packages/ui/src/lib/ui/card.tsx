@@ -128,9 +128,9 @@ function CardSubtitle({ className, ...props }: TypographyProps) {
 function CardDescription({
   className,
   ...props
-}: React.ComponentProps<typeof Box>) {
+}: React.ComponentProps<typeof Typography>) {
   return (
-    <Box
+    <Typography
       data-slot="card-description"
       className={cn('text-neutral-foreground text-sm', className)}
       {...props}

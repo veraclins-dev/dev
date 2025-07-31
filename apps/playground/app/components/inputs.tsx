@@ -1,6 +1,7 @@
 import { ClientOnly } from 'remix-utils/client-only';
 
 import { EditorField, EditorReadonly } from '@veraclins-dev/editor';
+import { Form, useConform } from '@veraclins-dev/form';
 import {
   Autocomplete,
   Badge,
@@ -27,11 +28,23 @@ import {
   TextField,
   Typography,
 } from '@veraclins-dev/ui';
+import { z } from '@veraclins-dev/utils';
 
 import { exampleContent } from './data';
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
+const ThemeSchema = z.object({
+  accountType: z.enum(['personal', 'business', 'enterprise']),
+});
+
 export function Inputs() {
+  const { form, fields } = useConform({
+    id: 'inputs-form',
+    schema: ThemeSchema,
+    defaultValue: {
+      accountType: 'personal',
+    },
+  });
   return (
     <Box display="flex" flexDirection="column" gap={6}>
       <PlaygroundBreadcrumb currentPage="Inputs" className="mb-4" />
@@ -516,7 +529,11 @@ export function Inputs() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={3}>
                 <RadioGroup defaultValue="option-1">
-                  <RadioGroupItem value="option-1" label="Option 1" />
+                  <RadioGroupItem
+                    value="option-1"
+                    label="Option 1"
+                    className="flex-row-reverse justify-between"
+                  />
                   <RadioGroupItem value="option-2" label="Option 2" />
                   <RadioGroupItem value="option-3" label="Option 3" />
                 </RadioGroup>
@@ -860,7 +877,7 @@ export function Inputs() {
       </Card>
 
       {/* User Registration Form */}
-      <Card>
+      <Form form={form} action="/playground/inputs">
         <CardHeader>
           <CardTitle>User Registration Form</CardTitle>
           <CardDescription>
@@ -939,6 +956,11 @@ export function Inputs() {
                   { value: 'business', label: 'Business Account' },
                   { value: 'enterprise', label: 'Enterprise Account' },
                 ]}
+                field={fields.accountType}
+                itemProps={{
+                  className: 'hover:bg-primary/10',
+                  type: 'submit',
+                }}
                 required
               />
 
@@ -954,7 +976,7 @@ export function Inputs() {
             <Button color="primary">Create Account</Button>
           </Box>
         </CardContent>
-      </Card>
+      </Form>
 
       {/* Product Configuration */}
       <Card>
