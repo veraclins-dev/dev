@@ -16,10 +16,10 @@ const cardVariants = cva({
       false: '',
     },
     cardSize: {
-      sm: 'not-has-[[data-slot^=card-]]:p-2',
-      md: 'not-has-[[data-slot^=card-]]:p-4',
-      lg: 'not-has-[[data-slot^=card-]]:p-6',
-      xl: 'not-has-[[data-slot^=card-]]:p-8',
+      sm: '',
+      md: '',
+      lg: '',
+      xl: '',
     },
   },
   defaultVariants: {
