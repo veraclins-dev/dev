@@ -148,7 +148,6 @@ const ComposedTooltip = <P extends { disabled?: boolean; className?: string }>({
         'disabled:pointer-events-auto data-[disabled=true]:pointer-events-auto',
       )
     : TriggerProps.className;
-  console.log(className, { arrow });
   return (
     <Tooltip delayDuration={delayDuration}>
       <TooltipTrigger asChild>

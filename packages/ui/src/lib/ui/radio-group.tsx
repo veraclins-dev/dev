@@ -117,7 +117,11 @@ function RadioGroupItem({
         </RadioGroupPrimitive.Indicator>
       </RadioGroupPrimitive.Item>
       {label && (
-        <Label {...labelProps} className="whitespace-nowrap" htmlFor={id}>
+        <Label
+          {...labelProps}
+          className={cn('whitespace-nowrap', labelProps?.className)}
+          htmlFor={id}
+        >
           {label}
         </Label>
       )}

@@ -41,6 +41,18 @@ export function Cards() {
         appealing way.
       </Typography>
 
+      {/* Bare Card */}
+      <Card cardSize="lg">
+        <Typography variant="h3">Bare Card</Typography>
+        <Typography variant="body1">
+          A card with no header, content, or footer sections.
+        </Typography>
+
+        <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Basic Card */}
+        </Box>
+      </Card>
+
       {/* Basic Card Variants */}
       <Card>
         <CardHeader>
@@ -52,7 +64,7 @@ export function Cards() {
         <CardContent>
           <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Basic Card */}
-            <Card className="bg-card-inner">
+            <Card cardSize="sm">
               <CardHeader>
                 <CardTitle>Basic Card</CardTitle>
                 <CardDescription>
@@ -72,7 +84,7 @@ export function Cards() {
             </Card>
 
             {/* Card with Subtitle */}
-            <Card className="bg-card-inner">
+            <Card cardSize="xl">
               <CardHeader>
                 <CardTitle>Card with Subtitle</CardTitle>
                 <CardSubtitle>Additional context information</CardSubtitle>
@@ -102,7 +114,7 @@ export function Cards() {
         <CardContent>
           <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* User Profile */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader>
                 <Box display="flex" items="center" gap={4}>
                   <Avatar className="size-16">
@@ -151,7 +163,7 @@ export function Cards() {
             </Card>
 
             {/* Team Member */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader>
                 <Box display="flex" items="center" gap={4}>
                   <Avatar className="size-16">
@@ -270,7 +282,7 @@ export function Cards() {
             </Card>
 
             {/* Service Card */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader>
                 <Box display="flex" items="center" gap={3}>
                   <Box className="p-2 bg-primary/10 rounded-lg">
@@ -337,7 +349,7 @@ export function Cards() {
         <CardContent>
           <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Metric Card */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader className="pb-2">
                 <Box display="flex" justify="between" items="center">
                   <CardTitle className="text-sm">Total Revenue</CardTitle>
@@ -358,7 +370,7 @@ export function Cards() {
             </Card>
 
             {/* Metric Card */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader className="pb-2">
                 <Box display="flex" justify="between" items="center">
                   <CardTitle className="text-sm">Active Users</CardTitle>
@@ -376,7 +388,7 @@ export function Cards() {
             </Card>
 
             {/* Metric Card */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader className="pb-2">
                 <Box display="flex" justify="between" items="center">
                   <CardTitle className="text-sm">Sales</CardTitle>
@@ -394,7 +406,7 @@ export function Cards() {
             </Card>
 
             {/* Metric Card */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader className="pb-2">
                 <Box display="flex" justify="between" items="center">
                   <CardTitle className="text-sm">Pending Orders</CardTitle>
@@ -480,7 +492,7 @@ export function Cards() {
             </Card>
 
             {/* Event Card */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader>
                 <Box display="flex" items="center" gap={3}>
                   <Box className="p-2 bg-primary/10 rounded-lg">
@@ -552,7 +564,7 @@ export function Cards() {
         <CardContent>
           <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Hover Card */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader>
                 <CardTitle>Hover Card Example</CardTitle>
                 <CardDescription>
@@ -601,12 +613,7 @@ export function Cards() {
             </Card>
 
             {/* Form Card */}
-            <Card
-              className="bg-card-inner"
-              component={Form}
-              action="/api/contact"
-              method="post"
-            >
+            <Card component={Form} action="/api/contact" method="post">
               <CardHeader>
                 <CardTitle>Contact Form</CardTitle>
                 <CardDescription>
@@ -654,7 +661,7 @@ export function Cards() {
         <CardContent>
           <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Meeting Notes */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader>
                 <CardTitle>Meeting Notes</CardTitle>
                 <CardDescription>
@@ -730,7 +737,7 @@ export function Cards() {
             </Card>
 
             {/* Project Status */}
-            <Card className="bg-card-inner">
+            <Card>
               <CardHeader>
                 <CardTitle>Project Status</CardTitle>
                 <CardDescription>

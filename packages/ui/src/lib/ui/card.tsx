@@ -4,6 +4,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import { type CustomComponent, type OverrideComponentProps } from '../types';
 
+import { type CardVariants, cardVariants } from './utils/variants/card';
 import { Box, type ContainerElement } from './box';
 import { Typography, type TypographyProps } from './typography';
 
@@ -21,10 +22,7 @@ import { Typography, type TypographyProps } from './typography';
 const CardDepthContext = createContext({ depth: 0 });
 
 type CardProps<P extends ContainerElement | CustomComponent = typeof Box> =
-  OverrideComponentProps<
-    P,
-    React.ComponentProps<typeof Box> & { borderless?: boolean }
-  >;
+  OverrideComponentProps<P, React.ComponentProps<typeof Box> & CardVariants>;
 
 /**
  * Renders a card container with optional borderless style.
@@ -34,8 +32,10 @@ type CardProps<P extends ContainerElement | CustomComponent = typeof Box> =
  */
 function Card<P extends ContainerElement | CustomComponent = typeof Box>({
   className,
-  borderless = true,
+  borderless,
   component,
+  cardSize,
+  elevated,
   ...props
 }: CardProps<P>) {
   // Get the current depth from context
@@ -47,10 +47,9 @@ function Card<P extends ContainerElement | CustomComponent = typeof Box>({
       <Box
         component={component}
         data-slot="card"
+        data-size={cardSize}
         className={cn(
-          'text-card-foreground rounded-xl border shadow-round',
-          borderless && 'border-0',
-          bgClass,
+          cardVariants({ borderless, className: bgClass, cardSize, elevated }),
           className,
         )}
         flexDirection="column"
@@ -60,6 +59,9 @@ function Card<P extends ContainerElement | CustomComponent = typeof Box>({
     </CardDepthContext.Provider>
   );
 }
+
+const sizeClasses =
+  'group-data-[size=sm]:p-2 group-data-[size=md]:p-4 group-data-[size=lg]:p-6 group-data-[size=xl]:p-8';
 /**
  * Renders the header section of the card.
  *
@@ -76,6 +78,8 @@ function CardHeader({ className, ...props }: React.ComponentProps<typeof Box>) {
       items="start"
       className={cn(
         '@container/card-header auto-rows-min grid-rows-[auto_auto] has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-4',
+        sizeClasses,
+        'group-data-[size=sm]:pb-0 group-data-[size=md]:pb-0 group-data-[size=lg]:pb-0 group-data-[size=xl]:pb-0',
         className,
       )}
       {...props}
@@ -170,7 +174,7 @@ function CardContent({
       p={4}
       flex="1"
       data-slot="card-content"
-      className={cn(className)}
+      className={cn(sizeClasses, className)}
       {...props}
     />
   );
@@ -190,7 +194,12 @@ function CardFooter({ className, ...props }: React.ComponentProps<typeof Box>) {
       display="flex"
       items="center"
       w="full"
-      className={cn('[.border-t]:pt-4', className)}
+      className={cn(
+        sizeClasses,
+        '[.border-t]:pt-4',
+        'group-data-[size=sm]:pt-0 group-data-[size=md]:pt-0 group-data-[size=lg]:pt-0 group-data-[size=xl]:pt-0',
+        className,
+      )}
       {...props}
     />
   );
