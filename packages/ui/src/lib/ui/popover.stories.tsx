@@ -23,7 +23,7 @@ type Story = StoryObj<typeof Popover>;
 
 export const Composition: Story = {
   render: () => (
-    <Box display="flex" justify="center" items="center" p={8} pb={32}>
+    <Box display="flex" justify="center" items="center" p={8} pb={24}>
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outline">Open Popover</Button>
@@ -69,7 +69,7 @@ export const Composition: Story = {
 
 export const WithArrow: Story = {
   render: () => (
-    <Box display="flex" justify="center" items="center" p={8} pb={32}>
+    <Box display="flex" justify="center" items="center" p={8} pb={24}>
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outline">Open Popover</Button>
@@ -115,7 +115,7 @@ export const WithArrow: Story = {
 
 export const WithTooltip: Story = {
   render: () => (
-    <Box display="flex" justify="center" items="center" p={8} pb={32}>
+    <Box display="flex" justify="center" items="center" p={8} pb={24}>
       <Popover>
         <PopoverTrigger tooltip="Click to open dimensions">
           <Button variant="outline">
@@ -163,7 +163,7 @@ export const WithTooltip: Story = {
 
 export const Composed: Story = {
   render: () => (
-    <Box display="flex" justify="center" items="center" p={8} pb={32}>
+    <Box display="flex" justify="center" items="center" p={8} pb={24}>
       <ComposedPopover
         Trigger={Button}
         TriggerProps={{

@@ -260,13 +260,7 @@ const TOOLTIP_CLASSES = cn(
   'z-50',
 );
 
-const CARD_DEFAULT_CLASSES = cn(
-  // Base
-  'rounded-md border group',
-  // Text
-  'text-card-foreground',
-  'not-has-[[data-slot^=card-]]:p-4',
-);
+const CARD_DEFAULT_CLASSES = cn('rounded-md border group');
 
 export {
   BADGE_DEFAULT_CLASSES,
