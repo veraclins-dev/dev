@@ -262,7 +262,7 @@ const TOOLTIP_CLASSES = cn(
 
 const CARD_DEFAULT_CLASSES = cn(
   // Base
-  'rounded-md border shadow-round group',
+  'rounded-md border group',
   // Text
   'text-card-foreground',
   'not-has-[[data-slot^=card-]]:p-4',

@@ -104,7 +104,7 @@ export function Cards() {
       </Card>
 
       {/* User Profile Cards */}
-      <Card>
+      <Card elevated={false}>
         <CardHeader>
           <CardTitle>User Profile Cards</CardTitle>
           <CardDescription>
@@ -214,7 +214,7 @@ export function Cards() {
       </Card>
 
       {/* Product Cards */}
-      <Card>
+      <Card borderless={false}>
         <CardHeader>
           <CardTitle>Product Cards</CardTitle>
           <CardDescription>
