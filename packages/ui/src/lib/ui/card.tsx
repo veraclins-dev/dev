@@ -137,7 +137,7 @@ function CardDescription({
   return (
     <Typography
       data-slot="card-description"
-      className={cn('text-neutral-foreground text-sm', className)}
+      className={cn('text-foreground/80 text-sm', className)}
       {...props}
     />
   );
