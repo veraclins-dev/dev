@@ -137,12 +137,16 @@ const DropdownMenuArrow = ({
   className,
   inset,
   children,
+  height = 8,
+  width = 16,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Arrow> & {
   inset?: boolean;
 }) => (
   <DropdownMenuPrimitive.Arrow
     className={cn('fill-border', className)}
+    height={height}
+    width={width}
     {...props}
   />
 );

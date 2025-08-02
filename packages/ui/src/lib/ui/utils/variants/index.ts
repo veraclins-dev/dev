@@ -5,6 +5,7 @@ export * from './base';
 export * from './badge';
 export * from './box';
 export * from './button';
+export * from './card';
 export * from './chip';
 export * from './link';
 export * from './list';

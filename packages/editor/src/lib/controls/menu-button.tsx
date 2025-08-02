@@ -48,8 +48,8 @@ export const Button = ({
       variant="plain"
       // color="secondary"
       className={cn(
-        'size-7 rounded-md p-1 border-0 hover:bg-secondary-hover',
-        isActive ? 'font-bold bg-secondary' : '',
+        'size-7 rounded-md p-1 border-0 hover:bg-neutral-soft-hover',
+        isActive ? 'font-bold bg-neutral-soft' : '',
         className,
       )}
       data-active={isActive}

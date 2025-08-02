@@ -1,6 +1,3 @@
-import { ClientOnly } from 'remix-utils/client-only';
-
-import { EditorField, EditorReadonly } from '@veraclins-dev/editor';
 import { Form, useConform } from '@veraclins-dev/form';
 import {
   Autocomplete,
@@ -30,7 +27,6 @@ import {
 } from '@veraclins-dev/ui';
 import { z } from '@veraclins-dev/utils';
 
-import { exampleContent } from './data';
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
 const ThemeSchema = z.object({
@@ -877,7 +873,7 @@ export function Inputs() {
       </Card>
 
       {/* User Registration Form */}
-      <Form form={form} action="/playground/inputs">
+      <Card component={Form} form={form} action="/playground/inputs">
         <CardHeader>
           <CardTitle>User Registration Form</CardTitle>
           <CardDescription>
@@ -976,7 +972,7 @@ export function Inputs() {
             <Button color="primary">Create Account</Button>
           </Box>
         </CardContent>
-      </Form>
+      </Card>
 
       {/* Product Configuration */}
       <Card>
@@ -1278,42 +1274,6 @@ export function Inputs() {
             <Button variant="outline">Reset to Defaults</Button>
             <Button color="primary">Save Settings</Button>
           </Box>
-        </CardContent>
-      </Card>
-
-      {/* Rich Text Editor */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Rich Text Editor</CardTitle>
-          <CardDescription>
-            Advanced text editor for content creation
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ClientOnly
-            fallback={
-              <Textarea
-                rows={5}
-                placeholder="Loading rich text editor..."
-                className="w-full"
-              />
-            }
-          >
-            {() => <EditorField defaultValue="" name="test-editor" />}
-          </ClientOnly>
-        </CardContent>
-      </Card>
-
-      {/* Rich Text Editor Readonly */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Rich Text Editor Readonly</CardTitle>
-          <CardDescription>
-            Display formatted content in read-only mode
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <EditorReadonly content={exampleContent} />
         </CardContent>
       </Card>
     </Box>

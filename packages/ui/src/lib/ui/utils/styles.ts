@@ -247,7 +247,7 @@ const LINK_DEFAULT_CLASSES = cn(
 
 const TOOLTIP_CLASSES = cn(
   // Appearance
-  'bg-neutral-soft text-neutral-foreground rounded-md border border-neutral-soft shadow-md',
+  'bg-neutral-soft text-neutral-foreground rounded-md border border-neutral-soft',
   // Layout and Base
   'px-2 py-1 text-center text-sm max-w-60',
   // Overflow

@@ -27,7 +27,7 @@ type CardProps<P extends ContainerElement | CustomComponent = typeof Box> =
 /**
  * Renders a card container with optional borderless style.
  *
- * @param props - Standard div props and an optional `borderless` boolean to remove the border.
+ * @param props - Standard Box props and an optional `borderless` boolean to remove the border.
  * @returns The card container element.
  */
 function Card<P extends ContainerElement | CustomComponent = typeof Box>({
@@ -65,7 +65,7 @@ const sizeClasses =
 /**
  * Renders the header section of the card.
  *
- * @param props - Standard div props.
+ * @param props - Standard Box props.
  * @returns The card header element.
  */
 function CardHeader({ className, ...props }: React.ComponentProps<typeof Box>) {
@@ -76,6 +76,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<typeof Box>) {
       p={4}
       pb={0}
       items="start"
+      minW="fit"
       className={cn(
         '@container/card-header auto-rows-min grid-rows-[auto_auto] has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-4',
         sizeClasses,
@@ -118,7 +119,7 @@ function CardSubtitle({ className, ...props }: TypographyProps) {
     <Typography
       data-slot="card-subtitle"
       variant="subtitle1"
-      className={cn('text-sm text-neutral-foreground', className)}
+      className="className"
       {...props}
     />
   );
@@ -126,7 +127,7 @@ function CardSubtitle({ className, ...props }: TypographyProps) {
 /**
  * Renders a description section within the card.
  *
- * @param props - Standard div props.
+ * @param props - Standard Box props.
  * @returns The card description element.
  */
 function CardDescription({
@@ -144,7 +145,7 @@ function CardDescription({
 /**
  * Renders an action area in the card header, typically for buttons or menus.
  *
- * @param props - Standard div props.
+ * @param props - Standard Box props.
  * @returns The card action element.
  */
 function CardAction({ className, ...props }: React.ComponentProps<typeof Box>) {
@@ -161,7 +162,7 @@ function CardAction({ className, ...props }: React.ComponentProps<typeof Box>) {
 /**
  * Renders the main content area of the card.
  * This is where the primary information or media of the card is displayed.
- * @param props - Standard div props.
+ * @param props - Standard Box props.
  * @returns The card content element.
  */
 
@@ -182,7 +183,7 @@ function CardContent({
 /**
  * Renders the footer section of the card, typically for actions or summary.
  * the action is usually placed inside the footer.
- * @param props - Standard div props.
+ * @param props - Standard Box props.
  * @returns The card footer element.
  */
 function CardFooter({ className, ...props }: React.ComponentProps<typeof Box>) {
@@ -194,6 +195,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<typeof Box>) {
       display="flex"
       items="center"
       w="full"
+      justify="between"
       className={cn(
         sizeClasses,
         '[.border-t]:pt-4',
@@ -213,6 +215,7 @@ export {
   CardFooter,
   CardHeader,
   CardImage,
+  CardProps,
   CardSubtitle,
   CardTitle,
 };

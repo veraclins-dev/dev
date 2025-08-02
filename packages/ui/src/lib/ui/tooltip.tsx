@@ -155,7 +155,9 @@ const ComposedTooltip = <P extends { disabled?: boolean; className?: string }>({
       </TooltipTrigger>
       <TooltipContent {...props}>
         {content}
-        {arrow && <TooltipArrow className="fill-current" />}
+        {arrow && (
+          <TooltipArrow height={8} width={16} className="fill-neutral-soft" />
+        )}
       </TooltipContent>
     </Tooltip>
   );

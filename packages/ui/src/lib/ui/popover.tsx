@@ -77,11 +77,15 @@ function PopoverTrigger({
 const PopoverArrow = ({
   className,
   children,
+  height = 8,
+  width = 16,
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Arrow>) => (
   <PopoverPrimitive.Arrow
     data-slot="popover-arrow"
-    className={cn('fill-current', className)}
+    height={height}
+    width={width}
+    className={cn('fill-border', className)}
     {...props}
   />
 );
@@ -106,7 +110,7 @@ const PopoverContent = ({
   className,
   align = 'center',
   sideOffset = 4,
-  arrow,
+  arrow = true,
   children,
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Content> & {

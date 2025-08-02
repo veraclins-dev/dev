@@ -84,6 +84,12 @@ export function NxWelcome({ title }: { title: string }) {
             'Form components for managing user input, validation, and submission.',
         },
         {
+          path: '/editor',
+          label: 'Editor',
+          description:
+            'Rich text editor components for content creation and display with comprehensive formatting capabilities.',
+        },
+        {
           path: '/feedback',
           label: 'Feedback',
           description:
