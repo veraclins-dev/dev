@@ -2,7 +2,7 @@ import React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { CustomComponent, type OverrideComponentProps } from '../types';
+import { type CustomComponent, type OverrideComponentProps } from '../types';
 
 import {
   extractStyleProps,
