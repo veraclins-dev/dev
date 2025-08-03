@@ -109,22 +109,234 @@ describe('utils.downloadFile', () => {
 });
 
 describe('utils.humanize', () => {
-  it('should humanize a string', () => {
-    expect(utils.humanize('hello_world')).toBe('Hello world');
+  describe('basic functionality', () => {
+    it('should return empty string for empty input', () => {
+      expect(utils.humanize('')).toBe('');
+    });
+
+    it('should return empty string for null/undefined input', () => {
+      expect(utils.humanize(null as any)).toBe('');
+      expect(utils.humanize(undefined as any)).toBe('');
+    });
+
+    it('should capitalize first letter', () => {
+      expect(utils.humanize('hello')).toBe('Hello');
+    });
+
+    it('should handle single word', () => {
+      expect(utils.humanize('world')).toBe('World');
+    });
   });
 
-  it('should humanize a string with multiple underscores', () => {
-    expect(utils.humanize('hello_world_and_universe')).toBe(
-      'Hello world and universe',
-    );
+  describe('underscore handling', () => {
+    it('should replace single underscore with space', () => {
+      expect(utils.humanize('hello_world')).toBe('Hello world');
+    });
+
+    it('should replace multiple underscores with spaces', () => {
+      expect(utils.humanize('hello_world_and_universe')).toBe(
+        'Hello world and universe',
+      );
+    });
+
+    it('should handle consecutive underscores', () => {
+      expect(utils.humanize('hello__world')).toBe('Hello  world');
+    });
+
+    it('should handle leading underscore', () => {
+      expect(utils.humanize('_hello_world')).toBe('Hello world');
+    });
+
+    it('should handle trailing underscore', () => {
+      expect(utils.humanize('hello_world_')).toBe('Hello world');
+    });
   });
 
-  it('should humanize a string with mixed case', () => {
-    expect(utils.humanize('The helloWorld')).toBe('The hello world');
+  describe('camelCase handling', () => {
+    it('should break camelCase words', () => {
+      expect(utils.humanize('firstName')).toBe('First name');
+    });
+
+    it('should break PascalCase words', () => {
+      expect(utils.humanize('FirstName')).toBe('First name');
+    });
+
+    it('should handle multiple camelCase words', () => {
+      expect(utils.humanize('userProfileData')).toBe('User profile data');
+    });
+
+    it('should handle mixed camelCase and underscores', () => {
+      expect(utils.humanize('user_profileData')).toBe('User profile data');
+    });
+
+    it('should handle camelCase with numbers', () => {
+      expect(utils.humanize('user2Profile')).toBe('User2 profile');
+    });
   });
 
-  it('should humanize a string with punctuation', () => {
-    expect(utils.humanize('hello_world!')).toBe('Hello world!');
+  describe('acronym handling', () => {
+    it('should handle JSONData pattern', () => {
+      expect(utils.humanize('JSONData')).toBe('JSON data');
+    });
+  });
+
+  describe('punctuation and sentence capitalization', () => {
+    it('should capitalize after exclamation mark', () => {
+      expect(utils.humanize('hello! world')).toBe('Hello! World');
+    });
+
+    it('should capitalize after question mark', () => {
+      expect(utils.humanize('hello? world')).toBe('Hello? World');
+    });
+
+    it('should capitalize after period', () => {
+      expect(utils.humanize('hello. world')).toBe('Hello. World');
+    });
+
+    it('should handle multiple punctuation marks', () => {
+      expect(utils.humanize('hello! how? are. you')).toBe(
+        'Hello! How? Are. You',
+      );
+    });
+
+    it('should not capitalize after comma', () => {
+      expect(utils.humanize('hello, world')).toBe('Hello, world');
+    });
+  });
+
+  describe('escape syntax with square brackets', () => {
+    it('should preserve escaped content', () => {
+      expect(utils.humanize('user[McLaren]Profile')).toBe(
+        'User McLaren profile',
+      );
+    });
+
+    it('should handle multiple escaped segments', () => {
+      expect(utils.humanize('firstName[Clinton-Agada]Data')).toBe(
+        'First name Clinton-Agada data',
+      );
+    });
+
+    it('should handle escaped content with spaces', () => {
+      expect(utils.humanize('user[John Smith]Profile')).toBe(
+        'User John Smith profile',
+      );
+    });
+
+    it('should handle escaped content with special characters', () => {
+      expect(utils.humanize("user[O'Connor]Data")).toBe("User O'Connor data");
+    });
+
+    it('should handle empty escaped content', () => {
+      expect(utils.humanize('user[]Profile')).toBe('User profile');
+    });
+
+    it('should handle escaped content with underscores', () => {
+      expect(utils.humanize('user[Mc_Laren]Profile')).toBe(
+        'User Mc_Laren profile',
+      );
+    });
+
+    it('should handle escaped content with camelCase', () => {
+      expect(utils.humanize('user[McLaren]ProfileData')).toBe(
+        'User McLaren profile data',
+      );
+    });
+  });
+
+  describe('complex combinations', () => {
+    it('should handle mixed underscore, camelCase, and escaped content', () => {
+      expect(utils.humanize('user_profile[McLaren]Data')).toBe(
+        'User profile McLaren data',
+      );
+    });
+
+    it('should handle acronyms with escaped content', () => {
+      expect(utils.humanize('JSON[McLaren]Data')).toBe('JSON McLaren data');
+    });
+
+    it('should handle punctuation with escaped content', () => {
+      expect(utils.humanize('hello[McLaren]! world')).toBe(
+        'Hello McLaren! World',
+      );
+    });
+
+    it('should handle multiple escaped segments with mixed content', () => {
+      expect(utils.humanize('user[McLaren]Profile[Clinton-Agada]Data')).toBe(
+        'User McLaren profile Clinton-Agada data',
+      );
+    });
+  });
+
+  describe('edge cases', () => {
+    it('should handle single character', () => {
+      expect(utils.humanize('a')).toBe('A');
+    });
+
+    it('should handle all uppercase', () => {
+      expect(utils.humanize('HELLO')).toBe('HELLO');
+    });
+
+    it('should handle all lowercase', () => {
+      expect(utils.humanize('hello')).toBe('Hello');
+    });
+
+    it('should handle numbers', () => {
+      expect(utils.humanize('user123')).toBe('User123');
+    });
+
+    it('should handle numbers with underscores', () => {
+      expect(utils.humanize('user_123')).toBe('User 123');
+    });
+
+    it('should handle special characters', () => {
+      expect(utils.humanize('user@domain')).toBe('User@domain');
+    });
+
+    it('should handle bracket without content', () => {
+      expect(utils.humanize('user[Profile')).toBe('User[Profile');
+    });
+
+    it('should handle whitespace around input', () => {
+      expect(utils.humanize('  hello_world  ')).toBe('Hello world');
+    });
+
+    it('should handle multiple spaces', () => {
+      expect(utils.humanize('hello   world')).toBe('Hello   world');
+    });
+  });
+
+  describe('real-world examples', () => {
+    it('should handle common variable names', () => {
+      expect(utils.humanize('firstName')).toBe('First name');
+      expect(utils.humanize('lastName')).toBe('Last name');
+      expect(utils.humanize('emailAddress')).toBe('Email address');
+      expect(utils.humanize('phoneNumber')).toBe('Phone number');
+    });
+
+    it('should handle API response fields', () => {
+      expect(utils.humanize('userProfileData')).toBe('User profile data');
+      expect(utils.humanize('JSONResponseData')).toBe('JSON response data');
+      expect(utils.humanize('apiEndpointUrl')).toBe('Api endpoint url');
+    });
+
+    it('should handle database column names', () => {
+      expect(utils.humanize('created_at')).toBe('Created at');
+      expect(utils.humanize('updatedAt')).toBe('Updated at');
+      expect(utils.humanize('is_active')).toBe('Is active');
+    });
+
+    it('should handle compound names with escape syntax', () => {
+      expect(utils.humanize('user[McLaren]Profile')).toBe(
+        'User McLaren profile',
+      );
+      expect(utils.humanize('customer[Clinton-Agada]Data')).toBe(
+        'Customer Clinton-Agada data',
+      );
+      expect(utils.humanize("employee[O'Connor]Info")).toBe(
+        "Employee O'Connor info",
+      );
+    });
   });
 });
 

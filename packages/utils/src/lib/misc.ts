@@ -104,22 +104,54 @@ async function downloadFile(url: string, retries = 0) {
 
 function humanize(message: string) {
   if (!message) return '';
+
+  // Trim whitespace at the beginning
+  message = message.trim();
+
+  // Store escaped substrings and replace them with safe placeholders
+  const escaped: string[] = [];
+  let placeholderIndex = 0;
+  message = message.replace(/\[([^\]]*)\]/g, (_, content) => {
+    escaped.push(content);
+    return `~~ESC${placeholderIndex++}~~`;
+  });
+
   message = message.replace(/_/g, ' '); // replaces underscore with space
   message = message.replace(/([A-Z]+)([A-Z][a-z]+)/g, function (_, $1, $2) {
     return `${$1} ${$2.toLowerCase()}`;
   }); // breaks patterns like JSONData to JSON data
   message = message.replace(
-    /([A-Z]?[a-z]+)([A-Z][a-z]+)?([A-Z][a-z]+)?([A-Z]+[a-z]+)?([A-Z]+[a-z]+)|([A-Z]?[a-z]+)([A-Z][a-z]*)/g,
+    /([A-Z]?[a-z0-9]+)([A-Z][a-z0-9]+)?([A-Z][a-z0-9]+)?([A-Z]+[a-z0-9]+)?([A-Z]+[a-z0-9]+)|([A-Z]?[a-z0-9]+)([A-Z][a-z0-9]*)/g,
     (_, ...s) => {
-      const matches = s.filter(Boolean).filter(isNaN).slice(0, -1);
+      const matches = s
+        .filter(Boolean)
+        .filter((v) => typeof v === 'string')
+        .slice(0, -1);
       return matches.map((v) => v.toLowerCase()).join(' ');
     },
   ); // breaks camelCase and PascalCase to words
+  message = message.trim();
   message = `${message.charAt(0).toUpperCase()}${message.slice(1)}`;
-  return message.replace(
+  message = message.replace(
     /([!?.]\s+)([a-z])/g,
     (_, $1, $2: string) => $1 + $2.toUpperCase(),
   ); // capitalizes the first letter of inner sentences
+
+  // Restore escaped substrings and add spaces around them when needed
+  message = message.replace(/~~ESC(\d+)~~([a-zA-Z])/g, (_, index, nextChar) => {
+    const escapedContent = escaped[parseInt(index)];
+    // Add space before escaped content and between escaped content and next character
+    return `${escapedContent ? ` ${escapedContent}` : ''} ${nextChar.toLowerCase()}`;
+  });
+
+  // Handle escaped content that's not followed by an alphabet character
+  message = message.replace(/~~ESC(\d+)~~/g, (_, index) => {
+    const escapedContent = escaped[parseInt(index)];
+    // Just add space before escaped content
+    return ` ${escapedContent}`;
+  });
+
+  return message.trim();
 }
 
 const truncate = (string: string, length: number) => {
