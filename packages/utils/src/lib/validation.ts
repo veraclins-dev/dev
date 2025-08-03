@@ -137,6 +137,6 @@ export {
   type ValidateReturnType,
   validateZodSchema,
   type Values,
+  z,
   type ZodError,
 };
-export * from 'zod';
