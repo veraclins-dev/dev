@@ -23,7 +23,7 @@ type CheckedValue = 'on' | 'off' | 'indeterminate';
  */
 type CheckboxProps = Omit<
   React.ComponentProps<typeof CheckboxPrimitive.Root>,
-  'type' | 'value'
+  'value'
 > & {
   /** The checked state of the checkbox */
   value?: CheckedValue;
@@ -69,6 +69,7 @@ function Checkbox({
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
+        'cursor-pointer',
         checkboxVariants({
           ...styleProps,
           className,
@@ -77,6 +78,7 @@ function Checkbox({
       )}
       {...others}
       checked={checked}
+      type="button"
     >
       <CheckboxPrimitive.Indicator
         data-slot="checkbox-indicator"

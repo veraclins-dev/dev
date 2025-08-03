@@ -1,5 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Area,
   AreaChart,
@@ -10,6 +9,7 @@ import {
   XAxis,
 } from 'recharts';
 import { type PieSectorDataItem } from 'recharts/types/polar/Pie';
+import { expect, within } from 'storybook/test';
 
 import {
   type ChartConfig,

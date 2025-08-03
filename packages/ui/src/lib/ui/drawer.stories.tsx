@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
+import { expect, within } from 'storybook/test';
 
 import { Box } from './box';
 import { Button } from './button';

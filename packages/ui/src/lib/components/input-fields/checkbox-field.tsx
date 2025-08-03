@@ -95,6 +95,7 @@ export function CheckboxField({
           }}
           defaultValue={defaultValue}
           value={(controlProps.value as CheckedValue) ?? value}
+          type="button"
         />
         <Label htmlFor={id} {...labelProps} className="self-center text-sm">
           {label}
