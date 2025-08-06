@@ -91,7 +91,7 @@ export const Interactive: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center gap-x-2">
       <Switch id="airplane-mode" />
       <label
         htmlFor="airplane-mode"
@@ -114,7 +114,7 @@ export const WithLabel: Story = {
 
 export const WithDescription: Story = {
   render: () => (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center gap-x-2">
       <Switch id="notifications" />
       <div className="grid gap-1.5 leading-none">
         <label
@@ -146,28 +146,28 @@ export const WithDescription: Story = {
 export const MultipleSwitches: Story = {
   render: () => (
     <div className="space-y-4">
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-x-2">
         <Switch id="wifi" defaultChecked />
         <label htmlFor="wifi" className="text-sm font-medium leading-none">
           Wi-Fi
         </label>
       </div>
 
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-x-2">
         <Switch id="bluetooth" />
         <label htmlFor="bluetooth" className="text-sm font-medium leading-none">
           Bluetooth
         </label>
       </div>
 
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-x-2">
         <Switch id="location" defaultChecked />
         <label htmlFor="location" className="text-sm font-medium leading-none">
           Location Services
         </label>
       </div>
 
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-x-2">
         <Switch id="notifications" disabled />
         <label
           htmlFor="notifications"
@@ -274,14 +274,14 @@ export const SettingsPanel: Story = {
 export const FormIntegration: Story = {
   render: () => (
     <form className="space-y-4">
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-x-2">
         <Switch id="terms" required />
         <label htmlFor="terms" className="text-sm font-medium leading-none">
           I agree to the terms and conditions
         </label>
       </div>
 
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-x-2">
         <Switch id="newsletter" />
         <label
           htmlFor="newsletter"

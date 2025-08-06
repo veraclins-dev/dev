@@ -2,8 +2,11 @@ import { Slot } from '@radix-ui/react-slot';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { Box, type BoxProps } from './box';
 import { Icon } from './icon';
 import { Link, type LinkProps } from './link';
+import { List, type ListProps } from './list';
+import { ListItem, type ListItemProps } from './list-item';
 
 /**
  * Breadcrumb navigation component that provides hierarchical navigation context.
@@ -27,8 +30,15 @@ import { Link, type LinkProps } from './link';
  * </Breadcrumb>
  * ```
  */
-function Breadcrumb({ ...props }: React.ComponentProps<'nav'>) {
-  return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
+function Breadcrumb({ ...props }: BoxProps) {
+  return (
+    <Box
+      component="nav"
+      aria-label="breadcrumb"
+      data-slot="breadcrumb"
+      {...props}
+    />
+  );
 }
 
 /**
@@ -43,9 +53,10 @@ function Breadcrumb({ ...props }: React.ComponentProps<'nav'>) {
  * </BreadcrumbList>
  * ```
  */
-function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
+function BreadcrumbList({ className, ...props }: ListProps) {
   return (
-    <ol
+    <List
+      component="ol"
       data-slot="breadcrumb-list"
       className={cn(
         'text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5',
@@ -66,9 +77,9 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<'ol'>) {
  * </BreadcrumbItem>
  * ```
  */
-function BreadcrumbItem({ className, ...props }: React.ComponentProps<'li'>) {
+function BreadcrumbItem({ className, ...props }: ListItemProps) {
   return (
-    <li
+    <ListItem
       data-slot="breadcrumb-item"
       className={cn('inline-flex items-center gap-1.5', className)}
       {...props}
@@ -106,7 +117,7 @@ function BreadcrumbLink<C extends 'a' | CustomComponent = 'a'>({
     <Comp
       color={color as NonNullable<LinkProps['color']>}
       data-slot="breadcrumb-link"
-      className={cn('transition-colors', className)}
+      className={cn('transition-colors opacity-80', className)}
       {...props}
     />
   );
@@ -122,12 +133,13 @@ function BreadcrumbLink<C extends 'a' | CustomComponent = 'a'>({
  */
 function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
   return (
-    <span
+    <Box
+      component="span"
       data-slot="breadcrumb-page"
       role="link"
       aria-disabled="true"
       aria-current="page"
-      className={cn('text-foreground font-normal', className)}
+      className={cn('text-foreground font-semibold', className)}
       {...props}
     />
   );
@@ -146,13 +158,9 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<'span'>) {
  * <BreadcrumbSeparator>/</BreadcrumbSeparator>
  * ```
  */
-function BreadcrumbSeparator({
-  children,
-  className,
-  ...props
-}: React.ComponentProps<'li'>) {
+function BreadcrumbSeparator({ children, className, ...props }: ListItemProps) {
   return (
-    <li
+    <ListItem
       data-slot="breadcrumb-separator"
       role="presentation"
       aria-hidden="true"
@@ -160,7 +168,7 @@ function BreadcrumbSeparator({
       {...props}
     >
       {children ?? <Icon name="chevron-right" />}
-    </li>
+    </ListItem>
   );
 }
 
@@ -177,16 +185,20 @@ function BreadcrumbEllipsis({
   ...props
 }: React.ComponentProps<'span'>) {
   return (
-    <span
+    <Box
+      component="span"
       data-slot="breadcrumb-ellipsis"
       role="presentation"
       aria-hidden="true"
-      className={cn('flex size-9 items-center justify-center', className)}
+      className={cn(
+        'flex size-9 items-center justify-center cursor-pointer',
+        className,
+      )}
       {...props}
     >
       <Icon name="ellipsis-horizontal" className="size-4" />
       <span className="sr-only">More</span>
-    </span>
+    </Box>
   );
 }
 

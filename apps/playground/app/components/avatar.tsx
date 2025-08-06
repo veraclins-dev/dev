@@ -276,7 +276,7 @@ export function Avatars() {
             {/* Overlapping Avatars */}
             <Box className="space-y-4">
               <Typography variant="h4">Overlapping Avatars</Typography>
-              <Box className="flex -space-x-2">
+              <Box className="flex -gap-x-2">
                 <Avatar className="ring-2 ring-white">
                   <AvatarImage
                     src="https://github.com/shadcn.png"

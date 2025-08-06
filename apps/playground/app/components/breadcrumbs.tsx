@@ -130,7 +130,9 @@ export function Breadcrumbs() {
               <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem>
-                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                    <BreadcrumbLink color="primary" href="/">
+                      Home
+                    </BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>

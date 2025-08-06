@@ -701,7 +701,7 @@ export function Cards() {
                 >
                   <Box
                     display="flex"
-                    className="*:data-[slot=avatar]:ring-background -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale"
+                    className="*:data-[slot=avatar]:ring-background -gap-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale"
                   >
                     <Avatar>
                       <AvatarImage

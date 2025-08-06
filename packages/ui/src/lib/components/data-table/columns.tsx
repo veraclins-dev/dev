@@ -24,7 +24,7 @@ export const columns: DataTableProps<Task>['columnsConfig'] = [
       const label = labels.find((label) => label.value === row.original.label);
 
       return (
-        <Box className="flex space-x-2">
+        <Box className="flex gap-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
           <Typography
             variant="body2"
