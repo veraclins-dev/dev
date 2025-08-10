@@ -1,5 +1,12 @@
 import { createContext, useContext, useId, useMemo } from 'react';
-import * as RechartsPrimitive from 'recharts';
+import {
+  Legend,
+  type LegendPayload,
+  type LegendProps,
+  ResponsiveContainer,
+  Tooltip,
+  type TooltipContentProps,
+} from 'recharts';
 import {
   type NameType,
   type ValueType,
@@ -117,9 +124,7 @@ function ChartContainer({
   ...props
 }: React.ComponentProps<typeof Box> & {
   config: ChartConfig;
-  children: React.ComponentProps<
-    typeof RechartsPrimitive.ResponsiveContainer
-  >['children'];
+  children: React.ComponentProps<typeof ResponsiveContainer>['children'];
 }) {
   const uniqueId = useId();
   const chartId = `chart-${id || uniqueId.replace(/:/g, '')}`;
@@ -136,9 +141,7 @@ function ChartContainer({
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer>
-          {children}
-        </RechartsPrimitive.ResponsiveContainer>
+        <ResponsiveContainer>{children}</ResponsiveContainer>
       </Box>
     </ChartContext.Provider>
   );
@@ -146,9 +149,9 @@ function ChartContainer({
 
 /**
  * A wrapper for the Recharts Tooltip component.
- * @type {typeof RechartsPrimitive.Tooltip}
+ * @type {typeof Tooltip}
  */
-const ChartTooltip = RechartsPrimitive.Tooltip;
+const ChartTooltip = Tooltip;
 
 /**
  * A component for rendering custom tooltip content for charts.
@@ -183,7 +186,7 @@ function ChartTooltipContent<TValue extends ValueType, TName extends NameType>({
   color,
   nameKey,
   labelKey,
-}: RechartsPrimitive.TooltipContentProps<TValue, TName> &
+}: TooltipContentProps<TValue, TName> &
   Omit<React.ComponentProps<typeof Box>, 'content' | 'position'> & {
     hideLabel?: boolean;
     hideIndicator?: boolean;
@@ -317,9 +320,9 @@ function ChartTooltipContent<TValue extends ValueType, TName extends NameType>({
 
 /**
  * A wrapper for the Recharts Legend component.
- * @type {typeof RechartsPrimitive.Legend}
+ * @type {typeof Legend}
  */
-const ChartLegend = RechartsPrimitive.Legend;
+const ChartLegend = Legend;
 
 /**
  * A component for rendering custom legend content for charts.
@@ -340,10 +343,10 @@ function ChartLegendContent({
   nameKey,
   ...props
 }: BoxVariants &
-  Pick<RechartsPrimitive.LegendProps, 'verticalAlign'> & {
+  Pick<LegendProps, 'verticalAlign'> & {
     hideIcon?: boolean;
     nameKey?: string;
-    payload?: Readonly<RechartsPrimitive.LegendPayload[]>;
+    payload?: Readonly<LegendPayload[]>;
     className?: string;
   }) {
   const { config } = useChart();

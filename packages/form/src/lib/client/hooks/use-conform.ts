@@ -42,7 +42,7 @@ export const useConform = <
   const actionData = useActionData<L>();
   const schema = (sch ?? Empty) as S;
 
-  const submission = actionData?.submission ?? fetcher?.data?.submission;
+  const submission = actionData?.submission ?? fetcher?.data?.['submission'];
   const [form, fields] = useForm<z.infer<S>>({
     id,
     constraint: getZodConstraint(schema),
