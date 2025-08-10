@@ -4,8 +4,9 @@ import { parseWithZod } from '@conform-to/zod/v4';
 
 import { Empty, type SchemaType } from '@veraclins-dev/utils';
 
+import { type Options, type ValidatedFormData } from '../../types';
+
 import { checkHoneypot } from './honeypot';
-import { type Options, type ValidatedFormData } from './types';
 
 const processForm = async <S extends SchemaType>({
   request,

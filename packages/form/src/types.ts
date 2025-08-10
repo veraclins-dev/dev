@@ -16,9 +16,13 @@ type ValidatedFormData<
   [K in RedirectField]?: string;
 } & Submission<z.output<S>>;
 
-type SuccessfulValidatedFormData<S extends SchemaType> = Extract<
-  ValidatedFormData<S>,
-  { status: 'success' }
->;
+// type SuccessfulValidatedFormData<S extends SchemaType> = Extract<
+//   ValidatedFormData<S>,
+//   { status: 'success' }
+// >;
 
-export type { Options, SuccessfulValidatedFormData, ValidatedFormData };
+export type {
+  Options,
+  //  SuccessfulValidatedFormData,
+  ValidatedFormData,
+};

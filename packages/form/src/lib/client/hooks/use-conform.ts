@@ -13,21 +13,26 @@ import {
   type z,
 } from '@veraclins-dev/utils';
 
-import { type useCustomFetcher } from './use-custom-fetcher';
+import { type UseCustomFetcherReturn } from './use-custom-fetcher';
 
 type Options = Parameters<typeof useForm>[0];
 
-export interface ConformOptions<S extends SchemaType> extends Options {
+export interface ConformOptions<
+  S extends SchemaType,
+  L extends { submission?: SubmissionResult } = {
+    submission?: SubmissionResult;
+  },
+> extends Options {
   schema?: S;
   id: string;
   defaultValue?: DefaultValue<Values<S>>;
-  fetcher?: ReturnType<typeof useCustomFetcher>;
+  fetcher?: UseCustomFetcherReturn<L>;
 }
 
 export const useConform = <
   S extends SchemaType,
-  L extends { submission: SubmissionResult<S> } = {
-    submission: SubmissionResult<S>;
+  L extends { submission?: SubmissionResult } = {
+    submission: SubmissionResult;
   },
 >({
   schema: sch,

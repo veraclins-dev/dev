@@ -1,7 +1,7 @@
 import { badRequest } from '@veraclins-dev/react-utils/server';
 import { type SchemaType } from '@veraclins-dev/utils';
 
-import { type ValidatedFormData } from './types';
+import { type ValidatedFormData } from '../../types';
 
 const formSubmissionErrors = <S extends SchemaType>(
   submission: ValidatedFormData<S>,

@@ -1,13 +1,24 @@
 import { useEffect, useState } from 'react';
-import { useFetcher } from 'react-router';
+import { type FetcherWithComponents, useFetcher } from 'react-router';
 
-type UseRemixSubmitStatus = ReturnType<typeof useFetcher>['state'];
+type Fetcher<T extends Record<string, any>> = FetcherWithComponents<T>;
 
-export const useCustomFetcher = <T extends Record<string, any>>() => {
+type UseRemixSubmitStatus<T extends Record<string, any>> = Fetcher<T>['state'];
+
+export type UseCustomFetcherReturn<T extends Record<string, any>> =
+  Fetcher<T> & {
+    loading: boolean;
+    submitted: boolean;
+    loaded: boolean;
+  };
+
+export const useCustomFetcher = <
+  T extends Record<string, any>,
+>(): UseCustomFetcherReturn<T> => {
   const fetcher = useFetcher<T>();
-  const [transitionLog, setTransitionLog] = useState<UseRemixSubmitStatus[]>([
-    'idle',
-  ]);
+  const [transitionLog, setTransitionLog] = useState<UseRemixSubmitStatus<T>[]>(
+    ['idle'],
+  );
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -30,5 +41,5 @@ export const useCustomFetcher = <T extends Record<string, any>>() => {
     ...fetcher,
     loading: fetcher.state !== 'idle',
     loaded,
-  };
+  } as UseCustomFetcherReturn<T>;
 };

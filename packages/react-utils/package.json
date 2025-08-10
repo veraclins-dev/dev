@@ -18,8 +18,6 @@
     }
   },
   "peerDependencies": {
-    "@conform-to/react": "^1",
-    "@conform-to/zod": "^1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "intl-parse-accept-language": "^1",

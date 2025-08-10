@@ -31,14 +31,5 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx"
   ],
-  "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/lib/client/components/form.tsx",
-    "src/lib/client/components/submit-button.tsx",
-    "src/lib/client/hooks/use-conform.ts",
-    "src/lib/client/hooks/use-custom-fetcher.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
