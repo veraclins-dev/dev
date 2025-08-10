@@ -202,7 +202,9 @@ export function ChartShowcase() {
                   <XAxis dataKey="month" />
                   <YAxis />
                   <ChartTooltip
-                    content={<ChartTooltipContent indicator="dot" />}
+                    content={(props) => (
+                      <ChartTooltipContent indicator="dot" {...props} />
+                    )}
                   />
                   <Area
                     type="monotone"
@@ -243,7 +245,9 @@ export function ChartShowcase() {
                   />
                   <YAxis tickLine={false} axisLine={false} tickMargin={8} />
                   <ChartTooltip
-                    content={<ChartTooltipContent indicator="line" />}
+                    content={(props) => (
+                      <ChartTooltipContent indicator="dot" {...props} />
+                    )}
                   />
                   <Area
                     type="natural"
@@ -298,7 +302,18 @@ export function ChartShowcase() {
                   />
                   <YAxis tickLine={false} axisLine={false} tickMargin={8} />
                   <ChartTooltip
-                    content={<ChartTooltipContent indicator="dot" />}
+                    content={(props) => (
+                      <ChartTooltipContent indicator="dot" {...props} />
+                    )}
+                  />
+                  <ChartLegend
+                    content={({ payload, verticalAlign }) => (
+                      <ChartLegendContent
+                        payload={payload}
+                        verticalAlign={verticalAlign}
+                      />
+                    )}
+                    verticalAlign="bottom"
                   />
                   <Line
                     type="monotone"
@@ -337,7 +352,9 @@ export function ChartShowcase() {
                   />
                   <YAxis tickLine={false} axisLine={false} tickMargin={8} />
                   <ChartTooltip
-                    content={<ChartTooltipContent indicator="line" />}
+                    content={(props) => (
+                      <ChartTooltipContent indicator="line" {...props} />
+                    )}
                   />
                   <Line
                     type="natural"
@@ -388,7 +405,9 @@ export function ChartShowcase() {
                   <XAxis dataKey="category" />
                   <YAxis />
                   <ChartTooltip
-                    content={<ChartTooltipContent indicator="dot" />}
+                    content={(props) => (
+                      <ChartTooltipContent indicator="dot" {...props} />
+                    )}
                   />
                   <Bar dataKey="sales" fill="var(--color-primary)" />
                 </BarChart>
@@ -414,7 +433,9 @@ export function ChartShowcase() {
                   />
                   <YAxis tickLine={false} axisLine={false} tickMargin={8} />
                   <ChartTooltip
-                    content={<ChartTooltipContent indicator="dot" />}
+                    content={(props) => (
+                      <ChartTooltipContent indicator="dot" {...props} />
+                    )}
                   />
                   <Bar dataKey="sales" fill="var(--color-primary)" />
                   <Bar dataKey="target" fill="var(--color-warning)" />
@@ -445,7 +466,12 @@ export function ChartShowcase() {
                 className="mx-auto aspect-square max-h-[350px] min-h-80"
               >
                 <RechartsPieChart>
-                  <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+                  <ChartTooltip
+                    defaultIndex={activeIndex}
+                    content={(props) => (
+                      <ChartTooltipContent hideLabel {...props} />
+                    )}
+                  />
                   <Pie
                     data={pieChartData}
                     dataKey="visitors"
@@ -455,7 +481,6 @@ export function ChartShowcase() {
                     outerRadius={120}
                     fill="#8884d8"
                     labelLine={false}
-                    activeIndex={activeIndex}
                     activeShape={({ outerRadius = 0, ...props }) => (
                       <Sector {...props} outerRadius={outerRadius + 10} />
                     )}
@@ -483,7 +508,12 @@ export function ChartShowcase() {
                 className="mx-auto aspect-square max-h-[350px] min-h-80"
               >
                 <RechartsPieChart>
-                  <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+                  <ChartTooltip
+                    defaultIndex={activeIndex}
+                    content={(props) => (
+                      <ChartTooltipContent hideLabel {...props} />
+                    )}
+                  />
                   <Pie
                     data={donutChartData}
                     dataKey="value"
@@ -494,7 +524,6 @@ export function ChartShowcase() {
                     outerRadius={120}
                     fill="#8884d8"
                     labelLine={false}
-                    activeIndex={activeIndex}
                     activeShape={({ outerRadius = 0, ...props }) => (
                       <Sector {...props} outerRadius={outerRadius + 10} />
                     )}
@@ -552,7 +581,9 @@ export function ChartShowcase() {
                       />
                       <YAxis tickLine={false} axisLine={false} tickMargin={8} />
                       <ChartTooltip
-                        content={<ChartTooltipContent indicator="dot" />}
+                        content={(props) => (
+                          <ChartTooltipContent indicator="dot" {...props} />
+                        )}
                       />
                       <Area
                         type="natural"
@@ -611,7 +642,9 @@ export function ChartShowcase() {
                       />
                       <YAxis tickLine={false} axisLine={false} tickMargin={8} />
                       <ChartTooltip
-                        content={<ChartTooltipContent indicator="line" />}
+                        content={(props) => (
+                          <ChartTooltipContent indicator="line" {...props} />
+                        )}
                       />
                       <Line
                         type="natural"

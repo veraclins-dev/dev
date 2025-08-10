@@ -68,7 +68,6 @@
     "react-dom": "^19"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.7",
     "type-fest": "^4.41.0"
   }
 }

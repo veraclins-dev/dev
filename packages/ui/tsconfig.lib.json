@@ -40,6 +40,6 @@
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "../form/src/lib/submit-button.tsx"
+    "../form/src/lib/client/components/submit-button.tsx"
   ]
 }

@@ -1,8 +1,13 @@
 import { createContext, useContext, useId, useMemo } from 'react';
 import * as RechartsPrimitive from 'recharts';
+import {
+  type NameType,
+  type ValueType,
+} from 'recharts/types/component/DefaultTooltipContent';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { type BoxVariants } from './utils/variants';
 import { Box } from './box';
 import { Typography } from './typography';
 
@@ -110,7 +115,7 @@ function ChartContainer({
   children,
   config,
   ...props
-}: React.ComponentProps<'div'> & {
+}: React.ComponentProps<typeof Box> & {
   config: ChartConfig;
   children: React.ComponentProps<
     typeof RechartsPrimitive.ResponsiveContainer
@@ -164,7 +169,7 @@ const ChartTooltip = RechartsPrimitive.Tooltip;
  * @param props.labelKey - Optional key to identify the label in the payload.
  * @returns A styled tooltip with formatted content, or null if not active or no payload.
  */
-function ChartTooltipContent({
+function ChartTooltipContent<TValue extends ValueType, TName extends NameType>({
   active,
   payload,
   className,
@@ -178,8 +183,8 @@ function ChartTooltipContent({
   color,
   nameKey,
   labelKey,
-}: React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
-  React.ComponentProps<'div'> & {
+}: RechartsPrimitive.TooltipContentProps<TValue, TName> &
+  Omit<React.ComponentProps<typeof Box>, 'content' | 'position'> & {
     hideLabel?: boolean;
     hideIndicator?: boolean;
     indicator?: 'line' | 'dot' | 'dashed';
@@ -282,9 +287,9 @@ function ChartTooltipContent({
                   )}
                   <Box
                     display="flex"
-                    flexDirection="column"
                     flex="1"
                     justify="between"
+                    gap={2}
                     items={nestLabel ? 'end' : 'center'}
                     className="leading-none"
                   >
@@ -333,10 +338,13 @@ function ChartLegendContent({
   payload,
   verticalAlign = 'bottom',
   nameKey,
-}: React.ComponentProps<'div'> &
-  Pick<RechartsPrimitive.LegendProps, 'payload' | 'verticalAlign'> & {
+  ...props
+}: BoxVariants &
+  Pick<RechartsPrimitive.LegendProps, 'verticalAlign'> & {
     hideIcon?: boolean;
     nameKey?: string;
+    payload?: Readonly<RechartsPrimitive.LegendPayload[]>;
+    className?: string;
   }) {
   const { config } = useChart();
 
@@ -351,6 +359,7 @@ function ChartLegendContent({
       justify="center"
       gap={4}
       className={cn(verticalAlign === 'top' ? 'pb-3' : 'pt-3', className)}
+      {...props}
     >
       {payload.map((item) => {
         const key = `${nameKey || item.dataKey || 'value'}`;

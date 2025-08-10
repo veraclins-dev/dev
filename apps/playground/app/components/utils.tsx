@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react';
-import { z } from 'zod';
 
 import {
   Box,
@@ -82,8 +81,7 @@ import {
   toNumber,
   truncate,
   truncateMiddle,
-  // Validation utilities
-  validateZodSchema,
+  z,
 } from '@veraclins-dev/utils';
 
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
@@ -121,7 +119,7 @@ export function UtilsShowcase() {
   // Validation schema
   const userSchema = z.object({
     name: z.string().min(2, 'Name must be at least 2 characters'),
-    email: z.string().email('Invalid email address'),
+    email: z.email('Invalid email address'),
     age: z.number().min(18, 'Must be at least 18 years old'),
   });
 
@@ -131,7 +129,7 @@ export function UtilsShowcase() {
       email: 'john@example.com',
       age: 25,
     };
-    const result = validateZodSchema(userSchema, 'sync')(testData);
+    const result = userSchema.parse(testData);
     setValidationResult(result);
   };
 
@@ -513,10 +511,7 @@ export function UtilsShowcase() {
                               email: 'invalid',
                               age: 15,
                             };
-                            const result = validateZodSchema(
-                              userSchema,
-                              'sync',
-                            )(invalidData);
+                            const result = userSchema.parse(invalidData);
                             setValidationResult(result);
                           }}
                           variant="outline"
@@ -530,10 +525,7 @@ export function UtilsShowcase() {
                           onClick={() => {
                             // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             const partialData = { name: 'John' } as any;
-                            const result = validateZodSchema(
-                              userSchema,
-                              'sync',
-                            )(partialData);
+                            const result = userSchema.parse(partialData);
                             setValidationResult(result);
                           }}
                           variant="outline"

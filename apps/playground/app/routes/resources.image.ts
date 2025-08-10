@@ -37,7 +37,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 
   const cachedEntry = await cache.get(cacheParams);
   if (cachedEntry) {
-    return new Response(cachedEntry.buffer, {
+    return new Response(cachedEntry.buffer as BodyInit, {
       status: 200,
       headers: {
         'Content-Type': cachedEntry.contentType,
@@ -74,7 +74,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 
     await cache.set(cacheParams, cacheEntry);
 
-    return new Response(buffer, {
+    return new Response(buffer as BodyInit, {
       status,
       headers: {
         'Content-Type': contentType,

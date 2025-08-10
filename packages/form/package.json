@@ -9,6 +9,11 @@
       "types": "./index.d.ts",
       "import": "./index.js",
       "require": "./index.js"
+    },
+    "./server": {
+      "types": "./server.d.ts",
+      "import": "./server.js",
+      "require": "./server.js"
     }
   },
   "peerDependencies": {
@@ -18,9 +23,8 @@
     "@types/react-dom": "^19",
     "react": "^19",
     "react-dom": "^19",
-    "react-router": "^7"
+    "react-router": "^7",
+    "zod": "^4"
   },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.1.7"
-  }
+  "dependencies": {}
 }

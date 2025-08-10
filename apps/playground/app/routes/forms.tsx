@@ -1,7 +1,4 @@
-import {
-  formSubmissionErrors,
-  processForm,
-} from '@veraclins-dev/react-utils/server';
+import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server';
 
 import { FormsShowcase } from '../components/forms';
 import { AddComment } from '../validations/comment';
