@@ -718,7 +718,7 @@ importers:
         specifier: ^3.4.12
         version: 3.4.12(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       recharts:
-        specifier: ^3
+        specifier: ^3.1.2
         version: 3.1.2(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react-is@18.3.1)(react@19.1.1)(redux@5.0.1)
       sonner:
         specifier: ^2
