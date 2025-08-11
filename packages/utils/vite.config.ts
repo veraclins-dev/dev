@@ -42,7 +42,17 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['react', 'react/jsx-runtime', 'react-dom'],
+      external: [
+        'react',
+        'react/jsx-runtime',
+        'react-dom',
+        'luxon',
+        'clsx',
+        'sanitize-html',
+        'tailwind-merge',
+        'tailwindcss-animate',
+        'zod',
+      ],
     },
   },
   test: {

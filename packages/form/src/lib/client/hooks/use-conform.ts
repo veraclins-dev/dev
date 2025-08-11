@@ -3,7 +3,7 @@ import {
   type SubmissionResult,
   useForm,
 } from '@conform-to/react';
-import { getZodConstraint, parseWithZod } from '@conform-to/zod';
+import { getZodConstraint, parseWithZod } from '@conform-to/zod/v4';
 import { useActionData } from 'react-router';
 
 import {
@@ -17,17 +17,22 @@ import { type UseCustomFetcherReturn } from './use-custom-fetcher';
 
 type Options = Parameters<typeof useForm>[0];
 
-export interface ConformOptions<S extends SchemaType> extends Options {
+export interface ConformOptions<
+  S extends SchemaType,
+  L extends { submission?: SubmissionResult } = {
+    submission?: SubmissionResult;
+  },
+> extends Options {
   schema?: S;
   id: string;
   defaultValue?: DefaultValue<Values<S>>;
-  fetcher?: UseCustomFetcherReturn<S>;
+  fetcher?: UseCustomFetcherReturn<L>;
 }
 
 export const useConform = <
   S extends SchemaType,
-  L extends { submission: SubmissionResult<S> } = {
-    submission: SubmissionResult<S>;
+  L extends { submission?: SubmissionResult } = {
+    submission: SubmissionResult;
   },
 >({
   schema: sch,
@@ -40,15 +45,15 @@ export const useConform = <
   success: boolean;
 } => {
   const actionData = useActionData<L>();
-  const schema = sch ?? Empty;
+  const schema = (sch ?? Empty) as S;
 
-  const submission = actionData?.submission ?? fetcher?.data?.submission;
+  const submission = actionData?.submission ?? fetcher?.data?.['submission'];
   const [form, fields] = useForm<z.infer<S>>({
     id,
     constraint: getZodConstraint(schema),
     lastResult: submission,
     onValidate({ formData }) {
-      return parseWithZod(formData, { schema });
+      return parseWithZod<S>(formData, { schema });
     },
     shouldRevalidate: 'onBlur',
     defaultValue: defaultValue ?? undefined,

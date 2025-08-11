@@ -1,7 +1,6 @@
 export * from '../../ui/time-picker';
 export * from './autocomplete';
 export * from './checkbox-field';
-export * from './date-picker';
 export * from './hidden-field';
 export * from './image-field';
 export * from './input-field-wrapper';

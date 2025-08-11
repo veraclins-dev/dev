@@ -3,47 +3,46 @@ import { z } from '@veraclins-dev/utils';
 const POST_TYPE = ['question', 'answer'] as const;
 
 export const PostType = z.enum(POST_TYPE, {
-  errorMap: () => ({ message: 'Please select a valid post type.' }),
+  error: () => 'Please select a valid post type.',
 });
 
 const CommentDefaults = z.object({
   body: z
     .string({
-      required_error: 'Please enter your comment.',
-      invalid_type_error: 'Please enter a valid comment.',
+        error: (issue) => issue.input === undefined ? 'Please enter your comment.' : 'Please enter a valid comment.'
     })
-    .min(3, { message: 'Comment should be at least 3 characters.' }),
+    .min(3, {
+        error: 'Comment should be at least 3 characters.'
+    }),
   postId: z
     .string({
-      invalid_type_error: 'Please provide a valid post ID.',
+        error: (issue) => issue.input === undefined ? undefined : 'Please provide a valid post ID.'
     })
     .optional(),
   type: PostType.optional(),
   id: z
     .string({
-      invalid_type_error: 'Please provide a valid comment ID.',
+        error: (issue) => issue.input === undefined ? undefined : 'Please provide a valid comment ID.'
     })
     .optional(),
 });
 
 export const AddComment = z.discriminatedUnion('action', [
-  CommentDefaults.merge(
+  CommentDefaults.extend(
     z.object({
-      postId: z.string({
-        required_error: 'Please provide a post ID.',
-        invalid_type_error: 'Please provide a valid post ID.',
-      }),
-      type: PostType,
-      action: z.literal('create'),
-    }),
+              postId: z.string({
+                  error: (issue) => issue.input === undefined ? 'Please provide a post ID.' : 'Please provide a valid post ID.'
+            }),
+              type: PostType,
+              action: z.literal('create'),
+            }).shape
   ),
-  CommentDefaults.merge(
+  CommentDefaults.extend(
     z.object({
-      id: z.string({
-        required_error: 'Please provide a comment ID.',
-        invalid_type_error: 'Please provide a valid comment ID.',
-      }),
-      action: z.literal('update'),
-    }),
+              id: z.string({
+                  error: (issue) => issue.input === undefined ? 'Please provide a comment ID.' : 'Please provide a valid comment ID.'
+            }),
+              action: z.literal('update'),
+            }).shape
   ),
 ]);

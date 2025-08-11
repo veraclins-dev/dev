@@ -51,8 +51,6 @@ export default defineConfig(() => ({
         'react',
         'react-dom',
         'react/jsx-runtime',
-        '@conform-to/react',
-        '@conform-to/zod',
         'react-router',
         'node-html-parser',
         'remix-utils',

@@ -31,14 +31,5 @@
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx"
   ],
-  "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "../ui/src/lib/components/form/form.tsx",
-    "../utils/src/lib/scroll.ts",
-    "../form/src/lib/use-conform.ts",
-    "../form/src/lib/use-custom-fetcher.ts"
-  ]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
 }

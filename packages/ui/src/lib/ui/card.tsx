@@ -119,7 +119,7 @@ function CardSubtitle({ className, ...props }: TypographyProps) {
     <Typography
       data-slot="card-subtitle"
       variant="subtitle1"
-      className="className"
+      className={cn(className)}
       {...props}
     />
   );
@@ -215,7 +215,7 @@ export {
   CardFooter,
   CardHeader,
   CardImage,
-  CardProps,
+  type CardProps,
   CardSubtitle,
   CardTitle,
 };

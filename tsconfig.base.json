@@ -18,6 +18,7 @@
       "@veraclins-dev/cva": ["packages/cva/src/index.ts"],
       "@veraclins-dev/editor": ["packages/editor/src/index.ts"],
       "@veraclins-dev/form": ["packages/form/src/index.ts"],
+      "@veraclins-dev/form/server": ["packages/form/src/server.ts"],
       "@veraclins-dev/image": ["packages/image/src/index.ts"],
       "@veraclins-dev/image/server": ["packages/image/src/server.ts"],
       "@veraclins-dev/react-utils": ["packages/react-utils/src/index.ts"],

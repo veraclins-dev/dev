@@ -7,12 +7,13 @@ import {
 import { HoneypotInputs } from 'remix-utils/honeypot/react';
 
 import { useDelayedIsPending } from '@veraclins-dev/react-utils';
-import { ErrorList } from '@veraclins-dev/ui';
+import { Box, ErrorList } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
+import { type useConform } from '../hooks/use-conform';
+import { type useCustomFetcher } from '../hooks/use-custom-fetcher';
+
 import { FormSubmitButton } from './submit-button';
-import { type useConform } from './use-conform';
-import { type useCustomFetcher } from './use-custom-fetcher';
 
 interface FormProps extends Omit<RouterFormProps, 'method'> {
   submitText?: React.ReactNode;
@@ -24,6 +25,7 @@ interface FormProps extends Omit<RouterFormProps, 'method'> {
   disabled?: boolean;
   noButtons?: boolean;
   noError?: boolean;
+  contentClassName?: string;
 }
 
 const Form = ({
@@ -38,6 +40,7 @@ const Form = ({
   noError,
   fetcher,
   redirectToField = 'redirectTo',
+  contentClassName,
   ...props
 }: FormProps) => {
   const isPending = useDelayedIsPending({ formAction: props.action });
@@ -64,31 +67,33 @@ const Form = ({
       />
       <HoneypotInputs />
       <fieldset
-        className="flex h-full w-full flex-col gap-y-4"
+        className={cn('flex h-full w-full flex-col gap-y-4', contentClassName)}
         disabled={disabled}
       >
         {children}
       </fieldset>
       {!noError && form.errors?.length ? (
-        <div className="flex items-center py-1">
+        <Box display="flex" items="center" py={1}>
           <ErrorList errors={form.errors} id={form.errorId} />
-        </div>
+        </Box>
       ) : null}
 
       {!noButtons &&
         (actionButtons ?? (
-          <div className="w-full">
-            <FormSubmitButton
-              className="w-full min-w-[200px] px-6 py-3 sm:px-12"
-              loading={loading}
-              disabled={disabled}
-              action={props.action}
-            >
-              {submitText}
-            </FormSubmitButton>
-          </div>
+          <FormSubmitButton
+            w="full"
+            px={{ xs: 6, sm: 12 }}
+            py={3}
+            className="min-w-[200px]"
+            loading={loading}
+            disabled={disabled}
+            action={props.action}
+          >
+            {submitText}
+          </FormSubmitButton>
         ))}
     </Comp>
   );
 };
+
 export { Form, type FormProps };

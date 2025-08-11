@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/editor",
-  "version": "0.46.1",
+  "version": "0.47.2",
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
@@ -68,7 +68,6 @@
     "react-dom": "^19"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.7",
     "type-fest": "^4.41.0"
   }
 }

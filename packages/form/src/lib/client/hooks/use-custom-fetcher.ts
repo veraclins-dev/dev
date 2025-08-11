@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import { type FetcherWithComponents, useFetcher } from 'react-router';
 
-import { type SchemaType, type Values } from '@veraclins-dev/utils';
+type Fetcher<T extends Record<string, any>> = FetcherWithComponents<T>;
 
-type Fetcher<T extends SchemaType> = FetcherWithComponents<Values<T>>;
-type UseRemixSubmitStatus<T extends SchemaType> = Fetcher<T>['state'];
+type UseRemixSubmitStatus<T extends Record<string, any>> = Fetcher<T>['state'];
 
-export type UseCustomFetcherReturn<T extends SchemaType> = Fetcher<T> & {
-  loading: boolean;
-  submitted: boolean;
-  loaded: boolean;
-};
+export type UseCustomFetcherReturn<T extends Record<string, any>> =
+  Fetcher<T> & {
+    loading: boolean;
+    submitted: boolean;
+    loaded: boolean;
+  };
 
 export const useCustomFetcher = <
-  T extends SchemaType,
+  T extends Record<string, any>,
 >(): UseCustomFetcherReturn<T> => {
   const fetcher = useFetcher<T>();
   const [transitionLog, setTransitionLog] = useState<UseRemixSubmitStatus<T>[]>(
@@ -24,7 +24,6 @@ export const useCustomFetcher = <
   useEffect(() => {
     const shouldAppend = !transitionLog.includes(fetcher.state);
     const shouldReset = transitionLog.length > 1 && fetcher.state === 'idle';
-
     if (shouldAppend) {
       setLoaded(false);
       setTransitionLog((curr) => [...curr, fetcher.state]);
@@ -38,10 +37,9 @@ export const useCustomFetcher = <
     }
   }, [fetcher.state, transitionLog]);
 
-  const data = fetcher as UseCustomFetcherReturn<T>;
-
-  data.loading = fetcher.state !== 'idle';
-  data.loaded = loaded;
-
-  return data;
+  return {
+    ...fetcher,
+    loading: fetcher.state !== 'idle',
+    loaded,
+  } as UseCustomFetcherReturn<T>;
 };

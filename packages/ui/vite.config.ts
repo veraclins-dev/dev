@@ -28,12 +28,12 @@ export default defineConfig({
     dts({
       entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
-      aliasesExclude: ['@veraclins-dev/utils', '@veraclins-dev/cva'],
+      aliasesExclude: [
+        '@veraclins-dev/utils',
+        '@veraclins-dev/cva',
+        '@veraclins-dev/react-utils',
+      ],
     }),
-    // libAssetsPlugin({
-    //   include: ['src/lib/icons/**.svg'],
-    //   name: 'sprite.svg',
-    // }),
   ],
   // Uncomment this if you are using workers.
   // worker: {
@@ -65,7 +65,16 @@ export default defineConfig({
         'react/jsx-runtime',
         '@veraclins-dev/utils',
         '@veraclins-dev/cva',
+        '@veraclins-dev/react-utils',
+        '@tanstack/react-table',
+        '@tanstack/match-sorter-utils',
+        /@dnd-kit\/.*/,
         'recharts',
+        'spin-delay',
+        'country-flag-icons',
+        'match-sorter',
+        'react-phone-number-input',
+        'cmdk',
       ],
     },
   },

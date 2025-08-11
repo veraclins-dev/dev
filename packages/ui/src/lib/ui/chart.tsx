@@ -1,8 +1,20 @@
 import { createContext, useContext, useId, useMemo } from 'react';
-import * as RechartsPrimitive from 'recharts';
+import {
+  Legend,
+  type LegendPayload,
+  type LegendProps,
+  ResponsiveContainer,
+  Tooltip,
+  type TooltipContentProps,
+} from 'recharts';
+import {
+  type NameType,
+  type ValueType,
+} from 'recharts/types/component/DefaultTooltipContent';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { type BoxVariants } from './utils/variants';
 import { Box } from './box';
 import { Typography } from './typography';
 
@@ -110,11 +122,9 @@ function ChartContainer({
   children,
   config,
   ...props
-}: React.ComponentProps<'div'> & {
+}: React.ComponentProps<typeof Box> & {
   config: ChartConfig;
-  children: React.ComponentProps<
-    typeof RechartsPrimitive.ResponsiveContainer
-  >['children'];
+  children: React.ComponentProps<typeof ResponsiveContainer>['children'];
 }) {
   const uniqueId = useId();
   const chartId = `chart-${id || uniqueId.replace(/:/g, '')}`;
@@ -131,9 +141,7 @@ function ChartContainer({
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer>
-          {children}
-        </RechartsPrimitive.ResponsiveContainer>
+        <ResponsiveContainer>{children}</ResponsiveContainer>
       </Box>
     </ChartContext.Provider>
   );
@@ -141,9 +149,9 @@ function ChartContainer({
 
 /**
  * A wrapper for the Recharts Tooltip component.
- * @type {typeof RechartsPrimitive.Tooltip}
+ * @type {typeof Tooltip}
  */
-const ChartTooltip = RechartsPrimitive.Tooltip;
+const ChartTooltip = Tooltip;
 
 /**
  * A component for rendering custom tooltip content for charts.
@@ -164,7 +172,7 @@ const ChartTooltip = RechartsPrimitive.Tooltip;
  * @param props.labelKey - Optional key to identify the label in the payload.
  * @returns A styled tooltip with formatted content, or null if not active or no payload.
  */
-function ChartTooltipContent({
+function ChartTooltipContent<TValue extends ValueType, TName extends NameType>({
   active,
   payload,
   className,
@@ -178,8 +186,8 @@ function ChartTooltipContent({
   color,
   nameKey,
   labelKey,
-}: React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
-  React.ComponentProps<'div'> & {
+}: TooltipContentProps<TValue, TName> &
+  Omit<React.ComponentProps<typeof Box>, 'content' | 'position'> & {
     hideLabel?: boolean;
     hideIndicator?: boolean;
     indicator?: 'line' | 'dot' | 'dashed';
@@ -282,9 +290,9 @@ function ChartTooltipContent({
                   )}
                   <Box
                     display="flex"
-                    flexDirection="column"
                     flex="1"
                     justify="between"
+                    gap={2}
                     items={nestLabel ? 'end' : 'center'}
                     className="leading-none"
                   >
@@ -312,9 +320,9 @@ function ChartTooltipContent({
 
 /**
  * A wrapper for the Recharts Legend component.
- * @type {typeof RechartsPrimitive.Legend}
+ * @type {typeof Legend}
  */
-const ChartLegend = RechartsPrimitive.Legend;
+const ChartLegend = Legend;
 
 /**
  * A component for rendering custom legend content for charts.
@@ -333,10 +341,13 @@ function ChartLegendContent({
   payload,
   verticalAlign = 'bottom',
   nameKey,
-}: React.ComponentProps<'div'> &
-  Pick<RechartsPrimitive.LegendProps, 'payload' | 'verticalAlign'> & {
+  ...props
+}: BoxVariants &
+  Pick<LegendProps, 'verticalAlign'> & {
     hideIcon?: boolean;
     nameKey?: string;
+    payload?: Readonly<LegendPayload[]>;
+    className?: string;
   }) {
   const { config } = useChart();
 
@@ -351,6 +362,7 @@ function ChartLegendContent({
       justify="center"
       gap={4}
       className={cn(verticalAlign === 'top' ? 'pb-3' : 'pt-3', className)}
+      {...props}
     >
       {payload.map((item) => {
         const key = `${nameKey || item.dataKey || 'value'}`;

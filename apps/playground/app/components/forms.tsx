@@ -28,17 +28,17 @@ import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 // Validation schemas for different form types
 const BasicFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email'),
+  email: z.email('Please enter a valid email'),
   message: z.string().min(10, 'Message must be at least 10 characters'),
 });
 
 const AdvancedFormSchema = z.object({
   firstName: z.string().min(2, 'First name must be at least 2 characters'),
   lastName: z.string().min(2, 'Last name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email'),
+  email: z.email('Please enter a valid email'),
   phone: z.string().optional(),
   role: z.enum(['admin', 'user', 'moderator'], {
-    errorMap: () => ({ message: 'Please select a valid role' }),
+    error: () => ({ message: 'Please select a valid role' }),
   }),
   department: z.string().min(1, 'Please select a department'),
   bio: z.string().min(20, 'Bio must be at least 20 characters'),

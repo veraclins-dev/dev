@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/remix-auth-social",
-  "version": "0.46.1",
+  "version": "0.47.2",
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "@mjackson/headers": "0.10.0",
+    "@mjackson/headers": "0.11.1",
     "arctic": "3.7.0",
     "debug": "4.4.1"
   },
