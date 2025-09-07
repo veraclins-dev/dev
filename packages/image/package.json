@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/image",
-  "version": "0.47.6",
+  "version": "0.47.7",
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
