@@ -200,19 +200,19 @@ export type DatePeriod =
   | 'Previous year';
 
 /**
- * Gets a date based on a predefined period
+ * Gets the start date of a predefined period
  *
- * @param period - The period to get the date for
+ * @param period - The period to get the start date for
  * @returns The date for the specified period, or null if period is invalid
  *
  * @example
  * ```typescript
- * getPeriodStartDate('Last 7 days') // Date 7 days ago
- * getPeriodStartDate('This month') // First day of current month
- * getPeriodStartDate('Last year') // Date 1 year ago
+ * startOfPeriod('Last 7 days') // Date 7 days ago
+ * startOfPeriod('This month') // First day of current month
+ * startOfPeriod('Last year') // Date 1 year ago
  * ```
  */
-export const getPeriodStartDate = (period: DatePeriod): Date | null => {
+export const startOfPeriod = (period: DatePeriod): Date | null => {
   const now = DateTime.now();
   switch (period) {
     case 'Last 24 hours':
@@ -252,24 +252,25 @@ export type FutureDatePeriod =
   | 'Next 30 days'
   | 'Next 90 days'
   | 'Next 6 months'
-  | 'Next year'
+  | 'Next 1 year'
   | 'Next month'
+  | 'Next year'
   | 'End of this year';
 
 /**
- * Gets a future date based on a predefined period
+ * Gets the end date of a predefined future period
  *
- * @param period - The period to get the date for
+ * @param period - The period to get the end date for
  * @returns The date for the specified period, or null if period is invalid
  *
  * @example
  * ```typescript
- * getPeriodEndDate('Next 7 days') // Date 7 days from now
- * getPeriodEndDate('Next month') // First day of next month
- * getPeriodEndDate('End of this year') // Last day of current year
+ * endOfPeriod('Next 7 days') // Date 7 days from now
+ * endOfPeriod('Next month') // First day of next month
+ * endOfPeriod('End of this year') // Last day of current year
  * ```
  */
-export const getPeriodEndDate = (period: FutureDatePeriod): Date | null => {
+export const endOfPeriod = (period: FutureDatePeriod): Date | null => {
   const now = DateTime.now();
   switch (period) {
     case 'Next 24 hours':
@@ -284,10 +285,12 @@ export const getPeriodEndDate = (period: FutureDatePeriod): Date | null => {
       return toDate(now.plus({ days: 90 }));
     case 'Next 6 months':
       return toDate(now.plus({ months: 6 }));
-    case 'Next year':
+    case 'Next 1 year':
       return toDate(now.plus({ years: 1 }));
     case 'Next month':
-      return toDate(now.plus({ months: 1 }).startOf('month'));
+      return toDate(now.plus({ months: 1 }).endOf('month'));
+    case 'Next year':
+      return toDate(now.plus({ years: 1 }).endOf('year'));
     case 'End of this year':
       return toDate(now.endOf('year'));
     default:

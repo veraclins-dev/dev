@@ -16,7 +16,7 @@ export const Primary: Story = {
   args: {
     value: 75,
     variant: 'linear',
-    size: 'md',
+    progressSize: 'md',
     color: 'primary',
     showValue: false,
   },
@@ -27,7 +27,7 @@ export const Circular: Story = {
   args: {
     value: 60,
     variant: 'circular',
-    size: 'md',
+    progressSize: 'md',
     color: 'primary',
     showValue: false,
   },
@@ -38,7 +38,7 @@ export const WithValue: Story = {
   args: {
     value: 45,
     variant: 'linear',
-    size: 'md',
+    progressSize: 'md',
     color: 'primary',
     showValue: true,
   },
@@ -49,7 +49,7 @@ export const Indeterminate: Story = {
   args: {
     value: 0,
     variant: 'linear',
-    size: 'md',
+    progressSize: 'md',
     color: 'primary',
     showValue: false,
     indeterminate: true,
@@ -65,10 +65,10 @@ export const Sizes: Story = {
   },
   render: (args) => (
     <Box className="space-y-4">
-      <ProgressBar {...args} size="sm" />
-      <ProgressBar {...args} size="md" />
-      <ProgressBar {...args} size="lg" />
-      <ProgressBar {...args} size="xl" />
+      <ProgressBar {...args} progressSize="sm" />
+      <ProgressBar {...args} progressSize="md" />
+      <ProgressBar {...args} progressSize="lg" />
+      <ProgressBar {...args} progressSize="xl" />
     </Box>
   ),
 };
@@ -78,7 +78,7 @@ export const Colors: Story = {
   args: {
     value: 75,
     variant: 'linear',
-    size: 'md',
+    progressSize: 'md',
   },
   render: (args) => (
     <Box className="space-y-4">
@@ -98,7 +98,7 @@ export const CircularWithValue: Story = {
   args: {
     value: 60,
     variant: 'circular',
-    size: 'md',
+    progressSize: 'md',
     color: 'primary',
     showValue: true,
     indeterminate: false,
@@ -110,7 +110,7 @@ export const CircularIndeterminate: Story = {
   args: {
     value: 0,
     variant: 'circular',
-    size: 'md',
+    progressSize: 'md',
     color: 'primary',
     showValue: false,
     indeterminate: true,
@@ -125,10 +125,10 @@ export const CircularSizes: Story = {
   },
   render: (args) => (
     <Box display="flex" items="center" gapX={4}>
-      <ProgressBar {...args} size="sm" />
-      <ProgressBar {...args} size="md" />
-      <ProgressBar {...args} size="lg" />
-      <ProgressBar {...args} size="xl" />
+      <ProgressBar {...args} progressSize="sm" />
+      <ProgressBar {...args} progressSize="md" />
+      <ProgressBar {...args} progressSize="lg" />
+      <ProgressBar {...args} progressSize="xl" />
     </Box>
   ),
 };
@@ -142,10 +142,10 @@ export const CircularSizesIndeterminate: Story = {
   },
   render: (args) => (
     <Box display="flex" items="center" gapX={4}>
-      <ProgressBar {...args} size="sm" />
-      <ProgressBar {...args} size="md" />
-      <ProgressBar {...args} size="lg" />
-      <ProgressBar {...args} size="xl" />
+      <ProgressBar {...args} progressSize="sm" />
+      <ProgressBar {...args} progressSize="md" />
+      <ProgressBar {...args} progressSize="lg" />
+      <ProgressBar {...args} progressSize="xl" />
     </Box>
   ),
 };
