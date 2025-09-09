@@ -7,6 +7,7 @@ import {
   addMonths,
   addYears,
   createDateFromYearMonth,
+  type EndOfPeriod,
   endOfPeriod,
   formatDate,
   formatDateTime,
@@ -38,6 +39,7 @@ import {
   isWeekend,
   parseDate,
   parseToDateTime,
+  type StartOfPeriod,
   startOfPeriod,
   startOfToday,
   subtractDays,
@@ -109,116 +111,318 @@ describe('Date Utilities', () => {
   });
 
   describe('startOfPeriod', () => {
-    it('should return correct date for Last 24 hours', () => {
-      const result = startOfPeriod('Last 24 hours');
-      expect(result).toEqual(new Date('2024-03-19T12:00:00Z'));
+    describe('Today', () => {
+      it('should return start of current day', () => {
+        const result = startOfPeriod('Today');
+        expect(result).toEqual(new Date('2024-03-20T00:00:00Z'));
+      });
     });
 
-    it('should return correct date for Last 7 days', () => {
-      const result = startOfPeriod('Last 7 days');
-      expect(result).toEqual(new Date('2024-03-13T12:00:00Z'));
+    describe('This {unit}', () => {
+      it('should return start of current year', () => {
+        const result = startOfPeriod('This year');
+        expect(result).toEqual(new Date('2024-01-01T00:00:00Z'));
+      });
+
+      it('should return start of current quarter', () => {
+        const result = startOfPeriod('This quarter');
+        expect(result).toEqual(new Date('2024-01-01T00:00:00Z'));
+      });
+
+      it('should return start of current month', () => {
+        const result = startOfPeriod('This month');
+        expect(result).toEqual(new Date('2024-03-01T00:00:00Z'));
+      });
+
+      it('should return start of current week', () => {
+        const result = startOfPeriod('This week');
+        expect(result).toEqual(new Date('2024-03-18T00:00:00Z')); // Monday of current week
+      });
     });
 
-    it('should return correct date for Last 14 days', () => {
-      const result = startOfPeriod('Last 14 days');
-      expect(result).toEqual(new Date('2024-03-06T12:00:00Z'));
+    describe('Last {amount} {unit}s', () => {
+      it('should return correct date for Last 12 hours', () => {
+        const result = startOfPeriod('Last 12 hours');
+        expect(result).toEqual(new Date('2024-03-20T00:00:00Z'));
+      });
+
+      it('should return correct date for Last 24 hours', () => {
+        const result = startOfPeriod('Last 24 hours');
+        expect(result).toEqual(new Date('2024-03-19T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 72 hours', () => {
+        const result = startOfPeriod('Last 72 hours');
+        expect(result).toEqual(new Date('2024-03-17T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 2 days', () => {
+        const result = startOfPeriod('Last 2 days');
+        expect(result).toEqual(new Date('2024-03-18T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 3 days', () => {
+        const result = startOfPeriod('Last 3 days');
+        expect(result).toEqual(new Date('2024-03-17T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 7 days', () => {
+        const result = startOfPeriod('Last 7 days');
+        expect(result).toEqual(new Date('2024-03-13T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 14 days', () => {
+        const result = startOfPeriod('Last 14 days');
+        expect(result).toEqual(new Date('2024-03-06T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 28 days', () => {
+        const result = startOfPeriod('Last 28 days');
+        expect(result).toEqual(new Date('2024-02-21T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 30 days', () => {
+        const result = startOfPeriod('Last 30 days');
+        expect(result).toEqual(new Date('2024-02-19T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 90 days', () => {
+        const result = startOfPeriod('Last 90 days');
+        expect(result).toEqual(new Date('2023-12-21T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 2 weeks', () => {
+        const result = startOfPeriod('Last 2 weeks');
+        expect(result).toEqual(new Date('2024-03-06T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 4 weeks', () => {
+        const result = startOfPeriod('Last 4 weeks');
+        expect(result).toEqual(new Date('2024-02-21T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 6 weeks', () => {
+        const result = startOfPeriod('Last 6 weeks');
+        expect(result).toEqual(new Date('2024-02-07T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 8 weeks', () => {
+        const result = startOfPeriod('Last 8 weeks');
+        expect(result).toEqual(new Date('2024-01-24T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 10 weeks', () => {
+        const result = startOfPeriod('Last 10 weeks');
+        expect(result).toEqual(new Date('2024-01-10T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 3 months', () => {
+        const result = startOfPeriod('Last 3 months');
+        expect(result).toEqual(new Date('2023-12-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 6 months', () => {
+        const result = startOfPeriod('Last 6 months');
+        expect(result).toEqual(new Date('2023-09-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 12 months', () => {
+        const result = startOfPeriod('Last 12 months');
+        expect(result).toEqual(new Date('2023-03-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 2 quarters', () => {
+        const result = startOfPeriod('Last 2 quarters');
+        expect(result).toEqual(new Date('2023-09-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 3 quarters', () => {
+        const result = startOfPeriod('Last 3 quarters');
+        expect(result).toEqual(new Date('2023-06-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 5 quarters', () => {
+        const result = startOfPeriod('Last 5 quarters');
+        expect(result).toEqual(new Date('2022-12-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 2 years', () => {
+        const result = startOfPeriod('Last 2 years');
+        expect(result).toEqual(new Date('2022-03-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 3 years', () => {
+        const result = startOfPeriod('Last 3 years');
+        expect(result).toEqual(new Date('2021-03-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Last 5 years', () => {
+        const result = startOfPeriod('Last 5 years');
+        expect(result).toEqual(new Date('2019-03-20T12:00:00Z'));
+      });
     });
 
-    it('should return correct date for Last 30 days', () => {
-      const result = startOfPeriod('Last 30 days');
-      expect(result).toEqual(new Date('2024-02-19T12:00:00Z'));
-    });
-
-    it('should return correct date for Last 90 days', () => {
-      const result = startOfPeriod('Last 90 days');
-      expect(result).toEqual(new Date('2023-12-21T12:00:00Z')); // Fixed for exact 90 days
-    });
-
-    it('should return correct date for Last 6 months', () => {
-      const result = startOfPeriod('Last 6 months');
-      expect(result).toEqual(new Date('2023-09-20T12:00:00Z'));
-    });
-
-    it('should return correct date for Last year', () => {
-      const result = startOfPeriod('Last year');
-      expect(result).toEqual(new Date('2023-03-20T12:00:00Z'));
-    });
-
-    it('should return correct date for This month', () => {
-      const result = startOfPeriod('This month');
-      expect(result).toEqual(new Date('2024-03-01T00:00:00Z'));
-    });
-
-    it('should return correct date for Last month', () => {
-      const result = startOfPeriod('Last month');
-      expect(result).toEqual(new Date('2024-02-01T00:00:00Z'));
-    });
-
-    it('should return correct date for This year', () => {
-      const result = startOfPeriod('This year');
-      expect(result).toEqual(new Date('2024-01-01T00:00:00Z'));
-    });
-
-    it('should return correct date for Previous year', () => {
-      const result = startOfPeriod('Previous year');
-      expect(result).toEqual(new Date('2023-01-01T00:00:00Z'));
-    });
-
-    it('should return null for invalid period', () => {
-      const result = startOfPeriod('Invalid Period' as any);
-      expect(result).toBeNull();
+    it('should return default fallback for invalid period', () => {
+      const result = startOfPeriod('Invalid Period' as StartOfPeriod);
+      expect(result).toEqual(new Date('2024-03-13T12:00:00Z')); // 7 days ago fallback
     });
   });
 
   describe('endOfPeriod', () => {
-    it('should return correct date for Next 24 hours', () => {
-      const result = endOfPeriod('Next 24 hours');
-      expect(result).toEqual(new Date('2024-03-21T12:00:00Z'));
+    describe('Today', () => {
+      it('should return end of current day', () => {
+        const result = endOfPeriod('Today');
+        expect(result).toEqual(new Date('2024-03-20T23:59:59.999Z'));
+      });
     });
 
-    it('should return correct date for Next 7 days', () => {
-      const result = endOfPeriod('Next 7 days');
-      expect(result).toEqual(new Date('2024-03-27T12:00:00Z'));
+    describe('This {unit}', () => {
+      it('should return end of current year', () => {
+        const result = endOfPeriod('This year');
+        expect(result).toEqual(new Date('2024-12-31T23:59:59.999Z'));
+      });
+
+      it('should return end of current quarter', () => {
+        const result = endOfPeriod('This quarter');
+        expect(result).toEqual(new Date('2024-03-31T23:59:59.999Z'));
+      });
+
+      it('should return end of current month', () => {
+        const result = endOfPeriod('This month');
+        expect(result).toEqual(new Date('2024-03-31T23:59:59.999Z'));
+      });
+
+      it('should return end of current week', () => {
+        const result = endOfPeriod('This week');
+        expect(result).toEqual(new Date('2024-03-24T23:59:59.999Z')); // Sunday of current week
+      });
     });
 
-    it('should return correct date for Next 14 days', () => {
-      const result = endOfPeriod('Next 14 days');
-      expect(result).toEqual(new Date('2024-04-03T12:00:00Z'));
+    describe('Next {amount} {unit}s', () => {
+      it('should return correct date for Next 12 hours', () => {
+        const result = endOfPeriod('Next 12 hours');
+        expect(result).toEqual(new Date('2024-03-21T00:00:00Z'));
+      });
+
+      it('should return correct date for Next 24 hours', () => {
+        const result = endOfPeriod('Next 24 hours');
+        expect(result).toEqual(new Date('2024-03-21T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 72 hours', () => {
+        const result = endOfPeriod('Next 72 hours');
+        expect(result).toEqual(new Date('2024-03-23T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 2 days', () => {
+        const result = endOfPeriod('Next 2 days');
+        expect(result).toEqual(new Date('2024-03-22T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 3 days', () => {
+        const result = endOfPeriod('Next 3 days');
+        expect(result).toEqual(new Date('2024-03-23T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 7 days', () => {
+        const result = endOfPeriod('Next 7 days');
+        expect(result).toEqual(new Date('2024-03-27T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 14 days', () => {
+        const result = endOfPeriod('Next 14 days');
+        expect(result).toEqual(new Date('2024-04-03T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 28 days', () => {
+        const result = endOfPeriod('Next 28 days');
+        expect(result).toEqual(new Date('2024-04-17T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 30 days', () => {
+        const result = endOfPeriod('Next 30 days');
+        expect(result).toEqual(new Date('2024-04-19T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 90 days', () => {
+        const result = endOfPeriod('Next 90 days');
+        expect(result).toEqual(new Date('2024-06-18T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 2 weeks', () => {
+        const result = endOfPeriod('Next 2 weeks');
+        expect(result).toEqual(new Date('2024-04-03T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 4 weeks', () => {
+        const result = endOfPeriod('Next 4 weeks');
+        expect(result).toEqual(new Date('2024-04-17T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 6 weeks', () => {
+        const result = endOfPeriod('Next 6 weeks');
+        expect(result).toEqual(new Date('2024-05-01T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 8 weeks', () => {
+        const result = endOfPeriod('Next 8 weeks');
+        expect(result).toEqual(new Date('2024-05-15T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 10 weeks', () => {
+        const result = endOfPeriod('Next 10 weeks');
+        expect(result).toEqual(new Date('2024-05-29T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 3 months', () => {
+        const result = endOfPeriod('Next 3 months');
+        expect(result).toEqual(new Date('2024-06-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 6 months', () => {
+        const result = endOfPeriod('Next 6 months');
+        expect(result).toEqual(new Date('2024-09-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 12 months', () => {
+        const result = endOfPeriod('Next 12 months');
+        expect(result).toEqual(new Date('2025-03-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 2 quarters', () => {
+        const result = endOfPeriod('Next 2 quarters');
+        expect(result).toEqual(new Date('2024-09-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 3 quarters', () => {
+        const result = endOfPeriod('Next 3 quarters');
+        expect(result).toEqual(new Date('2024-12-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 5 quarters', () => {
+        const result = endOfPeriod('Next 5 quarters');
+        expect(result).toEqual(new Date('2025-06-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 2 years', () => {
+        const result = endOfPeriod('Next 2 years');
+        expect(result).toEqual(new Date('2026-03-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 3 years', () => {
+        const result = endOfPeriod('Next 3 years');
+        expect(result).toEqual(new Date('2027-03-20T12:00:00Z'));
+      });
+
+      it('should return correct date for Next 5 years', () => {
+        const result = endOfPeriod('Next 5 years');
+        expect(result).toEqual(new Date('2029-03-20T12:00:00Z'));
+      });
     });
 
-    it('should return correct date for Next 30 days', () => {
-      const result = endOfPeriod('Next 30 days');
-      expect(result).toEqual(new Date('2024-04-19T12:00:00Z'));
-    });
-
-    it('should return correct date for Next 90 days', () => {
-      const result = endOfPeriod('Next 90 days');
-      expect(result).toEqual(new Date('2024-06-18T12:00:00Z'));
-    });
-
-    it('should return correct date for Next 6 months', () => {
-      const result = endOfPeriod('Next 6 months');
-      expect(result).toEqual(new Date('2024-09-20T12:00:00Z'));
-    });
-
-    it('should return correct date for Next year', () => {
-      const result = endOfPeriod('Next year');
-      expect(result).toEqual(new Date('2025-03-20T12:00:00Z'));
-    });
-
-    it('should return correct date for Next month', () => {
-      const result = endOfPeriod('Next month');
-      expect(result).toEqual(new Date('2024-04-01T00:00:00Z'));
-    });
-
-    it('should return correct date for End of this year', () => {
-      const result = endOfPeriod('End of this year');
-      expect(result).toEqual(new Date('2024-12-31T23:59:59.999Z'));
-    });
-
-    it('should return null for invalid period', () => {
-      const result = endOfPeriod('Invalid Period' as any);
-      expect(result).toBeNull();
+    it('should return default fallback for invalid period', () => {
+      const result = endOfPeriod('Invalid Period' as EndOfPeriod);
+      expect(result).toEqual(new Date('2024-03-27T12:00:00Z')); // 7 days from now fallback
     });
   });
 

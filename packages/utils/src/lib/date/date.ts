@@ -183,119 +183,118 @@ export const subtractDays = (
   return toDate(dt.minus({ days }));
 };
 
-/**
- * Predefined date periods for filtering
- */
-export type DatePeriod =
-  | 'Last 24 hours'
-  | 'Last 7 days'
-  | 'Last 14 days'
-  | 'Last 30 days'
-  | 'Last 90 days'
-  | 'Last 6 months'
-  | 'Last year'
-  | 'This month'
-  | 'Last month'
-  | 'This year'
-  | 'Previous year';
+type TimeUnit = 'year' | 'quarter' | 'month' | 'week';
+type TimeUnits = `${TimeUnit}s`;
+
+type HourNumbers = 12 | 24 | 72;
+type DayNumbers = 2 | 3 | 7 | 14 | 28 | 30 | 90;
+type WeekNumbers = 2 | 4 | 6 | 8 | 10;
+type MonthNumbers = 3 | 6 | 12;
+type YearNumbers = 2 | 3 | 5;
+
+type Predefined = 'Today' | `This ${TimeUnit}`;
+
+export type StartOfPeriod =
+  | `Last ${HourNumbers} hours`
+  | `Last ${DayNumbers} days`
+  | `Last ${WeekNumbers} weeks`
+  | `Last ${MonthNumbers} months`
+  | `Last ${YearNumbers} quarters`
+  | `Last ${YearNumbers} years`
+  | Predefined;
+
+export type EndOfPeriod =
+  | `Next ${HourNumbers} hours`
+  | `Next ${DayNumbers} days`
+  | `Next ${WeekNumbers} weeks`
+  | `Next ${MonthNumbers} months`
+  | `Next ${YearNumbers} quarters`
+  | `Next ${YearNumbers} years`
+  | Predefined;
 
 /**
  * Gets the start date of a predefined period
  *
- * @param period - The period to get the start date for
- * @returns The date for the specified period, or null if period is invalid
+ * @param period - The period to get the start date for. Supports:
+ *   - "Today" - Start of current day
+ *   - "This {unit}" - Start of current period (year, quarter, month, week)
+ *   - "Last {amount} {unit}s" - Start of period {amount} units ago
+ * @returns The start date for the specified period
  *
  * @example
  * ```typescript
- * startOfPeriod('Last 7 days') // Date 7 days ago
+ * startOfPeriod('Today') // Start of current day
  * startOfPeriod('This month') // First day of current month
- * startOfPeriod('Last year') // Date 1 year ago
+ * startOfPeriod('This year') // First day of current year
+ * startOfPeriod('Last 7 days') // Date 7 days ago
+ * startOfPeriod('Last 3 months') // Date 3 months ago
+ * startOfPeriod('Last 2 quarters') // Date 2 quarters ago
  * ```
  */
-export const startOfPeriod = (period: DatePeriod): Date | null => {
+export const startOfPeriod = (period: StartOfPeriod): Date => {
   const now = DateTime.now();
-  switch (period) {
-    case 'Last 24 hours':
-      return toDate(now.minus({ days: 1 }));
-    case 'Last 7 days':
-      return toDate(now.minus({ days: 7 }));
-    case 'Last 14 days':
-      return toDate(now.minus({ days: 14 }));
-    case 'Last 30 days':
-      return toDate(now.minus({ days: 30 }));
-    case 'Last 90 days':
-      return toDate(now.minus({ days: 90 }));
-    case 'Last 6 months':
-      return toDate(now.minus({ months: 6 }));
-    case 'Last year':
-      return toDate(now.minus({ years: 1 }));
-    case 'This month':
-      return toDate(now.startOf('month'));
-    case 'Last month':
-      return toDate(now.minus({ months: 1 }).startOf('month'));
-    case 'This year':
-      return toDate(now.startOf('year'));
-    case 'Previous year':
-      return toDate(now.minus({ years: 1 }).startOf('year'));
-    default:
-      return null;
+
+  if (period === 'Today') {
+    return toDate(now.startOf('day'));
   }
+
+  if (period.includes('Last')) {
+    const [, amountStr, unit] = period.split(' ') as [
+      string,
+      string,
+      `${TimeUnits}`,
+    ];
+    const amount = Number(amountStr);
+    return toDate(now.minus({ [unit]: amount }));
+  }
+  if (period.includes('This')) {
+    const [, unit] = period.split(' ') as [string, TimeUnit];
+    return toDate(now.startOf(unit));
+  }
+  return toDate(now.minus({ days: 7 }));
 };
 
 /**
- * Predefined future date periods for filtering
- */
-export type FutureDatePeriod =
-  | 'Next 24 hours'
-  | 'Next 7 days'
-  | 'Next 14 days'
-  | 'Next 30 days'
-  | 'Next 90 days'
-  | 'Next 6 months'
-  | 'Next 1 year'
-  | 'Next month'
-  | 'Next year'
-  | 'End of this year';
-
-/**
- * Gets the end date of a predefined future period
+ * Gets the end date of a predefined period
  *
- * @param period - The period to get the end date for
- * @returns The date for the specified period, or null if period is invalid
+ * @param period - The period to get the end date for. Supports:
+ *   - "Today" - End of current day
+ *   - "This {unit}" - End of current period (year, quarter, month, week)
+ *   - "Next {amount} {unit}s" - End of period {amount} units from now
+ * @returns The end date for the specified period
  *
  * @example
  * ```typescript
+ * endOfPeriod('Today') // End of current day
+ * endOfPeriod('This month') // Last day of current month
+ * endOfPeriod('This year') // Last day of current year
  * endOfPeriod('Next 7 days') // Date 7 days from now
- * endOfPeriod('Next month') // First day of next month
- * endOfPeriod('End of this year') // Last day of current year
+ * endOfPeriod('Next 3 months') // Date 3 months from now
+ * endOfPeriod('Next 2 quarters') // Date 2 quarters from now
  * ```
  */
-export const endOfPeriod = (period: FutureDatePeriod): Date | null => {
+export const endOfPeriod = (period: EndOfPeriod): Date | null => {
   const now = DateTime.now();
-  switch (period) {
-    case 'Next 24 hours':
-      return toDate(now.plus({ days: 1 }));
-    case 'Next 7 days':
-      return toDate(now.plus({ days: 7 }));
-    case 'Next 14 days':
-      return toDate(now.plus({ days: 14 }));
-    case 'Next 30 days':
-      return toDate(now.plus({ days: 30 }));
-    case 'Next 90 days':
-      return toDate(now.plus({ days: 90 }));
-    case 'Next 6 months':
-      return toDate(now.plus({ months: 6 }));
-    case 'Next 1 year':
-      return toDate(now.plus({ years: 1 }));
-    case 'Next month':
-      return toDate(now.plus({ months: 1 }).endOf('month'));
-    case 'Next year':
-      return toDate(now.plus({ years: 1 }).endOf('year'));
-    case 'End of this year':
-      return toDate(now.endOf('year'));
-    default:
-      return null;
+
+  if (period === 'Today') {
+    return toDate(now.endOf('day'));
   }
+
+  if (period.includes('Next')) {
+    const [, amountStr, unit] = period.split(' ') as [
+      string,
+      string,
+      `${TimeUnits}`,
+    ];
+    const amount = Number(amountStr);
+    return toDate(now.plus({ [unit]: amount }));
+  }
+
+  if (period.includes('This')) {
+    const [, unit] = period.split(' ') as [string, TimeUnit];
+    return toDate(now.endOf(unit));
+  }
+  return toDate(now.plus({ days: 7 }));
 };
 
 /**
