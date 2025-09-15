@@ -1,17 +1,16 @@
 // Main Calendar component
-export { Calendar, type CalendarProps } from './calendar';
+export { Calendar } from './calendar';
 
 // Types
 export type {
   CalendarClassNames,
-  CalendarDayState,
   CalendarHeaderProps,
   CalendarMode,
-  CalendarOverlayProps,
+  CalendarProps,
   CalendarWeekHeaderProps,
   DateRange,
   WeekStartsOn,
-} from './calendar-types';
+} from './types';
 
 // Variants
 export {

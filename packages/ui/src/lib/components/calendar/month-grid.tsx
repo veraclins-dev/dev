@@ -8,13 +8,13 @@ import { Box } from '../../ui/box';
 
 import { useCalendarContext } from './calendar-context';
 import { CalendarDay } from './calendar-day';
-import { type CalendarClassNames } from './calendar-types';
 import { dateUtils } from './calendar-utils';
 import {
   calendarGridVariants,
   calendarWeekVariants,
 } from './calendar-variants';
 import { CalendarWeekHeader } from './calendar-week-header';
+import { type CalendarClassNames } from './types';
 
 interface MonthGridProps {
   month: Date;

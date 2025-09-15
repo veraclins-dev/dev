@@ -12,47 +12,7 @@ import { useCalendarContext } from './calendar-context';
 import { CalendarFooter } from './calendar-footer';
 import { CalendarGrid } from './calendar-grid';
 import { CalendarHeader } from './calendar-header';
-import type {
-  CalendarClassNames,
-  CalendarMode,
-  DateRange,
-  WeekStartsOn,
-} from './calendar-types';
-
-export interface CalendarProps {
-  // Date handling
-  value?: Date | Date[] | DateRange;
-  onValueChange?: (value: Date | Date[] | DateRange) => void;
-  defaultValue?: Date | Date[] | DateRange;
-
-  // Display options
-  mode?: CalendarMode;
-  showOutsideDays?: boolean;
-  showTodayButton?: boolean;
-  showNavigation?: boolean;
-
-  // Time selection
-  showTimePicker?: boolean;
-
-  // Navigation constraints
-  disabled?: Date[] | ((date: Date) => boolean);
-  minDate?: Date;
-  maxDate?: Date;
-
-  // Styling
-  className?: string;
-  classNames?: CalendarClassNames;
-
-  // Accessibility
-  'aria-label'?: string;
-  'aria-describedby'?: string;
-
-  // Advanced options
-  locale?: string;
-  weekStartsOn?: WeekStartsOn;
-  fixedWeeks?: boolean;
-  numberOfMonths?: number;
-}
+import type { CalendarProps } from './types';
 
 /**
  * Calendar component with advanced range selection features
@@ -65,8 +25,8 @@ export const Calendar = memo(function Calendar({
   numberOfMonths = 1,
   showOutsideDays = true,
   showTodayButton = false,
-  showNavigation = true,
   showTimePicker = false,
+  onTimePickerBlur,
   disabled,
   minDate,
   maxDate,
@@ -76,7 +36,6 @@ export const Calendar = memo(function Calendar({
   'aria-describedby': ariaDescribedby,
   locale = 'en-US',
   weekStartsOn = 0,
-  fixedWeeks = false,
   ref,
   ...props
 }: CalendarProps & { ref?: React.Ref<HTMLDivElement> }) {
@@ -96,9 +55,9 @@ export const Calendar = memo(function Calendar({
     >
       <CalendarContent
         ref={ref}
-        numberOfMonths={numberOfMonths}
         showTodayButton={showTodayButton}
         showTimePicker={showTimePicker}
+        onTimePickerBlur={onTimePickerBlur}
         className={className}
         classNames={classNames}
         aria-label={ariaLabel}
@@ -113,9 +72,10 @@ export const Calendar = memo(function Calendar({
  * Calendar content component that uses context - optimized with memoization
  */
 const CalendarContent = memo(function CalendarContent({
-  numberOfMonths,
   showTodayButton,
   showTimePicker,
+  timePickerProps,
+  onTimePickerBlur,
   className,
   classNames,
   'aria-label': ariaLabel,
@@ -129,13 +89,12 @@ const CalendarContent = memo(function CalendarContent({
   | 'defaultValue'
   | 'mode'
   | 'showOutsideDays'
-  | 'showNavigation'
   | 'disabled'
   | 'minDate'
   | 'maxDate'
   | 'locale'
   | 'weekStartsOn'
-  | 'fixedWeeks'
+  | 'numberOfMonths'
 > & { ref?: React.Ref<HTMLDivElement> }) {
   const context = useCalendarContext();
 
@@ -169,6 +128,8 @@ const CalendarContent = memo(function CalendarContent({
       {(showTodayButton || showTimePicker) && (
         <CalendarFooter
           showTimePicker={showTimePicker}
+          onTimePickerBlur={onTimePickerBlur}
+          timePickerProps={timePickerProps}
           className={classNames?.calendarFooter}
           classNames={classNames}
         />

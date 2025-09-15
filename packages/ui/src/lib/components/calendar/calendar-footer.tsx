@@ -9,18 +9,8 @@ import { Button } from '../../ui/button';
 import { TimePicker } from '../../ui/time-picker';
 
 import { useCalendarContext } from './calendar-context';
-import { type CalendarClassNames } from './calendar-types';
 import { calendarFooterVariants } from './calendar-variants';
-
-/**
- * Calendar footer component props
- */
-export interface CalendarFooterProps {
-  onTodayClick?: () => void;
-  showTimePicker?: boolean;
-  className?: string;
-  classNames?: CalendarClassNames;
-}
+import { type CalendarFooterProps } from './types';
 
 /**
  * Calendar footer component with Today button and time selection
@@ -28,6 +18,8 @@ export interface CalendarFooterProps {
 export const CalendarFooter = memo(function CalendarFooter({
   onTodayClick,
   showTimePicker = false,
+  timePickerProps,
+  onTimePickerBlur,
   className,
   classNames,
   ref,
@@ -86,13 +78,17 @@ export const CalendarFooter = memo(function CalendarFooter({
 
         {/* Time Picker (optional) */}
         {showTimePicker && (
-          <Box className="flex items-center gap-2">
+          <Box className="flex items-center gap-2" onBlur={onTimePickerBlur}>
             <TimePicker
+              {...timePickerProps}
               value={selectedDate}
               onChange={context.onTimeChange}
-              placeholder="Select time"
-              use24Hour
-              inputProps={{ className: 'w-28' }}
+              placeholder={timePickerProps?.placeholder ?? 'Select time'}
+              use24Hour={timePickerProps?.use24Hour ?? true}
+              inputProps={{
+                ...timePickerProps?.inputProps,
+                className: cn('w-28', timePickerProps?.inputProps?.className),
+              }}
             />
           </Box>
         )}

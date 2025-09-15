@@ -9,10 +9,10 @@ import { Box } from '../../ui/box';
 import { Button } from '../../ui/button';
 
 import { useCalendarContext } from './calendar-context';
-import type { CalendarHeaderProps } from './calendar-types';
 import { dateUtils } from './calendar-utils';
 import { calendarNavButtonVariants } from './calendar-variants';
 import { MonthSelector } from './month-selector';
+import type { CalendarHeaderProps } from './types';
 import { YearSelector } from './year-selector';
 
 /**
@@ -23,7 +23,7 @@ export const CalendarHeader = memo(function CalendarHeader({
   classNames,
   ref,
   ...props
-}: CalendarHeaderProps & { ref?: React.Ref<HTMLDivElement> }) {
+}: CalendarHeaderProps) {
   const context = useCalendarContext();
 
   const [monthPopoverOpen, setMonthPopoverOpen] = useState<

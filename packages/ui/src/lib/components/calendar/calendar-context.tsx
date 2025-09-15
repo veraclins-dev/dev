@@ -12,8 +12,14 @@ import {
 
 import { getDateTimeFromParts, type Time, toDate } from '@veraclins-dev/utils';
 
-import type { CalendarMode, DateRange, WeekStartsOn } from './calendar-types';
 import { dateUtils } from './calendar-utils';
+import type {
+  CalendarMode,
+  CalendarProviderProps,
+  DateRange,
+  DateValue,
+  WeekStartsOn,
+} from './types';
 
 /**
  * Calendar context value
@@ -60,23 +66,6 @@ export interface CalendarContextValue {
 const CalendarContext = createContext<CalendarContextValue | undefined>(
   undefined,
 );
-
-interface CalendarProviderProps {
-  children: React.ReactNode;
-  // Calendar configuration
-  mode?: CalendarMode;
-  showOutsideDays?: boolean;
-  locale?: string;
-  weekStartsOn?: WeekStartsOn;
-  disabled?: Date[] | ((date: Date) => boolean);
-  minDate?: Date;
-  maxDate?: Date;
-  // Calendar state
-  value?: Date | Date[] | DateRange;
-  defaultValue?: Date | Date[] | DateRange;
-  onValueChange?: (value: Date | Date[] | DateRange) => void;
-  numberOfMonths: number;
-}
 
 // ===== UTILITY FUNCTIONS (Pure functions outside component scope) =====
 
@@ -218,7 +207,7 @@ const isDisabled = (
   date: Date,
   disabledDatesSet: Set<string> | null,
   dateConstraints: { minDate: Date | null; maxDate: Date | null },
-  disabled?: Date[] | ((date: Date) => boolean),
+  disabled?: Date[] | ((date: Date) => boolean) | boolean,
 ): boolean => {
   if (disabledDatesSet) {
     const dateKey = dateUtils.formatDate(date, 'yyyy-MM-dd');
@@ -242,7 +231,7 @@ const isDisabled = (
     return disabled(date);
   }
 
-  return false;
+  return !!disabled;
 };
 
 /**
@@ -310,6 +299,51 @@ export function CalendarProvider({
   );
 
   // ===== HANDLERS =====
+  // Helper function to navigate to a date
+  const navigateToDate = useCallback(
+    (date: Date, month = currentMonth) => {
+      // Check if date is outside current month
+      const isOutside = !isOutsideMonth(date, month);
+
+      if (isOutside) {
+        // For multiple months view, check if the date is in any of the visible months
+        if (numberOfMonths > 1) {
+          const visibleMonths = currentMonths;
+          const isDateInAnyVisibleMonth = visibleMonths.some((visibleMonth) =>
+            dateUtils.isSameMonth(date, visibleMonth),
+          );
+
+          // Only navigate if the date is not in any visible month
+          if (!isDateInAnyVisibleMonth) {
+            // Determine navigation direction based on date position
+            const firstVisibleMonth = visibleMonths[0];
+
+            let targetMonth: Date;
+            if (dateUtils.isBefore(date, firstVisibleMonth)) {
+              // Date is before visible range - navigate to show the date at the start
+              targetMonth = dateUtils.getFirstDayOfMonth(date);
+            } else {
+              // Date is after visible range - navigate to show the date at the end
+              // Calculate the offset to maintain the same number of months
+              const offset = numberOfMonths - 1;
+              targetMonth = dateUtils.subtractMonths(
+                dateUtils.getFirstDayOfMonth(date),
+                offset,
+              );
+            }
+
+            setCurrentMonth(targetMonth);
+          }
+        } else {
+          // Single month view - simple navigation
+          const targetMonth = dateUtils.getFirstDayOfMonth(date);
+          setCurrentMonth(targetMonth);
+        }
+      }
+    },
+    [currentMonth, numberOfMonths, currentMonths, setCurrentMonth],
+  );
+
   // Method to update selected dates
   const updateSelectedDates = useCallback(
     (dates: Date | Date[] | DateRange | undefined) => {
@@ -326,10 +360,7 @@ export function CalendarProvider({
         return;
       }
 
-      // Check if date is outside current month
-      const isOutsideMonth = !dateUtils.isSameMonth(date, month);
-
-      let newSelectedDates: Date | Date[] | DateRange | undefined;
+      let newSelectedDates: DateValue;
 
       switch (mode) {
         case 'single':
@@ -374,41 +405,7 @@ export function CalendarProvider({
       updateSelectedDates(newSelectedDates);
 
       // Handle navigation for outside month dates
-      if (isOutsideMonth) {
-        // For multiple months view, check if the date is in any of the visible months
-        if (numberOfMonths > 1) {
-          const visibleMonths = currentMonths;
-          const isDateInAnyVisibleMonth = visibleMonths.some((visibleMonth) =>
-            dateUtils.isSameMonth(date, visibleMonth),
-          );
-
-          // Only navigate if the date is not in any visible month
-          if (!isDateInAnyVisibleMonth) {
-            // Determine navigation direction based on date position
-            const firstVisibleMonth = visibleMonths[0];
-
-            let targetMonth: Date;
-            if (dateUtils.isBefore(date, firstVisibleMonth)) {
-              // Date is before visible range - navigate to show the date at the start
-              targetMonth = dateUtils.getFirstDayOfMonth(date);
-            } else {
-              // Date is after visible range - navigate to show the date at the end
-              // Calculate the offset to maintain the same number of months
-              const offset = numberOfMonths - 1;
-              targetMonth = dateUtils.subtractMonths(
-                dateUtils.getFirstDayOfMonth(date),
-                offset,
-              );
-            }
-
-            setCurrentMonth(targetMonth);
-          }
-        } else {
-          // Single month view - simple navigation
-          const targetMonth = dateUtils.getFirstDayOfMonth(date);
-          setCurrentMonth(targetMonth);
-        }
-      }
+      navigateToDate(date, month);
       onValueChange?.(newSelectedDates);
     },
 
@@ -418,10 +415,8 @@ export function CalendarProvider({
       disabled,
       mode,
       selectedDates,
-      numberOfMonths,
-      currentMonths,
       updateSelectedDates,
-      setCurrentMonth,
+      navigateToDate,
       onValueChange,
     ],
   );
@@ -578,7 +573,7 @@ export function CalendarProvider({
     (time: Time) => {
       if (!selectedDates) return;
 
-      let newSelectedDates: Date | Date[] | DateRange;
+      let newSelectedDates: DateValue;
 
       switch (mode) {
         case 'single': {
@@ -644,6 +639,28 @@ export function CalendarProvider({
       isUpdatingFromProps.current = false;
     }
   }, [value, updateSelectedDates]);
+
+  // Navigate to selected date when value changes externally
+  useEffect(() => {
+    if (value !== undefined && !isUpdatingFromProps.current) {
+      // Extract the date to navigate to based on the value type
+      let dateToNavigate: Date | undefined;
+
+      if (value instanceof Date) {
+        dateToNavigate = value;
+      } else if (Array.isArray(value) && value.length > 0) {
+        // For multiple or range mode, navigate to the first date
+        dateToNavigate = value[0];
+      } else if (value && typeof value === 'object' && 'from' in value) {
+        // For range mode, navigate to the from date
+        dateToNavigate = (value as DateRange).from;
+      }
+
+      if (dateToNavigate) {
+        navigateToDate(dateToNavigate);
+      }
+    }
+  }, [value, navigateToDate]);
 
   // ===== CONTEXT VALUE =====
   const contextValue = useMemo<CalendarContextValue>(

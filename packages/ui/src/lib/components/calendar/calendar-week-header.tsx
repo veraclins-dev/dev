@@ -7,12 +7,12 @@ import { cn } from '@veraclins-dev/utils';
 import { Box } from '../../ui/box';
 
 import { useCalendarContext } from './calendar-context';
-import type { CalendarWeekHeaderProps } from './calendar-types';
 import { dateUtils } from './calendar-utils';
 import {
   calendarWeekHeaderCellVariants,
   calendarWeekHeaderVariants,
 } from './calendar-variants';
+import type { CalendarWeekHeaderProps } from './types';
 
 /**
  * Calendar week header component - optimized with memoization

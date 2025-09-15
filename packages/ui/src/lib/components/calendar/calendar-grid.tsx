@@ -5,25 +5,14 @@ import { cn } from '@veraclins-dev/utils';
 import { Box } from '../../ui/box';
 
 import { useCalendarContext } from './calendar-context';
+import { MonthGrid } from './month-grid';
 import type {
   CalendarClassNames,
+  CalendarGridProps,
   CalendarMode,
   DateRange,
-} from './calendar-types';
-import { MonthGrid } from './month-grid';
+} from './types';
 
-/**
- * Calendar grid component props
- */
-export interface CalendarGridProps {
-  monthGrid: Date[][];
-  value?: Date | Date[] | DateRange;
-  mode?: CalendarMode;
-  showOutsideDays?: boolean;
-  disabled?: Date[] | ((date: Date) => boolean);
-  className?: string;
-  classNames?: CalendarClassNames;
-}
 /**
  * Calendar grid component
  */

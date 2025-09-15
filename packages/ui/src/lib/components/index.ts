@@ -1,5 +1,6 @@
 export * from './calendar';
 export * from './data-table';
+export * from './date-picker';
 export * from './divider';
 export * from './error-list';
 export * from './input-fields';
