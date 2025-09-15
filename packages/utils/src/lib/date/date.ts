@@ -1,5 +1,11 @@
 import { DateTime } from 'luxon';
 
+import {
+  CATEGORIZED_DATE_PATTERNS,
+  type CategorizedDatePattern,
+  type DateFormatPattern,
+} from './definitions';
+
 /**
  * Parses a date string, number, or Date object into a Luxon DateTime object
  *
@@ -273,7 +279,7 @@ export const startOfPeriod = (period: StartOfPeriod): Date => {
  * endOfPeriod('Next 2 quarters') // Date 2 quarters from now
  * ```
  */
-export const endOfPeriod = (period: EndOfPeriod): Date | null => {
+export const endOfPeriod = (period: EndOfPeriod): Date => {
   const now = DateTime.now();
 
   if (period === 'Today') {
@@ -295,6 +301,20 @@ export const endOfPeriod = (period: EndOfPeriod): Date | null => {
     return toDate(now.endOf(unit));
   }
   return toDate(now.plus({ days: 7 }));
+};
+
+type DatePeriod =
+  | { start: StartOfPeriod; end?: EndOfPeriod }
+  | { start?: StartOfPeriod; end: EndOfPeriod };
+
+export const getDatePeriod = (period: DatePeriod) => {
+  if (period.start && period.end) {
+    return { start: startOfPeriod(period.start), end: endOfPeriod(period.end) };
+  }
+  if (period.start) {
+    return { start: startOfPeriod(period.start), end: endOfPeriod('Today') };
+  }
+  return { end: endOfPeriod(period.end), start: startOfPeriod('Today') };
 };
 
 /**
@@ -1000,4 +1020,243 @@ export const getTimezoneOffset = (
   const dt = parseToDateTime(date);
   const zoned = dt.setZone(timezone);
   return zoned.offset;
+};
+
+/**
+ * Analyze the structure of a date input string
+ */
+interface DateStructure {
+  hasYear: boolean;
+  hasMonth: boolean;
+  hasDay: boolean;
+  isISO: boolean;
+  isNumeric: boolean;
+  isText: boolean;
+  separatorCount: number;
+  separatorType: 'slash' | 'dash' | 'space' | 'comma' | 'none';
+  length: number;
+}
+
+/**
+ * Analyze the structure of a date input string
+ */
+const analyzeDateStructure = (normalized: string): DateStructure => {
+  const length = normalized.length;
+
+  // Check for separators
+  const slashCount = (normalized.match(/\//g) || []).length;
+  const dashCount = (normalized.match(/-/g) || []).length;
+  const spaceCount = (normalized.match(/\s/g) || []).length;
+  const commaCount = (normalized.match(/,/g) || []).length;
+
+  const separatorCount = slashCount + dashCount + spaceCount + commaCount;
+
+  let separatorType: 'slash' | 'dash' | 'space' | 'comma' | 'none' = 'none';
+  if (slashCount > 0) separatorType = 'slash';
+  else if (dashCount > 0) separatorType = 'dash';
+  else if (spaceCount > 0) separatorType = 'space';
+  else if (commaCount > 0) separatorType = 'comma';
+
+  // Check for ISO format (YYYY-MM-DD or YYYY-M-D)
+  const isISO =
+    /^\d{4}-\d{1,2}-\d{1,2}$/.test(normalized) ||
+    /^\d{4}-\d{1,2}$/.test(normalized) ||
+    /^\d{4}$/.test(normalized);
+
+  // Check for numeric format (DD/MM/YYYY, MM/DD/YYYY, etc.)
+  const isNumeric =
+    /^\d+[/-]\d+([/-]\d+)?$/.test(normalized) || /^\d{1,4}$/.test(normalized);
+
+  // Check for text format (contains letters)
+  const isText = /[A-Za-z]/.test(normalized);
+
+  // Determine what parts are present
+  const parts = normalized.split(/[/\-\s,]+/);
+  const hasYear =
+    parts.some((part) => part.length === 4 && /^\d{4}$/.test(part)) ||
+    parts.some((part) => part.length === 2 && /^\d{2}$/.test(part));
+  const hasMonth =
+    parts.some((part) => {
+      const num = parseInt(part, 10);
+      return !isNaN(num) && num >= 1 && num <= 12;
+    }) || /[A-Za-z]/.test(normalized);
+  const hasDay = parts.some((part) => {
+    const num = parseInt(part, 10);
+    return !isNaN(num) && num >= 1 && num <= 31;
+  });
+
+  return {
+    hasYear,
+    hasMonth,
+    hasDay,
+    isISO,
+    isNumeric,
+    isText,
+    separatorCount,
+    separatorType,
+    length,
+  };
+};
+
+/**
+ * Check if a pattern is compatible with the input structure
+ */
+const isDatePatternCompatible = (
+  pattern: CategorizedDatePattern,
+  structure: DateStructure,
+): boolean => {
+  // Check separator compatibility
+  if (pattern.separatorType !== structure.separatorType) {
+    return false;
+  }
+
+  // Check separator count compatibility
+  if (pattern.separatorCount !== structure.separatorCount) {
+    return false;
+  }
+
+  // Check length compatibility (allow some flexibility)
+  if (
+    pattern.length < structure.length - 3 ||
+    pattern.length > structure.length + 3
+  ) {
+    return false;
+  }
+
+  // Check component compatibility
+  if (pattern.hasYear !== structure.hasYear) {
+    return false;
+  }
+  if (pattern.hasMonth !== structure.hasMonth) {
+    return false;
+  }
+  if (pattern.hasDay !== structure.hasDay) {
+    return false;
+  }
+
+  // Check format type compatibility
+  if (pattern.isISO !== structure.isISO) {
+    return false;
+  }
+  if (pattern.isNumeric !== structure.isNumeric) {
+    return false;
+  }
+  if (pattern.isText !== structure.isText) {
+    return false;
+  }
+
+  return true;
+};
+
+/**
+ * Get filtered date patterns based on input structure analysis
+ */
+export const getFilteredDatePatterns = (
+  input: string,
+): CategorizedDatePattern[] => {
+  const normalized = input.trim();
+
+  // Early exit for obvious cases
+  if (normalized.length === 0) return [];
+  if (normalized.length > 20) return []; // No pattern is this long
+
+  // Analyze the input structure
+  const structure = analyzeDateStructure(normalized);
+
+  // Filter patterns by structure compatibility
+  return CATEGORIZED_DATE_PATTERNS.filter((pattern) =>
+    isDatePatternCompatible(pattern, structure),
+  );
+};
+
+/**
+ * Parse a date string into a DateTime object using flexible format detection
+ *
+ * @param dateString - The date string to parse (e.g., "25/12/2023", "2023-12-25", "Dec 25, 2023")
+ * @param format - Optional specific format pattern to use instead of auto-detection
+ * @returns A DateTime object with the parsed date, or null if parsing fails
+ *
+ * @example
+ * ```typescript
+ * parseDateString('25/12/2023') // DateTime object with 25 Dec 2023
+ * parseDateString('2023-12-25') // DateTime object with 25 Dec 2023
+ * parseDateString('Dec 25, 2023') // DateTime object with 25 Dec 2023
+ * parseDateString('25/12/2023', 'dd/MM/yyyy') // Use specific format
+ * ```
+ */
+export const parseDateString = (
+  dateString: string,
+  format?: DateFormatPattern,
+): DateTime | null => {
+  if (!dateString || typeof dateString !== 'string') {
+    return null;
+  }
+
+  const normalized = dateString.trim();
+
+  // If a specific format is provided, use it directly
+  if (format) {
+    try {
+      const parsedDate = DateTime.fromFormat(normalized, format);
+      if (parsedDate.isValid) {
+        return parsedDate;
+      }
+    } catch {
+      // Return null if the specific format fails
+      return null;
+    }
+    return null;
+  }
+
+  // Use smart filtering to reduce the number of patterns to try
+  const filteredPatterns = getFilteredDatePatterns(normalized);
+
+  // Try filtered format patterns for auto-detection
+  for (const { pattern } of filteredPatterns) {
+    try {
+      const parsedDate = DateTime.fromFormat(normalized, pattern);
+
+      if (parsedDate.isValid) {
+        return parsedDate;
+      }
+    } catch {
+      // Continue to next pattern if this one fails
+      continue;
+    }
+  }
+
+  // Fallback to native Date parsing
+  try {
+    const nativeDate = new Date(normalized);
+    if (nativeDate instanceof Date && !isNaN(nativeDate.getTime())) {
+      return DateTime.fromJSDate(nativeDate);
+    }
+  } catch {
+    // Return null if all parsing attempts fail
+  }
+
+  return null;
+};
+
+/**
+ * Parse a date string into a Date object using flexible format detection
+ *
+ * @param dateString - The date string to parse (e.g., "25/12/2023", "2023-12-25", "Dec 25, 2023")
+ * @param format - Optional specific format pattern to use instead of auto-detection
+ * @returns A Date object with the parsed date, or null if parsing fails
+ *
+ * @example
+ * ```typescript
+ * parseDateStringToDate('25/12/2023') // Date object with 25 Dec 2023
+ * parseDateStringToDate('2023-12-25') // Date object with 25 Dec 2023
+ * parseDateStringToDate('Dec 25, 2023') // Date object with 25 Dec 2023
+ * parseDateStringToDate('25/12/2023', 'dd/MM/yyyy') // Use specific format
+ * ```
+ */
+export const parseDateStringToDate = (
+  dateString: string,
+  format?: DateFormatPattern,
+): Date | null => {
+  const dt = parseDateString(dateString, format);
+  return dt ? toDate(dt) : null;
 };
