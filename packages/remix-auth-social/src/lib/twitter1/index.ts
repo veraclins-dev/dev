@@ -167,7 +167,7 @@ export class Twitter1Strategy<User> extends Strategy<User, VerifyOptions> {
         username: profile.screen_name ?? emailToUserName(email),
         photo: profile.profile_image_url_https,
         name: profile.name,
-        provider: 'twitter',
+        provider: 'x',
         bio: profile.description,
         location: profile.location,
       },
@@ -224,7 +224,7 @@ export class Twitter1Strategy<User> extends Strategy<User, VerifyOptions> {
     const urlString = url.toString();
     debug('Fetching request token', urlString);
     const response = await fetch(urlString, {
-      method: 'GET',
+      method: 'POST',
     });
 
     if (!response.ok) {
