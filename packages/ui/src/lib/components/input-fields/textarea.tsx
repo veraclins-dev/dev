@@ -17,7 +17,7 @@ import {
 export interface TextareaFieldProps
   extends Omit<TextareaProps, 'ref'>,
     Pick<React.ComponentProps<'div'>, 'ref'>,
-    BaseInputProps {
+    BaseInputProps<string> {
   rightInlay?: React.ReactNode;
   inputRef?: React.Ref<HTMLTextAreaElement>;
 }

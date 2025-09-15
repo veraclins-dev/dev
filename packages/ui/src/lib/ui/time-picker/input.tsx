@@ -48,17 +48,13 @@ export type TimePickerInputProps = Omit<
   InputWrapperProps,
   'ref' | 'onChange' | 'children' | 'id'
 > &
-  Omit<
-    InputProps,
-    'value' | 'onChange' | 'onFocus' | 'pattern' | 'ref' | 'id'
-  > & {
+  Omit<InputProps, 'value' | 'onChange' | 'onFocus' | 'pattern' | 'ref'> & {
     time?: Time;
     onChange?: (time: Time) => void;
     onFocus?: () => void;
     use24Hour?: boolean;
     showSeconds?: boolean;
     icon?: IconName;
-    id?: string;
   };
 
 export const TimePickerInput = ({

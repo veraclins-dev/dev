@@ -59,28 +59,28 @@ export const TextField = ({
       ref={ref}
       inputProps={props}
     >
-      {leftIcon && <Icon name={leftIcon} size="sm" />}
       <Input
         {...props}
         {...inputProps}
         key={key}
         ref={inputRef}
         id={id}
+        leftIcon={leftIcon}
+        rightIcon={
+          isPassword
+            ? {
+                name: passwordIcon,
+                size: 'sm',
+                className: 'cursor-pointer',
+                onClick: toggleHidden,
+              }
+            : rightIcon
+        }
         aria-describedby={errorId}
         aria-invalid={errorId ? true : undefined}
         type={isPassword && !hidden ? 'text' : type}
         className={cn(INPUT_CLASS_OVERRIDES, inputClass)}
       />
-      {isPassword ? (
-        <Icon
-          onClick={toggleHidden}
-          size="sm"
-          name={passwordIcon}
-          className="cursor-pointer"
-        />
-      ) : rightIcon ? (
-        <Icon size="sm" name={rightIcon} className="cursor-pointer" />
-      ) : null}
       {rightAddon}
     </InputFieldWrapper>
   );

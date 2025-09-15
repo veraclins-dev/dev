@@ -31,6 +31,7 @@ const inputVariants = cva({
   base: INPUT_CLASSES,
   ...shared,
 });
+
 const inputContainerVariants = cva({
   base: INPUT_CONTAINER_CLASSES,
   ...shared,

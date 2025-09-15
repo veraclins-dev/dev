@@ -13,6 +13,7 @@ import {
   INPUT_CLASS_OVERRIDES,
   List,
   ListItem,
+  type ListItemProps,
   Popover,
   PopoverAnchor,
   PopoverContent,
@@ -28,6 +29,15 @@ import {
 
 import { type AutocompleteProps } from './types';
 import { useAutocomplete } from './use-autocomplete';
+
+const AutocompleteListItem = ({ className, ...props }: ListItemProps) => {
+  return (
+    <ListItem
+      {...props}
+      className={cn('cursor-pointer px-2 py-1.5 rounded-sm', className)}
+    />
+  );
+};
 
 /**
  * A flexible and customizable Autocomplete component that allows users to select one or multiple options
@@ -311,16 +321,16 @@ export const Autocomplete = ({
             variant="none"
           >
             {dependent ? (
-              <ListItem
+              <AutocompleteListItem
                 variant="selectable"
                 disabled={true}
                 className="text-muted-foreground"
               >
                 Select a value for "
                 {dependsOn ? humanize(dependsOn) : 'dependent field'}" first
-              </ListItem>
+              </AutocompleteListItem>
             ) : freeSolo && localValue ? (
-              <ListItem
+              <AutocompleteListItem
                 variant="selectable"
                 focused={focusedIndex === -1}
                 onMouseDown={(e) => {
@@ -332,9 +342,9 @@ export const Autocomplete = ({
                 {multiple
                   ? `Press Enter, type "${separatorChar}" or click to accept "${localValue}"`
                   : `Press Enter or click to accept "${localValue}"`}
-              </ListItem>
+              </AutocompleteListItem>
             ) : freeSolo && !localValue ? (
-              <ListItem
+              <AutocompleteListItem
                 variant="selectable"
                 disabled={true}
                 className="text-muted-foreground"
@@ -342,18 +352,18 @@ export const Autocomplete = ({
                 {multiple
                   ? `Type a value and press Enter, type "${separatorChar}" or click to accept it`
                   : 'Type a value and press Enter or click to accept it'}
-              </ListItem>
+              </AutocompleteListItem>
             ) : filteredOptions.length === 0 ? (
-              <ListItem
+              <AutocompleteListItem
                 variant="selectable"
                 disabled={true}
                 className="text-muted-foreground"
               >
                 No options found
-              </ListItem>
+              </AutocompleteListItem>
             ) : (
               filteredOptions.map((option, index) => (
-                <ListItem
+                <AutocompleteListItem
                   key={getOptionValue(option)}
                   value={getOptionValue(option)}
                   role="option"
@@ -374,7 +384,7 @@ export const Autocomplete = ({
                   }}
                 >
                   {getOptionLabel(option)}
-                </ListItem>
+                </AutocompleteListItem>
               ))
             )}
           </List>
