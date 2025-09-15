@@ -1,0 +1,289 @@
+---
+description: Component architecture patterns and conventions
+globs: ['**/*.tsx', '**/*.ts']
+alwaysApply: true
+---
+
+# Component Architecture Guidelines
+
+## Component Structure
+
+### Standard Component Pattern
+
+```typescript
+interface Props extends React.HTMLAttributes<HTMLElement>, ComponentVariants {
+  // Component-specific props
+}
+
+function Component({ className, ...props }: Props) {
+  return (
+    <Element
+      data-slot="component-name"
+      className={cn(baseClasses, className)}
+      {...props}
+    />
+  );
+}
+
+export { Component, type Props };
+```
+
+### Key Requirements
+
+- **No forwardRef:** Use React 19 ref prop pattern instead
+- **Memo usage:** Use `memo()` for expensive components
+- **Data attributes:** Include `data-slot` for component identification
+- **Variant system:** Use CVA-based styling with compound variants
+- **Composition:** Extend HTML element props + component variants
+
+## Memoization Guidelines
+
+### When to Use Memo
+
+```typescript
+// Use memo for expensive components
+const ExpensiveComponent = memo(function ExpensiveComponent({ data }: Props) {
+  return <div>{data.map(item => <Item key={item.id} data={item} />)}</div>;
+});
+
+// Use memo for components that receive complex props
+const ComplexComponent = memo(function ComplexComponent({
+  config,
+  onUpdate
+}: ComplexProps) {
+  // Complex rendering logic
+  return <div>...</div>;
+});
+```
+
+### Memoization Patterns
+
+```typescript
+// Memoize components with expensive calculations
+const ChartComponent = memo(function ChartComponent({ data }: ChartProps) {
+  const processedData = useMemo(() =>
+    processChartData(data), [data]
+  );
+
+  return <Chart data={processedData} />;
+});
+
+// Memoize components with complex rendering
+const DataTable = memo(function DataTable({
+  rows,
+  columns,
+  onSort
+}: DataTableProps) {
+  return (
+    <table>
+      {rows.map(row => (
+        <tr key={row.id}>
+          {columns.map(col => (
+            <td key={col.key}>{row[col.key]}</td>
+          ))}
+        </tr>
+      ))}
+    </table>
+  );
+});
+```
+
+### Memoization Guidelines
+
+- Use `memo()` for components that render expensive operations
+- Use `memo()` for components that receive complex object props
+- Use `memo()` for components that are rendered frequently
+- Don't over-memoize simple components
+- Consider memoization when props change frequently but component output doesn't
+
+## Component Composition
+
+### Extending Existing Components
+
+- Compose components by extending existing ones rather than duplicating
+- Use `Pick<>` and `extends` for type composition
+- Reuse existing types instead of creating new ones
+- Follow the established component structure patterns
+
+### Component Families
+
+- Group related components in subdirectories
+- Use consistent naming patterns within families
+- Share common types and utilities within families
+
+## Props Interface Patterns
+
+### Standard Props Interface
+
+```typescript
+interface Props extends React.HTMLAttributes<HTMLElement>, ComponentVariants {
+  // Required props
+  children?: React.ReactNode;
+
+  // Optional props
+  className?: string;
+  disabled?: boolean;
+
+  // Component-specific props
+  variant?: ComponentVariant;
+  size?: ComponentSize;
+}
+```
+
+### Props Guidelines
+
+- Extend HTML element props for accessibility
+- Include component variants in props interface
+- Use optional props with sensible defaults
+- Group related props together
+- Use descriptive prop names
+
+## Component Export Patterns
+
+### Standard Export
+
+```typescript
+// Export component and types
+export { Component, type ComponentProps };
+
+// Export variants
+export type { ComponentVariant, ComponentSize };
+
+// Re-export from index
+export * from './component';
+export * from './component-context';
+```
+
+### Export Guidelines
+
+- Export components and types together
+- Use named exports for clarity
+- Re-export from index files
+- Group related exports together
+
+## Anti-Patterns to Avoid
+
+### Component Anti-Patterns
+
+- Don't use forwardRef - use React 19 ref prop
+- Don't create components that duplicate existing functionality
+- Don't hardcode values that should be configurable
+- Don't create overly complex components - break them down
+- Don't use class components - use functional components
+
+### Props Anti-Patterns
+
+- Don't create new types when existing ones can be extended
+- Don't use `any` type - use proper type definitions
+- Don't duplicate type definitions across files
+- Don't create interfaces that just mirror existing ones
+
+## Playground Showcases
+
+### Showcase Structure
+
+When creating component showcases for the playground app, follow this pattern:
+
+```typescript
+// apps/playground/app/components/component-name.tsx
+import { useState } from 'react';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  ComponentName,
+  List,
+  ListItem,
+  Typography,
+  type ComponentProps,
+} from '@veraclins-dev/ui';
+import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
+export function ComponentNameShowcase() {
+  const [value, setValue] = useState<ComponentProps['value']>();
+
+  return (
+    <Box className="space-y-8">
+      <PlaygroundBreadcrumb currentPage="Component Name" />
+
+      <Box>
+        <Typography variant="h1" className="mb-2">
+          Component Name
+        </Typography>
+        <Typography variant="body1" className="text-muted-foreground">
+          Description of the component and its purpose.
+        </Typography>
+      </Box>
+
+      {/* Basic Usage */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Basic Usage</CardTitle>
+          <CardDescription>Simple usage example</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <ComponentName
+            value={value}
+            onValueChange={setValue}
+            placeholder="Example placeholder"
+          />
+        </CardContent>
+      </Card>
+
+      {/* API Reference */}
+      <Card>
+        <CardHeader>
+          <CardTitle>API Reference</CardTitle>
+          <CardDescription>Key props and configuration options</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <List className="space-y-2">
+            <ListItem>
+              <Typography variant="body2">
+                <code>propName</code> - Description of the prop
+              </Typography>
+            </ListItem>
+          </List>
+        </CardContent>
+      </Card>
+    </Box>
+  );
+}
+```
+
+### Route Structure
+
+```typescript
+// apps/playground/app/routes/component-name.tsx
+import { ComponentNameShowcase } from '../components/component-name';
+
+export default function ComponentName() {
+  return <ComponentNameShowcase />;
+}
+```
+
+### Navigation Integration
+
+Add the showcase to the main navigation in `nx-welcome.tsx`:
+
+```typescript
+{
+  path: '/component-name',
+  label: 'Component Name',
+  description: 'Brief description of the component functionality.',
+},
+```
+
+### Showcase Guidelines
+
+- Use `PlaygroundBreadcrumb` with `currentPage` prop
+- Include comprehensive examples (basic, sizes, states, custom config)
+- Show real-world use cases
+- Provide complete API reference
+- Use proper TypeScript types
+- Follow consistent card structure
+- Use `Typography` variants correctly (`h1`, `body1`, `body2`, `subtitle2`)
+- Use `<code>` tags for inline code, not Typography components

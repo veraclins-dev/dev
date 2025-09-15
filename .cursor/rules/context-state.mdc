@@ -1,0 +1,239 @@
+---
+description: Context patterns, state management, and provider conventions
+globs: ['**/*context*.tsx', '**/*provider*.tsx', '**/*state*.tsx']
+alwaysApply: true
+---
+
+# Context & State Management Guidelines
+
+## Context Architecture
+
+### Standard Context Pattern
+
+```typescript
+export interface ComponentContextValue {
+  // State
+  value: ValueType;
+  isOpen: boolean;
+  selectedItem: ItemType | undefined;
+
+  // Actions
+  onValueChange: (value: ValueType) => void;
+  onOpenChange: (open: boolean) => void;
+  onItemSelect: (item: ItemType) => void;
+
+  // Utilities
+  formatValue: (value: ValueType) => string;
+  isSelected: (item: ItemType) => boolean;
+}
+
+const ComponentContext = createContext<ComponentContextValue | undefined>(
+  undefined,
+);
+```
+
+### Provider Pattern
+
+```typescript
+interface ComponentProviderProps {
+  children: React.ReactNode;
+  value?: ValueType;
+  onValueChange?: (value: ValueType) => void;
+  // Configuration props
+  mode?: ComponentMode;
+  disabled?: boolean;
+}
+
+export function ComponentProvider({
+  children,
+  value,
+  onValueChange,
+  mode = 'single',
+  disabled = false,
+}: ComponentProviderProps) {
+  const contextValue = useMemo(() => ({
+    value,
+    isOpen: false,
+    onValueChange,
+    onOpenChange: () => {},
+    formatValue: (val) => val.toString(),
+  }), [value, onValueChange]);
+
+  return (
+    <ComponentContext.Provider value={contextValue}>
+      {children}
+    </ComponentContext.Provider>
+  );
+}
+```
+
+## Context Design Principles
+
+### Single Responsibility
+
+- One context per component family
+- Focus on truly shared state
+- Don't duplicate functionality from other contexts
+- Keep context minimal and focused
+
+### State Management
+
+- Use context for state that needs to be shared across multiple components
+- Prefer prop drilling for simple data passing
+- Use local state when possible
+- Consider using context for complex state interactions
+
+### Utility Functions
+
+- Include formatting and helper functions in context
+- Provide utility functions that depend on context state
+- Don't include functions that can be pure utilities
+
+## Context Usage Patterns
+
+### Hook Pattern
+
+```typescript
+export function useComponentContext() {
+  const context = useContext(ComponentContext);
+  if (context === undefined) {
+    throw new Error(
+      'useComponentContext must be used within a ComponentProvider',
+    );
+  }
+  return context;
+}
+```
+
+### Context Value Structure
+
+```typescript
+const contextValue = useMemo(
+  () => ({
+    // Core state
+    value,
+    isOpen,
+    selectedItem,
+
+    // Actions
+    onValueChange,
+    onOpenChange,
+    onItemSelect,
+
+    // Utilities
+    formatValue,
+    isSelected,
+    isDisabled,
+  }),
+  [value, isOpen, selectedItem, onValueChange, onOpenChange, onItemSelect],
+);
+```
+
+## State Management Patterns
+
+### Local State
+
+```typescript
+// Use local state for component-specific state
+const [isOpen, setIsOpen] = useState(false);
+const [selectedItem, setSelectedItem] = useState<ItemType | undefined>();
+```
+
+### Derived State
+
+```typescript
+// Use useMemo for derived state
+const formattedValue = useMemo(() => formatValue(value), [value]);
+
+const isSelected = useCallback(
+  (item: ItemType) => selectedItem?.id === item.id,
+  [selectedItem],
+);
+```
+
+### State Updates
+
+```typescript
+// Use useCallback for event handlers
+const handleValueChange = useCallback(
+  (newValue: ValueType) => {
+    onValueChange?.(newValue);
+  },
+  [onValueChange],
+);
+
+const handleOpenChange = useCallback(
+  (open: boolean) => {
+    setIsOpen(open);
+    onOpenChange?.(open);
+  },
+  [onOpenChange],
+);
+```
+
+## Context Anti-Patterns
+
+### Context Anti-Patterns
+
+- Don't create context for data that's only used in one component
+- Don't duplicate utility functions that exist elsewhere
+- Don't include unused props in context value
+- Don't create context that just passes through props
+- Don't include complex business logic in context
+
+### State Anti-Patterns
+
+- Don't use context for simple prop drilling
+- Don't create overly complex state structures
+- Don't use context for data that doesn't need to be shared
+- Don't create circular dependencies between contexts
+
+## Performance Considerations
+
+### Memoization
+
+```typescript
+// Memoize context value to prevent unnecessary re-renders
+const contextValue = useMemo(
+  () => ({
+    value,
+    isOpen,
+    onValueChange,
+    onOpenChange,
+  }),
+  [value, isOpen, onValueChange, onOpenChange],
+);
+
+// Memoize expensive calculations
+const expensiveValue = useMemo(() => computeExpensiveValue(data), [data]);
+```
+
+### Callback Optimization
+
+```typescript
+// Use useCallback for event handlers
+const handleClick = useCallback(
+  (event: React.MouseEvent) => {
+    // Handle click
+  },
+  [dependencies],
+);
+```
+
+## Context Testing
+
+### Testing Context
+
+```typescript
+// Test context provider
+const TestWrapper = ({ children }: { children: React.ReactNode }) => (
+  <ComponentProvider value="test" onValueChange={jest.fn()}>
+    {children}
+  </ComponentProvider>
+);
+
+// Test context hook
+const { result } = renderHook(() => useComponentContext(), {
+  wrapper: TestWrapper,
+});
+```

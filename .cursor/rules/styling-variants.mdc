@@ -1,0 +1,245 @@
+---
+description: CVA patterns, theming, responsive design, and styling conventions
+globs: ['**/*.tsx', '**/*.ts', '**/*.css']
+alwaysApply: true
+---
+
+# Styling & Variants Guidelines
+
+## CVA (Class Variance Authority) Patterns
+
+### Standard CVA Pattern
+
+```typescript
+import { cva, type VariantProps } from '@veraclins-dev/cva';
+
+const componentVariants = cva({
+  base: BASE_CLASSES,
+  responsive: {
+    ...styleProps,
+  },
+  variants: {
+    variant: {
+      solid: 'bg-primary text-primary-foreground',
+      outline: 'border border-primary text-primary',
+      text: 'text-primary',
+      soft: 'bg-primary/10 text-primary',
+    },
+    size: {
+      sm: 'h-8 px-3 text-sm',
+      md: 'h-10 px-4 text-base',
+      lg: 'h-12 px-6 text-lg',
+      xl: 'h-14 px-8 text-xl',
+      icon: 'h-10 w-10 p-2',
+    },
+    color: {
+      primary: 'text-primary',
+      secondary: 'text-secondary',
+      destructive: 'text-destructive',
+      neutral: 'text-neutral',
+    },
+  },
+  compoundVariants: [
+    {
+      variant: 'solid',
+      color: 'primary',
+      class: 'bg-primary text-primary-foreground hover:bg-primary/90',
+    },
+  ],
+  defaultVariants: {
+    variant: 'solid',
+    size: 'md',
+    color: 'neutral',
+  },
+});
+
+type ComponentVariants = VariantProps<typeof componentVariants>;
+```
+
+### Variant Design Principles
+
+- Use semantic variant names (solid, outline, text, soft)
+- Use consistent size scales (sm, md, lg, xl, icon)
+- Use theme color names (primary, secondary, destructive, neutral)
+- Use compound variants for complex combinations
+
+## Theme Color System
+
+### Color Usage
+
+```typescript
+// Use theme colors, not hardcoded Tailwind colors
+const styles = {
+  primary: 'bg-primary text-primary-foreground',
+  secondary: 'bg-secondary text-secondary-foreground',
+  destructive: 'bg-destructive text-destructive-foreground',
+  neutral: 'bg-neutral text-neutral-foreground',
+};
+
+// Avoid hardcoded colors
+const badStyles = {
+  blue: 'bg-blue-500 text-white', // ❌ Don't use
+  gray: 'bg-gray-100 text-gray-900', // ❌ Don't use
+};
+```
+
+### Color Guidelines
+
+- Use semantic color names from the theme
+- Use foreground/background color pairs
+- Use opacity variants for subtle effects
+- Follow the established color system
+
+## Responsive Design
+
+### Responsive Variants
+
+```typescript
+const responsiveVariants = cva({
+  base: 'text-sm',
+  responsive: {
+    sm: 'sm:text-base',
+    md: 'md:text-lg',
+    lg: 'lg:text-xl',
+  },
+  variants: {
+    size: {
+      sm: 'h-8 px-3',
+      md: 'h-10 px-4',
+      lg: 'h-12 px-6',
+    },
+  },
+});
+```
+
+### Responsive Guidelines
+
+- Use responsive variants for different screen sizes
+- Follow mobile-first approach
+- Use consistent breakpoints across components
+- Test on different screen sizes
+
+## Styling Utilities
+
+### Class Name Composition
+
+```typescript
+import { cn } from '@veraclins-dev/utils';
+
+// Use cn utility for conditional classes
+const className = cn(
+  baseClasses,
+  variantClasses,
+  conditionalClasses,
+  className,
+);
+```
+
+### Style Props
+
+```typescript
+// Use style props for layout
+const styleProps = {
+  flexDirection: 'flex-col',
+  items: 'items-center',
+  justify: 'justify-center',
+  flexWrap: 'flex-wrap',
+  flex: 'flex-1',
+};
+```
+
+## Component Styling Patterns
+
+### Base Component Styling
+
+```typescript
+function Component({ className, variant, size, ...props }: Props) {
+  return (
+    <Element
+      className={cn(componentVariants({ variant, size }), className)}
+      {...props}
+    />
+  );
+}
+```
+
+### Conditional Styling
+
+```typescript
+// Use conditional classes
+const className = cn(
+  'base-class',
+  {
+    'active-class': isActive,
+    'disabled-class': isDisabled,
+    'error-class': hasError,
+  },
+  className,
+);
+```
+
+## Styling Anti-Patterns
+
+### Styling Anti-Patterns
+
+- Don't use hardcoded Tailwind colors
+- Don't use arbitrary values without good reason
+- Don't create overly complex class combinations
+- Don't use inline styles for theme values
+- Don't duplicate styling logic across components
+
+### Variant Anti-Patterns
+
+- Don't create too many variants
+- Don't use inconsistent naming
+- Don't create variants that are too similar
+- Don't use compound variants unnecessarily
+
+## Performance Considerations
+
+### Class Optimization
+
+```typescript
+// Memoize class calculations
+const className = useMemo(
+  () => cn(componentVariants({ variant, size }), className),
+  [variant, size, className],
+);
+```
+
+### CSS-in-JS Alternatives
+
+- Use Tailwind CSS classes
+- Use CVA for variant management
+- Avoid runtime style calculations
+- Use CSS custom properties for theme values
+
+## Styling Testing
+
+### Visual Testing
+
+```typescript
+// Test different variants
+export const AllVariants: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <Component variant="solid" size="sm" />
+      <Component variant="outline" size="md" />
+      <Component variant="text" size="lg" />
+    </div>
+  ),
+};
+```
+
+### Responsive Testing
+
+```typescript
+// Test responsive behavior
+export const Responsive: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
+};
+```

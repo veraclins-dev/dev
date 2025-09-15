@@ -1,0 +1,275 @@
+---
+description: Directory structure, naming conventions, and file organization patterns
+globs: ['**/*']
+alwaysApply: true
+---
+
+# File Organization Guidelines
+
+## Directory Structure
+
+### Package Organization
+
+```
+packages/
+├── ui/
+│   ├── src/
+│   │   ├── lib/
+│   │   │   ├── components/     # Complex components
+│   │   │   ├── ui/            # Basic UI components
+│   │   │   ├── icons/         # Icon system
+│   │   │   ├── types.ts       # Shared types
+│   │   │   └── utils.ts       # Shared utilities
+│   │   └── index.ts           # Main exports
+│   └── package.json
+├── utils/
+│   ├── src/
+│   │   ├── lib/
+│   │   │   ├── date/          # Date utilities
+│   │   │   ├── dom.ts         # DOM utilities
+│   │   │   └── validation.ts  # Validation utilities
+│   │   └── index.ts
+│   └── package.json
+└── form/
+    ├── src/
+    │   ├── lib/
+    │   │   ├── client/        # Client-side code
+    │   │   ├── server/        # Server-side code
+    │   │   └── types.ts
+    │   └── index.ts
+    └── package.json
+```
+
+### Component Organization
+
+```
+components/
+├── calendar/
+│   ├── index.ts              # Main exports
+│   ├── calendar.tsx          # Main component
+│   ├── calendar-context.tsx  # Context provider
+│   ├── calendar-types.ts     # Type definitions
+│   ├── calendar-utils.ts     # Utility functions
+│   └── calendar.stories.tsx  # Storybook stories
+├── date-picker/
+│   ├── index.ts
+│   ├── date-picker.tsx
+│   ├── date-picker-context.tsx
+│   ├── date-picker-types.ts
+│   ├── date-picker-content.tsx
+│   ├── date-picker-trigger.tsx
+│   ├── date-picker-popover.tsx
+│   └── README.md
+└── input-fields/
+    ├── index.ts
+    ├── textfield.tsx
+    ├── textfield.stories.tsx
+    ├── autocomplete/
+    │   ├── index.ts
+    │   ├── autocomplete.tsx
+    │   ├── autocomplete.stories.tsx
+    │   ├── types.ts
+    │   ├── use-autocomplete.ts
+    │   └── utils.ts
+    └── utils.ts
+```
+
+## Naming Conventions
+
+### File Naming
+
+- **Components:** `kebab-case.tsx` (e.g., `date-picker.tsx`)
+- **Types:** `kebab-case.ts` (e.g., `component-types.ts`)
+- **Stories:** `component.stories.tsx`
+- **Tests:** `component.spec.ts`
+- **Utils:** `kebab-case.ts` (e.g., `date-utils.ts`)
+- **Context:** `component-context.tsx`
+- **Hooks:** `use-hook-name.ts`
+
+### Component Naming
+
+- **Components:** `PascalCase` (e.g., `DatePicker`)
+- **Hooks:** `camelCase` starting with `use` (e.g., `useDatePicker`)
+- **Types:** `PascalCase` (e.g., `DatePickerProps`)
+- **Interfaces:** `PascalCase` (e.g., `DatePickerContextValue`)
+
+### Variable Naming
+
+- **Variables:** `camelCase` (e.g., `isOpen`, `selectedDate`)
+- **Constants:** `UPPER_SNAKE_CASE` (e.g., `DEFAULT_SIZE`)
+- **Functions:** `camelCase` (e.g., `formatValue`, `handleClick`)
+
+## File Organization Patterns
+
+### Component Files
+
+```
+component/
+├── index.ts              # Main exports
+├── component.tsx         # Main component
+├── component-context.tsx # Context provider
+├── component-types.ts    # Type definitions
+├── component-utils.ts    # Utility functions
+├── component.stories.tsx # Storybook stories
+└── README.md            # Documentation
+```
+
+### Utility Files
+
+```
+utils/
+├── index.ts             # Main exports
+├── date-utils.ts        # Date utilities
+├── dom-utils.ts         # DOM utilities
+├── validation-utils.ts  # Validation utilities
+└── format-utils.ts      # Formatting utilities
+```
+
+### Type Files
+
+```
+types/
+├── index.ts             # Main type exports
+├── component-types.ts   # Component types
+├── api-types.ts         # API types
+├── form-types.ts        # Form types
+└── common-types.ts      # Common types
+```
+
+## Import/Export Organization
+
+### Index File Patterns
+
+```typescript
+// Main component exports
+export { Component } from './component';
+export { ComponentProvider, useComponentContext } from './component-context';
+
+// Type exports
+export type {
+  ComponentProps,
+  ComponentVariant,
+  ComponentSize,
+} from './component-types';
+
+// Utility exports
+export { formatValue, validateValue } from './component-utils';
+```
+
+### Component File Exports
+
+```typescript
+// Export component and types
+export { Component, type ComponentProps };
+
+// Export variants
+export type { ComponentVariant, ComponentSize };
+
+// Export context
+export { ComponentProvider, useComponentContext };
+```
+
+## File Organization Anti-Patterns
+
+### File Anti-Patterns
+
+- Don't create too many nested directories
+- Don't use inconsistent naming conventions
+- Don't put unrelated files in the same directory
+- Don't create circular dependencies
+- Don't use unclear file names
+
+### Directory Anti-Patterns
+
+- Don't create overly deep directory structures
+- Don't mix different types of files
+- Don't create empty directories
+- Don't use inconsistent organization patterns
+
+## Module Boundaries
+
+### Package Dependencies
+
+```typescript
+// type:ui can only depend on:
+// - type:ui
+// - type:utils
+// - type:react-utils
+
+// type:app can only depend on:
+// - type:auth
+// - type:editor
+// - type:ui
+// - type:utils
+// - type:react-utils
+```
+
+### Module Boundary Guidelines
+
+- Follow the established module boundary rules
+- Don't create circular dependencies
+- Keep dependencies minimal
+- Use proper abstraction layers
+- Document module boundaries
+
+## File Size Guidelines
+
+### File Size Limits
+
+- **Components:** Keep under 200 lines
+- **Types:** Keep under 100 lines
+- **Utils:** Keep under 150 lines
+- **Stories:** Keep under 100 lines
+- **Tests:** Keep under 150 lines
+
+### File Size Guidelines
+
+- Break large files into smaller ones
+- Use proper separation of concerns
+- Extract reusable utilities
+- Use proper abstraction layers
+- Keep files focused and cohesive
+
+## Documentation Organization
+
+### README Structure
+
+````markdown
+# Component Name
+
+Brief description of the component.
+
+## Usage
+
+```tsx
+import { Component } from '@veraclins-dev/ui';
+
+function App() {
+  return <Component>Content</Component>;
+}
+```
+````
+
+## Props
+
+| Prop     | Type            | Default | Description        |
+| -------- | --------------- | ------- | ------------------ |
+| children | React.ReactNode | -       | Content to display |
+
+## Examples
+
+### Basic Usage
+
+```tsx
+<Component>Hello World</Component>
+```
+
+```
+
+### Documentation Guidelines
+- Include usage examples
+- Document all props
+- Use proper markdown formatting
+- Include interactive examples
+- Keep documentation up to date
+```

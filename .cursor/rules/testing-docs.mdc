@@ -1,0 +1,300 @@
+---
+description: Testing patterns, Storybook conventions, and documentation standards
+globs: ['**/*.stories.tsx', '**/*.spec.ts', '**/*.test.ts', '**/*.md']
+alwaysApply: true
+---
+
+# Testing & Documentation Guidelines
+
+## Testing Patterns
+
+### Test File Organization
+
+```
+component/
+├── component.tsx
+├── component.stories.tsx
+├── component.spec.ts
+└── README.md
+```
+
+### Test File Naming
+
+- **Unit tests:** `component.spec.ts`
+- **Stories:** `component.stories.tsx`
+- **E2E tests:** `component.e2e.ts`
+- **Documentation:** `README.md`
+
+## Unit Testing with Vitest
+
+### Test Structure
+
+```typescript
+import { render, screen } from '@testing-library/react';
+import { expect, test, describe } from 'vitest';
+import { Component } from './component';
+
+describe('Component', () => {
+  test('renders correctly', () => {
+    render(<Component>Test content</Component>);
+    expect(screen.getByText('Test content')).toBeInTheDocument();
+  });
+
+  test('handles click events', () => {
+    const handleClick = vi.fn();
+    render(<Component onClick={handleClick}>Click me</Component>);
+
+    screen.getByText('Click me').click();
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+### Test Guidelines
+
+- Use descriptive test names
+- Test user interactions, not implementation details
+- Use proper assertions
+- Mock external dependencies
+- Test edge cases and error conditions
+
+## Storybook Stories
+
+### Story Structure
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Component } from './component';
+
+const meta: Meta<typeof Component> = {
+  component: Component,
+  title: 'Components/Component',
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<typeof Component>;
+
+export const Primary: Story = {
+  args: {
+    children: 'Primary button',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary',
+    children: 'Secondary button',
+  },
+};
+```
+
+### Story Guidelines
+
+- Use descriptive story names
+- Include all variants and states
+- Use proper TypeScript types
+- Include interactive examples
+- Use proper story organization
+
+## Documentation Standards
+
+### README Structure
+
+````markdown
+# Component Name
+
+Brief description of the component.
+
+## Usage
+
+```tsx
+import { Component } from '@veraclins-dev/ui';
+
+function App() {
+  return <Component>Content</Component>;
+}
+```
+````
+
+## Props
+
+| Prop     | Type                 | Default | Description        |
+| -------- | -------------------- | ------- | ------------------ |
+| children | React.ReactNode      | -       | Content to display |
+| variant  | 'solid' \| 'outline' | 'solid' | Visual variant     |
+
+## Examples
+
+### Basic Usage
+
+```tsx
+<Component>Hello World</Component>
+```
+
+### With Variants
+
+```tsx
+<Component variant="outline">Outlined</Component>
+```
+
+````
+
+### Documentation Guidelines
+- Include usage examples
+- Document all props
+- Use proper markdown formatting
+- Include interactive examples
+- Keep documentation up to date
+
+## JSDoc Comments
+
+### Component Documentation
+```typescript
+/**
+ * A flexible button component for the design system.
+ *
+ * @example
+ * ```tsx
+ * <Button variant="solid" size="md">
+ *   Click me
+ * </Button>
+ * ```
+ */
+export function Button({ children, ...props }: ButtonProps) {
+  // Component implementation
+}
+````
+
+### Prop Documentation
+
+```typescript
+interface ButtonProps {
+  /** The content to display inside the button */
+  children: React.ReactNode;
+
+  /** The visual variant of the button */
+  variant?: 'solid' | 'outline' | 'text';
+
+  /** The size of the button */
+  size?: 'sm' | 'md' | 'lg';
+}
+```
+
+### JSDoc Guidelines
+
+- Use proper JSDoc syntax
+- Include examples for complex components
+- Document all public APIs
+- Use descriptive parameter descriptions
+- Include return type descriptions
+
+## Testing Best Practices
+
+### Test Coverage
+
+- Aim for high test coverage
+- Test user interactions
+- Test error conditions
+- Test accessibility features
+- Test responsive behavior
+
+### Test Organization
+
+```typescript
+describe('Component', () => {
+  describe('rendering', () => {
+    test('renders with default props', () => {
+      // Test implementation
+    });
+  });
+
+  describe('interactions', () => {
+    test('handles click events', () => {
+      // Test implementation
+    });
+  });
+
+  describe('accessibility', () => {
+    test('has proper ARIA attributes', () => {
+      // Test implementation
+    });
+  });
+});
+```
+
+## Storybook Best Practices
+
+### Story Organization
+
+```typescript
+// Group related stories
+export const Variants: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <Component variant="solid">Solid</Component>
+      <Component variant="outline">Outline</Component>
+      <Component variant="text">Text</Component>
+    </div>
+  ),
+};
+
+// Interactive stories
+export const Interactive: Story = {
+  args: {
+    onClick: action('clicked'),
+  },
+};
+```
+
+### Story Guidelines
+
+- Use proper story organization
+- Include interactive examples
+- Use proper TypeScript types
+- Include accessibility examples
+- Test different screen sizes
+
+## Documentation Anti-Patterns
+
+### Documentation Anti-Patterns
+
+- Don't write obvious documentation
+- Don't duplicate information
+- Don't use outdated examples
+- Don't forget to update documentation
+- Don't use unclear language
+
+### Testing Anti-Patterns
+
+- Don't test implementation details
+- Don't write brittle tests
+- Don't skip edge cases
+- Don't use hardcoded values
+- Don't forget to clean up
+
+## Performance Testing
+
+### Performance Considerations
+
+```typescript
+// Test component performance
+test('renders efficiently', () => {
+  const start = performance.now();
+  render(<Component />);
+  const end = performance.now();
+
+  expect(end - start).toBeLessThan(100); // 100ms threshold
+});
+```
+
+### Performance Guidelines
+
+- Test rendering performance
+- Test memory usage
+- Test bundle size impact
+- Use performance profiling
+- Monitor performance regressions

@@ -1,0 +1,312 @@
+---
+description: ESLint, TypeScript, performance, security, and code quality standards
+globs: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx']
+alwaysApply: true
+---
+
+# Code Quality Guidelines
+
+## TypeScript Standards
+
+### Strict Type Checking
+
+```typescript
+// Use strict TypeScript settings
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  }
+}
+```
+
+### Type Safety Guidelines
+
+- Use TypeScript strict mode
+- Avoid `any` type - use proper type definitions
+- Use type guards for runtime type checking
+- Use proper type assertions where necessary
+- Use generic types for reusable components
+
+### Type Definitions
+
+```typescript
+// Use proper type definitions
+interface ComponentProps {
+  children: React.ReactNode;
+  variant?: 'solid' | 'outline' | 'text';
+  size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
+}
+
+// Use type guards
+function isString(value: unknown): value is string {
+  return typeof value === 'string';
+}
+
+// Use proper type assertions
+const element = document.getElementById('root') as HTMLElement;
+```
+
+## ESLint Configuration
+
+### ESLint Rules
+
+```javascript
+module.exports = {
+  extends: [
+    '@veraclins-dev/eslint-config',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
+  rules: {
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
+    'react/prop-types': 'off',
+    'react/react-in-jsx-scope': 'off',
+  },
+};
+```
+
+### ESLint Guidelines
+
+- Use consistent code style
+- Fix all ESLint errors
+- Use proper import/export patterns
+- Use proper TypeScript types
+- Use proper React patterns
+
+## Code Style
+
+### Formatting Standards
+
+```typescript
+// Use 2 spaces for indentation
+function Component({ children, className }: Props) {
+  return (
+    <div className={cn('base-class', className)}>
+      {children}
+    </div>
+  );
+}
+
+// Use single quotes for strings
+const message = 'Hello World';
+
+// Use proper line length (100 characters max)
+const longClassName = cn(
+  'very-long-class-name',
+  'another-very-long-class-name',
+  'yet-another-very-long-class-name'
+);
+```
+
+### Naming Conventions
+
+```typescript
+// Variables: camelCase
+const isOpen = true;
+const selectedDate = new Date();
+
+// Functions: camelCase
+function handleClick() {}
+function formatValue(value: string) {}
+
+// Components: PascalCase
+function DatePicker() {}
+function DatePickerTrigger() {}
+
+// Types: PascalCase
+interface DatePickerProps {}
+type DatePickerVariant = 'solid' | 'outline';
+
+// Constants: UPPER_SNAKE_CASE
+const DEFAULT_SIZE = 'md';
+const MAX_ITEMS = 100;
+```
+
+## Performance Guidelines
+
+### React Performance
+
+```typescript
+// Use memo for expensive components
+const ExpensiveComponent = memo(function ExpensiveComponent({ data }: Props) {
+  return <div>{data.map(item => <Item key={item.id} data={item} />)}</div>;
+});
+
+// Use useMemo for expensive calculations
+const expensiveValue = useMemo(() =>
+  computeExpensiveValue(data), [data]
+);
+
+// Use useCallback for event handlers
+const handleClick = useCallback((event: React.MouseEvent) => {
+  // Handle click
+}, [dependencies]);
+```
+
+### Bundle Optimization
+
+```typescript
+// Use dynamic imports for code splitting
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+// Use proper tree shaking
+export { Component } from './component';
+export type { ComponentProps } from './component-types';
+
+// Avoid importing entire libraries
+import { debounce } from 'lodash/debounce'; // ✅ Good
+import _ from 'lodash'; // ❌ Bad
+```
+
+### Performance Anti-Patterns
+
+- Don't create unnecessary re-renders
+- Don't use inline objects in JSX
+- Don't use inline functions in JSX
+- Don't create unnecessary state
+- Don't use expensive operations in render
+
+## Security Guidelines
+
+### Input Validation
+
+```typescript
+// Validate user input
+function validateEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Sanitize user input
+function sanitizeInput(input: string): string {
+  return input.replace(
+    /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+    '',
+  );
+}
+```
+
+### Environment Variables
+
+```typescript
+// Use environment variables for sensitive data
+const apiUrl = process.env.REACT_APP_API_URL;
+const apiKey = process.env.REACT_APP_API_KEY;
+
+// Validate environment variables
+if (!apiUrl) {
+  throw new Error('REACT_APP_API_URL is required');
+}
+```
+
+### Security Best Practices
+
+- Validate all user input
+- Use environment variables for sensitive data
+- Keep dependencies updated
+- Use proper authentication
+- Follow OWASP security guidelines
+
+## Error Handling
+
+### Error Boundaries
+
+```typescript
+class ErrorBoundary extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error): State {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Error caught by boundary:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <div>Something went wrong.</div>;
+    }
+
+    return this.props.children;
+  }
+}
+```
+
+### Error Handling Patterns
+
+```typescript
+// Use try-catch for async operations
+async function fetchData() {
+  try {
+    const response = await fetch('/api/data');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch data:', error);
+    throw error;
+  }
+}
+
+// Use proper error types
+class ValidationError extends Error {
+  constructor(
+    message: string,
+    public field: string,
+  ) {
+    super(message);
+    this.name = 'ValidationError';
+  }
+}
+```
+
+## Code Review Guidelines
+
+### Review Checklist
+
+- [ ] Code follows project conventions
+- [ ] TypeScript types are properly defined
+- [ ] No ESLint errors
+- [ ] Tests are included and passing
+- [ ] Documentation is updated
+- [ ] Performance considerations are addressed
+- [ ] Security best practices are followed
+- [ ] Error handling is implemented
+
+### Review Guidelines
+
+- Focus on code quality and maintainability
+- Check for proper TypeScript usage
+- Verify error handling
+- Ensure proper testing
+- Check for performance issues
+- Verify security best practices
+
+## Code Quality Metrics
+
+### Quality Metrics
+
+- **Test Coverage:** Aim for >80%
+- **TypeScript Coverage:** 100%
+- **ESLint Errors:** 0
+- **Bundle Size:** Monitor and optimize
+- **Performance:** Use React DevTools Profiler
+
+### Monitoring
+
+- Use automated tools for quality checks
+- Monitor bundle size and performance
+- Track test coverage
+- Use static analysis tools
+- Monitor security vulnerabilities

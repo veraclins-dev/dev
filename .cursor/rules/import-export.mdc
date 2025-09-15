@@ -1,0 +1,236 @@
+---
+description: Import order, export patterns, and module organization
+globs: ['**/*.ts', '**/*.tsx']
+alwaysApply: true
+---
+
+# Import/Export Guidelines
+
+## Import Order
+
+### Standard Import Order
+
+```typescript
+// 1. External packages
+import { memo, useCallback, useMemo } from 'react';
+import { cn } from '@veraclins-dev/utils';
+import { cva, type VariantProps } from '@veraclins-dev/cva';
+
+// 2. Internal UI components
+import { Box } from '../../ui/box';
+import { Button } from '../../ui/button';
+import { Icon } from '../../ui/icon';
+
+// 3. Internal utilities
+import { useComponentContext } from './component-context';
+import { formatValue } from './utils';
+
+// 4. Types
+import type { ComponentProps } from './component-types';
+import type { ButtonSize, ButtonVariant } from '../../ui/button';
+```
+
+### Import Grouping
+
+- **External packages:** React, third-party libraries
+- **Internal UI components:** Components from the UI library
+- **Internal utilities:** Hooks, utilities, helpers
+- **Types:** TypeScript type definitions
+
+## Type Import Patterns
+
+### Type-Only Imports
+
+```typescript
+// Use type imports for type-only imports
+import type { ComponentProps } from './component-types';
+import type { ButtonSize, ButtonVariant } from '../../ui/button';
+
+// Mixed imports when needed
+import { util, type UtilType } from 'package';
+```
+
+### Type Import Guidelines
+
+- Use `import type` for type-only imports
+- Use mixed imports when importing both values and types
+- Group type imports with other imports from the same module
+- Use type imports to avoid runtime overhead
+
+## Export Patterns
+
+### Component Exports
+
+```typescript
+// Export component and types together
+export { Component, type ComponentProps };
+
+// Export variants
+export type { ComponentVariant, ComponentSize };
+
+// Export context
+export { ComponentProvider, useComponentContext };
+```
+
+### Index File Exports
+
+```typescript
+// Re-export from index files
+export * from './component';
+export * from './component-context';
+export * from './component-types';
+
+// Specific exports for better tree-shaking
+export { Component } from './component';
+export { ComponentProvider } from './component-context';
+export type { ComponentProps } from './component-types';
+```
+
+### Export Guidelines
+
+- Use named exports for clarity
+- Export components and types together
+- Re-export from index files
+- Group related exports together
+- Use specific exports for better tree-shaking
+
+## Module Organization
+
+### File Structure
+
+```
+component/
+├── index.ts              # Main exports
+├── component.tsx         # Main component
+├── component-context.tsx # Context provider
+├── component-types.ts    # Type definitions
+├── component-utils.ts    # Utility functions
+└── component.stories.tsx # Storybook stories
+```
+
+### Index File Patterns
+
+```typescript
+// Main component exports
+export { Component } from './component';
+export { ComponentProvider, useComponentContext } from './component-context';
+
+// Type exports
+export type {
+  ComponentProps,
+  ComponentVariant,
+  ComponentSize,
+} from './component-types';
+
+// Utility exports
+export { formatValue, validateValue } from './component-utils';
+```
+
+## Import/Export Anti-Patterns
+
+### Import Anti-Patterns
+
+- Don't mix import types unnecessarily
+- Don't use `import *` for types
+- Don't create circular dependencies
+- Don't use relative imports for external packages
+- Don't import unused modules
+
+### Export Anti-Patterns
+
+- Don't use default exports for components
+- Don't export everything with `export *`
+- Don't create circular export dependencies
+- Don't export internal implementation details
+- Don't use inconsistent export patterns
+
+## Path Conventions
+
+### Absolute Imports
+
+```typescript
+// Use absolute imports for internal packages
+import { cn } from '@veraclins-dev/utils';
+import { Button } from '@veraclins-dev/ui';
+```
+
+### Relative Imports
+
+```typescript
+// Use relative imports for local files
+import { ComponentContext } from './component-context';
+import { formatValue } from '../utils';
+```
+
+### Path Guidelines
+
+- Use absolute imports for internal packages
+- Use relative imports for local files
+- Keep import paths consistent
+- Use meaningful file names
+
+## Module Boundaries
+
+### Package Dependencies
+
+```typescript
+// type:ui can only depend on:
+// - type:ui
+// - type:utils
+// - type:react-utils
+
+// type:app can only depend on:
+// - type:auth
+// - type:editor
+// - type:ui
+// - type:utils
+// - type:react-utils
+```
+
+### Module Boundary Guidelines
+
+- Follow the established module boundary rules
+- Don't create circular dependencies
+- Keep dependencies minimal
+- Use proper abstraction layers
+
+## Performance Considerations
+
+### Tree Shaking
+
+```typescript
+// Use specific exports for better tree-shaking
+export { Component } from './component';
+export type { ComponentProps } from './component-types';
+
+// Avoid exporting everything
+export * from './component'; // ❌ Can prevent tree-shaking
+```
+
+### Import Optimization
+
+```typescript
+// Use type imports to avoid runtime overhead
+import type { ComponentProps } from './component-types';
+
+// Use dynamic imports for code splitting
+const LazyComponent = lazy(() => import('./component'));
+```
+
+## Import/Export Testing
+
+### Import Testing
+
+```typescript
+// Test that imports work correctly
+import { Component } from './component';
+import { ComponentProvider } from './component-context';
+import type { ComponentProps } from './component-types';
+```
+
+### Export Testing
+
+```typescript
+// Test that exports are available
+import { Component, ComponentProvider, type ComponentProps } from './index';
+```

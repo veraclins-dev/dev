@@ -1,0 +1,168 @@
+---
+description: TypeScript conventions, type reuse, and interface patterns
+globs: ['**/*.ts', '**/*.tsx']
+alwaysApply: true
+---
+
+# Type System Guidelines
+
+## Type Organization
+
+### Type Reuse Patterns
+
+```typescript
+// Extract types from variants
+export type ComponentVariant = ComponentVariants['variant'];
+export type ComponentSize = ComponentVariants['size'];
+
+// Reuse existing types
+export type DatePickerSize = ButtonSize;
+export type DatePickerVariant = ButtonVariant;
+
+// Interface composition
+interface Props extends React.HTMLAttributes<HTMLElement>, ComponentVariants {
+  // Props
+}
+```
+
+### Type Definition Patterns
+
+```typescript
+// Generic types for reusable components
+export type Option<T extends InputLabel = string> = string | ObjectOption<T>;
+
+// Utility types
+export type ComponentPropsWithoutColor<T> = Omit<
+  React.ComponentProps<T>,
+  'color'
+>;
+
+// Union types for variants
+export type ButtonVariant = 'solid' | 'outline' | 'text' | 'soft';
+```
+
+## Type Import/Export Conventions
+
+### Import Patterns
+
+```typescript
+// Type-only imports
+import type { ComponentProps } from './component-types';
+import type { ButtonSize, ButtonVariant } from '../../ui/button';
+
+// Mixed imports
+import { util, type UtilType } from 'package';
+```
+
+### Export Patterns
+
+```typescript
+// Export types with components
+export { Component, type ComponentProps };
+
+// Re-export types
+export type { ComponentVariant, ComponentSize };
+
+// Central type exports
+export * from './types';
+```
+
+## Interface Design
+
+### Standard Interface Pattern
+
+```typescript
+interface ComponentProps
+  extends React.HTMLAttributes<HTMLElement>,
+    ComponentVariants {
+  // Required props
+  children: React.ReactNode;
+
+  // Optional props with defaults
+  variant?: ComponentVariant;
+  size?: ComponentSize;
+  disabled?: boolean;
+
+  // Component-specific props
+  onValueChange?: (value: ValueType) => void;
+}
+```
+
+### Interface Guidelines
+
+- Extend HTML element props for accessibility
+- Include component variants in interface
+- Use optional props with sensible defaults
+- Group related props together
+- Use descriptive prop names
+
+## Type Safety
+
+### Strict Type Checking
+
+- Use TypeScript strict mode
+- Avoid `any` type - use proper type definitions
+- Use type guards for runtime type checking
+- Use proper type assertions where necessary
+
+### Type Guards
+
+```typescript
+function isString(value: unknown): value is string {
+  return typeof value === 'string';
+}
+
+function isComponentProps(value: unknown): value is ComponentProps {
+  return typeof value === 'object' && value !== null;
+}
+```
+
+## Generic Types
+
+### Reusable Generic Patterns
+
+```typescript
+// Generic component props
+interface GenericComponentProps<T> {
+  value: T;
+  onValueChange: (value: T) => void;
+}
+
+// Generic utility types
+type WithTooltip<T extends object> = T & {
+  tooltip?: React.ReactNode;
+};
+```
+
+## Type Composition
+
+### Extending Types
+
+```typescript
+// Extend existing types
+interface ExtendedProps extends BaseProps {
+  additionalProp: string;
+}
+
+// Pick specific properties
+type PopoverConfig = Pick<PopoverContentProps, 'side' | 'align' | 'sideOffset'>;
+
+// Omit properties
+type PropsWithoutColor = Omit<ComponentProps, 'color'>;
+```
+
+## Anti-Patterns to Avoid
+
+### Type Anti-Patterns
+
+- Don't create new types when existing ones can be extended
+- Don't use `any` type - use proper type definitions
+- Don't duplicate type definitions across files
+- Don't create interfaces that just mirror existing ones
+- Don't use type assertions without proper type guards
+
+### Import Anti-Patterns
+
+- Don't mix type and value imports unnecessarily
+- Don't use `import *` for types
+- Don't create circular type dependencies
