@@ -300,7 +300,6 @@ export function CalendarShowcase() {
                     onValueChange={(value) => {
                       if (value instanceof Date) setSingleDate(value);
                     }}
-                    showNavigation={true}
                     className="rounded-lg border"
                   />
                   <List

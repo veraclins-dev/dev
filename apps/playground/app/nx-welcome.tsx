@@ -78,6 +78,12 @@ export function NxWelcome({ title }: { title: string }) {
             'Time selection components with both traditional and wheel-based interfaces.',
         },
         {
+          path: '/date-picker',
+          label: 'Date Picker',
+          description:
+            'Comprehensive date picker component that combines calendar and time picker functionality.',
+        },
+        {
           path: '/forms',
           label: 'Forms',
           description:

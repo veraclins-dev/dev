@@ -12,6 +12,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  DateField,
   HiddenField,
   Icon,
   SelectField,
@@ -56,6 +57,35 @@ const SettingsFormSchema = z.object({
   profileVisibility: z.enum(['public', 'private', 'friends']),
 });
 
+const EventFormSchema = z.object({
+  title: z.string().min(3, 'Event title must be at least 3 characters'),
+  description: z.string().min(10, 'Description must be at least 10 characters'),
+  startDate: z.string().min(1, 'Start date is required'),
+  endDate: z.string().optional(),
+  eventType: z.enum(['meeting', 'conference', 'workshop', 'other']),
+});
+
+const BookingFormSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.email('Please enter a valid email'),
+  checkIn: z.string().min(1, 'Check-in date is required'),
+  checkOut: z.string().min(1, 'Check-out date is required'),
+  guests: z
+    .number()
+    .min(1, 'At least 1 guest is required')
+    .transform((val) => val.toString()),
+  specialRequests: z.string().optional(),
+});
+
+const MultiDateFormSchema = z.object({
+  projectName: z.string().min(3, 'Project name must be at least 3 characters'),
+  milestones: z.string().refine((val) => val.split(',').length > 0, {
+    message: 'At least one milestone date is required',
+  }),
+  deadline: z.string().min(1, 'Deadline is required'),
+  priority: z.enum(['low', 'medium', 'high']),
+});
+
 // Basic Form Example
 const BasicFormExample = () => {
   const { form, fields } = useConform({
@@ -76,7 +106,7 @@ const BasicFormExample = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Form form={form} submitText="Send Message" className="max-w-md">
+        <Form form={form} submitText="Send Message">
           <TextField field={fields.name} placeholder="Your name" label="Name" />
           <TextField
             field={fields.email}
@@ -330,12 +360,7 @@ const FetcherFormExample = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Form
-          form={form}
-          fetcher={fetcher}
-          submitText="Submit via Fetcher"
-          className="max-w-md"
-        >
+        <Form form={form} fetcher={fetcher} submitText="Submit via Fetcher">
           <TextField field={fields.name} placeholder="Your name" label="Name" />
           <TextField
             field={fields.email}
@@ -396,7 +421,7 @@ const CustomButtonsFormExample = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Form form={form} actionButtons={actionButtons} className="max-w-md">
+        <Form form={form} actionButtons={actionButtons}>
           <TextField field={fields.name} placeholder="Your name" label="Name" />
           <TextField
             field={fields.email}
@@ -435,7 +460,7 @@ const NoErrorFormExample = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Form form={form} submitText="Submit" noError className="max-w-md">
+        <Form form={form} submitText="Submit" noError>
           <TextField field={fields.name} placeholder="Your name" label="Name" />
           <TextField
             field={fields.email}
@@ -448,6 +473,217 @@ const NoErrorFormExample = () => {
             placeholder="Your message..."
             label="Message"
             rows={3}
+          />
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
+// Event Form with Date Fields
+const EventFormExample = () => {
+  const { form, fields } = useConform({
+    schema: EventFormSchema,
+    id: 'event-form',
+    defaultValue: {
+      eventType: 'meeting',
+    },
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon name="calendar" className="h-5 w-5 text-blue-500" />
+          <CardTitle>Event Form</CardTitle>
+        </Box>
+        <CardDescription>
+          Form with single date selection for event planning.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Create Event" className="max-w-lg">
+          <TextField
+            field={fields.title}
+            placeholder="Team Meeting"
+            label="Event Title"
+          />
+
+          <TextareaField
+            field={fields.description}
+            placeholder="Describe the event..."
+            label="Description"
+            rows={3}
+          />
+
+          <Box className="grid grid-cols-2 gap-4">
+            <DateField
+              field={fields.startDate}
+              label="Start Date"
+              placeholder="Select start date"
+              inputSize="md"
+              clearable
+              mode="single"
+              variant="popover"
+            />
+
+            <DateField
+              field={fields.endDate}
+              label="End Date (Optional)"
+              placeholder="Select end date"
+              mode="single"
+              variant="popover"
+            />
+          </Box>
+
+          <SelectField
+            field={fields.eventType}
+            label="Event Type"
+            options={[
+              { label: 'Meeting', value: 'meeting' },
+              { label: 'Conference', value: 'conference' },
+              { label: 'Workshop', value: 'workshop' },
+              { label: 'Other', value: 'other' },
+            ]}
+          />
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
+// Booking Form with Date Range
+const BookingFormExample = () => {
+  const { form, fields } = useConform({
+    schema: BookingFormSchema,
+    id: 'booking-form',
+    defaultValue: {
+      guests: '1',
+    },
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon name="building-office" className="h-5 w-5 text-green-500" />
+          <CardTitle>Hotel Booking Form</CardTitle>
+        </Box>
+        <CardDescription>
+          Form with date range selection for hotel bookings.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Book Now" className="max-w-lg">
+          <Box className="grid grid-cols-2 gap-4">
+            <TextField
+              field={fields.name}
+              placeholder="John Doe"
+              label="Full Name"
+            />
+
+            <TextField
+              field={fields.email}
+              placeholder="john@example.com"
+              label="Email"
+              type="email"
+            />
+          </Box>
+
+          <Box className="grid grid-cols-2 gap-4">
+            <DateField
+              field={fields.checkIn}
+              label="Check-in Date"
+              placeholder="Select check-in date"
+              mode="single"
+              variant="popover"
+            />
+
+            <DateField
+              field={fields.checkOut}
+              label="Check-out Date"
+              placeholder="Select check-out date"
+              mode="single"
+              variant="popover"
+            />
+          </Box>
+
+          <TextField
+            field={fields.guests}
+            placeholder="1"
+            label="Number of Guests"
+            type="number"
+          />
+
+          <TextareaField
+            field={fields.specialRequests}
+            placeholder="Any special requests..."
+            label="Special Requests"
+            rows={2}
+          />
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
+// Project Form with Multiple Date Selection
+const ProjectFormExample = () => {
+  const { form, fields } = useConform({
+    schema: MultiDateFormSchema,
+    id: 'project-form',
+    defaultValue: {
+      priority: 'medium',
+    },
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon
+            name="clipboard-document-list"
+            className="h-5 w-5 text-purple-500"
+          />
+          <CardTitle>Project Planning Form</CardTitle>
+        </Box>
+        <CardDescription>
+          Form with multiple date selection for project milestones.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Create Project" className="max-w-lg">
+          <TextField
+            field={fields.projectName}
+            placeholder="Website Redesign"
+            label="Project Name"
+          />
+
+          <DateField
+            field={fields.milestones}
+            label="Milestone Dates"
+            placeholder="Select milestone dates"
+            mode="multiple"
+            variant="popover"
+            topText="Select multiple dates for project milestones"
+          />
+
+          <DateField
+            field={fields.deadline}
+            label="Project Deadline"
+            placeholder="Select deadline"
+            mode="single"
+            variant="popover"
+          />
+
+          <SelectField
+            field={fields.priority}
+            label="Priority Level"
+            options={[
+              { label: 'Low', value: 'low' },
+              { label: 'Medium', value: 'medium' },
+              { label: 'High', value: 'high' },
+            ]}
           />
         </Form>
       </CardContent>
@@ -483,7 +719,7 @@ const CommentFormExample = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Form noButtons className="max-w-md" form={form} fetcher={fetcher}>
+        <Form noButtons form={form} fetcher={fetcher}>
           <TextareaField
             rows={3}
             field={fields.body}
@@ -528,7 +764,7 @@ export const FormsShowcase = () => {
         </Typography>
       </Box>
 
-      <Box className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <BasicFormExample />
         <AdvancedFormExample />
         <SearchFormExample />
@@ -536,20 +772,11 @@ export const FormsShowcase = () => {
         <FetcherFormExample />
         <CustomButtonsFormExample />
         <NoErrorFormExample />
+        <EventFormExample />
+        <BookingFormExample />
+        <ProjectFormExample />
         <CommentFormExample />
       </Box>
     </Box>
   );
-};
-
-// Export individual components for testing
-export {
-  AdvancedFormExample,
-  BasicFormExample,
-  CommentFormExample,
-  CustomButtonsFormExample,
-  FetcherFormExample,
-  NoErrorFormExample,
-  SearchFormExample,
-  SettingsFormExample,
 };

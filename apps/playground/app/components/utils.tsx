@@ -29,6 +29,7 @@ import {
   // Lodash utilities
   debounce,
   emailToUserName,
+  endOfPeriod,
   formatDate,
   formatDateTime,
   formatMonth,
@@ -40,8 +41,6 @@ import {
   getFirstDayOfMonth,
   getInitials,
   getLastDayOfMonth,
-  getPeriodEndDate,
-  getPeriodStartDate,
   getRandom,
   getReferrerRoute,
   getSize,
@@ -71,6 +70,7 @@ import {
   sizeScale,
   // Slugify utilities
   slugify,
+  startOfPeriod,
   startOfToday,
   stripHTMLTags,
   subtractDays,
@@ -375,21 +375,21 @@ export function UtilsShowcase() {
                       <div>
                         <strong>Last 7 days:</strong>{' '}
                         {formatDate(
-                          getPeriodStartDate('Last 7 days') || new Date(),
+                          startOfPeriod('Last 7 days'),
                           'MMM dd, yyyy',
                         )}
                       </div>
                       <div>
                         <strong>This month:</strong>{' '}
                         {formatDate(
-                          getPeriodStartDate('This month') || new Date(),
+                          startOfPeriod('This month'),
                           'MMM dd, yyyy',
                         )}
                       </div>
                       <div>
                         <strong>Next 30 days:</strong>{' '}
                         {formatDate(
-                          getPeriodEndDate('Next 30 days') || new Date(),
+                          endOfPeriod('Next 30 days'),
                           'MMM dd, yyyy',
                         )}
                       </div>

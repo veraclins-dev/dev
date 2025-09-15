@@ -198,6 +198,203 @@ export function Inputs() {
         </CardContent>
       </Card>
 
+      {/* Input with Icons */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Input with Icons</CardTitle>
+          <CardDescription>
+            Input component with left and right icon support for enhanced UX
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Box display="flex" flexDirection="column" gap={6}>
+            {/* Icon Positions */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Icon Positions
+              </Typography>
+              <Box display="flex" flexDirection="column" gap={3}>
+                <Box>
+                  <Label className="mb-2 block">Left Icon Only</Label>
+                  <Input
+                    placeholder="Search..."
+                    leftIcon={{ name: 'magnifying-glass' }}
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Right Icon Only</Label>
+                  <Input
+                    placeholder="Enter amount"
+                    rightIcon={{ name: 'currency-dollar' }}
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Both Icons</Label>
+                  <Input
+                    placeholder="Enter email"
+                    leftIcon={{ name: 'envelope-closed' }}
+                    rightIcon={{ name: 'check' }}
+                    className="w-full"
+                  />
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Icon with Different Sizes */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Icons with Different Sizes
+              </Typography>
+              <Box display="flex" flexDirection="column" gap={3}>
+                <Box>
+                  <Label className="mb-2 block">Small Size with Icon</Label>
+                  <Input
+                    placeholder="Small input with icon"
+                    leftIcon={{ name: 'magnifying-glass' }}
+                    inputSize="sm"
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Default Size with Icon</Label>
+                  <Input
+                    placeholder="Default input with icon"
+                    leftIcon={{ name: 'magnifying-glass' }}
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Large Size with Icon</Label>
+                  <Input
+                    placeholder="Large input with icon"
+                    leftIcon={{ name: 'magnifying-glass' }}
+                    inputSize="lg"
+                    className="w-full"
+                  />
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Icon with Different States */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Icons with Different States
+              </Typography>
+              <Box display="flex" flexDirection="column" gap={3}>
+                <Box>
+                  <Label className="mb-2 block">Focused with Icon</Label>
+                  <Input
+                    placeholder="Focused input with icon"
+                    leftIcon={{ name: 'magnifying-glass' }}
+                    autoFocus
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Disabled with Icon</Label>
+                  <Input
+                    placeholder="Disabled input with icon"
+                    leftIcon={{ name: 'lock-closed' }}
+                    disabled
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Read-only with Icon</Label>
+                  <Input
+                    value="Read-only with icon"
+                    leftIcon={{ name: 'check' }}
+                    readOnly
+                    className="w-full"
+                  />
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Common Icon Use Cases */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Common Icon Use Cases
+              </Typography>
+              <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Box>
+                  <Label className="mb-2 block">Search Input</Label>
+                  <Input
+                    placeholder="Search..."
+                    leftIcon={{ name: 'magnifying-glass' }}
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Password Input</Label>
+                  <Input
+                    type="password"
+                    placeholder="Enter password"
+                    leftIcon={{ name: 'lock-closed' }}
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Email Input</Label>
+                  <Input
+                    type="email"
+                    placeholder="Enter email"
+                    leftIcon={{ name: 'envelope-closed' }}
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Phone Input</Label>
+                  <Input
+                    type="tel"
+                    placeholder="Enter phone"
+                    leftIcon={{ name: 'phone' }}
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Amount Input</Label>
+                  <Input
+                    placeholder="0.00"
+                    rightIcon={{ name: 'currency-dollar' }}
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">URL Input</Label>
+                  <Input
+                    type="url"
+                    placeholder="https://example.com"
+                    leftIcon={{ name: 'globe' }}
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Success State</Label>
+                  <Input
+                    value="Valid input"
+                    leftIcon={{ name: 'check-circle' }}
+                    rightIcon={{ name: 'check' }}
+                    className="w-full"
+                  />
+                </Box>
+                <Box>
+                  <Label className="mb-2 block">Error State</Label>
+                  <Input
+                    value="Invalid input"
+                    leftIcon={{ name: 'exclamation-triangle' }}
+                    rightIcon={{ name: 'x-mark' }}
+                    className="w-full"
+                  />
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </CardContent>
+      </Card>
+
       {/* TextField Component */}
       <Card>
         <CardHeader>
@@ -253,24 +450,24 @@ export function Inputs() {
                 <TextField
                   placeholder="Search..."
                   label="Search"
-                  leftIcon="magnifying-glass"
+                  leftIcon={{ name: 'magnifying-glass' }}
                 />
                 <TextField
                   placeholder="Enter amount"
                   label="Amount"
-                  rightIcon="currency-dollar"
+                  rightIcon={{ name: 'currency-dollar' }}
                 />
                 <TextField
                   placeholder="Enter email"
                   label="Email"
-                  leftIcon="envelope-closed"
-                  rightIcon="check"
+                  leftIcon={{ name: 'envelope-closed' }}
+                  rightIcon={{ name: 'check' }}
                 />
                 <TextField
                   placeholder="Enter password"
                   label="Password"
                   type="password"
-                  leftIcon="lock-closed"
+                  leftIcon={{ name: 'lock-closed' }}
                 />
               </Box>
             </Box>
