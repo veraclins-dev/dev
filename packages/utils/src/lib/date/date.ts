@@ -6,6 +6,16 @@ import {
   type DateFormatPattern,
 } from './definitions';
 
+export type DateRange =
+  | {
+      start: Date | StartOfPeriod;
+      end?: Date | EndOfPeriod;
+    }
+  | {
+      start?: Date | StartOfPeriod;
+      end: Date | EndOfPeriod;
+    };
+
 /**
  * Parses a date string, number, or Date object into a Luxon DateTime object
  *
@@ -1259,4 +1269,22 @@ export const parseDateStringToDate = (
 ): Date | null => {
   const dt = parseDateString(dateString, format);
   return dt ? toDate(dt) : null;
+};
+
+export const getDateRange = (range: DateRange) => {
+  const result = {
+    start: startOfPeriod('Today'),
+    end: endOfPeriod('Today'),
+  };
+  if (typeof range.start === 'string') {
+    result.start = startOfPeriod(range.start);
+  } else {
+    result.start = range.start ?? result.start;
+  }
+  if (typeof range.end === 'string') {
+    result.end = endOfPeriod(range.end);
+  } else {
+    result.end = range.end ?? result.end;
+  }
+  return result;
 };
