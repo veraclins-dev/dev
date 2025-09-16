@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
+import { type IconName } from '../icons';
+
 import { INPUT_CLASS_OVERRIDES } from './utils/styles';
 import { extractStyleProps } from './utils/variants';
 import { type InputVariants, inputVariants } from './utils/variants/input';
@@ -10,8 +12,8 @@ import { Icon, type IconProps } from './icon';
 
 export type InputProps = React.ComponentProps<'input'> &
   InputVariants & {
-    leftIcon?: IconProps;
-    rightIcon?: IconProps;
+    leftIcon?: IconProps | IconName;
+    rightIcon?: IconProps | IconName;
   };
 
 function Input({
@@ -41,7 +43,11 @@ function Input({
       gap={2}
       className={cn(inputVariants({ ...styleProps, className, inputSize }))}
     >
-      {leftIcon && <Icon {...leftIcon} />}
+      {leftIcon && (
+        <Icon
+          {...(typeof leftIcon === 'string' ? { name: leftIcon } : leftIcon)}
+        />
+      )}
       <input
         ref={ref}
         type={type}
@@ -53,7 +59,11 @@ function Input({
         )}
         {...others}
       />
-      {rightIcon && <Icon {...rightIcon} />}
+      {rightIcon && (
+        <Icon
+          {...(typeof rightIcon === 'string' ? { name: rightIcon } : rightIcon)}
+        />
+      )}
     </Box>
   );
 }
