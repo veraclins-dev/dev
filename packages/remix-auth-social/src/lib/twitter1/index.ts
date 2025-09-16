@@ -216,7 +216,7 @@ export class Twitter1Strategy<User> extends Strategy<User, VerifyOptions> {
   }> {
     const parameters = this.signRequest(
       { oauth_callback: callbackUrl.toString() },
-      'GET',
+      'POST',
       requestTokenURL,
     );
     const url = new URL(requestTokenURL);
