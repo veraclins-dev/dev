@@ -12,12 +12,14 @@ import { useCalendarContext } from './calendar-context';
 import { CalendarFooter } from './calendar-footer';
 import { CalendarGrid } from './calendar-grid';
 import { CalendarHeader } from './calendar-header';
-import type { CalendarProps } from './types';
+import type { CalendarProps, DateValue } from './types';
 
 /**
  * Calendar component with advanced range selection features
  */
-export const Calendar = memo(function Calendar({
+export const Calendar = memo(function Calendar<
+  T extends DateValue = DateValue,
+>({
   value,
   onValueChange,
   defaultValue,
@@ -38,7 +40,7 @@ export const Calendar = memo(function Calendar({
   weekStartsOn = 0,
   ref,
   ...props
-}: CalendarProps & { ref?: React.Ref<HTMLDivElement> }) {
+}: CalendarProps<T> & { ref?: React.Ref<HTMLDivElement> }) {
   return (
     <CalendarProvider
       mode={mode}

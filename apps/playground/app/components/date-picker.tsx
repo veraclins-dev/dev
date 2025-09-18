@@ -18,7 +18,7 @@ import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
 export function DatePickerShowcase() {
   const [singleDate, setSingleDate] = useState<DatePickerValue | undefined>();
-  const [rangeDate, setRangeDate] = useState<DatePickerValue | undefined>();
+  const [rangeDate, setRangeDate] = useState<DateRange | undefined>();
   const [multipleDates, setMultipleDates] = useState<
     DatePickerValue | undefined
   >();

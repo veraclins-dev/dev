@@ -11,13 +11,3 @@ export type {
   DateRange,
   WeekStartsOn,
 } from './types';
-
-// Variants
-export {
-  calendarFooterVariants,
-  calendarGridVariants,
-  calendarNavButtonVariants,
-  calendarWeekHeaderCellVariants,
-  calendarWeekHeaderVariants,
-  calendarWeekVariants,
-} from './calendar-variants';

@@ -2,9 +2,9 @@ import type { InputProps } from '../../ui/input';
 import type { CalendarMode, CalendarProps, DateValue } from '../calendar/types';
 
 // DatePicker-specific props extending Calendar props
-export interface DatePickerProps
+export interface DatePickerProps<T extends DatePickerValue = DatePickerValue>
   extends Pick<
-      CalendarProps,
+      CalendarProps<T>,
       | 'value'
       | 'onValueChange'
       | 'defaultValue'
@@ -65,27 +65,32 @@ export interface DatePickerInputClassNames {
 }
 
 // Variant wrapper props
-export interface DatePickerPopoverProps {
+export interface DatePickerPopoverProps<
+  T extends DatePickerValue = DatePickerValue,
+> {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-  calendarProps: CalendarProps;
+  calendarProps: CalendarProps<T>;
   className?: string;
   classNames?: DatePickerClassNames;
   anchorRef?: React.RefObject<HTMLDivElement>;
 }
 
-export interface DatePickerDialogProps {
+export interface DatePickerDialogProps<
+  T extends DatePickerValue = DatePickerValue,
+> {
   children: React.ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
-  calendarProps: CalendarProps;
+  calendarProps: CalendarProps<T>;
   title?: string;
   className?: string;
   classNames?: DatePickerClassNames;
 }
 
-export interface DatePickerInlineProps
-  extends Omit<CalendarProps, 'classNames'> {
+export interface DatePickerInlineProps<
+  T extends DatePickerValue = DatePickerValue,
+> extends Omit<CalendarProps<T>, 'classNames'> {
   className?: string;
   classNames?: DatePickerClassNames;
   ref?: React.Ref<HTMLDivElement>;

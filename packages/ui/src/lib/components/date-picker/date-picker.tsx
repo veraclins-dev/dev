@@ -10,7 +10,7 @@ import { DatePickerInput } from './date-picker-input';
 import { DatePickerPopover } from './date-picker-popover';
 import type { DatePickerProps, DatePickerValue } from './date-picker-types';
 
-export function DatePicker({
+export function DatePicker<T extends DatePickerValue = DatePickerValue>({
   variant = 'popover',
   placeholder = 'Select date',
   clearable = false,
@@ -20,7 +20,7 @@ export function DatePicker({
   classNames,
   ref,
   ...calendarProps
-}: DatePickerProps) {
+}: DatePickerProps<T>) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const anchorRef = useRef<HTMLDivElement>(null);
