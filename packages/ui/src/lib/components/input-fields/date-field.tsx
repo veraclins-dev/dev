@@ -18,7 +18,7 @@ import {
 } from './utils';
 
 export interface DateFieldProps
-  extends Omit<BaseInputProps<string>, 'leftIcon' | 'rightIcon' | 'rightAddon'>,
+  extends Omit<BaseInputProps, 'leftIcon' | 'rightIcon' | 'rightAddon'>,
     Pick<
       DatePickerProps,
       | 'onValueChange'
