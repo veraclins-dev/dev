@@ -200,32 +200,22 @@ export const subtractDays = (
 };
 
 type TimeUnit = 'year' | 'quarter' | 'month' | 'week';
-type TimeUnits = `${TimeUnit}s`;
+export type TimeUnits = `${TimeUnit}s` | 'days';
 
 type HourNumbers = 12 | 24 | 72;
-type DayNumbers = 2 | 3 | 7 | 14 | 28 | 30 | 90;
-type WeekNumbers = 2 | 4 | 6 | 8 | 10;
-type MonthNumbers = 3 | 6 | 12;
-type YearNumbers = 2 | 3 | 5;
+
+type DayNumbers = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 type Predefined = 'Today' | `This ${TimeUnit}`;
 
 export type StartOfPeriod =
   | `Last ${HourNumbers} hours`
-  | `Last ${DayNumbers} days`
-  | `Last ${WeekNumbers} weeks`
-  | `Last ${MonthNumbers} months`
-  | `Last ${YearNumbers} quarters`
-  | `Last ${YearNumbers} years`
+  | `Last ${DayNumbers} ${TimeUnits}`
   | Predefined;
 
 export type EndOfPeriod =
   | `Next ${HourNumbers} hours`
-  | `Next ${DayNumbers} days`
-  | `Next ${WeekNumbers} weeks`
-  | `Next ${MonthNumbers} months`
-  | `Next ${YearNumbers} quarters`
-  | `Next ${YearNumbers} years`
+  | `Next ${DayNumbers} ${TimeUnits}`
   | Predefined;
 
 /**
@@ -311,20 +301,6 @@ export const endOfPeriod = (period: EndOfPeriod): Date => {
     return toDate(now.endOf(unit));
   }
   return toDate(now.plus({ days: 7 }));
-};
-
-type DatePeriod =
-  | { start: StartOfPeriod; end?: EndOfPeriod }
-  | { start?: StartOfPeriod; end: EndOfPeriod };
-
-export const getDatePeriod = (period: DatePeriod) => {
-  if (period.start && period.end) {
-    return { start: startOfPeriod(period.start), end: endOfPeriod(period.end) };
-  }
-  if (period.start) {
-    return { start: startOfPeriod(period.start), end: endOfPeriod('Today') };
-  }
-  return { end: endOfPeriod(period.end), start: startOfPeriod('Today') };
 };
 
 /**
@@ -1271,6 +1247,16 @@ export const parseDateStringToDate = (
   return dt ? toDate(dt) : null;
 };
 
+/**
+ * Returns a normalized date range object with concrete start and end dates.
+ *
+ * If the `range.start` or `range.end` is a string, it will be converted to a date
+ * using `startOfPeriod` or `endOfPeriod` respectively. If they are already Date objects,
+ * they will be used as is. If not provided, defaults to today's start and end.
+ *
+ * @param {DateRange} range - The date range object, with `start` and `end` as either Date or string.
+ * @returns {{ start: Date; end: Date }} An object containing the normalized start and end dates.
+ */
 export const getDateRange = (range: DateRange) => {
   const result = {
     start: startOfPeriod('Today'),
