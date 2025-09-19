@@ -91,7 +91,7 @@ export interface CalendarWeekHeaderProps {
 
 export type DateValue = Date | Date[] | DateRange;
 
-export interface CalendarProviderProps<T extends DateValue> {
+export interface CalendarProviderProps {
   children: React.ReactNode;
   // Calendar configuration
   mode?: CalendarMode;
@@ -102,14 +102,13 @@ export interface CalendarProviderProps<T extends DateValue> {
   minDate?: Date;
   maxDate?: Date;
   // Calendar state
-  value?: T;
-  defaultValue?: T;
-  onValueChange?: (value?: T) => void;
+  value?: DateValue;
+  defaultValue?: DateValue;
+  onValueChange?: (value?: DateValue) => void;
   numberOfMonths?: number;
 }
 
-export interface CalendarProps<T extends DateValue = DateValue>
-  extends Omit<CalendarProviderProps<T>, 'children'> {
+export interface CalendarProps extends Omit<CalendarProviderProps, 'children'> {
   // Display options
   showTodayButton?: boolean;
 

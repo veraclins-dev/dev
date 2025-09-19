@@ -31,7 +31,9 @@ import { Icon } from './icon';
  */
 function Select({
   ...props
-}: React.ComponentProps<typeof SelectPrimitive.Root>) {
+}: React.ComponentProps<typeof SelectPrimitive.Root> & {
+  ref?: React.Ref<HTMLDivElement>;
+}) {
   return <SelectPrimitive.Root data-slot="select" {...props} />;
 }
 
@@ -305,6 +307,7 @@ export type SelectProps = SelectPrimitive.SelectProps &
     placeholder?: string;
     showLabel?: boolean;
     contentPosition?: SelectContentProps['position'];
+    ref?: React.Ref<HTMLDivElement>;
   } & (
     | {
         options: Option<React.ReactNode>[];

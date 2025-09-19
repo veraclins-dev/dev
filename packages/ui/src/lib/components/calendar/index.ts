@@ -9,5 +9,6 @@ export type {
   CalendarProps,
   CalendarWeekHeaderProps,
   DateRange,
+  DateValue,
   WeekStartsOn,
 } from './types';
