@@ -660,7 +660,7 @@ export function CalendarProvider({
         navigateToDate(dateToNavigate);
       }
     }
-  }, [value, navigateToDate]);
+  }, [value]);
 
   // ===== CONTEXT VALUE =====
   const contextValue = useMemo<CalendarContextValue>(
