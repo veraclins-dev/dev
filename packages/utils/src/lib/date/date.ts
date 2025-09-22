@@ -202,9 +202,37 @@ export const subtractDays = (
 type TimeUnit = 'year' | 'quarter' | 'month' | 'week';
 export type TimeUnits = `${TimeUnit}s` | 'days';
 
-type HourNumbers = 12 | 24 | 72;
+type HourNumbers = 12 | 24 | 48 | 72;
 
-type DayNumbers = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+type DayNumbers =
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 12
+  | 14
+  | 15
+  | 16
+  | 18
+  | 20
+  | 21
+  | 24
+  | 28
+  | 30
+  | 36
+  | 40
+  | 42
+  | 45
+  | 48
+  | 56
+  | 60
+  | 72
+  | 90;
 
 type Predefined = 'Today' | `This ${TimeUnit}`;
 
