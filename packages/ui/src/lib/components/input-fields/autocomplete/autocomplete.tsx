@@ -149,6 +149,7 @@ export const Autocomplete = ({
   const { errorId } = useFieldProperties(field);
   const anchorRef = useRef<Maybe<HTMLDivElement>>(null);
   const wrapperRef = useRef<Maybe<HTMLDivElement>>(null);
+  const { key, ...formProps } = getInputProps({ field, name });
 
   const {
     // Refs
@@ -186,7 +187,7 @@ export const Autocomplete = ({
     maxOptions,
     dependsOn,
     value: supplied,
-    defaultValue,
+    defaultValue: formProps.defaultValue ?? defaultValue,
     onChange,
     disableSorting,
     shouldReset,
@@ -194,7 +195,6 @@ export const Autocomplete = ({
     separator,
   });
 
-  const { key, ...formProps } = getInputProps({ field, name });
   delete formProps.defaultValue;
   const inputId = useId();
   const { styleProps, others } = extractStyleProps(props);
