@@ -945,6 +945,32 @@ export const isSameYear = (
 };
 
 /**
+ * Check if two dates are the same date and time (ignoring timezone and seconds)
+ *
+ * @param date1 - The first date. Can be a Date object, number, or string
+ * @param date2 - The second date. Can be a Date object, number, or string
+ * @returns True if both dates are the same date and time, false otherwise
+ *
+ * @example
+ * ```typescript
+ * isSameDateAndTime('2023-12-25', '2023-12-25T10:00:00Z') // true
+ * isSameDateAndTime('2023-12-25', '2023-12-26') // false
+ * ```
+ */
+export const isSameDateAndTime = (
+  date1: Date | number | string,
+  date2: Date | number | string,
+): boolean => {
+  const dt1 = parseToDateTime(date1);
+  const dt2 = parseToDateTime(date2);
+  return (
+    dt1.hasSame(dt2, 'day') &&
+    dt1.hasSame(dt2, 'hour') &&
+    dt1.hasSame(dt2, 'minute')
+  );
+};
+
+/**
  * Check if date1 is before date2
  *
  * @param date1 - The first date. Can be a Date object, number, or string
