@@ -1283,7 +1283,7 @@ export const parseDateStringToDate = (
  * they will be used as is. If not provided, defaults to today's start and end.
  *
  * @param {DateRange} range - The date range object, with `start` and `end` as either Date or string.
- * @returns {{ start: Date; end: Date }} An object containing the normalized start and end dates.
+ * @returns {{ start: string; end: string }} An object containing the normalized start and end dates as ISO strings.
  */
 export const getDateRange = (range: DateRange) => {
   const result = {
@@ -1300,5 +1300,8 @@ export const getDateRange = (range: DateRange) => {
   } else {
     result.end = range.end ?? result.end;
   }
-  return result;
+  return {
+    start: result.start.toISOString(),
+    end: result.end.toISOString(),
+  };
 };
