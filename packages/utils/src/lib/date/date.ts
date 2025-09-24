@@ -8,12 +8,12 @@ import {
 
 export type DateRange =
   | {
-      start: Date | StartOfPeriod;
-      end?: Date | EndOfPeriod;
+      from: Date | StartOfPeriod;
+      to?: Date | EndOfPeriod;
     }
   | {
-      start?: Date | StartOfPeriod;
-      end: Date | EndOfPeriod;
+      from?: Date | StartOfPeriod;
+      to: Date | EndOfPeriod;
     };
 
 /**
@@ -1309,25 +1309,25 @@ export const parseDateStringToDate = (
  * they will be used as is. If not provided, defaults to today's start and end.
  *
  * @param {DateRange} range - The date range object, with `start` and `end` as either Date or string.
- * @returns {{ start: string; end: string }} An object containing the normalized start and end dates as ISO strings.
+ * @returns {{ from: string; to: string }} An object containing the normalized start and end dates as ISO strings.
  */
 export const getDateRange = (range: DateRange) => {
   const result = {
-    start: startOfPeriod('Today'),
-    end: endOfPeriod('Today'),
+    from: startOfPeriod('Today'),
+    to: endOfPeriod('Today'),
   };
-  if (typeof range.start === 'string') {
-    result.start = startOfPeriod(range.start);
+  if (typeof range.from === 'string') {
+    result.from = startOfPeriod(range.from);
   } else {
-    result.start = range.start ?? result.start;
+    result.from = range.from ?? result.from;
   }
-  if (typeof range.end === 'string') {
-    result.end = endOfPeriod(range.end);
+  if (typeof range.to === 'string') {
+    result.to = endOfPeriod(range.to);
   } else {
-    result.end = range.end ?? result.end;
+    result.to = range.to ?? result.to;
   }
   return {
-    start: result.start.toISOString(),
-    end: result.end.toISOString(),
+    from: result.from.toISOString(),
+    to: result.to.toISOString(),
   };
 };
