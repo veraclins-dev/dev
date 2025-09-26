@@ -8,6 +8,7 @@ import { useId } from 'react';
 
 import { slugify } from '@veraclins-dev/utils';
 
+import { type IconName } from '../../icons';
 import {
   type InputLabel,
   type MaybeString,
@@ -21,8 +22,8 @@ type InputFieldProps = ReturnType<typeof conformGetInputProps>;
 type Params = Parameters<typeof conformGetInputProps>;
 
 type BaseInputProps<S = MaybeString> = {
-  leftIcon?: IconProps;
-  rightIcon?: IconProps;
+  leftIcon?: IconProps | IconName;
+  rightIcon?: IconProps | IconName;
   rightAddon?: React.ReactNode;
   name?: string;
   label?: string | React.ReactNode;

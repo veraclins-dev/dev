@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { Icon, Input, INPUT_CLASS_OVERRIDES, type InputProps } from '../../ui';
+import { Input, INPUT_CLASS_OVERRIDES, type InputProps } from '../../ui';
 
 import { InputFieldWrapper } from './input-field-wrapper';
 import {

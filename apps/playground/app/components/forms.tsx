@@ -5,6 +5,7 @@ import {
   useCustomFetcher,
 } from '@veraclins-dev/form';
 import {
+  Autocomplete,
   Box,
   Button,
   Card,
@@ -43,6 +44,7 @@ const AdvancedFormSchema = z.object({
   }),
   department: z.string().min(1, 'Please select a department'),
   bio: z.string().min(20, 'Bio must be at least 20 characters'),
+  tags: z.string().optional(),
 });
 
 const SearchFormSchema = z.object({
@@ -133,6 +135,7 @@ const AdvancedFormExample = () => {
     id: 'advanced-form',
     defaultValue: {
       role: 'user',
+      tags: 'Design|Development',
     },
   });
 
@@ -202,6 +205,22 @@ const AdvancedFormExample = () => {
             placeholder="Tell us about yourself..."
             label="Bio"
             rows={3}
+          />
+          <Autocomplete
+            field={fields.tags}
+            placeholder="Select tags"
+            label="Tags"
+            multiple
+            options={[
+              'Design',
+              'Development',
+              'Marketing',
+              'Sales',
+              'Support',
+              'Management',
+              'Analytics',
+              'Research',
+            ]}
           />
         </Form>
       </CardContent>
