@@ -260,9 +260,9 @@ export type EndOfPeriod =
  * startOfPeriod('Today') // Start of current day
  * startOfPeriod('This month') // First day of current month
  * startOfPeriod('This year') // First day of current year
- * startOfPeriod('Last 7 days') // Date 7 days ago
- * startOfPeriod('Last 3 months') // Date 3 months ago
- * startOfPeriod('Last 2 quarters') // Date 2 quarters ago
+ * startOfPeriod('Last 7 days') // Start of day 7 days ago
+ * startOfPeriod('Last 3 months') // Start of month 3 months ago
+ * startOfPeriod('Last 2 quarters') // Start of quarter 2 quarters ago
  * ```
  */
 export const startOfPeriod = (period: StartOfPeriod): Date => {
@@ -279,13 +279,15 @@ export const startOfPeriod = (period: StartOfPeriod): Date => {
       `${TimeUnits}`,
     ];
     const amount = Number(amountStr);
-    return toDate(now.minus({ [unit]: amount }));
+    // Convert TimeUnits to TimeUnit for startOf
+    const timeUnit = unit.replace('s', '') as TimeUnit;
+    return toDate(now.minus({ [unit]: amount }).startOf(timeUnit));
   }
   if (period.includes('This')) {
     const [, unit] = period.split(' ') as [string, TimeUnit];
     return toDate(now.startOf(unit));
   }
-  return toDate(now.minus({ days: 7 }));
+  return toDate(now.minus({ days: 7 }).startOf('day'));
 };
 
 /**

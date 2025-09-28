@@ -27,8 +27,17 @@ interface BoxProps extends React.HTMLAttributes<HTMLElement>, BoxVariants {
 }
 
 /**
- * A flexible container component inspired by MUI's Box, supporting spacing and layout props.
+ * A memoized flexible container component inspired by MUI's Box, supporting spacing and layout props.
  * This enables predictable styling of elements with a consistent API.
+ * It supports both short-form and long-form spacing props, allowing for flexible usage.
+ * @param {BoxProps} props - The props for the Box component.
+ * @returns {JSX.Element} A rendered HTML element with applied styles and children.
+ * @example
+ * ```tsx
+ * <Box component="section" margin={16} padding={8} display="flex" flexDirection="column">
+ *   <Box component="span" padding={4}>Hello, World!</Box>
+ * </Box>
+ * ```
  */
 function Base({
   component = 'div',
