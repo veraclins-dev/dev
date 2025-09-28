@@ -202,9 +202,35 @@ export function ChartShowcase() {
                   <XAxis dataKey="month" />
                   <YAxis />
                   <ChartTooltip
-                    content={(props) => (
-                      <ChartTooltipContent indicator="dot" {...props} />
-                    )}
+                    content={(props) => {
+                      const totalTraffic =
+                        props.payload?.reduce(
+                          (sum, item) => sum + (item.value || 0),
+                          0,
+                        ) || 0;
+                      return (
+                        <ChartTooltipContent
+                          indicator="dot"
+                          {...props}
+                          footer={
+                            <Box className="flex items-center justify-between gap-3">
+                              <Box
+                                component="span"
+                                className="text-foreground text-sm font-medium"
+                              >
+                                Total Traffic
+                              </Box>
+                              <Box
+                                component="span"
+                                className="text-foreground font-mono text-sm font-bold"
+                              >
+                                {totalTraffic.toLocaleString()}
+                              </Box>
+                            </Box>
+                          }
+                        />
+                      );
+                    }}
                   />
                   <Area
                     type="monotone"
@@ -302,9 +328,46 @@ export function ChartShowcase() {
                   />
                   <YAxis tickLine={false} axisLine={false} tickMargin={8} />
                   <ChartTooltip
-                    content={(props) => (
-                      <ChartTooltipContent indicator="dot" {...props} />
-                    )}
+                    content={(props) => {
+                      const revenue =
+                        props.payload?.find(
+                          (item) => item.dataKey === 'revenue',
+                        )?.value || 0;
+                      const expenses =
+                        props.payload?.find(
+                          (item) => item.dataKey === 'expenses',
+                        )?.value || 0;
+                      const profit = revenue - expenses;
+                      return (
+                        <ChartTooltipContent
+                          indicator="dot"
+                          {...props}
+                          footer={
+                            <div className="space-y-1">
+                              <div className="flex items-center justify-between">
+                                <span className="text-foreground text-sm font-medium">
+                                  Net Profit
+                                </span>
+                                <span
+                                  className={`font-mono text-sm font-bold ${profit >= 0 ? 'text-green-600' : 'text-red-600'}`}
+                                >
+                                  ${profit.toLocaleString()}
+                                </span>
+                              </div>
+                              <div className="flex items-center justify-between text-xs text-muted-foreground">
+                                <span>Margin</span>
+                                <span>
+                                  {revenue > 0
+                                    ? ((profit / revenue) * 100).toFixed(1)
+                                    : 0}
+                                  %
+                                </span>
+                              </div>
+                            </div>
+                          }
+                        />
+                      );
+                    }}
                   />
                   <ChartLegend
                     content={({ payload, verticalAlign }) => (
@@ -405,9 +468,29 @@ export function ChartShowcase() {
                   <XAxis dataKey="category" />
                   <YAxis />
                   <ChartTooltip
-                    content={(props) => (
-                      <ChartTooltipContent indicator="dot" {...props} />
-                    )}
+                    content={(props) => {
+                      const avgSales =
+                        props.payload?.reduce(
+                          (sum, item) => sum + (item.value || 0),
+                          0,
+                        ) / (props.payload?.length || 1) || 0;
+                      return (
+                        <ChartTooltipContent
+                          indicator="dot"
+                          {...props}
+                          footer={
+                            <div className="flex items-center justify-between">
+                              <span className="text-foreground text-sm font-medium">
+                                Average Sales
+                              </span>
+                              <span className="text-foreground font-mono text-sm font-bold">
+                                ${avgSales.toLocaleString()}
+                              </span>
+                            </div>
+                          }
+                        />
+                      );
+                    }}
                   />
                   <Bar dataKey="sales" fill="var(--color-primary)" />
                 </BarChart>
@@ -709,6 +792,9 @@ export function ChartShowcase() {
                 • Provide clear labels and titles for context
                 <br />
                 • Include tooltips for detailed information on hover
+                <br />
+                • Use tooltip footers to show summary calculations (totals,
+                averages, etc.)
                 <br />• Ensure charts are responsive and work on all screen
                 sizes
               </Typography>

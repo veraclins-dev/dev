@@ -170,6 +170,7 @@ const ChartTooltip = Tooltip;
  * @param props.color - Optional custom color for the indicator.
  * @param props.nameKey - Optional key to identify the name in the payload.
  * @param props.labelKey - Optional key to identify the label in the payload.
+ * @param props.footer - Optional footer content to display below the tooltip items.
  * @returns A styled tooltip with formatted content, or null if not active or no payload.
  */
 function ChartTooltipContent<TValue extends ValueType, TName extends NameType>({
@@ -186,6 +187,7 @@ function ChartTooltipContent<TValue extends ValueType, TName extends NameType>({
   color,
   nameKey,
   labelKey,
+  footer,
 }: TooltipContentProps<TValue, TName> &
   Omit<React.ComponentProps<typeof Box>, 'content' | 'position'> & {
     hideLabel?: boolean;
@@ -193,6 +195,7 @@ function ChartTooltipContent<TValue extends ValueType, TName extends NameType>({
     indicator?: 'line' | 'dot' | 'dashed';
     nameKey?: string;
     labelKey?: string;
+    footer?: React.ReactNode;
   }) {
   const { config } = useChart();
 
@@ -314,6 +317,11 @@ function ChartTooltipContent<TValue extends ValueType, TName extends NameType>({
           );
         })}
       </Box>
+      {footer && (
+        <Box className="mt-2 -mx-2.5 px-2.5 pt-2 border-t border-foreground/50">
+          {footer}
+        </Box>
+      )}
     </Box>
   );
 }
