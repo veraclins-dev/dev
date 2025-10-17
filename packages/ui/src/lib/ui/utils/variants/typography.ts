@@ -21,6 +21,7 @@ const typographyVariants = cva({
       body1: 'text-base font-normal leading-relaxed',
       body2: 'text-sm font-normal leading-relaxed',
       caption: 'text-xs font-normal leading-normal',
+      small: 'text-xxs font-normal leading-normal',
       overline: 'text-xs font-normal leading-normal uppercase tracking-wider',
       inherit: '',
     },

@@ -181,6 +181,18 @@ export function TypographyShowcase() {
                     1.5 (Normal)
                   </Typography>
                 </Typography>
+                <Typography variant="small">
+                  This is small text - the smallest text variant used for very
+                  small details like copyright notices, fine print, and metadata
+                  that should be present but not prominent.
+                  <Typography
+                    variant="small"
+                    className="block text-muted-foreground mt-1"
+                  >
+                    Font: 10px (0.625rem) • Weight: 400 (Normal) • Line Height:
+                    1.5 (Normal)
+                  </Typography>
+                </Typography>
                 <Typography variant="overline">
                   This is overline text - used for labels, categories, and small
                   uppercase text that appears above content. It's perfect for

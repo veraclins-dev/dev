@@ -29,6 +29,7 @@ const variantMapping: Record<Variant, TypographyElement> = {
   body2: 'p',
   caption: 'span',
   overline: 'span',
+  small: 'span',
   inherit: 'p',
 };
 
