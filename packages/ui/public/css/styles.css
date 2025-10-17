@@ -413,6 +413,9 @@
   --breakpoint-vl: 80rem;
   --breakpoint-xl: 90rem;
   --breakpoint-2xl: 100rem;
+
+  --text-xxs: 0.625rem;
+  --text-xxs-line-height: 1rem;
 }
 
 @utility container {
