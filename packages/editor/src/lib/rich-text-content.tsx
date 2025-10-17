@@ -23,7 +23,6 @@ export function RichTextContent({ className, readonly }: RichTextContentProps) {
 
   return (
     <Box
-      px={readonly ? 3 : undefined}
       py={readonly ? 2 : undefined}
       className={cn(
         readonly
