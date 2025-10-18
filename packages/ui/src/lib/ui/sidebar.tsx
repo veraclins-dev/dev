@@ -1,7 +1,6 @@
 'use client';
 
 import { Slot } from '@radix-ui/react-slot';
-import * as React from 'react';
 
 import { useIsMobile } from '@veraclins-dev/react-utils';
 import { cn } from '@veraclins-dev/utils';
@@ -30,6 +29,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from './tooltip';
+import { IconName } from '../icons';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -48,10 +56,10 @@ type SidebarContextProps = {
   toggleSidebar: () => void;
 };
 
-const SidebarContext = React.createContext<SidebarContextProps | null>(null);
+const SidebarContext = createContext<SidebarContextProps | null>(null);
 
 function useSidebar() {
-  const context = React.useContext(SidebarContext);
+  const context = useContext(SidebarContext);
   if (!context) {
     throw new Error('useSidebar must be used within a SidebarProvider.');
   }
@@ -66,20 +74,26 @@ function SidebarProvider({
   className,
   style,
   children,
+  sidebarWidth = SIDEBAR_WIDTH,
+  sidebarIconWidth = SIDEBAR_WIDTH_ICON,
+  sidebarKeyboardShortcut = SIDEBAR_KEYBOARD_SHORTCUT,
   ...props
 }: React.ComponentProps<typeof Box> & {
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  sidebarWidth?: string;
+  sidebarIconWidth?: string;
+  sidebarKeyboardShortcut?: string;
 }) {
   const isMobile = useIsMobile();
-  const [openMobile, setOpenMobile] = React.useState(false);
+  const [openMobile, setOpenMobile] = useState(false);
 
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
-  const [_open, _setOpen] = React.useState(defaultOpen);
+  const [_open, _setOpen] = useState(defaultOpen);
   const open = openProp ?? _open;
-  const setOpen = React.useCallback(
+  const setOpen = useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
       const openState = typeof value === 'function' ? value(open) : value;
       if (setOpenProp) {
@@ -95,15 +109,15 @@ function SidebarProvider({
   );
 
   // Helper to toggle the sidebar.
-  const toggleSidebar = React.useCallback(() => {
+  const toggleSidebar = useCallback(() => {
     return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
   }, [isMobile, setOpen, setOpenMobile]);
 
   // Adds a keyboard shortcut to toggle the sidebar.
-  React.useEffect(() => {
+  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (
-        event.key === SIDEBAR_KEYBOARD_SHORTCUT &&
+        event.key === sidebarKeyboardShortcut &&
         (event.metaKey || event.ctrlKey)
       ) {
         event.preventDefault();
@@ -119,7 +133,7 @@ function SidebarProvider({
   // This makes it easier to style the sidebar with Tailwind classes.
   const state = open ? 'expanded' : 'collapsed';
 
-  const contextValue = React.useMemo<SidebarContextProps>(
+  const contextValue = useMemo<SidebarContextProps>(
     () => ({
       state,
       open,
@@ -139,8 +153,8 @@ function SidebarProvider({
           data-slot="sidebar-wrapper"
           style={
             {
-              '--sidebar-width': SIDEBAR_WIDTH,
-              '--sidebar-width-icon': SIDEBAR_WIDTH_ICON,
+              '--sidebar-width': sidebarWidth,
+              '--sidebar-width-icon': sidebarIconWidth,
               ...style,
             } as React.CSSProperties
           }
@@ -247,13 +261,13 @@ function Sidebar({
         )}
         {...props}
       >
-        <div
+        <Box
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
           className="bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
         >
           {children}
-        </div>
+        </Box>
       </Box>
     </div>
   );
@@ -262,8 +276,10 @@ function Sidebar({
 function SidebarTrigger({
   className,
   onClick,
+  icon = 'side-panel-left',
+  label = 'Toggle Sidebar',
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: React.ComponentProps<typeof Button> & { icon?: IconName; label?: string }) {
   const { toggleSidebar } = useSidebar();
 
   return (
@@ -280,8 +296,10 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <Icon name="side-panel-left" className="size-5" />
-      <span className="sr-only">Toggle Sidebar</span>
+      <Icon name={icon} className="size-5" />
+      <Box component="span" className="sr-only">
+        {label}
+      </Box>
     </Button>
   );
 }
@@ -313,7 +331,8 @@ function SidebarRail({ className, ...props }: React.ComponentProps<'button'>) {
 
 function SidebarInset({ className, ...props }: React.ComponentProps<'main'>) {
   return (
-    <main
+    <Box
+      component="main"
       data-slot="sidebar-inset"
       className={cn(
         'bg-background relative flex w-full flex-1 flex-col',
@@ -568,9 +587,6 @@ function SidebarMenuAction({
         'text-sidebar-foreground ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground peer-hover/menu-button:text-sidebar-accent-foreground absolute top-1/2 -translate-y-1/2 right-1 flex aspect-square w-6 items-center justify-center rounded-md p-0 outline-hidden transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 cursor-pointer',
         // Increases the hit area of the button on mobile.
         'after:absolute after:-inset-2 md:after:hidden',
-        // 'peer-data-[size=sm]/menu-button:top-1',
-        // 'peer-data-[size=default]/menu-button:top-1.5',
-        // 'peer-data-[size=lg]/menu-button:top-2.5',
         'group-data-[collapsible=icon]:hidden',
         showOnHover &&
           'peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0',
@@ -611,7 +627,7 @@ function SidebarMenuSkeleton({
   showIcon?: boolean;
 }) {
   // Random width between 50 to 90%.
-  const width = React.useMemo(() => {
+  const width = useMemo(() => {
     return `${Math.floor(Math.random() * 40) + 50}%`;
   }, []);
 

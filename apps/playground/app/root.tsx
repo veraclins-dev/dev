@@ -86,7 +86,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
   return (
     <HoneypotProvider {...loaderData.honeyProps}>
       <IconProvider sprite={sprite}>
-        <SidebarProvider>
+        <SidebarProvider sidebarWidth="18rem">
           <AppSidebar />
           <Box component="main" w="full" h="full" flex="1">
             <SidebarTrigger />

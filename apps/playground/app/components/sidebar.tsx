@@ -20,8 +20,6 @@ import {
   Icon,
   type IconName,
   Link,
-} from '@veraclins-dev/ui';
-import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
