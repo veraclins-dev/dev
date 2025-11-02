@@ -23,8 +23,8 @@ export function DialItem({
   value,
   size = 'md',
 }: DialItemProps) {
-  const ref = useRef<HTMLElement>(null);
-  const select = (e: React.MouseEvent<HTMLElement>) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const select = (e: React.MouseEvent<HTMLDivElement>) => {
     onSelect(e.target as HTMLElement, getOptionValue(item));
   };
 

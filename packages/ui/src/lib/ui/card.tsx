@@ -45,7 +45,7 @@ function Card<P extends ContainerElement | CustomComponent = typeof Box>({
   return (
     <CardDepthContext.Provider value={{ depth: depth + 1 }}>
       <Box
-        component={component}
+        component={component ?? 'div'}
         data-slot="card"
         data-size={cardSize}
         className={cn(

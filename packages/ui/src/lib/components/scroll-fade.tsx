@@ -3,11 +3,14 @@ import { useEffect, useRef, useState } from 'react';
 import { getScrollPosition } from '@veraclins-dev/utils';
 import { cn } from '@veraclins-dev/utils';
 
-import { Box } from '../ui';
+import { type CustomComponent, type OverrideComponentProps } from '../types';
+import { Box, type ContainerElement } from '../ui';
 
-export interface ScrollFadeProps extends React.ComponentProps<typeof Box> {
+export type ScrollFadeProps<
+  P extends ContainerElement | CustomComponent = typeof Box,
+> = OverrideComponentProps<P, React.ComponentProps<typeof Box>> & {
   direction?: 'vertical' | 'horizontal';
-}
+};
 
 export const ScrollFade = ({
   children,

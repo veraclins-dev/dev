@@ -10,6 +10,7 @@ import {
   Icon,
   Input,
   Label,
+  Link,
   Typography,
 } from '@veraclins-dev/ui';
 
@@ -718,6 +719,352 @@ export function Boxes() {
                 </Card>
               </Box>
             </Box>
+          </Box>
+        </CardContent>
+      </Card>
+
+      {/* Custom Components Showcase */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Custom Components</CardTitle>
+          <CardDescription>
+            Use Box with custom React components for enhanced type safety and
+            flexibility
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Box display="flex" flexDirection="column" gap={8}>
+            {/* HTML Elements */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                HTML Element Components
+              </Typography>
+              <Typography
+                variant="body2"
+                className="text-muted-foreground mb-4"
+              >
+                Use Box with semantic HTML elements while maintaining all Box
+                props
+              </Typography>
+              <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-sm">
+                      component="section"
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Box
+                      component="section"
+                      className="border rounded p-4 bg-secondary/10"
+                    >
+                      <Typography variant="body2">
+                        Rendered as a semantic section element
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-sm">
+                      component="article"
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Box
+                      component="article"
+                      className="border rounded p-4 bg-secondary/10"
+                    >
+                      <Typography variant="body2">
+                        Rendered as an article element
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-sm">component="aside"</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Box
+                      component="aside"
+                      className="border rounded p-4 bg-secondary/10"
+                    >
+                      <Typography variant="body2">
+                        Rendered as an aside element
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-sm">component="nav"</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Box
+                      component="nav"
+                      display="flex"
+                      gap={2}
+                      className="border rounded p-4 bg-secondary/10"
+                    >
+                      <Typography variant="body2">Home</Typography>
+                      <Typography variant="body2">About</Typography>
+                      <Typography variant="body2">Contact</Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Box>
+            </Box>
+
+            {/* Custom React Components */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                Custom React Components
+              </Typography>
+              <Typography
+                variant="body2"
+                className="text-muted-foreground mb-4"
+              >
+                Use Box with custom React components for enhanced composition
+              </Typography>
+
+              {/* Define custom components inline for the showcase */}
+              <Box className="space-y-6">
+                {/* Example 1: Custom Button-like Component */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-sm">
+                      Custom Component: ActionBox
+                    </CardTitle>
+                    <CardDescription>
+                      A Box that behaves like a button with all Box props
+                      available
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Box display="flex" gap={4} flexWrap="wrap">
+                      <Box
+                        component={Button}
+                        onClick={() => alert('Clicked!')}
+                        // className="bg-card"
+                        variant="solid"
+                        color="primary"
+                      >
+                        <Typography variant="body1">
+                          Custom Action Box
+                        </Typography>
+                      </Box>
+
+                      <Box
+                        component={Button}
+                        variant="soft"
+                        color="success"
+                        display="flex"
+                        items="center"
+                        gap={2}
+                      >
+                        <Icon name="check" />
+                        <Typography variant="body1">
+                          With Icon & Flex
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </CardContent>
+                </Card>
+
+                {/* Example 3: Composition with Button */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-sm">
+                      Composition Example: Box as Button
+                    </CardTitle>
+                    <CardDescription>
+                      Using Box with Button component for flexible layouts
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Box display="flex" flexDirection="column" gap={4}>
+                      <Box
+                        component={Button}
+                        variant="outline"
+                        display="flex"
+                        items="center"
+                        gap={2}
+                      >
+                        <Icon name="star" />
+                        <Typography variant="body1">
+                          Box with Button Component
+                        </Typography>
+                      </Box>
+
+                      <Box
+                        component={Button}
+                        variant="solid"
+                        display="flex"
+                        justify="between"
+                        items="center"
+                        className="w-full"
+                      >
+                        <Box display="flex" items="center" gap={2}>
+                          <Icon name="user" />
+                          <Typography variant="body1">Profile</Typography>
+                        </Box>
+                        <Icon name="chevron-right" />
+                      </Box>
+                    </Box>
+                  </CardContent>
+                </Card>
+
+                {/* Example 4: Practical Use Case - Link Wrapper */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-sm">
+                      Practical Example: Navigation Link
+                    </CardTitle>
+                    <CardDescription>
+                      Create a navigation link with Box styling using a custom
+                      link component
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Box display="flex" gap={4} flexWrap="wrap">
+                      <Box
+                        component={Link}
+                        href="/dashboard"
+                        display="flex"
+                        items="center"
+                        gap={2}
+                      >
+                        <Icon name="home" />
+                        <Typography variant="body1">Dashboard</Typography>
+                      </Box>
+
+                      <Box
+                        component={Link}
+                        href="/settings"
+                        display="flex"
+                        items="center"
+                        gap={2}
+                      >
+                        <Icon name="cog" />
+                        <Typography variant="body1">Settings</Typography>
+                      </Box>
+                    </Box>
+                  </CardContent>
+                </Card>
+
+                {/* Code Example */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-sm">Code Example</CardTitle>
+                    <CardDescription>
+                      Example code for using Box with custom components
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Box className="bg-neutral/10 p-4 rounded border font-mono text-sm overflow-x-auto">
+                      <pre className="text-xs">
+                        <code>{`// Using Box with Button component
+<Box
+  component={Button}
+  variant="solid"
+  color="primary"
+  display="flex"
+  items="center"
+  gap={2}
+>
+  <Icon name="check" />
+  <Typography>Button with Box Layout</Typography>
+</Box>
+
+// Using Box with Link component
+<Box
+  component={Link}
+  href="/dashboard"
+  display="flex"
+  items="center"
+  gap={2}
+>
+  <Icon name="home" />
+  <Typography>Dashboard</Typography>
+</Box>
+
+// Using Box with semantic HTML
+<Box
+  component="section"
+  display="flex"
+  flexDirection="column"
+  gap={4}
+  className="border rounded p-4"
+>
+  <Typography variant="h3">Semantic Section</Typography>
+  <Typography>Rendered as a <section> element</Typography>
+</Box>`}</code>
+                      </pre>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Box>
+            </Box>
+
+            {/* Type Safety Information */}
+            <Card className="bg-info/5 border-info/20">
+              <CardHeader>
+                <CardTitle className="text-sm">Type Safety Benefits</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Box display="flex" flexDirection="column" gap={3}>
+                  <Box display="flex" items="start" gap={2}>
+                    <Icon name="check" className="text-info mt-0.5" />
+                    <Box>
+                      <Typography variant="body2" className="font-semibold">
+                        Automatic Type Inference
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        className="text-muted-foreground"
+                      >
+                        TypeScript automatically infers the correct props based
+                        on the component you pass
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box display="flex" items="start" gap={2}>
+                    <Icon name="check" className="text-info mt-0.5" />
+                    <Box>
+                      <Typography variant="body2" className="font-semibold">
+                        Prop Merging
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        className="text-muted-foreground"
+                      >
+                        Box props are merged with your custom component's props
+                        intelligently
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Box display="flex" items="start" gap={2}>
+                    <Icon name="check" className="text-info mt-0.5" />
+                    <Box>
+                      <Typography variant="body2" className="font-semibold">
+                        OverrideComponentProps
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        className="text-muted-foreground"
+                      >
+                        Built on OverrideComponentProps for maximum type safety
+                        and flexibility
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              </CardContent>
+            </Card>
           </Box>
         </CardContent>
       </Card>

@@ -185,7 +185,7 @@ export const DataTableWithDnd = () => (
             ],
           },
         ]}
-        data={data}
+        data={[...data, ...data, ...data, ...data]}
         filters={{
           faceted: {
             status: { options: statuses, type: 'dropdown' },

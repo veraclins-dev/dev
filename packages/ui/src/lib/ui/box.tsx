@@ -1,6 +1,6 @@
-import { memo } from 'react';
-
 import { cn } from '@veraclins-dev/utils';
+
+import { type CustomComponent, type OverrideComponentProps } from '../types';
 
 import {
   type BoxVariants,
@@ -17,14 +17,27 @@ export type ContainerElement =
   | 'footer'
   | 'main'
   | 'nav'
-  | 'span';
+  | 'span'
+  | 'figure'
+  | 'figcaption'
+  | 'mark'
+  | 'time'
+  | 'address'
+  | 'details'
+  | 'summary'
+  | 'dialog'
+  | 'fieldset'
+  | 'legend'
+  | 'blockquote'
+  | 'pre'
+  | 'output';
 
-interface BoxProps extends React.HTMLAttributes<HTMLElement>, BoxVariants {
-  /** The HTML element to render the Box as. Defaults to 'div'. */
-  component?: ContainerElement | React.ComponentType<any>;
-  /** The ref to be forwarded to the underlying element */
-  ref?: React.Ref<HTMLDivElement | HTMLSpanElement>;
-}
+interface InternalBoxProps
+  extends React.HTMLAttributes<HTMLElement>,
+    BoxVariants {}
+
+type BoxProps<P extends ContainerElement | CustomComponent = 'div'> =
+  OverrideComponentProps<P, InternalBoxProps>;
 
 /**
  * A memoized flexible container component inspired by MUI's Box, supporting spacing and layout props.
@@ -39,8 +52,8 @@ interface BoxProps extends React.HTMLAttributes<HTMLElement>, BoxVariants {
  * </Box>
  * ```
  */
-function Base({
-  component = 'div',
+function Box<P extends ContainerElement | CustomComponent = 'div'>({
+  component,
   className,
   // Layout props
   flexDirection,
@@ -49,8 +62,8 @@ function Base({
   flexWrap,
   flex,
   ...props
-}: BoxProps) {
-  const Component = component as React.ElementType;
+}: BoxProps<P>) {
+  const Component = (component ?? 'div') as React.ElementType;
 
   // Extract style props from the remaining props
   const { styleProps, others } = extractStyleProps(props);
@@ -86,7 +99,7 @@ function Base({
  * </Box>
  * ```
  */
-const Box = memo(Base);
+// const Box = memo(Base);
 
 export { Box, type BoxProps };
-export default Base;
+export default Box;
