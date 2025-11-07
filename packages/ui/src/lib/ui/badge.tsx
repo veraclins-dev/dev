@@ -37,10 +37,17 @@ type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> &
  *
  * @returns A React div element styled as a badge.
  */
-function Badge({ className, variant, color, badgeSize, ...props }: BadgeProps) {
+function Badge({
+  className,
+  variant,
+  color,
+  badgeSize,
+  rounded = true,
+  ...props
+}: BadgeProps) {
   const { styleProps, others } = extractStyleProps(props);
   const badgeClass = cn(
-    badgeVariants({ ...styleProps, variant, color, badgeSize }),
+    badgeVariants({ ...styleProps, variant, color, badgeSize, rounded }),
     className,
   );
   return <Box className={badgeClass} {...others} />;

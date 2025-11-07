@@ -19,6 +19,10 @@ const badgeVariants = cva({
       lg: 'px-3.5 py-1.5 text-sm',
       xl: 'px-4.5 py-2 text-base',
     },
+    rounded: {
+      true: 'rounded-full',
+      false: 'rounded-md',
+    },
   },
   compoundVariants: [
     ...baseVariants.compoundVariants.map((variant) => ({
