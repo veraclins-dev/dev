@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { startTransition, useEffect, useRef, useState } from 'react';
 
 /** The hook internal state. */
 type State = {
@@ -113,13 +113,27 @@ export function useIntersectionObserver({
     () => void 0,
   );
 
-  callbackRef.current = onChange;
+  useEffect(() => {
+    callbackRef.current = onChange;
+  }, [onChange]);
 
   const frozen = state.entry?.isIntersecting && freezeOnceVisible;
 
   useEffect(() => {
-    // Ensure we have a ref to observe
-    if (!ref) return;
+    // Reset state when ref becomes null (element unmounted or cleared)
+    if (!ref) {
+      if (state.entry?.target && !freezeOnceVisible && !frozen) {
+        startTransition(() => {
+          setState({
+            isIntersecting: initialIsIntersecting,
+            isInTheMiddle: false,
+            entry: undefined,
+          });
+        });
+      }
+      return;
+    }
+
     // Ensure the browser supports the Intersection Observer API
     if (!('IntersectionObserver' in window)) return;
 
@@ -181,6 +195,16 @@ export function useIntersectionObserver({
 
     return () => {
       observer.disconnect();
+      // Reset state on cleanup when ref changes or element unmounts
+      if (!freezeOnceVisible && !frozen) {
+        startTransition(() => {
+          setState({
+            isIntersecting: initialIsIntersecting,
+            isInTheMiddle: false,
+            entry: undefined,
+          });
+        });
+      }
     };
   }, [
     ref,
@@ -190,27 +214,9 @@ export function useIntersectionObserver({
     rootMargin,
     frozen,
     freezeOnceVisible,
+    state.entry,
+    initialIsIntersecting,
   ]);
-
-  // ensures that if the observed element changes, the intersection observer is reinitialized
-  const prevRef = useRef<Element | null>(null);
-
-  useEffect(() => {
-    if (
-      !ref &&
-      state.entry?.target &&
-      !freezeOnceVisible &&
-      !frozen &&
-      prevRef.current !== state.entry.target
-    ) {
-      prevRef.current = state.entry.target;
-      setState({
-        isIntersecting: initialIsIntersecting,
-        isInTheMiddle: false,
-        entry: undefined,
-      });
-    }
-  }, [ref, state.entry, freezeOnceVisible, frozen, initialIsIntersecting]);
 
   const result = [
     setRef,

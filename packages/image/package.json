@@ -20,10 +20,6 @@
     "@hapi/accept": "^6.0.3",
     "image-size": "^2.0.2",
     "is-animated": "^2.0.2",
-    "sharp": "^0.34.2"
-  },
-  "peerDependencies": {
-    "react": "^19",
-    "react-dom": "^19"
+    "sharp": "^0.34.5"
   }
 }

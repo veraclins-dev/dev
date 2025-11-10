@@ -51,6 +51,7 @@ export function ResizableImageComponent({
       // dragging, so rendering would end up stuttering a bit without a throttle
       throttle(
         (event: MouseEvent) => {
+          // eslint-disable-next-line react-hooks/rules-of-hooks
           if (!imageRef.current) {
             return;
           }
@@ -111,7 +112,7 @@ export function ResizableImageComponent({
       elements), and (2) still allow for this image container to take up exactly
       the size of the `img` being rendered, which allows for positioning the
       resize handle at the edge of the img. */}
-      <Box display="inline-block" className="relative inline-block">
+      <Box display="inline-block" className="relative inline-block my-8">
         <img
           ref={imageRef}
           src={attrs.src}
@@ -122,12 +123,11 @@ export function ResizableImageComponent({
 
             title: attrs.title || undefined,
           }}
-          className={cn('block', {
+          className={cn('block my-0!', {
             // For consistency with the standard Image extension selection
             // class/UI:
             // We'll only show the outline when the editor content is selected
-            'ProseMirror-selectednode outline outline-[3px] outline-primary':
-              canResize,
+            'ProseMirror-selectednode outline-4 outline-primary': canResize,
           })}
           style={{
             // If no width has been specified, we use auto max-width

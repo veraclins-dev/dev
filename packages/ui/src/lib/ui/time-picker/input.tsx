@@ -1,4 +1,5 @@
 import React, {
+  startTransition,
   useCallback,
   useEffect,
   useId,
@@ -76,8 +77,8 @@ export const TimePickerInput = ({
   containerRef,
   ...inputProps
 }: TimePickerInputProps) => {
-  const [inputValue, setInputValue] = useState<string>(time?.string ?? '');
   const ref = useRef<HTMLInputElement>(null);
+  const inputValue = time?.string ?? '';
 
   const updateTime = useDebounce(
     (value: string, use24Hour?: boolean, showSeconds?: boolean) => {
@@ -98,7 +99,6 @@ export const TimePickerInput = ({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       if (isValidPartialInput({ value, use24Hour, showSeconds })) {
-        setInputValue(value);
         updateTime(value, use24Hour, showSeconds);
       }
     },
@@ -126,10 +126,6 @@ export const TimePickerInput = ({
     }
     return showSeconds ? 'HH:MM:SS AM/PM' : 'HH:MM AM/PM';
   }, [placeholder, use24Hour, showSeconds]);
-
-  useEffect(() => {
-    setInputValue(time?.string ?? '');
-  }, [time]);
 
   const inputId = useId();
   return (

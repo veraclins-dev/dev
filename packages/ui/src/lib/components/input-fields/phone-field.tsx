@@ -1,5 +1,5 @@
 import * as Flags from 'country-flag-icons/react/3x2';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import Input, {
   getCountries,
   getCountryCallingCode,
@@ -89,7 +89,6 @@ export const PhoneField = ({
   const [localCountryValue, setLocalCountryValue] = useState<CountryCode>(
     country ?? defaultCountry,
   );
-  const [formValue, setFormValue] = useState<string>('');
   const { errorId, id } = useFieldProperties(field);
 
   const { control, ...controlProps } = useInputControlProps(field, name);
@@ -104,18 +103,15 @@ export const PhoneField = ({
       control?.change('');
       setLocalCountryValue(value);
     },
-    [localCountryValue],
+    [control],
   );
 
-  useEffect(() => {
-    if (control?.value) {
-      const value =
-        typeof control.value === 'string'
-          ? control.value
-          : control.value.join('|');
-      setFormValue(value);
-    }
-  }, [control?.value]);
+  // Compute formValue from control value during render
+  const formValue = control?.value
+    ? typeof control.value === 'string'
+      ? control.value
+      : control.value.join('|')
+    : '';
 
   return (
     <InputFieldWrapper

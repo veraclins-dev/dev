@@ -95,117 +95,115 @@ export function useExtensions({
   mentionPath = '/profiles',
   suggestionFilter,
 }: UseExtensionsOptions = {}): EditorOptions['extensions'] {
-  return useMemo(() => {
-    return [
-      // We incorporate all of the functionality that's part of
-      // https://tiptap.dev/api/extensions/starter-kit, plus a few additional
-      // extensions
+  return [
+    // We incorporate all of the functionality that's part of
+    // https://tiptap.dev/api/extensions/starter-kit, plus a few additional
+    // extensions
 
-      // Note that the Table extension must come before other nodes that also have "tab"
-      // shortcut keys so that when using the tab key within a table on a node that also
-      // responds to that shortcut, it respects that inner node with higher precedence
-      // than the Table. For instance, if you want to indent or dedent a list item
-      // inside a table, you should be able to do that by pressing tab. Tab should only
-      // move between table cells if not within such a nested node. See comment here for
-      // notes on extension ordering
-      // https://github.com/ueberdosis/tiptap/issues/1547#issuecomment-890848888, and
-      // note in prosemirror-tables on the need to have these plugins be lower
-      // precedence
-      // https://github.com/ueberdosis/prosemirror-tables/blob/1a0428af3ca891d7db648ce3f08a2c74d47dced7/src/index.js#L26-L30
-      TableImproved.configure({
-        resizable: true,
-        // handleWidth: 50,
-      }),
-      TableRow,
-      TableHeader,
-      TableCell,
+    // Note that the Table extension must come before other nodes that also have "tab"
+    // shortcut keys so that when using the tab key within a table on a node that also
+    // responds to that shortcut, it respects that inner node with higher precedence
+    // than the Table. For instance, if you want to indent or dedent a list item
+    // inside a table, you should be able to do that by pressing tab. Tab should only
+    // move between table cells if not within such a nested node. See comment here for
+    // notes on extension ordering
+    // https://github.com/ueberdosis/tiptap/issues/1547#issuecomment-890848888, and
+    // note in prosemirror-tables on the need to have these plugins be lower
+    // precedence
+    // https://github.com/ueberdosis/prosemirror-tables/blob/1a0428af3ca891d7db648ce3f08a2c74d47dced7/src/index.js#L26-L30
+    TableImproved.configure({
+      resizable: true,
+      // handleWidth: 50,
+    }),
+    TableRow,
+    TableHeader,
+    TableCell,
 
-      BulletList,
-      CodeBlockExtension,
-      Document,
-      HardBreak,
-      ListItem,
-      OrderedList,
-      Paragraph,
-      CustomSubscript,
-      CustomSuperscript,
-      Text,
+    BulletList,
+    CodeBlockExtension,
+    Document,
+    HardBreak,
+    ListItem,
+    OrderedList,
+    Paragraph,
+    CustomSubscript,
+    CustomSuperscript,
+    Text,
 
-      // Blockquote must come after Bold, since we want the "Cmd+B" shortcut to
-      // have lower precedence than the Blockquote "Cmd+Shift+B" shortcut.
-      // Otherwise using "Cmd+Shift+B" will mistakenly toggle the bold mark.
-      // (See https://github.com/ueberdosis/tiptap/issues/4005,
-      // https://github.com/ueberdosis/tiptap/issues/4006)
-      Bold,
-      Blockquote,
+    // Blockquote must come after Bold, since we want the "Cmd+B" shortcut to
+    // have lower precedence than the Blockquote "Cmd+Shift+B" shortcut.
+    // Otherwise using "Cmd+Shift+B" will mistakenly toggle the bold mark.
+    // (See https://github.com/ueberdosis/tiptap/issues/4005,
+    // https://github.com/ueberdosis/tiptap/issues/4006)
+    Bold,
+    Blockquote,
 
-      Code,
-      Italic,
-      Underline,
-      Strike,
-      CustomLinkExtension.configure({
-        // autolink is generally useful for changing text into links if they
-        // appear to be URLs (like someone types in literally "example.com"),
-        // though it comes with the caveat that if you then *remove* the link
-        // from the text, and then add a space or newline directly after the
-        // text, autolink will turn the text back into a link again. Not ideal,
-        // but probably still overall worth having autolink enabled, and that's
-        // how a lot of other tools behave as well.
-        autolink: true,
-        linkOnPaste: true,
-        openOnClick: false,
-        HTMLAttributes: {
-          class:
-            'font-medium border-primary/40 border-b hover:border-primary no-underline',
-        },
-      }),
-      LinkBubbleMenuHandler,
+    Code,
+    Italic,
+    Underline,
+    Strike,
+    CustomLinkExtension.configure({
+      // autolink is generally useful for changing text into links if they
+      // appear to be URLs (like someone types in literally "example.com"),
+      // though it comes with the caveat that if you then *remove* the link
+      // from the text, and then add a space or newline directly after the
+      // text, autolink will turn the text back into a link again. Not ideal,
+      // but probably still overall worth having autolink enabled, and that's
+      // how a lot of other tools behave as well.
+      autolink: true,
+      linkOnPaste: true,
+      openOnClick: false,
+      HTMLAttributes: {
+        class:
+          'font-medium border-primary/40 border-b hover:border-primary no-underline',
+      },
+    }),
+    LinkBubbleMenuHandler,
 
-      // Extensions
-      Gapcursor,
-      HeadingWithAnchor,
-      TextAlign.configure({
-        types: ['heading', 'paragraph', 'image'],
-      }),
-      TextStyle,
-      Color,
-      FontSize,
-      Highlight.configure({ multicolor: true }),
-      HorizontalRule,
+    // Extensions
+    Gapcursor,
+    HeadingWithAnchor,
+    TextAlign.configure({
+      types: ['heading', 'paragraph', 'image'],
+    }),
+    TextStyle,
+    Color,
+    FontSize,
+    Highlight.configure({ multicolor: true }),
+    HorizontalRule,
 
-      ResizableImage,
-      // When images are dragged, we want to show the "drop cursor" for where they'll
-      // land
-      Dropcursor,
+    ResizableImage,
+    // When images are dragged, we want to show the "drop cursor" for where they'll
+    // land
+    Dropcursor,
 
-      TaskList,
-      TaskItemExtension,
+    TaskList,
+    TaskItemExtension,
 
-      Mention.configure({
-        suggestion: mentionSuggestionOptions(suggestionFilter),
-        renderHTML({ options, node }) {
-          return [
-            'a',
-            mergeAttributes(
-              {
-                href: `/${combinePaths(mentionPath, node.attrs['id'])}`,
-                target: '_blank',
-                rel: 'noopener noreferrer nofollow',
-              },
-              options.HTMLAttributes,
-            ),
-            `${options.suggestion.char}${node.attrs['label'] ?? node.attrs['id']}`,
-          ];
-        },
-      }),
+    Mention.configure({
+      suggestion: mentionSuggestionOptions(suggestionFilter),
+      renderHTML({ options, node }) {
+        return [
+          'a',
+          mergeAttributes(
+            {
+              href: `/${combinePaths(mentionPath, node.attrs['id'])}`,
+              target: '_blank',
+              rel: 'noopener noreferrer nofollow',
+            },
+            options.HTMLAttributes,
+          ),
+          `${options.suggestion.char}${node.attrs['label'] ?? node.attrs['id']}`,
+        ];
+      },
+    }),
 
-      Placeholder.configure({
-        placeholder,
-      }),
+    Placeholder.configure({
+      placeholder,
+    }),
 
-      // We use the regular `History` (undo/redo) extension when not using
-      // collaborative editing
-      History,
-    ];
-  }, [placeholder]);
+    // We use the regular `History` (undo/redo) extension when not using
+    // collaborative editing
+    History,
+  ];
 }

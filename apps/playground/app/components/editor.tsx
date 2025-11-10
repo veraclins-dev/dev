@@ -1,18 +1,120 @@
+import { useState } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
 
 import { EditorField, EditorReadonly } from '@veraclins-dev/editor';
+import { Form, useConform } from '@veraclins-dev/form';
 import {
   Box,
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
+  TextareaField,
+  TextField,
   Typography,
 } from '@veraclins-dev/ui';
+import { z } from '@veraclins-dev/utils';
 
 import { exampleContent } from './data';
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
+const ArticleFormSchema = z.object({
+  title: z.string().min(3, 'Title must be at least 3 characters'),
+  content: z.string().min(10, 'Content must be at least 10 characters'),
+  excerpt: z.string().optional(),
+});
+
+function ArticleFormExample() {
+  const [submitted, setSubmitted] = useState(false);
+  const { form, fields } = useConform({
+    schema: ArticleFormSchema,
+    id: 'article-form',
+    defaultValue: {
+      title: '',
+      content: '',
+      excerpt: '',
+    },
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Article Form with Rich Text Editor</CardTitle>
+        <CardDescription>
+          Complete form example using EditorField for content creation with
+          validation
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ClientOnly
+          fallback={
+            <Box className="w-full h-64 border rounded-md p-4 bg-muted/20 flex items-center justify-center">
+              <Typography variant="body2" className="text-muted-foreground">
+                Loading form...
+              </Typography>
+            </Box>
+          }
+        >
+          {() => (
+            <Box className="space-y-4">
+              <Typography variant="body2" className="text-muted-foreground">
+                This form demonstrates how to use EditorField within a form
+                context. The editor content is validated and submitted along
+                with other form fields.
+              </Typography>
+              <Form
+                noButtons
+                form={form}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const data = Object.fromEntries(formData);
+                  console.log('Form submitted:', data);
+                  setSubmitted(true);
+                  setTimeout(() => setSubmitted(false), 3000);
+                }}
+                className="space-y-4"
+              >
+                <TextField
+                  field={fields.title}
+                  placeholder="Enter article title"
+                  label="Title"
+                />
+
+                <EditorField
+                  field={fields.content}
+                  placeholder="Start writing your article content..."
+                  label="Content"
+                  className="min-h-[300px]"
+                />
+
+                <TextareaField
+                  field={fields.excerpt}
+                  placeholder="Brief summary (optional)"
+                  label="Excerpt"
+                  rows={2}
+                />
+
+                <Box className="flex items-center gap-4">
+                  <Button type="submit" variant="solid" color="primary">
+                    Submit Article
+                  </Button>
+                  {submitted && (
+                    <Typography variant="body2" className="text-success">
+                      Form submitted successfully! (Check console for data)
+                    </Typography>
+                  )}
+                </Box>
+              </Form>
+            </Box>
+          )}
+        </ClientOnly>
+      </CardContent>
+    </Card>
+  );
+}
 
 export function Editor() {
   return (
@@ -93,6 +195,9 @@ export function Editor() {
           </ClientOnly>
         </CardContent>
       </Card>
+
+      {/* Article Form with Editor */}
+      <ArticleFormExample />
 
       {/* Rich Text Editor Readonly */}
       <Card>
@@ -234,6 +339,48 @@ import { EditorField } from '@veraclins-dev/editor';
 >
   {() => <EditorField name="content" />}
 </ClientOnly>`}</code>
+                </pre>
+              </Box>
+            </Box>
+
+            {/* Form Integration Example */}
+            <Box>
+              <Typography variant="h4" className="mb-3">
+                Form Integration
+              </Typography>
+              <Typography variant="body2" className="mb-2">
+                Use EditorField within a form with validation using Conform:
+              </Typography>
+              <Box className="bg-muted p-4 rounded-md">
+                <pre className="text-sm overflow-x-auto">
+                  <code>{`import { EditorField } from '@veraclins-dev/editor';
+import { Form, useConform } from '@veraclins-dev/form';
+import { TextField } from '@veraclins-dev/ui';
+import { z } from '@veraclins-dev/utils';
+
+const ArticleSchema = z.object({
+  title: z.string().min(3, 'Title required'),
+  content: z.string().min(10, 'Content required'),
+});
+
+function ArticleForm() {
+  const { form, fields } = useConform({
+    schema: ArticleSchema,
+    id: 'article-form',
+  });
+
+  return (
+    <Form form={form}>
+      <TextField field={fields.title} label="Title" />
+      <EditorField
+        field={fields.content}
+        label="Content"
+        placeholder="Start writing..."
+      />
+      <button type="submit">Submit</button>
+    </Form>
+  );
+}`}</code>
                 </pre>
               </Box>
             </Box>

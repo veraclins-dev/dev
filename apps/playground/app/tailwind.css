@@ -18,7 +18,7 @@
 }
 
 .main-height {
-  @apply h-[calc(100vh-4rem)];
+  @apply h-[calc(100vh-5rem)];
 }
 
 .inner-height {
@@ -26,7 +26,7 @@
 }
 
 .upload-button {
-  @apply absolute right-2 bottom-2 border md:right-3 md:bottom-3 xl:right-4 xl:bottom-4;
+  @apply absolute right-1 bottom-1 border md:right-2 md:bottom-2 xl:right-4 xl:bottom-4;
 }
 
 .bg-brand-gradient {
@@ -45,22 +45,15 @@
     no-repeat padding-box;
 }
 
-.z-100 {
-  z-index: 100;
+textarea {
+  resize: none;
 }
 
-pre {
-  background: #0d0d0d;
-  color: #fff;
-  font-family: 'JetBrainsMono', monospace;
-  border-radius: 0.5rem;
+.text-xxs {
+  font-size: 0.6875rem;
+  line-height: 1rem;
 }
-pre code {
-  color: inherit;
-  padding: 0;
-  background: none;
-  font-size: 0.8rem;
-}
+
 .ProseMirror {
   @apply text-foreground;
   ul,
@@ -98,6 +91,7 @@ pre code {
     background: #0d0d0d;
     color: #fff;
     font-family: 'JetBrainsMono', monospace;
+    padding: 0.75rem 1rem;
     border-radius: 0.5rem;
   }
   pre code {
@@ -200,7 +194,7 @@ pre code {
 
     td,
     th {
-      @apply border-foreground/30 relative box-border min-w-5 border px-1.5 py-1 align-top;
+      @apply relative box-border min-w-5 border px-1.5 py-1 align-top;
       & > * {
         margin-bottom: 0;
         display: inline;
@@ -208,7 +202,7 @@ pre code {
     }
 
     th {
-      @apply bg-secondary text-secondary-foreground text-left font-semibold;
+      @apply bg-neutral text-neutral-foreground text-left font-semibold;
     }
   }
   .tableWrapper {
@@ -236,10 +230,6 @@ pre code {
       @apply pointer-events-none;
     }
   }
-  a {
-    @apply cursor-pointer;
-  }
-
   .collaboration-cursor__caret {
     border-left: 1px solid #0d0d0d;
     border-right: 1px solid #0d0d0d;
@@ -315,6 +305,7 @@ pre code {
     background: #0d0d0d;
     color: #fff;
     font-family: 'JetBrainsMono', monospace;
+    padding: 0.75rem 1rem;
     border-radius: 0.5rem;
 
     code {
@@ -391,6 +382,30 @@ pre code {
   max-height: var(--radix-popover-content-available-height);
 }
 
+.overflow-fade {
+  /* overflow: hidden; */
+  /* position: relative;
+	&:before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 3rem;
+		top: -3rem;
+		background: linear-gradient(
+			0deg,
+			hsl(var(--card)) 50%,
+			rgba(255, 255, 255, 0) 100%
+		);
+	} */
+  mask-image: linear-gradient(
+    to bottom,
+    black calc(100% - 48px),
+    transparent 100%
+  );
+}
+
 .dark {
   .ProseMirror {
     img:not(.ProseMirror-separator) {
@@ -415,7 +430,6 @@ pre code {
 }
 
 .readonly-editor {
-  @apply mb-2 md:mb-3;
   .ProseMirror {
     /* pointer-events: none; */
   }

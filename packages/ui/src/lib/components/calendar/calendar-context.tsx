@@ -268,9 +268,6 @@ export function CalendarProvider({
     return dateUtils.isSameMonth(today, currentMonth) ? today : firstDayOfMonth;
   });
 
-  const isUpdatingFromProps = useRef(false);
-  const previousValue = useRef(value);
-
   // ===== USE MEMO VARIABLES =====
   // Generate array of months for multi-month display - memoized
   const currentMonths = useMemo(() => {
@@ -344,14 +341,6 @@ export function CalendarProvider({
     [currentMonth, numberOfMonths, currentMonths, setCurrentMonth],
   );
 
-  // Method to update selected dates
-  const updateSelectedDates = useCallback(
-    (dates: Date | Date[] | DateRange | undefined) => {
-      setSelectedDates(dates);
-    },
-    [],
-  );
-
   // Centralized day click handler with automatic navigation
   const onDayClick = useCallback(
     (date: Date, month: Date) => {
@@ -402,7 +391,7 @@ export function CalendarProvider({
           newSelectedDates = date;
       }
 
-      updateSelectedDates(newSelectedDates);
+      setSelectedDates(newSelectedDates);
 
       // Handle navigation for outside month dates
       navigateToDate(date, month);
@@ -415,7 +404,6 @@ export function CalendarProvider({
       disabled,
       mode,
       selectedDates,
-      updateSelectedDates,
       navigateToDate,
       onValueChange,
     ],
@@ -624,43 +612,36 @@ export function CalendarProvider({
           return;
       }
 
-      updateSelectedDates(newSelectedDates);
+      setSelectedDates(newSelectedDates);
       onValueChange?.(newSelectedDates);
     },
-    [selectedDates, mode, updateSelectedDates, onValueChange],
+    [selectedDates, mode, onValueChange],
   );
 
   // ===== USE EFFECTS =====
-  useEffect(() => {
-    if (value !== undefined && value !== previousValue.current) {
-      isUpdatingFromProps.current = true;
-      updateSelectedDates(value);
-      previousValue.current = value;
-      isUpdatingFromProps.current = false;
-    }
-  }, [value, updateSelectedDates]);
 
   // Navigate to selected date when value changes externally
-  useEffect(() => {
-    if (value !== undefined && !isUpdatingFromProps.current) {
-      // Extract the date to navigate to based on the value type
-      let dateToNavigate: Date | undefined;
+  // useEffect(() => {
+  if (value !== undefined && value !== selectedDates) {
+    setSelectedDates(value);
+    // Extract the date to navigate to based on the value type
+    let dateToNavigate: Date | undefined;
 
-      if (value instanceof Date) {
-        dateToNavigate = value;
-      } else if (Array.isArray(value) && value.length > 0) {
-        // For multiple or range mode, navigate to the first date
-        dateToNavigate = value[0];
-      } else if (value && typeof value === 'object' && 'from' in value) {
-        // For range mode, navigate to the from date
-        dateToNavigate = (value as DateRange).from;
-      }
-
-      if (dateToNavigate) {
-        navigateToDate(dateToNavigate);
-      }
+    if (value instanceof Date) {
+      dateToNavigate = value;
+    } else if (Array.isArray(value) && value.length > 0) {
+      // For multiple or range mode, navigate to the first date
+      dateToNavigate = value[0];
+    } else if (value && typeof value === 'object' && 'from' in value) {
+      // For range mode, navigate to the from date
+      dateToNavigate = (value as DateRange).from;
     }
-  }, [value]);
+
+    if (dateToNavigate) {
+      navigateToDate(dateToNavigate);
+    }
+  }
+  // }, [value]);
 
   // ===== CONTEXT VALUE =====
   const contextValue = useMemo<CalendarContextValue>(

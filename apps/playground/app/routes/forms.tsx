@@ -10,6 +10,7 @@ export async function action({ request }: Route.ActionArgs) {
     request,
     schema: AddComment,
   });
+  console.log(submission);
   if (submission.status !== 'success') {
     return formSubmissionErrors(submission);
   }

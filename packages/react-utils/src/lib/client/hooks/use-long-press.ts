@@ -26,11 +26,14 @@ export const useLongPress = <T extends HTMLElement>({
   const timer = useRef<NodeJS.Timeout>(null);
   const target = useRef<EventTarget & T>(null);
 
-  const handleLongPress: React.MouseEventHandler<T> = (event) => {
-    timer.current = setInterval(() => {
-      onLongPress(event);
-    }, 200);
-  };
+  const handleLongPress: React.MouseEventHandler<T> = useCallback(
+    (event) => {
+      timer.current = setInterval(() => {
+        onLongPress(event);
+      }, 200);
+    },
+    [onLongPress],
+  );
 
   const start = useCallback(
     (event: React.MouseEvent<T, MouseEvent> | React.TouchEvent<T>) => {
@@ -49,7 +52,7 @@ export const useLongPress = <T extends HTMLElement>({
         setLongPressTriggered(true);
       }, delay);
     },
-    [onLongPress, delay, shouldPreventDefault],
+    [handleLongPress, delay, shouldPreventDefault],
   );
 
   const clear = useCallback(

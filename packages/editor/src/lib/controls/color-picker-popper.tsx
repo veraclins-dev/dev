@@ -127,7 +127,7 @@ export function ColorPickerPopper({
   ...popperProps
 }: ColorPickerPopperProps) {
   return (
-    <PopoverContent {...popperProps} className={cn('z-[3] w-64', className)}>
+    <PopoverContent {...popperProps} className={cn('z-30  w-64', className)}>
       <ColorPickerPopperBody
         value={value || ''}
         onSave={onSave}

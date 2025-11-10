@@ -138,7 +138,6 @@ export const Autocomplete = ({
   onChange,
   disableSorting,
   placeholder,
-  shouldReset,
   wrapperClassName,
   freeSolo = false,
   separator = 'comma',
@@ -153,12 +152,10 @@ export const Autocomplete = ({
 
   const {
     // Refs
-    mainRef,
     inputRef,
 
     // State
     localValue,
-    formValue,
     selected,
     open,
     focusedIndex,
@@ -181,6 +178,8 @@ export const Autocomplete = ({
     handleFocus,
     clear,
     isSelected,
+    controlValue,
+    register,
   } = useAutocomplete({
     options,
     multiple,
@@ -190,7 +189,6 @@ export const Autocomplete = ({
     defaultValue: formProps.defaultValue ?? defaultValue,
     onChange,
     disableSorting,
-    shouldReset,
     freeSolo,
     separator,
   });
@@ -296,9 +294,9 @@ export const Autocomplete = ({
       <input
         {...others}
         {...formProps}
-        ref={mainRef}
+        ref={register}
         key={key}
-        value={formValue}
+        // value={controlValue}
         type="text"
         id={inputId}
         className="h-0 w-0 border-none p-0 absolute bottom-0 left-0"

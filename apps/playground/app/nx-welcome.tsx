@@ -66,6 +66,12 @@ export function NxWelcome({ title }: { title: string }) {
             'Form input components including text fields, checkboxes, radio buttons, and select menus.',
         },
         {
+          path: '/autocomplete',
+          label: 'Autocomplete',
+          description:
+            'Flexible autocomplete component with single/multiple selection, free text input, keyboard navigation, and advanced features.',
+        },
+        {
           path: '/calendar',
           label: 'Calendar',
           description:

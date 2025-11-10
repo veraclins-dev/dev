@@ -4,6 +4,7 @@ import {
   getSelectProps as conformGetSelectProps,
   useInputControl,
 } from '@conform-to/react';
+import { useControl } from '@conform-to/react/future';
 import { useId } from 'react';
 
 import { slugify } from '@veraclins-dev/utils';
@@ -119,15 +120,20 @@ type Value = ReturnType<typeof useInputControl>['value'];
 const useInputControlProps = <S extends Value = string>(
   field?: ControlParams[0],
   name?: string,
+  ref?: React.RefObject<HTMLElement>,
 ) => {
   const control = useInputControl(field ?? { formId: '', name: name ?? '' });
-  if (!field)
+  if (!field) {
     return {
       value: undefined,
       onChange: () => {
         // empty function
       },
+      onBlur: () => {
+        // empty function
+      },
     };
+  }
 
   return {
     onChange: (value?: string) => {
@@ -139,6 +145,12 @@ const useInputControlProps = <S extends Value = string>(
     control,
     value: control.value as S,
   };
+};
+
+export const useControlProps: typeof useControl = (options) => {
+  const control = useControl(options);
+
+  return control;
 };
 
 const isStringOption = <T extends InputLabel = string>(

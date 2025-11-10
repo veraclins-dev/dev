@@ -8,9 +8,5 @@
     "scope:lib"
   ],
   "// targets": "to see all targets run: nx show project ui --web",
-  "targets": {
-    "add-component": {
-      "executor": "@nx-extend/shadcn-ui:add"
-    }
-  }
+  "targets": {}
 }

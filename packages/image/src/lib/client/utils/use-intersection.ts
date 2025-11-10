@@ -32,7 +32,7 @@ export function useIntersection<T extends Element>({
 
   const unobserve = useRef<() => void>(undefined);
   const [visible, setVisible] = useState(false);
-  const [root, setRoot] = useState(rootRef ? rootRef.current : null);
+  const [root, setRoot] = useState<HTMLElement | null>(null);
   const setRef = useCallback(
     (el: T | null) => {
       if (unobserve.current) {

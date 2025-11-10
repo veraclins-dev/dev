@@ -16,17 +16,5 @@
       "import": "./server.js",
       "require": "./server.js"
     }
-  },
-  "peerDependencies": {
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "intl-parse-accept-language": "^1",
-    "node-html-parser": "^6",
-    "react": "^19",
-    "react-dom": "^19",
-    "react-router": "^7",
-    "remix-utils": "^8",
-    "spin-delay": "^2"
-  },
-  "dependencies": {}
+  }
 }

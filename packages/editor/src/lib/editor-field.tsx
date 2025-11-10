@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
 import { type Except } from 'type-fest';
 
 import {
   getInputProps,
   InputFieldWrapper,
   type TextareaFieldProps,
+  useControlProps,
   useFieldProperties,
 } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
@@ -13,9 +13,10 @@ import { Editor, type EditorProps } from './editor';
 
 type EditorFieldProps = Except<
   TextareaFieldProps,
-  'value' | 'onChange' | 'onBlur'
+  'value' | 'onChange' | 'onBlur' | 'defaultValue'
 > & {
   value?: string;
+  defaultValue?: string;
   shouldReset?: EditorProps['shouldReset'];
   editorProps?: Except<
     EditorProps,
@@ -47,25 +48,23 @@ const EditorField = ({
     defaultValue ??
     '';
 
-  const [formValue, setFormValue] = useState(val);
-  const mainRef = useRef<HTMLTextAreaElement | null>(null);
-
   const { errorId } = useFieldProperties(field);
+
+  const {
+    change,
+    blur,
+    value: controlValue,
+    register,
+  } = useControlProps({ defaultValue, value: val });
 
   delete formProps.defaultValue;
 
   const handleBlur = (content: string) => {
-    setFormValue(content);
-    mainRef.current?.focus();
-
-    mainRef.current?.blur();
+    change(content);
+    blur();
   };
 
-  useEffect(() => {
-    if (val !== formValue) {
-      setFormValue(val);
-    }
-  }, [val]);
+  console.log('controlValue', controlValue, 'val', val);
 
   return (
     <InputFieldWrapper
@@ -81,8 +80,8 @@ const EditorField = ({
       <textarea
         {...rest}
         {...formProps}
-        ref={mainRef}
-        value={formValue}
+        ref={register}
+        // value={controlValue}
         key={key}
         className="inline h-0 w-0 border-0 border-none p-0"
         readOnly
@@ -91,7 +90,7 @@ const EditorField = ({
         {...editorProps}
         aria-invalid={errorId ? true : undefined}
         aria-describedby={errorId}
-        content={String(formValue)}
+        content={String(controlValue)}
         onChange={handleBlur}
         placeholder={placeholder}
         key={`${key}-editor`}

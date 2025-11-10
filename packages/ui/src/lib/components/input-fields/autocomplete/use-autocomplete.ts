@@ -1,35 +1,17 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { setReactInputValue } from '@veraclins-dev/utils';
-
 import { type Maybe, type Option } from '../../../types';
-import { getOptionValue } from '../utils';
+import { getOptionValue, useControlProps } from '../utils';
 
+import { type AutocompleteProps } from './types';
 import {
   filter,
   filterSeparators,
   hasUnescapedSeparator,
   parseSeparatedValues,
   SEPARATOR_MAP,
-  type SeparatorName,
   unescapeSeparators,
 } from './utils';
-
-type Options = Option<string>[];
-
-interface UseAutocompleteProps {
-  options: Options;
-  multiple?: boolean;
-  maxOptions?: number;
-  dependsOn?: string;
-  value?: string;
-  defaultValue?: string;
-  onChange?: (value: string) => void;
-  disableSorting?: boolean;
-  shouldReset?: boolean;
-  freeSolo?: boolean;
-  separator?: SeparatorName;
-}
 
 export const useAutocomplete = ({
   options,
@@ -40,20 +22,46 @@ export const useAutocomplete = ({
   defaultValue,
   onChange,
   disableSorting = false,
-  shouldReset = false,
   freeSolo = false,
   separator = 'comma',
-}: UseAutocompleteProps) => {
+}: AutocompleteProps) => {
   const mainRef = useRef<Maybe<HTMLInputElement>>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const formValueRef = useRef<string>('');
 
-  const [localValue, setLocalValue] = useState<string>('');
-  const [formValue, setFormValue] = useState<string>('');
-  const [selected, setSelected] = useState<string[]>([]);
+  // Compute initial value for lazy initialization
+  const initialValue = supplied ?? defaultValue ?? '';
+  const initialSelected = (() => {
+    if (!initialValue) return [];
+    const val = Array.isArray(initialValue)
+      ? (initialValue as string[])
+      : initialValue.split('|');
+    return val.filter((item, index, arr) => arr.indexOf(item) === index);
+  })();
+
+  const [localValue, setLocalValue] = useState<string>(() => {
+    // In single mode, initialize localValue from initial value
+    if (!multiple && initialValue) {
+      return initialValue;
+    }
+    return '';
+  });
+  const [selected, setSelected] = useState<string[]>(initialSelected);
   const [open, setOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
+
+  // Track the last synced value to detect external changes
+  const lastSyncedValueRef = useRef<string>(initialValue);
+
+  const {
+    change,
+    blur,
+    register,
+    value: controlValue,
+  } = useControlProps({
+    defaultValue,
+    value: supplied,
+  });
 
   const separatorChar = SEPARATOR_MAP[separator];
 
@@ -230,13 +238,14 @@ export const useAutocomplete = ({
     (e: React.FocusEvent<HTMLDivElement>) => {
       mainRef.current?.blur();
       setOpen(false);
+      blur();
       setFocusedIndex(-1);
       // When freeSolo is enabled and input has value, select it on blur
       if (freeSolo && localValue && canSelect) {
         handleCreateOption(false);
       }
     },
-    [freeSolo, localValue, canSelect, handleCreateOption],
+    [freeSolo, localValue, canSelect, handleCreateOption, blur],
   );
 
   const handleSelect = useCallback(
@@ -267,26 +276,19 @@ export const useAutocomplete = ({
 
   const changeValue = useCallback(
     (value: string) => {
-      if (value !== undefined && value !== formValueRef.current) {
-        formValueRef.current = value;
-        setFormValue(value);
-        setReactInputValue(mainRef.current, value);
+      if (value !== undefined && value !== controlValue) {
+        change(value);
         onChange?.(value);
       }
     },
-    [onChange],
+    [onChange, change, controlValue],
   );
-
-  // Memoized form value update to prevent unnecessary re-renders
-  const updateFormValue = useCallback(() => {
-    const value = selected.join('|');
-    changeValue(value);
-  }, [selected, changeValue]);
 
   // Update form value when selected changes
   useEffect(() => {
-    updateFormValue();
-  }, [updateFormValue]);
+    const value = selected.join('|');
+    changeValue(value);
+  }, [selected, changeValue]);
 
   const reset = useCallback(() => {
     setSelected([]);
@@ -396,28 +398,37 @@ export const useAutocomplete = ({
     inputRef.current?.select();
   }, []);
 
-  // Handle initial value
-  const value = supplied ?? defaultValue ?? '';
+  // Handle external value changes and initialization
+  // Combined effect that handles both initial value setup and external value changes
+  const currentValue = supplied ?? defaultValue ?? '';
   useEffect(() => {
-    if (!selected.length && value?.length) {
-      const val = Array.isArray(value) ? (value as string[]) : value.split('|');
-      // Remove duplicates from initial values
+    // Only process if value has actually changed externally
+    if (currentValue === lastSyncedValueRef.current) return;
+
+    // Initialize selected from value if empty
+    if (!selected.length && currentValue) {
+      const val = Array.isArray(currentValue)
+        ? (currentValue as string[])
+        : currentValue.split('|');
       const uniqueValues = val.filter(
         (item, index, arr) => arr.indexOf(item) === index,
       );
       setSelected(uniqueValues);
     }
-  }, [value]);
 
-  // Handle value changes
-  useEffect(() => {
-    if (value) {
-      changeValue(value);
-      if (!multiple) {
-        setLocalValue(value);
-      }
+    // Sync to form control (only if different from current control value)
+    if (currentValue && currentValue !== controlValue) {
+      changeValue(currentValue);
     }
-  }, [value, multiple, changeValue]);
+
+    // Update localValue in single mode when value changes externally
+    if (!multiple && currentValue) {
+      setLocalValue(currentValue);
+    }
+
+    lastSyncedValueRef.current = currentValue;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentValue]); // Only depend on currentValue to avoid unnecessary runs
 
   // Handle options changes
   useEffect(() => {
@@ -429,18 +440,6 @@ export const useAutocomplete = ({
       reset();
     }
   }, [options, freeSolo, selected, reset]);
-
-  // Handle reset
-  useEffect(() => {
-    if (shouldReset && selected.length) {
-      reset();
-    }
-  }, [shouldReset, selected.length, reset]);
-
-  // Keep formValueRef in sync with formValue
-  useEffect(() => {
-    formValueRef.current = formValue;
-  }, [formValue]);
 
   const isSelected = useCallback(
     (option: Option) => selected.includes(getOptionValue(option)),
@@ -454,7 +453,6 @@ export const useAutocomplete = ({
 
     // State
     localValue,
-    formValue,
     selected,
     open,
     focusedIndex,
@@ -479,5 +477,7 @@ export const useAutocomplete = ({
     reset,
     clear,
     isSelected,
+    controlValue,
+    register,
   };
 };

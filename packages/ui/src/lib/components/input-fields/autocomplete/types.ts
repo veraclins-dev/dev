@@ -14,7 +14,6 @@ export interface AutocompleteProps
   defaultValue?: string;
   onChange?: (value: string) => void;
   disableSorting?: boolean;
-  shouldReset?: boolean;
   freeSolo?: boolean;
   separator?: SeparatorName;
 }

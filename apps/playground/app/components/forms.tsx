@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   Form,
   FormSubmitButton,
@@ -86,6 +88,41 @@ const MultiDateFormSchema = z.object({
   }),
   deadline: z.string().min(1, 'Deadline is required'),
   priority: z.enum(['low', 'medium', 'high']),
+});
+
+// Autocomplete Form Schemas
+const SingleAutocompleteSchema = z.object({
+  technology: z.string().min(1, 'Please select a technology'),
+  country: z.string().optional(),
+});
+
+const MultipleAutocompleteSchema = z.object({
+  skills: z.string().min(1, 'Please select at least one skill'),
+  interests: z.string().optional(),
+});
+
+const FreeSoloAutocompleteSchema = z.object({
+  customTags: z.string().min(1, 'Please add at least one tag'),
+  searchQuery: z.string().optional(),
+});
+
+const DependentAutocompleteSchema = z.object({
+  category: z.string().min(1, 'Please select a category'),
+  subcategory: z.string().min(1, 'Please select a subcategory'),
+});
+
+const MaxOptionsAutocompleteSchema = z.object({
+  selectedSkills: z.string().min(1, 'Please select at least one skill'),
+  selectedTechnologies: z.string().optional(),
+});
+
+const ComplexAutocompleteSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  primaryTechnology: z.string().min(1, 'Please select a primary technology'),
+  additionalTechnologies: z.string().optional(),
+  skills: z.string().min(1, 'Please select at least one skill'),
+  tags: z.string().optional(),
+  location: z.string().optional(),
 });
 
 // Basic Form Example
@@ -710,6 +747,437 @@ const ProjectFormExample = () => {
   );
 };
 
+// Single Selection Autocomplete Form
+const SingleAutocompleteFormExample = () => {
+  const { form, fields } = useConform({
+    schema: SingleAutocompleteSchema,
+    id: 'single-autocomplete-form',
+    defaultValue: {
+      country: 'United States',
+    },
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon name="list-bullet" className="h-5 w-5 text-blue-500" />
+          <CardTitle>Single Selection Autocomplete</CardTitle>
+        </Box>
+        <CardDescription>
+          Form with single selection autocomplete fields for technology and
+          country.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Submit" className="max-w-lg">
+          <Autocomplete
+            field={fields.technology}
+            placeholder="Select a technology"
+            label="Technology"
+            options={[
+              'React',
+              'TypeScript',
+              'JavaScript',
+              'Node.js',
+              'Python',
+              'Java',
+              'C++',
+              'Go',
+              'Rust',
+            ]}
+            required
+          />
+          <Autocomplete
+            field={fields.country}
+            placeholder="Select a country"
+            label="Country (Optional)"
+            options={[
+              'United States',
+              'Canada',
+              'United Kingdom',
+              'Australia',
+              'Germany',
+              'France',
+              'Japan',
+            ]}
+          />
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
+// Multiple Selection Autocomplete Form
+const MultipleAutocompleteFormExample = () => {
+  const { form, fields } = useConform({
+    schema: MultipleAutocompleteSchema,
+    id: 'multiple-autocomplete-form',
+    defaultValue: {
+      skills: 'Design|Development',
+    },
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon name="check-badge" className="h-5 w-5 text-green-500" />
+          <CardTitle>Multiple Selection Autocomplete</CardTitle>
+        </Box>
+        <CardDescription>
+          Form with multiple selection autocomplete for skills and interests.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Submit" className="max-w-lg">
+          <Autocomplete
+            field={fields.skills}
+            placeholder="Select your skills"
+            label="Skills"
+            options={[
+              'Design',
+              'Development',
+              'Marketing',
+              'Sales',
+              'Support',
+              'Management',
+              'Analytics',
+              'Research',
+              'Writing',
+              'Photography',
+            ]}
+            multiple
+            required
+          />
+          <Autocomplete
+            field={fields.interests}
+            placeholder="Select your interests"
+            label="Interests (Optional)"
+            options={[
+              'Technology',
+              'Sports',
+              'Music',
+              'Travel',
+              'Cooking',
+              'Reading',
+              'Gaming',
+              'Fitness',
+            ]}
+            multiple
+          />
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
+// FreeSolo Autocomplete Form
+const FreeSoloAutocompleteFormExample = () => {
+  const { form, fields } = useConform({
+    schema: FreeSoloAutocompleteSchema,
+    id: 'freesolo-autocomplete-form',
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon name="pencil" className="h-5 w-5 text-purple-500" />
+          <CardTitle>FreeSolo Autocomplete</CardTitle>
+        </Box>
+        <CardDescription>
+          Form with freeSolo autocomplete allowing custom value creation.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Submit" className="max-w-lg">
+          <Autocomplete
+            field={fields.customTags}
+            placeholder="Type tags separated by comma (e.g., tag1, tag2)"
+            label="Custom Tags"
+            options={[
+              'New Arrival',
+              'Best Seller',
+              'Limited Edition',
+              'Eco-Friendly',
+            ]}
+            multiple
+            freeSolo
+            separator="comma"
+            required
+          />
+          <Autocomplete
+            field={fields.searchQuery}
+            placeholder="Type or select a search term"
+            label="Search Query (Optional)"
+            options={['React', 'TypeScript', 'JavaScript', 'Node.js', 'Python']}
+            freeSolo
+          />
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
+// Dependent Autocomplete Form
+const DependentAutocompleteFormExample = () => {
+  const { form, fields } = useConform({
+    schema: DependentAutocompleteSchema,
+    id: 'dependent-autocomplete-form',
+  });
+
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+
+  const subcategories: Record<string, string[]> = {
+    electronics: [
+      'Smartphones',
+      'Laptops',
+      'Tablets',
+      'Headphones',
+      'Cameras',
+      'Smartwatches',
+    ],
+    clothing: [
+      "Men's Clothing",
+      "Women's Clothing",
+      "Kids' Clothing",
+      'Shoes',
+      'Accessories',
+    ],
+    home: ['Furniture', 'Kitchen', 'Bedding', 'Decor', 'Lighting', 'Storage'],
+    sports: [
+      'Fitness Equipment',
+      'Outdoor Gear',
+      'Sports Apparel',
+      'Team Sports',
+      'Water Sports',
+    ],
+  };
+
+  const categories = Object.keys(subcategories);
+
+  return (
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon name="link" className="h-5 w-5 text-orange-500" />
+          <CardTitle>Dependent Autocomplete</CardTitle>
+        </Box>
+        <CardDescription>
+          Form with dependent autocomplete where subcategory depends on category
+          selection.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Submit" className="max-w-lg">
+          <Autocomplete
+            field={fields.category}
+            placeholder="Select a category"
+            label="Category"
+            options={categories}
+            required
+            onChange={(value) => {
+              setSelectedCategory(value);
+            }}
+          />
+          <Autocomplete
+            field={fields.subcategory}
+            placeholder={
+              selectedCategory
+                ? `Select a ${selectedCategory} subcategory`
+                : 'Select a category first'
+            }
+            label="Subcategory"
+            options={
+              selectedCategory ? subcategories[selectedCategory] || [] : []
+            }
+            dependsOn="category"
+            required
+          />
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
+// Max Options Autocomplete Form
+const MaxOptionsAutocompleteFormExample = () => {
+  const { form, fields } = useConform({
+    schema: MaxOptionsAutocompleteSchema,
+    id: 'max-options-autocomplete-form',
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon name="stop" className="h-5 w-5 text-red-500" />
+          <CardTitle>Max Options Autocomplete</CardTitle>
+        </Box>
+        <CardDescription>
+          Form with autocomplete fields that limit the maximum number of
+          selections.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Submit" className="max-w-lg">
+          <Autocomplete
+            field={fields.selectedSkills}
+            placeholder="Select up to 3 skills"
+            label="Top 3 Skills (max 3)"
+            options={[
+              'Design',
+              'Development',
+              'Marketing',
+              'Sales',
+              'Support',
+              'Management',
+              'Analytics',
+              'Research',
+            ]}
+            multiple
+            maxOptions={3}
+            required
+          />
+          <Autocomplete
+            field={fields.selectedTechnologies}
+            placeholder="Select up to 5 technologies"
+            label="Technologies (max 5, optional)"
+            options={[
+              'React',
+              'TypeScript',
+              'JavaScript',
+              'Node.js',
+              'Python',
+              'Java',
+              'C++',
+              'Go',
+              'Rust',
+              'Swift',
+            ]}
+            multiple
+            maxOptions={5}
+          />
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
+// Complex Autocomplete Form
+const ComplexAutocompleteFormExample = () => {
+  const { form, fields } = useConform({
+    schema: ComplexAutocompleteSchema,
+    id: 'complex-autocomplete-form',
+    defaultValue: {
+      additionalTechnologies: 'TypeScript|JavaScript',
+    },
+  });
+
+  return (
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon name="squares-2x2" className="h-5 w-5 text-indigo-500" />
+          <CardTitle>Complex Autocomplete Form</CardTitle>
+        </Box>
+        <CardDescription>
+          Comprehensive form combining multiple autocomplete scenarios with
+          different modes and configurations.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Create Profile" className="max-w-lg">
+          <TextField
+            field={fields.name}
+            placeholder="John Doe"
+            label="Full Name"
+          />
+
+          <Autocomplete
+            field={fields.primaryTechnology}
+            placeholder="Select your primary technology"
+            label="Primary Technology"
+            options={[
+              'React',
+              'TypeScript',
+              'JavaScript',
+              'Node.js',
+              'Python',
+              'Java',
+              'C++',
+            ]}
+            required
+          />
+
+          <Autocomplete
+            field={fields.additionalTechnologies}
+            placeholder="Select additional technologies"
+            label="Additional Technologies"
+            options={[
+              'React',
+              'TypeScript',
+              'JavaScript',
+              'Node.js',
+              'Python',
+              'Java',
+              'C++',
+              'Go',
+              'Rust',
+            ]}
+            multiple
+          />
+
+          <Autocomplete
+            field={fields.skills}
+            placeholder="Select your skills"
+            label="Skills"
+            options={[
+              'Design',
+              'Development',
+              'Marketing',
+              'Sales',
+              'Support',
+              'Management',
+              'Analytics',
+              'Research',
+            ]}
+            multiple
+            required
+          />
+
+          <Autocomplete
+            field={fields.tags}
+            placeholder="Type custom tags separated by comma"
+            label="Custom Tags"
+            options={['New', 'Popular', 'Featured']}
+            multiple
+            freeSolo
+            separator="comma"
+          />
+
+          <Autocomplete
+            field={fields.location}
+            placeholder="Select or type your location"
+            label="Location (Optional)"
+            options={[
+              'United States',
+              'Canada',
+              'United Kingdom',
+              'Australia',
+              'Germany',
+              'France',
+              'Japan',
+            ]}
+            freeSolo
+          />
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
 // Comment Form (Original Example)
 const CommentFormExample = () => {
   const fetcher = useCustomFetcher();
@@ -795,6 +1263,12 @@ export const FormsShowcase = () => {
         <BookingFormExample />
         <ProjectFormExample />
         <CommentFormExample />
+        <SingleAutocompleteFormExample />
+        <MultipleAutocompleteFormExample />
+        <FreeSoloAutocompleteFormExample />
+        <DependentAutocompleteFormExample />
+        <MaxOptionsAutocompleteFormExample />
+        <ComplexAutocompleteFormExample />
       </Box>
     </Box>
   );

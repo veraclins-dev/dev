@@ -61,13 +61,7 @@
     "react-colorful": "^5.6.1",
     "tippy.js": "^6.3.7"
   },
-  "peerDependencies": {
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "react": "^19",
-    "react-dom": "^19"
-  },
   "devDependencies": {
-    "type-fest": "^4.41.0"
+    "type-fest": "^5.2.0"
   }
 }

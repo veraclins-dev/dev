@@ -2,13 +2,18 @@ import React from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type CustomComponent, type OverrideComponentProps } from '../types';
+import {
+  type CustomComponent,
+  type OverrideComponentProps,
+  type WithTooltip,
+} from '../types';
 
 import {
   extractStyleProps,
   type LinkVariants,
   linkVariants,
 } from './utils/variants';
+import { ComposedTooltip } from './tooltip';
 
 type Target = '_blank' | '_self' | '_parent' | '_top';
 
@@ -26,6 +31,7 @@ type LinkProps<RootComponent extends 'a' | CustomComponent = 'a'> =
   OverrideComponentProps<RootComponent, BaseLinkProps>;
 
 function Link<C extends 'a' | CustomComponent = 'a'>({
+  tooltip,
   component = 'a' as C,
   type,
   color,
@@ -37,7 +43,7 @@ function Link<C extends 'a' | CustomComponent = 'a'>({
   target,
   rel,
   ...props
-}: LinkProps<C>) {
+}: WithTooltip<LinkProps<C>>) {
   const Component = component as React.ComponentType<any>;
   const { styleProps, others } = extractStyleProps(props);
 
@@ -52,20 +58,35 @@ function Link<C extends 'a' | CustomComponent = 'a'>({
         })()
       : rel;
 
-  return (
+  const classes = cn(
+    linkVariants({
+      type,
+      color,
+      underline,
+      linkSize,
+      variant,
+      ...styleProps,
+      className,
+    }),
+  );
+
+  return tooltip ? (
+    <ComposedTooltip
+      Trigger={Component}
+      TriggerProps={{
+        ...others,
+        className: classes,
+        target,
+        rel: computedRel,
+        children,
+        ...others,
+      }}
+      content={tooltip}
+    />
+  ) : (
     <Component
       data-slot="link"
-      className={cn(
-        linkVariants({
-          type,
-          color,
-          underline,
-          linkSize,
-          variant,
-          ...styleProps,
-          className,
-        }),
-      )}
+      className={classes}
       target={target}
       rel={computedRel}
       {...others}

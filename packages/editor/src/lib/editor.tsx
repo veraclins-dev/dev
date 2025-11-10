@@ -77,7 +77,7 @@ export function Editor({
         position: insertPosition,
       });
     },
-    [],
+    [onUploadFiles],
   );
 
   // Allow for dropping images into the editor

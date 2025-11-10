@@ -15,14 +15,11 @@
   "dependencies": {
     "@mjackson/headers": "0.11.1",
     "arctic": "3.7.0",
-    "debug": "4.4.1"
-  },
-  "peerDependencies": {
-    "remix-auth": "^4.1.0",
-    "twitter-api-v2": "^1.19.1"
+    "debug": "4.4.3",
+    "twitter-api-v2": "^1.27.0"
   },
   "devDependencies": {
-    "remix-auth": "4.2.0",
-    "@types/debug": "^4.1.12"
+    "@types/debug": "^4.1.12",
+    "remix-auth": "4.2.0"
   }
 }

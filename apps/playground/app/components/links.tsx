@@ -42,25 +42,50 @@ export function Links() {
             {/* Solid Links */}
             <Box display="flex" flexDirection="column" gap={3}>
               <Typography variant="h4">Solid Links</Typography>
-              <Link type="button" variant="solid">
+              <Link type="button" variant="solid" tooltip="Default Color">
                 Default Color
               </Link>
-              <Link type="button" variant="solid" color="primary">
+              <Link
+                type="button"
+                variant="solid"
+                color="primary"
+                tooltip="Primary"
+              >
                 Primary
               </Link>
-              <Link type="button" variant="solid" color="secondary">
+              <Link
+                type="button"
+                variant="solid"
+                color="secondary"
+                tooltip="Secondary"
+              >
                 Secondary
               </Link>
-              <Link type="button" variant="solid" color="destructive">
+              <Link
+                type="button"
+                variant="solid"
+                color="destructive"
+                tooltip="Destructive"
+              >
                 Destructive
               </Link>
-              <Link type="button" variant="solid" color="success">
+              <Link
+                type="button"
+                variant="solid"
+                color="success"
+                tooltip="Success"
+              >
                 Success
               </Link>
-              <Link type="button" variant="solid" color="warning">
+              <Link
+                type="button"
+                variant="solid"
+                color="warning"
+                tooltip="Warning"
+              >
                 Warning
               </Link>
-              <Link type="button" variant="solid" color="info">
+              <Link type="button" variant="solid" color="info" tooltip="Info">
                 Info
               </Link>
             </Box>

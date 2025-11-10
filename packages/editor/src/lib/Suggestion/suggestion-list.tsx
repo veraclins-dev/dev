@@ -1,5 +1,11 @@
 import { type MentionNodeAttrs } from '@tiptap/extension-mention';
-import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import {
+  forwardRef,
+  startTransition,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from 'react';
 
 import { CONTENT_CLASSES, ITEM_CLASSES } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
@@ -50,7 +56,11 @@ export const SuggestionList = forwardRef<
     selectItem(selectedIndex);
   };
 
-  useEffect(() => setSelectedIndex(0), [props.items]);
+  useEffect(() => {
+    startTransition(() => {
+      setSelectedIndex(0);
+    });
+  }, [props.items]);
 
   useImperativeHandle(ref, () => ({
     onKeyDown: ({ event }) => {
