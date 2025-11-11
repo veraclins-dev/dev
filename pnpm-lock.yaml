@@ -550,13 +550,14 @@ importers:
         version: 4.2.0
 
   packages/remix-seo:
+    dependencies:
+      react-router:
+        specifier: ^7.9.5
+        version: 7.9.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
     devDependencies:
       jsonc-eslint-parser:
         specifier: ^2.4.1
         version: 2.4.1
-      react-router:
-        specifier: ^7.9.5
-        version: 7.9.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
 
   packages/ui:
     dependencies:
