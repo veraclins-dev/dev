@@ -58,6 +58,7 @@ export default defineConfig(() => ({
         '@conform-to/zod',
         '@conform-to/zod/v4',
         'react-router',
+        'remix-utils',
         /remix-utils\/.*/,
         /@conform-to\/.*/,
         'zod',
