@@ -61,6 +61,7 @@ const EditorField = ({
 
   const handleBlur = (content: string) => {
     change(content);
+
     blur();
   };
 
