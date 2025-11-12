@@ -6,12 +6,7 @@ import { Box } from '../../ui/box';
 
 import { useCalendarContext } from './calendar-context';
 import { MonthGrid } from './month-grid';
-import type {
-  CalendarClassNames,
-  CalendarGridProps,
-  CalendarMode,
-  DateRange,
-} from './types';
+import type { CalendarGridProps } from './types';
 
 /**
  * Calendar grid component

@@ -83,57 +83,6 @@ export const DateField = ({
   // Get the current value (form value or supplied value)
   const currentValue = value ?? supplied;
 
-  // Format the display value
-  const formatDisplayValue = (val: DatePickerValue | undefined): string => {
-    if (!val) return '';
-
-    if (val instanceof Date) {
-      const timeStr = showTimePicker
-        ? ` ${val.toLocaleTimeString(locale, {
-            hour12: !showTimePicker,
-            hour: '2-digit',
-            minute: '2-digit',
-          })}`
-        : '';
-      return (
-        val.toLocaleDateString(locale, {
-          year: 'numeric',
-          month: 'short',
-          day: '2-digit',
-        }) + timeStr
-      );
-    }
-
-    if (Array.isArray(val)) {
-      if (val.length === 0) return '';
-      if (val.length === 1) {
-        return val[0].toLocaleDateString(locale, {
-          year: 'numeric',
-          month: 'short',
-          day: '2-digit',
-        });
-      }
-      return `${val.length} date(s) selected`;
-    }
-
-    if ('from' in val && val.from) {
-      const fromStr = val.from.toLocaleDateString(locale, {
-        month: 'short',
-        day: '2-digit',
-      });
-      const toStr = val.to
-        ? val.to.toLocaleDateString(locale, {
-            year: 'numeric',
-            month: 'short',
-            day: '2-digit',
-          })
-        : '';
-      return `${fromStr}${toStr ? ` - ${toStr}` : ''}`;
-    }
-
-    return '';
-  };
-
   // Handle date changes
   const handleValueChange = useCallback(
     (newValue?: DatePickerValue) => {

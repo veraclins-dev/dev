@@ -1,4 +1,4 @@
-import { matchSorter, type MatchSorterOptions, rankings } from 'match-sorter';
+import { matchSorter, type MatchSorterOptions } from 'match-sorter';
 
 import { type Option } from '../../../types';
 import { isStringOption } from '../utils';

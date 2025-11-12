@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
 
-import { debounce, DebouncedFunc } from '@veraclins-dev/utils';
+import { debounce, type DebouncedFunc } from '@veraclins-dev/utils';
 
 // type DebouncedFunction<Callback extends (...args: never[]) => unknown> = ((
 //   ...args: Parameters<Callback>

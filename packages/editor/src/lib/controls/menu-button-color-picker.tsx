@@ -4,10 +4,7 @@ import { type Except } from 'type-fest';
 import { Popover, PopoverTrigger } from '@veraclins-dev/ui';
 
 import { type ColorPickerProps, type SwatchColorOption } from './color-picker';
-import {
-  ColorPickerPopper,
-  type ColorPickerPopperProps,
-} from './color-picker-popper';
+import { ColorPickerPopper } from './color-picker-popper';
 import { MenuButton, type MenuButtonProps } from './menu-button';
 
 export interface MenuButtonColorPickerProps

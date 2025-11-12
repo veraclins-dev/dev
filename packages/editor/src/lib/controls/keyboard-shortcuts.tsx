@@ -1,4 +1,4 @@
-import { Box, Typography } from '@veraclins-dev/ui';
+import { Typography } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import { type WithShortcuts } from '../types';
