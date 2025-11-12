@@ -54,8 +54,8 @@ export const Primary: Story = {
     data: data,
     filters: {
       faceted: {
-        status: { options: statuses },
-        priority: { options: priorities },
+        status: { type: 'dropdown', options: statuses },
+        priority: { type: 'dropdown', options: priorities },
       },
     },
   },
@@ -98,8 +98,8 @@ export const Heading: Story = {
     data: data.slice(0, 10),
     filters: {
       faceted: {
-        status: { options: statuses },
-        priority: { options: priorities },
+        status: { type: 'dropdown', options: statuses },
+        priority: { type: 'dropdown', options: priorities },
       },
     },
   },

@@ -296,7 +296,6 @@ export const Autocomplete = ({
         {...formProps}
         ref={register}
         key={key}
-        // value={controlValue}
         type="text"
         id={inputId}
         className="h-0 w-0 border-none p-0 absolute bottom-0 left-0"
