@@ -64,8 +64,6 @@ const EditorField = ({
     blur();
   };
 
-  console.log('controlValue', controlValue, 'val', val);
-
   return (
     <InputFieldWrapper
       className={cn('px-0 py-0', className)}
@@ -81,7 +79,6 @@ const EditorField = ({
         {...rest}
         {...formProps}
         ref={register}
-        // value={controlValue}
         key={key}
         className="inline h-0 w-0 border-0 border-none p-0"
         readOnly
