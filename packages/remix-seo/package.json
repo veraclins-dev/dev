@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/remix-seo",
-  "version": "0.58.2",
+  "version": "0.58.3",
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
