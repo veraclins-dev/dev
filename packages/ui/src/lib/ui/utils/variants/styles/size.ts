@@ -85,6 +85,7 @@ const scales = {
 
 function generateSizeVariants<T extends SizeType>(sizeType: T): SizeVariant<T> {
   return [...scales[sizeType]].reduce((acc, scale) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
     (acc as any)[scale] = `${sizeType}-${scale}`;
     return acc;
   }, {} as SizeVariant<T>);

@@ -128,7 +128,7 @@ function SidebarProvider({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [toggleSidebar]);
+  }, [toggleSidebar, sidebarKeyboardShortcut]);
 
   // We add a state so that we can do data-state="expanded" or "collapsed".
   // This makes it easier to style the sidebar with Tailwind classes.
@@ -684,7 +684,7 @@ function SidebarMenuSubItem({
     />
   );
 }
-type CustomComponent = React.ComponentType<any>;
+type CustomComponent = React.ComponentType<unknown>;
 
 function SidebarMenuSubButton<C extends 'a' | CustomComponent = 'a'>({
   asChild = false,

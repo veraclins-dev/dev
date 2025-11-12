@@ -115,8 +115,8 @@ describe('utils.humanize', () => {
     });
 
     it('should return empty string for null/undefined input', () => {
-      expect(utils.humanize(null as any)).toBe('');
-      expect(utils.humanize(undefined as any)).toBe('');
+      expect(utils.humanize(null as unknown as string)).toBe('');
+      expect(utils.humanize(undefined as unknown as string)).toBe('');
     });
 
     it('should capitalize first letter', () => {

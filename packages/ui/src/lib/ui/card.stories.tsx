@@ -21,7 +21,7 @@ type Story = StoryObj<typeof Card>;
 
 export const Primary: Story = {
   args: {},
-  render: (args) => {
+  render: () => {
     return (
       <Card className="bg-card-inner">
         <CardHeader>
@@ -56,7 +56,7 @@ export const Primary: Story = {
 
 export const HeaderWithFooter: Story = {
   args: {},
-  render: (args) => {
+  render: () => {
     return (
       <Card>
         <CardHeader>

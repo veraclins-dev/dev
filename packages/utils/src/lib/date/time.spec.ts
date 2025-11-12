@@ -150,7 +150,7 @@ describe('Time Utilities', () => {
     });
 
     it('should return null for non-string input', () => {
-      const result = parseTimeString(null as any);
+      const result = parseTimeString(null as unknown as string);
       expect(result).toBeNull();
     });
 

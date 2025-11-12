@@ -86,6 +86,7 @@ function BreadcrumbItem({ className, ...props }: ListItemProps) {
     />
   );
 }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
 type CustomComponent = React.ComponentType<any>;
 
 /**

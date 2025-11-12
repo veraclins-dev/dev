@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/refs */
 import { type NodeViewProps } from '@tiptap/core';
 import { type Node as ProseMirrorNode } from '@tiptap/pm/model';
 import { NodeViewWrapper } from '@tiptap/react';
@@ -51,7 +52,6 @@ export function ResizableImageComponent({
       // dragging, so rendering would end up stuttering a bit without a throttle
       throttle(
         (event: MouseEvent) => {
-          // eslint-disable-next-line react-hooks/rules-of-hooks
           if (!imageRef.current) {
             return;
           }

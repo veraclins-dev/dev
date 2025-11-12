@@ -43,8 +43,8 @@ export const parseTimeString = (
   normalizedTime = normalizedTime
     .replace(/\b(p|P)\b$/, ($1) => ($1 === 'p' ? 'pm' : 'PM'))
     .replace(/\b(a|A)\b$/, ($1) => ($1 === 'a' ? 'am' : 'AM'))
-    .replace(/(\s|:)(p|P)$/, ($1, $2, $3) => $2 + ($3 === 'p' ? 'pm' : 'PM'))
-    .replace(/(\s|:)(a|A)$/, ($1, $2, $3) => $2 + ($3 === 'a' ? 'am' : 'AM'));
+    .replace(/(\s|:)(p|P)$/, (_$1, $2, $3) => $2 + ($3 === 'p' ? 'pm' : 'PM'))
+    .replace(/(\s|:)(a|A)$/, (_$1, $2, $3) => $2 + ($3 === 'a' ? 'am' : 'AM'));
   // If a specific format is provided, use it directly
   if (format) {
     try {

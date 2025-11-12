@@ -38,6 +38,7 @@ const freeSelf =
 
 /** Used as a reference to the global object. */
 export const root: typeof globalThis =
+  // eslint-disable-next-line no-new-func
   freeGlobal || freeSelf || Function('return this')();
 
 /** Used for built-in method references. */
@@ -143,6 +144,7 @@ export function isSymbol(value: unknown): boolean {
  * @param {*} value The value to process.
  * @returns {number} Returns the number.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
 export function toNumber(value: any): number {
   if (typeof value === 'number') {
     return value;

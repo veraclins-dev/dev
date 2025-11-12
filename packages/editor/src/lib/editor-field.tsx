@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { type Except } from 'type-fest';
 
 import {
@@ -64,6 +65,10 @@ const EditorField = ({
 
     blur();
   };
+
+  useEffect(() => {
+    change(val);
+  }, [val, change]);
 
   return (
     <InputFieldWrapper

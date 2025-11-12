@@ -39,7 +39,7 @@ export const CodeBlock = ({
           options={[
             ...extension.options.lowlight
               .listLanguages()
-              .map((lang, index) => ({ value: lang, label: lang })),
+              .map((lang) => ({ value: lang, label: lang })),
           ]}
           className="absolute right-2 top-2 border-0 px-2.5 py-0"
         />

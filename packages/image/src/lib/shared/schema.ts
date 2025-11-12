@@ -82,8 +82,8 @@ export const imagePropsSchema = z.object({
     .enum(['contain', 'cover', 'fill', 'none', 'scale-down'])
     .optional(),
   objectPosition: z.string().optional(),
-  onLoad: fnSchema<(input: any) => void>(1).optional(),
-  onError: fnSchema<(input: any) => void>(1).optional(),
+  onLoad: fnSchema<(input: unknown) => void>(1).optional(),
+  onError: fnSchema<(input: unknown) => void>(1).optional(),
   onLoadingComplete:
     fnSchema<(input: { naturalWidth: number; naturalHeight: number }) => void>(
       1,

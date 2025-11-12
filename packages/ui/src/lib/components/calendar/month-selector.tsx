@@ -27,7 +27,6 @@ export const MonthSelector = memo(function MonthSelector({
   onOpenChange,
   triggerLabel,
   triggerAriaLabel,
-  selectedYear,
 }: MonthSelectorProps) {
   const months = useMemo(() => {
     return Array.from({ length: 12 }, (_, i) => {

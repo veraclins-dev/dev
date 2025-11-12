@@ -42,6 +42,7 @@ function Link<C extends 'a' | CustomComponent = 'a'>({
   rel,
   ...props
 }: WithTooltip<LinkProps<C>>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const Component = component as React.ComponentType<any>;
   const { styleProps, others } = extractStyleProps(props);
 

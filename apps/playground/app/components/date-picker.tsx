@@ -9,7 +9,6 @@ import {
   CardTitle,
   DatePicker,
   type DatePickerValue,
-  type DateRange,
   Label,
   Typography,
 } from '@veraclins-dev/ui';

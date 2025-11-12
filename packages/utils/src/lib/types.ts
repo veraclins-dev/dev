@@ -9,7 +9,7 @@ type Nullable<T> = {
 /**
  * A type representing a function that returns a promise.
  */
-type AsyncUtilFunction<F extends (...args: any[]) => any> = (
+type AsyncUtilFunction<F extends (...args: unknown[]) => unknown> = (
   ...args: Parameters<F>
 ) => Promise<Awaited<ReturnType<F>>>;
 
@@ -104,7 +104,7 @@ type PropInjector<InjectedProps, AdditionalProps = object> = <
  *
  * @internal
  */
-type DistributiveOmit<T, K extends keyof any> = T extends any
+type DistributiveOmit<T, K extends keyof any> = T extends any // eslint-disable-line @typescript-eslint/no-explicit-any -- this is a valid use case
   ? Omit<T, K>
   : never;
 

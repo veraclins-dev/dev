@@ -42,6 +42,7 @@ export type WithTooltip<T extends object> = T & {
 export type ComponentWithTooltip<
   T extends
     | keyof React.JSX.IntrinsicElements
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
     | React.JSXElementConstructor<any>,
   S extends object = object,
 > = React.ComponentProps<T> & { tooltip?: React.ReactNode } & S;
@@ -49,10 +50,11 @@ export type ComponentWithTooltip<
 export type ComponentPropsWithoutColor<
   T extends
     | keyof React.JSX.IntrinsicElements
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
     | React.JSXElementConstructor<any>,
 > = Omit<React.ComponentProps<T>, 'color'>;
 
-export type CustomComponent = React.ComponentType<any>;
+export type CustomComponent = React.ComponentType<unknown>;
 
 export type OverrideComponentProps<
   DefaultComponent extends React.ElementType,

@@ -60,7 +60,7 @@ export const ImageField = ({
     input.change(val);
     input.blur();
     setValue(val);
-  }, [val]);
+  }, [val, input]);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const file = event.target.files?.[0];

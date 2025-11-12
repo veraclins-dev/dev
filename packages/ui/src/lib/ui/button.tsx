@@ -45,7 +45,6 @@ function Base({
   type = 'button',
   loading = false,
   loadingIcon,
-  fullWidth = false,
   'aria-label': ariaLabel,
   leadingIcon,
   trailingIcon,

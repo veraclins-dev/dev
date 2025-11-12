@@ -178,7 +178,6 @@ export const Autocomplete = ({
     handleFocus,
     clear,
     isSelected,
-    controlValue,
     register,
   } = useAutocomplete({
     options,

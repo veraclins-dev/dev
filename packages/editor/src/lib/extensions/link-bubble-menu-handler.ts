@@ -194,7 +194,7 @@ export const LinkBubbleMenuHandler = Extension.create<
       new Plugin({
         key: new PluginKey('handleClickLinkForMenu'),
         props: {
-          handleClick: (view, pos, event) => {
+          handleClick: (view, _pos, event) => {
             const attrs = getAttributes(view.state, 'link');
             const link = (event.target as HTMLElement).closest('a');
             // If the user has clicked on a link and the menu isn't already

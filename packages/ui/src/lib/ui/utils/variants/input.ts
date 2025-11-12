@@ -92,7 +92,7 @@ function extractInputVariants<T extends InputVariants>(props: T) {
       }
       return acc;
     },
-    {} as Record<string, any>,
+    {} as Record<string, unknown>,
   );
   return {
     ...styleProps,
@@ -112,7 +112,7 @@ function extractRadioGroupItemVariants<T extends RadioGroupItemVariants>(
       }
       return acc;
     },
-    {} as Record<string, any>,
+    {} as Record<string, unknown>,
   );
   return {
     ...styleProps,

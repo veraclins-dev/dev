@@ -26,6 +26,9 @@ const ArticleFormSchema = z.object({
   excerpt: z.string().optional(),
 });
 
+const defaultContent =
+  '<h2>Welcome to the Rich Text Editor!</h2><p>This is a <strong>powerful</strong> editor that supports:</p><ul><li><strong>Bold</strong> and <em>italic</em> text</li><li>Bullet points and numbered lists</li><li>Headings and subheadings</li><li>Links and images</li><li>And much more!</li></ul><p>Try editing this content to see the editor in action.</p>';
+
 function ArticleFormExample() {
   const [submitted, setSubmitted] = useState(false);
   const { form, fields } = useConform({
@@ -88,6 +91,7 @@ function ArticleFormExample() {
                   placeholder="Start writing your article content..."
                   label="Content"
                   className="min-h-[300px]"
+                  defaultValue={defaultContent}
                 />
 
                 <TextareaField
@@ -187,7 +191,7 @@ export function Editor() {
                   edit or replace.
                 </Typography>
                 <EditorField
-                  defaultValue="<h2>Welcome to the Rich Text Editor!</h2><p>This is a <strong>powerful</strong> editor that supports:</p><ul><li><strong>Bold</strong> and <em>italic</em> text</li><li>Bullet points and numbered lists</li><li>Headings and subheadings</li><li>Links and images</li><li>And much more!</li></ul><p>Try editing this content to see the editor in action.</p>"
+                  defaultValue={defaultContent}
                   name="demo-editor-with-content"
                 />
               </Box>

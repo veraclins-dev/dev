@@ -54,7 +54,7 @@ const options: Option[] = [
 ];
 
 export function MenuSelectTextAlign({
-  emptyLabel = '',
+  emptyLabel: _emptyLabel = '',
   ...menuSelectProps
 }: MenuSelectTextAlignProps) {
   const editor = useRichTextEditorContext();

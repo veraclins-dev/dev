@@ -141,7 +141,7 @@ export function Editor({
         rteRef.current?.editor?.commands.setContent('');
       }
     });
-  }, [shouldReset]);
+  }, [shouldReset, content]);
 
   return (
     <RichTextEditor

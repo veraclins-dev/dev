@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Avatar>;
 
 export const Primary: Story = {
   args: {},
-  render: (args) => {
+  render: () => {
     return (
       <Avatar>
         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -24,7 +24,7 @@ export const Primary: Story = {
 
 export const Fallback: Story = {
   args: {},
-  render: (args) => {
+  render: () => {
     return (
       <Avatar>
         <AvatarImage src="" alt="@shadcn" />

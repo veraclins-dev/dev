@@ -8,9 +8,9 @@ import {
   useRouteLoaderData,
 } from 'react-router';
 
+import { HoneypotProvider } from '@veraclins-dev/form';
 import { honeypot } from '@veraclins-dev/form/server';
 import { initImageConfig } from '@veraclins-dev/image';
-import { HoneypotProvider } from '@veraclins-dev/react-utils';
 import {
   Box,
   IconProvider,

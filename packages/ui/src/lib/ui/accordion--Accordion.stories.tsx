@@ -17,7 +17,7 @@ type Story = StoryObj<typeof Accordion>;
 
 export const Primary: Story = {
   args: {},
-  render: (args) => {
+  render: () => {
     return (
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
@@ -47,7 +47,7 @@ export const Primary: Story = {
 
 export const Multiple: Story = {
   args: {},
-  render: (args) => {
+  render: () => {
     return (
       <Accordion type="multiple" className="w-full">
         <AccordionItem value="item-1">
@@ -92,7 +92,7 @@ export const Multiple: Story = {
 
 export const MultipleLeftAligned: Story = {
   args: {},
-  render: (args) => {
+  render: () => {
     return (
       <Accordion type="multiple" className="w-full" align="left">
         <AccordionItem value="item-1">

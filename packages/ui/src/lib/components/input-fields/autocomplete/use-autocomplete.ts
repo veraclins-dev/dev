@@ -84,15 +84,6 @@ export const useAutocomplete = ({
     });
   }, [options, selected, localValue, disableSorting, multiple]);
 
-  // Cleanup timeout on unmount to prevent memory leaks
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
-
   const refocusInput = useCallback(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -234,19 +225,16 @@ export const useAutocomplete = ({
     [freeSolo, localValue, canSelect, addValue, multiple, refocusInput],
   );
 
-  const handleBlur = useCallback(
-    (e: React.FocusEvent<HTMLDivElement>) => {
-      mainRef.current?.blur();
-      setOpen(false);
-      blur();
-      setFocusedIndex(-1);
-      // When freeSolo is enabled and input has value, select it on blur
-      if (freeSolo && localValue && canSelect) {
-        handleCreateOption(false);
-      }
-    },
-    [freeSolo, localValue, canSelect, handleCreateOption, blur],
-  );
+  const handleBlur = useCallback(() => {
+    mainRef.current?.blur();
+    setOpen(false);
+    blur();
+    setFocusedIndex(-1);
+    // When freeSolo is enabled and input has value, select it on blur
+    if (freeSolo && localValue && canSelect) {
+      handleCreateOption(false);
+    }
+  }, [freeSolo, localValue, canSelect, handleCreateOption, blur]);
 
   const handleSelect = useCallback(
     (option: Option) => {
@@ -283,12 +271,6 @@ export const useAutocomplete = ({
     },
     [onChange, change, controlValue],
   );
-
-  // Update form value when selected changes
-  useEffect(() => {
-    const value = selected.join('|');
-    changeValue(value);
-  }, [selected, changeValue]);
 
   const reset = useCallback(() => {
     setSelected([]);
@@ -398,8 +380,13 @@ export const useAutocomplete = ({
     inputRef.current?.select();
   }, []);
 
+  // Update form value when selected changes
+  useEffect(() => {
+    const value = selected.join('|');
+    changeValue(value);
+  }, [selected, changeValue]);
+
   // Handle external value changes and initialization
-  // Combined effect that handles both initial value setup and external value changes
   const currentValue = supplied ?? defaultValue ?? '';
   useEffect(() => {
     // Only process if value has actually changed externally
@@ -440,6 +427,15 @@ export const useAutocomplete = ({
       reset();
     }
   }, [options, freeSolo, selected, reset]);
+
+  // Cleanup timeout on unmount to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const isSelected = useCallback(
     (option: Option) => selected.includes(getOptionValue(option)),

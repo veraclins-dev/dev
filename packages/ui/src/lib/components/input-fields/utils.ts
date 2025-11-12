@@ -120,7 +120,6 @@ type Value = ReturnType<typeof useInputControl>['value'];
 const useInputControlProps = <S extends Value = string>(
   field?: ControlParams[0],
   name?: string,
-  ref?: React.RefObject<HTMLElement>,
 ) => {
   const control = useInputControl(field ?? { formId: '', name: name ?? '' });
   if (!field) {

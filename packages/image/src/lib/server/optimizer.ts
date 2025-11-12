@@ -214,7 +214,7 @@ export function validateParams(
 }
 
 export async function imageOptimizer(
-  req: Request,
+  _req: Request,
   params: ImageParamsResult,
 ): Promise<OptimizeImageResult> {
   let upstreamBuffer: Buffer;

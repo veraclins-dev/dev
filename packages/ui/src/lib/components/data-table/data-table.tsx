@@ -49,6 +49,7 @@ interface DataTableProps<TData extends WithId, TValue = unknown> {
   bulkActions?: (table: TanstackTable<TData>) => ItemOption[];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
 const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   // Rank the item
   const itemRank = rankItem(row.getValue(columnId), value);

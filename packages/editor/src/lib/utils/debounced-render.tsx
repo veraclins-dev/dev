@@ -49,7 +49,7 @@ export const DebounceRender = (props: DebounceRenderProps) => {
     options = { leading: true, trailing: true, maxWait: 300 },
   } = props;
 
-  const [, updateState] = useState<any>();
+  const [, updateState] = useState<unknown>();
   const forceUpdate = useCallback(() => updateState({}), []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

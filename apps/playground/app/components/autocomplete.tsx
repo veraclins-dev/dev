@@ -78,7 +78,6 @@ const objectOptions = [
 ];
 export function AutocompleteShowcase() {
   const [selectedCountry, setSelectedCountry] = useState<string>('');
-  const [selectedSkills, setSelectedSkills] = useState<string>('');
 
   return (
     <Box display="flex" flexDirection="column" gap={6}>

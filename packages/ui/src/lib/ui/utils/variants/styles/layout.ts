@@ -133,6 +133,7 @@ function generateSimpleVariants<T extends SimpleStyle>(
   value: T,
 ): LayoutVariant<T> {
   return simple[value].reduce((acc, curr) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
     (acc as any)[curr] = curr;
     return acc;
   }, {} as LayoutVariant<T>);
@@ -142,6 +143,7 @@ function generateExtendedVariants<T extends ExtendedStyle>(
   value: T,
 ): LayoutVariant<T> {
   return extended[value].reduce((acc, curr) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
     (acc as any)[curr] = `${value}-${curr}`;
     return acc;
   }, {} as LayoutVariant<T>);

@@ -1,4 +1,4 @@
-import { colord } from 'colord'
+import { colord } from 'colord';
 
 /**
  * Convert a color string to a color in hex string format (e.g. "#ff0000"), or
@@ -10,18 +10,18 @@ import { colord } from 'colord'
  *   "not a color" -> null
  */
 export function colorToHex(color: string): string | null {
-	try {
-		const object = colord(color)
-		return object.isValid() ? object.toHex() : null
-	} catch (err) {
-		return null
-	}
+  try {
+    const object = colord(color);
+    return object.isValid() ? object.toHex() : null;
+  } catch (_err) {
+    return null;
+  }
 }
 
 /**
  * Get the matching text color for a given background color.
  */
 export function getContrastText(backgroundColor: string): string {
-	const object = colord(backgroundColor)
-	return object.isDark() ? '#949494' : '#474747'
+  const object = colord(backgroundColor);
+  return object.isDark() ? '#949494' : '#474747';
 }

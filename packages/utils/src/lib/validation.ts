@@ -17,6 +17,7 @@ z.config({
 
 const Empty = z.object({});
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
 type SchemaType = z.ZodType<any, any>;
 type SchemaTypeWithId = z.ZodType & { id: string | number };
 

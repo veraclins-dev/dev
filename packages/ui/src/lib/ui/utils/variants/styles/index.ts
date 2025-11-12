@@ -45,15 +45,15 @@ const styleProps: StyleProps = {
  * </MyComponent>
  * ```
  */
-function extractStyleProps<T extends Record<string, any>>(
+function extractStyleProps<T extends Record<string, unknown>>(
   props: T,
 ): {
   styleProps: Pick<T, StylePropsKeys>;
   others: Omit<T, StylePropsKeys>;
 } {
   const stylePropsKeys = Object.keys(styleProps) as StylePropsKeys[];
-  const extractedStyleProps: Record<string, any> = {};
-  const others: Record<string, any> = {};
+  const extractedStyleProps: Record<string, unknown> = {};
+  const others: Record<string, unknown> = {};
 
   // Iterate through all props and separate style props from others
   for (const [key, value] of Object.entries(props)) {
