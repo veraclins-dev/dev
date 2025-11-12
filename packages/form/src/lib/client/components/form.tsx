@@ -4,7 +4,7 @@ import {
   type FormProps as RouterFormProps,
   useSearchParams,
 } from 'react-router';
-import { HoneypotInputs } from 'remix-utils/honeypot/react';
+import { HoneypotInputs, HoneypotProvider } from 'remix-utils/honeypot/react';
 
 import { useDelayedIsPending } from '@veraclins-dev/react-utils';
 import { Box, ErrorList } from '@veraclins-dev/ui';
@@ -96,4 +96,4 @@ const Form = ({
   );
 };
 
-export { Form, type FormProps };
+export { Form, type FormProps, HoneypotProvider };
