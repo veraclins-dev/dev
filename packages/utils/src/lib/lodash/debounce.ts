@@ -35,7 +35,7 @@ export interface DebouncedFunc<
    * Otherwise, it returns the return value of the last invocation, or undefined if the debounced
    * function was not invoked yet.
    */
-  (...args: Parameters<T>): ReturnType<T> | undefined;
+  (...args: Parameters<T>): ReturnType<T>;
 
   /**
    * Throw away any pending invocation of the debounced function.
@@ -235,5 +235,5 @@ export function debounce<T extends (...args: Parameters<T>) => ReturnType<T>>(
   }
   debounced.cancel = cancel;
   debounced.flush = flush;
-  return debounced;
+  return debounced as DebouncedFunc<T>;
 }
