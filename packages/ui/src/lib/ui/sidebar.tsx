@@ -14,6 +14,7 @@ import { useIsMobile } from '@veraclins-dev/react-utils';
 import { cn } from '@veraclins-dev/utils';
 
 import { type IconName } from '../icons';
+import { type CustomComponent } from '../types';
 
 import {
   type SidebarMenuButtonVariants,
@@ -684,7 +685,6 @@ function SidebarMenuSubItem({
     />
   );
 }
-type CustomComponent = React.ComponentType<unknown>;
 
 function SidebarMenuSubButton<C extends 'a' | CustomComponent = 'a'>({
   asChild = false,

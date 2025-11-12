@@ -54,7 +54,8 @@ export type ComponentPropsWithoutColor<
     | React.JSXElementConstructor<any>,
 > = Omit<React.ComponentProps<T>, 'color'>;
 
-export type CustomComponent = React.ComponentType<unknown>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
+export type CustomComponent = React.ComponentType<any>;
 
 export type OverrideComponentProps<
   DefaultComponent extends React.ElementType,
