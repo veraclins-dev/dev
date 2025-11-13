@@ -1,6 +1,8 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 
+import { warnOnce } from '@veraclins-dev/utils';
+
 import { getHash } from './optimizer';
 
 export interface CacheEntry {
@@ -60,8 +62,7 @@ export class ImageCache {
       }
 
       return entry;
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
+    } catch (_e) {
       return null;
     }
   }
@@ -80,8 +81,8 @@ export class ImageCache {
           expireAt,
         }),
       );
-    } catch (error) {
-      console.warn('Failed to write to image cache:', error);
+    } catch (_e) {
+      warnOnce('Failed to write to image cache');
     }
   }
 
@@ -90,8 +91,7 @@ export class ImageCache {
       const cacheKey = this.getCacheKey(params);
       const cachePath = this.getCachePath(cacheKey);
       await fs.unlink(cachePath);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
+    } catch (_e) {
       // Ignore errors when deleting cache entries
     }
   }
@@ -99,8 +99,8 @@ export class ImageCache {
   async clear(): Promise<void> {
     try {
       await fs.rm(this.cacheDir, { recursive: true, force: true });
-    } catch (error) {
-      console.warn('Failed to clear image cache:', error);
+    } catch (_e) {
+      warnOnce('Failed to clear image cache');
     }
   }
 }

@@ -21,6 +21,7 @@ interface ThrottleSettings {
 }
 type ThrottleSettingsLeading =
   | (ThrottleSettings & { leading: true })
+  | (ThrottleSettings & { leading: false })
   | Omit<ThrottleSettings, 'leading'>;
 
 /**

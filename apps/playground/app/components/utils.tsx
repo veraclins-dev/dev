@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 
+import { createMarkup } from '@veraclins-dev/react-utils';
 import {
   Box,
   Button,
@@ -21,7 +22,6 @@ import {
   addYears,
   breakpoints,
   combinePaths,
-  createMarkup,
   createRandomString,
   createUniqueSlug,
   createUniqueString,

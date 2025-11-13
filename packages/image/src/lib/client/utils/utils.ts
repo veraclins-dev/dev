@@ -1,3 +1,5 @@
+import { warnOnce } from '@veraclins-dev/utils';
+
 import {
   emptyDataURL,
   type ImageProps,
@@ -89,7 +91,7 @@ function handleLoading(
         if (!parent.position) {
           // The parent has not been rendered to the dom yet and therefore it has no position. Skip the warnings for such cases.
         } else if (layout === 'responsive' && parent.display === 'flex') {
-          console.warn(
+          warnOnce(
             `Image with src "${src}" may not render properly as a child of a flex container. Consider wrapping the image with a div to configure the width.`,
           );
         } else if (
@@ -98,7 +100,7 @@ function handleLoading(
           parent.position !== 'fixed' &&
           parent.position !== 'absolute'
         ) {
-          console.warn(
+          warnOnce(
             `Image with src "${src}" may not render properly with a parent using position:"${parent.position}". Consider changing the parent style to position:"relative" with a width and height.`,
           );
         }

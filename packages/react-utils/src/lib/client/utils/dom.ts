@@ -1,6 +1,6 @@
 import { type RefObject } from 'react';
 
-export function setReactInputValue(
+function setInputValue(
   element: HTMLInputElement | HTMLTextAreaElement | null,
   value: string,
 ) {
@@ -21,39 +21,15 @@ export function setReactInputValue(
   element.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
-export function scrollIntoView<T extends Element>(ref: RefObject<T | null>) {
+function scrollIntoView<T extends Element>(ref: RefObject<T | null>) {
   setTimeout(() => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   }, 2);
 }
 
-export function closestParent(
-  el: HTMLElement | null,
-  selector: string,
-  fallBack?: true,
-): Element;
-export function closestParent(
-  el: HTMLElement | null,
-  selector: string,
-  fallBack?: false,
-): Element | null;
-export function closestParent(
-  el: HTMLElement | null,
-  selector: string,
-  fallBack?: boolean,
-): Element | null {
-  if (!el) return fallBack ? document.body : null;
-
-  const found = el.closest(selector);
-
-  if (found) return found;
-
-  return fallBack ? document.body : null;
-}
-
 const OFFSET = 10;
 
-export function checkOverflow<T extends HTMLElement>(ref: RefObject<T | null>) {
+function checkOverflow<T extends HTMLElement>(ref: RefObject<T | null>) {
   const el = ref.current;
   if (!el) {
     return false;
@@ -66,3 +42,11 @@ export function checkOverflow<T extends HTMLElement>(ref: RefObject<T | null>) {
 
   return isOverflowing;
 }
+
+const createMarkup = (content = '') => {
+  return {
+    __html: `${content ?? ''}`,
+  };
+};
+
+export { checkOverflow, createMarkup, scrollIntoView, setInputValue };

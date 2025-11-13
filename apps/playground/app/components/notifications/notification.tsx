@@ -1,3 +1,4 @@
+import { createMarkup } from '@veraclins-dev/react-utils';
 import {
   Avatar,
   AvatarFallback,
@@ -11,7 +12,7 @@ import {
   Link,
   Typography,
 } from '@veraclins-dev/ui';
-import { cn, createMarkup } from '@veraclins-dev/utils';
+import { cn } from '@veraclins-dev/utils';
 
 interface NotificationDetailProps {
   notification: {

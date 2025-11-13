@@ -240,6 +240,25 @@ function generateCUID() {
   return `c${timestamp}${count}${fingerprint}${random}`;
 }
 
+/**
+ * Warns once per unique message in development mode.
+ * In production, this is a no-op.
+ *
+ * @param msg - The warning message to display
+ */
+let warnOnce = (_msg: string) => {
+  // empty function
+};
+if (process.env['NODE_ENV'] !== 'production') {
+  const warnings = new Set<string>();
+  warnOnce = (msg: string) => {
+    if (!warnings.has(msg)) {
+      console.warn(msg);
+    }
+    warnings.add(msg);
+  };
+}
+
 export {
   callAll,
   cn,
@@ -259,4 +278,5 @@ export {
   truncate,
   truncateMiddle,
   wait,
+  warnOnce,
 };

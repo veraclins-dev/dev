@@ -1,3 +1,5 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import * as utils from './misc';
 
 describe('utils.getErrorMessage', () => {
@@ -12,7 +14,12 @@ describe('utils.getErrorMessage', () => {
   });
 
   it('should return "Unknown Error" if the error does not have a message property', () => {
-    expect(utils.getErrorMessage({})).toBe('Unknown Error');
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const result = utils.getErrorMessage({});
+    expect(result).toBe('Unknown Error');
+    expect(consoleSpy).toHaveBeenCalled();
+    consoleSpy.mockRestore();
   });
 });
 
@@ -408,5 +415,129 @@ describe('utils.combinePaths', () => {
 
   it('should remove empty paths', () => {
     expect(utils.combinePaths('/path1', '', '/path3')).toBe('path1/path3');
+  });
+});
+
+describe('utils.getInitials', () => {
+  it('should extract initials from a full name', () => {
+    expect(utils.getInitials('John Doe')).toBe('JD');
+  });
+
+  it('should extract initials from a single name', () => {
+    expect(utils.getInitials('John')).toBe('J');
+  });
+
+  it('should extract initials from multiple words', () => {
+    expect(utils.getInitials('John Michael Doe')).toBe('JM');
+  });
+
+  it('should handle uppercase names', () => {
+    expect(utils.getInitials('JOHN DOE')).toBe('JD');
+  });
+
+  it('should handle lowercase names', () => {
+    expect(utils.getInitials('john doe')).toBe('JD');
+  });
+
+  it('should handle mixed case names', () => {
+    expect(utils.getInitials('john Doe')).toBe('JD');
+  });
+
+  it('should handle names with extra spaces', () => {
+    expect(utils.getInitials('  John   Doe  ')).toBe('JD');
+  });
+});
+
+describe('utils.generateCUID', () => {
+  it('should generate a unique ID', () => {
+    const id1 = utils.generateCUID();
+    const id2 = utils.generateCUID();
+    expect(id1).not.toBe(id2);
+  });
+
+  it('should generate IDs starting with "c"', () => {
+    const id = utils.generateCUID();
+    expect(id.startsWith('c')).toBe(true);
+  });
+
+  it('should generate IDs with consistent format', () => {
+    const id = utils.generateCUID();
+    expect(id.length).toBeGreaterThan(10);
+    expect(typeof id).toBe('string');
+  });
+});
+
+describe('utils.roundToTwo', () => {
+  it('should round a number to two decimal places', () => {
+    expect(utils.roundToTwo(1.2345)).toBe(1.23);
+    expect(utils.roundToTwo(1.2355)).toBe(1.24);
+  });
+
+  it('should handle numbers with fewer decimal places', () => {
+    expect(utils.roundToTwo(1.2)).toBe(1.2);
+    expect(utils.roundToTwo(1)).toBe(1);
+  });
+
+  it('should handle negative numbers', () => {
+    expect(utils.roundToTwo(-1.2345)).toBe(-1.23);
+  });
+
+  it('should handle zero', () => {
+    expect(utils.roundToTwo(0)).toBe(0);
+  });
+
+  it('should handle floating point precision issues', () => {
+    expect(utils.roundToTwo(0.1 + 0.2)).toBe(0.3);
+  });
+});
+
+describe('utils.warnOnce', () => {
+  beforeEach(() => {
+    vi.spyOn(console, 'warn').mockImplementation(() => {
+      // empty function
+    });
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('should warn only once per unique message in development', () => {
+    const originalEnv = process.env['NODE_ENV'];
+    process.env['NODE_ENV'] = 'development';
+
+    utils.warnOnce('test message');
+    utils.warnOnce('test message');
+    utils.warnOnce('test message');
+
+    expect(console.warn).toHaveBeenCalledTimes(1);
+    expect(console.warn).toHaveBeenCalledWith('test message');
+
+    process.env['NODE_ENV'] = originalEnv;
+  });
+
+  it('should warn multiple times for different messages', () => {
+    const originalEnv = process.env['NODE_ENV'];
+    process.env['NODE_ENV'] = 'development';
+
+    utils.warnOnce('message 1');
+    utils.warnOnce('message 2');
+    utils.warnOnce('message 3');
+
+    expect(console.warn).toHaveBeenCalledTimes(3);
+
+    process.env['NODE_ENV'] = originalEnv;
+  });
+
+  it('should not warn in production', () => {
+    const originalEnv = process.env['NODE_ENV'];
+    process.env['NODE_ENV'] = 'production';
+
+    utils.warnOnce('test message');
+    utils.warnOnce('test message');
+
+    expect(console.warn).not.toHaveBeenCalled();
+
+    process.env['NODE_ENV'] = originalEnv;
   });
 });

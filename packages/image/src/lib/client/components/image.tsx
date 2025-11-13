@@ -6,6 +6,8 @@ import {
   useState,
 } from 'react';
 
+import { warnOnce } from '@veraclins-dev/utils';
+
 import {
   emptyDataURL,
   getImageConfig,
@@ -195,7 +197,7 @@ export function Image({
   }
 
   if (layout === 'fill' && (width || height)) {
-    console.warn(
+    warnOnce(
       `Image with src "${src}" and "layout='fill'" has unused properties assigned. Please remove "width" and "height".`,
     );
   }
@@ -207,14 +209,14 @@ export function Image({
   }
 
   if (sizes && layout !== 'fill' && layout !== 'responsive') {
-    console.warn(
+    warnOnce(
       `Image with src "${src}" has "sizes" property but it will be ignored. Only use "sizes" with "layout='fill'", or "layout='responsive'"`,
     );
   }
 
   if (placeholder === 'blur') {
     if (layout !== 'fill' && (widthInt || 0) * (heightInt || 0) < 1600) {
-      console.warn(
+      warnOnce(
         `Image with src "${src}" is smaller than 40x40. Consider removing the "placeholder='blur'" property to improve performance.`,
       );
     }
@@ -237,7 +239,7 @@ export function Image({
       (key) => key in layoutStyle,
     );
     if (overwrittenStyles.length) {
-      console.warn(
+      warnOnce(
         `Image with src ${src} is assigned the following styles, which are overwritten by automatically-generated styles: ${overwrittenStyles.join(
           ', ',
         )}`,
@@ -321,7 +323,6 @@ export function Image({
     let fullUrl: URL;
     try {
       fullUrl = new URL(imgAttributes.src);
-       
     } catch (_e) {
       fullUrl = new URL(imgAttributes.src, window.location.href);
     }
@@ -386,7 +387,7 @@ export function Image({
           !lcpImage.src.startsWith('data:') &&
           !lcpImage.src.startsWith('blob:')
         ) {
-          console.warn(
+          warnOnce(
             `Image with src "${lcpImage.src}" was detected as the Largest Contentful Paint (LCP). Please add the "priority" property if this image is above the fold.`,
           );
         }

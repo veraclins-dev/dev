@@ -6,6 +6,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 
+import { warnOnce } from '@veraclins-dev/utils';
+
 import { type FullImageConfig, getImageConfig } from '../shared';
 
 export enum MimeType {
@@ -136,8 +138,8 @@ export function validateParams(
       hrefParsed = new URL(src);
       href = hrefParsed.toString();
       isAbsolute = true;
-    } catch (err) {
-      console.warn('Invalid URL:', src, err);
+    } catch (_e) {
+      warnOnce(`Invalid URL: ${src}`);
       return { errorMessage: '"src" parameter is invalid' };
     }
 
@@ -327,7 +329,7 @@ export async function imageOptimizer(
           chromaSubsampling: '4:2:0',
         });
       } else {
-        console.warn(
+        warnOnce(
           'Your installed version of the sharp package does not support AVIF images. Run "npm install sharp@latest" to upgrade.',
         );
         transformer.webp({ quality });
@@ -353,8 +355,8 @@ export async function imageOptimizer(
     } else {
       throw new ImageError(500, 'Unable to optimize buffer');
     }
-  } catch (e) {
-    console.warn('Error during image optimization', e);
+  } catch (_e) {
+    warnOnce('Error during image optimization');
     if (upstreamBuffer && upstreamType) {
       return {
         buffer: upstreamBuffer,
@@ -523,7 +525,7 @@ export async function optimizeImage(
           chromaSubsampling: '4:2:0',
         });
       } else {
-        console.warn(
+        warnOnce(
           'Your installed version of the sharp package does not support AVIF images. Run "npm install sharp@latest" to upgrade.',
         );
         transformer.webp({ quality });
@@ -549,8 +551,8 @@ export async function optimizeImage(
     }
 
     throw new ImageError(500, 'Unable to optimize buffer');
-  } catch (error) {
-    console.warn('Error during image optimization:', error);
+  } catch (_e) {
+    warnOnce('Error during image optimization');
     return {
       buffer,
       contentType,

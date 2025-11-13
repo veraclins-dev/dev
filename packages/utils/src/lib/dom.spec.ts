@@ -44,18 +44,6 @@ describe('dom.highlight', () => {
   });
 });
 
-describe('dom.createMarkup', () => {
-  it('should create markup with the given content', () => {
-    expect(dom.createMarkup('Hello World')).toEqual({
-      __html: 'Hello World',
-    });
-  });
-
-  it('should create markup with an empty string if no content is provided', () => {
-    expect(dom.createMarkup()).toEqual({ __html: '' });
-  });
-});
-
 describe('dom.stripHTMLTags', () => {
   it('should strip HTML tags from a string', () => {
     expect(dom.stripHTMLTags('<p>Hello World</p>')).toBe('Hello World');
