@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck - This file is not type-safe
 import { renderHook } from '@testing-library/react';
 import { createElement } from 'react';
 import { createMemoryRouter, RouterProvider } from 'react-router';

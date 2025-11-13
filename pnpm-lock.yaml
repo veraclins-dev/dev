@@ -525,7 +525,14 @@ importers:
         specifier: ^0.34.5
         version: 0.34.5
 
-  packages/react-utils: {}
+  packages/react-utils:
+    dependencies:
+      '@tusbar/cache-control':
+        specifier: ^1.0.2
+        version: 1.0.2
+      cookie:
+        specifier: ^1.0.2
+        version: 1.0.2
 
   packages/remix-auth-social:
     dependencies:
@@ -4520,6 +4527,9 @@ packages:
 
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
+
+  '@tusbar/cache-control@1.0.2':
+    resolution: {integrity: sha512-PXfjYTYBVvMPYCLDWj+xIOA9ITFbbhWCHzLcqUCJ5TPGm4JO4cxpGb7x3K8Q1K1ADgNgfBxLsDcTMVRydtZB9A==}
 
   '@tybys/wasm-util@0.10.1':
     resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
@@ -15821,6 +15831,8 @@ snapshots:
   '@tsconfig/node14@1.0.3': {}
 
   '@tsconfig/node16@1.0.4': {}
+
+  '@tusbar/cache-control@1.0.2': {}
 
   '@tybys/wasm-util@0.10.1':
     dependencies:

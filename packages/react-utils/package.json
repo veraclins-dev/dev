@@ -5,6 +5,10 @@
   "types": "./index.d.ts",
   "type": "module",
   "repository": "https://github.com/veraclins-dev/dev.git",
+  "dependencies": {
+    "@tusbar/cache-control": "^1.0.2",
+    "cookie": "^1.0.2"
+  },
   "exports": {
     ".": {
       "types": "./index.d.ts",

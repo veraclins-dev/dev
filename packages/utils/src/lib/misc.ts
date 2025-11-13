@@ -241,6 +241,18 @@ function generateCUID() {
 }
 
 /**
+ * Formats a number as a metric count string (e.g., "1.2K", "1.5M")
+ *
+ * @param count - The number to format
+ * @returns Formatted string representation
+ */
+function formatMetricCount(count: number): string {
+  if (count < 100_000) return count.toLocaleString();
+  if (count < 1_000_000) return `${Math.floor(count / 1_000)} K+`;
+  return `${Math.floor(count / 1_000_000)} M+`;
+}
+
+/**
  * Warns once per unique message in development mode.
  * In production, this is a no-op.
  *
@@ -259,12 +271,16 @@ if (process.env['NODE_ENV'] !== 'production') {
   };
 }
 
+export const isServer = typeof window === 'undefined';
+export const isClient = typeof window !== 'undefined';
+
 export {
   callAll,
   cn,
   combinePaths,
   downloadFile,
   emailToUserName,
+  formatMetricCount,
   generateCUID,
   getDomainUrl,
   getErrorMessage,

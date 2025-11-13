@@ -73,7 +73,7 @@ describe('useIsMobile', () => {
             // Simulate change after a delay
             setTimeout(() => {
               if (typeof handler === 'function') {
-                handler({ matches: true } as any);
+                handler({ matches: true });
               }
             }, 10);
           }),
