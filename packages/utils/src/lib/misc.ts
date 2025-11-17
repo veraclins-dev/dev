@@ -261,7 +261,11 @@ function formatMetricCount(count: number): string {
 let warnOnce = (_msg: string) => {
   // empty function
 };
-if (process.env['NODE_ENV'] !== 'production') {
+if (
+  typeof process !== 'undefined' &&
+  process.env &&
+  process.env['NODE_ENV'] !== 'production'
+) {
   const warnings = new Set<string>();
   warnOnce = (msg: string) => {
     if (!warnings.has(msg)) {

@@ -61,6 +61,12 @@ const SettingsFormSchema = z.object({
   profileVisibility: z.enum(['public', 'private', 'friends']),
 });
 
+const GroupFormSchema = z.object({
+  name: z.string().min(3, 'Group name must be at least 3 characters'),
+  privacy: z.enum(['public', 'private']),
+  description: z.string().min(10, 'Description must be at least 10 characters'),
+});
+
 const EventFormSchema = z.object({
   title: z.string().min(3, 'Event title must be at least 3 characters'),
   description: z.string().min(10, 'Description must be at least 10 characters'),
@@ -387,6 +393,102 @@ const SettingsFormExample = () => {
                 ]}
               />
             </Box>
+          </Box>
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
+// Group Form Example
+const GroupFormExample = () => {
+  const { form, fields } = useConform({
+    schema: GroupFormSchema,
+    id: 'group-form',
+    defaultValue: {
+      name: '',
+      privacy: 'public',
+      description: '',
+    },
+  });
+
+  const PrivacyInfo = ({
+    icon,
+    title,
+    description,
+  }: {
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+  }) => {
+    return (
+      <Box display="flex" items="center" justify="between" gapX={3}>
+        <Typography className="rounded-full bg-slate-400 p-2">
+          {icon}
+        </Typography>
+        <Box>
+          <Typography className="font-semibold">{title}</Typography>
+          <Typography className="text-slate-400">{description}</Typography>
+        </Box>
+      </Box>
+    );
+  };
+
+  return (
+    <Card>
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon name="users" className="h-5 w-5 text-purple-500" />
+          <CardTitle>Group Form</CardTitle>
+        </Box>
+        <CardDescription>
+          Form with SelectField using custom option labels with icons and
+          descriptions, similar to group creation forms.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} submitText="Create Group" className="max-w-lg">
+          <Box display="flex" flexDirection="column" gap={4}>
+            <TextField
+              field={fields.name}
+              label="Group Name"
+              placeholder="Enter group name"
+            />
+
+            <SelectField
+              field={fields.privacy}
+              label="Privacy"
+              options={[
+                {
+                  label: (
+                    <PrivacyInfo
+                      title="Public"
+                      description="Anyone can see who's in this group and what they post"
+                      icon={<Icon name="lock-open-1" className="h-5 w-5" />}
+                    />
+                  ),
+                  value: 'public',
+                },
+                {
+                  label: (
+                    <PrivacyInfo
+                      title="Private"
+                      description="Only members can see who's in this group and what they post (Default)"
+                      icon={<Icon name="lock-closed" className="h-5 w-5" />}
+                    />
+                  ),
+                  value: 'private',
+                },
+              ]}
+              placeholder="Choose privacy setting"
+            />
+
+            <TextareaField
+              field={fields.description}
+              label="Description"
+              placeholder="Describe your group..."
+              rows={5}
+            />
           </Box>
         </Form>
       </CardContent>
@@ -1256,6 +1358,7 @@ export const FormsShowcase = () => {
         <AdvancedFormExample />
         <SearchFormExample />
         <SettingsFormExample />
+        <GroupFormExample />
         <FetcherFormExample />
         <CustomButtonsFormExample />
         <NoErrorFormExample />

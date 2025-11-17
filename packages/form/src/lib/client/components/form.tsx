@@ -67,7 +67,10 @@ const Form = ({
       />
       <HoneypotInputs />
       <fieldset
-        className={cn('flex h-full w-full flex-col gap-y-4', contentClassName)}
+        className={cn(
+          'flex h-full w-full min-w-0 flex-col gap-y-4',
+          contentClassName,
+        )}
         disabled={disabled}
       >
         {children}
