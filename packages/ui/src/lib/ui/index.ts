@@ -22,6 +22,7 @@ export * from './label';
 export * from './link';
 export * from './list';
 export * from './list-item';
+export * from './pagination';
 export * from './popover';
 export * from './progress-bar';
 export * from './radio-group';

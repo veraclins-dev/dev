@@ -48,7 +48,6 @@ export default defineConfig({
         'react-dom',
         'luxon',
         'clsx',
-        'sanitize-html',
         'tailwind-merge',
         'tailwindcss-animate',
         'zod',

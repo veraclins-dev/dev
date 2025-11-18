@@ -141,7 +141,9 @@ function ChartContainer({
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
-        <ResponsiveContainer>{children}</ResponsiveContainer>
+        <ResponsiveContainer initialDimension={{ width: 320, height: 250 }}>
+          {children}
+        </ResponsiveContainer>
       </Box>
     </ChartContext.Provider>
   );

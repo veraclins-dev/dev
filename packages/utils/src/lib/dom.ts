@@ -1,5 +1,3 @@
-import sanitizeHtml from 'sanitize-html';
-
 function highlight(string: string, sub: string) {
   return sub
     ? string.replace(new RegExp(sub, 'gi'), (match) => `<b>${match}</b>`)
@@ -12,10 +10,21 @@ function stripHTMLTags(htmlContent: string) {
     .replace(/&nbsp;/g, ' ') // Replace non-breaking spaces with regular spaces
     .replace(/>/g, '> '); // Add space after closing tags
 
-  return sanitizeHtml(text, {
-    allowedTags: [], // No tags allowed, strips all HTML
-    allowedAttributes: {}, // No attributes allowed
-  }).trim();
+  // Use native DOMParser API in browser, simple regex fallback for Node.js
+  if (typeof DOMParser !== 'undefined') {
+    // Browser environment - use native DOMParser
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
+    return doc.body.textContent || doc.body.innerText || '';
+  } else {
+    // Node.js/SSR environment - use regex fallback
+    // This is safe for server-side rendering where we control the input
+    return text
+      .replace(/<[^>]*>/g, '') // Remove all HTML tags
+      .replace(/&[a-z]+;/gi, ' ') // Replace HTML entities with spaces
+      .replace(/\s+/g, ' ') // Normalize whitespace
+      .trim();
+  }
 }
 
 function closestParent(

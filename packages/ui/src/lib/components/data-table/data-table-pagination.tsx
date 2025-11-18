@@ -2,8 +2,7 @@ import { type Table } from '@tanstack/react-table';
 
 import {
   Box,
-  Button,
-  Icon,
+  Pagination,
   Select,
   SelectContent,
   SelectItem,
@@ -21,6 +20,10 @@ interface DataTablePaginationProps<TData extends WithId> {
 export function DataTablePagination<TData extends WithId>({
   table,
 }: DataTablePaginationProps<TData>) {
+  const paginationState = table.getState().pagination;
+  const currentPage = paginationState.pageIndex + 1;
+  const totalPages = table.getPageCount();
+
   return (
     <Box display="flex" items="center" justify="between" className="px-2">
       <Box flex="1">
@@ -35,13 +38,13 @@ export function DataTablePagination<TData extends WithId>({
             Rows per page
           </Typography>
           <Select
-            value={`${table.getState().pagination.pageSize}`}
+            value={`${paginationState.pageSize}`}
             onValueChange={(value) => {
               table.setPageSize(Number(value));
             }}
           >
             <SelectTrigger className="h-8 w-[70px]">
-              <SelectValue placeholder={table.getState().pagination.pageSize} />
+              <SelectValue placeholder={paginationState.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
               {[10, 20, 30, 40, 50].map((pageSize) => (
@@ -59,56 +62,20 @@ export function DataTablePagination<TData extends WithId>({
           className="w-[100px]"
         >
           <Typography variant="body2" className="font-medium">
-            Page {table.getState().pagination.pageIndex + 1} of{' '}
-            {table.getPageCount()}
+            Page {currentPage} of {totalPages}
           </Typography>
         </Box>
-        <Box display="flex" items="center" gap={2}>
-          <Button
-            variant="outline"
-            className="hidden h-8 w-8 p-0 lg:flex"
-            onClick={() => table.setPageIndex(0)}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <Typography variant="caption" className="sr-only">
-              Go to first page
-            </Typography>
-            <Icon name="chevron-double-left" />
-          </Button>
-          <Button
-            variant="outline"
-            className="h-8 w-8 p-0"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <Typography variant="caption" className="sr-only">
-              Go to previous page
-            </Typography>
-            <Icon name="chevron-left" />
-          </Button>
-          <Button
-            variant="outline"
-            className="h-8 w-8 p-0"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            <Typography className="sr-only" variant="caption">
-              Go to next page
-            </Typography>
-            <Icon name="chevron-right" />
-          </Button>
-          <Button
-            variant="outline"
-            className="hidden h-8 w-8 p-0 lg:flex"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-            disabled={!table.getCanNextPage()}
-          >
-            <Typography className="sr-only" variant="caption">
-              Go to last page
-            </Typography>
-            <Icon name="chevron-double-right" />
-          </Button>
-        </Box>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={(page) => table.setPageIndex(page - 1)}
+          showFirstLast
+          showPageNumbers
+          buttonSize="md"
+          ariaLabel="Table pagination"
+          maxVisiblePages={5}
+          color="secondary"
+        />
       </Box>
     </Box>
   );
