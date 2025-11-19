@@ -137,7 +137,6 @@ function Component({
         className: classes,
         buttonSize,
         loading,
-        fullWidth,
         variant,
         color,
         'aria-disabled': isDisabled ? 'true' : undefined,
@@ -152,7 +151,6 @@ function Component({
       className={classes}
       buttonSize={buttonSize}
       loading={loading}
-      fullWidth={fullWidth}
       variant={variant}
       color={color}
       aria-disabled={isDisabled ? 'true' : undefined}
