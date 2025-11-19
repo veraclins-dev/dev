@@ -33,6 +33,10 @@ const buttonVariants = cva({
       true: 'w-full flex-1',
       false: '',
     },
+    noRing: {
+      true: 'ring-0 focus:ring-0 focus-visible:ring-0 focus:outline-none focus-visible:outline-none',
+      false: '',
+    },
   },
   compoundVariants: [
     ...baseVariants.compoundVariants,

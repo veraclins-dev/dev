@@ -49,5 +49,10 @@
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-radix": "^4.0.2",
     "vaul": "^1.1.2"
+  },
+  "peerDependencies": {
+    "@veraclins-dev/cva": "^0.61.0",
+    "@veraclins-dev/utils": "^0.61.0",
+    "@veraclins-dev/react-utils": "^0.61.0"
   }
 }

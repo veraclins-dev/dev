@@ -112,6 +112,7 @@ function Component({
   fullWidth = false,
   disabled,
   className,
+  noRing = false,
   ...props
 }: ComponentWithTooltip<typeof Base>) {
   const { styleProps, others } = extractStyleProps(props);
@@ -123,6 +124,7 @@ function Component({
       loading,
       className,
       fullWidth,
+      noRing,
       ...styleProps,
     }),
   );
