@@ -50,6 +50,7 @@ const RadioField = ({
   wrapperClassName,
   ref,
   itemProps,
+  radioSize,
   ...props
 }: RadioFieldProps) => {
   const { errorId, id } = useFieldProperties(field);
@@ -102,6 +103,7 @@ const RadioField = ({
             aria-invalid={errorId ? true : undefined}
             value={getOptionValue(option)}
             label={getOptionLabel(option)}
+            radioSize={radioSize}
             {...extractRadioGroupItemVariants(props)}
             {...itemProps}
           />

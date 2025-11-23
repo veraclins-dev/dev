@@ -22,6 +22,7 @@ import {
   Icon,
   Input,
   Label,
+  Link,
   Typography,
 } from '@veraclins-dev/ui';
 
@@ -128,7 +129,7 @@ export function Cards() {
                   </Box>
                 </Box>
               </CardHeader>
-              <CardContent>
+              <CardContent component={Link} href="/cards/basic">
                 <Box display="flex" flexDirection="column" gap={3}>
                   <Typography variant="body1">
                     Full-stack developer with 5+ years of experience in React,

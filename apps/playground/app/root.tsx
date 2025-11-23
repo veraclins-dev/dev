@@ -1,4 +1,3 @@
-import type { LinksFunction, MetaFunction } from 'react-router';
 import {
   Links,
   Meta,
@@ -24,14 +23,14 @@ import { type Route } from './+types/root';
 import { AppSidebar } from './components/sidebar';
 import twStyles from './tailwind.css?url';
 
-export const meta: MetaFunction = () => [{ title: 'New Remix App' }];
+export const meta: Route.MetaFunction = () => [{ title: 'Veraclins' }];
 
 const sprite = sprites.replace(
   /\/sprite.svg$/,
   '/sprite.svg?time=' + Date.now(),
 );
 
-export const links: LinksFunction = () => [
+export const links: Route.LinksFunction = () => [
   { rel: 'stylesheet', href: twStyles },
   { rel: 'preload', href: sprite, as: 'image' },
 
