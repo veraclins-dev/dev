@@ -6,6 +6,42 @@ import {
   normalizePathTrailingSlash,
 } from '../../shared';
 
+/**
+ * Client-side image loader that generates URLs for image optimization requests.
+ *
+ * This function generates URLs that are consumed by the server-side `imageLoader`
+ * from `@veraclins-dev/image/server`. The generated URLs follow this format:
+ *
+ * ```
+ * {config.path}?url={encodedSrc}&w={width}&q={quality}
+ * ```
+ *
+ * The server-side loader handles these requests by:
+ * 1. Extracting parameters from the URL
+ * 2. Checking cache for existing optimized images
+ * 3. Validating and optimizing images if not cached
+ * 4. Returning optimized images with proper HTTP headers
+ *
+ * @param props - Image loader properties
+ * @param props.src - The source image URL
+ * @param props.width - The desired image width
+ * @param props.quality - The image quality (1-100, defaults to 75)
+ * @param props.config - Image configuration containing the optimization path
+ * @returns A URL string pointing to the image optimization endpoint
+ *
+ * @example
+ * ```tsx
+ * const url = imageLoader({
+ *   src: 'https://example.com/image.jpg',
+ *   width: 800,
+ *   quality: 85,
+ *   config: { path: '/api/image' }
+ * });
+ * // Returns: '/api/image?url=https%3A%2F%2Fexample.com%2Fimage.jpg&w=800&q=85'
+ * ```
+ *
+ * @see {@link https://github.com/veraclins-dev/image/blob/main/packages/image/src/lib/server/loader.ts | Server-side imageLoader} for the request handler
+ */
 export function imageLoader({
   src,
   width,
@@ -33,6 +69,9 @@ export function imageLoader({
     return src;
   }
 
+  // Generate URL that matches the format expected by the server-side imageLoader
+  // Server expects: ?url={src}&w={width}&q={quality}&fit={fit}
+  // Note: 'fit' parameter defaults to 'fill' on the server side
   const value = `${normalizePathTrailingSlash(
     config.path,
   )}?url=${encodeURIComponent(src)}&w=${width}&q=${quality || 75}`;

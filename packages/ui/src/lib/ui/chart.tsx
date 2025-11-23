@@ -351,9 +351,8 @@ function ChartLegendContent({
   payload,
   verticalAlign = 'bottom',
   nameKey,
-  ...props
 }: BoxVariants &
-  Pick<LegendProps, 'verticalAlign'> & {
+  LegendProps & {
     hideIcon?: boolean;
     nameKey?: string;
     payload?: Readonly<LegendPayload[]>;
@@ -372,7 +371,6 @@ function ChartLegendContent({
       justify="center"
       gap={4}
       className={cn(verticalAlign === 'top' ? 'pb-3' : 'pt-3', className)}
-      {...props}
     >
       {payload.map((item) => {
         const key = `${nameKey || item.dataKey || 'value'}`;

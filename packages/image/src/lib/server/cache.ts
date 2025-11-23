@@ -51,9 +51,40 @@ export class ImageCache {
       const cacheKey = this.getCacheKey(params);
       const cachePath = this.getCachePath(cacheKey);
       const data = await fs.readFile(cachePath, 'utf-8');
-      const entry = JSON.parse(data) as CacheEntry & { expireAt: number };
+      const parsed = JSON.parse(data) as {
+        buffer: string | { type: string; data: number[] };
+        contentType: string;
+        maxAge: number;
+        etag: string;
+        upstreamEtag?: string;
+        expireAt: number;
+      };
 
-      if (Date.now() > entry.expireAt) {
+      // Convert base64 string back to Buffer
+      let buffer: Buffer;
+      if (typeof parsed.buffer === 'string') {
+        // New format: base64 string
+        buffer = Buffer.from(parsed.buffer, 'base64');
+      } else if (
+        parsed.buffer &&
+        typeof parsed.buffer === 'object' &&
+        'data' in parsed.buffer
+      ) {
+        // Legacy format: JSON-serialized Buffer object
+        buffer = Buffer.from(parsed.buffer.data);
+      } else {
+        return null;
+      }
+
+      const entry: CacheEntry = {
+        buffer,
+        contentType: parsed.contentType,
+        maxAge: parsed.maxAge,
+        etag: parsed.etag,
+        ...(parsed.upstreamEtag && { upstreamEtag: parsed.upstreamEtag }),
+      };
+
+      if (Date.now() > parsed.expireAt) {
         // Cache entry is expired, but we can still use it as stale
         return {
           ...entry,
@@ -73,14 +104,18 @@ export class ImageCache {
       const cachePath = this.getCachePath(cacheKey);
       const expireAt = Date.now() + entry.maxAge * 1000;
 
+      // Convert Buffer to base64 for JSON serialization
+      const serializableEntry = {
+        buffer: entry.buffer.toString('base64'),
+        contentType: entry.contentType,
+        maxAge: entry.maxAge,
+        etag: entry.etag,
+        ...(entry.upstreamEtag && { upstreamEtag: entry.upstreamEtag }),
+        expireAt,
+      };
+
       await fs.mkdir(path.dirname(cachePath), { recursive: true });
-      await fs.writeFile(
-        cachePath,
-        JSON.stringify({
-          ...entry,
-          expireAt,
-        }),
-      );
+      await fs.writeFile(cachePath, JSON.stringify(serializableEntry));
     } catch (_e) {
       warnOnce('Failed to write to image cache');
     }
