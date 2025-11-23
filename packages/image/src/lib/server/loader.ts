@@ -66,7 +66,6 @@ export async function imageLoader(
   };
 
   const cachedEntry = await cache.get(cacheParams);
-  // console.log({ cachedEntry });
   if (cachedEntry) {
     return new Response(cachedEntry.buffer as BodyInit, {
       status: 200,

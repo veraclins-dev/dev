@@ -406,7 +406,7 @@ export function getMaxAge(str: string | null): number {
   return 0;
 }
 
-export const fsResolver = async (src: string, basePath = 'public') => {
+export const fsResolver = async (src: string, basePath = '') => {
   const string = src.slice(1);
   const filePath = path.resolve(basePath, string);
 
