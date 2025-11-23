@@ -265,7 +265,7 @@
   --sidebar-ring: oklch(0.439 0 0);
 
   /* Custom shadow colors */
-  --shadow-col: rgba(255, 255, 255, 0.25);
+  --shadow-col: rgba(255, 255, 255, 0.3);
 }
 
 @theme inline {
@@ -390,7 +390,7 @@
   --transition-property-height: height;
   --transition-property-visibility: visibility;
 
-  --shadow-round: 0 0.5px 4px var(--shadow-col);
+  --shadow-round: 0 0.5px 3px var(--shadow-col);
   --shadow-bottom: 0 4px 2px -2px rgb(0 0 0 / 0.1);
   --shadow-raise:
     0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
