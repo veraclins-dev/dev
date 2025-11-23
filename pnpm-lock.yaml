@@ -637,15 +637,6 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      '@veraclins-dev/cva':
-        specifier: ^0.61.0
-        version: 0.61.0
-      '@veraclins-dev/react-utils':
-        specifier: ^0.61.0
-        version: 0.61.0
-      '@veraclins-dev/utils':
-        specifier: ^0.61.0
-        version: 0.61.0(tailwindcss@4.1.17)
       cmdk:
         specifier: ^1.1.1
         version: 1.1.1(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -4791,15 +4782,6 @@ packages:
     resolution: {integrity: sha512-lrW200hZdbfRtztbygyaq/6jP6AKE8qQN2KvPcJ+x7wiD038YtnYtZ82IMNJ69GJibV7bwL3y9FgK+5w/pYt6g==}
     cpu: [x64]
     os: [win32]
-
-  '@veraclins-dev/cva@0.61.0':
-    resolution: {integrity: sha512-u06SOy/4QaZRsRt+VJGAPx7r3BcNZ84RlG1hRoDZ+iju1Ov0K4uOUxhTKZAuVb2vhzZDRqe0hAaRTiSTkdlOoA==, tarball: https://npm.pkg.github.com/download/@veraclins-dev/cva/0.61.0/479b9afb5d02585ec4cdf310ffbf4a70fdbeca5a}
-
-  '@veraclins-dev/react-utils@0.61.0':
-    resolution: {integrity: sha512-vuyJvnY4DDanoRPrUTikYSFmlPLPj/Mhw5I+ORaKQKAtABL5TGeQqmjf15unrEMTxGda1LvSRfP8NMnxk2o5ew==, tarball: https://npm.pkg.github.com/download/@veraclins-dev/react-utils/0.61.0/ffb304114dbd70f402db35fee30ad72de189ad5f}
-
-  '@veraclins-dev/utils@0.61.0':
-    resolution: {integrity: sha512-sjwZFAUPmUBiv7gZNnhEeNew8zo8pP9vzf8xhGLuCETHr29Tum7L5n6mu7mGnTisy5l4+UcZ8k2p8Aba3rQ1Ew==, tarball: https://npm.pkg.github.com/download/@veraclins-dev/utils/0.61.0/460e4491d04d69d82832cdec70982ba6170ea429}
 
   '@verdaccio/auth@8.0.0-next-8.24':
     resolution: {integrity: sha512-stRp0DdTTx3p6dnh2cKOPJZOhu6sZOf8evV2fpYtADYW0UyhhZwELBXukpa5WGQ3H3rWzsXSaccra+D7tB1LgA==}
@@ -15940,25 +15922,6 @@ snapshots:
 
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
-
-  '@veraclins-dev/cva@0.61.0':
-    dependencies:
-      clsx: 2.1.1
-
-  '@veraclins-dev/react-utils@0.61.0':
-    dependencies:
-      '@tusbar/cache-control': 1.0.2
-      cookie: 1.0.2
-
-  '@veraclins-dev/utils@0.61.0(tailwindcss@4.1.17)':
-    dependencies:
-      clsx: 2.1.1
-      luxon: 3.7.2
-      tailwind-merge: 3.3.1
-      tailwindcss-animate: 1.0.7(tailwindcss@4.1.17)
-      zod: 4.1.12
-    transitivePeerDependencies:
-      - tailwindcss
 
   '@verdaccio/auth@8.0.0-next-8.24':
     dependencies:
