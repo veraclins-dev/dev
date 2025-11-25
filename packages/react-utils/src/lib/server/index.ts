@@ -3,3 +3,4 @@ export * from './headers';
 export * from './http';
 export * from './redirect-cookie';
 export * from './request-info';
+export * from './toast';

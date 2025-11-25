@@ -107,7 +107,7 @@ const POPUP_CONTENT_CLASSES = cn(
 const CONTENT_CLASSES = cn(
   POPUP_CONTENT_CLASSES,
   // Sizing
-  'max-h-[var(--radix-dropdown-menu-content-available-height)] min-w-[8rem]',
+  'max-h-[var(--radix-dropdown-menu-content-available-height)] min-w-32',
   // Transform Origin
   'origin-[var(--radix-dropdown-menu-content-transform-origin)]',
   // Overflow
@@ -123,7 +123,7 @@ const SUB_CONTENT_CLASSES = cn(
   // Base Popover Styles
   POPUP_CONTENT_CLASSES,
   // Sizing
-  'min-w-[8rem]',
+  'min-w-32',
   // Transform Origin
   'origin-[var(--radix-dropdown-menu-content-transform-origin)]',
   // Overflow

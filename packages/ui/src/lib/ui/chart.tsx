@@ -246,7 +246,7 @@ function ChartTooltipContent<TValue extends ValueType, TName extends NameType>({
   return (
     <Box
       className={cn(
-        'border-foreground/50 bg-background grid min-w-[8rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl',
+        'border-foreground/50 bg-background grid min-w-32 items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl',
         className,
       )}
     >

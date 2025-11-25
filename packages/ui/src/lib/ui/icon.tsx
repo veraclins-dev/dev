@@ -4,6 +4,7 @@ import { useIcon } from '../icons';
 import { type IconName } from '../icons/name';
 
 import { ComposedTooltip } from './tooltip';
+import { Typography } from './typography';
 
 /**
  * Size class names for different icon sizes.
@@ -66,7 +67,8 @@ const Component = ({
 }: Omit<IconProps, 'tooltip'>) => {
   if (children) {
     return (
-      <span
+      <Typography
+        component="span"
         className={`inline-flex items-center ${childrenSizeClassName[size]}`}
       >
         <Component
@@ -77,7 +79,7 @@ const Component = ({
           {...props}
         />
         {children}
-      </span>
+      </Typography>
     );
   }
   return (
