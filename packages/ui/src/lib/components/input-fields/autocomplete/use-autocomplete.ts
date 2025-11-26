@@ -466,6 +466,7 @@ export const useAutocomplete = ({
     handleChange,
     handleCreateOption,
     handleBlur,
+    setOpen,
     handleSelect,
     handleRemove,
     handleKeyDown,

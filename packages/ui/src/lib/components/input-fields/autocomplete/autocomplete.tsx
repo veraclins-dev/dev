@@ -172,6 +172,7 @@ export const Autocomplete = ({
     handleChange,
     handleCreateOption,
     handleBlur,
+    setOpen,
     handleSelect,
     handleRemove,
     handleKeyDown,
@@ -300,7 +301,7 @@ export const Autocomplete = ({
         className="h-0 w-0 border-none p-0 absolute bottom-0 left-0"
         readOnly
       />
-      <Popover open={open && canSelect}>
+      <Popover open={open && canSelect} onOpenChange={setOpen}>
         <PopoverAnchor
           virtualRef={(ref ?? anchorRef) as React.RefObject<HTMLDivElement>}
         />
