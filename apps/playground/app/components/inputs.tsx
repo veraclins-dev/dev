@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { Form, useConform } from '@veraclins-dev/form';
 import {
   Autocomplete,
@@ -32,6 +34,81 @@ import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 const ThemeSchema = z.object({
   accountType: z.enum(['personal', 'business', 'enterprise']),
 });
+
+function SelectFieldWithCustomLabels() {
+  const categories = useMemo(
+    () => [
+      {
+        value: 'spam',
+        label: 'Spam',
+        description:
+          'This content is repetitive, unwanted, or appears to be automated promotional material that does not provide value to the community.',
+      },
+      {
+        value: 'harassment',
+        label: 'Harassment or Bullying',
+        description:
+          'This content contains personal attacks, threats, intimidation, or any form of targeted harassment directed at individuals or groups.',
+      },
+      {
+        value: 'hate-speech',
+        label: 'Hate Speech',
+        description:
+          'This content promotes violence, discrimination, or hatred against individuals or groups based on race, ethnicity, religion, gender, sexual orientation, or other protected characteristics.',
+      },
+      {
+        value: 'misinformation',
+        label: 'Misinformation',
+        description:
+          'This content contains false or misleading information that could cause harm, spread confusion, or mislead others about important topics such as health, safety, or current events.',
+      },
+      {
+        value: 'inappropriate',
+        label: 'Inappropriate Content',
+        description:
+          'This content contains explicit material, graphic violence, or other content that is not suitable for the platform and violates community guidelines regarding appropriate content standards.',
+      },
+      {
+        value: 'copyright',
+        label: 'Copyright Violation',
+        description:
+          'This content appears to infringe on intellectual property rights, including unauthorized use of copyrighted material, trademarks, or other protected works without proper attribution or permission.',
+      },
+    ],
+    [],
+  );
+
+  const categoryOptions = useMemo(
+    () =>
+      categories.map((category) => ({
+        value: category.value,
+        label: (
+          <Box>
+            <Typography variant="subtitle2">{category.label}</Typography>
+            <Typography variant="caption" className="text-foreground/70">
+              {category.description}
+            </Typography>
+          </Box>
+        ),
+      })),
+    [categories],
+  );
+
+  return (
+    <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <SelectField
+        placeholder="Select a report category"
+        label="Report Category"
+        options={categoryOptions}
+      />
+      <SelectField
+        placeholder="Select a report category"
+        label="Report Category"
+        options={categoryOptions}
+      />
+    </Box>
+  );
+}
 
 export function Inputs() {
   const { form, fields } = useConform({
@@ -625,6 +702,14 @@ export function Inputs() {
                   ]}
                 />
               </Box>
+            </Box>
+
+            {/* SelectField with Custom Item Labels */}
+            <Box>
+              <Typography variant="h4" className="mb-4">
+                SelectField with Custom Item Labels
+              </Typography>
+              <SelectFieldWithCustomLabels />
             </Box>
           </Box>
         </CardContent>
