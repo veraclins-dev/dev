@@ -8,13 +8,31 @@ import { type ToastInput, toastKey, ToastSchema } from '../client/toast';
 
 import { combineHeaders } from './http';
 
+// Get secrets from environment variable, with fallback for development
+// In production, SESSION_SECRET should always be set
+const getSecrets = (): string[] => {
+  const envSecret = process.env.SESSION_SECRET;
+  if (envSecret) {
+    return envSecret.split(',');
+  }
+  // Development fallback - should be overridden in production
+  if (process.env.NODE_ENV === 'production') {
+    console.warn(
+      'SESSION_SECRET is not set. Toast cookies will not be signed. Please set SESSION_SECRET in production.',
+    );
+    return [];
+  }
+  // Development fallback - use a default secret (not secure, but prevents warning)
+  return ['dev-toast-secret-change-in-production'];
+};
+
 export const toastSessionStorage = createCookieSessionStorage({
   cookie: {
     name: 'en_toast',
     sameSite: 'lax',
     path: '/',
     httpOnly: true,
-    secrets: process.env.SESSION_SECRET?.split(',') || [],
+    secrets: getSecrets(),
     secure: process.env.NODE_ENV === 'production',
   },
 });
