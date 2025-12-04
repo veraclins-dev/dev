@@ -22,14 +22,15 @@ export const Default: Story = {
 
 export const Interactive: Story = {
   args: {
-    variant: 'interactive',
+    variant: 'selectable',
+
     children: 'Interactive list item',
   },
 };
 
 export const Selected: Story = {
   args: {
-    variant: 'selected',
+    variant: 'selectable',
     children: 'Selected list item',
   },
 };
@@ -37,10 +38,10 @@ export const Selected: Story = {
 export const Sizes: Story = {
   render: () => (
     <ul className="space-y-4">
-      <ListItem size="sm">Small list item</ListItem>
-      <ListItem size="md">Medium list item</ListItem>
-      <ListItem size="lg">Large list item</ListItem>
-      <ListItem size="xl">Extra large list item</ListItem>
+      <ListItem itemSize="sm">Small list item</ListItem>
+      <ListItem itemSize="md">Medium list item</ListItem>
+      <ListItem itemSize="lg">Large list item</ListItem>
+      <ListItem itemSize="xl">Extra large list item</ListItem>
     </ul>
   ),
 };

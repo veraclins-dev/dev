@@ -70,8 +70,6 @@ export function DataTablePagination<TData extends WithId>({
           totalPages={totalPages}
           onPageChange={(page) => table.setPageIndex(page - 1)}
           showFirstLast
-          showPageNumbers
-          buttonSize="md"
           ariaLabel="Table pagination"
           maxVisiblePages={5}
           color="secondary"
