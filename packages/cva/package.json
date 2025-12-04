@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/cva",
-  "version": "0.63.2",
+  "version": "0.63.3",
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
