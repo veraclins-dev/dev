@@ -1,5 +1,3 @@
-'use server';
-
 import { parseWithZod } from '@conform-to/zod/v4';
 
 import { Empty, type SchemaType } from '@veraclins-dev/utils';
