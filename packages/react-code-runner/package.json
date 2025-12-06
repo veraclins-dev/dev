@@ -1,0 +1,32 @@
+{
+  "name": "@veraclins-dev/react-code-runner",
+  "version": "1.0.0",
+  "description": "Execute and preview React code in the browser - React 19 compatible code runner",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "type": "module",
+  "repository": "https://github.com/veraclins-dev/dev.git",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "code-runner",
+    "preview",
+    "execution",
+    "live-code",
+    "react-19"
+  ],
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "require": "./index.js"
+    }
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "sucrase": "^3.35.0"
+  }
+}

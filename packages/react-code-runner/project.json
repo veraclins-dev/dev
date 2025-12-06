@@ -1,0 +1,11 @@
+{
+  "name": "react-code-runner",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/react-code-runner/src",
+  "projectType": "library",
+  "tags": [
+    "type:code-runner",
+    "scope:lib"
+  ],
+  "targets": {}
+}
