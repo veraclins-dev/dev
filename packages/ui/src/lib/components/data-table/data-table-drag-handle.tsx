@@ -1,6 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 
-import { Button, Icon } from '../../ui';
+import { Button } from '../../ui/button';
+import { Icon } from '../../ui/icon';
 
 import { type WithId } from './types';
 

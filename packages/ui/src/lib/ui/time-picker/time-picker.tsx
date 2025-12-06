@@ -8,7 +8,7 @@ import {
   type Time,
 } from '@veraclins-dev/utils';
 
-import { Box } from '..';
+import { Box } from '../box';
 
 import { type Size } from './definitions';
 import { TimePickerInput, type TimePickerInputProps } from './input';

@@ -1,13 +1,10 @@
 import { type Table } from '@tanstack/react-table';
 
-import {
-  Box,
-  Button,
-  ComposedDropdownMenu,
-  Icon,
-  Input,
-  type ItemOption,
-} from '../../ui';
+import { Box } from '../../ui/box';
+import { Button } from '../../ui/button';
+import { ComposedDropdownMenu, type ItemOption } from '../../ui/dropdown-menu';
+import { Icon } from '../../ui/icon';
+import { Input } from '../../ui/input';
 
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 import { DataTableViewOptions } from './data-table-view-options';

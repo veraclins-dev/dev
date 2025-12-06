@@ -1,14 +1,18 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { Box, extractStyleProps, Typography } from '../ui';
+import { Box } from '../ui/box';
 import { Label } from '../ui/label';
+import { Typography } from '../ui/typography';
+import { extractStyleProps } from '../ui/utils/variants';
 import { inputContainerVariants } from '../ui/utils/variants/input';
 
 import { ErrorList } from './error-list';
 import { type InputFieldWrapperProps } from './input-fields';
 
-export interface InputWrapperProps
-  extends Omit<InputFieldWrapperProps, 'field'> {
+export interface InputWrapperProps extends Omit<
+  InputFieldWrapperProps,
+  'field'
+> {
   errorId?: string;
   id: string;
   errors?: string[];

@@ -1,15 +1,15 @@
 import { type Table } from '@tanstack/react-table';
 
+import { Button } from '../../ui/button';
 import {
-  Button,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  Icon,
-} from '../../ui';
+} from '../../ui/dropdown-menu';
+import { Icon } from '../../ui/icon';
 
 import { type WithId } from './types';
 

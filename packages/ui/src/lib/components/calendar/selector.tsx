@@ -1,5 +1,3 @@
-'use client';
-
 import { memo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';

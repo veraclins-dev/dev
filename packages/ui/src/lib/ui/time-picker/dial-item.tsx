@@ -2,9 +2,12 @@ import { useEffect, useRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { getOptionLabel, getOptionValue } from '../../components/input-fields';
+import {
+  getOptionLabel,
+  getOptionValue,
+} from '../../components/input-fields/utils';
 import { type Option } from '../../types';
-import { Box } from '..';
+import { Box } from '../box';
 
 import { DIAL_ITEM_PADDING, type Size, type Value } from './definitions';
 

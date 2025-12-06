@@ -1,15 +1,15 @@
 import { type Table } from '@tanstack/react-table';
 
+import { Box } from '../../ui/box';
+import { Pagination } from '../../ui/pagination';
 import {
-  Box,
-  Pagination,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Typography,
-} from '../../ui';
+} from '../../ui/select';
+import { Typography } from '../../ui/typography';
 
 import { type WithId } from './types';
 

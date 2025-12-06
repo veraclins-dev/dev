@@ -1,5 +1,5 @@
-import { type BoxProps } from '../../ui';
-import { type TimePickerProps } from '../input-fields';
+import type { BoxProps } from '../../ui/box';
+import { type TimePickerProps } from '../../ui/time-picker/time-picker';
 
 /**
  * Date range type for range selection mode
@@ -129,29 +129,22 @@ export interface CalendarProps extends Omit<CalendarProviderProps, 'children'> {
 /**
  * Calendar footer component props
  */
-export interface CalendarFooterProps
-  extends Pick<
-    CalendarProps,
-    | 'timePickerProps'
-    | 'onTimePickerBlur'
-    | 'showTimePicker'
-    | 'className'
-    | 'classNames'
-  > {
+export interface CalendarFooterProps extends Pick<
+  CalendarProps,
+  | 'timePickerProps'
+  | 'onTimePickerBlur'
+  | 'showTimePicker'
+  | 'className'
+  | 'classNames'
+> {
   onTodayClick?: () => void;
 }
 /**
  * Calendar grid component props
  */
-export interface CalendarGridProps
-  extends Pick<
-    CalendarProps,
-    | 'value'
-    | 'mode'
-    | 'showOutsideDays'
-    | 'disabled'
-    | 'className'
-    | 'classNames'
-  > {
+export interface CalendarGridProps extends Pick<
+  CalendarProps,
+  'value' | 'mode' | 'showOutsideDays' | 'disabled' | 'className' | 'classNames'
+> {
   monthGrid: Date[][];
 }

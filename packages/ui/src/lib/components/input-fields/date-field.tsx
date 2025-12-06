@@ -2,13 +2,14 @@ import React, { useCallback, useId, useRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { Box, INPUT_CLASS_OVERRIDES } from '../../ui';
+import { Box } from '../../ui/box';
+import { INPUT_CLASS_OVERRIDES } from '../../ui/utils/styles';
 import { inputContainerVariants } from '../../ui/utils/variants/input';
-import {
-  DatePicker,
-  type DatePickerProps,
-  type DatePickerValue,
-} from '../date-picker';
+import { DatePicker } from '../date-picker/date-picker';
+import type {
+  DatePickerProps,
+  DatePickerValue,
+} from '../date-picker/date-picker-types';
 
 import { InputFieldWrapper } from './input-field-wrapper';
 import {
@@ -18,7 +19,8 @@ import {
 } from './utils';
 
 export interface DateFieldProps
-  extends Omit<BaseInputProps, 'leftIcon' | 'rightIcon' | 'rightAddon'>,
+  extends
+    Omit<BaseInputProps, 'leftIcon' | 'rightIcon' | 'rightAddon'>,
     Pick<
       DatePickerProps,
       | 'onValueChange'

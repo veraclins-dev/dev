@@ -3,7 +3,9 @@ import {
   type ColumnDef,
 } from '@tanstack/react-table';
 
-import { Box, type BoxVariants, Checkbox, Typography } from '../../ui';
+import { Box, type BoxProps } from '../../ui/box';
+import { Checkbox } from '../../ui/checkbox';
+import { Typography } from '../../ui/typography';
 
 import { DataTableColumnHeader } from './data-table-column-header';
 import { DataTableDragHandle } from './data-table-drag-handle';
@@ -31,7 +33,7 @@ type ColumnConfig<TData extends WithId, TValue = unknown> = Omit<
 > & {
   accessorKey?: AccessorKeyColumnDef<TData, TValue>['accessorKey'];
   width?: string | number;
-  align?: BoxVariants['justify'];
+  align?: BoxProps['justify'];
   // For control columns
   actions?: DataTableRowActionsProps<TData>['actions'];
 } & (

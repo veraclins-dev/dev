@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../../ui';
+} from '../../ui/dialog';
 
 import { DatePickerContent } from './date-picker-content';
 import type { DatePickerDialogProps } from './date-picker-types';

@@ -1,12 +1,10 @@
-'use client';
-
 import { Fragment, memo, useCallback, useState } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { Icon } from '../../ui';
 import { Box } from '../../ui/box';
 import { Button } from '../../ui/button';
+import { Icon } from '../../ui/icon';
 
 import { useCalendarContext } from './calendar-context';
 import { dateUtils } from './calendar-utils';

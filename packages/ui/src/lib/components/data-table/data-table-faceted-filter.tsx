@@ -1,10 +1,10 @@
 import { cn, humanize } from '@veraclins-dev/utils';
 
+import { Badge } from '../../ui/badge';
+import { Box } from '../../ui/box';
+import { Button } from '../../ui/button';
+import { Checkbox } from '../../ui/checkbox';
 import {
-  Badge,
-  Box,
-  Button,
-  Checkbox,
   Command,
   CommandEmpty,
   CommandGroup,
@@ -12,16 +12,14 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  Icon,
-  INPUT_CLASS_OVERRIDES,
-  Label,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  Separator,
-  Switch,
-  Typography,
-} from '../../ui';
+} from '../../ui/command';
+import { Icon } from '../../ui/icon';
+import { Label } from '../../ui/label';
+import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover';
+import { Separator } from '../../ui/separator';
+import { Switch } from '../../ui/switch';
+import { Typography } from '../../ui/typography';
+import { INPUT_CLASS_OVERRIDES } from '../../ui/utils/styles';
 
 import {
   type DataTableFacetedBooleanFilterProps,

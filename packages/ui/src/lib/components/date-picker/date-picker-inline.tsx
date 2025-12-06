@@ -1,6 +1,6 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { Box } from '../../ui';
+import { Box } from '../../ui/box';
 
 import { DatePickerContent } from './date-picker-content';
 import type { DatePickerInlineProps } from './date-picker-types';

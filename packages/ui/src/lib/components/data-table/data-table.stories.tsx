@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 
-import { Icon } from '../../ui';
+import { Icon } from '../../ui/icon';
 
 import { priorities, statuses } from './data/data';
 import { type Task } from './data/schema';

@@ -3,21 +3,16 @@ import { useId, useRef } from 'react';
 import { cn, humanize } from '@veraclins-dev/utils';
 
 import { type Maybe } from '../../../types';
-import {
-  Box,
-  Button,
-  Chip,
-  extractStyleProps,
-  Icon,
-  Input,
-  INPUT_CLASS_OVERRIDES,
-  List,
-  ListItem,
-  type ListItemProps,
-  Popover,
-  PopoverAnchor,
-  PopoverContent,
-} from '../../../ui';
+import { Box } from '../../../ui/box';
+import { Button } from '../../../ui/button';
+import { Chip } from '../../../ui/chip';
+import { Icon } from '../../../ui/icon';
+import { Input } from '../../../ui/input';
+import { List } from '../../../ui/list';
+import { ListItem, type ListItemProps } from '../../../ui/list-item';
+import { Popover, PopoverAnchor, PopoverContent } from '../../../ui/popover';
+import { INPUT_CLASS_OVERRIDES } from '../../../ui/utils/styles';
+import { extractStyleProps } from '../../../ui/utils/variants';
 import { inputContainerVariants } from '../../../ui/utils/variants/input';
 import { InputFieldWrapper } from '../input-field-wrapper';
 import {

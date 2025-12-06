@@ -2,7 +2,11 @@ import React, { useCallback } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { type Time, TimePicker, type TimePickerProps } from '../../ui';
+import {
+  type Time,
+  TimePicker,
+  type TimePickerProps,
+} from '../../ui/time-picker/time-picker';
 
 import {
   type BaseInputProps,
@@ -12,7 +16,8 @@ import {
 } from './utils';
 
 export interface TimePickerFieldProps
-  extends TimePickerProps,
+  extends
+    TimePickerProps,
     Omit<BaseInputProps, 'leftIcon' | 'rightIcon' | 'rightAddon'> {
   inputRef?: React.Ref<HTMLInputElement>;
 }

@@ -10,12 +10,10 @@ import { cn } from '@veraclins-dev/utils';
 
 import 'react-phone-number-input/style.css';
 
-import {
-  Box,
-  ComposedSelect,
-  INPUT_CLASS_OVERRIDES,
-  Typography,
-} from '../../ui';
+import { Box } from '../../ui/box';
+import { ComposedSelect } from '../../ui/select';
+import { Typography } from '../../ui/typography';
+import { INPUT_CLASS_OVERRIDES } from '../../ui/utils/styles';
 
 import { InputFieldWrapper } from './input-field-wrapper';
 import { type TextFieldProps } from './textfield';

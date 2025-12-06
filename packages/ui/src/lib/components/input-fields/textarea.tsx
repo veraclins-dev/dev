@@ -1,11 +1,8 @@
 import { cn } from '@veraclins-dev/utils';
 
-import {
-  INPUT_CLASS_OVERRIDES,
-  Textarea,
-  type TextareaProps,
-  Typography,
-} from '../../ui';
+import { Textarea, type TextareaProps } from '../../ui/textarea';
+import { Typography } from '../../ui/typography';
+import { INPUT_CLASS_OVERRIDES } from '../../ui/utils/styles';
 
 import { InputFieldWrapper } from './input-field-wrapper';
 import {
@@ -15,7 +12,8 @@ import {
 } from './utils';
 
 export interface TextareaFieldProps
-  extends Omit<TextareaProps, 'ref'>,
+  extends
+    Omit<TextareaProps, 'ref'>,
     Pick<React.ComponentProps<'div'>, 'ref'>,
     BaseInputProps {
   rightInlay?: React.ReactNode;

@@ -5,7 +5,7 @@ import { cn } from '@veraclins-dev/utils';
 
 import { getOptionValue } from '../../components/input-fields/utils';
 import { type Option } from '../../types';
-import { Box, type BoxProps } from '..';
+import { Box, type BoxProps } from '../box';
 
 import { DIAL_CONTAINER_PADDING, type Size, type Value } from './definitions';
 import { DialItem } from './dial-item';

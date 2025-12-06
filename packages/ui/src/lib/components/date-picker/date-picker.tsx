@@ -2,7 +2,8 @@ import { useCallback, useRef, useState } from 'react';
 
 import { parseDateStringToDate } from '@veraclins-dev/utils';
 
-import { Box, type DateRange } from '../../ui';
+import { Box } from '../../ui/box';
+import { type DateRange } from '../calendar/calendar-utils';
 
 import { DatePickerDialog } from './date-picker-dialog';
 import { DatePickerInline } from './date-picker-inline';

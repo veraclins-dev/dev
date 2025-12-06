@@ -1,19 +1,21 @@
 import { type Column } from '@tanstack/react-table';
 
+import { Box } from '../../ui/box';
+import { Button } from '../../ui/button';
 import {
-  Box,
-  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  Icon,
-  Typography,
-} from '../../ui';
+} from '../../ui/dropdown-menu';
+import { Icon } from '../../ui/icon';
+import { Typography } from '../../ui/typography';
 
-interface DataTableColumnHeaderProps<TData, TValue>
-  extends React.HTMLAttributes<HTMLDivElement> {
+interface DataTableColumnHeaderProps<
+  TData,
+  TValue,
+> extends React.HTMLAttributes<HTMLDivElement> {
   column: Column<TData, TValue>;
   title: string;
 }

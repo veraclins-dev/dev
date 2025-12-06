@@ -8,15 +8,15 @@ import {
 } from '@veraclins-dev/utils';
 
 import type { Measurable } from '../../types';
+import { Box } from '../box';
+import { Button } from '../button';
 import {
-  Box,
-  Button,
   Popover,
   PopoverAnchor,
   PopoverContent,
   type PopoverContentProps,
-  Separator,
-} from '..';
+} from '../popover';
+import { Separator } from '../separator';
 
 import {
   HOURS_12,

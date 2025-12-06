@@ -4,7 +4,7 @@ import { getScrollPosition } from '@veraclins-dev/utils';
 import { cn } from '@veraclins-dev/utils';
 
 import { type CustomComponent, type OverrideComponentProps } from '../types';
-import { Box, type ContainerElement } from '../ui';
+import { Box, type ContainerElement } from '../ui/box';
 
 export type ScrollFadeProps<
   P extends ContainerElement | CustomComponent = typeof Box,

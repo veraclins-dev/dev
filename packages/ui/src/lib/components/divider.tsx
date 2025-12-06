@@ -1,6 +1,7 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { Box, Typography } from '../ui';
+import { Box } from '../ui/box';
+import { Typography } from '../ui/typography';
 
 type DividerProps = {
   orientation?: 'vertical' | 'horizontal';

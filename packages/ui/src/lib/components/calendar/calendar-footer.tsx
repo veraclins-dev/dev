@@ -1,12 +1,10 @@
-'use client';
-
 import { memo, useCallback } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
 import { Box } from '../../ui/box';
 import { Button } from '../../ui/button';
-import { TimePicker } from '../../ui/time-picker';
+import { TimePicker } from '../../ui/time-picker/time-picker';
 
 import { useCalendarContext } from './calendar-context';
 import { calendarFooterVariants } from './calendar-variants';

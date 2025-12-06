@@ -1,13 +1,13 @@
 import { type FieldMetadata } from '@conform-to/react';
 
+import { Box } from '../../ui/box';
 import {
-  Box,
   Checkbox,
   type CheckboxProps,
   type CheckedState,
   type CheckedValue,
-  Label,
-} from '../../ui';
+} from '../../ui/checkbox';
+import { Label } from '../../ui/label';
 
 import { InputFieldWrapper } from './input-field-wrapper';
 import { type TextFieldProps } from './textfield';
@@ -18,7 +18,8 @@ import {
 } from './utils';
 
 interface CheckboxFieldProps
-  extends Omit<CheckboxProps, 'onChange' | 'onCheckedChange' | 'ref'>,
+  extends
+    Omit<CheckboxProps, 'onChange' | 'onCheckedChange' | 'ref'>,
     Pick<React.ComponentProps<'div'>, 'ref'>,
     Pick<
       TextFieldProps,

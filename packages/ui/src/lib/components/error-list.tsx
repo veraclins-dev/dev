@@ -1,6 +1,6 @@
-import { Typography } from '../ui';
 import { List } from '../ui/list';
 import { ListItem } from '../ui/list-item';
+import { Typography } from '../ui/typography';
 
 import { type useFieldProperties } from './input-fields';
 

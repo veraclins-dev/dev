@@ -1,5 +1,3 @@
-'use client';
-
 import { cn } from '@veraclins-dev/utils';
 
 import { Box } from '../../ui/box';

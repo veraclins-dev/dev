@@ -2,13 +2,9 @@ import { type Row } from '@tanstack/react-table';
 
 import { cn, type NonEmptyArray } from '@veraclins-dev/utils';
 
-import {
-  Button,
-  type ButtonProps,
-  ComposedDropdownMenu,
-  Icon,
-  type ItemOption,
-} from '../../ui';
+import { Button, type ButtonProps } from '../../ui/button';
+import { ComposedDropdownMenu, type ItemOption } from '../../ui/dropdown-menu';
+import { Icon } from '../../ui/icon';
 
 import { type WithId } from './types';
 

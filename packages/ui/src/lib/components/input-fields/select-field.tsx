@@ -1,6 +1,9 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { ComposedSelect, type SelectProps as BaseSelectProps } from '../../ui';
+import {
+  ComposedSelect,
+  type SelectProps as BaseSelectProps,
+} from '../../ui/select';
 
 import { InputFieldWrapper } from './input-field-wrapper';
 import {
@@ -11,8 +14,7 @@ import {
 } from './utils';
 
 interface SelectFieldProps
-  extends React.ComponentProps<'select'>,
-    Omit<BaseInputProps, 'value'> {
+  extends React.ComponentProps<'select'>, Omit<BaseInputProps, 'value'> {
   placeholder?: string;
   defaultValue?: BaseSelectProps['defaultValue'];
   dir?: BaseSelectProps['dir'];

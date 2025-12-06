@@ -1,6 +1,7 @@
 import { cn } from '@veraclins-dev/utils';
 
-import { Box, Calendar } from '../../ui';
+import { Box } from '../../ui/box';
+import { Calendar } from '../calendar/calendar';
 import type { CalendarProps } from '../calendar/types';
 
 interface DatePickerContentProps extends CalendarProps {

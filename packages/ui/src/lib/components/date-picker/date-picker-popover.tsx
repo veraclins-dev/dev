@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { Popover, PopoverAnchor, PopoverContent } from '../../ui';
+import { Popover, PopoverAnchor, PopoverContent } from '../../ui/popover';
 
 import { DatePickerContent } from './date-picker-content';
 import type { DatePickerPopoverProps } from './date-picker-types';

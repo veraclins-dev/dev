@@ -2,7 +2,10 @@ import * as SelectPrimitive from '@radix-ui/react-select';
 
 import { cn } from '@veraclins-dev/utils';
 
-import { getOptionLabel, getOptionValue } from '../components';
+import {
+  getOptionLabel,
+  getOptionValue,
+} from '../components/input-fields/utils';
 import { type ObjectOption, type Option } from '../types';
 
 import {

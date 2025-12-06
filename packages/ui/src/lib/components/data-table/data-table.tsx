@@ -21,16 +21,16 @@ import {
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 
+import { Box } from '../../ui/box';
+import { type ItemOption } from '../../ui/dropdown-menu';
 import {
-  Box,
-  type ItemOption,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '../../ui';
+} from '../../ui/table';
 
 import { DataTableDndContext } from './data-table-dnd-provider';
 import { DataTablePagination } from './data-table-pagination';

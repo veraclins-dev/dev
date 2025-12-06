@@ -8,7 +8,9 @@ import {
   type InputWrapperProps,
 } from '../../components/input-wrapper';
 import { type IconName } from '../../icons';
-import { Icon, Input, INPUT_CLASS_OVERRIDES, type InputProps } from '..';
+import { Icon } from '../icon';
+import { Input, type InputProps } from '../input';
+import { INPUT_CLASS_OVERRIDES } from '../utils/styles';
 
 // Validation function for partial input
 const isValidPartialInput = ({

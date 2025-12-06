@@ -1,4 +1,7 @@
-import { Badge, Box, Icon, Typography } from '../../ui';
+import { Badge } from '../../ui/badge';
+import { Box } from '../../ui/box';
+import { Icon } from '../../ui/icon';
+import { Typography } from '../../ui/typography';
 
 import { labels, priorities, statuses } from './data/data';
 import { type Task } from './data/schema';

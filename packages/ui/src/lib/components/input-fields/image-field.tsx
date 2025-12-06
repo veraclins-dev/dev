@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { cn } from '@veraclins-dev/utils';
 
 import { type MaybeString } from '../../types';
-import { Box, Typography } from '../../ui';
+import { Box } from '../../ui/box';
+import { Typography } from '../../ui/typography';
 import { ErrorList } from '../error-list';
 
 import { type TextFieldProps } from './textfield';

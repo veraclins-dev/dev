@@ -2,7 +2,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { flexRender, type Row } from '@tanstack/react-table';
 
-import { TableCell, TableRow } from '../../ui';
+import { TableCell, TableRow } from '../../ui/table';
 
 import { type WithId } from './types';
 
