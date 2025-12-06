@@ -62,6 +62,14 @@ export default defineConfig(() => ({
         '@hapi/accept',
         /node:.*/,
       ],
+      output: {
+        manualChunks: (id) => {
+          // Group shared code into a predictable shared.js bundle
+          if (id.includes('/lib/shared/')) {
+            return 'shared';
+          }
+        },
+      },
     },
   },
   test: {
