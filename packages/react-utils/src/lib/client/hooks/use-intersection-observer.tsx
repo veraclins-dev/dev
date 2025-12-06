@@ -1,5 +1,3 @@
-'use client';
-
 import { startTransition, useEffect, useRef, useState } from 'react';
 
 /** The hook internal state. */
