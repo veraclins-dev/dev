@@ -39,6 +39,22 @@ alwaysApply: true
   - type:utils can only depend on: type:utils
   - type:seo can only depend on: type:seo
 
+## Workspace Package Dependencies
+
+**CRITICAL: Do NOT add `@veraclins-dev/*` packages to `package.json` dependencies.**
+
+- Workspace packages are resolved via TypeScript path mappings in `tsconfig.base.json`
+- Nx handles workspace resolution automatically
+- Only external npm packages should be listed in `package.json` dependencies
+- Import workspace packages directly: `import { Component } from '@veraclins-dev/ui'`
+- The path mappings are already configured in `tsconfig.base.json` - do not duplicate them
+
+**Examples:**
+
+- ✅ Correct: `"prismjs": "^1.30.0"` (external package)
+- ✅ Correct: `import { CodeMirror } from '@veraclins-dev/react-runner-codemirror'` (workspace package via path mapping)
+- ❌ Wrong: `"@veraclins-dev/react-runner-codemirror": "workspace:*"` (do not add workspace packages to package.json)
+
 # Testing Guidelines
 
 - Write unit tests using Vitest
