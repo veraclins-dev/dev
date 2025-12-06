@@ -1,0 +1,11 @@
+{
+  "name": "react-runner-codemirror",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/react-runner-codemirror/src",
+  "projectType": "library",
+  "tags": [
+    "type:code-editor",
+    "scope:lib"
+  ],
+  "targets": {}
+}
