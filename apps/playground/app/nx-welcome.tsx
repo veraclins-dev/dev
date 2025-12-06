@@ -221,6 +221,12 @@ export function NxWelcome({ title }: { title: string }) {
           description:
             'Utility functions for common development tasks including date handling, DOM manipulation, validation, and responsive design helpers.',
         },
+        {
+          path: '/docs',
+          label: 'Docs',
+          description:
+            'Interactive code demo components for documentation with live editing, syntax highlighting, and code execution using react-runner.',
+        },
       ],
     },
   ];
