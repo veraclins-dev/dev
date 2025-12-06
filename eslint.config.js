@@ -37,6 +37,9 @@ module.exports = [
                 'type:utils',
                 'type:react-utils',
                 'type:cva',
+                'type:docs',
+                'type:code-runner',
+                'type:code-editor',
               ],
             },
             {
@@ -99,8 +102,38 @@ module.exports = [
               onlyDependOnLibsWithTags: ['type:seo'],
             },
             {
+              sourceTag: 'type:docs',
+              onlyDependOnLibsWithTags: [
+                'type:docs',
+                'type:ui',
+                'type:utils',
+                'type:react-utils',
+                'type:cva',
+                'type:code-runner',
+                'type:code-editor',
+              ],
+            },
+            {
               sourceTag: 'type:cva',
               onlyDependOnLibsWithTags: ['type:cva', 'type:utils'],
+            },
+            {
+              sourceTag: 'type:code-runner',
+              onlyDependOnLibsWithTags: [
+                'type:code-runner',
+                'type:ui',
+                'type:utils',
+                'type:react-utils',
+              ],
+            },
+            {
+              sourceTag: 'type:code-editor',
+              onlyDependOnLibsWithTags: [
+                'type:code-editor',
+                'type:ui',
+                'type:utils',
+                'type:react-utils',
+              ],
             },
           ],
         },
