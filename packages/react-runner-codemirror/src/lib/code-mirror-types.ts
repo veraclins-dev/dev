@@ -2,7 +2,7 @@ import type { Extension } from '@codemirror/state';
 import type { EditorView } from '@codemirror/view';
 import type { HTMLAttributes } from 'react';
 
-export type Theme = 'dark' | 'light' | 'auto';
+export type Theme = 'dark' | 'light';
 
 export interface CodeMirrorConfig {
   theme?: Theme;

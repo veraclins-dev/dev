@@ -62,125 +62,7 @@ const getBaseTheme = (padding: Config['padding'] = 10) =>
   });
 
 const getTheme = (theme: Config['theme'] = 'dark') => {
-  if (theme === 'dark') {
-    // Basic dark theme similar to light theme structure
-    return [
-      EditorView.theme(
-        {
-          '&.cm-editor': {
-            backgroundColor: '#0d0d0d',
-            color: '#d4d4d4',
-          },
-          '.cm-content': {
-            caretColor: '#aeafad',
-          },
-          '.cm-cursor, .cm-dropCursor': {
-            borderLeftColor: '#aeafad',
-          },
-          '.cm-selectionBackground, .cm-selectionBackground.cm-focused': {
-            backgroundColor: '#264f78',
-          },
-          '.cm-activeLine': {
-            backgroundColor: '#2a2d2e',
-          },
-          '.cm-activeLineGutter': {
-            backgroundColor: 'inherit',
-            color: '#ffffff',
-          },
-          '.cm-gutters': {
-            backgroundColor: '#1e1e1e',
-            color: '#858585',
-            border: 'none',
-          },
-          '.cm-lineNumbers .cm-activeLineGutter': {
-            backgroundColor: 'inherit',
-            color: '#ffffff',
-          },
-          '.cm-matchingBracket': {
-            backgroundColor: 'transparent',
-            outline: '1px solid #0e639c',
-          },
-          '.cm-tooltip': {
-            backgroundColor: '#252526',
-            color: '#cccccc',
-            border: '1px solid #454545',
-          },
-          '.cm-tooltip-autocomplete > ul > li[aria-selected]': {
-            backgroundColor: '#094771',
-            color: '#ffffff',
-          },
-        },
-        { dark: true },
-      ),
-      // Basic syntax highlighting for dark theme
-      syntaxHighlighting(
-        HighlightStyle.define([
-          // Keywords (const, return, import, function, export, from) - blue
-          { tag: tags.keyword, color: '#569cd6 !important' },
-          // Strings - orange
-          { tag: tags.string, color: '#ce9178 !important' },
-          // Numbers - light green
-          { tag: tags.number, color: '#b5cea8 !important' },
-          // Comments - green, italic
-          {
-            tag: tags.comment,
-            color: '#6a9955 !important',
-            fontStyle: 'italic',
-          },
-
-          // Variable names - light blue/white
-          { tag: tags.variableName, color: '#00cfff !important' },
-          { tag: tags.local(tags.variableName), color: '#9cdcfe !important' },
-          // Type names - cyan
-          { tag: tags.typeName, color: '#ff7b72 !important' },
-          { tag: tags.namespace, color: '#4ec9b0 !important' },
-          // Property names (object keys) - light blue
-          { tag: tags.propertyName, color: '#70cff8 !important' },
-          {
-            tag: tags.definition(tags.propertyName),
-            color: '#70cff8 !important',
-          },
-          // JSX tag names - green/cyan
-          { tag: tags.tagName, color: '#4ec9b0 !important' },
-          // Attribute names - light blue
-          { tag: tags.attributeName, color: '#92c5f7 !important' },
-          // Functions - blue
-          {
-            tag: tags.function(tags.variableName),
-            color: '#d2a8ff !important',
-          },
-          {
-            tag: tags.definition(tags.variableName),
-            color: '#4ec9b0 !important',
-          },
-          // Operators - gray
-          { tag: tags.operator, color: '#d4d4d4 !important' },
-          // Punctuation - gray
-          { tag: tags.punctuation, color: '#d4d4d4 !important' },
-          { tag: tags.separator, color: '#d4d4d4 !important' },
-          { tag: tags.bracket, color: '#92c5f7 !important' },
-          { tag: tags.angleBracket, color: '#b4b4b4 !important' },
-          { tag: tags.squareBracket, color: '#92c5f7 !important' },
-          { tag: tags.paren, color: '#d4d4d4 !important' },
-          { tag: tags.brace, color: '#92c5f7 !important' },
-          // Other literals
-          { tag: tags.regexp, color: '#ce9178 !important' },
-          { tag: tags.escape, color: '#ce9178 !important' },
-          { tag: tags.url, color: '#569cd6 !important' },
-          { tag: tags.color, color: '#b5cea8 !important' },
-          // Meta
-          { tag: tags.meta, color: '#d4d4d4 !important' },
-          { tag: tags.processingInstruction, color: '#d4d4d4 !important' },
-          { tag: tags.annotation, color: '#d4d4d4 !important' },
-          // Labels
-          { tag: tags.labelName, color: '#c586c0 !important' },
-          { tag: tags.macroName, color: '#569cd6 !important' },
-        ]),
-      ),
-    ];
-  }
   if (theme === 'light') {
-    // Basic light theme
     return [
       EditorView.theme(
         {
@@ -295,13 +177,121 @@ const getTheme = (theme: Config['theme'] = 'dark') => {
       ),
     ];
   }
-  if (theme === 'auto') {
-    // Auto theme will be handled by detecting system preference
-    // For now, default to dark
-    return getTheme('dark');
-  }
-  // If theme is an Extension, return it directly
-  return theme;
+
+  return [
+    EditorView.theme(
+      {
+        '&.cm-editor': {
+          backgroundColor: '#0d0d0d',
+          color: '#d4d4d4',
+        },
+        '.cm-content': {
+          caretColor: '#aeafad',
+        },
+        '.cm-cursor, .cm-dropCursor': {
+          borderLeftColor: '#aeafad',
+        },
+        '.cm-selectionBackground, .cm-selectionBackground.cm-focused': {
+          backgroundColor: '#264f78',
+        },
+        '.cm-activeLine': {
+          backgroundColor: '#2a2d2e',
+        },
+        '.cm-activeLineGutter': {
+          backgroundColor: 'inherit',
+          color: '#ffffff',
+        },
+        '.cm-gutters': {
+          backgroundColor: '#1e1e1e',
+          color: '#858585',
+          border: 'none',
+        },
+        '.cm-lineNumbers .cm-activeLineGutter': {
+          backgroundColor: 'inherit',
+          color: '#ffffff',
+        },
+        '.cm-matchingBracket': {
+          backgroundColor: 'transparent',
+          outline: '1px solid #0e639c',
+        },
+        '.cm-tooltip': {
+          backgroundColor: '#252526',
+          color: '#cccccc',
+          border: '1px solid #454545',
+        },
+        '.cm-tooltip-autocomplete > ul > li[aria-selected]': {
+          backgroundColor: '#094771',
+          color: '#ffffff',
+        },
+      },
+      { dark: true },
+    ),
+    // Basic syntax highlighting for dark theme
+    syntaxHighlighting(
+      HighlightStyle.define([
+        // Keywords (const, return, import, function, export, from) - blue
+        { tag: tags.keyword, color: '#569cd6 !important' },
+        // Strings - orange
+        { tag: tags.string, color: '#ce9178 !important' },
+        // Numbers - light green
+        { tag: tags.number, color: '#b5cea8 !important' },
+        // Comments - green, italic
+        {
+          tag: tags.comment,
+          color: '#6a9955 !important',
+          fontStyle: 'italic',
+        },
+
+        // Variable names - light blue/white
+        { tag: tags.variableName, color: '#00cfff !important' },
+        { tag: tags.local(tags.variableName), color: '#9cdcfe !important' },
+        // Type names - cyan
+        { tag: tags.typeName, color: '#ff7b72 !important' },
+        { tag: tags.namespace, color: '#4ec9b0 !important' },
+        // Property names (object keys) - light blue
+        { tag: tags.propertyName, color: '#70cff8 !important' },
+        {
+          tag: tags.definition(tags.propertyName),
+          color: '#70cff8 !important',
+        },
+        // JSX tag names - green/cyan
+        { tag: tags.tagName, color: '#4ec9b0 !important' },
+        // Attribute names - light blue
+        { tag: tags.attributeName, color: '#92c5f7 !important' },
+        // Functions - blue
+        {
+          tag: tags.function(tags.variableName),
+          color: '#d2a8ff !important',
+        },
+        {
+          tag: tags.definition(tags.variableName),
+          color: '#4ec9b0 !important',
+        },
+        // Operators - gray
+        { tag: tags.operator, color: '#d4d4d4 !important' },
+        // Punctuation - gray
+        { tag: tags.punctuation, color: '#d4d4d4 !important' },
+        { tag: tags.separator, color: '#d4d4d4 !important' },
+        { tag: tags.bracket, color: '#92c5f7 !important' },
+        { tag: tags.angleBracket, color: '#b4b4b4 !important' },
+        { tag: tags.squareBracket, color: '#92c5f7 !important' },
+        { tag: tags.paren, color: '#d4d4d4 !important' },
+        { tag: tags.brace, color: '#92c5f7 !important' },
+        // Other literals
+        { tag: tags.regexp, color: '#ce9178 !important' },
+        { tag: tags.escape, color: '#ce9178 !important' },
+        { tag: tags.url, color: '#569cd6 !important' },
+        { tag: tags.color, color: '#b5cea8 !important' },
+        // Meta
+        { tag: tags.meta, color: '#d4d4d4 !important' },
+        { tag: tags.processingInstruction, color: '#d4d4d4 !important' },
+        { tag: tags.annotation, color: '#d4d4d4 !important' },
+        // Labels
+        { tag: tags.labelName, color: '#c586c0 !important' },
+        { tag: tags.macroName, color: '#569cd6 !important' },
+      ]),
+    ),
+  ];
 };
 
 const config: {

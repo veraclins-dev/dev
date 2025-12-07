@@ -161,7 +161,7 @@ export const AutoTheme: Story = {
   },
   args: {
     value: exampleCode,
-    theme: 'auto',
+    theme: 'dark',
     padding: 16,
     readOnly: false,
     showLineNumbers: false,

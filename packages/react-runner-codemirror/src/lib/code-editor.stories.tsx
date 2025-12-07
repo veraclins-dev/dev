@@ -224,7 +224,7 @@ export const AutoTheme: Story = {
   args: {
     code: exampleCode,
     language: 'tsx',
-    theme: 'auto',
+    theme: 'dark',
     showCopyButton: true,
     showHint: true,
   },
