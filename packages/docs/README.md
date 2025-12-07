@@ -6,7 +6,7 @@ Documentation components for creating interactive code demos and documentation p
 
 - ✅ **Interactive Code Demos** - Live code editing with real-time preview
 - ✅ **Static Code Display** - Syntax-highlighted code blocks
-- ✅ **Mode Toggle** - Switch between static and interactive modes
+- ✅ **Mode Selection** - Display code in static or interactive mode
 - ✅ **SSR Safe** - Uses `ClientOnly` for server-side rendering compatibility
 - ✅ **React 19 Compatible** - Updated for React 19
 
@@ -22,7 +22,7 @@ import { CodeDemo, InteractiveCodeDemo, useCodeDemoScope } from '@veraclins-dev/
 
 ### `CodeDemo`
 
-Combined component that can display code in static or interactive mode with a toggle. Use for documentation pages where you want to show both static code examples and interactive demos.
+Component that can display code in static or interactive mode. Use for documentation pages where you want to show both static code examples and interactive demos.
 
 ```tsx
 import { CodeDemo } from '@veraclins-dev/docs';
@@ -33,30 +33,18 @@ function Documentation() {
     additionalScope: { Button, useState },
   });
 
-  return (
-    <CodeDemo
-      code={exampleCode}
-      scope={scope}
-      title="Button Example"
-      description="A simple button component"
-      defaultMode="interactive"
-      showModeToggle={true}
-      language="tsx"
-    />
-  );
+  return <CodeDemo code={exampleCode} scope={scope} mode="interactive" language="tsx" theme="dark" />;
 }
 ```
 
 **Props**:
+
 - `code`: Code string (required)
 - `language`: Language identifier (default: `'tsx'`)
-- `scope`: Scope object for code execution
-- `title`: Optional title
-- `description`: Optional description
-- `defaultMode`: `'static' | 'interactive'` (default: `'static'`)
-- `showModeToggle`: Show toggle between static/interactive (default: `true`)
+- `scope`: Scope object for code execution (required for interactive mode)
+- `mode`: `'static' | 'interactive'` (default: `'interactive'`)
 - `defaultCode`: Default code for interactive mode
-- `theme`: `'dark' | 'light' | 'auto'` (default: `'auto'`)
+- `theme`: `'dark' | 'light'` (default: `'dark'`)
 - `className`: Additional CSS classes
 
 ---
@@ -74,30 +62,21 @@ function InteractiveExample() {
     additionalScope: { Button, Card, CardContent },
   });
 
-  return (
-    <InteractiveCodeDemo
-      code={initialCode}
-      scope={scope}
-      title="Interactive Example"
-      description="Edit the code to see changes"
-      language="tsx"
-      theme="auto"
-    />
-  );
+  return <InteractiveCodeDemo code={initialCode} scope={scope} language="tsx" theme="dark" />;
 }
 ```
 
 **Props**:
+
 - `code`: Initial code string (required)
 - `scope`: Scope object for code execution (required)
 - `defaultCode`: Default code if different from `code`
 - `language`: Language identifier (default: `'tsx'`)
-- `title`: Optional title
-- `description`: Optional description
-- `theme`: `'dark' | 'light' | 'auto'` (default: `'auto'`)
+- `theme`: `'dark' | 'light'` (default: `'dark'`)
 - `className`: Additional CSS classes
 
 **Features**:
+
 - Live preview of code execution
 - Editable code editor (collapsible, collapsed by default)
 - Error display
@@ -129,6 +108,7 @@ function CodePreview() {
 ```
 
 **Props**:
+
 - `code`: Code string to execute (required)
 - `scope`: Scope object (required)
 - `onError`: Optional error callback `(error: string | null) => void`
@@ -154,22 +134,19 @@ function MyDocumentation() {
     },
   });
 
-  return (
-    <InteractiveCodeDemo
-      code={code}
-      scope={scope}
-    />
-  );
+  return <InteractiveCodeDemo code={code} scope={scope} />;
 }
 ```
 
 **Options**:
+
 - `additionalScope?`: Additional scope items to merge with default scope
 - `scopeProvider?`: Custom scope provider function (replaces default scope)
 
 **Returns**: `CodeDemoScope` object with React and common hooks
 
 **Default Scope**:
+
 - `React` - React library
 - `react` - React library (for import resolution)
 - `useState` - React.useState
@@ -188,9 +165,7 @@ interface CodeDemoProps {
   code: string;
   language?: string;
   className?: string;
-  title?: string;
-  description?: string;
-  theme?: 'light' | 'dark' | 'auto';
+  theme?: 'light' | 'dark';
 }
 ```
 
@@ -209,8 +184,7 @@ Props for `CodeDemo` component (extends `CodeDemoProps`).
 ```tsx
 interface CodeDemoComponentProps extends CodeDemoProps {
   scope?: CodeDemoScope;
-  defaultMode?: 'static' | 'interactive';
-  showModeToggle?: boolean;
+  mode?: 'static' | 'interactive';
   defaultCode?: string;
 }
 ```
@@ -220,8 +194,8 @@ interface CodeDemoComponentProps extends CodeDemoProps {
 Props for `InteractiveCodeDemo` component (extends `CodeDemoProps`).
 
 ```tsx
-interface InteractiveCodeDemoProps extends CodeDemoProps {
-  scope?: CodeDemoScope;
+interface InteractiveCodeDemoProps extends Pick<CodeDemoProps, 'code' | 'language' | 'className' | 'theme'> {
+  scope: CodeDemoScope;
   defaultCode?: string;
 }
 ```
@@ -247,13 +221,7 @@ export default function App() {
 }
 `;
 
-  return (
-    <InteractiveCodeDemo
-      code={code}
-      scope={scope}
-      title="Button Demo"
-    />
-  );
+  return <InteractiveCodeDemo code={code} scope={scope} />;
 }
 ```
 
@@ -263,14 +231,7 @@ export default function App() {
 import { CodeDemo } from '@veraclins-dev/docs';
 
 function StaticExample() {
-  return (
-    <CodeDemo
-      code="const x = 1;"
-      defaultMode="static"
-      showModeToggle={false}
-      language="tsx"
-    />
-  );
+  return <CodeDemo code="const x = 1;" mode="static" language="tsx" />;
 }
 ```
 
@@ -289,12 +250,7 @@ function CustomScopeExample() {
     }),
   });
 
-  return (
-    <InteractiveCodeDemo
-      code={code}
-      scope={scope}
-    />
-  );
+  return <InteractiveCodeDemo code={code} scope={scope} />;
 }
 ```
 
@@ -315,7 +271,7 @@ function CustomScopeExample() {
 2. **Wrap in `ClientOnly`** - Already done in `InteractiveCodeDemo`, but remember for custom implementations
 3. **Provide proper scope** - Include all components and utilities used in the code
 4. **Use `InteractiveCodeDemo`** - For full-featured interactive demos with live editing
-5. **Use `CodeDemo`** - When you want users to toggle between static and interactive views
+5. **Use `CodeDemo`** - When you want to display code in either static or interactive mode
 
 ---
 

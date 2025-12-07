@@ -31,23 +31,15 @@ import { CodeMirror } from '@veraclins-dev/react-runner-codemirror';
 function App() {
   const [code, setCode] = useState('const x = 1;');
 
-  return (
-    <CodeMirror
-      value={code}
-      onChange={setCode}
-      theme="dark"
-      filename="file.tsx"
-      showLineNumbers={true}
-      padding={16}
-    />
-  );
+  return <CodeMirror value={code} onChange={setCode} theme="dark" filename="file.tsx" showLineNumbers={true} padding={16} />;
 }
 ```
 
 **Props**:
+
 - `value` / `defaultValue`: Code content (string)
 - `onChange`: Callback when code changes `(code: string) => void`
-- `theme`: `'dark' | 'light' | 'auto' | Extension` - Editor theme (default: `'dark'`)
+- `theme`: `'dark' | 'light'` - Editor theme (default: `'dark'`)
 - `padding`: Number or string for content padding (default: `10`)
 - `readOnly`: Boolean to make editor read-only (default: `false`)
 - `showLineNumbers`: Boolean to show line numbers (default: `false`)
@@ -67,27 +59,19 @@ import { CodeEditor } from '@veraclins-dev/react-runner-codemirror';
 function App() {
   const [code, setCode] = useState('const x = 1;');
 
-  return (
-    <CodeEditor
-      code={code}
-      onChange={setCode}
-      language="tsx"
-      showCopyButton={true}
-      showHint={true}
-      theme="auto"
-    />
-  );
+  return <CodeEditor code={code} onChange={setCode} language="tsx" showCopyButton={true} showHint={true} theme="dark" />;
 }
 ```
 
 **Props**:
+
 - `code`: Code content (required, string)
 - `onChange`: Callback when code changes (required, `(code: string) => void`)
 - `onFocus`: Optional focus callback `() => void`
 - `language`: Language identifier (default: `'tsx'`)
 - `showCopyButton`: Show copy button (default: `true`)
 - `showHint`: Show "Click anywhere to start editing" hint (default: `true`)
-- `theme`: `'dark' | 'light' | 'auto'` (default: `'auto'`)
+- `theme`: `'dark' | 'light'` (default: `'dark'`)
 - `className`: Additional CSS classes
 
 ---
@@ -104,27 +88,22 @@ function App() {
   return \`Hello, \${name}!\`;
 }`;
 
-  return (
-    <CodeBlock
-      code={exampleCode}
-      language="tsx"
-      showCopyButton={true}
-      theme="auto"
-    />
-  );
+  return <CodeBlock code={exampleCode} language="tsx" showCopyButton={true} theme="dark" />;
 }
 ```
 
 **Props**:
+
 - `code`: Code content (required, string)
 - `language`: Language identifier (default: `'tsx'`)
 - `showCopyButton`: Show copy button (default: `true`)
-- `theme`: `'dark' | 'light' | 'auto'` (default: `'auto'`)
+- `theme`: `'dark' | 'light'` (default: `'dark'`)
 - `className`: Additional CSS classes
 
 **Features**:
+
 - Read-only CodeMirror editor
-- Auto-detects system theme (when `theme="auto"`)
+- Auto-detects system theme (when `theme="dark"`)
 - Copy to clipboard functionality
 - Syntax highlighting for multiple languages
 
@@ -144,6 +123,7 @@ const cssFile = getFilenameFromLanguage('css'); // Returns 'file.css'
 ```
 
 **Supported Languages**:
+
 - `tsx`, `ts` - TypeScript/TSX
 - `jsx`, `js` - JavaScript/JSX
 - `css` - CSS
@@ -159,8 +139,10 @@ const cssFile = getFilenameFromLanguage('css'); // Returns 'file.css'
 ### `Theme`
 
 ```tsx
-type Theme = 'dark' | 'light' | 'auto' | Extension;
+type Theme = 'dark' | 'light';
 ```
+
+**Note**: For custom themes, use the `extensions` prop to provide custom CodeMirror theme extensions.
 
 ### `CodeMirrorProps`
 
@@ -186,14 +168,7 @@ import { CodeEditor } from '@veraclins-dev/react-runner-codemirror';
 function MyEditor() {
   const [code, setCode] = useState('');
 
-  return (
-    <CodeEditor
-      code={code}
-      onChange={setCode}
-      language="tsx"
-      theme="dark"
-    />
-  );
+  return <CodeEditor code={code} onChange={setCode} language="tsx" theme="dark" />;
 }
 ```
 
@@ -203,13 +178,7 @@ function MyEditor() {
 import { CodeBlock } from '@veraclins-dev/react-runner-codemirror';
 
 function CodeExample() {
-  return (
-    <CodeBlock
-      code="const x = 1;"
-      language="tsx"
-      showCopyButton={true}
-    />
-  );
+  return <CodeBlock code="const x = 1;" language="tsx" showCopyButton={true} />;
 }
 ```
 
@@ -219,16 +188,7 @@ function CodeExample() {
 import { CodeMirror } from '@veraclins-dev/react-runner-codemirror';
 
 function CustomEditor() {
-  return (
-    <CodeMirror
-      value="const x = 1;"
-      theme="light"
-      showLineNumbers={true}
-      wrapLine={true}
-      padding={20}
-      filename="file.tsx"
-    />
-  );
+  return <CodeMirror value="const x = 1;" theme="light" showLineNumbers={true} wrapLine={true} padding={20} filename="file.tsx" />;
 }
 ```
 
@@ -246,11 +206,7 @@ const scope = useCodeDemoScope({
   additionalScope: { Button, useState },
 });
 
-<InteractiveCodeDemo
-  code={exampleCode}
-  scope={scope}
-  title="Button Example"
-/>
+<InteractiveCodeDemo code={exampleCode} scope={scope} title="Button Example" />;
 ```
 
 ---
