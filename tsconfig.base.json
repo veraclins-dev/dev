@@ -32,13 +32,7 @@
       "@veraclins-dev/ui": ["packages/ui/src/index.ts"],
       "@veraclins-dev/ui/*": ["packages/ui/src/*"],
       "@veraclins-dev/utils": ["packages/utils/src/index.ts"],
-      "@veraclins-dev/docs": ["packages/docs/src/index.ts"],
-      "@veraclins-dev/react-code-runner": [
-        "packages/react-code-runner/src/index.ts"
-      ],
-      "@veraclins-dev/react-runner-codemirror": [
-        "packages/react-runner-codemirror/src/index.ts"
-      ]
+      "@veraclins-dev/docs": ["packages/docs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

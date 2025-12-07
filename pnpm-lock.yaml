@@ -352,9 +352,42 @@ importers:
 
   packages/docs:
     dependencies:
+      '@codemirror/autocomplete':
+        specifier: ^6.20.0
+        version: 6.20.0
+      '@codemirror/commands':
+        specifier: ^6.10.0
+        version: 6.10.0
+      '@codemirror/lang-css':
+        specifier: ^6.3.1
+        version: 6.3.1
+      '@codemirror/lang-javascript':
+        specifier: ^6.2.4
+        version: 6.2.4
+      '@codemirror/language':
+        specifier: ^6.11.3
+        version: 6.11.3
+      '@codemirror/state':
+        specifier: ^6.5.2
+        version: 6.5.2
+      '@codemirror/view':
+        specifier: ^6.38.8
+        version: 6.38.8
+      '@lezer/highlight':
+        specifier: ^1.1.0
+        version: 1.2.3
+      react:
+        specifier: ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.0(react@19.2.0)
       remix-utils:
         specifier: ^9.0.0
         version: 9.0.0(@oslojs/crypto@1.0.1)(@oslojs/encoding@1.1.0)(@standard-schema/spec@1.0.0)(intl-parse-accept-language@1.0.0)(react-router@7.10.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+      sucrase:
+        specifier: ^3.35.0
+        version: 3.35.1
 
   packages/editor:
     dependencies:
@@ -536,51 +569,6 @@ importers:
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
-
-  packages/react-code-runner:
-    dependencies:
-      react:
-        specifier: ^19.0.0
-        version: 19.2.0
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.2.0(react@19.2.0)
-      sucrase:
-        specifier: ^3.35.0
-        version: 3.35.1
-
-  packages/react-runner-codemirror:
-    dependencies:
-      '@codemirror/autocomplete':
-        specifier: ^6.20.0
-        version: 6.20.0
-      '@codemirror/commands':
-        specifier: ^6.10.0
-        version: 6.10.0
-      '@codemirror/lang-css':
-        specifier: ^6.3.1
-        version: 6.3.1
-      '@codemirror/lang-javascript':
-        specifier: ^6.2.4
-        version: 6.2.4
-      '@codemirror/language':
-        specifier: ^6.11.3
-        version: 6.11.3
-      '@codemirror/state':
-        specifier: ^6.5.2
-        version: 6.5.2
-      '@codemirror/view':
-        specifier: ^6.38.8
-        version: 6.38.8
-      '@lezer/highlight':
-        specifier: ^1.1.0
-        version: 1.2.3
-      react:
-        specifier: ^19.0.0
-        version: 19.2.0
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.2.0(react@19.2.0)
 
   packages/react-utils:
     dependencies:

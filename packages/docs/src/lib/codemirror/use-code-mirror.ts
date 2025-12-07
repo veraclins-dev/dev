@@ -120,7 +120,6 @@ export const useCodeMirror = ({
   useConfig(viewRef, 'showLineNumbers', showLineNumbers, [filename]);
   useConfig(viewRef, 'wrapLine', wrapLine, [filename]);
   useConfig(viewRef, 'extensions', extensions, [filename]);
-  useConfig(viewRef, 'filename', filename);
 
   useEffect(
     () => () => {
@@ -136,3 +135,4 @@ export const useCodeMirror = ({
 
   return viewRef;
 };
+

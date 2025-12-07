@@ -9,3 +9,4 @@ export type RunnerOptions = {
   /** globals that could be used in code */
   scope?: Scope;
 };
+

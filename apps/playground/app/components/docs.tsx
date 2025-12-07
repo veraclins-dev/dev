@@ -1,8 +1,12 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-import { CodeDemo, useCodeDemoScope } from '@veraclins-dev/docs';
-import { Runner, useRunner } from '@veraclins-dev/react-code-runner';
+import {
+  CodeDemo,
+  Runner,
+  useCodeDemoScope,
+  useRunner,
+} from '@veraclins-dev/docs';
 import * as UI from '@veraclins-dev/ui';
 import {
   Box,
@@ -95,7 +99,7 @@ function FormExample({ name: initialName }: FormExampleProps) {
 export default FormExample;`;
 
 const runnerComponentExample = `import * as React from 'react';
-import { Runner } from '@veraclins-dev/react-code-runner';
+import { Runner } from '@veraclins-dev/docs';
 import * as UI from '@veraclins-dev/ui';
 
 function App() {
@@ -115,7 +119,7 @@ export default function Demo() {
 
 const runnerHookExample = `import * as React from 'react';
 import { useState } from 'react';
-import { useRunner } from '@veraclins-dev/react-code-runner';
+import { useRunner } from '@veraclins-dev/docs';
 import * as UI from '@veraclins-dev/ui';
 
 function App() {
@@ -279,7 +283,7 @@ export function DocsShowcase() {
       {/* React Code Runner Package Showcase */}
       <Box className="mt-12">
         <Typography variant="h2" className="mb-4">
-          @veraclins-dev/react-code-runner
+          @veraclins-dev/docs
         </Typography>
         <Typography variant="body1" className="text-muted-foreground mb-8">
           React 19 compatible fork of react-runner. Run your React code on the
@@ -337,7 +341,7 @@ export function DocsShowcase() {
         <CardHeader>
           <CardTitle>React Code Runner Features</CardTitle>
           <CardDescription>
-            Key features of the @veraclins-dev/react-code-runner package
+            Key features of the @veraclins-dev/docs package
           </CardDescription>
         </CardHeader>
         <CardContent>

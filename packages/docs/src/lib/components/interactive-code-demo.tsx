@@ -2,8 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
 
-import { useRunner } from '@veraclins-dev/react-code-runner';
-import { CodeEditor } from '@veraclins-dev/react-runner-codemirror';
 import { toast } from '@veraclins-dev/react-utils';
 import {
   Box,
@@ -18,6 +16,9 @@ import {
   Typography,
 } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
+
+import { useRunner } from '../code-runner';
+import { CodeEditor } from '../codemirror';
 
 import type { CodeDemoProps, CodeDemoScope } from './code-demo-types';
 

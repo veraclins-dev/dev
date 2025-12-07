@@ -23,3 +23,4 @@ export interface CodeMirrorProps
   onChange?: (code: string) => void;
   ref?: React.Ref<EditorView>;
 }
+

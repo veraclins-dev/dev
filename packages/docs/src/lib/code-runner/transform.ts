@@ -42,3 +42,4 @@ export const normalizeCode = (code: string) => {
   // Otherwise, add export default to the first statement
   return code.replace(firstStatementRegexp, '$1export default $2$3');
 };
+

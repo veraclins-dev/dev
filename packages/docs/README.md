@@ -258,10 +258,13 @@ function CustomScopeExample() {
 
 ## Dependencies
 
-- `@veraclins-dev/react-runner-codemirror` - Code editing/display
-- `@veraclins-dev/react-code-runner` - Code execution
+- `@codemirror/*` - CodeMirror 6 packages for code editing/display (included in package)
+- `sucrase` - Code transformation for React code execution (included in package)
 - `@veraclins-dev/ui` - UI components
+- `@veraclins-dev/react-utils` - Toast notifications
 - `remix-utils` - `ClientOnly` component for SSR safety
+
+**Note:** Code execution (`code-runner`) and code editing (`codemirror`) functionality are now included directly in this package. They were previously separate packages (`@veraclins-dev/react-code-runner` and `@veraclins-dev/react-runner-codemirror`) but have been merged for better maintainability.
 
 ---
 

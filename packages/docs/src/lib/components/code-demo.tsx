@@ -1,4 +1,4 @@
-import { CodeBlock } from '@veraclins-dev/react-runner-codemirror';
+import { CodeBlock } from '../codemirror';
 
 import type { CodeDemoComponentProps } from './code-demo-types';
 import { InteractiveCodeDemo } from './interactive-code-demo';

@@ -1,5 +1,6 @@
 // Core exports for code execution and preview
-export * from './lib/Runner';
-export * from './lib/types';
-export * from './lib/useRunner';
+export * from './Runner';
+export * from './types';
+export * from './useRunner';
 // Internal utilities are not exported - they're only used internally
+

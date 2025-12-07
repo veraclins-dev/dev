@@ -156,11 +156,11 @@ const getTheme = (theme: Config['theme'] = 'dark') => {
           // Punctuation - dark gray
           { tag: tags.punctuation, color: '#24292e !important' },
           { tag: tags.separator, color: '#24292e !important' },
-          { tag: tags.bracket, color: '#6f42c1 !important' },
-          { tag: tags.angleBracket, color: '#6a737d !important' },
-          { tag: tags.squareBracket, color: '#6f42c1 !important' },
+          { tag: tags.bracket, color: '#92c5f7 !important' },
+          { tag: tags.angleBracket, color: '#b4b4b4 !important' },
+          { tag: tags.squareBracket, color: '#92c5f7 !important' },
           { tag: tags.paren, color: '#24292e !important' },
-          { tag: tags.brace, color: '#6f42c1 !important' },
+          { tag: tags.brace, color: '#92c5f7 !important' },
           // Other literals
           { tag: tags.regexp, color: '#032f62 !important' },
           { tag: tags.escape, color: '#032f62 !important' },
@@ -331,3 +331,4 @@ export const useConfig = <T extends keyof Config>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, value, view, ...deps]);
 };
+

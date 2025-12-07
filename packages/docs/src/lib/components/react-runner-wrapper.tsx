@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import { useRunner } from '@veraclins-dev/react-code-runner';
+import { useRunner } from '../code-runner';
 
 import type { ReactRunnerWrapperProps } from './code-demo-types';
 
 /**
- * Wrapper around @veraclins-dev/react-code-runner's useRunner hook
+ * Wrapper around code-runner's useRunner hook
  * Provides error handling and scope management
  */
 export function ReactRunnerWrapper({

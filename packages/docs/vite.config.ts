@@ -55,8 +55,6 @@ export default defineConfig({
         '@veraclins-dev/utils',
         '@veraclins-dev/cva',
         '@veraclins-dev/react-utils',
-        '@veraclins-dev/react-code-runner',
-        '@veraclins-dev/react-runner-codemirror',
         '@veraclins-dev/ui',
       ],
     },

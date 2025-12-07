@@ -650,7 +650,7 @@ export const iconNames = [
   'add-photo',
   'activity-log',
   'accessibility',
-  'academic-cap',
+  'academic-cap'
 ] as const;
 
-export type IconName = (typeof iconNames)[number];
+export type IconName = typeof iconNames[number];

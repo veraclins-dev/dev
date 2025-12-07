@@ -54,7 +54,7 @@ export function useCodeDemoScope(
     }
 
     // Default scope - projects should override this
-    // Provide React - @veraclins-dev/react-code-runner resolves 'react' import from scope['react']
+    // Provide React - code-runner resolves 'react' import from scope['react']
     // String keys are required to match import paths exactly
     const defaultScope: CodeDemoScope = {
       React,
