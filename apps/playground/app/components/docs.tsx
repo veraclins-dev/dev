@@ -190,14 +190,7 @@ export function DocsShowcase() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <CodeDemo
-            code={basicExample}
-            language="tsx"
-            defaultMode="static"
-            showModeToggle={true}
-            title="Static Code Example"
-            description="View code with syntax highlighting"
-          />
+          <CodeDemo code={basicExample} language="tsx" mode="static" />
         </CardContent>
       </Card>
 
@@ -209,15 +202,7 @@ export function DocsShowcase() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <CodeDemo
-            code={interactiveExample}
-            language="tsx"
-            scope={scope}
-            defaultMode="interactive"
-            showModeToggle={true}
-            title="Interactive Counter"
-            description="Edit the code and see changes in real-time"
-          />
+          <CodeDemo code={interactiveExample} language="tsx" scope={scope} />
         </CardContent>
       </Card>
 
@@ -229,15 +214,7 @@ export function DocsShowcase() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <CodeDemo
-            code={formExample}
-            language="tsx"
-            scope={scope}
-            defaultMode="interactive"
-            showModeToggle={true}
-            title="Form Component"
-            description="Try editing the form component"
-          />
+          <CodeDemo code={formExample} language="tsx" scope={scope} />
         </CardContent>
       </Card>
 
@@ -322,10 +299,7 @@ export function DocsShowcase() {
             code={runnerComponentExample}
             language="tsx"
             theme="dark"
-            defaultMode="static"
-            showModeToggle={true}
-            title="Runner Component Example"
-            description="Simple usage of the Runner component"
+            mode="static"
           />
           <Box className="p-4 border rounded-lg bg-muted/50">
             <Typography variant="subtitle2" className="mb-2">
@@ -354,14 +328,7 @@ export function DocsShowcase() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <CodeDemo
-            code={runnerHookExample}
-            language="tsx"
-            defaultMode="static"
-            showModeToggle={true}
-            title="useRunner Hook Example"
-            description="Using the hook with error handling"
-          />
+          <CodeDemo code={runnerHookExample} language="tsx" mode="static" />
           <RunnerHookDemo />
         </CardContent>
       </Card>
