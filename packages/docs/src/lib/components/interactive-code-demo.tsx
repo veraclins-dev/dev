@@ -14,24 +14,25 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
   Icon,
+  Separator,
   Typography,
 } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import type { CodeDemoProps, CodeDemoScope } from './code-demo-types';
 
-export interface InteractiveCodeDemoProps extends CodeDemoProps {
-  scope?: CodeDemoScope;
+export interface InteractiveCodeDemoProps extends Pick<
+  CodeDemoProps,
+  'code' | 'language' | 'className' | 'theme'
+> {
+  scope: CodeDemoScope;
   defaultCode?: string;
-  language?: string;
 }
 
 function InteractiveCodeDemoInner({
   code,
   scope = {},
   className,
-  title,
-  description,
   defaultCode,
   language = 'tsx',
   theme = 'dark',
@@ -80,68 +81,51 @@ function InteractiveCodeDemoInner({
 
   return (
     <Box display="flex" flexDirection="column" gap={4} className={className}>
-      {(title || description) && (
-        <Box display="flex" flexDirection="column" gap={2}>
-          {title && (
-            <Typography variant="h4" className="font-semibold">
-              {title}
-            </Typography>
-          )}
-          {description && (
-            <Typography variant="body2" className="text-muted-foreground">
-              {description}
-            </Typography>
-          )}
-        </Box>
-      )}
-
       <Card elevated={false} borderless={true}>
-        <CardContent display="flex" flexDirection="column" gap={4}>
-          <Box className="w-full min-h-[200px] p-4 rounded-lg border bg-muted/50">
-            {runnerError && (
-              <Box
-                style={{
-                  marginBottom: '1rem',
-                  padding: '1rem',
-                  backgroundColor: 'hsl(var(--destructive) / 0.1)',
-                  border: '1px solid hsl(var(--destructive) / 0.2)',
-                  borderRadius: '0.5rem',
-                  color: 'hsl(var(--destructive))',
-                  fontFamily: 'ui-monospace, monospace',
-                  fontSize: '0.875rem',
-                  whiteSpace: 'pre-wrap',
-                }}
-              >
-                {String(runnerError)}
-              </Box>
-            )}
+        <CardContent
+          display="flex"
+          flexDirection="column"
+          gap={4}
+          className="min-h-[200px]"
+        >
+          {runnerError && (
             <Box
               style={{
-                minHeight: '200px',
-                width: '100%',
+                marginBottom: '1rem',
+                padding: '1rem',
+                backgroundColor: 'hsl(var(--destructive) / 0.1)',
+                border: '1px solid hsl(var(--destructive) / 0.2)',
+                borderRadius: '0.5rem',
+                color: 'hsl(var(--destructive))',
+                fontFamily: 'ui-monospace, monospace',
+                fontSize: '0.875rem',
+                whiteSpace: 'pre-wrap',
               }}
             >
-              {Object.keys(memoizedScope).length === 0 ? (
-                <Box
-                  style={{
-                    minHeight: '200px',
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Typography variant="body2" className="text-muted-foreground">
-                    No scope provided. Please set up scope with
-                    useCodeDemoScope.
-                  </Typography>
-                </Box>
-              ) : (
-                // Return element directly - MUI's pattern (works better with React 19)
-                element
-              )}
+              {String(runnerError)}
             </Box>
+          )}
+          <Box style={{ width: '100%' }}>
+            {Object.keys(memoizedScope).length === 0 ? (
+              <Box
+                style={{
+                  minHeight: '200px',
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography variant="body2" className="text-muted-foreground">
+                  No scope provided. Please set up scope with useCodeDemoScope.
+                </Typography>
+              </Box>
+            ) : (
+              // Return element directly - MUI's pattern (works better with React 19)
+              element
+            )}
           </Box>
+          <Separator />
           <Collapsible
             defaultOpen={false}
             open={isCodeExpanded}

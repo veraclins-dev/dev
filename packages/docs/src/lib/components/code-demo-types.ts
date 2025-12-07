@@ -2,10 +2,10 @@ export interface CodeDemoProps {
   code: string;
   language?: string;
   className?: string;
-  title?: string;
-  description?: string;
-  theme?: 'light' | 'dark' | 'auto';
+  theme?: 'light' | 'dark';
 }
+
+export type CodeDemoMode = 'static' | 'interactive';
 
 export interface CodeDemoScope {
   [key: string]: unknown;
@@ -13,8 +13,7 @@ export interface CodeDemoScope {
 
 export interface CodeDemoComponentProps extends CodeDemoProps {
   scope?: CodeDemoScope;
-  defaultMode?: 'static' | 'interactive';
-  showModeToggle?: boolean;
+  mode?: CodeDemoMode;
   defaultCode?: string;
 }
 
