@@ -483,7 +483,7 @@ return (
 <CodeMirror
       value={code}
       onChange={setCode}
-      theme="auto"
+      theme="dark"
       showLineNumbers
       language="tsx"
     />
