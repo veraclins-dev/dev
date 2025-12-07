@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/react-code-runner",
-  "version": "0.65.0",
+  "version": "0.65.1",
   "description": "Execute and preview React code in the browser - React 19 compatible code runner",
   "main": "./index.js",
   "types": "./index.d.ts",

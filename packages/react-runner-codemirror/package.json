@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/react-runner-codemirror",
-  "version": "0.65.0",
+  "version": "0.65.1",
   "description": "CodeMirror 6 wrapper for React code editing - React 19 compatible",
   "main": "./index.js",
   "types": "./index.d.ts",
