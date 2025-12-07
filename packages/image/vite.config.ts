@@ -69,6 +69,14 @@ export default defineConfig(() => ({
             return 'shared';
           }
         },
+        chunkFileNames: (chunkInfo) => {
+          // Use deterministic names for manual chunks to avoid cache issues
+          if (chunkInfo.name === 'shared') {
+            return 'shared.js';
+          }
+          // Let Vite handle other chunks with default naming
+          return '[name]-[hash].js';
+        },
       },
     },
   },
