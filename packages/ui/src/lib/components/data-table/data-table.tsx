@@ -166,13 +166,14 @@ function DataTable<TData extends WithId, TValue = unknown>({
                   <TableRow key={headerGroup.id}>
                     {headerGroup.headers.map((header) => {
                       const meta = header.column.columnDef.meta as
-                        | { hasExplicitWidth?: boolean }
+                        | { hasExplicitWidth?: boolean; className?: string }
                         | undefined;
                       const hasExplicitWidth = meta?.hasExplicitWidth ?? false;
                       return (
                         <TableHead
                           key={header.id}
                           colSpan={header.colSpan}
+                          className={meta?.className}
                           style={
                             hasExplicitWidth
                               ? {

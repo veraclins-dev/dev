@@ -28,12 +28,13 @@ export function DataTableDraggableRow<TData extends WithId>({
     >
       {row.getVisibleCells().map((cell) => {
         const meta = cell.column.columnDef.meta as
-          | { hasExplicitWidth?: boolean }
+          | { hasExplicitWidth?: boolean; className?: string }
           | undefined;
         const hasExplicitWidth = meta?.hasExplicitWidth ?? false;
         return (
           <TableCell
             key={cell.id}
+            className={meta?.className}
             style={
               hasExplicitWidth
                 ? {
@@ -64,12 +65,13 @@ export function DataTableRow<TData extends WithId>({
     <TableRow data-state={row.getIsSelected() && 'selected'}>
       {row.getVisibleCells().map((cell) => {
         const meta = cell.column.columnDef.meta as
-          | { hasExplicitWidth?: boolean }
+          | { hasExplicitWidth?: boolean; className?: string }
           | undefined;
         const hasExplicitWidth = meta?.hasExplicitWidth ?? false;
         return (
           <TableCell
             key={cell.id}
+            className={meta?.className}
             style={
               hasExplicitWidth
                 ? {

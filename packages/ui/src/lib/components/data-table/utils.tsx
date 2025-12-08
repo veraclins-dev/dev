@@ -34,6 +34,7 @@ type ColumnConfig<TData extends WithId, TValue = unknown> = Omit<
   accessorKey?: AccessorKeyColumnDef<TData, TValue>['accessorKey'];
   width?: string | number;
   align?: BoxProps['justify'];
+  className?: string;
   // For control columns
   actions?: DataTableRowActionsProps<TData>['actions'];
 } & (
@@ -173,6 +174,13 @@ function generateColumnsConfig<TData extends WithId, TValue>(
       column.meta = {
         ...column.meta,
         hasExplicitWidth: true,
+      };
+    }
+
+    if (config.className) {
+      column.meta = {
+        ...column.meta,
+        className: config.className,
       };
     }
 
