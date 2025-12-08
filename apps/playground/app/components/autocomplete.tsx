@@ -516,50 +516,50 @@ export function AutocompleteShowcase() {
         <CardContent>
           <List className="space-y-2">
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>Arrow Down</code> - Navigate to next option
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>Arrow Up</code> - Navigate to previous option
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>Enter</code> - Select focused option or create new option
                 in freeSolo mode
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>Tab</code> - Select focused option or accept current value
                 in freeSolo mode
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>Home</code> - Jump to first option
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>End</code> - Jump to last option
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>Escape</code> - Close dropdown
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>Delete/Backspace</code> - Remove last selected item in
                 multiple mode when input is empty
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>Paste</code> - In freeSolo multiple mode, paste
                 comma-separated values to add multiple items at once
               </Typography>
@@ -579,78 +579,78 @@ export function AutocompleteShowcase() {
         <CardContent>
           <List className="space-y-2">
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>options</code> - Array of options (strings or objects with
                 label/value)
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>multiple</code> - Enable multiple selection mode
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>freeSolo</code> - Allow creating custom options by typing
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>separator</code> - Separator for multiple values in
                 freeSolo mode ('comma', 'semicolon', 'pipe', 'space')
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>maxOptions</code> - Maximum number of options in multiple
                 mode
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>dependsOn</code> - Name of field this autocomplete depends
                 on
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>disableSorting</code> - Disable sorting of filtered
                 options
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>value</code> - Controlled value (pipe-separated for
                 multiple)
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>defaultValue</code> - Default value for uncontrolled usage
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>onChange</code> - Callback when value changes
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>label</code> - Label text for the input field
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>placeholder</code> - Placeholder text
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>required</code> - Mark field as required
               </Typography>
             </ListItem>
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>disabled</code> - Disable the input
               </Typography>
             </ListItem>

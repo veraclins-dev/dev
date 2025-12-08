@@ -141,7 +141,7 @@ export const WithCustomContent: Story = {
               <Typography variant="body1" className="font-medium">
                 Option 1
               </Typography>
-              <Typography variant="body2" className="text-sm text-gray-500">
+              <Typography className="text-sm text-gray-500">
                 Description for option 1
               </Typography>
             </Box>

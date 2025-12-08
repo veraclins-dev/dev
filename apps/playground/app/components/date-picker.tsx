@@ -251,33 +251,33 @@ export function DatePickerShowcase() {
                 Props
               </Typography>
               <Box className="space-y-2">
-                <Typography variant="body2">
+                <Typography>
                   <code>variant</code> - Display variant: 'popover' | 'dialog' |
                   'inline'
                 </Typography>
-                <Typography variant="body2">
+                <Typography>
                   <code>value</code> - Selected date value
                 </Typography>
-                <Typography variant="body2">
+                <Typography>
                   <code>onValueChange</code> - Callback when value changes
                 </Typography>
-                <Typography variant="body2">
+                <Typography>
                   <code>mode</code> - Selection mode: 'single' | 'range' |
                   'multiple'
                 </Typography>
-                <Typography variant="body2">
+                <Typography>
                   <code>placeholder</code> - Input placeholder text
                 </Typography>
-                <Typography variant="body2">
+                <Typography>
                   <code>clearable</code> - Show clear button
                 </Typography>
-                <Typography variant="body2">
+                <Typography>
                   <code>showTimePicker</code> - Show time picker
                 </Typography>
-                <Typography variant="body2">
+                <Typography>
                   <code>showTodayButton</code> - Show today button
                 </Typography>
-                <Typography variant="body2">
+                <Typography>
                   <code>numberOfMonths</code> - Number of months to display
                 </Typography>
               </Box>

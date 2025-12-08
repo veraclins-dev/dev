@@ -54,7 +54,7 @@ function ArticleFormExample() {
         <ClientOnly
           fallback={
             <Box className="w-full h-64 border rounded-md p-4 bg-muted/20 flex items-center justify-center">
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 Loading form...
               </Typography>
             </Box>
@@ -62,7 +62,7 @@ function ArticleFormExample() {
         >
           {() => (
             <Box className="space-y-4">
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 This form demonstrates how to use EditorField within a form
                 context. The editor content is validated and submitted along
                 with other form fields.
@@ -106,7 +106,7 @@ function ArticleFormExample() {
                     Submit Article
                   </Button>
                   {submitted && (
-                    <Typography variant="body2" className="text-success">
+                    <Typography className="text-success">
                       Form submitted successfully! (Check console for data)
                     </Typography>
                   )}
@@ -147,7 +147,7 @@ export function Editor() {
           <ClientOnly
             fallback={
               <Box className="w-full h-64 border rounded-md p-4 bg-muted/20 flex items-center justify-center">
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   Loading rich text editor...
                 </Typography>
               </Box>
@@ -155,7 +155,7 @@ export function Editor() {
           >
             {() => (
               <Box className="space-y-4">
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   Try typing in the editor below. You can use the toolbar to
                   format your text, add links, lists, and more.
                 </Typography>
@@ -178,7 +178,7 @@ export function Editor() {
           <ClientOnly
             fallback={
               <Box className="w-full h-64 border rounded-md p-4 bg-muted/20 flex items-center justify-center">
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   Loading rich text editor...
                 </Typography>
               </Box>
@@ -186,7 +186,7 @@ export function Editor() {
           >
             {() => (
               <Box className="space-y-4">
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   This editor starts with some pre-filled content that you can
                   edit or replace.
                 </Typography>
@@ -213,7 +213,7 @@ export function Editor() {
         </CardHeader>
         <CardContent>
           <Box className="space-y-4">
-            <Typography variant="body2" className="text-muted-foreground">
+            <Typography className="text-muted-foreground">
               This component displays rich content in a read-only format,
               perfect for showing formatted content without editing
               capabilities.
@@ -233,7 +233,7 @@ export function Editor() {
         </CardHeader>
         <CardContent>
           <Box className="space-y-4">
-            <Typography variant="body2" className="text-muted-foreground">
+            <Typography className="text-muted-foreground">
               This example shows how the readonly component handles different
               types of content formatting.
             </Typography>
@@ -329,7 +329,7 @@ export function Editor() {
               <Typography variant="h4" className="mb-3">
                 ClientOnly Wrapper
               </Typography>
-              <Typography variant="body2" className="mb-2">
+              <Typography className="mb-2">
                 Since the editor components are client-side only, wrap them in a
                 ClientOnly component to prevent hydration issues:
               </Typography>
@@ -352,7 +352,7 @@ import { EditorField } from '@veraclins-dev/editor';
               <Typography variant="h4" className="mb-3">
                 Form Integration
               </Typography>
-              <Typography variant="body2" className="mb-2">
+              <Typography className="mb-2">
                 Use EditorField within a form with validation using Conform:
               </Typography>
               <Box className="bg-muted p-4 rounded-md">
@@ -407,21 +407,13 @@ function ArticleForm() {
                 Text Formatting
               </Typography>
               <Box className="space-y-2">
-                <Typography variant="body2">
-                  • Bold, italic, and underline
-                </Typography>
-                <Typography variant="body2">
-                  • Strikethrough and code formatting
-                </Typography>
-                <Typography variant="body2">
+                <Typography>• Bold, italic, and underline</Typography>
+                <Typography>• Strikethrough and code formatting</Typography>
+                <Typography>
                   • Text alignment (left, center, right, justify)
                 </Typography>
-                <Typography variant="body2">
-                  • Text color and background color
-                </Typography>
-                <Typography variant="body2">
-                  • Font size and family selection
-                </Typography>
+                <Typography>• Text color and background color</Typography>
+                <Typography>• Font size and family selection</Typography>
               </Box>
             </Box>
 
@@ -430,21 +422,11 @@ function ArticleForm() {
                 Content Structure
               </Typography>
               <Box className="space-y-2">
-                <Typography variant="body2">
-                  • Headings (H1, H2, H3, H4, H5, H6)
-                </Typography>
-                <Typography variant="body2">
-                  • Bullet points and numbered lists
-                </Typography>
-                <Typography variant="body2">
-                  • Blockquotes and code blocks
-                </Typography>
-                <Typography variant="body2">
-                  • Horizontal rules and dividers
-                </Typography>
-                <Typography variant="body2">
-                  • Paragraph and line breaks
-                </Typography>
+                <Typography>• Headings (H1, H2, H3, H4, H5, H6)</Typography>
+                <Typography>• Bullet points and numbered lists</Typography>
+                <Typography>• Blockquotes and code blocks</Typography>
+                <Typography>• Horizontal rules and dividers</Typography>
+                <Typography>• Paragraph and line breaks</Typography>
               </Box>
             </Box>
 
@@ -453,15 +435,11 @@ function ArticleForm() {
                 Media & Links
               </Typography>
               <Box className="space-y-2">
-                <Typography variant="body2">• Insert and edit links</Typography>
-                <Typography variant="body2">
-                  • Image upload and embedding
-                </Typography>
-                <Typography variant="body2">• Video embedding</Typography>
-                <Typography variant="body2">• File attachments</Typography>
-                <Typography variant="body2">
-                  • Media alignment and sizing
-                </Typography>
+                <Typography>• Insert and edit links</Typography>
+                <Typography>• Image upload and embedding</Typography>
+                <Typography>• Video embedding</Typography>
+                <Typography>• File attachments</Typography>
+                <Typography>• Media alignment and sizing</Typography>
               </Box>
             </Box>
 
@@ -470,19 +448,11 @@ function ArticleForm() {
                 Advanced Features
               </Typography>
               <Box className="space-y-2">
-                <Typography variant="body2">
-                  • Undo and redo functionality
-                </Typography>
-                <Typography variant="body2">• Find and replace text</Typography>
-                <Typography variant="body2">
-                  • Table creation and editing
-                </Typography>
-                <Typography variant="body2">
-                  • Custom keyboard shortcuts
-                </Typography>
-                <Typography variant="body2">
-                  • Accessibility features
-                </Typography>
+                <Typography>• Undo and redo functionality</Typography>
+                <Typography>• Find and replace text</Typography>
+                <Typography>• Table creation and editing</Typography>
+                <Typography>• Custom keyboard shortcuts</Typography>
+                <Typography>• Accessibility features</Typography>
               </Box>
             </Box>
           </Box>

@@ -31,10 +31,7 @@ export const columns: DataTableProps<Task>['columnsConfig'] = [
       return (
         <Box className="flex gap-x-2">
           {label && <Badge variant="outline">{label.label}</Badge>}
-          <Typography
-            variant="body2"
-            className="max-w-[500px] truncate font-medium"
-          >
+          <Typography className="max-w-[500px] truncate font-medium">
             {row.getValue('title')}
           </Typography>
         </Box>
@@ -62,7 +59,7 @@ export const columns: DataTableProps<Task>['columnsConfig'] = [
               {status.label}
             </Icon>
           ) : (
-            <Typography variant="body2">{status.label}</Typography>
+            <Typography>{status.label}</Typography>
           )}
         </Box>
       );
@@ -92,7 +89,7 @@ export const columns: DataTableProps<Task>['columnsConfig'] = [
               {priority.label}
             </Icon>
           ) : (
-            <Typography variant="body2">{priority.label}</Typography>
+            <Typography>{priority.label}</Typography>
           )}
         </Box>
       );

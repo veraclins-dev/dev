@@ -124,7 +124,7 @@ function DataTableFacetedDropdownFilter<TData, TValue>({
                         {option.label}
                       </Icon>
                     ) : (
-                      <Typography variant="body2">{option.label}</Typography>
+                      <Typography>{option.label}</Typography>
                     )}
 
                     {facets?.get(option.value) && (
@@ -149,7 +149,7 @@ function DataTableFacetedDropdownFilter<TData, TValue>({
                     onSelect={() => column?.setFilterValue(undefined)}
                     className="justify-center text-center"
                   >
-                    <Typography variant="body2">Clear filters</Typography>
+                    <Typography>Clear filters</Typography>
                   </CommandItem>
                 </CommandGroup>
               </>

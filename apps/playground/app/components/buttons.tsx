@@ -368,13 +368,13 @@ export function Buttons() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box display="grid" gap={2}>
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="text-muted-foreground">
                     Email
                   </Typography>
                   <Input placeholder="Enter your email" />
                 </Box>
                 <Box display="grid" gap={2}>
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="text-muted-foreground">
                     Password
                   </Typography>
                   <Input type="password" placeholder="Enter your password" />
@@ -401,15 +401,13 @@ export function Buttons() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box display="grid" gap={2}>
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="text-muted-foreground">
                     Display Name
                   </Typography>
                   <Input placeholder="Enter display name" />
                 </Box>
                 <Box display="grid" gap={2}>
-                  <Typography variant="body2" className="text-muted-foreground">
-                    Bio
-                  </Typography>
+                  <Typography className="text-muted-foreground">Bio</Typography>
                   <Input placeholder="Tell us about yourself" />
                 </Box>
                 <Box display="flex" gap={2}>
@@ -439,10 +437,7 @@ export function Buttons() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Bulk Actions
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -462,10 +457,7 @@ export function Buttons() {
                 </Box>
 
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Row Actions
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -497,10 +489,7 @@ export function Buttons() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Time Range
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -520,10 +509,7 @@ export function Buttons() {
                 </Box>
 
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Quick Actions
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -565,7 +551,7 @@ export function Buttons() {
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
                   <Typography variant="h5">iPhone 15 Pro</Typography>
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="text-muted-foreground">
                     Latest smartphone with advanced features
                   </Typography>
                   <Typography variant="h4" className="mt-2">
@@ -597,10 +583,7 @@ export function Buttons() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Cart Summary
                   </Typography>
                   <Box display="flex" justify="between" items="center">
@@ -698,10 +681,7 @@ export function Buttons() {
                   </Avatar>
                   <Box flex="1">
                     <Typography variant="h5">John Doe</Typography>
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground"
-                    >
+                    <Typography className="text-muted-foreground">
                       @john_doe
                     </Typography>
                   </Box>

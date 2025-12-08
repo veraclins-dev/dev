@@ -60,7 +60,7 @@ export const generateElement = (
 
     const exports: Scope = {};
     const render = (value: unknown) => {
-      exports.default = value;
+      exports['default'] = value;
     };
 
     // Set up imports for require() calls - sucrase transforms imports to require()
@@ -80,14 +80,14 @@ export const generateElement = (
       }
 
       // Make sure 'react' is available for require() calls too
-      if (scope.react) {
-        imports.react = scope.react;
+      if (scope['react']) {
+        imports['react'] = scope['react'];
       }
     }
 
     evalCode(transformed, { render, ...scope, exports, import: imports });
 
-    const result = exports.default;
+    const result = exports['default'];
     if (!result) return null;
     if (isValidElement(result)) return result;
     if (typeof result === 'function') return createElement(result);
@@ -102,15 +102,9 @@ export const generateElement = (
         const normalized = normalizeCode(code);
         const transformed = transform(normalized);
         // Log full transformed code in development for debugging
-        if (process.env.NODE_ENV === 'development') {
-          console.error(
-            '[generateElement] Full transformed code:',
-            transformed,
-          );
+        if (process.env['NODE_ENV'] === 'development') {
+          console.info('[generateElement] Full transformed code:', transformed);
         }
-        throw new Error(
-          `Failed to generate element: ${error.message}\nOriginal code: ${code.substring(0, 200)}\nTransformed code (first 500 chars): ${transformed.substring(0, 500)}`,
-        );
       } catch (innerError) {
         throw new Error(
           `Failed to generate element: ${error.message}\nAlso failed to get transformed code: ${innerError instanceof Error ? innerError.message : String(innerError)}`,
@@ -129,4 +123,3 @@ export const createRequire =
     }
     return imports[module];
   };
-

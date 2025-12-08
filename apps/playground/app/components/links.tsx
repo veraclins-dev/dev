@@ -342,7 +342,7 @@ export function Links() {
                   name="chevron-right"
                   className="size-4 text-muted-foreground"
                 />
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   Smartphones
                 </Typography>
               </Box>
@@ -567,9 +567,7 @@ export function Links() {
                     name="document"
                     className="size-5 text-muted-foreground"
                   />
-                  <Typography variant="body2" className="flex-1">
-                    document.pdf
-                  </Typography>
+                  <Typography className="flex-1">document.pdf</Typography>
                   <Box display="flex" gap={2}>
                     <Link type="button" variant="text" linkSize="sm">
                       <Icon name="eye-slash" className="mr-1" />
@@ -592,9 +590,7 @@ export function Links() {
                 </Box>
                 <Box display="flex" className="items-center gap-3">
                   <Icon name="photo" className="size-5 text-muted-foreground" />
-                  <Typography variant="body2" className="flex-1">
-                    image.jpg
-                  </Typography>
+                  <Typography className="flex-1">image.jpg</Typography>
                   <Box display="flex" gap={2}>
                     <Link type="button" variant="text" linkSize="sm">
                       <Icon name="eye-slash" className="mr-1" />
@@ -831,7 +827,7 @@ export function Links() {
                   className="items-center gap-3 p-3 border rounded-lg"
                 >
                   <Badge color="primary">3</Badge>
-                  <Typography variant="body2" className="flex-1">
+                  <Typography className="flex-1">
                     You have 3 new messages
                   </Typography>
                   <Link
@@ -848,7 +844,7 @@ export function Links() {
                   className="items-center gap-3 p-3 border rounded-lg"
                 >
                   <Badge color="warning">1</Badge>
-                  <Typography variant="body2" className="flex-1">
+                  <Typography className="flex-1">
                     Payment failed - action required
                   </Typography>
                   <Link
@@ -870,12 +866,8 @@ export function Links() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={3}>
                 <Box display="flex" className="items-center gap-3">
-                  <Typography variant="body2" className="flex-1">
-                    Profile completion
-                  </Typography>
-                  <Typography variant="body2" className="text-muted-foreground">
-                    75%
-                  </Typography>
+                  <Typography className="flex-1">Profile completion</Typography>
+                  <Typography className="text-muted-foreground">75%</Typography>
                   <Link
                     type="button"
                     variant="text"
@@ -886,10 +878,8 @@ export function Links() {
                   </Link>
                 </Box>
                 <Box display="flex" className="items-center gap-3">
-                  <Typography variant="body2" className="flex-1">
-                    Email verification
-                  </Typography>
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="flex-1">Email verification</Typography>
+                  <Typography className="text-muted-foreground">
                     Pending
                   </Typography>
                   <Link

@@ -154,9 +154,7 @@ function generateColumnsConfig<TData extends WithId, TValue>(
       cell:
         config.cell ??
         (({ row }) => (
-          <Typography variant="body2">
-            {row.getValue(String(accessorKey))}
-          </Typography>
+          <Typography>{row.getValue(String(accessorKey))}</Typography>
         )),
       enableSorting: config.enableSorting ?? true,
       enableHiding: config.enableHiding ?? true,

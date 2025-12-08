@@ -242,7 +242,7 @@ export function ComponentNameShowcase() {
         <CardContent>
           <List className="space-y-2">
             <ListItem>
-              <Typography variant="body2">
+              <Typography>
                 <code>propName</code> - Description of the prop
               </Typography>
             </ListItem>

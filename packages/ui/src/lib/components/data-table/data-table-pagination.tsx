@@ -27,16 +27,14 @@ export function DataTablePagination<TData extends WithId>({
   return (
     <Box display="flex" items="center" justify="between" className="px-2">
       <Box flex="1">
-        <Typography variant="body2">
+        <Typography>
           {table.getFilteredSelectedRowModel().rows.length} of{' '}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </Typography>
       </Box>
       <Box display="flex" items="center" gap={6} className="lg:gap-8">
         <Box display="flex" items="center" gap={2}>
-          <Typography variant="body2" className="font-medium">
-            Rows per page
-          </Typography>
+          <Typography className="font-medium">Rows per page</Typography>
           <Select
             value={`${paginationState.pageSize}`}
             onValueChange={(value) => {
@@ -61,7 +59,7 @@ export function DataTablePagination<TData extends WithId>({
           justify="center"
           className="w-[100px]"
         >
-          <Typography variant="body2" className="font-medium">
+          <Typography className="font-medium">
             Page {currentPage} of {totalPages}
           </Typography>
         </Box>

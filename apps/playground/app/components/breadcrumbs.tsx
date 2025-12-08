@@ -207,10 +207,7 @@ export function Breadcrumbs() {
                       <Typography variant="h5" className="mb-2">
                         MacBook Pro 16"
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        className="text-muted-foreground mb-4"
-                      >
+                      <Typography className="text-muted-foreground mb-4">
                         Latest generation with M3 Pro chip, 18GB unified memory,
                         and 512GB SSD
                       </Typography>
@@ -281,10 +278,7 @@ export function Breadcrumbs() {
                       <Typography variant="h5" className="mb-2">
                         Project Report.pdf
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        className="text-muted-foreground mb-4"
-                      >
+                      <Typography className="text-muted-foreground mb-4">
                         Last modified: 2 hours ago • Size: 2.4 MB
                       </Typography>
                       <Box display="flex" gap={2}>
@@ -344,10 +338,7 @@ export function Breadcrumbs() {
                       <Typography variant="h5" className="mb-2">
                         User Engagement Metrics
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        className="text-muted-foreground mb-4"
-                      >
+                      <Typography className="text-muted-foreground mb-4">
                         Track user behavior, retention rates, and engagement
                         patterns
                       </Typography>
@@ -356,21 +347,19 @@ export function Breadcrumbs() {
                           <Typography variant="h6" className="text-success">
                             89.2%
                           </Typography>
-                          <Typography variant="body2">
-                            Retention Rate
-                          </Typography>
+                          <Typography>Retention Rate</Typography>
                         </Box>
                         <Box className="bg-info/10 p-3 rounded">
                           <Typography variant="h6" className="text-info">
                             12.4m
                           </Typography>
-                          <Typography variant="body2">Active Users</Typography>
+                          <Typography>Active Users</Typography>
                         </Box>
                         <Box className="bg-warning/10 p-3 rounded">
                           <Typography variant="h6" className="text-warning">
                             4.2min
                           </Typography>
-                          <Typography variant="body2">Avg. Session</Typography>
+                          <Typography>Avg. Session</Typography>
                         </Box>
                       </Box>
                     </Box>
@@ -474,27 +463,19 @@ export function Breadcrumbs() {
                 <Box display="flex" flexDirection="column" gap={2}>
                   <Box display="flex" items="center" gap={2}>
                     <Icon name="check-circle" className="text-success" />
-                    <Typography variant="body2">
-                      Proper ARIA labels and roles
-                    </Typography>
+                    <Typography>Proper ARIA labels and roles</Typography>
                   </Box>
                   <Box display="flex" items="center" gap={2}>
                     <Icon name="check-circle" className="text-success" />
-                    <Typography variant="body2">
-                      Keyboard navigation support
-                    </Typography>
+                    <Typography>Keyboard navigation support</Typography>
                   </Box>
                   <Box display="flex" items="center" gap={2}>
                     <Icon name="check-circle" className="text-success" />
-                    <Typography variant="body2">
-                      Screen reader friendly
-                    </Typography>
+                    <Typography>Screen reader friendly</Typography>
                   </Box>
                   <Box display="flex" items="center" gap={2}>
                     <Icon name="check-circle" className="text-success" />
-                    <Typography variant="body2">
-                      Current page indication
-                    </Typography>
+                    <Typography>Current page indication</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -506,25 +487,19 @@ export function Breadcrumbs() {
                 <Box display="flex" flexDirection="column" gap={2}>
                   <Box display="flex" items="center" gap={2}>
                     <Icon name="light-bulb" className="text-warning" />
-                    <Typography variant="body2">
-                      Keep breadcrumbs concise
-                    </Typography>
+                    <Typography>Keep breadcrumbs concise</Typography>
                   </Box>
                   <Box display="flex" items="center" gap={2}>
                     <Icon name="light-bulb" className="text-warning" />
-                    <Typography variant="body2">
-                      Use clear, descriptive labels
-                    </Typography>
+                    <Typography>Use clear, descriptive labels</Typography>
                   </Box>
                   <Box display="flex" items="center" gap={2}>
                     <Icon name="light-bulb" className="text-warning" />
-                    <Typography variant="body2">Include home link</Typography>
+                    <Typography>Include home link</Typography>
                   </Box>
                   <Box display="flex" items="center" gap={2}>
                     <Icon name="light-bulb" className="text-warning" />
-                    <Typography variant="body2">
-                      Handle long text gracefully
-                    </Typography>
+                    <Typography>Handle long text gracefully</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -539,7 +514,7 @@ export function Breadcrumbs() {
                   <Typography variant="h6" className="text-info mb-2">
                     When to Use
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography>
                     Use breadcrumbs for websites with deep hierarchical
                     structures, e-commerce sites, file managers, and
                     applications with complex navigation paths.
@@ -549,7 +524,7 @@ export function Breadcrumbs() {
                   <Typography variant="h6" className="text-warning mb-2">
                     When Not to Use
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography>
                     Avoid breadcrumbs for single-level sites, mobile apps with
                     bottom navigation, or when the navigation structure is flat
                     and simple.

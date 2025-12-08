@@ -101,7 +101,7 @@ export function TimePickerShowcase() {
                 size={size}
               />
               <Box className="mt-4">
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   Selected: {timeValue12.string}
                 </Typography>
               </Box>
@@ -119,7 +119,7 @@ export function TimePickerShowcase() {
                 size={size}
               />
               <Box className="mt-4">
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   Selected: {timeValue24.string}
                 </Typography>
               </Box>
@@ -229,18 +229,10 @@ export function TimePickerShowcase() {
               Form Data
             </Typography>
             <Box className="space-y-1 text-sm">
-              <Typography variant="body2">
-                Start Time: {formData.startTime.string}
-              </Typography>
-              <Typography variant="body2">
-                End Time: {formData.endTime.string}
-              </Typography>
-              <Typography variant="body2">
-                Work Time: {formData.workTime.string}
-              </Typography>
-              <Typography variant="body2">
-                Break Time: {formData.breakTime.string}
-              </Typography>
+              <Typography>Start Time: {formData.startTime.string}</Typography>
+              <Typography>End Time: {formData.endTime.string}</Typography>
+              <Typography>Work Time: {formData.workTime.string}</Typography>
+              <Typography>Break Time: {formData.breakTime.string}</Typography>
             </Box>
           </Box>
         </CardContent>

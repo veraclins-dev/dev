@@ -88,7 +88,7 @@ export function CalendarShowcase() {
                 className="rounded-lg border"
               />
               <Box className="mt-4">
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   Selected:{' '}
                   {singleDate
                     ? formatDate(singleDate, 'MMMM dd, yyyy')
@@ -112,7 +112,7 @@ export function CalendarShowcase() {
                 className="rounded-lg border"
               />
               <Box className="mt-4">
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   {dateRange?.from ? (
                     dateRange.to ? (
                       <>
@@ -144,7 +144,7 @@ export function CalendarShowcase() {
                 className="rounded-lg border"
               />
               <Box className="mt-4">
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   Selected: {multipleDates.length} date
                   {multipleDates.length !== 1 ? 's' : ''}
                 </Typography>
@@ -175,10 +175,7 @@ export function CalendarShowcase() {
               </Typography>
               <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Two Months Side by Side
                   </Typography>
                   <Calendar
@@ -192,10 +189,7 @@ export function CalendarShowcase() {
                   />
                 </Box>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Multi-Month Range Selection
                   </Typography>
                   <Calendar
@@ -223,10 +217,7 @@ export function CalendarShowcase() {
               </Typography>
               <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Disabled Weekends & Past Dates
                   </Typography>
                   <Calendar
@@ -242,18 +233,12 @@ export function CalendarShowcase() {
                     }}
                     className="rounded-lg border"
                   />
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mt-2"
-                  >
+                  <Typography className="text-muted-foreground mt-2">
                     Weekends and past dates are disabled
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Date Range with Min/Max Constraints
                   </Typography>
                   <Calendar
@@ -272,10 +257,7 @@ export function CalendarShowcase() {
                     maxDate={addDays(startOfToday(), 90)}
                     className="rounded-lg border"
                   />
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mt-2"
-                  >
+                  <Typography className="text-muted-foreground mt-2">
                     Only future dates within 90 days
                   </Typography>
                 </Box>
@@ -288,10 +270,7 @@ export function CalendarShowcase() {
               </Typography>
               <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Enhanced Navigation Controls
                   </Typography>
                   <Calendar
@@ -318,10 +297,7 @@ export function CalendarShowcase() {
                   </List>
                 </Box>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Today Button Integration
                   </Typography>
                   <Calendar
@@ -374,10 +350,7 @@ export function CalendarShowcase() {
               </Typography>
               <Box className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Basic Time Picker (12h)
                   </Typography>
                   <TimePicker
@@ -387,10 +360,7 @@ export function CalendarShowcase() {
                   />
                 </Box>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     24-Hour Format
                   </Typography>
                   <TimePicker
@@ -401,10 +371,7 @@ export function CalendarShowcase() {
                   />
                 </Box>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     With Seconds
                   </Typography>
                   <TimePicker
@@ -424,10 +391,7 @@ export function CalendarShowcase() {
               </Typography>
               <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Date + Time Selection
                   </Typography>
                   <Calendar
@@ -441,10 +405,7 @@ export function CalendarShowcase() {
                     className="rounded-lg border"
                   />
                   <Box className="mt-4">
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground"
-                    >
+                    <Typography className="text-muted-foreground">
                       Selected:{' '}
                       {singleDate
                         ? formatDate(singleDate, 'MMMM dd, yyyy')
@@ -454,10 +415,7 @@ export function CalendarShowcase() {
                   </Box>
                 </Box>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Advanced Time Picker Features
                   </Typography>
                   <TimePicker
@@ -540,9 +498,7 @@ export function CalendarShowcase() {
                     </Button>
                   </Box>
                   <Box className="text-muted-foreground">
-                    <Typography variant="body2" className="mb-2">
-                      Features:
-                    </Typography>
+                    <Typography className="mb-2">Features:</Typography>
                     <List variant="ul">
                       <ListItem variant="default" itemSize="sm">
                         Business days only (Mon-Fri)
@@ -602,9 +558,7 @@ export function CalendarShowcase() {
                     </Button>
                   </Box>
                   <Box className="text-muted-foreground">
-                    <Typography variant="body2" className="mb-2">
-                      Features:
-                    </Typography>
+                    <Typography className="mb-2">Features:</Typography>
                     <List variant="ul">
                       <ListItem variant="default" itemSize="sm">
                         Multi-month range selection

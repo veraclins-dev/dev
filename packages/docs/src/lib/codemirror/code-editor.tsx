@@ -96,10 +96,8 @@ export function CodeEditor({
           filename={getFilenameFromLanguage(language)}
           padding={16}
           showLineNumbers={false}
-          className="min-h-[200px]"
         />
       </Box>
     </Box>
   );
 }
-

@@ -44,27 +44,25 @@ export function Feedback() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography variant="body2" className="mb-2">
+                  <Typography className="mb-2">
                     Default Progress (50%)
                   </Typography>
                   <ProgressBar value={50} />
                 </Box>
                 <Box>
-                  <Typography variant="body2" className="mb-2">
+                  <Typography className="mb-2">
                     Success Progress (75%)
                   </Typography>
                   <ProgressBar value={75} color="success" />
                 </Box>
                 <Box>
-                  <Typography variant="body2" className="mb-2">
+                  <Typography className="mb-2">
                     Warning Progress (90%)
                   </Typography>
                   <ProgressBar value={90} color="warning" />
                 </Box>
                 <Box>
-                  <Typography variant="body2" className="mb-2">
-                    Error Progress (25%)
-                  </Typography>
+                  <Typography className="mb-2">Error Progress (25%)</Typography>
                   <ProgressBar value={25} color="destructive" />
                 </Box>
               </Box>
@@ -90,8 +88,8 @@ export function Feedback() {
                           items="center"
                           className="mb-2"
                         >
-                          <Typography variant="body2">document.pdf</Typography>
-                          <Typography variant="body2">65%</Typography>
+                          <Typography>document.pdf</Typography>
+                          <Typography>65%</Typography>
                         </Box>
                         <ProgressBar value={65} color="primary" />
                       </Box>
@@ -102,8 +100,8 @@ export function Feedback() {
                           items="center"
                           className="mb-2"
                         >
-                          <Typography variant="body2">image.jpg</Typography>
-                          <Typography variant="body2">100%</Typography>
+                          <Typography>image.jpg</Typography>
+                          <Typography>100%</Typography>
                         </Box>
                         <ProgressBar value={100} color="success" />
                       </Box>
@@ -114,8 +112,8 @@ export function Feedback() {
                           items="center"
                           className="mb-2"
                         >
-                          <Typography variant="body2">video.mp4</Typography>
-                          <Typography variant="body2">Error</Typography>
+                          <Typography>video.mp4</Typography>
+                          <Typography>Error</Typography>
                         </Box>
                         <ProgressBar value={45} color="destructive" />
                       </Box>
@@ -137,17 +135,12 @@ export function Feedback() {
                           items="center"
                           className="mb-2"
                         >
-                          <Typography variant="body2">
-                            Profile Completion
-                          </Typography>
-                          <Typography variant="body2">80%</Typography>
+                          <Typography>Profile Completion</Typography>
+                          <Typography>80%</Typography>
                         </Box>
                         <ProgressBar value={80} color="success" />
                       </Box>
-                      <Typography
-                        variant="body2"
-                        className="text-muted-foreground"
-                      >
+                      <Typography className="text-muted-foreground">
                         Complete your profile to unlock additional features
                       </Typography>
                     </Box>
@@ -168,8 +161,8 @@ export function Feedback() {
                           items="center"
                           className="mb-2"
                         >
-                          <Typography variant="body2">CPU Usage</Typography>
-                          <Typography variant="body2">45%</Typography>
+                          <Typography>CPU Usage</Typography>
+                          <Typography>45%</Typography>
                         </Box>
                         <ProgressBar value={45} color="info" />
                       </Box>
@@ -180,8 +173,8 @@ export function Feedback() {
                           items="center"
                           className="mb-2"
                         >
-                          <Typography variant="body2">Memory Usage</Typography>
-                          <Typography variant="body2">78%</Typography>
+                          <Typography>Memory Usage</Typography>
+                          <Typography>78%</Typography>
                         </Box>
                         <ProgressBar value={78} color="warning" />
                       </Box>
@@ -192,8 +185,8 @@ export function Feedback() {
                           items="center"
                           className="mb-2"
                         >
-                          <Typography variant="body2">Disk Space</Typography>
-                          <Typography variant="body2">92%</Typography>
+                          <Typography>Disk Space</Typography>
+                          <Typography>92%</Typography>
                         </Box>
                         <ProgressBar value={92} color="destructive" />
                       </Box>
@@ -452,10 +445,8 @@ export function Feedback() {
                             items="center"
                             className="mb-2"
                           >
-                            <Typography variant="body2">
-                              Processing records...
-                            </Typography>
-                            <Typography variant="body2">67%</Typography>
+                            <Typography>Processing records...</Typography>
+                            <Typography>67%</Typography>
                           </Box>
                           <ProgressBar value={67} color="primary" />
                         </Box>

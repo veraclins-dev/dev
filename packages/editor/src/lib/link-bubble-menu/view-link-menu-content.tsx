@@ -44,11 +44,9 @@ export function ViewLinkMenuContent({
 
   return (
     <Box display="flex" flexDirection="column" gapY={3}>
-      <Typography variant="body2" className="text-pretty">
-        {truncate(linkText, 38)}
-      </Typography>
+      <Typography className="text-pretty">{truncate(linkText, 38)}</Typography>
 
-      <Typography variant="body2" className="text-pretty">
+      <Typography className="text-pretty">
         <a
           href={currentHref}
           target="_blank"

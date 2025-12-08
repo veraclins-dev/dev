@@ -583,9 +583,7 @@ export function Icons() {
           <Box display="flex" flexDirection="column" gap={4}>
             {/* Search Input */}
             <Box display="flex" flexDirection="column" gap={2}>
-              <Typography variant="body2" className="font-medium">
-                Search Icons
-              </Typography>
+              <Typography className="font-medium">Search Icons</Typography>
               <Input
                 placeholder="Search by icon name..."
                 value={searchTerm}
@@ -596,9 +594,7 @@ export function Icons() {
 
             {/* Category Filter */}
             <Box display="flex" flexDirection="column" gap={2}>
-              <Typography variant="body2" className="font-medium">
-                Category
-              </Typography>
+              <Typography className="font-medium">Category</Typography>
               <Box display="flex" flexWrap="wrap" gap={2}>
                 {Object.entries(iconCategories).map(([key, label]) => (
                   <Button
@@ -615,9 +611,7 @@ export function Icons() {
 
             {/* Size Filter */}
             <Box display="flex" flexDirection="column" gap={2}>
-              <Typography variant="body2" className="font-medium">
-                Icon Size
-              </Typography>
+              <Typography className="font-medium">Icon Size</Typography>
               <Box display="flex" gap={2}>
                 {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((size) => (
                   <Button
@@ -633,7 +627,7 @@ export function Icons() {
             </Box>
 
             {/* Results Count */}
-            <Typography variant="body2" className="text-muted-foreground">
+            <Typography className="text-muted-foreground">
               Showing {currentIcons.length} of {iconNames.length} icons
             </Typography>
           </Box>
@@ -691,7 +685,7 @@ export function Icons() {
             <Box display="flex" flexDirection="column" gap={4}>
               {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((size) => (
                 <Box key={size} display="flex" items="center" gap={4}>
-                  <Typography variant="body2" className="w-16 font-medium">
+                  <Typography className="w-16 font-medium">
                     {size.toUpperCase()}
                   </Typography>
                   <Box display="flex" gap={4}>
@@ -723,9 +717,7 @@ export function Icons() {
 
             <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <Box display="flex" flexDirection="column" gap={2}>
-                <Typography variant="body2" className="font-medium">
-                  Default
-                </Typography>
+                <Typography className="font-medium">Default</Typography>
                 <Box display="flex" gap={2}>
                   <Icon name="heart" size="md" />
                   <Icon name="star" size="md" />
@@ -734,10 +726,7 @@ export function Icons() {
               </Box>
 
               <Box display="flex" flexDirection="column" gap={2}>
-                <Typography
-                  variant="body2"
-                  className="font-medium text-primary"
-                >
+                <Typography className="font-medium text-primary">
                   Primary
                 </Typography>
                 <Box display="flex" gap={2} className="text-primary">
@@ -748,10 +737,7 @@ export function Icons() {
               </Box>
 
               <Box display="flex" flexDirection="column" gap={2}>
-                <Typography
-                  variant="body2"
-                  className="font-medium text-success"
-                >
+                <Typography className="font-medium text-success">
                   Success
                 </Typography>
                 <Box display="flex" gap={2} className="text-success">
@@ -762,10 +748,7 @@ export function Icons() {
               </Box>
 
               <Box display="flex" flexDirection="column" gap={2}>
-                <Typography
-                  variant="body2"
-                  className="font-medium text-destructive"
-                >
+                <Typography className="font-medium text-destructive">
                   Destructive
                 </Typography>
                 <Box display="flex" gap={2} className="text-destructive">
@@ -819,7 +802,7 @@ export function Icons() {
                     className="p-2 rounded hover:bg-background"
                   >
                     <Icon name="home" size="sm" />
-                    <Typography variant="body2">Dashboard</Typography>
+                    <Typography>Dashboard</Typography>
                   </Box>
                   <Box
                     display="flex"
@@ -828,7 +811,7 @@ export function Icons() {
                     className="p-2 rounded hover:bg-background"
                   >
                     <Icon name="user" size="sm" />
-                    <Typography variant="body2">Profile</Typography>
+                    <Typography>Profile</Typography>
                   </Box>
                   <Box
                     display="flex"
@@ -837,7 +820,7 @@ export function Icons() {
                     className="p-2 rounded hover:bg-background"
                   >
                     <Icon name="cog" size="sm" />
-                    <Typography variant="body2">Settings</Typography>
+                    <Typography>Settings</Typography>
                   </Box>
                   <Box
                     display="flex"
@@ -846,7 +829,7 @@ export function Icons() {
                     className="p-2 rounded hover:bg-background"
                   >
                     <Icon name="question-mark-circled" size="sm" />
-                    <Typography variant="body2">Help</Typography>
+                    <Typography>Help</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -896,9 +879,7 @@ export function Icons() {
                       size="sm"
                       className="text-success"
                     />
-                    <Typography variant="body2">
-                      Task completed successfully
-                    </Typography>
+                    <Typography>Task completed successfully</Typography>
                   </Box>
                   <Box display="flex" items="center" gap={3}>
                     <Icon
@@ -906,7 +887,7 @@ export function Icons() {
                       size="sm"
                       className="text-warning"
                     />
-                    <Typography variant="body2">
+                    <Typography>
                       Warning: Please review your settings
                     </Typography>
                   </Box>
@@ -916,15 +897,11 @@ export function Icons() {
                       size="sm"
                       className="text-destructive"
                     />
-                    <Typography variant="body2">
-                      Error: Failed to save changes
-                    </Typography>
+                    <Typography>Error: Failed to save changes</Typography>
                   </Box>
                   <Box display="flex" items="center" gap={3}>
                     <Icon name="info-circled" size="sm" className="text-info" />
-                    <Typography variant="body2">
-                      Info: New features available
-                    </Typography>
+                    <Typography>Info: New features available</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -945,7 +922,7 @@ export function Icons() {
                   >
                     <Box display="flex" items="center" gap={3}>
                       <Icon name="document" size="sm" />
-                      <Typography variant="body2">document.pdf</Typography>
+                      <Typography>document.pdf</Typography>
                     </Box>
                     <Box display="flex" gap={1}>
                       <Button variant="plain" buttonSize="sm">
@@ -967,7 +944,7 @@ export function Icons() {
                   >
                     <Box display="flex" items="center" gap={3}>
                       <Icon name="image" size="sm" />
-                      <Typography variant="body2">photo.jpg</Typography>
+                      <Typography>photo.jpg</Typography>
                     </Box>
                     <Box display="flex" gap={1}>
                       <Button variant="plain" buttonSize="sm">
@@ -1033,7 +1010,7 @@ export function Icons() {
               <Typography variant="h4" className="mb-2">
                 Available Sizes
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 Icons support the following sizes: <code>xs</code>,{' '}
                 <code>sm</code>, <code>md</code>, <code>lg</code>,{' '}
                 <code>xl</code>

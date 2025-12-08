@@ -162,15 +162,15 @@ export function Separators() {
           <Box className="space-y-2">
             <Typography variant="h4">Accessibility</Typography>
             <Box className="space-y-2">
-              <Typography variant="body2">
+              <Typography>
                 • Use <code>decorative=&#123;false&#125;</code> and{' '}
                 <code>aria-label</code> for semantic separators
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • Default separators are decorative and hidden from screen
                 readers
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • All features are accessible and keyboard-friendly
               </Typography>
             </Box>
@@ -178,29 +178,27 @@ export function Separators() {
           <Box className="space-y-2">
             <Typography variant="h4">Props Reference</Typography>
             <Box className="space-y-2">
-              <Typography variant="body2">
+              <Typography>
                 • <code>variant</code>: "solid" | "dashed" | "dotted" |
                 "gradient"
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • <code>withContent</code>: boolean (center content)
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • <code>animated</code>: boolean (pulse effect)
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • <code>orientation</code>: "horizontal" | "vertical"
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • <code>decorative</code>: boolean (default: true)
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • <code>className</code>, <code>contentClassName</code>: string
                 for custom styling
               </Typography>
-              <Typography variant="body2">
-                • Supports all standard HTML attributes
-              </Typography>
+              <Typography>• Supports all standard HTML attributes</Typography>
             </Box>
           </Box>
         </CardContent>

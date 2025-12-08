@@ -82,7 +82,7 @@ export function Lists() {
               <Typography variant="h4">Unordered Markers</Typography>
               <Box className="space-y-4">
                 <Box>
-                  <Typography variant="body2" className="font-medium mb-2">
+                  <Typography className="font-medium mb-2">
                     Default (disc)
                   </Typography>
                   <List marker="disc">
@@ -92,9 +92,7 @@ export function Lists() {
                   </List>
                 </Box>
                 <Box>
-                  <Typography variant="body2" className="font-medium mb-2">
-                    Circle
-                  </Typography>
+                  <Typography className="font-medium mb-2">Circle</Typography>
                   <List marker="circle">
                     <ListItem>Circle bullet point</ListItem>
                     <ListItem>Another item</ListItem>
@@ -102,9 +100,7 @@ export function Lists() {
                   </List>
                 </Box>
                 <Box>
-                  <Typography variant="body2" className="font-medium mb-2">
-                    Square
-                  </Typography>
+                  <Typography className="font-medium mb-2">Square</Typography>
                   <List marker="square">
                     <ListItem>Square bullet point</ListItem>
                     <ListItem>Another item</ListItem>
@@ -119,7 +115,7 @@ export function Lists() {
               <Typography variant="h4">Ordered Markers</Typography>
               <Box className="space-y-4">
                 <Box>
-                  <Typography variant="body2" className="font-medium mb-2">
+                  <Typography className="font-medium mb-2">
                     Decimal (1, 2, 3)
                   </Typography>
                   <List variant="ol" marker="decimal">
@@ -129,7 +125,7 @@ export function Lists() {
                   </List>
                 </Box>
                 <Box>
-                  <Typography variant="body2" className="font-medium mb-2">
+                  <Typography className="font-medium mb-2">
                     Lower Alpha (a, b, c)
                   </Typography>
                   <List variant="ol" marker="alpha">
@@ -139,7 +135,7 @@ export function Lists() {
                   </List>
                 </Box>
                 <Box>
-                  <Typography variant="body2" className="font-medium mb-2">
+                  <Typography className="font-medium mb-2">
                     Lower Roman (i, ii, iii)
                   </Typography>
                   <List variant="ol" marker="roman">
@@ -423,7 +419,7 @@ export function Lists() {
                       <Typography variant="body1" className="font-medium">
                         Responsive Design
                       </Typography>
-                      <Typography variant="body2" className="text-neutral-600">
+                      <Typography className="text-neutral-600">
                         Automatically adapts to different screen sizes and
                         devices.
                       </Typography>
@@ -435,7 +431,7 @@ export function Lists() {
                       <Typography variant="body1" className="font-medium">
                         Accessibility
                       </Typography>
-                      <Typography variant="body2" className="text-neutral-600">
+                      <Typography className="text-neutral-600">
                         Built with ARIA attributes and keyboard navigation
                         support.
                       </Typography>
@@ -447,7 +443,7 @@ export function Lists() {
                       <Typography variant="body1" className="font-medium">
                         TypeScript Support
                       </Typography>
-                      <Typography variant="body2" className="text-neutral-600">
+                      <Typography className="text-neutral-600">
                         Full TypeScript support with comprehensive type
                         definitions.
                       </Typography>
@@ -459,7 +455,7 @@ export function Lists() {
                       <Typography variant="body1" className="font-medium">
                         Customizable
                       </Typography>
-                      <Typography variant="body2" className="text-neutral-600">
+                      <Typography className="text-neutral-600">
                         Easy to customize with CSS variables and theme support.
                       </Typography>
                     </Box>

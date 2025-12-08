@@ -177,10 +177,7 @@ export function Colors() {
                     >
                       Primary
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground"
-                    >
+                    <Typography className="text-muted-foreground">
                       Main actions, links, and brand elements
                     </Typography>
                   </Box>
@@ -194,10 +191,7 @@ export function Colors() {
                     >
                       Secondary
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground"
-                    >
+                    <Typography className="text-muted-foreground">
                       Supporting actions and subtle elements
                     </Typography>
                   </Box>
@@ -211,10 +205,7 @@ export function Colors() {
                     >
                       Success
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground"
-                    >
+                    <Typography className="text-muted-foreground">
                       Positive states, confirmations, and achievements
                     </Typography>
                   </Box>
@@ -228,10 +219,7 @@ export function Colors() {
                     >
                       Warning
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground"
-                    >
+                    <Typography className="text-muted-foreground">
                       Caution states and important notices
                     </Typography>
                   </Box>
@@ -245,10 +233,7 @@ export function Colors() {
                     >
                       Destructive
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground"
-                    >
+                    <Typography className="text-muted-foreground">
                       Errors, deletions, and dangerous actions
                     </Typography>
                   </Box>
@@ -268,17 +253,17 @@ export function Colors() {
                   </Typography>
                   <Box display="flex" flexDirection="column" gap={2}>
                     <Box className="p-2 bg-background border rounded">
-                      <Typography variant="body2" className="text-primary">
+                      <Typography className="text-primary">
                         Primary text color
                       </Typography>
                     </Box>
                     <Box className="p-2 bg-background border rounded">
-                      <Typography variant="body2" className="text-secondary">
+                      <Typography className="text-secondary">
                         Secondary text color
                       </Typography>
                     </Box>
                     <Box className="p-2 bg-background border rounded">
-                      <Typography variant="body2" className="text-primary">
+                      <Typography className="text-primary">
                         Link and accent text
                       </Typography>
                     </Box>
@@ -290,15 +275,13 @@ export function Colors() {
                   </Typography>
                   <Box display="flex" flexDirection="column" gap={2}>
                     <Box className="p-3 bg-background border rounded">
-                      <Typography variant="body2">Main background</Typography>
+                      <Typography>Main background</Typography>
                     </Box>
                     <Box className="p-3 bg-card border rounded">
-                      <Typography variant="body2">Card background</Typography>
+                      <Typography>Card background</Typography>
                     </Box>
                     <Box className="p-3 bg-card-inner border rounded">
-                      <Typography variant="body2">
-                        Nested card background
-                      </Typography>
+                      <Typography>Nested card background</Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -325,17 +308,17 @@ export function Colors() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={3}>
                 <Box className="p-3 bg-primary border rounded">
-                  <Typography variant="body2" className="text-foreground">
+                  <Typography className="text-foreground">
                     Primary text
                   </Typography>
                 </Box>
                 <Box className="p-3 bg-primary/10 border rounded">
-                  <Typography variant="body2" className="text-primary">
+                  <Typography className="text-primary">
                     Primary accent
                   </Typography>
                 </Box>
                 <Box className="p-3 bg-secondary/10 border rounded">
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="text-muted-foreground">
                     Secondary text
                   </Typography>
                 </Box>
@@ -357,17 +340,17 @@ export function Colors() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={3}>
                 <Box className="p-3 bg-primary border rounded">
-                  <Typography variant="body2" className="text-foreground">
+                  <Typography className="text-foreground">
                     Primary text
                   </Typography>
                 </Box>
                 <Box className="p-3 bg-primary/20 border rounded">
-                  <Typography variant="body2" className="text-primary">
+                  <Typography className="text-primary">
                     Primary accent
                   </Typography>
                 </Box>
                 <Box className="p-3 bg-secondary/20 border rounded">
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="text-muted-foreground">
                     Secondary text
                   </Typography>
                 </Box>
@@ -393,7 +376,7 @@ export function Colors() {
                 <Typography variant="h6" className="text-destructive mb-2">
                   Destructive
                 </Typography>
-                <Typography variant="body2" className="text-destructive">
+                <Typography className="text-destructive">
                   Errors & warnings
                 </Typography>
               </Box>
@@ -401,7 +384,7 @@ export function Colors() {
                 <Typography variant="h6" className="text-success mb-2">
                   Success
                 </Typography>
-                <Typography variant="body2" className="text-success">
+                <Typography className="text-success">
                   Positive states
                 </Typography>
               </Box>
@@ -409,15 +392,13 @@ export function Colors() {
                 <Typography variant="h6" className="text-warning mb-2">
                   Warning
                 </Typography>
-                <Typography variant="body2" className="text-warning">
-                  Caution states
-                </Typography>
+                <Typography className="text-warning">Caution states</Typography>
               </Box>
               <Box className="p-4 bg-info/10 border rounded-lg text-center">
                 <Typography variant="h6" className="text-info mb-2">
                   Info
                 </Typography>
-                <Typography variant="body2" className="text-info">
+                <Typography className="text-info">
                   Information states
                 </Typography>
               </Box>
@@ -443,34 +424,22 @@ export function Colors() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={3}>
                 <Box className="p-3 bg-primary rounded-lg">
-                  <Typography
-                    variant="body2"
-                    className="text-primary-foreground font-medium"
-                  >
+                  <Typography className="text-primary-foreground font-medium">
                     ✅ High Contrast - WCAG AA Compliant
                   </Typography>
                 </Box>
                 <Box className="p-3 bg-secondary rounded-lg">
-                  <Typography
-                    variant="body2"
-                    className="text-secondary-foreground font-medium"
-                  >
+                  <Typography className="text-secondary-foreground font-medium">
                     ✅ Medium Contrast - WCAG AA Large Text
                   </Typography>
                 </Box>
                 <Box className="p-3 bg-muted rounded-lg">
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground font-medium"
-                  >
+                  <Typography className="text-muted-foreground font-medium">
                     ⚠️ Low Contrast - Not Accessible
                   </Typography>
                 </Box>
                 <Box className="p-3 bg-warning rounded-lg">
-                  <Typography
-                    variant="body2"
-                    className="text-warning-foreground font-medium"
-                  >
+                  <Typography className="text-warning-foreground font-medium">
                     ✅ High Contrast Warning - Good for Alerts
                   </Typography>
                 </Box>
@@ -490,15 +459,15 @@ export function Colors() {
                   <Box display="flex" gap={3}>
                     <Box className="flex items-center gap-2">
                       <Box className="w-3 h-3 bg-success rounded-full" />
-                      <Typography variant="body2">Success ✓</Typography>
+                      <Typography>Success ✓</Typography>
                     </Box>
                     <Box className="flex items-center gap-2">
                       <Box className="w-3 h-3 bg-destructive rounded-full" />
-                      <Typography variant="body2">Error ✗</Typography>
+                      <Typography>Error ✗</Typography>
                     </Box>
                     <Box className="flex items-center gap-2">
                       <Box className="w-3 h-3 bg-warning rounded-full" />
-                      <Typography variant="body2">Warning ⚠</Typography>
+                      <Typography>Warning ⚠</Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -508,27 +477,22 @@ export function Colors() {
                   </Typography>
                   <Box className="grid grid-cols-2 gap-2">
                     <Box className="p-2 bg-primary/10 border rounded text-center">
-                      <Typography variant="body2" className="text-primary">
+                      <Typography className="text-primary">
                         Category A
                       </Typography>
                     </Box>
                     <Box className="p-2 bg-secondary/10 border rounded text-center">
-                      <Typography
-                        variant="body2"
-                        className="text-secondary-foreground"
-                      >
+                      <Typography className="text-secondary-foreground">
                         Category B
                       </Typography>
                     </Box>
                     <Box className="p-2 bg-success/10 border rounded text-center">
-                      <Typography variant="body2" className="text-success">
+                      <Typography className="text-success">
                         Category C
                       </Typography>
                     </Box>
                     <Box className="p-2 bg-info/10 border rounded text-center">
-                      <Typography variant="body2" className="text-info">
-                        Category D
-                      </Typography>
+                      <Typography className="text-info">Category D</Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -589,10 +553,7 @@ export function Colors() {
                   >
                     Primary
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className="text-primary-foreground/80"
-                  >
+                  <Typography className="text-primary-foreground/80">
                     Main brand color for logos, CTAs, and key elements
                   </Typography>
                 </Box>
@@ -603,10 +564,7 @@ export function Colors() {
                   >
                     Primary Hover
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className="text-primary-foreground-hover/80"
-                  >
+                  <Typography className="text-primary-foreground-hover/80">
                     Hover states and secondary actions
                   </Typography>
                 </Box>
@@ -617,10 +575,7 @@ export function Colors() {
                   >
                     Secondary
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className="text-secondary-foreground/80"
-                  >
+                  <Typography className="text-secondary-foreground/80">
                     Supporting elements and subtle actions
                   </Typography>
                 </Box>
@@ -640,7 +595,7 @@ export function Colors() {
                   >
                     Neutral
                   </Typography>
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="text-muted-foreground">
                     Text, borders, and subtle elements
                   </Typography>
                 </Box>
@@ -651,10 +606,7 @@ export function Colors() {
                   >
                     Success
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className="text-success-foreground/80"
-                  >
+                  <Typography className="text-success-foreground/80">
                     Positive actions and confirmations
                   </Typography>
                 </Box>
@@ -665,10 +617,7 @@ export function Colors() {
                   >
                     Destructive
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className="text-destructive-foreground/80"
-                  >
+                  <Typography className="text-destructive-foreground/80">
                     Errors, warnings, and destructive actions
                   </Typography>
                 </Box>
@@ -683,10 +632,7 @@ export function Colors() {
             </Typography>
             <Box className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <Box className="p-3 bg-warning/10 border rounded-lg text-center">
-                <Typography
-                  variant="body2"
-                  className="text-warning font-medium"
-                >
+                <Typography className="text-warning font-medium">
                   Warning
                 </Typography>
                 <Typography variant="caption" className="text-warning">
@@ -694,18 +640,13 @@ export function Colors() {
                 </Typography>
               </Box>
               <Box className="p-3 bg-info/10 border rounded-lg text-center">
-                <Typography variant="body2" className="text-info font-medium">
-                  Info
-                </Typography>
+                <Typography className="text-info font-medium">Info</Typography>
                 <Typography variant="caption" className="text-info">
                   Information
                 </Typography>
               </Box>
               <Box className="p-3 bg-success/10 border rounded-lg text-center">
-                <Typography
-                  variant="body2"
-                  className="text-success font-medium"
-                >
+                <Typography className="text-success font-medium">
                   Success
                 </Typography>
                 <Typography variant="caption" className="text-success">
@@ -713,10 +654,7 @@ export function Colors() {
                 </Typography>
               </Box>
               <Box className="p-3 bg-destructive/10 border rounded-lg text-center">
-                <Typography
-                  variant="body2"
-                  className="text-destructive font-medium"
-                >
+                <Typography className="text-destructive font-medium">
                   Destructive
                 </Typography>
                 <Typography variant="caption" className="text-destructive">

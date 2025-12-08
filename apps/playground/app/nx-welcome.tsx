@@ -255,10 +255,7 @@ export function NxWelcome({ title }: { title: string }) {
               <Typography variant="h3" className="mb-2">
                 {group.title}
               </Typography>
-              <Typography
-                variant="body2"
-                className="text-neutral-foreground/70"
-              >
+              <Typography className="text-neutral-foreground/70">
                 {group.description}
               </Typography>
             </Box>
@@ -275,7 +272,7 @@ export function NxWelcome({ title }: { title: string }) {
                     <CardTitle>{route.label}</CardTitle>
                   </CardHeader>
                   <CardContent flex="1">
-                    <Typography variant="body2">{route.description}</Typography>
+                    <Typography>{route.description}</Typography>
                   </CardContent>
                   <CardFooter>
                     <Link to={route.path} component={RouterLink}>

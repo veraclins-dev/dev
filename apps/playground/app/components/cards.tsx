@@ -246,10 +246,7 @@ export function Cards() {
                 <Box display="flex" flexDirection="column" gap={3}>
                   <Box display="flex" justify="between" items="center">
                     <Typography variant="h4">$999</Typography>
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground line-through"
-                    >
+                    <Typography className="text-muted-foreground line-through">
                       $1,199
                     </Typography>
                   </Box>
@@ -304,21 +301,15 @@ export function Cards() {
                   <Box display="flex" flexDirection="column" gap={2}>
                     <Box display="flex" items="center" gap={2}>
                       <Icon name="check" className="size-4 text-success" />
-                      <Typography variant="body2">
-                        24/7 phone support
-                      </Typography>
+                      <Typography>24/7 phone support</Typography>
                     </Box>
                     <Box display="flex" items="center" gap={2}>
                       <Icon name="check" className="size-4 text-success" />
-                      <Typography variant="body2">
-                        1-hour response time
-                      </Typography>
+                      <Typography>1-hour response time</Typography>
                     </Box>
                     <Box display="flex" items="center" gap={2}>
                       <Icon name="check" className="size-4 text-success" />
-                      <Typography variant="body2">
-                        Dedicated account manager
-                      </Typography>
+                      <Typography>Dedicated account manager</Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -364,7 +355,7 @@ export function Cards() {
                 <Typography variant="h3" className="mb-1">
                   $45,231
                 </Typography>
-                <Typography variant="body2" className="text-success">
+                <Typography className="text-success">
                   +20.1% from last month
                 </Typography>
               </CardContent>
@@ -382,7 +373,7 @@ export function Cards() {
                 <Typography variant="h3" className="mb-1">
                   2,350
                 </Typography>
-                <Typography variant="body2" className="text-success">
+                <Typography className="text-success">
                   +180.1% from last month
                 </Typography>
               </CardContent>
@@ -400,7 +391,7 @@ export function Cards() {
                 <Typography variant="h3" className="mb-1">
                   12,234
                 </Typography>
-                <Typography variant="body2" className="text-destructive">
+                <Typography className="text-destructive">
                   +19% from last month
                 </Typography>
               </CardContent>
@@ -418,7 +409,7 @@ export function Cards() {
                 <Typography variant="h3" className="mb-1">
                   573
                 </Typography>
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   +201 since last hour
                 </Typography>
               </CardContent>
@@ -460,7 +451,7 @@ export function Cards() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   React is a JavaScript library for building user interfaces. In
                   this comprehensive guide, we'll cover everything you need to
                   know to get started...
@@ -478,14 +469,11 @@ export function Cards() {
                       <AvatarImage src="https://github.com/shadcn.png" />
                       <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground"
-                    >
+                    <Typography className="text-muted-foreground">
                       John Doe
                     </Typography>
                   </Box>
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="text-muted-foreground">
                     5 min read
                   </Typography>
                 </Box>
@@ -520,21 +508,21 @@ export function Cards() {
                         name="map-pin"
                         className="size-4 text-muted-foreground"
                       />
-                      <Typography variant="body2">San Francisco, CA</Typography>
+                      <Typography>San Francisco, CA</Typography>
                     </Box>
                     <Box display="flex" items="center" gap={2}>
                       <Icon
                         name="clock"
                         className="size-4 text-muted-foreground"
                       />
-                      <Typography variant="body2">March 15-17, 2024</Typography>
+                      <Typography>March 15-17, 2024</Typography>
                     </Box>
                     <Box display="flex" items="center" gap={2}>
                       <Icon
                         name="users"
                         className="size-4 text-muted-foreground"
                       />
-                      <Typography variant="body2">500+ attendees</Typography>
+                      <Typography>500+ attendees</Typography>
                     </Box>
                   </Box>
                 </Box>
@@ -590,7 +578,7 @@ export function Cards() {
                         >
                           @veraclins-dev
                         </Typography>
-                        <Typography variant="body2">
+                        <Typography>
                           Modern UI component library built with React and
                           TypeScript.
                         </Typography>
@@ -599,10 +587,7 @@ export function Cards() {
                             name="calendar"
                             className="text-muted-foreground size-4"
                           />
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground text-xs"
-                          >
+                          <Typography className="text-muted-foreground text-xs">
                             Joined December 2023
                           </Typography>
                         </Box>
@@ -680,15 +665,13 @@ export function Cards() {
                   gap={2}
                   className="list-decimal pl-6"
                 >
-                  <Typography variant="body2">
+                  <Typography>
                     New analytics widgets for daily/weekly metrics
                   </Typography>
-                  <Typography variant="body2">
-                    Simplified navigation menu
-                  </Typography>
-                  <Typography variant="body2">Dark mode support</Typography>
-                  <Typography variant="body2">Timeline: 6 weeks</Typography>
-                  <Typography variant="body2">
+                  <Typography>Simplified navigation menu</Typography>
+                  <Typography>Dark mode support</Typography>
+                  <Typography>Timeline: 6 weeks</Typography>
+                  <Typography>
                     Follow-up meeting scheduled for next Tuesday
                   </Typography>
                 </Box>
@@ -730,7 +713,7 @@ export function Cards() {
                       <AvatarFallback>ER</AvatarFallback>
                     </Avatar>
                   </Box>
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="text-muted-foreground">
                     2 hours ago
                   </Typography>
                 </Box>
@@ -748,10 +731,7 @@ export function Cards() {
               <CardContent>
                 <Box display="flex" flexDirection="column" gap={4}>
                   <Box>
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground mb-2"
-                    >
+                    <Typography className="text-muted-foreground mb-2">
                       Overall Progress
                     </Typography>
                     <Box className="w-full bg-muted rounded-full h-2">
@@ -760,35 +740,32 @@ export function Cards() {
                         style={{ width: '75%' }}
                       />
                     </Box>
-                    <Typography
-                      variant="body2"
-                      className="text-muted-foreground mt-1"
-                    >
+                    <Typography className="text-muted-foreground mt-1">
                       75% Complete
                     </Typography>
                   </Box>
 
                   <Box display="flex" flexDirection="column" gap={2}>
                     <Box display="flex" justify="between" items="center">
-                      <Typography variant="body2">Design Phase</Typography>
+                      <Typography>Design Phase</Typography>
                       <Badge variant="soft" color="success">
                         Complete
                       </Badge>
                     </Box>
                     <Box display="flex" justify="between" items="center">
-                      <Typography variant="body2">Development</Typography>
+                      <Typography>Development</Typography>
                       <Badge variant="soft" color="warning">
                         In Progress
                       </Badge>
                     </Box>
                     <Box display="flex" justify="between" items="center">
-                      <Typography variant="body2">Testing</Typography>
+                      <Typography>Testing</Typography>
                       <Badge variant="outline" color="secondary">
                         Pending
                       </Badge>
                     </Box>
                     <Box display="flex" justify="between" items="center">
-                      <Typography variant="body2">Deployment</Typography>
+                      <Typography>Deployment</Typography>
                       <Badge variant="outline" color="secondary">
                         Pending
                       </Badge>
@@ -864,7 +841,7 @@ export function Cards() {
                                       name="check-circle"
                                       className="text-success"
                                     />
-                                    <Typography variant="body2">
+                                    <Typography>
                                       Login form completed
                                     </Typography>
                                   </Box>
@@ -873,7 +850,7 @@ export function Cards() {
                                       name="check-circle"
                                       className="text-success"
                                     />
-                                    <Typography variant="body2">
+                                    <Typography>
                                       Registration form completed
                                     </Typography>
                                   </Box>
@@ -882,7 +859,7 @@ export function Cards() {
                                       name="clock"
                                       className="text-warning"
                                     />
-                                    <Typography variant="body2">
+                                    <Typography>
                                       Password reset in progress
                                     </Typography>
                                   </Box>
@@ -920,27 +897,21 @@ export function Cards() {
                                       name="check-circle"
                                       className="text-success"
                                     />
-                                    <Typography variant="body2">
-                                      GET /api/users
-                                    </Typography>
+                                    <Typography>GET /api/users</Typography>
                                   </Box>
                                   <Box className="flex items-center gap-2">
                                     <Icon
                                       name="check-circle"
                                       className="text-success"
                                     />
-                                    <Typography variant="body2">
-                                      POST /api/users
-                                    </Typography>
+                                    <Typography>POST /api/users</Typography>
                                   </Box>
                                   <Box className="flex items-center gap-2">
                                     <Icon
                                       name="clock"
                                       className="text-warning"
                                     />
-                                    <Typography variant="body2">
-                                      PUT /api/users/:id
-                                    </Typography>
+                                    <Typography>PUT /api/users/:id</Typography>
                                   </Box>
                                 </Box>
                               </CardContent>
@@ -993,26 +964,17 @@ export function Cards() {
                             <CardContent>
                               <Box className="space-y-3">
                                 <Box className="bg-neutral/50 p-3 rounded">
-                                  <Typography
-                                    variant="body2"
-                                    className="font-mono text-sm"
-                                  >
+                                  <Typography className="font-mono text-sm">
                                     1. Redirect to /oauth/authorize
                                   </Typography>
                                 </Box>
                                 <Box className="bg-neutral/50 p-3 rounded">
-                                  <Typography
-                                    variant="body2"
-                                    className="font-mono text-sm"
-                                  >
+                                  <Typography className="font-mono text-sm">
                                     2. Exchange code for token
                                   </Typography>
                                 </Box>
                                 <Box className="bg-neutral/50 p-3 rounded">
-                                  <Typography
-                                    variant="body2"
-                                    className="font-mono text-sm"
-                                  >
+                                  <Typography className="font-mono text-sm">
                                     3. Use token in requests
                                   </Typography>
                                 </Box>
@@ -1063,17 +1025,13 @@ export function Cards() {
                               <CardContent>
                                 <Box className="space-y-2">
                                   <Box className="flex items-center justify-between">
-                                    <Typography variant="body2">
-                                      Dark Mode
-                                    </Typography>
+                                    <Typography>Dark Mode</Typography>
                                     <Box className="w-8 h-4 bg-primary rounded-full relative">
                                       <Box className="w-3 h-3 bg-white rounded-full absolute top-0.5 right-0.5" />
                                     </Box>
                                   </Box>
                                   <Box className="flex items-center justify-between">
-                                    <Typography variant="body2">
-                                      Compact Layout
-                                    </Typography>
+                                    <Typography>Compact Layout</Typography>
                                     <Box className="w-8 h-4 bg-neutral/20 rounded-full relative">
                                       <Box className="w-3 h-3 bg-white rounded-full absolute top-0.5 left-0.5" />
                                     </Box>
@@ -1112,7 +1070,7 @@ export function Cards() {
                                       name="shield-check"
                                       className="text-success"
                                     />
-                                    <Typography variant="body2">
+                                    <Typography>
                                       SMS verification enabled
                                     </Typography>
                                   </Box>
@@ -1121,7 +1079,7 @@ export function Cards() {
                                       name="shield-check"
                                       className="text-success"
                                     />
-                                    <Typography variant="body2">
+                                    <Typography>
                                       Authenticator app enabled
                                     </Typography>
                                   </Box>
@@ -1130,7 +1088,7 @@ export function Cards() {
                                       name="clock"
                                       className="text-warning"
                                     />
-                                    <Typography variant="body2">
+                                    <Typography>
                                       Backup codes pending
                                     </Typography>
                                   </Box>

@@ -156,7 +156,7 @@ export function TypographyShowcase() {
                     1.625 (Relaxed)
                   </Typography>
                 </Typography>
-                <Typography variant="body2">
+                <Typography>
                   This is body2 text - a smaller variant used for secondary
                   content, captions, and less prominent information. It's
                   perfect for metadata, timestamps, and supplementary details
@@ -238,10 +238,7 @@ export function TypographyShowcase() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={3}>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Left aligned (default):
                   </Typography>
                   <Typography
@@ -258,10 +255,7 @@ export function TypographyShowcase() {
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Center aligned:
                   </Typography>
                   <Typography
@@ -278,10 +272,7 @@ export function TypographyShowcase() {
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Right aligned:
                   </Typography>
                   <Typography
@@ -298,10 +289,7 @@ export function TypographyShowcase() {
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography
-                    variant="body2"
-                    className="text-muted-foreground mb-2"
-                  >
+                  <Typography className="text-muted-foreground mb-2">
                     Justified:
                   </Typography>
                   <Typography
@@ -412,19 +400,15 @@ export function TypographyShowcase() {
             </Typography>
 
             <Box display="flex" gap={3} className="items-center">
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 By John Doe
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
-                •
-              </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">•</Typography>
+              <Typography className="text-muted-foreground">
                 March 15, 2024
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
-                •
-              </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">•</Typography>
+              <Typography className="text-muted-foreground">
                 5 min read
               </Typography>
             </Box>
@@ -455,7 +439,7 @@ export function TypographyShowcase() {
             </Typography>
 
             <Box className="bg-muted p-4 rounded-lg">
-              <Typography variant="body2" className="italic">
+              <Typography className="italic">
                 "The best code is no code at all. The second best code is code
                 that's easy to understand and maintain." - Unknown
               </Typography>
@@ -511,7 +495,7 @@ export function TypographyShowcase() {
                       />
                     ))}
                   </Box>
-                  <Typography variant="body2" className="text-muted-foreground">
+                  <Typography className="text-muted-foreground">
                     (128 reviews)
                   </Typography>
                 </Box>
@@ -526,31 +510,19 @@ export function TypographyShowcase() {
                 </Typography>
 
                 <Box display="flex" flexDirection="column" gap={2}>
-                  <Typography
-                    variant="body2"
-                    className="flex items-center gap-2"
-                  >
+                  <Typography className="flex items-center gap-2">
                     <Icon name="check" className="size-4 text-success" />
                     Active Noise Cancellation
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className="flex items-center gap-2"
-                  >
+                  <Typography className="flex items-center gap-2">
                     <Icon name="check" className="size-4 text-success" />
                     30-hour battery life
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className="flex items-center gap-2"
-                  >
+                  <Typography className="flex items-center gap-2">
                     <Icon name="check" className="size-4 text-success" />
                     Premium comfort design
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    className="flex items-center gap-2"
-                  >
+                  <Typography className="flex items-center gap-2">
                     <Icon name="check" className="size-4 text-success" />
                     Wireless charging compatible
                   </Typography>
@@ -558,10 +530,7 @@ export function TypographyShowcase() {
               </Box>
 
               <Box>
-                <Typography
-                  variant="body2"
-                  className="text-muted-foreground mb-2"
-                >
+                <Typography className="text-muted-foreground mb-2">
                   Available Colors:
                 </Typography>
                 <Box display="flex" gap={2}>
@@ -600,7 +569,7 @@ export function TypographyShowcase() {
               <Typography variant="h2" className="mb-2">
                 Analytics Dashboard
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 Last updated: 2 minutes ago
               </Typography>
             </Box>
@@ -608,10 +577,7 @@ export function TypographyShowcase() {
             {/* Metrics Grid */}
             <Box className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Card className="p-4">
-                <Typography
-                  variant="body2"
-                  className="text-muted-foreground mb-1"
-                >
+                <Typography className="text-muted-foreground mb-1">
                   Total Users
                 </Typography>
                 <Typography variant="h3" className="text-primary">
@@ -623,10 +589,7 @@ export function TypographyShowcase() {
               </Card>
 
               <Card className="p-4">
-                <Typography
-                  variant="body2"
-                  className="text-muted-foreground mb-1"
-                >
+                <Typography className="text-muted-foreground mb-1">
                   Revenue
                 </Typography>
                 <Typography variant="h3" className="text-primary">
@@ -638,10 +601,7 @@ export function TypographyShowcase() {
               </Card>
 
               <Card className="p-4">
-                <Typography
-                  variant="body2"
-                  className="text-muted-foreground mb-1"
-                >
+                <Typography className="text-muted-foreground mb-1">
                   Orders
                 </Typography>
                 <Typography variant="h3" className="text-primary">
@@ -653,10 +613,7 @@ export function TypographyShowcase() {
               </Card>
 
               <Card className="p-4">
-                <Typography
-                  variant="body2"
-                  className="text-muted-foreground mb-1"
-                >
+                <Typography className="text-muted-foreground mb-1">
                   Conversion Rate
                 </Typography>
                 <Typography variant="h3" className="text-primary">
@@ -679,7 +636,7 @@ export function TypographyShowcase() {
                     <Icon name="user" className="size-4 text-white" />
                   </Box>
                   <Box flex="1">
-                    <Typography variant="body2">
+                    <Typography>
                       <strong>New user registered:</strong> john.doe@example.com
                     </Typography>
                     <Typography
@@ -696,7 +653,7 @@ export function TypographyShowcase() {
                     <Icon name="check" className="size-4 text-white" />
                   </Box>
                   <Box flex="1">
-                    <Typography variant="body2">
+                    <Typography>
                       <strong>Order completed:</strong> #ORD-2024-001
                     </Typography>
                     <Typography
@@ -716,7 +673,7 @@ export function TypographyShowcase() {
                     />
                   </Box>
                   <Box flex="1">
-                    <Typography variant="body2">
+                    <Typography>
                       <strong>Payment failed:</strong> Transaction declined
                     </Typography>
                     <Typography
@@ -745,45 +702,35 @@ export function TypographyShowcase() {
           <Box display="flex" flexDirection="column" gap={6}>
             <Typography variant="h3">Create New Account</Typography>
 
-            <Typography variant="body2" className="text-muted-foreground">
+            <Typography className="text-muted-foreground">
               Fill out the form below to create your account. All fields marked
               with an asterisk (*) are required.
             </Typography>
 
             <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Box display="flex" flexDirection="column" gap={2}>
-                <Typography variant="body2" className="font-medium">
-                  First Name *
-                </Typography>
+                <Typography className="font-medium">First Name *</Typography>
                 <Box className="h-10 bg-muted rounded border" />
               </Box>
 
               <Box display="flex" flexDirection="column" gap={2}>
-                <Typography variant="body2" className="font-medium">
-                  Last Name *
-                </Typography>
+                <Typography className="font-medium">Last Name *</Typography>
                 <Box className="h-10 bg-muted rounded border" />
               </Box>
 
               <Box display="flex" flexDirection="column" gap={2}>
-                <Typography variant="body2" className="font-medium">
-                  Email Address *
-                </Typography>
+                <Typography className="font-medium">Email Address *</Typography>
                 <Box className="h-10 bg-muted rounded border" />
               </Box>
 
               <Box display="flex" flexDirection="column" gap={2}>
-                <Typography variant="body2" className="font-medium">
-                  Phone Number
-                </Typography>
+                <Typography className="font-medium">Phone Number</Typography>
                 <Box className="h-10 bg-muted rounded border" />
               </Box>
             </Box>
 
             <Box display="flex" flexDirection="column" gap={2}>
-              <Typography variant="body2" className="font-medium">
-                Password *
-              </Typography>
+              <Typography className="font-medium">Password *</Typography>
               <Box className="h-10 bg-muted rounded border" />
               <Typography variant="caption" className="text-muted-foreground">
                 Password must be at least 8 characters long and contain at least
@@ -797,7 +744,7 @@ export function TypographyShowcase() {
             </Box>
 
             <Box className="border-t pt-4">
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 By creating an account, you agree to our{' '}
                 <Link href="/terms" className="text-primary">
                   Terms of Service
@@ -832,13 +779,10 @@ export function TypographyShowcase() {
               <Typography variant="subtitle1" className="text-primary mb-1">
                 React Component Best Practices
               </Typography>
-              <Typography
-                variant="body2"
-                className="text-muted-foreground mb-2"
-              >
+              <Typography className="text-muted-foreground mb-2">
                 https://example.com/react-best-practices
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 Learn the essential best practices for creating React components
                 that are maintainable, performant, and follow industry
                 standards. This comprehensive guide covers component structure,
@@ -852,13 +796,10 @@ export function TypographyShowcase() {
               <Typography variant="subtitle1" className="text-primary mb-1">
                 Building Reusable UI Components
               </Typography>
-              <Typography
-                variant="body2"
-                className="text-muted-foreground mb-2"
-              >
+              <Typography className="text-muted-foreground mb-2">
                 https://example.com/reusable-components
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 Discover how to build a robust component library that can be
                 shared across multiple projects. This tutorial covers component
                 design patterns, documentation strategies, and testing
@@ -872,13 +813,10 @@ export function TypographyShowcase() {
               <Typography variant="subtitle1" className="text-primary mb-1">
                 React Component Lifecycle Methods
               </Typography>
-              <Typography
-                variant="body2"
-                className="text-muted-foreground mb-2"
-              >
+              <Typography className="text-muted-foreground mb-2">
                 https://example.com/lifecycle-methods
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 Understand the complete lifecycle of React components from
                 mounting to unmounting. This detailed guide explains when and
                 how to use lifecycle methods, hooks, and modern React patterns
@@ -891,13 +829,10 @@ export function TypographyShowcase() {
               <Typography variant="subtitle1" className="text-primary mb-1">
                 TypeScript with React Components
               </Typography>
-              <Typography
-                variant="body2"
-                className="text-muted-foreground mb-2"
-              >
+              <Typography className="text-muted-foreground mb-2">
                 https://example.com/typescript-react
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 Master TypeScript integration with React components for better
                 type safety and developer experience. Learn how to properly type
                 props, state, events, and complex component patterns while
@@ -910,13 +845,10 @@ export function TypographyShowcase() {
               <Typography variant="subtitle1" className="text-primary mb-1">
                 Testing React Components
               </Typography>
-              <Typography
-                variant="body2"
-                className="text-muted-foreground mb-2"
-              >
+              <Typography className="text-muted-foreground mb-2">
                 https://example.com/testing-components
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 Comprehensive guide to testing React components using Jest,
                 React Testing Library, and other modern testing tools. Learn
                 unit testing, integration testing, and end-to-end testing
@@ -947,24 +879,24 @@ export function TypographyShowcase() {
 
             <Typography variant="h4">Installation</Typography>
 
-            <Typography variant="body2" className="mb-2">
+            <Typography className="mb-2">
               To create a new React project, run the following command:
             </Typography>
 
             <Box className="bg-muted p-4 rounded-lg">
-              <Typography variant="body2" className="font-mono">
+              <Typography className="font-mono">
                 npx create-react-app my-app
               </Typography>
             </Box>
 
             <Typography variant="h4">Basic Component</Typography>
 
-            <Typography variant="body2" className="mb-2">
+            <Typography className="mb-2">
               Here's a simple React component:
             </Typography>
 
             <Box className="bg-muted p-4 rounded-lg">
-              <Typography variant="body2" className="font-mono">
+              <Typography className="font-mono">
                 {`function Welcome() {
   return <h1>Hello, World!</h1>;
 }`}
@@ -980,7 +912,7 @@ export function TypographyShowcase() {
             </Typography>
 
             <Box className="bg-muted p-4 rounded-lg">
-              <Typography variant="body2" className="font-mono">
+              <Typography className="font-mono">
                 {`function Greeting(props) {
   return <h1>Hello, {props.name}!</h1>;
 }
@@ -990,7 +922,7 @@ export function TypographyShowcase() {
             </Box>
 
             <Box className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-              <Typography variant="body2" className="text-blue-800">
+              <Typography className="text-blue-800">
                 <strong>Note:</strong> This is a basic example. For production
                 applications, consider using TypeScript for better type safety
                 and developer experience.

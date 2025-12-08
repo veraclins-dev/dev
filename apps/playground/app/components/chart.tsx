@@ -784,7 +784,7 @@ export function ChartShowcase() {
               <Typography variant="h4" className="mb-2">
                 Data Visualization Principles
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • Choose the right chart type for your data and message
                 <br />
                 • Use consistent colors and styling across related charts
@@ -804,7 +804,7 @@ export function ChartShowcase() {
               <Typography variant="h4" className="mb-2">
                 Accessibility Considerations
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 • Provide alternative text descriptions for screen readers
                 <br />
                 • Use sufficient color contrast for text and data points
@@ -820,7 +820,7 @@ export function ChartShowcase() {
               <Typography variant="h4" className="mb-2">
                 Performance Optimization
               </Typography>
-              <Typography variant="body2" className="text-muted-foreground">
+              <Typography className="text-muted-foreground">
                 • Limit the number of data points for better performance
                 <br />
                 • Use appropriate chart types for large datasets

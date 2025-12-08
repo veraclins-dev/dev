@@ -94,7 +94,7 @@ export function Overlays() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Typography variant="body2">
+            <Typography>
               Command palettes for quick navigation and application actions.
             </Typography>
           </CardContent>
@@ -110,7 +110,7 @@ export function Overlays() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Typography variant="body2">
+            <Typography>
               Modal dialogs and sheets for focused user interactions, forms, and
               content presentation.
             </Typography>
@@ -127,7 +127,7 @@ export function Overlays() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Typography variant="body2">
+            <Typography>
               Hover-triggered components for additional information and rich
               content previews.
             </Typography>
@@ -208,7 +208,7 @@ export function Overlays() {
             </CardHeader>
             <CardContent>
               <Box display="flex" flexDirection="column" gap={6}>
-                <Typography variant="body2">
+                <Typography>
                   Command palettes provide quick access to application functions
                   through keyboard shortcuts and search.
                 </Typography>
@@ -258,7 +258,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       File Management Commands
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Command palette for file operations and document
                       management.
                     </Typography>
@@ -296,7 +296,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Application Commands
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Command palette for application-specific actions and
                       navigation.
                     </Typography>
@@ -334,7 +334,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Search Commands
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Command palette for global search and content discovery.
                     </Typography>
                     <Command className="max-w-lg">
@@ -370,7 +370,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Search Commands
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Command palette for global search and content discovery.
                     </Typography>
                     <Command className="max-w-lg">
@@ -511,9 +511,7 @@ export function Overlays() {
                               children: (
                                 <>
                                   <Box className="w-6 h-6 bg-primary rounded-full" />
-                                  <Typography variant="body2">
-                                    John Doe
-                                  </Typography>
+                                  <Typography>John Doe</Typography>
                                   <Icon name="chevron-down" />
                                 </>
                               ),
@@ -688,7 +686,7 @@ export function Overlays() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Typography variant="body2">
+              <Typography>
                 Modal dialogs are perfect for forms, confirmations, and focused
                 content that requires user attention.
               </Typography>
@@ -710,7 +708,7 @@ export function Overlays() {
                           This is a basic modal dialog example.
                         </DialogDescription>
                       </DialogHeader>
-                      <Typography variant="body2" className="py-4">
+                      <Typography className="py-4">
                         This dialog demonstrates the basic structure and styling
                         of modal dialogs.
                       </Typography>
@@ -782,7 +780,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Confirmation Dialog
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Use confirmation dialogs for destructive actions that
                       require user confirmation.
                     </Typography>
@@ -801,10 +799,7 @@ export function Overlays() {
                           </DialogDescription>
                         </DialogHeader>
                         <Box className="py-4">
-                          <Typography
-                            variant="body2"
-                            className="text-destructive"
-                          >
+                          <Typography className="text-destructive">
                             This will permanently delete the project and all
                             associated data.
                           </Typography>
@@ -828,7 +823,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Alert Dialog
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Alert dialogs for important notifications and warnings.
                     </Typography>
                     <Box display="flex" gap={2}>
@@ -851,7 +846,7 @@ export function Overlays() {
                             </DialogDescription>
                           </DialogHeader>
                           <Box className="py-4">
-                            <Typography variant="body2">
+                            <Typography>
                               Please save your work before proceeding with this
                               action.
                             </Typography>
@@ -884,10 +879,7 @@ export function Overlays() {
                             </DialogDescription>
                           </DialogHeader>
                           <Box className="py-4">
-                            <Typography
-                              variant="body2"
-                              className="text-destructive"
-                            >
+                            <Typography className="text-destructive">
                               Unable to connect to the server. Please check your
                               internet connection and try again.
                             </Typography>
@@ -910,7 +902,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Complex Form Dialog
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Multi-step form dialog with validation and complex
                       interactions.
                     </Typography>
@@ -1039,7 +1031,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Media Dialog
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Dialog for displaying images, videos, and other media
                       content.
                     </Typography>
@@ -1067,10 +1059,7 @@ export function Overlays() {
                             <Typography variant="h6">
                               Premium Widget Pro
                             </Typography>
-                            <Typography
-                              variant="body2"
-                              className="text-muted-foreground"
-                            >
+                            <Typography className="text-muted-foreground">
                               High-quality product image with detailed
                               specifications and features.
                             </Typography>
@@ -1107,7 +1096,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Scrollable Search Dialog
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Dialog with fixed search field and scrollable results
                       below.
                     </Typography>
@@ -1248,16 +1237,10 @@ export function Overlays() {
                                       {user.avatar}
                                     </Box>
                                     <Box className="flex-1 min-w-0">
-                                      <Typography
-                                        variant="body2"
-                                        className="font-medium truncate"
-                                      >
+                                      <Typography className="font-medium truncate">
                                         {user.name}
                                       </Typography>
-                                      <Typography
-                                        variant="body2"
-                                        className="text-muted-foreground truncate"
-                                      >
+                                      <Typography className="text-muted-foreground truncate">
                                         {user.email}
                                       </Typography>
                                     </Box>
@@ -1298,7 +1281,7 @@ export function Overlays() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Typography variant="body2">
+              <Typography>
                 Drawers are perfect for navigation menus, settings panels, and
                 secondary content that doesn't require full modal attention.
               </Typography>
@@ -1412,7 +1395,7 @@ export function Overlays() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Typography variant="body2">
+              <Typography>
                 Sheets are similar to drawers but typically used for content
                 presentation and complex interactions.
               </Typography>
@@ -1436,7 +1419,7 @@ export function Overlays() {
                         </SheetDescription>
                       </SheetHeader>
                       <Box className="py-4 space-y-4">
-                        <Typography variant="body2">
+                        <Typography>
                           Sheets are great for presenting additional content
                           without taking up the full screen.
                         </Typography>
@@ -1528,7 +1511,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Top Sheet - Notifications
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Top sheet for displaying notifications and alerts.
                     </Typography>
                     <Sheet>
@@ -1549,16 +1532,10 @@ export function Overlays() {
                               className="text-success mt-1"
                             />
                             <Box>
-                              <Typography
-                                variant="body2"
-                                className="font-medium"
-                              >
+                              <Typography className="font-medium">
                                 Project Updated
                               </Typography>
-                              <Typography
-                                variant="body2"
-                                className="text-muted-foreground"
-                              >
+                              <Typography className="text-muted-foreground">
                                 Your project has been successfully updated.
                               </Typography>
                             </Box>
@@ -1569,16 +1546,10 @@ export function Overlays() {
                               className="text-info mt-1"
                             />
                             <Box>
-                              <Typography
-                                variant="body2"
-                                className="font-medium"
-                              >
+                              <Typography className="font-medium">
                                 New Message
                               </Typography>
-                              <Typography
-                                variant="body2"
-                                className="text-muted-foreground"
-                              >
+                              <Typography className="text-muted-foreground">
                                 You have a new message from John Doe.
                               </Typography>
                             </Box>
@@ -1589,16 +1560,10 @@ export function Overlays() {
                               className="text-warning mt-1"
                             />
                             <Box>
-                              <Typography
-                                variant="body2"
-                                className="font-medium"
-                              >
+                              <Typography className="font-medium">
                                 Storage Warning
                               </Typography>
-                              <Typography
-                                variant="body2"
-                                className="text-muted-foreground"
-                              >
+                              <Typography className="text-muted-foreground">
                                 You're running low on storage space.
                               </Typography>
                             </Box>
@@ -1621,7 +1586,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Side Sheet - Settings Panel
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Side sheet for complex settings and configuration panels.
                     </Typography>
                     <Sheet>
@@ -1728,7 +1693,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Form Sheet
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Sheet for complex form interactions and data entry.
                     </Typography>
                     <Sheet>
@@ -1817,7 +1782,7 @@ export function Overlays() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Typography variant="body2">
+              <Typography>
                 Tooltips provide additional context and information on hover.
               </Typography>
 
@@ -1924,10 +1889,7 @@ export function Overlays() {
                           <Typography variant="subtitle1">
                             Rich Content Tooltip
                           </Typography>
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground"
-                          >
+                          <Typography className="text-muted-foreground">
                             This tooltip contains multiple lines and styled
                             content
                           </Typography>
@@ -1945,14 +1907,11 @@ export function Overlays() {
                         <Box className="p-2 text-left">
                           <Box className="flex items-center gap-2 mb-2">
                             <Icon name="info" className="text-info" />
-                            <Typography variant="body2" className="font-medium">
+                            <Typography className="font-medium">
                               Information Tooltip
                             </Typography>
                           </Box>
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground"
-                          >
+                          <Typography className="text-muted-foreground">
                             Contains an icon and structured information
                           </Typography>
                         </Box>
@@ -1969,17 +1928,11 @@ export function Overlays() {
                         <Box className="p-2 text-left">
                           <Box className="flex items-center gap-2 mb-2">
                             <Icon name="check" className="text-success" />
-                            <Typography
-                              variant="body2"
-                              className="font-medium text-success"
-                            >
+                            <Typography className="font-medium text-success">
                               Success State
                             </Typography>
                           </Box>
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground"
-                          >
+                          <Typography className="text-muted-foreground">
                             Operation completed successfully
                           </Typography>
                         </Box>
@@ -2090,7 +2043,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Rich Tooltips
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Tooltips with rich content including images and detailed
                       information.
                     </Typography>
@@ -2108,21 +2061,15 @@ export function Overlays() {
                               <Box className="flex items-center gap-3 mb-2">
                                 <Box className="w-10 h-10 bg-primary rounded-full" />
                                 <Box>
-                                  <Typography
-                                    variant="body2"
-                                    className="font-medium"
-                                  >
+                                  <Typography className="font-medium">
                                     John Doe
                                   </Typography>
-                                  <Typography
-                                    variant="body2"
-                                    className="text-muted-foreground"
-                                  >
+                                  <Typography className="text-muted-foreground">
                                     Senior Developer
                                   </Typography>
                                 </Box>
                               </Box>
-                              <Typography variant="body2" className="mb-2">
+                              <Typography className="mb-2">
                                 Works on the frontend team. Specializes in React
                                 and TypeScript.
                               </Typography>
@@ -2154,14 +2101,11 @@ export function Overlays() {
                             <Box className="p-2">
                               <Box className="flex items-center gap-2 mb-2">
                                 <Icon name="star" className="text-warning" />
-                                <Typography
-                                  variant="body2"
-                                  className="font-medium"
-                                >
+                                <Typography className="font-medium">
                                   Premium Feature
                                 </Typography>
                               </Box>
-                              <Typography variant="body2" className="mb-2">
+                              <Typography className="mb-2">
                                 This feature is available for premium
                                 subscribers only.
                               </Typography>
@@ -2182,7 +2126,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Interactive Tooltips
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Tooltips with interactive elements and actions.
                     </Typography>
                     <Box display="flex" gap={4} flexWrap="wrap">
@@ -2196,7 +2140,7 @@ export function Overlays() {
                           </TooltipTrigger>
                           <TooltipContent className="w-48">
                             <Box className="p-2">
-                              <Typography variant="body2" className="mb-2">
+                              <Typography className="mb-2">
                                 Share this content
                               </Typography>
                               <Box className="flex gap-1">
@@ -2222,7 +2166,7 @@ export function Overlays() {
                           </TooltipTrigger>
                           <TooltipContent className="w-52">
                             <Box className="p-2">
-                              <Typography variant="body2" className="mb-2">
+                              <Typography className="mb-2">
                                 Quick settings
                               </Typography>
                               <Box className="space-y-1">
@@ -2265,7 +2209,7 @@ export function Overlays() {
                     <Typography variant="h5" className="mb-3">
                       Contextual Tooltips
                     </Typography>
-                    <Typography variant="body2" className="mb-4">
+                    <Typography className="mb-4">
                       Tooltips for different UI elements and contexts.
                     </Typography>
                     <Box display="flex" flexDirection="column" gap={4}>
@@ -2347,9 +2291,7 @@ export function Overlays() {
                               <TooltipTrigger asChild>
                                 <Box className="flex items-center gap-2">
                                   <Box className="w-3 h-3 bg-success rounded-full" />
-                                  <Typography variant="body2">
-                                    Online
-                                  </Typography>
+                                  <Typography>Online</Typography>
                                 </Box>
                               </TooltipTrigger>
                               <TooltipContent>
@@ -2363,7 +2305,7 @@ export function Overlays() {
                               <TooltipTrigger asChild>
                                 <Box className="flex items-center gap-2">
                                   <Box className="w-3 h-3 bg-warning rounded-full" />
-                                  <Typography variant="body2">Away</Typography>
+                                  <Typography>Away</Typography>
                                 </Box>
                               </TooltipTrigger>
                               <TooltipContent>
@@ -2377,9 +2319,7 @@ export function Overlays() {
                               <TooltipTrigger asChild>
                                 <Box className="flex items-center gap-2">
                                   <Box className="w-3 h-3 bg-neutral rounded-full" />
-                                  <Typography variant="body2">
-                                    Offline
-                                  </Typography>
+                                  <Typography>Offline</Typography>
                                 </Box>
                               </TooltipTrigger>
                               <TooltipContent>
@@ -2475,7 +2415,7 @@ export function Overlays() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Typography variant="body2">
+              <Typography>
                 HoverCards provide rich content previews on hover.
               </Typography>
 
@@ -2489,14 +2429,11 @@ export function Overlays() {
                       <Typography variant="h6" className="mb-2">
                         User Information
                       </Typography>
-                      <Typography variant="body2" className="mb-2">
+                      <Typography className="mb-2">
                         John Doe is a senior developer with 5+ years of
                         experience.
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        className="text-muted-foreground"
-                      >
+                      <Typography className="text-muted-foreground">
                         Last active: 2 hours ago
                       </Typography>
                     </Box>
@@ -2512,14 +2449,11 @@ export function Overlays() {
                       <Typography variant="h6" className="mb-2">
                         Premium Widget
                       </Typography>
-                      <Typography variant="body2" className="mb-2">
+                      <Typography className="mb-2">
                         High-quality widget with advanced features and
                         customization options.
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        className="text-primary font-medium"
-                      >
+                      <Typography className="text-primary font-medium">
                         $29.99
                       </Typography>
                     </Box>
@@ -2542,7 +2476,7 @@ export function Overlays() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Typography variant="body2">
+              <Typography>
                 Popovers provide positioned content that appears on click.
               </Typography>
 

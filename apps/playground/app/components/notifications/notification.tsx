@@ -63,7 +63,6 @@ const Activity = ({
         className="relative h-fit"
       >
         <Typography
-          variant="body2"
           className={cn(
             'line-clamp-2',
             isRead ? 'font-light' : 'font-semibold',

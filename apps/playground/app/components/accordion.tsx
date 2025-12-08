@@ -89,16 +89,12 @@ export function Accordions() {
                   <AccordionTrigger>Getting Started</AccordionTrigger>
                   <AccordionContent>
                     <Box className="space-y-2">
-                      <Typography variant="body2">
-                        1. Install the component library
-                      </Typography>
-                      <Typography variant="body2">
+                      <Typography>1. Install the component library</Typography>
+                      <Typography>
                         2. Import the accordion components
                       </Typography>
-                      <Typography variant="body2">
-                        3. Set up your first accordion
-                      </Typography>
-                      <Typography variant="body2">
+                      <Typography>3. Set up your first accordion</Typography>
+                      <Typography>
                         4. Customize the styling as needed
                       </Typography>
                     </Box>
@@ -108,18 +104,12 @@ export function Accordions() {
                   <AccordionTrigger>Advanced Features</AccordionTrigger>
                   <AccordionContent>
                     <Box className="space-y-2">
-                      <Typography variant="body2">
+                      <Typography>
                         • Custom animations and transitions
                       </Typography>
-                      <Typography variant="body2">
-                        • Nested accordion structures
-                      </Typography>
-                      <Typography variant="body2">
-                        • Programmatic control
-                      </Typography>
-                      <Typography variant="body2">
-                        • Theme customization
-                      </Typography>
+                      <Typography>• Nested accordion structures</Typography>
+                      <Typography>• Programmatic control</Typography>
+                      <Typography>• Theme customization</Typography>
                     </Box>
                   </AccordionContent>
                 </AccordionItem>
@@ -127,16 +117,16 @@ export function Accordions() {
                   <AccordionTrigger>Best Practices</AccordionTrigger>
                   <AccordionContent>
                     <Box className="space-y-2">
-                      <Typography variant="body2">
+                      <Typography>
                         • Keep content concise and focused
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography>
                         • Use clear, descriptive trigger text
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography>
                         • Consider the user's mental model
                       </Typography>
-                      <Typography variant="body2">
+                      <Typography>
                         • Test with keyboard and screen readers
                       </Typography>
                     </Box>
@@ -169,20 +159,14 @@ export function Accordions() {
                   </AccordionTrigger>
                   <AccordionContent>
                     <Box className="space-y-3">
-                      <Typography variant="body2">
+                      <Typography>
                         Manage your personal information, privacy settings, and
                         account preferences.
                       </Typography>
                       <Box className="space-y-2">
-                        <Typography variant="body2">
-                          • Personal Information
-                        </Typography>
-                        <Typography variant="body2">
-                          • Privacy Settings
-                        </Typography>
-                        <Typography variant="body2">
-                          • Account Security
-                        </Typography>
+                        <Typography>• Personal Information</Typography>
+                        <Typography>• Privacy Settings</Typography>
+                        <Typography>• Account Security</Typography>
                       </Box>
                     </Box>
                   </AccordionContent>
@@ -194,18 +178,14 @@ export function Accordions() {
                   </AccordionTrigger>
                   <AccordionContent>
                     <Box className="space-y-3">
-                      <Typography variant="body2">
+                      <Typography>
                         Configure how and when you receive notifications from
                         the platform.
                       </Typography>
                       <Box className="space-y-2">
-                        <Typography variant="body2">
-                          • Email Notifications
-                        </Typography>
-                        <Typography variant="body2">
-                          • Push Notifications
-                        </Typography>
-                        <Typography variant="body2">• SMS Alerts</Typography>
+                        <Typography>• Email Notifications</Typography>
+                        <Typography>• Push Notifications</Typography>
+                        <Typography>• SMS Alerts</Typography>
                       </Box>
                     </Box>
                   </AccordionContent>
@@ -217,18 +197,14 @@ export function Accordions() {
                   </AccordionTrigger>
                   <AccordionContent>
                     <Box className="space-y-3">
-                      <Typography variant="body2">
+                      <Typography>
                         Manage your account security, two-factor authentication,
                         and login history.
                       </Typography>
                       <Box className="space-y-2">
-                        <Typography variant="body2">
-                          • Two-Factor Authentication
-                        </Typography>
-                        <Typography variant="body2">• Login History</Typography>
-                        <Typography variant="body2">
-                          • Password Management
-                        </Typography>
+                        <Typography>• Two-Factor Authentication</Typography>
+                        <Typography>• Login History</Typography>
+                        <Typography>• Password Management</Typography>
                       </Box>
                     </Box>
                   </AccordionContent>
@@ -247,19 +223,13 @@ export function Accordions() {
                   </AccordionTrigger>
                   <AccordionContent>
                     <Box className="space-y-3">
-                      <Typography variant="body2">
+                      <Typography>
                         You have 3 unread messages in your inbox.
                       </Typography>
                       <Box className="space-y-2">
-                        <Typography variant="body2">
-                          • Welcome message from support
-                        </Typography>
-                        <Typography variant="body2">
-                          • Account verification reminder
-                        </Typography>
-                        <Typography variant="body2">
-                          • Monthly newsletter
-                        </Typography>
+                        <Typography>• Welcome message from support</Typography>
+                        <Typography>• Account verification reminder</Typography>
+                        <Typography>• Monthly newsletter</Typography>
                       </Box>
                     </Box>
                   </AccordionContent>
@@ -271,13 +241,9 @@ export function Accordions() {
                   </AccordionTrigger>
                   <AccordionContent>
                     <Box className="space-y-3">
-                      <Typography variant="body2">
-                        You have 1 draft message saved.
-                      </Typography>
+                      <Typography>You have 1 draft message saved.</Typography>
                       <Box className="space-y-2">
-                        <Typography variant="body2">
-                          • Unfinished support request
-                        </Typography>
+                        <Typography>• Unfinished support request</Typography>
                       </Box>
                     </Box>
                   </AccordionContent>
@@ -289,19 +255,13 @@ export function Accordions() {
                   </AccordionTrigger>
                   <AccordionContent>
                     <Box className="space-y-3">
-                      <Typography variant="body2">
+                      <Typography>
                         You have sent 12 messages this month.
                       </Typography>
                       <Box className="space-y-2">
-                        <Typography variant="body2">
-                          • Support inquiries
-                        </Typography>
-                        <Typography variant="body2">
-                          • Feature requests
-                        </Typography>
-                        <Typography variant="body2">
-                          • General feedback
-                        </Typography>
+                        <Typography>• Support inquiries</Typography>
+                        <Typography>• Feature requests</Typography>
+                        <Typography>• General feedback</Typography>
                       </Box>
                     </Box>
                   </AccordionContent>
@@ -328,7 +288,7 @@ export function Accordions() {
                 <AccordionTrigger>Getting Started</AccordionTrigger>
                 <AccordionContent>
                   <Box className="space-y-4">
-                    <Typography variant="body2">
+                    <Typography>
                       Welcome to the project! This section will help you get up
                       and running quickly.
                     </Typography>
@@ -340,16 +300,14 @@ export function Accordions() {
                         </AccordionTrigger>
                         <AccordionContent>
                           <Box className="space-y-2">
-                            <Typography variant="body2">
-                              1. Clone the repository
-                            </Typography>
-                            <Typography variant="body2">
+                            <Typography>1. Clone the repository</Typography>
+                            <Typography>
                               2. Install dependencies with npm install
                             </Typography>
-                            <Typography variant="body2">
+                            <Typography>
                               3. Set up environment variables
                             </Typography>
-                            <Typography variant="body2">
+                            <Typography>
                               4. Run the development server
                             </Typography>
                           </Box>
@@ -361,15 +319,9 @@ export function Accordions() {
                         </AccordionTrigger>
                         <AccordionContent>
                           <Box className="space-y-2">
-                            <Typography variant="body2">
-                              • Database setup
-                            </Typography>
-                            <Typography variant="body2">
-                              • API configuration
-                            </Typography>
-                            <Typography variant="body2">
-                              • Environment variables
-                            </Typography>
+                            <Typography>• Database setup</Typography>
+                            <Typography>• API configuration</Typography>
+                            <Typography>• Environment variables</Typography>
                           </Box>
                         </AccordionContent>
                       </AccordionItem>
@@ -382,7 +334,7 @@ export function Accordions() {
                 <AccordionTrigger>Development</AccordionTrigger>
                 <AccordionContent>
                   <Box className="space-y-4">
-                    <Typography variant="body2">
+                    <Typography>
                       Learn about the development workflow and best practices.
                     </Typography>
 
@@ -393,15 +345,9 @@ export function Accordions() {
                         </AccordionTrigger>
                         <AccordionContent>
                           <Box className="space-y-2">
-                            <Typography variant="body2">
-                              • TypeScript guidelines
-                            </Typography>
-                            <Typography variant="body2">
-                              • Code formatting rules
-                            </Typography>
-                            <Typography variant="body2">
-                              • Naming conventions
-                            </Typography>
+                            <Typography>• TypeScript guidelines</Typography>
+                            <Typography>• Code formatting rules</Typography>
+                            <Typography>• Naming conventions</Typography>
                           </Box>
                         </AccordionContent>
                       </AccordionItem>
@@ -411,15 +357,9 @@ export function Accordions() {
                         </AccordionTrigger>
                         <AccordionContent>
                           <Box className="space-y-2">
-                            <Typography variant="body2">
-                              • Unit testing setup
-                            </Typography>
-                            <Typography variant="body2">
-                              • Integration testing
-                            </Typography>
-                            <Typography variant="body2">
-                              • E2E testing
-                            </Typography>
+                            <Typography>• Unit testing setup</Typography>
+                            <Typography>• Integration testing</Typography>
+                            <Typography>• E2E testing</Typography>
                           </Box>
                         </AccordionContent>
                       </AccordionItem>
@@ -432,7 +372,7 @@ export function Accordions() {
                 <AccordionTrigger>Deployment</AccordionTrigger>
                 <AccordionContent>
                   <Box className="space-y-4">
-                    <Typography variant="body2">
+                    <Typography>
                       Information about deploying the application to production.
                     </Typography>
 
@@ -443,13 +383,9 @@ export function Accordions() {
                         </AccordionTrigger>
                         <AccordionContent>
                           <Box className="space-y-2">
-                            <Typography variant="body2">
-                              • Staging setup process
-                            </Typography>
-                            <Typography variant="body2">
-                              • Testing in staging
-                            </Typography>
-                            <Typography variant="body2">
+                            <Typography>• Staging setup process</Typography>
+                            <Typography>• Testing in staging</Typography>
+                            <Typography>
                               • Staging to production workflow
                             </Typography>
                           </Box>
@@ -461,15 +397,9 @@ export function Accordions() {
                         </AccordionTrigger>
                         <AccordionContent>
                           <Box className="space-y-2">
-                            <Typography variant="body2">
-                              • Production deployment
-                            </Typography>
-                            <Typography variant="body2">
-                              • Monitoring and logging
-                            </Typography>
-                            <Typography variant="body2">
-                              • Backup and recovery
-                            </Typography>
+                            <Typography>• Production deployment</Typography>
+                            <Typography>• Monitoring and logging</Typography>
+                            <Typography>• Backup and recovery</Typography>
                           </Box>
                         </AccordionContent>
                       </AccordionItem>
@@ -511,23 +441,17 @@ export function Accordions() {
                     </AccordionTrigger>
                     <AccordionContent>
                       <Box className="space-y-3">
-                        <Typography variant="body2">
+                        <Typography>
                           To reset your password, follow these steps:
                         </Typography>
                         <Box className="space-y-2">
-                          <Typography variant="body2">
-                            1. Go to the login page
-                          </Typography>
-                          <Typography variant="body2">
-                            2. Click on "Forgot Password"
-                          </Typography>
-                          <Typography variant="body2">
-                            3. Enter your email address
-                          </Typography>
-                          <Typography variant="body2">
+                          <Typography>1. Go to the login page</Typography>
+                          <Typography>2. Click on "Forgot Password"</Typography>
+                          <Typography>3. Enter your email address</Typography>
+                          <Typography>
                             4. Check your email for reset instructions
                           </Typography>
-                          <Typography variant="body2">
+                          <Typography>
                             5. Follow the link to create a new password
                           </Typography>
                         </Box>
@@ -541,18 +465,18 @@ export function Accordions() {
                     </AccordionTrigger>
                     <AccordionContent>
                       <Box className="space-y-3">
-                        <Typography variant="body2">
+                        <Typography>
                           We accept the following payment methods:
                         </Typography>
                         <Box className="space-y-2">
-                          <Typography variant="body2">
+                          <Typography>
                             • Credit cards (Visa, MasterCard, American Express)
                           </Typography>
-                          <Typography variant="body2">• PayPal</Typography>
-                          <Typography variant="body2">
+                          <Typography>• PayPal</Typography>
+                          <Typography>
                             • Bank transfers (for annual plans)
                           </Typography>
-                          <Typography variant="body2">
+                          <Typography>
                             • Digital wallets (Apple Pay, Google Pay)
                           </Typography>
                         </Box>
@@ -566,21 +490,17 @@ export function Accordions() {
                     </AccordionTrigger>
                     <AccordionContent>
                       <Box className="space-y-3">
-                        <Typography variant="body2">
+                        <Typography>
                           You can reach our customer support team through
                           multiple channels:
                         </Typography>
                         <Box className="space-y-2">
-                          <Typography variant="body2">
-                            • Email: support@example.com
-                          </Typography>
-                          <Typography variant="body2">
-                            • Live chat: Available 24/7
-                          </Typography>
-                          <Typography variant="body2">
+                          <Typography>• Email: support@example.com</Typography>
+                          <Typography>• Live chat: Available 24/7</Typography>
+                          <Typography>
                             • Phone: 1-800-123-4567 (Mon-Fri, 9AM-6PM EST)
                           </Typography>
-                          <Typography variant="body2">
+                          <Typography>
                             • Help center: Comprehensive documentation
                           </Typography>
                         </Box>
@@ -615,38 +535,26 @@ export function Accordions() {
                       <Box className="space-y-4">
                         <Box className="grid grid-cols-2 gap-4">
                           <Box>
-                            <Typography
-                              variant="body2"
-                              className="font-medium mb-1"
-                            >
+                            <Typography className="font-medium mb-1">
                               First Name
                             </Typography>
                             <Box className="h-9 bg-neutral-100 dark:bg-neutral-800 rounded-md" />
                           </Box>
                           <Box>
-                            <Typography
-                              variant="body2"
-                              className="font-medium mb-1"
-                            >
+                            <Typography className="font-medium mb-1">
                               Last Name
                             </Typography>
                             <Box className="h-9 bg-neutral-100 dark:bg-neutral-800 rounded-md" />
                           </Box>
                         </Box>
                         <Box>
-                          <Typography
-                            variant="body2"
-                            className="font-medium mb-1"
-                          >
+                          <Typography className="font-medium mb-1">
                             Email
                           </Typography>
                           <Box className="h-9 bg-neutral-100 dark:bg-neutral-800 rounded-md" />
                         </Box>
                         <Box>
-                          <Typography
-                            variant="body2"
-                            className="font-medium mb-1"
-                          >
+                          <Typography className="font-medium mb-1">
                             Bio
                           </Typography>
                           <Box className="h-20 bg-neutral-100 dark:bg-neutral-800 rounded-md" />
@@ -663,19 +571,15 @@ export function Accordions() {
                     <AccordionContent>
                       <Box className="space-y-4">
                         <Box className="flex items-center justify-between">
-                          <Typography variant="body2">
-                            Email Notifications
-                          </Typography>
+                          <Typography>Email Notifications</Typography>
                           <Box className="w-12 h-6 bg-neutral-200 dark:bg-neutral-700 rounded-full" />
                         </Box>
                         <Box className="flex items-center justify-between">
-                          <Typography variant="body2">
-                            Push Notifications
-                          </Typography>
+                          <Typography>Push Notifications</Typography>
                           <Box className="w-12 h-6 bg-neutral-200 dark:bg-neutral-700 rounded-full" />
                         </Box>
                         <Box className="flex items-center justify-between">
-                          <Typography variant="body2">SMS Alerts</Typography>
+                          <Typography>SMS Alerts</Typography>
                           <Box className="w-12 h-6 bg-neutral-200 dark:bg-neutral-700 rounded-full" />
                         </Box>
                       </Box>
@@ -690,22 +594,15 @@ export function Accordions() {
                     <AccordionContent>
                       <Box className="space-y-4">
                         <Box className="flex items-center justify-between">
-                          <Typography variant="body2">
-                            Two-Factor Authentication
-                          </Typography>
+                          <Typography>Two-Factor Authentication</Typography>
                           <Box className="w-12 h-6 bg-neutral-200 dark:bg-neutral-700 rounded-full" />
                         </Box>
                         <Box className="flex items-center justify-between">
-                          <Typography variant="body2">
-                            Login Notifications
-                          </Typography>
+                          <Typography>Login Notifications</Typography>
                           <Box className="w-12 h-6 bg-neutral-200 dark:bg-neutral-700 rounded-full" />
                         </Box>
                         <Box>
-                          <Typography
-                            variant="body2"
-                            className="font-medium mb-1"
-                          >
+                          <Typography className="font-medium mb-1">
                             Change Password
                           </Typography>
                           <Box className="h-9 bg-neutral-100 dark:bg-neutral-800 rounded-md" />
@@ -733,54 +630,36 @@ export function Accordions() {
           <Box className="space-y-2">
             <Typography variant="h4">Accessibility</Typography>
             <Box className="space-y-2">
-              <Typography variant="body2">
+              <Typography>
                 • Use proper ARIA attributes for expanded/collapsed states
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • Ensure keyboard navigation works correctly
               </Typography>
-              <Typography variant="body2">
-                • Provide clear, descriptive trigger text
-              </Typography>
-              <Typography variant="body2">
-                • Use semantic HTML structure
-              </Typography>
+              <Typography>• Provide clear, descriptive trigger text</Typography>
+              <Typography>• Use semantic HTML structure</Typography>
             </Box>
           </Box>
 
           <Box className="space-y-2">
             <Typography variant="h4">Best Practices</Typography>
             <Box className="space-y-2">
-              <Typography variant="body2">
-                • Keep content concise and focused
-              </Typography>
-              <Typography variant="body2">
-                • Use consistent trigger styling
-              </Typography>
-              <Typography variant="body2">
-                • Consider the user's mental model
-              </Typography>
-              <Typography variant="body2">
-                • Limit nesting to 2-3 levels maximum
-              </Typography>
+              <Typography>• Keep content concise and focused</Typography>
+              <Typography>• Use consistent trigger styling</Typography>
+              <Typography>• Consider the user's mental model</Typography>
+              <Typography>• Limit nesting to 2-3 levels maximum</Typography>
             </Box>
           </Box>
 
           <Box className="space-y-2">
             <Typography variant="h4">Design Considerations</Typography>
             <Box className="space-y-2">
-              <Typography variant="body2">
-                • Use appropriate spacing and typography
-              </Typography>
-              <Typography variant="body2">
-                • Consider the content hierarchy
-              </Typography>
-              <Typography variant="body2">
+              <Typography>• Use appropriate spacing and typography</Typography>
+              <Typography>• Consider the content hierarchy</Typography>
+              <Typography>
                 • Ensure smooth animations and transitions
               </Typography>
-              <Typography variant="body2">
-                • Test with different content lengths
-              </Typography>
+              <Typography>• Test with different content lengths</Typography>
             </Box>
           </Box>
         </CardContent>

@@ -83,12 +83,7 @@ function InteractiveCodeDemoInner({
   return (
     <Box display="flex" flexDirection="column" gap={4} className={className}>
       <Card elevated={false} borderless={true}>
-        <CardContent
-          display="flex"
-          flexDirection="column"
-          gap={4}
-          className="min-h-[200px]"
-        >
+        <CardContent display="flex" flexDirection="column" gap={4}>
           {runnerError && (
             <Box
               style={{
@@ -117,7 +112,7 @@ function InteractiveCodeDemoInner({
                   justifyContent: 'center',
                 }}
               >
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   No scope provided. Please set up scope with useCodeDemoScope.
                 </Typography>
               </Box>
@@ -192,7 +187,7 @@ export function InteractiveCodeDemo(props: InteractiveCodeDemoProps) {
     <ClientOnly
       fallback={
         <Box className={cn('rounded-lg border bg-muted p-4', props.className)}>
-          <Typography variant="body2" className="text-muted-foreground">
+          <Typography className="text-muted-foreground">
             Loading interactive example...
           </Typography>
         </Box>

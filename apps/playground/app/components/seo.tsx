@@ -105,7 +105,7 @@ export const meta: MetaFunction = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Typography variant="body2">
+            <Typography>
               Automatically generate XML sitemaps from your Remix routes with
               customizable priorities and change frequencies.
             </Typography>
@@ -122,7 +122,7 @@ export const meta: MetaFunction = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Typography variant="body2">
+            <Typography>
               Generate robots.txt files with custom policies for search engine
               crawling control and sitemap references.
             </Typography>
@@ -139,7 +139,7 @@ export const meta: MetaFunction = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Typography variant="body2">
+            <Typography>
               Manage meta tags, Open Graph, Twitter Cards, and structured data
               for optimal search engine visibility.
             </Typography>
@@ -183,7 +183,7 @@ export const meta: MetaFunction = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Typography variant="body2">
+              <Typography>
                 The sitemap generator automatically discovers your routes and
                 creates a properly formatted XML sitemap for search engines.
               </Typography>
@@ -203,7 +203,7 @@ export const meta: MetaFunction = () => {
                 <Typography variant="h6" className="mb-2">
                   Route Configuration
                 </Typography>
-                <Typography variant="body2" className="mb-2">
+                <Typography className="mb-2">
                   Add SEO metadata to your route handles:
                 </Typography>
                 <Box className="bg-neutral-soft p-4 rounded-md">
@@ -234,36 +234,22 @@ export const meta: MetaFunction = () => {
                 </Typography>
                 <Box className="space-y-2">
                   <Box className="flex items-center gap-2">
-                    <Typography variant="body2" className="font-medium">
-                      siteUrl:
-                    </Typography>
-                    <Typography variant="body2">
-                      Your website's base URL
-                    </Typography>
+                    <Typography className="font-medium">siteUrl:</Typography>
+                    <Typography>Your website's base URL</Typography>
                   </Box>
                   <Box className="flex items-center gap-2">
-                    <Typography variant="body2" className="font-medium">
-                      headers:
-                    </Typography>
-                    <Typography variant="body2">
-                      Custom response headers
-                    </Typography>
+                    <Typography className="font-medium">headers:</Typography>
+                    <Typography>Custom response headers</Typography>
                   </Box>
                   <Box className="flex items-center gap-2">
-                    <Typography variant="body2" className="font-medium">
-                      changefreq:
-                    </Typography>
-                    <Typography variant="body2">
+                    <Typography className="font-medium">changefreq:</Typography>
+                    <Typography>
                       always, hourly, daily, weekly, monthly, yearly, never
                     </Typography>
                   </Box>
                   <Box className="flex items-center gap-2">
-                    <Typography variant="body2" className="font-medium">
-                      priority:
-                    </Typography>
-                    <Typography variant="body2">
-                      0.0 to 1.0 (search engine priority)
-                    </Typography>
+                    <Typography className="font-medium">priority:</Typography>
+                    <Typography>0.0 to 1.0 (search engine priority)</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -283,7 +269,7 @@ export const meta: MetaFunction = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Typography variant="body2">
+              <Typography>
                 Create robots.txt files to control search engine crawling
                 behavior and reference your sitemap location.
               </Typography>
@@ -310,28 +296,24 @@ export const meta: MetaFunction = () => {
                     </Typography>
                     <Box className="space-y-1">
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
-                          allow:
-                        </Typography>
-                        <Typography variant="body2">
+                        <Typography className="font-medium">allow:</Typography>
+                        <Typography>
                           Allow crawling of specific paths
                         </Typography>
                       </Box>
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           disallow:
                         </Typography>
-                        <Typography variant="body2">
+                        <Typography>
                           Prevent crawling of specific paths
                         </Typography>
                       </Box>
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           userAgent:
                         </Typography>
-                        <Typography variant="body2">
-                          Target specific crawlers
-                        </Typography>
+                        <Typography>Target specific crawlers</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -341,28 +323,22 @@ export const meta: MetaFunction = () => {
                     </Typography>
                     <Box className="space-y-1">
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           sitemap:
                         </Typography>
-                        <Typography variant="body2">
-                          Reference sitemap location
-                        </Typography>
+                        <Typography>Reference sitemap location</Typography>
                       </Box>
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           crawlDelay:
                         </Typography>
-                        <Typography variant="body2">
-                          Set crawling delay
-                        </Typography>
+                        <Typography>Set crawling delay</Typography>
                       </Box>
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           appendOnDefaultPolicies:
                         </Typography>
-                        <Typography variant="body2">
-                          Include default policies
-                        </Typography>
+                        <Typography>Include default policies</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -400,7 +376,7 @@ Sitemap: https://example.com/sitemap.xml`}</code>
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Typography variant="body2">
+              <Typography>
                 Optimize your pages for search engines and social media sharing
                 with comprehensive metadata management.
               </Typography>
@@ -420,7 +396,7 @@ Sitemap: https://example.com/sitemap.xml`}</code>
                 <Typography variant="h6" className="mb-2">
                   Structured Data
                 </Typography>
-                <Typography variant="body2" className="mb-2">
+                <Typography className="mb-2">
                   Add structured data for rich search results:
                 </Typography>
                 <Box className="bg-neutral-soft p-4 rounded-md">
@@ -441,36 +417,28 @@ Sitemap: https://example.com/sitemap.xml`}</code>
                     </Typography>
                     <Box className="space-y-1">
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
-                          title:
-                        </Typography>
-                        <Typography variant="body2">
-                          Page title (50-60 characters)
-                        </Typography>
+                        <Typography className="font-medium">title:</Typography>
+                        <Typography>Page title (50-60 characters)</Typography>
                       </Box>
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           description:
                         </Typography>
-                        <Typography variant="body2">
+                        <Typography>
                           Page description (150-160 characters)
                         </Typography>
                       </Box>
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           keywords:
                         </Typography>
-                        <Typography variant="body2">
+                        <Typography>
                           Target keywords (less important now)
                         </Typography>
                       </Box>
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
-                          robots:
-                        </Typography>
-                        <Typography variant="body2">
-                          Crawling instructions
-                        </Typography>
+                        <Typography className="font-medium">robots:</Typography>
+                        <Typography>Crawling instructions</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -480,36 +448,28 @@ Sitemap: https://example.com/sitemap.xml`}</code>
                     </Typography>
                     <Box className="space-y-1">
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           og:title:
                         </Typography>
-                        <Typography variant="body2">
-                          Open Graph title
-                        </Typography>
+                        <Typography>Open Graph title</Typography>
                       </Box>
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           og:description:
                         </Typography>
-                        <Typography variant="body2">
-                          Open Graph description
-                        </Typography>
+                        <Typography>Open Graph description</Typography>
                       </Box>
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           og:image:
                         </Typography>
-                        <Typography variant="body2">
-                          Social media image
-                        </Typography>
+                        <Typography>Social media image</Typography>
                       </Box>
                       <Box className="flex items-center gap-2">
-                        <Typography variant="body2" className="font-medium">
+                        <Typography className="font-medium">
                           twitter:card:
                         </Typography>
-                        <Typography variant="body2">
-                          Twitter card type
-                        </Typography>
+                        <Typography>Twitter card type</Typography>
                       </Box>
                     </Box>
                   </Box>
@@ -533,7 +493,7 @@ Sitemap: https://example.com/sitemap.xml`}</code>
             <Typography variant="h6" className="mb-2">
               Blog Application
             </Typography>
-            <Typography variant="body2" className="mb-2">
+            <Typography className="mb-2">
               A blog with dynamic sitemap generation and article metadata:
             </Typography>
             <Box className="bg-neutral-soft p-4 rounded-md">
@@ -574,7 +534,7 @@ export const handle: SEOHandle = {
             <Typography variant="h6" className="mb-2">
               E-commerce Product Pages
             </Typography>
-            <Typography variant="body2" className="mb-2">
+            <Typography className="mb-2">
               Product pages with structured data and dynamic metadata:
             </Typography>
             <Box className="bg-neutral-soft p-4 rounded-md">

@@ -536,7 +536,7 @@ const FetcherFormExample = () => {
 
         {fetcher.data && (
           <Box className="mt-4 p-4 bg-green-50 border border-green-200 rounded">
-            <Typography variant="body2" className="text-green-800">
+            <Typography className="text-green-800">
               Form submitted successfully! (Fetcher state: {fetcher.state})
             </Typography>
           </Box>
@@ -1348,7 +1348,7 @@ export const FormsShowcase = () => {
         <Typography variant="h1" className="text-2xl font-bold mb-2">
           Form Package Showcase
         </Typography>
-        <Typography variant="body2">
+        <Typography>
           Demonstrating all features of the @veraclins-dev/form package
         </Typography>
       </Box>

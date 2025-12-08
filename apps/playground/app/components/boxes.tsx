@@ -739,10 +739,7 @@ export function Boxes() {
               <Typography variant="h4" className="mb-4">
                 HTML Element Components
               </Typography>
-              <Typography
-                variant="body2"
-                className="text-muted-foreground mb-4"
-              >
+              <Typography className="text-muted-foreground mb-4">
                 Use Box with semantic HTML elements while maintaining all Box
                 props
               </Typography>
@@ -758,7 +755,7 @@ export function Boxes() {
                       component="section"
                       className="border rounded p-4 bg-secondary/10"
                     >
-                      <Typography variant="body2">
+                      <Typography>
                         Rendered as a semantic section element
                       </Typography>
                     </Box>
@@ -776,9 +773,7 @@ export function Boxes() {
                       component="article"
                       className="border rounded p-4 bg-secondary/10"
                     >
-                      <Typography variant="body2">
-                        Rendered as an article element
-                      </Typography>
+                      <Typography>Rendered as an article element</Typography>
                     </Box>
                   </CardContent>
                 </Card>
@@ -792,9 +787,7 @@ export function Boxes() {
                       component="aside"
                       className="border rounded p-4 bg-secondary/10"
                     >
-                      <Typography variant="body2">
-                        Rendered as an aside element
-                      </Typography>
+                      <Typography>Rendered as an aside element</Typography>
                     </Box>
                   </CardContent>
                 </Card>
@@ -810,9 +803,9 @@ export function Boxes() {
                       gap={2}
                       className="border rounded p-4 bg-secondary/10"
                     >
-                      <Typography variant="body2">Home</Typography>
-                      <Typography variant="body2">About</Typography>
-                      <Typography variant="body2">Contact</Typography>
+                      <Typography>Home</Typography>
+                      <Typography>About</Typography>
+                      <Typography>Contact</Typography>
                     </Box>
                   </CardContent>
                 </Card>
@@ -824,10 +817,7 @@ export function Boxes() {
               <Typography variant="h4" className="mb-4">
                 Custom React Components
               </Typography>
-              <Typography
-                variant="body2"
-                className="text-muted-foreground mb-4"
-              >
+              <Typography className="text-muted-foreground mb-4">
                 Use Box with custom React components for enhanced composition
               </Typography>
 
@@ -1020,13 +1010,10 @@ export function Boxes() {
                   <Box display="flex" items="start" gap={2}>
                     <Icon name="check" className="text-info mt-0.5" />
                     <Box>
-                      <Typography variant="body2" className="font-semibold">
+                      <Typography className="font-semibold">
                         Automatic Type Inference
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        className="text-muted-foreground"
-                      >
+                      <Typography className="text-muted-foreground">
                         TypeScript automatically infers the correct props based
                         on the component you pass
                       </Typography>
@@ -1035,13 +1022,10 @@ export function Boxes() {
                   <Box display="flex" items="start" gap={2}>
                     <Icon name="check" className="text-info mt-0.5" />
                     <Box>
-                      <Typography variant="body2" className="font-semibold">
+                      <Typography className="font-semibold">
                         Prop Merging
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        className="text-muted-foreground"
-                      >
+                      <Typography className="text-muted-foreground">
                         Box props are merged with your custom component's props
                         intelligently
                       </Typography>
@@ -1050,13 +1034,10 @@ export function Boxes() {
                   <Box display="flex" items="start" gap={2}>
                     <Icon name="check" className="text-info mt-0.5" />
                     <Box>
-                      <Typography variant="body2" className="font-semibold">
+                      <Typography className="font-semibold">
                         OverrideComponentProps
                       </Typography>
-                      <Typography
-                        variant="body2"
-                        className="text-muted-foreground"
-                      >
+                      <Typography className="text-muted-foreground">
                         Built on OverrideComponentProps for maximum type safety
                         and flexibility
                       </Typography>
@@ -1126,16 +1107,16 @@ export function Boxes() {
                         </Typography>
                         <Box display="flex" flexDirection="column" gap={1}>
                           <Box className="bg-primary/10 p-2 rounded cursor-pointer">
-                            <Typography variant="body2">Overview</Typography>
+                            <Typography>Overview</Typography>
                           </Box>
                           <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
-                            <Typography variant="body2">Analytics</Typography>
+                            <Typography>Analytics</Typography>
                           </Box>
                           <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
-                            <Typography variant="body2">Reports</Typography>
+                            <Typography>Reports</Typography>
                           </Box>
                           <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
-                            <Typography variant="body2">Settings</Typography>
+                            <Typography>Settings</Typography>
                           </Box>
                         </Box>
                       </Box>
@@ -1153,25 +1134,19 @@ export function Boxes() {
                             <Typography variant="h4" className="text-success">
                               $12,345
                             </Typography>
-                            <Typography variant="body2">
-                              Total Revenue
-                            </Typography>
+                            <Typography>Total Revenue</Typography>
                           </Box>
                           <Box className="bg-info/10 p-4 rounded border">
                             <Typography variant="h4" className="text-info">
                               1,234
                             </Typography>
-                            <Typography variant="body2">
-                              Active Users
-                            </Typography>
+                            <Typography>Active Users</Typography>
                           </Box>
                           <Box className="bg-warning/10 p-4 rounded border">
                             <Typography variant="h4" className="text-warning">
                               89%
                             </Typography>
-                            <Typography variant="body2">
-                              Conversion Rate
-                            </Typography>
+                            <Typography>Conversion Rate</Typography>
                           </Box>
                         </Box>
 
@@ -1238,17 +1213,13 @@ export function Boxes() {
                           </Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
-                              <Typography variant="body2">
-                                Electronics
-                              </Typography>
+                              <Typography>Electronics</Typography>
                             </Box>
                             <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
-                              <Typography variant="body2">Clothing</Typography>
+                              <Typography>Clothing</Typography>
                             </Box>
                             <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
-                              <Typography variant="body2">
-                                Home & Garden
-                              </Typography>
+                              <Typography>Home & Garden</Typography>
                             </Box>
                           </Box>
                         </Box>
@@ -1259,15 +1230,13 @@ export function Boxes() {
                           </Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
-                              <Typography variant="body2">$0 - $50</Typography>
+                              <Typography>$0 - $50</Typography>
                             </Box>
                             <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
-                              <Typography variant="body2">
-                                $50 - $100
-                              </Typography>
+                              <Typography>$50 - $100</Typography>
                             </Box>
                             <Box className="p-2 rounded cursor-pointer hover:bg-neutral/10">
-                              <Typography variant="body2">$100+</Typography>
+                              <Typography>$100+</Typography>
                             </Box>
                           </Box>
                         </Box>
@@ -1297,10 +1266,7 @@ export function Boxes() {
                               <Typography variant="h6" className="mb-1">
                                 Product {item}
                               </Typography>
-                              <Typography
-                                variant="body2"
-                                className="text-muted-foreground mb-2"
-                              >
+                              <Typography className="text-muted-foreground mb-2">
                                 Product description goes here
                               </Typography>
                               <Box
@@ -1348,7 +1314,7 @@ export function Boxes() {
                             >
                               {index + 1}
                             </Box>
-                            <Typography variant="body2">{step}</Typography>
+                            <Typography>{step}</Typography>
                           </Box>
                         ),
                       )}
@@ -1395,14 +1361,14 @@ export function Boxes() {
                           Help & Tips
                         </Typography>
                         <Box display="flex" flexDirection="column" gap={2}>
-                          <Typography variant="body2">
+                          <Typography>
                             • All fields marked with * are required
                           </Typography>
-                          <Typography variant="body2">
+                          <Typography>
                             • Use your legal name as it appears on official
                             documents
                           </Typography>
-                          <Typography variant="body2">
+                          <Typography>
                             • We'll use this email for important communications
                           </Typography>
                         </Box>
@@ -1469,21 +1435,19 @@ export function Boxes() {
                             <Box className="grid grid-cols-2 gap-3">
                               <Box className="bg-neutral/20 p-3 rounded text-center">
                                 <Icon name="home" className="mx-auto mb-1" />
-                                <Typography variant="body2">Home</Typography>
+                                <Typography>Home</Typography>
                               </Box>
                               <Box className="bg-neutral/20 p-3 rounded text-center">
                                 <Icon name="search" className="mx-auto mb-1" />
-                                <Typography variant="body2">Search</Typography>
+                                <Typography>Search</Typography>
                               </Box>
                               <Box className="bg-neutral/20 p-3 rounded text-center">
                                 <Icon name="heart" className="mx-auto mb-1" />
-                                <Typography variant="body2">
-                                  Favorites
-                                </Typography>
+                                <Typography>Favorites</Typography>
                               </Box>
                               <Box className="bg-neutral/20 p-3 rounded text-center">
                                 <Icon name="user" className="mx-auto mb-1" />
-                                <Typography variant="body2">Profile</Typography>
+                                <Typography>Profile</Typography>
                               </Box>
                             </Box>
                           </Box>
@@ -1531,10 +1495,7 @@ export function Boxes() {
                           <Typography variant="h6" className="mb-2">
                             Mobile
                           </Typography>
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground"
-                          >
+                          <Typography className="text-muted-foreground">
                             &lt; 768px
                           </Typography>
                           <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
@@ -1547,10 +1508,7 @@ export function Boxes() {
                           <Typography variant="h6" className="mb-2">
                             Tablet
                           </Typography>
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground"
-                          >
+                          <Typography className="text-muted-foreground">
                             768px - 1024px
                           </Typography>
                           <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
@@ -1563,10 +1521,7 @@ export function Boxes() {
                           <Typography variant="h6" className="mb-2">
                             Desktop
                           </Typography>
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground"
-                          >
+                          <Typography className="text-muted-foreground">
                             1024px - 1440px
                           </Typography>
                           <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
@@ -1579,10 +1534,7 @@ export function Boxes() {
                           <Typography variant="h6" className="mb-2">
                             Large
                           </Typography>
-                          <Typography
-                            variant="body2"
-                            className="text-muted-foreground"
-                          >
+                          <Typography className="text-muted-foreground">
                             &gt; 1440px
                           </Typography>
                           <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">

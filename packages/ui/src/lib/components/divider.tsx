@@ -66,9 +66,7 @@ function DividerWithText({
       )}
     >
       <Divider {...others} orientation={orientation} />
-      <Typography variant="body2" noWrap>
-        {text}
-      </Typography>
+      <Typography noWrap>{text}</Typography>
       <Divider {...others} orientation={orientation} />
     </Box>
   );

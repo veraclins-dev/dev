@@ -55,7 +55,7 @@ export function Avatars() {
                   <Typography variant="body1" className="font-medium">
                     John Doe
                   </Typography>
-                  <Typography variant="body2" className="text-neutral-600">
+                  <Typography className="text-neutral-600">
                     john@example.com
                   </Typography>
                 </Box>
@@ -74,7 +74,7 @@ export function Avatars() {
                   <Typography variant="body1" className="font-medium">
                     John Doe
                   </Typography>
-                  <Typography variant="body2" className="text-neutral-600">
+                  <Typography className="text-neutral-600">
                     john@example.com
                   </Typography>
                 </Box>
@@ -104,9 +104,7 @@ export function Avatars() {
                   />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
-                <Typography variant="body2" className="text-xs">
-                  xs (24px)
-                </Typography>
+                <Typography className="text-xs">xs (24px)</Typography>
               </Box>
               <Box className="text-center">
                 <Avatar className="size-8 mb-2">
@@ -116,9 +114,7 @@ export function Avatars() {
                   />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
-                <Typography variant="body2" className="text-xs">
-                  sm (32px)
-                </Typography>
+                <Typography className="text-xs">sm (32px)</Typography>
               </Box>
               <Box className="text-center">
                 <Avatar className="size-10 mb-2">
@@ -128,9 +124,7 @@ export function Avatars() {
                   />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
-                <Typography variant="body2" className="text-xs">
-                  md (40px)
-                </Typography>
+                <Typography className="text-xs">md (40px)</Typography>
               </Box>
               <Box className="text-center">
                 <Avatar className="size-12 mb-2">
@@ -140,9 +134,7 @@ export function Avatars() {
                   />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
-                <Typography variant="body2" className="text-xs">
-                  lg (48px)
-                </Typography>
+                <Typography className="text-xs">lg (48px)</Typography>
               </Box>
               <Box className="text-center">
                 <Avatar className="size-16 mb-2">
@@ -152,9 +144,7 @@ export function Avatars() {
                   />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
-                <Typography variant="body2" className="text-xs">
-                  xl (64px)
-                </Typography>
+                <Typography className="text-xs">xl (64px)</Typography>
               </Box>
               <Box className="text-center">
                 <Avatar className="size-20 mb-2">
@@ -164,9 +154,7 @@ export function Avatars() {
                   />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
-                <Typography variant="body2" className="text-xs">
-                  2xl (80px)
-                </Typography>
+                <Typography className="text-xs">2xl (80px)</Typography>
               </Box>
             </Box>
           </Box>
@@ -202,9 +190,7 @@ export function Avatars() {
                   <Typography variant="body1" className="font-medium">
                     John Doe
                   </Typography>
-                  <Typography variant="body2" className="text-green-600">
-                    Online
-                  </Typography>
+                  <Typography className="text-green-600">Online</Typography>
                 </Box>
               </Box>
             </Box>
@@ -227,9 +213,7 @@ export function Avatars() {
                   <Typography variant="body1" className="font-medium">
                     Lee Robinson
                   </Typography>
-                  <Typography variant="body2" className="text-neutral-500">
-                    Offline
-                  </Typography>
+                  <Typography className="text-neutral-500">Offline</Typography>
                 </Box>
               </Box>
             </Box>
@@ -252,9 +236,7 @@ export function Avatars() {
                   <Typography variant="body1" className="font-medium">
                     Vercel Team
                   </Typography>
-                  <Typography variant="body2" className="text-yellow-600">
-                    Busy
-                  </Typography>
+                  <Typography className="text-yellow-600">Busy</Typography>
                 </Box>
               </Box>
             </Box>
@@ -324,10 +306,8 @@ export function Avatars() {
                     <AvatarFallback>JD</AvatarFallback>
                   </Avatar>
                   <Box>
-                    <Typography variant="body2" className="font-medium">
-                      John Doe
-                    </Typography>
-                    <Typography variant="body2" className="text-neutral-600">
+                    <Typography className="font-medium">John Doe</Typography>
+                    <Typography className="text-neutral-600">
                       Frontend Developer
                     </Typography>
                   </Box>
@@ -341,10 +321,10 @@ export function Avatars() {
                     <AvatarFallback>LR</AvatarFallback>
                   </Avatar>
                   <Box>
-                    <Typography variant="body2" className="font-medium">
+                    <Typography className="font-medium">
                       Lee Robinson
                     </Typography>
-                    <Typography variant="body2" className="text-neutral-600">
+                    <Typography className="text-neutral-600">
                       Backend Developer
                     </Typography>
                   </Box>
@@ -358,10 +338,8 @@ export function Avatars() {
                     <AvatarFallback>VC</AvatarFallback>
                   </Avatar>
                   <Box>
-                    <Typography variant="body2" className="font-medium">
-                      Vercel Team
-                    </Typography>
-                    <Typography variant="body2" className="text-neutral-600">
+                    <Typography className="font-medium">Vercel Team</Typography>
+                    <Typography className="text-neutral-600">
                       DevOps Engineer
                     </Typography>
                   </Box>
@@ -397,7 +375,7 @@ export function Avatars() {
                   <Typography variant="body1" className="font-medium">
                     John Doe
                   </Typography>
-                  <Typography variant="body2" className="text-neutral-600">
+                  <Typography className="text-neutral-600">
                     Click to view profile
                   </Typography>
                 </Box>
@@ -424,7 +402,7 @@ export function Avatars() {
                   <Typography variant="body1" className="font-medium">
                     Lee Robinson
                   </Typography>
-                  <Typography variant="body2" className="text-neutral-600">
+                  <Typography className="text-neutral-600">
                     3 new messages
                   </Typography>
                 </Box>
@@ -461,18 +439,18 @@ export function Avatars() {
                   </Avatar>
                   <Box className="flex-1 space-y-2">
                     <Typography variant="h5">John Doe</Typography>
-                    <Typography variant="body2" className="text-neutral-600">
+                    <Typography className="text-neutral-600">
                       Frontend Developer at TechCorp
                     </Typography>
                     <Box className="flex items-center gap-2">
                       <Icon name="map-pin" className="text-neutral-500" />
-                      <Typography variant="body2" className="text-neutral-600">
+                      <Typography className="text-neutral-600">
                         San Francisco, CA
                       </Typography>
                     </Box>
                     <Box className="flex items-center gap-2">
                       <Icon name="calendar" className="text-neutral-500" />
-                      <Typography variant="body2" className="text-neutral-600">
+                      <Typography className="text-neutral-600">
                         Joined January 2023
                       </Typography>
                     </Box>
@@ -509,10 +487,7 @@ export function Avatars() {
                         <Typography variant="body1" className="font-medium">
                           John Doe
                         </Typography>
-                        <Typography
-                          variant="body2"
-                          className="text-neutral-600"
-                        >
+                        <Typography className="text-neutral-600">
                           Frontend Developer
                         </Typography>
                       </Box>
@@ -533,10 +508,7 @@ export function Avatars() {
                         <Typography variant="body1" className="font-medium">
                           Lee Robinson
                         </Typography>
-                        <Typography
-                          variant="body2"
-                          className="text-neutral-600"
-                        >
+                        <Typography className="text-neutral-600">
                           Backend Developer
                         </Typography>
                       </Box>
@@ -557,10 +529,7 @@ export function Avatars() {
                         <Typography variant="body1" className="font-medium">
                           Vercel Team
                         </Typography>
-                        <Typography
-                          variant="body2"
-                          className="text-neutral-600"
-                        >
+                        <Typography className="text-neutral-600">
                           DevOps Engineer
                         </Typography>
                       </Box>
@@ -595,7 +564,7 @@ export function Avatars() {
                       <Typography variant="body1" className="font-medium">
                         John Doe
                       </Typography>
-                      <Typography variant="body2" className="text-neutral-600">
+                      <Typography className="text-neutral-600">
                         Last seen 2 hours ago
                       </Typography>
                     </Box>
@@ -614,7 +583,7 @@ export function Avatars() {
                       <Typography variant="body1" className="font-medium">
                         Lee Robinson
                       </Typography>
-                      <Typography variant="body2" className="text-neutral-600">
+                      <Typography className="text-neutral-600">
                         Last seen yesterday
                       </Typography>
                     </Box>
@@ -633,7 +602,7 @@ export function Avatars() {
                       <Typography variant="body1" className="font-medium">
                         Vercel Team
                       </Typography>
-                      <Typography variant="body2" className="text-neutral-600">
+                      <Typography className="text-neutral-600">
                         Last seen 1 week ago
                       </Typography>
                     </Box>
@@ -659,52 +628,48 @@ export function Avatars() {
           <Box className="space-y-2">
             <Typography variant="h4">Accessibility</Typography>
             <Box className="space-y-2">
-              <Typography variant="body2">
+              <Typography>
                 • Always provide alt text for avatar images
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • Use descriptive fallback text (initials or name)
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • Ensure proper contrast ratios for fallback backgrounds
               </Typography>
-              <Typography variant="body2">
-                • Use ARIA labels for interactive avatars
-              </Typography>
+              <Typography>• Use ARIA labels for interactive avatars</Typography>
             </Box>
           </Box>
 
           <Box className="space-y-2">
             <Typography variant="h4">Best Practices</Typography>
             <Box className="space-y-2">
-              <Typography variant="body2">
+              <Typography>
                 • Use consistent avatar sizes within the same context
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • Provide meaningful fallback content when images fail
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • Consider using status indicators for real-time applications
               </Typography>
-              <Typography variant="body2">
-                • Optimize avatar images for web use
-              </Typography>
+              <Typography>• Optimize avatar images for web use</Typography>
             </Box>
           </Box>
 
           <Box className="space-y-2">
             <Typography variant="h4">Design Considerations</Typography>
             <Box className="space-y-2">
-              <Typography variant="body2">
+              <Typography>
                 • Choose appropriate avatar sizes for the context
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • Use consistent styling across all avatars
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • Consider the visual hierarchy when grouping avatars
               </Typography>
-              <Typography variant="body2">
+              <Typography>
                 • Ensure avatars work well in both light and dark themes
               </Typography>
             </Box>

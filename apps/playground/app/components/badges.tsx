@@ -188,10 +188,7 @@ export function Badges() {
                         <Typography variant="h6" className="mb-2">
                           Wireless Headphones
                         </Typography>
-                        <Typography
-                          variant="body2"
-                          className="text-muted-foreground mb-3"
-                        >
+                        <Typography className="text-muted-foreground mb-3">
                           Premium noise-canceling wireless headphones with
                           30-hour battery life.
                         </Typography>
@@ -205,10 +202,7 @@ export function Badges() {
                             <Typography variant="h6" className="text-primary">
                               $199.99
                             </Typography>
-                            <Typography
-                              variant="body2"
-                              className="line-through text-muted-foreground"
-                            >
+                            <Typography className="line-through text-muted-foreground">
                               $249.99
                             </Typography>
                           </Box>
@@ -255,10 +249,7 @@ export function Badges() {
                         <Typography variant="h6" className="mb-2">
                           Smart Watch
                         </Typography>
-                        <Typography
-                          variant="body2"
-                          className="text-muted-foreground mb-3"
-                        >
+                        <Typography className="text-muted-foreground mb-3">
                           Advanced fitness tracking with heart rate monitoring
                           and GPS.
                         </Typography>
@@ -314,10 +305,7 @@ export function Badges() {
                         <Typography variant="h6" className="mb-2">
                           Gaming Laptop
                         </Typography>
-                        <Typography
-                          variant="body2"
-                          className="text-muted-foreground mb-3"
-                        >
+                        <Typography className="text-muted-foreground mb-3">
                           High-performance gaming laptop with RTX 4080 and 32GB
                           RAM.
                         </Typography>
@@ -439,10 +427,7 @@ export function Badges() {
                                 </Badge>
                               </Box>
                             </Box>
-                            <Typography
-                              variant="body2"
-                              className="text-muted-foreground mb-2"
-                            >
+                            <Typography className="text-muted-foreground mb-2">
                               {notification.message}
                             </Typography>
                             <Typography
@@ -470,7 +455,7 @@ export function Badges() {
                             >
                               12
                             </Typography>
-                            <Typography variant="body2">Unread</Typography>
+                            <Typography>Unread</Typography>
                             <Badge
                               variant="solid"
                               color="primary"
@@ -487,7 +472,7 @@ export function Badges() {
                             >
                               45
                             </Typography>
-                            <Typography variant="body2">Read Today</Typography>
+                            <Typography>Read Today</Typography>
                             <Badge
                               variant="soft"
                               color="success"
@@ -509,9 +494,7 @@ export function Badges() {
                               justify="between"
                               items="center"
                             >
-                              <Typography variant="body2">
-                                High Priority
-                              </Typography>
+                              <Typography>High Priority</Typography>
                               <Badge
                                 variant="solid"
                                 color="destructive"
@@ -525,9 +508,7 @@ export function Badges() {
                               justify="between"
                               items="center"
                             >
-                              <Typography variant="body2">
-                                Medium Priority
-                              </Typography>
+                              <Typography>Medium Priority</Typography>
                               <Badge
                                 variant="solid"
                                 color="warning"
@@ -541,9 +522,7 @@ export function Badges() {
                               justify="between"
                               items="center"
                             >
-                              <Typography variant="body2">
-                                Low Priority
-                              </Typography>
+                              <Typography>Low Priority</Typography>
                               <Badge
                                 variant="solid"
                                 color="info"
@@ -690,10 +669,7 @@ export function Badges() {
                                 {task.progress}
                               </Badge>
                             </Box>
-                            <Typography
-                              variant="body2"
-                              className="text-muted-foreground mb-2"
-                            >
+                            <Typography className="text-muted-foreground mb-2">
                               Assigned to: {task.assignee}
                             </Typography>
                             <Box display="flex" gap={1} flexWrap="wrap">

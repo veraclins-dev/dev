@@ -177,7 +177,7 @@ export function Images() {
                     </Badge>
                   )}
                 </CardTitle>
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   {example.description}
                 </Typography>
               </CardHeader>
@@ -227,7 +227,7 @@ export function Images() {
             <Card key={index} className="overflow-hidden">
               <CardHeader>
                 <CardTitle>{example.title}</CardTitle>
-                <Typography variant="body2" className="text-muted-foreground">
+                <Typography className="text-muted-foreground">
                   {example.description}
                 </Typography>
               </CardHeader>
@@ -292,10 +292,7 @@ export function Images() {
               height={600}
               className="rounded-lg"
             />
-            <Typography
-              variant="body2"
-              className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-xs"
-            >
+            <Typography className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded text-xs">
               Click to close
             </Typography>
           </Box>

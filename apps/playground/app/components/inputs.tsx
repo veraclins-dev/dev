@@ -1306,10 +1306,7 @@ export function Inputs() {
 
             {/* Active Filters */}
             <Box>
-              <Typography
-                variant="body2"
-                className="text-muted-foreground mb-2"
-              >
+              <Typography className="text-muted-foreground mb-2">
                 Active Filters:
               </Typography>
               <Box display="flex" gap={2} flexWrap="wrap">

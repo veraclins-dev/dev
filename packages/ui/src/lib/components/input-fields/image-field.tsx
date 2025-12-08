@@ -105,9 +105,7 @@ export const ImageField = ({
                 className="absolute bottom-4 right-1/2 translate-x-1/2 transform rounded border bg-neutral px-1 py-0.5 text-neutral-foreground"
               >
                 {loadingIndicator && loadingIndicator}
-                <Typography variant="body2" className="text-nowrap">
-                  Please wait...
-                </Typography>
+                <Typography className="text-nowrap">Please wait...</Typography>
               </Box>
             )}
           </>

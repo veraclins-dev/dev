@@ -76,11 +76,10 @@ The component automatically handles page item generation and ellipsis placement 
 export default meta;
 type Story = StoryObj<typeof Pagination>;
 
-interface PaginationWrapperProps
-  extends Omit<
-    React.ComponentProps<typeof Pagination>,
-    'currentPage' | 'onPageChange' | 'totalPages'
-  > {
+interface PaginationWrapperProps extends Omit<
+  React.ComponentProps<typeof Pagination>,
+  'currentPage' | 'onPageChange' | 'totalPages'
+> {
   initialPage?: number;
   totalPages?: number;
 }
@@ -94,7 +93,7 @@ function PaginationWrapper({
 
   return (
     <Box display="flex" flexDirection="column" gap={4} items="center" p={8}>
-      <Typography variant="body2" className="text-muted-foreground">
+      <Typography className="text-muted-foreground">
         Page {currentPage} of {totalPages}
       </Typography>
       <Pagination
