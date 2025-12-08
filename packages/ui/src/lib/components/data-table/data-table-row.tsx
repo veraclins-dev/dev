@@ -26,11 +26,27 @@ export function DataTableDraggableRow<TData extends WithId>({
         transition: transition,
       }}
     >
-      {row.getVisibleCells().map((cell) => (
-        <TableCell key={cell.id}>
-          {flexRender(cell.column.columnDef.cell, cell.getContext())}
-        </TableCell>
-      ))}
+      {row.getVisibleCells().map((cell) => {
+        const meta = cell.column.columnDef.meta as
+          | { hasExplicitWidth?: boolean }
+          | undefined;
+        const hasExplicitWidth = meta?.hasExplicitWidth ?? false;
+        return (
+          <TableCell
+            key={cell.id}
+            style={
+              hasExplicitWidth
+                ? {
+                    width: `var(--col-${cell.column.id}-size)`,
+                    maxWidth: `var(--col-${cell.column.id}-size)`,
+                  }
+                : undefined
+            }
+          >
+            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          </TableCell>
+        );
+      })}
     </TableRow>
   );
 }
@@ -46,11 +62,27 @@ export function DataTableRow<TData extends WithId>({
     <DataTableDraggableRow row={row} />
   ) : (
     <TableRow data-state={row.getIsSelected() && 'selected'}>
-      {row.getVisibleCells().map((cell) => (
-        <TableCell key={cell.id}>
-          {flexRender(cell.column.columnDef.cell, cell.getContext())}
-        </TableCell>
-      ))}
+      {row.getVisibleCells().map((cell) => {
+        const meta = cell.column.columnDef.meta as
+          | { hasExplicitWidth?: boolean }
+          | undefined;
+        const hasExplicitWidth = meta?.hasExplicitWidth ?? false;
+        return (
+          <TableCell
+            key={cell.id}
+            style={
+              hasExplicitWidth
+                ? {
+                    width: `var(--col-${cell.column.id}-size)`,
+                    minWidth: `var(--col-${cell.column.id}-size)`,
+                  }
+                : undefined
+            }
+          >
+            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          </TableCell>
+        );
+      })}
     </TableRow>
   );
 }

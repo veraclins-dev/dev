@@ -114,6 +114,36 @@ function DataTable<TData extends WithId, TValue = unknown>({
     [data],
   );
 
+  /**
+   * Instead of calling `column.getSize()` on every render for every header
+   * and especially every data cell (very expensive),
+   * we will calculate all column sizes at once at the root table level in a useMemo
+   * and pass the column sizes down as CSS variables to the <table> element.
+   *
+   * Reference: https://tanstack.com/table/v8/docs/framework/react/examples/column-resizing-performant
+   */
+  const columnSizing = table.getState().columnSizing;
+  const flatHeaders = table.getFlatHeaders();
+
+  const columnSizeVars = useMemo(() => {
+    const colSizes: Record<string, string> = {};
+    for (let i = 0; i < flatHeaders.length; i++) {
+      const header = flatHeaders[i];
+      if (!header) continue;
+
+      const meta = header.column.columnDef.meta as
+        | { hasExplicitWidth?: boolean }
+        | undefined;
+      const hasExplicitWidth = meta?.hasExplicitWidth ?? false;
+
+      if (hasExplicitWidth) {
+        const size = header.column.getSize();
+        colSizes[`--col-${header.column.id}-size`] = `${size}px`;
+      }
+    }
+    return colSizes;
+  }, [columnSizing, flatHeaders]);
+
   return (
     <Box display="flex" flexDirection="column" gap={4}>
       <DataTableToolbar
@@ -129,51 +159,68 @@ function DataTable<TData extends WithId, TValue = unknown>({
       />
       <Box className="rounded-md border">
         <DataTableDndContext dataIds={dataIds} setData={setData}>
-          <Table>
-            <TableHeader>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => {
-                    return (
-                      <TableHead key={header.id} colSpan={header.colSpan}>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
-                      </TableHead>
-                    );
-                  })}
-                </TableRow>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {table.getRowModel().rows?.length ? (
-                <SortableContext
-                  items={dataIds}
-                  strategy={verticalListSortingStrategy}
-                >
-                  {table.getRowModel().rows.map((row) => (
-                    <DataTableRow
-                      key={row.id}
-                      row={row}
-                      draggable={Boolean(config.draggable)}
-                    />
-                  ))}
-                </SortableContext>
-              ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan={config.columns.length}
-                    className="h-24 text-center"
+          <Box style={columnSizeVars}>
+            <Table>
+              <TableHeader>
+                {table.getHeaderGroups().map((headerGroup) => (
+                  <TableRow key={headerGroup.id}>
+                    {headerGroup.headers.map((header) => {
+                      const meta = header.column.columnDef.meta as
+                        | { hasExplicitWidth?: boolean }
+                        | undefined;
+                      const hasExplicitWidth = meta?.hasExplicitWidth ?? false;
+                      return (
+                        <TableHead
+                          key={header.id}
+                          colSpan={header.colSpan}
+                          style={
+                            hasExplicitWidth
+                              ? {
+                                  width: `var(--col-${header.column.id}-size)`,
+                                  maxWidth: `var(--col-${header.column.id}-size)`,
+                                }
+                              : undefined
+                          }
+                        >
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                        </TableHead>
+                      );
+                    })}
+                  </TableRow>
+                ))}
+              </TableHeader>
+              <TableBody>
+                {table.getRowModel().rows?.length ? (
+                  <SortableContext
+                    items={dataIds}
+                    strategy={verticalListSortingStrategy}
                   >
-                    No results.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
+                    {table.getRowModel().rows.map((row) => (
+                      <DataTableRow
+                        key={row.id}
+                        row={row}
+                        draggable={Boolean(config.draggable)}
+                      />
+                    ))}
+                  </SortableContext>
+                ) : (
+                  <TableRow>
+                    <TableCell
+                      colSpan={config.columns.length}
+                      className="h-24 text-center"
+                    >
+                      No results.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </Box>
         </DataTableDndContext>
       </Box>
       {!disablePagination && <DataTablePagination table={table} />}

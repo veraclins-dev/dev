@@ -76,6 +76,7 @@ const getControlColumn = <TData extends WithId, TValue>(
         enableSorting: false,
         enableHiding: false,
         size: 40,
+        meta: { hasExplicitWidth: true },
       };
     case 'drag':
       return {
@@ -85,6 +86,7 @@ const getControlColumn = <TData extends WithId, TValue>(
         enableSorting: false,
         enableHiding: false,
         size: 40,
+        meta: { hasExplicitWidth: true },
       };
     case 'actions':
       return {
@@ -95,6 +97,7 @@ const getControlColumn = <TData extends WithId, TValue>(
         enableSorting: false,
         enableHiding: false,
         size: 80,
+        meta: { hasExplicitWidth: true },
       };
     default:
       // @ts-expect-error This should never happen unless type check is disabled
@@ -167,6 +170,10 @@ function generateColumnsConfig<TData extends WithId, TValue>(
         typeof config.width === 'string'
           ? parseInt(config.width)
           : config.width;
+      column.meta = {
+        ...column.meta,
+        hasExplicitWidth: true,
+      };
     }
 
     if (config.align) {
