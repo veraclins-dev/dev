@@ -74,7 +74,7 @@ export function DataTableRow<TData extends WithId>({
               hasExplicitWidth
                 ? {
                     width: `var(--col-${cell.column.id}-size)`,
-                    minWidth: `var(--col-${cell.column.id}-size)`,
+                    maxWidth: `var(--col-${cell.column.id}-size)`,
                   }
                 : undefined
             }
