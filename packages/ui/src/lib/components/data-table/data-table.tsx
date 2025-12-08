@@ -43,6 +43,7 @@ import { type WithId } from './types';
 import { type ColumnConfig, generateColumnsConfig } from './utils';
 
 interface DataTableProps<TData extends WithId, TValue = unknown> {
+  disablePagination?: boolean;
   columnsConfig: ColumnConfig<TData, TValue>[];
   data: TData[];
   filters?: DataTableToolbarProps<TData, TValue>['filters'];
@@ -62,6 +63,7 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 };
 
 function DataTable<TData extends WithId, TValue = unknown>({
+  disablePagination = false,
   columnsConfig,
   data: initialData,
   filters,
@@ -104,6 +106,7 @@ function DataTable<TData extends WithId, TValue = unknown>({
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
+    manualPagination: disablePagination,
   });
 
   const dataIds = useMemo<UniqueIdentifier[]>(
@@ -173,7 +176,7 @@ function DataTable<TData extends WithId, TValue = unknown>({
           </Table>
         </DataTableDndContext>
       </Box>
-      <DataTablePagination table={table} />
+      {!disablePagination && <DataTablePagination table={table} />}
     </Box>
   );
 }

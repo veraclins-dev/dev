@@ -229,6 +229,7 @@ export const DataTableStandard = () => (
           },
         ]}
         data={data}
+        disablePagination={true}
         filters={{
           faceted: {
             status: { options: statuses, type: 'dropdown' },
