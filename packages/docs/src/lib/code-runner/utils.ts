@@ -103,7 +103,11 @@ export const generateElement = (
         const transformed = transform(normalized);
         // Log full transformed code in development for debugging
         if (process.env['NODE_ENV'] === 'development') {
-          console.info('[generateElement] Full transformed code:', transformed);
+          console.error(
+            '[generateElement] Full transformed code:',
+            error,
+            transformed,
+          );
         }
       } catch (innerError) {
         throw new Error(
