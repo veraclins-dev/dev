@@ -25,7 +25,6 @@ export const columns: DataTableProps<Task>['columnsConfig'] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Title" />
     ),
-    width: 650,
     cell: ({ row }) => {
       const label = labels.find((label) => label.value === row.original.label);
 

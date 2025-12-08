@@ -1,4 +1,7 @@
 import { type Table } from '@tanstack/react-table';
+import { useEffect, useState } from 'react';
+
+import { useDebounce } from '@veraclins-dev/react-utils';
 
 import { Box } from '../../ui/box';
 import { Button } from '../../ui/button';
@@ -10,13 +13,15 @@ import { DataTableFacetedFilter } from './data-table-faceted-filter';
 import { DataTableViewOptions } from './data-table-view-options';
 import { type DataTableFacetedFilterProps, type WithId } from './types';
 
+type GlobalFilter = {
+  fn: (value: string) => void;
+  value: string;
+};
+
 export interface DataTableToolbarProps<TData extends WithId, TValue> {
   table: Table<TData>;
   filters?: {
-    global?: {
-      fn: (value: string) => void;
-      value: string;
-    };
+    global?: GlobalFilter;
     faceted?: {
       [key: string]: {
         options?: DataTableFacetedFilterProps<TData, TValue>['options'];
@@ -26,12 +31,49 @@ export interface DataTableToolbarProps<TData extends WithId, TValue> {
     };
   };
   bulkActions?: ItemOption[];
+  filterPlaceholder?: string;
+}
+
+interface DataTableToolbarFilterProps {
+  filter: GlobalFilter;
+  placeholder?: string;
+}
+
+function DataTableToolbarFilter({
+  filter,
+  placeholder = 'Filter results...',
+}: DataTableToolbarFilterProps) {
+  const [filterValue, setFilterValue] = useState(filter.value ?? '');
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterValue(event.target.value);
+  };
+
+  const handleFilterSubmit = (value: string) => {
+    filter.fn(value);
+  };
+
+  const debouncedHandleFilterChange = useDebounce(handleFilterSubmit, 300);
+
+  useEffect(() => {
+    debouncedHandleFilterChange(filterValue);
+  }, [debouncedHandleFilterChange, filterValue]);
+
+  return (
+    <Input
+      placeholder={placeholder}
+      value={filterValue}
+      onChange={handleFilterChange}
+      className="h-8 w-[150px] lg:w-[250px] max-w-xs border"
+    />
+  );
 }
 
 export function DataTableToolbar<TData extends WithId, TValue>({
   table,
   filters: { global, faceted } = {},
   bulkActions,
+  filterPlaceholder,
 }: DataTableToolbarProps<TData, TValue>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const hasSelectedRows = table.getFilteredSelectedRowModel().rows.length > 0;
@@ -44,11 +86,9 @@ export function DataTableToolbar<TData extends WithId, TValue>({
     >
       <Box display="flex" items="center" gap={2} flex="1">
         {global?.fn && (
-          <Input
-            placeholder="Filter tasks..."
-            value={global.value ?? ''}
-            onChange={(event) => global.fn(event.target.value)}
-            className="h-8 w-[150px] lg:w-[250px] max-w-xs border"
+          <DataTableToolbarFilter
+            placeholder={filterPlaceholder}
+            filter={global}
           />
         )}
         {faceted &&

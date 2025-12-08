@@ -24,14 +24,23 @@ export function DataTablePagination<TData extends WithId>({
   const currentPage = paginationState.pageIndex + 1;
   const totalPages = table.getPageCount();
 
-  return (
-    <Box display="flex" items="center" justify="between" className="px-2">
-      <Box flex="1">
-        <Typography>
-          {table.getFilteredSelectedRowModel().rows.length} of{' '}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </Typography>
-      </Box>
+  const hasSelectedRows = table.getFilteredSelectedRowModel().rows.length > 0;
+
+  return totalPages > 1 ? (
+    <Box
+      display="flex"
+      items="center"
+      justify={hasSelectedRows ? 'between' : 'end'}
+      className="px-2"
+    >
+      {hasSelectedRows && (
+        <Box flex="1">
+          <Typography>
+            {table.getFilteredSelectedRowModel().rows.length} of{' '}
+            {table.getFilteredRowModel().rows.length} row(s) selected.
+          </Typography>
+        </Box>
+      )}
       <Box display="flex" items="center" gap={6} className="lg:gap-8">
         <Box display="flex" items="center" gap={2}>
           <Typography className="font-medium">Rows per page</Typography>
@@ -74,5 +83,5 @@ export function DataTablePagination<TData extends WithId>({
         />
       </Box>
     </Box>
-  );
+  ) : null;
 }

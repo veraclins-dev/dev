@@ -28,7 +28,7 @@ export function DataTableViewOptions<TData extends WithId>({
           buttonSize="sm"
           className="ml-auto hidden h-8 lg:flex"
         >
-          <Icon name="mixer-horizontal">View</Icon>
+          <Icon name="mixer-horizontal">Columns</Icon>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">

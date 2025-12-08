@@ -173,7 +173,7 @@ export const DataTableWithDnd = () => (
             ],
           },
         ]}
-        data={[...data, ...data, ...data, ...data]}
+        data={data}
         filters={{
           faceted: {
             status: { options: statuses, type: 'dropdown' },
@@ -229,7 +229,6 @@ export const DataTableStandard = () => (
           },
         ]}
         data={data}
-        disablePagination={true}
         filters={{
           faceted: {
             status: { options: statuses, type: 'dropdown' },
