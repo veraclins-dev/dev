@@ -1,8 +1,16 @@
+import { type BorderVariants, borderVariants } from './border';
+import { type FlexVariants, flexVariants } from './flex';
+import { type GridVariants, gridVariants } from './grid';
 import { type LayoutVariants, layoutVariants } from './layout';
 import { type SizeVariants, sizeVariants } from './size';
 import { type SpaceVariants, spaceVariants } from './spaces';
 
-type StyleProps = LayoutVariants & SizeVariants & SpaceVariants;
+type StyleProps = LayoutVariants &
+  SizeVariants &
+  SpaceVariants &
+  FlexVariants &
+  GridVariants &
+  BorderVariants;
 
 type StylePropsKeys = keyof StyleProps;
 
@@ -13,6 +21,12 @@ const styleProps: StyleProps = {
   ...sizeVariants,
   // Layout variants
   ...layoutVariants,
+  // Flex variants
+  ...flexVariants,
+  // Grid variants
+  ...gridVariants,
+  // Border variants
+  ...borderVariants,
 };
 
 /**
@@ -71,9 +85,14 @@ function extractStyleProps<T extends Record<string, unknown>>(
 }
 
 export {
+  borderVariants,
   extractStyleProps,
+  flexVariants,
+  gridVariants,
   layoutVariants,
   sizeVariants,
   spaceVariants,
   styleProps,
 };
+
+export type { StyleProps };

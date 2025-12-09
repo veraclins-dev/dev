@@ -33,8 +33,7 @@ export type ContainerElement =
   | 'output';
 
 interface InternalBoxProps
-  extends React.HTMLAttributes<HTMLElement>,
-    BoxVariants {}
+  extends React.HTMLAttributes<HTMLElement>, BoxVariants {}
 
 type BoxProps<P extends ContainerElement | CustomComponent = 'div'> =
   OverrideComponentProps<P, InternalBoxProps>;
@@ -55,32 +54,15 @@ type BoxProps<P extends ContainerElement | CustomComponent = 'div'> =
 function Box<P extends ContainerElement | CustomComponent = 'div'>({
   component,
   className,
-  // Layout props
-  flexDirection,
-  items,
-  justify,
-  flexWrap,
-  flex,
   ...props
 }: BoxProps<P>) {
   const Component = (component ?? 'div') as React.ElementType;
 
-  // Extract style props from the remaining props
   const { styleProps, others } = extractStyleProps(props);
   return (
     <Component
       data-slot="box"
-      className={cn(
-        boxVariants({
-          ...styleProps,
-          flexDirection,
-          flexWrap,
-          items,
-          justify,
-          flex,
-          className,
-        }),
-      )}
+      className={cn(boxVariants({ ...styleProps, className }))}
       {...others}
     />
   );
