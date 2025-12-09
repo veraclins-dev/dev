@@ -182,7 +182,7 @@ export function DocsShowcase() {
         <Typography variant="h1" className="mb-2">
           Docs Package
         </Typography>
-        <Typography variant="body1" className="text-muted-foreground">
+        <Typography variant="body1" className="text-foreground/80">
           Interactive code demo components for documentation with live editing,
           syntax highlighting, and code execution using react-runner.
         </Typography>
@@ -246,7 +246,7 @@ export function DocsShowcase() {
               <Typography variant="h4" className="mb-2">
                 ✨ Interactive Code Editing
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Users can edit code directly in the browser and see changes in
                 real-time using react-runner.
               </Typography>
@@ -255,7 +255,7 @@ export function DocsShowcase() {
               <Typography variant="h4" className="mb-2">
                 🎨 Syntax Highlighting
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Beautiful syntax highlighting for multiple languages using
                 Prism.js and react-syntax-highlighter.
               </Typography>
@@ -264,7 +264,7 @@ export function DocsShowcase() {
               <Typography variant="h4" className="mb-2">
                 📋 Copy to Clipboard
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 One-click code copying with toast notifications for better user
                 experience.
               </Typography>
@@ -273,7 +273,7 @@ export function DocsShowcase() {
               <Typography variant="h4" className="mb-2">
                 🔄 Static & Interactive Modes
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Toggle between static code display and interactive editing modes
                 based on your needs.
               </Typography>
@@ -282,7 +282,7 @@ export function DocsShowcase() {
               <Typography variant="h4" className="mb-2">
                 🎯 Customizable Scope
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Provide custom scope for code execution, allowing you to include
                 your own components and utilities.
               </Typography>
@@ -296,7 +296,7 @@ export function DocsShowcase() {
         <Typography variant="h2" className="mb-4">
           @veraclins-dev/docs
         </Typography>
-        <Typography variant="body1" className="text-muted-foreground mb-8">
+        <Typography variant="body1" className="text-foreground/80 mb-8">
           React 19 compatible fork of react-runner. Run your React code on the
           go with full TypeScript support.
         </Typography>
@@ -361,7 +361,7 @@ export function DocsShowcase() {
               <Typography variant="h4" className="mb-2">
                 ✅ React 19 Compatible
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Updated peer dependencies to support React 19, ensuring
                 compatibility with the latest React features.
               </Typography>
@@ -370,7 +370,7 @@ export function DocsShowcase() {
               <Typography variant="h4" className="mb-2">
                 🚀 Functional Components
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Modern functional component implementation using React hooks for
                 better performance and developer experience.
               </Typography>
@@ -379,7 +379,7 @@ export function DocsShowcase() {
               <Typography variant="h4" className="mb-2">
                 📦 TypeScript Support
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Full TypeScript support with proper type definitions for all
                 APIs and components.
               </Typography>
@@ -388,7 +388,7 @@ export function DocsShowcase() {
               <Typography variant="h4" className="mb-2">
                 🔧 Flexible API
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Choose between component-based (Runner) or hook-based
                 (useRunner) approaches based on your needs.
               </Typography>
@@ -397,7 +397,7 @@ export function DocsShowcase() {
               <Typography variant="h4" className="mb-2">
                 🎯 Import Support
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Support for import statements and multi-file code execution with
                 custom scope management.
               </Typography>

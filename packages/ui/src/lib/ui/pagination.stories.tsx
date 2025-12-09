@@ -93,7 +93,7 @@ function PaginationWrapper({
 
   return (
     <Box display="flex" flexDirection="column" gap={4} items="center" p={8}>
-      <Typography className="text-muted-foreground">
+      <Typography className="text-foreground/80">
         Page {currentPage} of {totalPages}
       </Typography>
       <Pagination

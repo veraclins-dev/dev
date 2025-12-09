@@ -207,7 +207,7 @@ export function Breadcrumbs() {
                       <Typography variant="h5" className="mb-2">
                         MacBook Pro 16"
                       </Typography>
-                      <Typography className="text-muted-foreground mb-4">
+                      <Typography className="text-foreground/80 mb-4">
                         Latest generation with M3 Pro chip, 18GB unified memory,
                         and 512GB SSD
                       </Typography>
@@ -278,7 +278,7 @@ export function Breadcrumbs() {
                       <Typography variant="h5" className="mb-2">
                         Project Report.pdf
                       </Typography>
-                      <Typography className="text-muted-foreground mb-4">
+                      <Typography className="text-foreground/80 mb-4">
                         Last modified: 2 hours ago • Size: 2.4 MB
                       </Typography>
                       <Box display="flex" gap={2}>
@@ -338,7 +338,7 @@ export function Breadcrumbs() {
                       <Typography variant="h5" className="mb-2">
                         User Engagement Metrics
                       </Typography>
-                      <Typography className="text-muted-foreground mb-4">
+                      <Typography className="text-foreground/80 mb-4">
                         Track user behavior, retention rates, and engagement
                         patterns
                       </Typography>

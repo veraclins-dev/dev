@@ -188,7 +188,7 @@ export function Badges() {
                         <Typography variant="h6" className="mb-2">
                           Wireless Headphones
                         </Typography>
-                        <Typography className="text-muted-foreground mb-3">
+                        <Typography className="text-foreground/80 mb-3">
                           Premium noise-canceling wireless headphones with
                           30-hour battery life.
                         </Typography>
@@ -202,7 +202,7 @@ export function Badges() {
                             <Typography variant="h6" className="text-primary">
                               $199.99
                             </Typography>
-                            <Typography className="line-through text-muted-foreground">
+                            <Typography className="line-through text-foreground/80">
                               $249.99
                             </Typography>
                           </Box>
@@ -249,7 +249,7 @@ export function Badges() {
                         <Typography variant="h6" className="mb-2">
                           Smart Watch
                         </Typography>
-                        <Typography className="text-muted-foreground mb-3">
+                        <Typography className="text-foreground/80 mb-3">
                           Advanced fitness tracking with heart rate monitoring
                           and GPS.
                         </Typography>
@@ -305,7 +305,7 @@ export function Badges() {
                         <Typography variant="h6" className="mb-2">
                           Gaming Laptop
                         </Typography>
-                        <Typography className="text-muted-foreground mb-3">
+                        <Typography className="text-foreground/80 mb-3">
                           High-performance gaming laptop with RTX 4080 and 32GB
                           RAM.
                         </Typography>
@@ -427,12 +427,12 @@ export function Badges() {
                                 </Badge>
                               </Box>
                             </Box>
-                            <Typography className="text-muted-foreground mb-2">
+                            <Typography className="text-foreground/80 mb-2">
                               {notification.message}
                             </Typography>
                             <Typography
                               variant="caption"
-                              className="text-muted-foreground"
+                              className="text-foreground/80"
                             >
                               {notification.time}
                             </Typography>
@@ -669,7 +669,7 @@ export function Badges() {
                                 {task.progress}
                               </Badge>
                             </Box>
-                            <Typography className="text-muted-foreground mb-2">
+                            <Typography className="text-foreground/80 mb-2">
                               Assigned to: {task.assignee}
                             </Typography>
                             <Box display="flex" gap={1} flexWrap="wrap">

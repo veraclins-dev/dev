@@ -49,7 +49,7 @@ export function TypographyShowcase() {
                   Heading 1 - Main Page Title
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 36px (2.25rem) • Weight: 700 (Bold) • Line Height:
                     1.25 (Tight)
@@ -59,7 +59,7 @@ export function TypographyShowcase() {
                   Heading 2 - Section Title
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 30px (1.875rem) • Weight: 700 (Bold) • Line Height:
                     1.25 (Tight)
@@ -69,7 +69,7 @@ export function TypographyShowcase() {
                   Heading 3 - Subsection Title
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 24px (1.5rem) • Weight: 600 (Semibold) • Line Height:
                     1.375 (Snug)
@@ -79,7 +79,7 @@ export function TypographyShowcase() {
                   Heading 4 - Card Title
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 20px (1.25rem) • Weight: 600 (Semibold) • Line Height:
                     1.375 (Snug)
@@ -89,7 +89,7 @@ export function TypographyShowcase() {
                   Heading 5 - Small Title
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 18px (1.125rem) • Weight: 500 (Medium) • Line Height:
                     1.5 (Normal)
@@ -99,7 +99,7 @@ export function TypographyShowcase() {
                   Heading 6 - Tiny Title
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 16px (1rem) • Weight: 500 (Medium) • Line Height: 1.5
                     (Normal)
@@ -118,7 +118,7 @@ export function TypographyShowcase() {
                   Subtitle 1 - Section Subtitle
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 16px (1rem) • Weight: 500 (Medium) • Line Height: 1.5
                     (Normal)
@@ -128,7 +128,7 @@ export function TypographyShowcase() {
                   Subtitle 2 - Small Subtitle
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 14px (0.875rem) • Weight: 500 (Medium) • Line Height:
                     1.5 (Normal)
@@ -150,7 +150,7 @@ export function TypographyShowcase() {
                   readability and is suitable for most reading contexts.
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 16px (1rem) • Weight: 400 (Normal) • Line Height:
                     1.625 (Relaxed)
@@ -163,7 +163,7 @@ export function TypographyShowcase() {
                   that don't need the same visual weight as primary content.
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 14px (0.875rem) • Weight: 400 (Normal) • Line Height:
                     1.625 (Relaxed)
@@ -175,7 +175,7 @@ export function TypographyShowcase() {
                   that should be present but not prominent.
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 12px (0.75rem) • Weight: 400 (Normal) • Line Height:
                     1.5 (Normal)
@@ -187,7 +187,7 @@ export function TypographyShowcase() {
                   that should be present but not prominent.
                   <Typography
                     variant="small"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 10px (0.625rem) • Weight: 400 (Normal) • Line Height:
                     1.5 (Normal)
@@ -200,7 +200,7 @@ export function TypographyShowcase() {
                   distinct but not prominent.
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     Font: 12px (0.75rem) • Weight: 400 (Normal) • Line Height:
                     1.5 (Normal) • Uppercase • Letter Spacing: 0.05em
@@ -222,7 +222,7 @@ export function TypographyShowcase() {
                   Inherit variant - inherits styles from parent element
                   <Typography
                     variant="caption"
-                    className="block text-muted-foreground mt-1"
+                    className="block text-foreground/80 mt-1"
                   >
                     This variant inherits all typography styles from its parent
                     element
@@ -238,7 +238,7 @@ export function TypographyShowcase() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={3}>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Left aligned (default):
                   </Typography>
                   <Typography
@@ -255,7 +255,7 @@ export function TypographyShowcase() {
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Center aligned:
                   </Typography>
                   <Typography
@@ -272,7 +272,7 @@ export function TypographyShowcase() {
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Right aligned:
                   </Typography>
                   <Typography
@@ -289,7 +289,7 @@ export function TypographyShowcase() {
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Justified:
                   </Typography>
                   <Typography
@@ -358,7 +358,7 @@ export function TypographyShowcase() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={2}>
                 <Typography variant="body1">Default text color</Typography>
-                <Typography variant="body1" className="text-muted-foreground">
+                <Typography variant="body1" className="text-foreground/80">
                   Muted foreground text
                 </Typography>
                 <Typography variant="body1" className="text-primary">
@@ -400,17 +400,15 @@ export function TypographyShowcase() {
             </Typography>
 
             <Box display="flex" gap={3} className="items-center">
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 By John Doe
               </Typography>
-              <Typography className="text-muted-foreground">•</Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">•</Typography>
+              <Typography className="text-foreground/80">
                 March 15, 2024
               </Typography>
-              <Typography className="text-muted-foreground">•</Typography>
-              <Typography className="text-muted-foreground">
-                5 min read
-              </Typography>
+              <Typography className="text-foreground/80">•</Typography>
+              <Typography className="text-foreground/80">5 min read</Typography>
             </Box>
 
             <Typography variant="body1">
@@ -495,7 +493,7 @@ export function TypographyShowcase() {
                       />
                     ))}
                   </Box>
-                  <Typography className="text-muted-foreground">
+                  <Typography className="text-foreground/80">
                     (128 reviews)
                   </Typography>
                 </Box>
@@ -530,7 +528,7 @@ export function TypographyShowcase() {
               </Box>
 
               <Box>
-                <Typography className="text-muted-foreground mb-2">
+                <Typography className="text-foreground/80 mb-2">
                   Available Colors:
                 </Typography>
                 <Box display="flex" gap={2}>
@@ -569,7 +567,7 @@ export function TypographyShowcase() {
               <Typography variant="h2" className="mb-2">
                 Analytics Dashboard
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Last updated: 2 minutes ago
               </Typography>
             </Box>
@@ -577,7 +575,7 @@ export function TypographyShowcase() {
             {/* Metrics Grid */}
             <Box className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Card className="p-4">
-                <Typography className="text-muted-foreground mb-1">
+                <Typography className="text-foreground/80 mb-1">
                   Total Users
                 </Typography>
                 <Typography variant="h3" className="text-primary">
@@ -589,7 +587,7 @@ export function TypographyShowcase() {
               </Card>
 
               <Card className="p-4">
-                <Typography className="text-muted-foreground mb-1">
+                <Typography className="text-foreground/80 mb-1">
                   Revenue
                 </Typography>
                 <Typography variant="h3" className="text-primary">
@@ -601,7 +599,7 @@ export function TypographyShowcase() {
               </Card>
 
               <Card className="p-4">
-                <Typography className="text-muted-foreground mb-1">
+                <Typography className="text-foreground/80 mb-1">
                   Orders
                 </Typography>
                 <Typography variant="h3" className="text-primary">
@@ -613,7 +611,7 @@ export function TypographyShowcase() {
               </Card>
 
               <Card className="p-4">
-                <Typography className="text-muted-foreground mb-1">
+                <Typography className="text-foreground/80 mb-1">
                   Conversion Rate
                 </Typography>
                 <Typography variant="h3" className="text-primary">
@@ -641,7 +639,7 @@ export function TypographyShowcase() {
                     </Typography>
                     <Typography
                       variant="caption"
-                      className="text-muted-foreground"
+                      className="text-foreground/80"
                     >
                       2 minutes ago
                     </Typography>
@@ -658,7 +656,7 @@ export function TypographyShowcase() {
                     </Typography>
                     <Typography
                       variant="caption"
-                      className="text-muted-foreground"
+                      className="text-foreground/80"
                     >
                       5 minutes ago
                     </Typography>
@@ -678,7 +676,7 @@ export function TypographyShowcase() {
                     </Typography>
                     <Typography
                       variant="caption"
-                      className="text-muted-foreground"
+                      className="text-foreground/80"
                     >
                       10 minutes ago
                     </Typography>
@@ -702,7 +700,7 @@ export function TypographyShowcase() {
           <Box display="flex" flexDirection="column" gap={6}>
             <Typography variant="h3">Create New Account</Typography>
 
-            <Typography className="text-muted-foreground">
+            <Typography className="text-foreground/80">
               Fill out the form below to create your account. All fields marked
               with an asterisk (*) are required.
             </Typography>
@@ -732,7 +730,7 @@ export function TypographyShowcase() {
             <Box display="flex" flexDirection="column" gap={2}>
               <Typography className="font-medium">Password *</Typography>
               <Box className="h-10 bg-muted rounded border" />
-              <Typography variant="caption" className="text-muted-foreground">
+              <Typography variant="caption" className="text-foreground/80">
                 Password must be at least 8 characters long and contain at least
                 one uppercase letter, one lowercase letter, and one number.
               </Typography>
@@ -744,7 +742,7 @@ export function TypographyShowcase() {
             </Box>
 
             <Box className="border-t pt-4">
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 By creating an account, you agree to our{' '}
                 <Link href="/terms" className="text-primary">
                   Terms of Service
@@ -779,10 +777,10 @@ export function TypographyShowcase() {
               <Typography variant="subtitle1" className="text-primary mb-1">
                 React Component Best Practices
               </Typography>
-              <Typography className="text-muted-foreground mb-2">
+              <Typography className="text-foreground/80 mb-2">
                 https://example.com/react-best-practices
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Learn the essential best practices for creating React components
                 that are maintainable, performant, and follow industry
                 standards. This comprehensive guide covers component structure,
@@ -796,10 +794,10 @@ export function TypographyShowcase() {
               <Typography variant="subtitle1" className="text-primary mb-1">
                 Building Reusable UI Components
               </Typography>
-              <Typography className="text-muted-foreground mb-2">
+              <Typography className="text-foreground/80 mb-2">
                 https://example.com/reusable-components
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Discover how to build a robust component library that can be
                 shared across multiple projects. This tutorial covers component
                 design patterns, documentation strategies, and testing
@@ -813,10 +811,10 @@ export function TypographyShowcase() {
               <Typography variant="subtitle1" className="text-primary mb-1">
                 React Component Lifecycle Methods
               </Typography>
-              <Typography className="text-muted-foreground mb-2">
+              <Typography className="text-foreground/80 mb-2">
                 https://example.com/lifecycle-methods
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Understand the complete lifecycle of React components from
                 mounting to unmounting. This detailed guide explains when and
                 how to use lifecycle methods, hooks, and modern React patterns
@@ -829,10 +827,10 @@ export function TypographyShowcase() {
               <Typography variant="subtitle1" className="text-primary mb-1">
                 TypeScript with React Components
               </Typography>
-              <Typography className="text-muted-foreground mb-2">
+              <Typography className="text-foreground/80 mb-2">
                 https://example.com/typescript-react
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Master TypeScript integration with React components for better
                 type safety and developer experience. Learn how to properly type
                 props, state, events, and complex component patterns while
@@ -845,10 +843,10 @@ export function TypographyShowcase() {
               <Typography variant="subtitle1" className="text-primary mb-1">
                 Testing React Components
               </Typography>
-              <Typography className="text-muted-foreground mb-2">
+              <Typography className="text-foreground/80 mb-2">
                 https://example.com/testing-components
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Comprehensive guide to testing React components using Jest,
                 React Testing Library, and other modern testing tools. Learn
                 unit testing, integration testing, and end-to-end testing

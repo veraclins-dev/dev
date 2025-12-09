@@ -101,7 +101,7 @@ export function TimePickerShowcase() {
                 size={size}
               />
               <Box className="mt-4">
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Selected: {timeValue12.string}
                 </Typography>
               </Box>
@@ -119,7 +119,7 @@ export function TimePickerShowcase() {
                 size={size}
               />
               <Box className="mt-4">
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Selected: {timeValue24.string}
                 </Typography>
               </Box>

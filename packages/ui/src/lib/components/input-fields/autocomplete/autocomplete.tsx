@@ -316,7 +316,7 @@ export const Autocomplete = ({
               <AutocompleteListItem
                 variant="selectable"
                 disabled={true}
-                className="text-muted-foreground"
+                className="text-foreground/80"
               >
                 Select a value for "
                 {dependsOn ? humanize(dependsOn) : 'dependent field'}" first
@@ -339,7 +339,7 @@ export const Autocomplete = ({
               <AutocompleteListItem
                 variant="selectable"
                 disabled={true}
-                className="text-muted-foreground"
+                className="text-foreground/80"
               >
                 {multiple
                   ? `Type a value and press Enter, type "${separatorChar}" or click to accept it`
@@ -349,7 +349,7 @@ export const Autocomplete = ({
               <AutocompleteListItem
                 variant="selectable"
                 disabled={true}
-                className="text-muted-foreground"
+                className="text-foreground/80"
               >
                 No options found
               </AutocompleteListItem>

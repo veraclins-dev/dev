@@ -62,7 +62,7 @@ export const calendarWeekHeaderVariants = cva({
  * Calendar week header cell variants
  */
 export const calendarWeekHeaderCellVariants = cva({
-  base: 'calendar-week-header-cell flex items-center justify-center text-muted-foreground font-medium',
+  base: 'calendar-week-header-cell flex items-center justify-center text-foreground/80 font-medium',
   variants: {
     size: {
       sm: 'h-6 text-xs',

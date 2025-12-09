@@ -114,7 +114,7 @@ export function Chips() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     To:
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -140,7 +140,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     CC:
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -154,7 +154,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     BCC:
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -176,14 +176,14 @@ export function Chips() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Subject:
                   </Typography>
                   <Input placeholder="Enter subject..." />
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Attachments:
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -203,7 +203,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Labels:
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -235,7 +235,7 @@ export function Chips() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Documents
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -247,7 +247,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Images
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -259,7 +259,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Code
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -279,7 +279,7 @@ export function Chips() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Upload Status
                   </Typography>
                   <Box display="flex" flexDirection="column" gap={2}>
@@ -303,7 +303,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     File Permissions
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -337,7 +337,7 @@ export function Chips() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Active Filters
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -363,7 +363,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Sort Options
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -390,7 +390,7 @@ export function Chips() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     User Interests
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -403,7 +403,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Skills
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -424,7 +424,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Languages
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -456,7 +456,7 @@ export function Chips() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Hashtags
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -468,7 +468,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Mentions
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -483,7 +483,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Trending Topics
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -508,14 +508,14 @@ export function Chips() {
                   </Avatar>
                   <Box flex="1">
                     <Typography variant="h5">John Doe</Typography>
-                    <Typography className="text-muted-foreground">
+                    <Typography className="text-foreground/80">
                       @john_doe
                     </Typography>
                   </Box>
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Bio Tags
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -526,7 +526,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Location & Status
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -566,7 +566,7 @@ export function Chips() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Main Categories
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -582,7 +582,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Subcategories
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -602,7 +602,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Brands
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -622,7 +622,7 @@ export function Chips() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={4}>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Cart Items
                   </Typography>
                   <Box display="flex" flexDirection="column" gap={2}>
@@ -648,7 +648,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Applied Discounts
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">
@@ -667,7 +667,7 @@ export function Chips() {
                 </Box>
 
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Payment Methods
                   </Typography>
                   <Box display="flex" gap={2} flexWrap="wrap">

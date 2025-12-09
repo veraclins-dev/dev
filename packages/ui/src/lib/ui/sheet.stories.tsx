@@ -40,7 +40,7 @@ export const RightSide: Story = {
           </SheetDescription>
         </SheetHeader>
         <div className="flex-1 py-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-foreground/80">
             This is the main content area of the sheet. You can put any content
             here.
           </p>
@@ -87,7 +87,7 @@ export const LeftSide: Story = {
           </SheetDescription>
         </SheetHeader>
         <div className="flex-1 py-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-foreground/80">
             Perfect for navigation menus or settings panels.
           </p>
         </div>
@@ -121,7 +121,7 @@ export const TopSide: Story = {
           </SheetDescription>
         </SheetHeader>
         <div className="py-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-foreground/80">
             Great for notifications or quick actions.
           </p>
         </div>
@@ -151,7 +151,7 @@ export const BottomSide: Story = {
           </SheetDescription>
         </SheetHeader>
         <div className="py-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-foreground/80">
             Perfect for mobile interfaces and action sheets.
           </p>
         </div>
@@ -395,7 +395,7 @@ export const CustomCloseButton: Story = {
           </SheetDescription>
         </SheetHeader>
         <div className="flex-1 py-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-foreground/80">
             The default close button in the top-right corner is still available,
             but you can also add custom close buttons in the footer.
           </p>

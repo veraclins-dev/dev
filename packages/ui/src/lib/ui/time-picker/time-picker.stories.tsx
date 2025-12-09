@@ -77,7 +77,7 @@ export const Controlled: Story = {
     return (
       <div className="space-y-4">
         <TimePicker {...args} value={value} onChange={setValue} />
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-foreground/80">
           <p>Selected time: {value.string}</p>
         </div>
       </div>
@@ -100,7 +100,7 @@ export const Controlled24Hour: Story = {
     return (
       <div className="space-y-4">
         <TimePicker {...args} value={value} onChange={setValue} />
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-foreground/80">
           <p>Selected time: {value.string}</p>
         </div>
       </div>
@@ -144,7 +144,7 @@ export const SchedulingExample: Story = {
           value={endTime}
           onChange={setEndTime}
         />
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-foreground/80">
           <p>
             Duration: {endTime && startTime ? 'Calculating...' : 'Select times'}
           </p>
@@ -188,7 +188,7 @@ export const InternationalExample: Story = {
           onChange={setUtcTime}
           use24Hour={true}
         />
-        <div className="text-sm text-muted-foreground">
+        <div className="text-sm text-foreground/80">
           <p>Local time: {localTime.string}</p>
           <p>UTC time: {utcTime.string}</p>
         </div>

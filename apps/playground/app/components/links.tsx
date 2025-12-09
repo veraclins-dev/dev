@@ -316,7 +316,7 @@ export function Links() {
                 </Link>
                 <Icon
                   name="chevron-right"
-                  className="size-4 text-muted-foreground"
+                  className="size-4 text-foreground/80"
                 />
                 <Link
                   to="/products"
@@ -328,7 +328,7 @@ export function Links() {
                 </Link>
                 <Icon
                   name="chevron-right"
-                  className="size-4 text-muted-foreground"
+                  className="size-4 text-foreground/80"
                 />
                 <Link
                   to="/electronics"
@@ -340,9 +340,9 @@ export function Links() {
                 </Link>
                 <Icon
                   name="chevron-right"
-                  className="size-4 text-muted-foreground"
+                  className="size-4 text-foreground/80"
                 />
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Smartphones
                 </Typography>
               </Box>
@@ -563,10 +563,7 @@ export function Links() {
               </Typography>
               <Box display="flex" flexDirection="column" gap={2}>
                 <Box display="flex" className="items-center gap-3">
-                  <Icon
-                    name="document"
-                    className="size-5 text-muted-foreground"
-                  />
+                  <Icon name="document" className="size-5 text-foreground/80" />
                   <Typography className="flex-1">document.pdf</Typography>
                   <Box display="flex" gap={2}>
                     <Link type="button" variant="text" linkSize="sm">
@@ -589,7 +586,7 @@ export function Links() {
                   </Box>
                 </Box>
                 <Box display="flex" className="items-center gap-3">
-                  <Icon name="photo" className="size-5 text-muted-foreground" />
+                  <Icon name="photo" className="size-5 text-foreground/80" />
                   <Typography className="flex-1">image.jpg</Typography>
                   <Box display="flex" gap={2}>
                     <Link type="button" variant="text" linkSize="sm">
@@ -867,7 +864,7 @@ export function Links() {
               <Box display="flex" flexDirection="column" gap={3}>
                 <Box display="flex" className="items-center gap-3">
                   <Typography className="flex-1">Profile completion</Typography>
-                  <Typography className="text-muted-foreground">75%</Typography>
+                  <Typography className="text-foreground/80">75%</Typography>
                   <Link
                     type="button"
                     variant="text"
@@ -879,7 +876,7 @@ export function Links() {
                 </Box>
                 <Box display="flex" className="items-center gap-3">
                   <Typography className="flex-1">Email verification</Typography>
-                  <Typography className="text-muted-foreground">
+                  <Typography className="text-foreground/80">
                     Pending
                   </Typography>
                   <Link

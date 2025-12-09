@@ -177,7 +177,7 @@ export function Images() {
                     </Badge>
                   )}
                 </CardTitle>
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   {example.description}
                 </Typography>
               </CardHeader>
@@ -218,7 +218,7 @@ export function Images() {
         <Typography variant="h2" className="mb-6">
           Special Effects
         </Typography>
-        <Typography variant="body1" className="mb-4 text-muted-foreground">
+        <Typography variant="body1" className="mb-4 text-foreground/80">
           These images use Lorem Picsum's built-in effects to demonstrate
           different visual styles.
         </Typography>
@@ -227,7 +227,7 @@ export function Images() {
             <Card key={index} className="overflow-hidden">
               <CardHeader>
                 <CardTitle>{example.title}</CardTitle>
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   {example.description}
                 </Typography>
               </CardHeader>
@@ -252,7 +252,7 @@ export function Images() {
         <Typography variant="h2" className="mb-6">
           Interactive Gallery
         </Typography>
-        <Typography variant="body1" className="mb-4 text-muted-foreground">
+        <Typography variant="body1" className="mb-4 text-foreground/80">
           Click on any image to view it in a larger format. Try different Lorem
           Picsum variations:
         </Typography>

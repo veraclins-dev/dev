@@ -177,7 +177,7 @@ export function Colors() {
                     >
                       Primary
                     </Typography>
-                    <Typography className="text-muted-foreground">
+                    <Typography className="text-foreground/80">
                       Main actions, links, and brand elements
                     </Typography>
                   </Box>
@@ -191,7 +191,7 @@ export function Colors() {
                     >
                       Secondary
                     </Typography>
-                    <Typography className="text-muted-foreground">
+                    <Typography className="text-foreground/80">
                       Supporting actions and subtle elements
                     </Typography>
                   </Box>
@@ -205,7 +205,7 @@ export function Colors() {
                     >
                       Success
                     </Typography>
-                    <Typography className="text-muted-foreground">
+                    <Typography className="text-foreground/80">
                       Positive states, confirmations, and achievements
                     </Typography>
                   </Box>
@@ -219,7 +219,7 @@ export function Colors() {
                     >
                       Warning
                     </Typography>
-                    <Typography className="text-muted-foreground">
+                    <Typography className="text-foreground/80">
                       Caution states and important notices
                     </Typography>
                   </Box>
@@ -233,7 +233,7 @@ export function Colors() {
                     >
                       Destructive
                     </Typography>
-                    <Typography className="text-muted-foreground">
+                    <Typography className="text-foreground/80">
                       Errors, deletions, and dangerous actions
                     </Typography>
                   </Box>
@@ -318,7 +318,7 @@ export function Colors() {
                   </Typography>
                 </Box>
                 <Box className="p-3 bg-secondary/10 border rounded">
-                  <Typography className="text-muted-foreground">
+                  <Typography className="text-foreground/80">
                     Secondary text
                   </Typography>
                 </Box>
@@ -350,7 +350,7 @@ export function Colors() {
                   </Typography>
                 </Box>
                 <Box className="p-3 bg-secondary/20 border rounded">
-                  <Typography className="text-muted-foreground">
+                  <Typography className="text-foreground/80">
                     Secondary text
                   </Typography>
                 </Box>
@@ -434,7 +434,7 @@ export function Colors() {
                   </Typography>
                 </Box>
                 <Box className="p-3 bg-muted rounded-lg">
-                  <Typography className="text-muted-foreground font-medium">
+                  <Typography className="text-foreground/80 font-medium">
                     ⚠️ Low Contrast - Not Accessible
                   </Typography>
                 </Box>
@@ -591,11 +591,11 @@ export function Colors() {
                 <Box className="p-4 bg-muted rounded-lg">
                   <Typography
                     variant="body1"
-                    className="text-muted-foreground font-medium mb-1"
+                    className="text-foreground/80 font-medium mb-1"
                   >
                     Neutral
                   </Typography>
-                  <Typography className="text-muted-foreground">
+                  <Typography className="text-foreground/80">
                     Text, borders, and subtle elements
                   </Typography>
                 </Box>

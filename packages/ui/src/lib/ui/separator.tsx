@@ -7,7 +7,8 @@ import { type SeparatorVariants, separatorVariants } from './utils/variants';
 import { Box } from './box';
 
 export interface SeparatorProps
-  extends Omit<
+  extends
+    Omit<
       React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>,
       keyof SeparatorVariants
     >,
@@ -127,7 +128,7 @@ function Separator({
 
       <Box
         className={cn(
-          'flex items-center justify-center px-2 text-xs text-muted-foreground whitespace-nowrap',
+          'flex items-center justify-center px-2 text-xs text-foreground/80 whitespace-nowrap',
           contentClassName,
         )}
       >

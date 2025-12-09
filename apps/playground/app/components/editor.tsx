@@ -54,7 +54,7 @@ function ArticleFormExample() {
         <ClientOnly
           fallback={
             <Box className="w-full h-64 border rounded-md p-4 bg-muted/20 flex items-center justify-center">
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Loading form...
               </Typography>
             </Box>
@@ -62,7 +62,7 @@ function ArticleFormExample() {
         >
           {() => (
             <Box className="space-y-4">
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 This form demonstrates how to use EditorField within a form
                 context. The editor content is validated and submitted along
                 with other form fields.
@@ -147,7 +147,7 @@ export function Editor() {
           <ClientOnly
             fallback={
               <Box className="w-full h-64 border rounded-md p-4 bg-muted/20 flex items-center justify-center">
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Loading rich text editor...
                 </Typography>
               </Box>
@@ -155,7 +155,7 @@ export function Editor() {
           >
             {() => (
               <Box className="space-y-4">
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Try typing in the editor below. You can use the toolbar to
                   format your text, add links, lists, and more.
                 </Typography>
@@ -178,7 +178,7 @@ export function Editor() {
           <ClientOnly
             fallback={
               <Box className="w-full h-64 border rounded-md p-4 bg-muted/20 flex items-center justify-center">
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Loading rich text editor...
                 </Typography>
               </Box>
@@ -186,7 +186,7 @@ export function Editor() {
           >
             {() => (
               <Box className="space-y-4">
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   This editor starts with some pre-filled content that you can
                   edit or replace.
                 </Typography>
@@ -213,7 +213,7 @@ export function Editor() {
         </CardHeader>
         <CardContent>
           <Box className="space-y-4">
-            <Typography className="text-muted-foreground">
+            <Typography className="text-foreground/80">
               This component displays rich content in a read-only format,
               perfect for showing formatted content without editing
               capabilities.
@@ -233,7 +233,7 @@ export function Editor() {
         </CardHeader>
         <CardContent>
           <Box className="space-y-4">
-            <Typography className="text-muted-foreground">
+            <Typography className="text-foreground/80">
               This example shows how the readonly component handles different
               types of content formatting.
             </Typography>

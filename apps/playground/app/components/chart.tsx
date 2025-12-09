@@ -354,7 +354,7 @@ export function ChartShowcase() {
                                   ${profit.toLocaleString()}
                                 </span>
                               </div>
-                              <div className="flex items-center justify-between text-xs text-muted-foreground">
+                              <div className="flex items-center justify-between text-xs text-foreground/80">
                                 <span>Margin</span>
                                 <span>
                                   {revenue > 0
@@ -804,7 +804,7 @@ export function ChartShowcase() {
               <Typography variant="h4" className="mb-2">
                 Accessibility Considerations
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 • Provide alternative text descriptions for screen readers
                 <br />
                 • Use sufficient color contrast for text and data points
@@ -820,7 +820,7 @@ export function ChartShowcase() {
               <Typography variant="h4" className="mb-2">
                 Performance Optimization
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 • Limit the number of data points for better performance
                 <br />
                 • Use appropriate chart types for large datasets

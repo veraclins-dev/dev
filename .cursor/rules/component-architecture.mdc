@@ -213,7 +213,7 @@ export function ComponentNameShowcase() {
         <Typography variant="h1" className="mb-2">
           Component Name
         </Typography>
-        <Typography variant="body1" className="text-muted-foreground">
+        <Typography variant="body1" className="text-foreground/80">
           Description of the component and its purpose.
         </Typography>
       </Box>

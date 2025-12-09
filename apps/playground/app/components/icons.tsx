@@ -627,7 +627,7 @@ export function Icons() {
             </Box>
 
             {/* Results Count */}
-            <Typography className="text-muted-foreground">
+            <Typography className="text-foreground/80">
               Showing {currentIcons.length} of {iconNames.length} icons
             </Typography>
           </Box>
@@ -1010,7 +1010,7 @@ export function Icons() {
               <Typography variant="h4" className="mb-2">
                 Available Sizes
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Icons support the following sizes: <code>xs</code>,{' '}
                 <code>sm</code>, <code>md</code>, <code>lg</code>,{' '}
                 <code>xl</code>

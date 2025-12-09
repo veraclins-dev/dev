@@ -123,7 +123,7 @@ export const WithDescription: Story = {
         >
           Push notifications
         </label>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-foreground/80">
           Receive notifications about new messages.
         </p>
       </div>
@@ -171,7 +171,7 @@ export const MultipleSwitches: Story = {
         <Switch id="notifications" disabled />
         <label
           htmlFor="notifications"
-          className="text-sm font-medium leading-none text-muted-foreground"
+          className="text-sm font-medium leading-none text-foreground/80"
         >
           Notifications (Disabled)
         </label>
@@ -202,7 +202,7 @@ export const SettingsPanel: Story = {
     <div className="space-y-6">
       <div>
         <h3 className="text-lg font-medium">Privacy Settings</h3>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-foreground/80">
           Manage your privacy preferences and data sharing settings.
         </p>
       </div>
@@ -211,7 +211,7 @@ export const SettingsPanel: Story = {
         <div className="flex items-center justify-between">
           <div className="space-y-0.5">
             <label className="text-sm font-medium">Analytics</label>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/80">
               Allow us to collect usage data to improve our service.
             </p>
           </div>
@@ -221,7 +221,7 @@ export const SettingsPanel: Story = {
         <div className="flex items-center justify-between">
           <div className="space-y-0.5">
             <label className="text-sm font-medium">Marketing</label>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/80">
               Receive promotional emails and offers.
             </p>
           </div>
@@ -231,7 +231,7 @@ export const SettingsPanel: Story = {
         <div className="flex items-center justify-between">
           <div className="space-y-0.5">
             <label className="text-sm font-medium">Third-party data</label>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/80">
               Allow third-party services to access your data.
             </p>
           </div>
@@ -240,10 +240,10 @@ export const SettingsPanel: Story = {
 
         <div className="flex items-center justify-between">
           <div className="space-y-0.5">
-            <label className="text-sm font-medium text-muted-foreground">
+            <label className="text-sm font-medium text-foreground/80">
               Location tracking
             </label>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/80">
               Track your location for personalized content.
             </p>
           </div>

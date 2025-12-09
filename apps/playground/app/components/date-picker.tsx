@@ -33,7 +33,7 @@ export function DatePickerShowcase() {
         <Typography variant="h1" className="mb-2">
           DatePicker
         </Typography>
-        <Typography variant="body1" className="text-muted-foreground">
+        <Typography variant="body1" className="text-foreground/80">
           A flexible date picker component with multiple display variants and
           full calendar integration.
         </Typography>

@@ -130,7 +130,7 @@ export const CalendarHeader = memo(function CalendarHeader({
                 </Box>
                 {/* Add "to" separator between months */}
                 {index < context.currentMonths.length - 1 && (
-                  <span className="text-muted-foreground mx-1">-</span>
+                  <span className="text-foreground/80 mx-1">-</span>
                 )}
               </Fragment>
             ))}

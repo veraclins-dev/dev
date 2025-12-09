@@ -166,7 +166,7 @@ export function UtilsShowcase() {
       <div className="container mx-auto p-6 space-y-8">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold">Utils Package Showcase</h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-foreground/80">
             Comprehensive collection of utility functions for common development
             tasks
           </p>

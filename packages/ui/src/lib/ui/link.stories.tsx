@@ -231,7 +231,7 @@ export const Muted: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const link = canvas.getByRole('link', { name: /muted link/i });
-    expect(link).toHaveClass('text-muted-foreground');
+    expect(link).toHaveClass('text-foreground/80');
   },
 };
 

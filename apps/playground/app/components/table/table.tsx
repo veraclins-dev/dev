@@ -78,7 +78,7 @@ const TaskDetailDialog = ({
         <Box className="space-y-4">
           <Box className="grid grid-cols-2 gap-4">
             <Box>
-              <Typography className="text-muted-foreground mb-1">
+              <Typography className="text-foreground/80 mb-1">
                 Task ID
               </Typography>
               <Typography variant="body1" className="font-mono">
@@ -86,7 +86,7 @@ const TaskDetailDialog = ({
               </Typography>
             </Box>
             <Box>
-              <Typography className="text-muted-foreground mb-1">
+              <Typography className="text-foreground/80 mb-1">
                 Status
               </Typography>
               <Box className="flex items-center gap-2">
@@ -97,15 +97,13 @@ const TaskDetailDialog = ({
           </Box>
 
           <Box>
-            <Typography className="text-muted-foreground mb-1">
-              Title
-            </Typography>
+            <Typography className="text-foreground/80 mb-1">Title</Typography>
             <Typography variant="body1">{task.title}</Typography>
           </Box>
 
           <Box className="grid grid-cols-2 gap-4">
             <Box>
-              <Typography className="text-muted-foreground mb-1">
+              <Typography className="text-foreground/80 mb-1">
                 Priority
               </Typography>
               <Box className="flex items-center gap-2">
@@ -116,7 +114,7 @@ const TaskDetailDialog = ({
               </Box>
             </Box>
             <Box>
-              <Typography className="text-muted-foreground mb-1">
+              <Typography className="text-foreground/80 mb-1">
                 Archived
               </Typography>
               <Typography variant="body1">
@@ -359,7 +357,7 @@ export function Page() {
                 <Icon name="users" className="size-5" />
                 User Management
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Manage users with bulk actions, filtering by role, status, and
                 department. Interactive actions for editing profiles, resetting
                 passwords, and managing permissions.
@@ -371,7 +369,7 @@ export function Page() {
                 <Icon name="shopping-cart" className="size-5" />
                 E-commerce Orders
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Track orders with status filtering, customer information, and
                 order details. Bulk actions for processing, shipping, and
                 customer communication.
@@ -383,7 +381,7 @@ export function Page() {
                 <Icon name="chart-bar" className="size-5" />
                 Analytics Dashboard
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Display metrics and KPIs with sorting, filtering by date ranges,
                 and export functionality. Interactive drill-down capabilities
                 for detailed analysis.
@@ -395,7 +393,7 @@ export function Page() {
                 <Icon name="document-text" className="size-5" />
                 Content Management
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Manage articles, pages, and media with status tracking, author
                 information, and publishing workflows. Bulk publishing and
                 content scheduling.
@@ -420,7 +418,7 @@ export function Page() {
                 <Typography variant="h4" className="text-sm font-medium">
                   Keyboard Navigation
                 </Typography>
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Full keyboard support for navigating rows, selecting items,
                   and triggering actions. Tab navigation through interactive
                   elements and arrow key navigation between cells.
@@ -431,7 +429,7 @@ export function Page() {
                 <Typography variant="h4" className="text-sm font-medium">
                   Screen Reader Support
                 </Typography>
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Proper ARIA labels and roles for table structure, row
                   selection, and action buttons. Announcements for sorting,
                   filtering, and bulk actions.
@@ -442,7 +440,7 @@ export function Page() {
                 <Typography variant="h4" className="text-sm font-medium">
                   Focus Management
                 </Typography>
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Logical focus order and visible focus indicators. Focus
                   trapping in modals and proper focus restoration when dialogs
                   close.
@@ -453,7 +451,7 @@ export function Page() {
                 <Typography variant="h4" className="text-sm font-medium">
                   High Contrast Support
                 </Typography>
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Compatible with high contrast themes and color schemes. Clear
                   visual indicators for interactive states and selection
                   feedback.
@@ -478,7 +476,7 @@ export function Page() {
               <Typography variant="h4" className="text-sm font-medium">
                 Performance Considerations
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 For large datasets, consider implementing virtual scrolling or
                 pagination. Use memoization for expensive computations and
                 optimize re-renders with React.memo for custom cell components.
@@ -489,7 +487,7 @@ export function Page() {
               <Typography variant="h4" className="text-sm font-medium">
                 Data Structure
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Ensure each row has a unique identifier for proper selection and
                 drag-and-drop functionality. Structure your data to support
                 efficient filtering and sorting operations.
@@ -500,7 +498,7 @@ export function Page() {
               <Typography variant="h4" className="text-sm font-medium">
                 User Experience
               </Typography>
-              <Typography className="text-muted-foreground">
+              <Typography className="text-foreground/80">
                 Provide clear feedback for user actions, loading states for
                 async operations, and confirmation dialogs for destructive
                 actions. Consider the context and frequency of use when choosing

@@ -73,7 +73,7 @@ export function AuthShowcase() {
       <div className="container mx-auto p-6 space-y-8">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold">Remix Auth Social Showcase</h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-foreground/80">
             Comprehensive OAuth authentication strategies for Remix applications
           </p>
         </div>
@@ -153,7 +153,7 @@ export function AuthShowcase() {
                     </div>
                     <div>
                       <h4 className="font-semibold">User initiates login</h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/80">
                         User clicks login button, app generates state and code
                         verifier
                       </p>
@@ -165,7 +165,7 @@ export function AuthShowcase() {
                     </div>
                     <div>
                       <h4 className="font-semibold">Redirect to provider</h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/80">
                         User is redirected to OAuth provider with authorization
                         request
                       </p>
@@ -177,7 +177,7 @@ export function AuthShowcase() {
                     </div>
                     <div>
                       <h4 className="font-semibold">User authorizes</h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/80">
                         User grants permissions, provider redirects back with
                         authorization code
                       </p>
@@ -191,7 +191,7 @@ export function AuthShowcase() {
                       <h4 className="font-semibold">
                         Exchange code for tokens
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/80">
                         App exchanges authorization code for access tokens using
                         code verifier
                       </p>
@@ -203,7 +203,7 @@ export function AuthShowcase() {
                     </div>
                     <div>
                       <h4 className="font-semibold">Fetch user profile</h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/80">
                         App fetches user profile using access token and creates
                         session
                       </p>
@@ -246,7 +246,7 @@ export function AuthShowcase() {
                           </div>
                           <div className="flex-1">
                             <h4 className="font-semibold">{provider.name}</h4>
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-sm text-foreground/80">
                               OAuth2 authentication strategy
                             </p>
                           </div>
@@ -527,7 +527,7 @@ authenticator.use(
                         {mockUserProfile.provider}
                       </Badge>
                     </div>
-                    <p className="text-muted-foreground">
+                    <p className="text-foreground/80">
                       @{mockUserProfile.username}
                     </p>
                     <p className="text-sm">{mockUserProfile.email}</p>
@@ -535,7 +535,7 @@ authenticator.use(
                       <p className="text-sm">{mockUserProfile.bio}</p>
                     )}
                     {mockUserProfile.location && (
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-foreground/80">
                         📍 {mockUserProfile.location}
                       </p>
                     )}
@@ -566,7 +566,7 @@ authenticator.use(
                     ))}
                   </div>
                   <Separator />
-                  <div className="text-center text-sm text-muted-foreground">
+                  <div className="text-center text-sm text-foreground/80">
                     By continuing, you agree to our Terms of Service and Privacy
                     Policy
                   </div>

@@ -1059,7 +1059,7 @@ export function Overlays() {
                             <Typography variant="h6">
                               Premium Widget Pro
                             </Typography>
-                            <Typography className="text-muted-foreground">
+                            <Typography className="text-foreground/80">
                               High-quality product image with detailed
                               specifications and features.
                             </Typography>
@@ -1240,7 +1240,7 @@ export function Overlays() {
                                       <Typography className="font-medium truncate">
                                         {user.name}
                                       </Typography>
-                                      <Typography className="text-muted-foreground truncate">
+                                      <Typography className="text-foreground/80 truncate">
                                         {user.email}
                                       </Typography>
                                     </Box>
@@ -1535,7 +1535,7 @@ export function Overlays() {
                               <Typography className="font-medium">
                                 Project Updated
                               </Typography>
-                              <Typography className="text-muted-foreground">
+                              <Typography className="text-foreground/80">
                                 Your project has been successfully updated.
                               </Typography>
                             </Box>
@@ -1549,7 +1549,7 @@ export function Overlays() {
                               <Typography className="font-medium">
                                 New Message
                               </Typography>
-                              <Typography className="text-muted-foreground">
+                              <Typography className="text-foreground/80">
                                 You have a new message from John Doe.
                               </Typography>
                             </Box>
@@ -1563,7 +1563,7 @@ export function Overlays() {
                               <Typography className="font-medium">
                                 Storage Warning
                               </Typography>
-                              <Typography className="text-muted-foreground">
+                              <Typography className="text-foreground/80">
                                 You're running low on storage space.
                               </Typography>
                             </Box>
@@ -1889,7 +1889,7 @@ export function Overlays() {
                           <Typography variant="subtitle1">
                             Rich Content Tooltip
                           </Typography>
-                          <Typography className="text-muted-foreground">
+                          <Typography className="text-foreground/80">
                             This tooltip contains multiple lines and styled
                             content
                           </Typography>
@@ -1911,7 +1911,7 @@ export function Overlays() {
                               Information Tooltip
                             </Typography>
                           </Box>
-                          <Typography className="text-muted-foreground">
+                          <Typography className="text-foreground/80">
                             Contains an icon and structured information
                           </Typography>
                         </Box>
@@ -1932,7 +1932,7 @@ export function Overlays() {
                               Success State
                             </Typography>
                           </Box>
-                          <Typography className="text-muted-foreground">
+                          <Typography className="text-foreground/80">
                             Operation completed successfully
                           </Typography>
                         </Box>
@@ -2064,7 +2064,7 @@ export function Overlays() {
                                   <Typography className="font-medium">
                                     John Doe
                                   </Typography>
-                                  <Typography className="text-muted-foreground">
+                                  <Typography className="text-foreground/80">
                                     Senior Developer
                                   </Typography>
                                 </Box>
@@ -2230,7 +2230,7 @@ export function Overlays() {
                                   <TooltipTrigger asChild>
                                     <Icon
                                       name="question-mark-circled"
-                                      className="text-muted-foreground"
+                                      className="text-foreground/80"
                                     />
                                   </TooltipTrigger>
                                   <TooltipContent>
@@ -2259,7 +2259,7 @@ export function Overlays() {
                                   <TooltipTrigger asChild>
                                     <Icon
                                       name="question-mark-circled"
-                                      className="text-muted-foreground"
+                                      className="text-foreground/80"
                                     />
                                   </TooltipTrigger>
                                   <TooltipContent>
@@ -2433,7 +2433,7 @@ export function Overlays() {
                         John Doe is a senior developer with 5+ years of
                         experience.
                       </Typography>
-                      <Typography className="text-muted-foreground">
+                      <Typography className="text-foreground/80">
                         Last active: 2 hours ago
                       </Typography>
                     </Box>

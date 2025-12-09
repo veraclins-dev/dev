@@ -115,19 +115,19 @@ export const WithForm: Story = {
         <div className="rounded-md border p-4 space-y-4">
           <div>
             <label className="text-sm font-medium">Email Notifications</label>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/80">
               Receive email notifications for important updates.
             </p>
           </div>
           <div>
             <label className="text-sm font-medium">Push Notifications</label>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/80">
               Receive push notifications on your device.
             </p>
           </div>
           <div>
             <label className="text-sm font-medium">SMS Notifications</label>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-foreground/80">
               Receive SMS notifications for critical alerts.
             </p>
           </div>
@@ -169,21 +169,21 @@ export const WithList: Story = {
                 <Icon name="document" className="h-4 w-4" />
                 <span className="text-sm">README.md</span>
               </div>
-              <span className="text-xs text-muted-foreground">2.1 KB</span>
+              <span className="text-xs text-foreground/80">2.1 KB</span>
             </li>
             <li className="flex items-center justify-between px-4 py-3">
               <div className="flex items-center space-x-3">
                 <Icon name="document" className="h-4 w-4" />
                 <span className="text-sm">package.json</span>
               </div>
-              <span className="text-xs text-muted-foreground">1.8 KB</span>
+              <span className="text-xs text-foreground/80">1.8 KB</span>
             </li>
             <li className="flex items-center justify-between px-4 py-3">
               <div className="flex items-center space-x-3">
                 <Icon name="folder" className="h-4 w-4" />
                 <span className="text-sm">src/</span>
               </div>
-              <span className="text-xs text-muted-foreground">Directory</span>
+              <span className="text-xs text-foreground/80">Directory</span>
             </li>
           </ul>
         </div>

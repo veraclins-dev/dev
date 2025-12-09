@@ -88,7 +88,7 @@ export function CalendarShowcase() {
                 className="rounded-lg border"
               />
               <Box className="mt-4">
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Selected:{' '}
                   {singleDate
                     ? formatDate(singleDate, 'MMMM dd, yyyy')
@@ -112,7 +112,7 @@ export function CalendarShowcase() {
                 className="rounded-lg border"
               />
               <Box className="mt-4">
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   {dateRange?.from ? (
                     dateRange.to ? (
                       <>
@@ -144,7 +144,7 @@ export function CalendarShowcase() {
                 className="rounded-lg border"
               />
               <Box className="mt-4">
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   Selected: {multipleDates.length} date
                   {multipleDates.length !== 1 ? 's' : ''}
                 </Typography>
@@ -175,7 +175,7 @@ export function CalendarShowcase() {
               </Typography>
               <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Two Months Side by Side
                   </Typography>
                   <Calendar
@@ -189,7 +189,7 @@ export function CalendarShowcase() {
                   />
                 </Box>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Multi-Month Range Selection
                   </Typography>
                   <Calendar
@@ -217,7 +217,7 @@ export function CalendarShowcase() {
               </Typography>
               <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Disabled Weekends & Past Dates
                   </Typography>
                   <Calendar
@@ -233,12 +233,12 @@ export function CalendarShowcase() {
                     }}
                     className="rounded-lg border"
                   />
-                  <Typography className="text-muted-foreground mt-2">
+                  <Typography className="text-foreground/80 mt-2">
                     Weekends and past dates are disabled
                   </Typography>
                 </Box>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Date Range with Min/Max Constraints
                   </Typography>
                   <Calendar
@@ -257,7 +257,7 @@ export function CalendarShowcase() {
                     maxDate={addDays(startOfToday(), 90)}
                     className="rounded-lg border"
                   />
-                  <Typography className="text-muted-foreground mt-2">
+                  <Typography className="text-foreground/80 mt-2">
                     Only future dates within 90 days
                   </Typography>
                 </Box>
@@ -270,7 +270,7 @@ export function CalendarShowcase() {
               </Typography>
               <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Enhanced Navigation Controls
                   </Typography>
                   <Calendar
@@ -282,7 +282,7 @@ export function CalendarShowcase() {
                     className="rounded-lg border"
                   />
                   <List
-                    className="text-muted-foreground text-sm mt-2"
+                    className="text-foreground/80 text-sm mt-2"
                     variant="ul"
                   >
                     <ListItem variant="default" itemSize="sm">
@@ -297,7 +297,7 @@ export function CalendarShowcase() {
                   </List>
                 </Box>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Today Button Integration
                   </Typography>
                   <Calendar
@@ -310,7 +310,7 @@ export function CalendarShowcase() {
                     className="rounded-lg border"
                   />
                   <List
-                    className="text-muted-foreground text-sm mt-2"
+                    className="text-foreground/80 text-sm mt-2"
                     variant="ul"
                   >
                     <ListItem variant="default" itemSize="sm">
@@ -350,7 +350,7 @@ export function CalendarShowcase() {
               </Typography>
               <Box className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Basic Time Picker (12h)
                   </Typography>
                   <TimePicker
@@ -360,7 +360,7 @@ export function CalendarShowcase() {
                   />
                 </Box>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     24-Hour Format
                   </Typography>
                   <TimePicker
@@ -371,7 +371,7 @@ export function CalendarShowcase() {
                   />
                 </Box>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     With Seconds
                   </Typography>
                   <TimePicker
@@ -391,7 +391,7 @@ export function CalendarShowcase() {
               </Typography>
               <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Date + Time Selection
                   </Typography>
                   <Calendar
@@ -405,7 +405,7 @@ export function CalendarShowcase() {
                     className="rounded-lg border"
                   />
                   <Box className="mt-4">
-                    <Typography className="text-muted-foreground">
+                    <Typography className="text-foreground/80">
                       Selected:{' '}
                       {singleDate
                         ? formatDate(singleDate, 'MMMM dd, yyyy')
@@ -415,7 +415,7 @@ export function CalendarShowcase() {
                   </Box>
                 </Box>
                 <Box>
-                  <Typography className="text-muted-foreground mb-2">
+                  <Typography className="text-foreground/80 mb-2">
                     Advanced Time Picker Features
                   </Typography>
                   <TimePicker
@@ -425,7 +425,7 @@ export function CalendarShowcase() {
                     use24Hour={true}
                   />
                   <List
-                    className="text-muted-foreground text-sm mt-2"
+                    className="text-foreground/80 text-sm mt-2"
                     variant="ul"
                   >
                     <ListItem variant="default" itemSize="sm">
@@ -497,7 +497,7 @@ export function CalendarShowcase() {
                       Book Appointment
                     </Button>
                   </Box>
-                  <Box className="text-muted-foreground">
+                  <Box className="text-foreground/80">
                     <Typography className="mb-2">Features:</Typography>
                     <List variant="ul">
                       <ListItem variant="default" itemSize="sm">
@@ -557,7 +557,7 @@ export function CalendarShowcase() {
                       Save Trip
                     </Button>
                   </Box>
-                  <Box className="text-muted-foreground">
+                  <Box className="text-foreground/80">
                     <Typography className="mb-2">Features:</Typography>
                     <List variant="ul">
                       <ListItem variant="default" itemSize="sm">
@@ -599,7 +599,7 @@ export function CalendarShowcase() {
               <Typography variant="h4" className="mb-3">
                 Keyboard Navigation
               </Typography>
-              <List className="text-muted-foreground" variant="ul">
+              <List className="text-foreground/80" variant="ul">
                 <ListItem variant="default" itemSize="sm">
                   Arrow keys to navigate between dates
                 </ListItem>
@@ -625,7 +625,7 @@ export function CalendarShowcase() {
               <Typography variant="h4" className="mb-3">
                 Screen Reader Support
               </Typography>
-              <List className="text-muted-foreground" variant="ul">
+              <List className="text-foreground/80" variant="ul">
                 <ListItem variant="default" itemSize="sm">
                   Proper ARIA labels on all elements
                 </ListItem>
@@ -651,7 +651,7 @@ export function CalendarShowcase() {
               <Typography variant="h4" className="mb-3">
                 Mobile & Responsive
               </Typography>
-              <List className="text-muted-foreground" variant="ul">
+              <List className="text-foreground/80" variant="ul">
                 <ListItem variant="default" itemSize="sm">
                   Touch-friendly date selection
                 </ListItem>
@@ -695,7 +695,7 @@ export function CalendarShowcase() {
                 <CardTitle className="text-sm">Calendar Features</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <List className="text-muted-foreground" variant="ul">
+                <List className="text-foreground/80" variant="ul">
                   <ListItem variant="default" itemSize="sm">
                     Single, range, and multiple selection
                   </ListItem>
@@ -723,7 +723,7 @@ export function CalendarShowcase() {
                 <CardTitle className="text-sm">Time Picker Features</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <List className="text-muted-foreground" variant="ul">
+                <List className="text-foreground/80" variant="ul">
                   <ListItem variant="default" itemSize="sm">
                     12h and 24h format support
                   </ListItem>
@@ -751,7 +751,7 @@ export function CalendarShowcase() {
                 <CardTitle className="text-sm">Performance</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <List className="text-muted-foreground" variant="ul">
+                <List className="text-foreground/80" variant="ul">
                   <ListItem variant="default" itemSize="sm">
                     No external dependencies
                   </ListItem>
@@ -779,7 +779,7 @@ export function CalendarShowcase() {
                 <CardTitle className="text-sm">Integration</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <List className="text-muted-foreground" variant="ul">
+                <List className="text-foreground/80" variant="ul">
                   <ListItem variant="default" itemSize="sm">
                     Form library integration
                   </ListItem>

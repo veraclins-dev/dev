@@ -79,7 +79,7 @@ export const Basic: Story = {
             </Avatar>
             <div className="flex-1">
               <p className="text-sm font-medium">John Doe</p>
-              <p className="text-xs text-muted-foreground">john@example.com</p>
+              <p className="text-xs text-foreground/80">john@example.com</p>
             </div>
           </div>
         </SidebarFooter>
@@ -88,9 +88,7 @@ export const Basic: Story = {
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold">Welcome to My App</h1>
-            <p className="text-muted-foreground">
-              This is the main content area.
-            </p>
+            <p className="text-foreground/80">This is the main content area.</p>
           </div>
         </div>
       </SidebarInset>
@@ -173,7 +171,7 @@ export const WithGroups: Story = {
             </Avatar>
             <div className="flex-1">
               <p className="text-sm font-medium">John Doe</p>
-              <p className="text-xs text-muted-foreground">john@example.com</p>
+              <p className="text-xs text-foreground/80">john@example.com</p>
             </div>
           </div>
         </SidebarFooter>
@@ -182,9 +180,7 @@ export const WithGroups: Story = {
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold">Welcome to My App</h1>
-            <p className="text-muted-foreground">
-              This is the main content area.
-            </p>
+            <p className="text-foreground/80">This is the main content area.</p>
           </div>
         </div>
       </SidebarInset>
@@ -259,7 +255,7 @@ export const WithSubMenu: Story = {
             </Avatar>
             <div className="flex-1">
               <p className="text-sm font-medium">John Doe</p>
-              <p className="text-xs text-muted-foreground">john@example.com</p>
+              <p className="text-xs text-foreground/80">john@example.com</p>
             </div>
           </div>
         </SidebarFooter>
@@ -268,9 +264,7 @@ export const WithSubMenu: Story = {
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold">Welcome to My App</h1>
-            <p className="text-muted-foreground">
-              This is the main content area.
-            </p>
+            <p className="text-foreground/80">This is the main content area.</p>
           </div>
         </div>
       </SidebarInset>
@@ -333,7 +327,7 @@ export const WithBadges: Story = {
             </Avatar>
             <div className="flex-1">
               <p className="text-sm font-medium">John Doe</p>
-              <p className="text-xs text-muted-foreground">john@example.com</p>
+              <p className="text-xs text-foreground/80">john@example.com</p>
             </div>
           </div>
         </SidebarFooter>
@@ -342,9 +336,7 @@ export const WithBadges: Story = {
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold">Welcome to My App</h1>
-            <p className="text-muted-foreground">
-              This is the main content area.
-            </p>
+            <p className="text-foreground/80">This is the main content area.</p>
           </div>
         </div>
       </SidebarInset>
@@ -413,7 +405,7 @@ export const WithActions: Story = {
             </Avatar>
             <div className="flex-1">
               <p className="text-sm font-medium">John Doe</p>
-              <p className="text-xs text-muted-foreground">john@example.com</p>
+              <p className="text-xs text-foreground/80">john@example.com</p>
             </div>
           </div>
         </SidebarFooter>
@@ -422,9 +414,7 @@ export const WithActions: Story = {
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold">Welcome to My App</h1>
-            <p className="text-muted-foreground">
-              This is the main content area.
-            </p>
+            <p className="text-foreground/80">This is the main content area.</p>
           </div>
         </div>
       </SidebarInset>
@@ -478,7 +468,7 @@ export const Collapsible: Story = {
             </Avatar>
             <div className="flex-1">
               <p className="text-sm font-medium">John Doe</p>
-              <p className="text-xs text-muted-foreground">john@example.com</p>
+              <p className="text-xs text-foreground/80">john@example.com</p>
             </div>
           </div>
         </SidebarFooter>
@@ -487,9 +477,7 @@ export const Collapsible: Story = {
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold">Welcome to My App</h1>
-            <p className="text-muted-foreground">
-              This is the main content area.
-            </p>
+            <p className="text-foreground/80">This is the main content area.</p>
             <SidebarTrigger className="mt-4" />
           </div>
         </div>

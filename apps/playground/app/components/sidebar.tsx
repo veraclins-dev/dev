@@ -263,7 +263,7 @@ export function AppSidebar() {
                 side="bottom"
                 sideOffset={4}
               >
-                <DropdownMenuLabel className="text-xs text-muted-foreground">
+                <DropdownMenuLabel className="text-xs text-foreground/80">
                   Teams
                 </DropdownMenuLabel>
                 {data.teams.map((team, index) => (
@@ -284,9 +284,7 @@ export function AppSidebar() {
                   <div className="flex size-6 items-center justify-center rounded-md border bg-background">
                     <Icon name="plus" className="size-4" />
                   </div>
-                  <div className="font-medium text-muted-foreground">
-                    Add team
-                  </div>
+                  <div className="font-medium text-foreground/80">Add team</div>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -371,19 +369,16 @@ export function AppSidebar() {
                       align="end"
                     >
                       <DropdownMenuItem>
-                        <Icon name="folder" className="text-muted-foreground" />
+                        <Icon name="folder" className="text-foreground/80" />
                         <span>View Project</span>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Icon
-                          name="forward"
-                          className="text-muted-foreground"
-                        />
+                        <Icon name="forward" className="text-foreground/80" />
                         <span>Share Project</span>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        <Icon name="trash" className="text-muted-foreground" />
+                        <Icon name="trash" className="text-foreground/80" />
                         <span>Delete Project</span>
                       </DropdownMenuItem>
                     </DropdownMenuContent>

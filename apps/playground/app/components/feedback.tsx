@@ -140,7 +140,7 @@ export function Feedback() {
                         </Box>
                         <ProgressBar value={80} color="success" />
                       </Box>
-                      <Typography className="text-muted-foreground">
+                      <Typography className="text-foreground/80">
                         Complete your profile to unlock additional features
                       </Typography>
                     </Box>

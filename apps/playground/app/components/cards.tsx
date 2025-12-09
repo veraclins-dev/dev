@@ -227,7 +227,7 @@ export function Cards() {
             {/* Product Card */}
             <Card className="bg-card-inner overflow-hidden">
               <CardImage className="relative h-48 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                <Icon name="photo" className="size-16 text-muted-foreground" />
+                <Icon name="photo" className="size-16 text-foreground/80" />
                 <Badge
                   variant="solid"
                   color="destructive"
@@ -246,7 +246,7 @@ export function Cards() {
                 <Box display="flex" flexDirection="column" gap={3}>
                   <Box display="flex" justify="between" items="center">
                     <Typography variant="h4">$999</Typography>
-                    <Typography className="text-muted-foreground line-through">
+                    <Typography className="text-foreground/80 line-through">
                       $1,199
                     </Typography>
                   </Box>
@@ -409,7 +409,7 @@ export function Cards() {
                 <Typography variant="h3" className="mb-1">
                   573
                 </Typography>
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   +201 since last hour
                 </Typography>
               </CardContent>
@@ -433,7 +433,7 @@ export function Cards() {
               <Box className="relative h-48 bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
                 <Icon
                   name="document-text"
-                  className="size-16 text-muted-foreground"
+                  className="size-16 text-foreground/80"
                 />
                 <Badge
                   variant="solid"
@@ -451,7 +451,7 @@ export function Cards() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Typography className="text-muted-foreground">
+                <Typography className="text-foreground/80">
                   React is a JavaScript library for building user interfaces. In
                   this comprehensive guide, we'll cover everything you need to
                   know to get started...
@@ -469,11 +469,11 @@ export function Cards() {
                       <AvatarImage src="https://github.com/shadcn.png" />
                       <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
-                    <Typography className="text-muted-foreground">
+                    <Typography className="text-foreground/80">
                       John Doe
                     </Typography>
                   </Box>
-                  <Typography className="text-muted-foreground">
+                  <Typography className="text-foreground/80">
                     5 min read
                   </Typography>
                 </Box>
@@ -506,21 +506,21 @@ export function Cards() {
                     <Box display="flex" items="center" gap={2}>
                       <Icon
                         name="map-pin"
-                        className="size-4 text-muted-foreground"
+                        className="size-4 text-foreground/80"
                       />
                       <Typography>San Francisco, CA</Typography>
                     </Box>
                     <Box display="flex" items="center" gap={2}>
                       <Icon
                         name="clock"
-                        className="size-4 text-muted-foreground"
+                        className="size-4 text-foreground/80"
                       />
                       <Typography>March 15-17, 2024</Typography>
                     </Box>
                     <Box display="flex" items="center" gap={2}>
                       <Icon
                         name="users"
-                        className="size-4 text-muted-foreground"
+                        className="size-4 text-foreground/80"
                       />
                       <Typography>500+ attendees</Typography>
                     </Box>
@@ -585,9 +585,9 @@ export function Cards() {
                         <Box display="flex" items="center" gap={2} mt={1}>
                           <Icon
                             name="calendar"
-                            className="text-muted-foreground size-4"
+                            className="text-foreground/80 size-4"
                           />
-                          <Typography className="text-muted-foreground text-xs">
+                          <Typography className="text-foreground/80 text-xs">
                             Joined December 2023
                           </Typography>
                         </Box>
@@ -713,7 +713,7 @@ export function Cards() {
                       <AvatarFallback>ER</AvatarFallback>
                     </Avatar>
                   </Box>
-                  <Typography className="text-muted-foreground">
+                  <Typography className="text-foreground/80">
                     2 hours ago
                   </Typography>
                 </Box>
@@ -731,7 +731,7 @@ export function Cards() {
               <CardContent>
                 <Box display="flex" flexDirection="column" gap={4}>
                   <Box>
-                    <Typography className="text-muted-foreground mb-2">
+                    <Typography className="text-foreground/80 mb-2">
                       Overall Progress
                     </Typography>
                     <Box className="w-full bg-muted rounded-full h-2">
@@ -740,7 +740,7 @@ export function Cards() {
                         style={{ width: '75%' }}
                       />
                     </Box>
-                    <Typography className="text-muted-foreground mt-1">
+                    <Typography className="text-foreground/80 mt-1">
                       75% Complete
                     </Typography>
                   </Box>

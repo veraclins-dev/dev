@@ -172,7 +172,7 @@ export function InteractiveCodeDemo(props: InteractiveCodeDemoProps) {
     <ClientOnly
       fallback={
         <Box className={cn('rounded-lg border bg-muted p-4', props.className)}>
-          <Typography className="text-muted-foreground">
+          <Typography className="text-foreground/80">
             Loading interactive example...
           </Typography>
         </Box>

@@ -739,7 +739,7 @@ export function Boxes() {
               <Typography variant="h4" className="mb-4">
                 HTML Element Components
               </Typography>
-              <Typography className="text-muted-foreground mb-4">
+              <Typography className="text-foreground/80 mb-4">
                 Use Box with semantic HTML elements while maintaining all Box
                 props
               </Typography>
@@ -817,7 +817,7 @@ export function Boxes() {
               <Typography variant="h4" className="mb-4">
                 Custom React Components
               </Typography>
-              <Typography className="text-muted-foreground mb-4">
+              <Typography className="text-foreground/80 mb-4">
                 Use Box with custom React components for enhanced composition
               </Typography>
 
@@ -1013,7 +1013,7 @@ export function Boxes() {
                       <Typography className="font-semibold">
                         Automatic Type Inference
                       </Typography>
-                      <Typography className="text-muted-foreground">
+                      <Typography className="text-foreground/80">
                         TypeScript automatically infers the correct props based
                         on the component you pass
                       </Typography>
@@ -1025,7 +1025,7 @@ export function Boxes() {
                       <Typography className="font-semibold">
                         Prop Merging
                       </Typography>
-                      <Typography className="text-muted-foreground">
+                      <Typography className="text-foreground/80">
                         Box props are merged with your custom component's props
                         intelligently
                       </Typography>
@@ -1037,7 +1037,7 @@ export function Boxes() {
                       <Typography className="font-semibold">
                         OverrideComponentProps
                       </Typography>
-                      <Typography className="text-muted-foreground">
+                      <Typography className="text-foreground/80">
                         Built on OverrideComponentProps for maximum type safety
                         and flexibility
                       </Typography>
@@ -1266,7 +1266,7 @@ export function Boxes() {
                               <Typography variant="h6" className="mb-1">
                                 Product {item}
                               </Typography>
-                              <Typography className="text-muted-foreground mb-2">
+                              <Typography className="text-foreground/80 mb-2">
                                 Product description goes here
                               </Typography>
                               <Box
@@ -1495,7 +1495,7 @@ export function Boxes() {
                           <Typography variant="h6" className="mb-2">
                             Mobile
                           </Typography>
-                          <Typography className="text-muted-foreground">
+                          <Typography className="text-foreground/80">
                             &lt; 768px
                           </Typography>
                           <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
@@ -1508,7 +1508,7 @@ export function Boxes() {
                           <Typography variant="h6" className="mb-2">
                             Tablet
                           </Typography>
-                          <Typography className="text-muted-foreground">
+                          <Typography className="text-foreground/80">
                             768px - 1024px
                           </Typography>
                           <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
@@ -1521,7 +1521,7 @@ export function Boxes() {
                           <Typography variant="h6" className="mb-2">
                             Desktop
                           </Typography>
-                          <Typography className="text-muted-foreground">
+                          <Typography className="text-foreground/80">
                             1024px - 1440px
                           </Typography>
                           <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
@@ -1534,7 +1534,7 @@ export function Boxes() {
                           <Typography variant="h6" className="mb-2">
                             Large
                           </Typography>
-                          <Typography className="text-muted-foreground">
+                          <Typography className="text-foreground/80">
                             &gt; 1440px
                           </Typography>
                           <Box className="bg-neutral/10 h-20 rounded mt-2 flex items-center justify-center">
