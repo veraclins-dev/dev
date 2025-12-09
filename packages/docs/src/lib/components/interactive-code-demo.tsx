@@ -6,8 +6,6 @@ import { toast } from '@veraclins-dev/react-utils';
 import {
   Box,
   Button,
-  Card,
-  CardContent,
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
@@ -82,102 +80,89 @@ function InteractiveCodeDemoInner({
 
   return (
     <Box display="flex" flexDirection="column" gap={4} className={className}>
-      <Card elevated={false} borderless={true}>
-        <CardContent display="flex" flexDirection="column" gap={4}>
-          {runnerError && (
-            <Box
-              style={{
-                marginBottom: '1rem',
-                padding: '1rem',
-                backgroundColor: 'hsl(var(--destructive) / 0.1)',
-                border: '1px solid hsl(var(--destructive) / 0.2)',
-                borderRadius: '0.5rem',
-                color: 'hsl(var(--destructive))',
-                fontFamily: 'ui-monospace, monospace',
-                fontSize: '0.875rem',
-                whiteSpace: 'pre-wrap',
-              }}
-            >
-              {String(runnerError)}
-            </Box>
-          )}
-          <Box style={{ width: '100%' }}>
-            {Object.keys(memoizedScope).length === 0 ? (
-              <Box
-                style={{
-                  minHeight: '200px',
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Typography className="text-muted-foreground">
-                  No scope provided. Please set up scope with useCodeDemoScope.
-                </Typography>
-              </Box>
-            ) : (
-              // Return element directly - MUI's pattern (works better with React 19)
-              element
-            )}
-          </Box>
-          <Separator />
-          <Collapsible
-            defaultOpen={false}
-            open={isCodeExpanded}
-            onOpenChange={setIsCodeExpanded}
-            className="gap-y-4 flex flex-col"
+      {runnerError && (
+        <Box
+          style={{
+            marginBottom: '1rem',
+            padding: '1rem',
+            backgroundColor: 'hsl(var(--destructive) / 0.1)',
+            border: '1px solid hsl(var(--destructive) / 0.2)',
+            borderRadius: '0.5rem',
+            color: 'hsl(var(--destructive))',
+            fontFamily: 'ui-monospace, monospace',
+            fontSize: '0.875rem',
+            whiteSpace: 'pre-wrap',
+          }}
+        >
+          {String(runnerError)}
+        </Box>
+      )}
+      <Box w="full">
+        {Object.keys(memoizedScope).length === 0 ? (
+          <Box
+            display="flex"
+            items="center"
+            justify="center"
+            minH={48}
+            w="full"
           >
-            <Box
-              display="flex"
-              flexDirection="row"
-              items="center"
-              justify="end"
-              gap={2}
-            >
-              <CollapsibleTrigger asChild>
-                <Button buttonSize="sm">
-                  <Icon
-                    name="chevron-down"
-                    className={cn(
-                      'size-4 transition-transform',
-                      isCodeExpanded && 'rotate-180',
-                    )}
-                  >
-                    {isCodeExpanded ? 'Collapse code' : 'Expand code'}
-                  </Icon>
-                </Button>
-              </CollapsibleTrigger>
-              <Button
-                buttonSize="sm"
-                variant="outline"
-                onClick={handleCopyCode}
+            <Typography className="text-foreground/80">
+              No scope provided. Please set up scope with useCodeDemoScope.
+            </Typography>
+          </Box>
+        ) : (
+          // Return element directly - MUI's pattern (works better with React 19)
+          element
+        )}
+      </Box>
+      <Separator />
+      <Collapsible
+        defaultOpen={false}
+        open={isCodeExpanded}
+        onOpenChange={setIsCodeExpanded}
+        className="gap-y-4 flex flex-col"
+      >
+        <Box
+          display="flex"
+          flexDirection="row"
+          items="center"
+          justify="end"
+          gap={2}
+        >
+          <CollapsibleTrigger asChild>
+            <Button variant="soft" buttonSize="sm">
+              <Icon
+                name="chevron-down"
+                className={cn(
+                  'size-4 transition-transform',
+                  isCodeExpanded && 'rotate-180',
+                )}
               >
-                <Icon name="copy" className="size-4">
-                  Copy code
-                </Icon>
-              </Button>
-            </Box>
-            <CollapsibleContent>
-              <Box
-                className="relative rounded-b-lg group"
-                onFocus={handleEditorFocus}
-              >
-                <CodeEditor
-                  code={liveCode}
-                  language={language}
-                  onChange={handleCodeChange}
-                  onFocus={handleEditorFocus}
-                  showCopyButton={false}
-                  showHint={!liveDemoActive}
-                  className="rounded-b-lg"
-                  theme={theme}
-                />
-              </Box>
-            </CollapsibleContent>
-          </Collapsible>
-        </CardContent>
-      </Card>
+                {isCodeExpanded ? 'Collapse code' : 'Expand code'}
+              </Icon>
+            </Button>
+          </CollapsibleTrigger>
+          <Button buttonSize="sm" variant="outline" onClick={handleCopyCode}>
+            <Icon name="copy" className="size-4">
+              Copy code
+            </Icon>
+          </Button>
+        </Box>
+        <CollapsibleContent>
+          <Box className="relative rounded-b-lg group">
+            <CodeEditor
+              code={liveCode}
+              language={language}
+              onChange={handleCodeChange}
+              onFocus={handleEditorFocus}
+              showCopyButton={false}
+              showHint={!liveDemoActive}
+              className="rounded-b-lg"
+              theme={theme}
+            />
+          </Box>
+        </CollapsibleContent>
+      </Collapsible>
     </Box>
   );
 }

@@ -90,7 +90,7 @@ function FormExample({ name: initialName }: FormExampleProps) {
         onChange={(e) => setName(e.target.value)}
         placeholder="Enter your name"
       />
-      <Button>Submit</Button>
+      <Button color="primary">Submit</Button>
       {name && <p>Hello, {name}!</p>}
     </Box>
   );

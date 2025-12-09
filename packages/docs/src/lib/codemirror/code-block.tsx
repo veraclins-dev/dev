@@ -59,21 +59,18 @@ export function CodeBlock({
           </Button>
         </Box>
       )}
-      <Box className={cn('rounded-lg border overflow-hidden', 'bg-background')}>
-        <CodeMirror
-          value={code}
-          onChange={() => {
-            // Read-only, no-op
-          }}
-          theme={theme}
-          filename={getFilenameFromLanguage(language)}
-          padding={10}
-          readOnly={true}
-          showLineNumbers={false}
-          className="focus:outline-none"
-        />
-      </Box>
+      <CodeMirror
+        value={code}
+        onChange={() => {
+          // Read-only, no-op
+        }}
+        theme={theme}
+        filename={getFilenameFromLanguage(language)}
+        padding={10}
+        readOnly={true}
+        showLineNumbers={false}
+        className="focus:outline-none"
+      />
     </Box>
   );
 }
-
