@@ -37,6 +37,8 @@ const getBaseTheme = (padding: Config['padding'] = 10) =>
   EditorView.theme({
     '&.cm-editor': {
       height: '100%',
+      maxHeight: '600px',
+      maxWidth: '100%',
     },
     '&.cm-editor.cm-focused': {
       outline: 'none',
@@ -48,6 +50,9 @@ const getBaseTheme = (padding: Config['padding'] = 10) =>
     },
     '&.cm-editor .cm-line': {
       padding: 0,
+    },
+    '&.cm-editor .cm-content, .cm-editor .cm-gutter': {
+      minHeight: '48px',
     },
     '&.cm-editor .cm-content': {
       padding: typeof padding === 'string' ? padding : `${padding}px`,
@@ -331,4 +336,3 @@ export const useConfig = <T extends keyof Config>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, value, view, ...deps]);
 };
-

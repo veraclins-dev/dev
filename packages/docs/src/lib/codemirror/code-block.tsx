@@ -72,7 +72,7 @@ export function CodeBlock({
         padding={10}
         readOnly={true}
         showLineNumbers={false}
-        className="focus:outline-none"
+        className="focus:outline-none h-full"
       />
     </Box>
   );

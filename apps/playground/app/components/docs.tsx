@@ -20,6 +20,8 @@ import {
 
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
 
+const importExample = `import { Button } from '@veraclins-dev/ui';`;
+
 const basicExample = `import { Button } from '@veraclins-dev/ui';
 
 function App() {
@@ -106,7 +108,7 @@ function App() {
   const code = \`import { Button } from '@veraclins-dev/ui';
 
 export default function Demo() {
-  return <Button variant="solid">Hello from Runner!</Button>;
+  return <Button variant="solid">Hello from Runner! and this can be very long text to see how it works and how it looks and even more content</Button>;
 }\`;
 
   const scope = {
@@ -186,6 +188,15 @@ export function DocsShowcase() {
         </Typography>
       </Box>
 
+      <Card>
+        <CardHeader>
+          <CardTitle>Basic Import</CardTitle>
+          <CardDescription>Simple import example</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <CodeDemo code={importExample} language="tsx" mode="static" />
+        </CardContent>
+      </Card>
       <Card>
         <CardHeader>
           <CardTitle>Basic Usage</CardTitle>

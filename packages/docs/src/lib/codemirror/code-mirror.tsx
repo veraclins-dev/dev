@@ -71,7 +71,7 @@ function CodeMirrorComponent({
     <Box
       ref={parentRef}
       data-slot="code-mirror"
-      className={cn(className)}
+      className={cn('min-h-12', className)}
       style={mergedStyle}
       {...rest}
     />
@@ -79,4 +79,3 @@ function CodeMirrorComponent({
 }
 
 export const CodeMirror = memo(CodeMirrorComponent);
-

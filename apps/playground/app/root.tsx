@@ -87,13 +87,18 @@ export default function App({ loaderData }: Route.ComponentProps) {
       <IconProvider sprite={sprite}>
         <SidebarProvider sidebarWidth="18rem">
           <AppSidebar />
-          <Box component="main" w="full" h="full" flex="1">
+          <Box
+            component="main"
+            className="w-[calc(100%-18rem)]"
+            h="full"
+            flex="1"
+          >
             <SidebarTrigger />
             <Box
               display="flex"
               flexDirection="column"
               py={4}
-              px={{ md: 6 }}
+              pl={{ md: 6 }}
               gap={{ sm: 4 }}
               overflow="auto"
               className="rounded-md h-[calc(100%-30px)]"
