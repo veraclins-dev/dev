@@ -29,8 +29,13 @@ const styleProps: StyleProps = {
   ...borderVariants,
 };
 
+// Create a Set of style prop keys for O(1) lookup performance
+// This is computed once at module load time
+const STYLE_PROPS_KEYS_SET = new Set<string>(Object.keys(styleProps));
+
 /**
  * Extracts style props from a component props object and returns them in a format that can be passed to variant functions.
+ * Optimized for performance with O(1) Set lookups and minimal object creation.
  *
  * @param props - The component props object containing both style props and other props
  * @returns An object with `styleProps` (extracted style props) and `others` (remaining props)
@@ -65,13 +70,13 @@ function extractStyleProps<T extends Record<string, unknown>>(
   styleProps: Pick<T, StylePropsKeys>;
   others: Omit<T, StylePropsKeys>;
 } {
-  const stylePropsKeys = Object.keys(styleProps) as StylePropsKeys[];
   const extractedStyleProps: Record<string, unknown> = {};
   const others: Record<string, unknown> = {};
 
   // Iterate through all props and separate style props from others
+  // Using Set.has() for O(1) lookup instead of Array.includes() for O(n)
   for (const [key, value] of Object.entries(props)) {
-    if (stylePropsKeys.includes(key as StylePropsKeys)) {
+    if (STYLE_PROPS_KEYS_SET.has(key)) {
       extractedStyleProps[key] = value;
     } else {
       others[key] = value;
@@ -84,15 +89,13 @@ function extractStyleProps<T extends Record<string, unknown>>(
   };
 }
 
-export {
-  borderVariants,
-  extractStyleProps,
-  flexVariants,
-  gridVariants,
-  layoutVariants,
-  sizeVariants,
-  spaceVariants,
-  styleProps,
-};
+export { extractStyleProps, styleProps };
+
+export * from './border';
+export * from './flex';
+export * from './grid';
+export * from './layout';
+export * from './size';
+export * from './spaces';
 
 export type { StyleProps };
