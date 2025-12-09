@@ -17,7 +17,7 @@ export function CodeDemo({
       code={code}
       language={language}
       theme={theme}
-      className="className"
+      className={className}
       showCopyButton
     />
   ) : (

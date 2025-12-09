@@ -45,7 +45,10 @@ export function CodeBlock({
 
   return (
     <Box
-      className={cn('relative rounded-lg border overflow-hidden', className)}
+      className={cn(
+        'relative rounded-lg border overflow-hidden min-h-12',
+        className,
+      )}
     >
       {showCopyButton && (
         <Box className="absolute top-2 right-2 z-10">
