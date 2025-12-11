@@ -49,6 +49,7 @@ interface DataTableProps<TData extends WithId, TValue = unknown> {
   filters?: DataTableToolbarProps<TData, TValue>['filters'];
   bulkActions?: (table: TanstackTable<TData>) => ItemOption[];
   filterPlaceholder?: string;
+  hideToolbar?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this is a valid use case
@@ -70,6 +71,7 @@ function DataTable<TData extends WithId, TValue = unknown>({
   filters,
   bulkActions,
   filterPlaceholder,
+  hideToolbar = false,
 }: DataTableProps<TData, TValue>) {
   const [data, setData] = useState(() => initialData);
   const [rowSelection, setRowSelection] = useState({});
@@ -148,18 +150,20 @@ function DataTable<TData extends WithId, TValue = unknown>({
 
   return (
     <Box display="flex" flexDirection="column" gap={4}>
-      <DataTableToolbar
-        table={table}
-        filters={{
-          global: {
-            fn: setGlobalFilter,
-            value: globalFilter,
-          },
-          ...filters,
-        }}
-        bulkActions={bulkActions?.(table)}
-        filterPlaceholder={filterPlaceholder}
-      />
+      {!hideToolbar && (
+        <DataTableToolbar
+          table={table}
+          filters={{
+            global: {
+              fn: setGlobalFilter,
+              value: globalFilter,
+            },
+            ...filters,
+          }}
+          bulkActions={bulkActions?.(table)}
+          filterPlaceholder={filterPlaceholder}
+        />
+      )}
       <Box className="rounded-md border">
         <DataTableDndContext dataIds={dataIds} setData={setData}>
           <Box style={columnSizeVars}>
