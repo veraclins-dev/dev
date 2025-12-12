@@ -4,7 +4,7 @@ import { styleProps } from './styles';
 
 /** ::::::::: List Item ::::::::: */
 const listItemVariants = cva({
-  base: 'relative group-data-[marker=default]/list:flex',
+  base: 'relative group-data-[marker=none]/list:flex',
   responsive: {
     ...styleProps,
   },

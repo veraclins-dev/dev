@@ -283,7 +283,7 @@ export function CalendarShowcase() {
                   />
                   <List
                     className="text-foreground/80 text-sm mt-2"
-                    variant="ul"
+                    variant="unordered-disc"
                   >
                     <ListItem variant="default" itemSize="sm">
                       Month/Year dropdown selectors
@@ -311,7 +311,7 @@ export function CalendarShowcase() {
                   />
                   <List
                     className="text-foreground/80 text-sm mt-2"
-                    variant="ul"
+                    variant="unordered-disc"
                   >
                     <ListItem variant="default" itemSize="sm">
                       Quick navigation to today
@@ -426,7 +426,7 @@ export function CalendarShowcase() {
                   />
                   <List
                     className="text-foreground/80 text-sm mt-2"
-                    variant="ul"
+                    variant="unordered-disc"
                   >
                     <ListItem variant="default" itemSize="sm">
                       Business hours only (9 AM - 5 PM)
@@ -499,7 +499,7 @@ export function CalendarShowcase() {
                   </Box>
                   <Box className="text-foreground/80">
                     <Typography className="mb-2">Features:</Typography>
-                    <List variant="ul">
+                    <List variant="unordered-disc">
                       <ListItem variant="default" itemSize="sm">
                         Business days only (Mon-Fri)
                       </ListItem>
@@ -559,7 +559,7 @@ export function CalendarShowcase() {
                   </Box>
                   <Box className="text-foreground/80">
                     <Typography className="mb-2">Features:</Typography>
-                    <List variant="ul">
+                    <List variant="unordered-disc">
                       <ListItem variant="default" itemSize="sm">
                         Multi-month range selection
                       </ListItem>
@@ -599,7 +599,7 @@ export function CalendarShowcase() {
               <Typography variant="h4" className="mb-3">
                 Keyboard Navigation
               </Typography>
-              <List className="text-foreground/80" variant="ul">
+              <List className="text-foreground/80" variant="unordered-disc">
                 <ListItem variant="default" itemSize="sm">
                   Arrow keys to navigate between dates
                 </ListItem>
@@ -625,7 +625,7 @@ export function CalendarShowcase() {
               <Typography variant="h4" className="mb-3">
                 Screen Reader Support
               </Typography>
-              <List className="text-foreground/80" variant="ul">
+              <List className="text-foreground/80" variant="unordered-disc">
                 <ListItem variant="default" itemSize="sm">
                   Proper ARIA labels on all elements
                 </ListItem>
@@ -651,7 +651,7 @@ export function CalendarShowcase() {
               <Typography variant="h4" className="mb-3">
                 Mobile & Responsive
               </Typography>
-              <List className="text-foreground/80" variant="ul">
+              <List className="text-foreground/80" variant="unordered-disc">
                 <ListItem variant="default" itemSize="sm">
                   Touch-friendly date selection
                 </ListItem>
@@ -695,7 +695,7 @@ export function CalendarShowcase() {
                 <CardTitle className="text-sm">Calendar Features</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <List className="text-foreground/80" variant="ul">
+                <List className="text-foreground/80" variant="unordered-disc">
                   <ListItem variant="default" itemSize="sm">
                     Single, range, and multiple selection
                   </ListItem>
@@ -723,7 +723,7 @@ export function CalendarShowcase() {
                 <CardTitle className="text-sm">Time Picker Features</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <List className="text-foreground/80" variant="ul">
+                <List className="text-foreground/80" variant="unordered-disc">
                   <ListItem variant="default" itemSize="sm">
                     12h and 24h format support
                   </ListItem>
@@ -751,7 +751,7 @@ export function CalendarShowcase() {
                 <CardTitle className="text-sm">Performance</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <List className="text-foreground/80" variant="ul">
+                <List className="text-foreground/80" variant="unordered-disc">
                   <ListItem variant="default" itemSize="sm">
                     No external dependencies
                   </ListItem>
@@ -779,7 +779,7 @@ export function CalendarShowcase() {
                 <CardTitle className="text-sm">Integration</CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <List className="text-foreground/80" variant="ul">
+                <List className="text-foreground/80" variant="unordered-disc">
                   <ListItem variant="default" itemSize="sm">
                     Form library integration
                   </ListItem>

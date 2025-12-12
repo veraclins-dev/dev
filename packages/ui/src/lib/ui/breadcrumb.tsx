@@ -58,7 +58,6 @@ function BreadcrumbList({ className, gap, gapX, gapY, ...props }: ListProps) {
     <List
       component="ol"
       variant="none"
-      marker="default"
       data-slot="breadcrumb-list"
       gap={gap}
       gapX={gapX}

@@ -43,7 +43,7 @@ export function Lists() {
             {/* Unordered List */}
             <Box className="space-y-2">
               <Typography variant="h4">Unordered List</Typography>
-              <List>
+              <List variant="unordered-disc">
                 <ListItem>First item in the list</ListItem>
                 <ListItem>
                   Second item with some longer text to demonstrate wrapping
@@ -56,7 +56,7 @@ export function Lists() {
             {/* Ordered List */}
             <Box className="space-y-2">
               <Typography variant="h4">Ordered List</Typography>
-              <List variant="ol">
+              <List variant="ordered-decimal">
                 <ListItem>Step one: Initialize the project</ListItem>
                 <ListItem>Step two: Install dependencies</ListItem>
                 <ListItem>Step three: Configure the build system</ListItem>
@@ -85,7 +85,7 @@ export function Lists() {
                   <Typography className="font-medium mb-2">
                     Default (disc)
                   </Typography>
-                  <List marker="disc">
+                  <List variant="unordered-disc">
                     <ListItem>Default bullet point</ListItem>
                     <ListItem>Another item</ListItem>
                     <ListItem>Third item</ListItem>
@@ -93,7 +93,7 @@ export function Lists() {
                 </Box>
                 <Box>
                   <Typography className="font-medium mb-2">Circle</Typography>
-                  <List marker="circle">
+                  <List variant="unordered-circle">
                     <ListItem>Circle bullet point</ListItem>
                     <ListItem>Another item</ListItem>
                     <ListItem>Third item</ListItem>
@@ -101,7 +101,7 @@ export function Lists() {
                 </Box>
                 <Box>
                   <Typography className="font-medium mb-2">Square</Typography>
-                  <List marker="square">
+                  <List variant="unordered-square">
                     <ListItem>Square bullet point</ListItem>
                     <ListItem>Another item</ListItem>
                     <ListItem>Third item</ListItem>
@@ -118,7 +118,7 @@ export function Lists() {
                   <Typography className="font-medium mb-2">
                     Decimal (1, 2, 3)
                   </Typography>
-                  <List variant="ol" marker="decimal">
+                  <List variant="ordered-decimal">
                     <ListItem>First step</ListItem>
                     <ListItem>Second step</ListItem>
                     <ListItem>Third step</ListItem>
@@ -128,7 +128,7 @@ export function Lists() {
                   <Typography className="font-medium mb-2">
                     Lower Alpha (a, b, c)
                   </Typography>
-                  <List variant="ol" marker="alpha">
+                  <List variant="ordered-alpha">
                     <ListItem>Option A</ListItem>
                     <ListItem>Option B</ListItem>
                     <ListItem>Option C</ListItem>
@@ -138,7 +138,7 @@ export function Lists() {
                   <Typography className="font-medium mb-2">
                     Lower Roman (i, ii, iii)
                   </Typography>
-                  <List variant="ol" marker="roman">
+                  <List variant="ordered-roman">
                     <ListItem>Chapter I</ListItem>
                     <ListItem>Chapter II</ListItem>
                     <ListItem>Chapter III</ListItem>

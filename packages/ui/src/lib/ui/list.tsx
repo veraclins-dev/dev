@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 
 import { cn } from '@veraclins-dev/utils';
 
@@ -11,9 +11,10 @@ import {
 type ListElement = 'ul' | 'ol';
 
 interface ListProps
-  extends Omit<React.HTMLAttributes<HTMLElement>, keyof ListVariants>,
+  extends
+    Omit<React.HTMLAttributes<HTMLElement>, keyof ListVariants>,
     ListVariants {
-  /** The HTML element to render the List as. Defaults to 'ul'. */
+  /** The HTML element to render the List as. Defaults based on variant if not specified. */
   component?: ListElement;
   /** ARIA role for accessibility. Useful for 'listbox' in autocomplete. */
   role?: string;
@@ -30,14 +31,28 @@ function BaseList({
   className,
   role,
   selectable = false,
-  // List variant props
-  variant,
-  marker = 'default',
+  variant = 'none',
   children,
   ...props
 }: ListProps) {
-  const Component = component;
   const { styleProps, others } = extractStyleProps(props);
+
+  const Component = useMemo(() => {
+    if (component) return component;
+    if (variant?.startsWith('ordered-')) return 'ol';
+    return 'ul';
+  }, [component, variant]);
+
+  const marker = useMemo(() => {
+    if (variant === 'none') return 'none';
+    if (variant?.startsWith('unordered-')) {
+      return variant.replace('unordered-', '');
+    }
+    if (variant?.startsWith('ordered-')) {
+      return variant.replace('ordered-', '');
+    }
+    return 'default';
+  }, [variant]);
 
   return (
     <Component
@@ -48,7 +63,6 @@ function BaseList({
       className={cn(
         listVariants({
           variant,
-          marker,
           ...styleProps,
           className,
         }),
@@ -67,7 +81,7 @@ function BaseList({
  * @returns {JSX.Element} A rendered HTML element with applied styles and children.
  * @example
  * ```tsx
- * <List component="ul" variant="ul" pl={6} my={4}>
+ * <List variant="unordered-disc" pl={6} my={4}>
  *   <ListItem variant="interactive" size="md">List item 1</ListItem>
  *   <ListItem variant="selected" color="primary">List item 2</ListItem>
  * </List>
