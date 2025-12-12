@@ -4,7 +4,7 @@ import { styleProps } from './styles';
 
 /** ::::::::: List Item ::::::::: */
 const listItemVariants = cva({
-  base: 'relative group-data-[marker=default]:flex',
+  base: 'relative group-data-[marker=default]/list:flex',
   responsive: {
     ...styleProps,
   },
@@ -12,7 +12,7 @@ const listItemVariants = cva({
     variant: {
       default: '',
       clickable:
-        'cursor-pointer hover:bg-neutral-hover hover:text-neutral-foreground-hover focus:bg-neutral-hover focus:text-neutral-foreground-hover focus:outline-none',
+        'cursor-pointer transition-colors hover:bg-neutral-hover hover:text-neutral-foreground-hover focus:bg-neutral-hover focus:text-neutral-foreground-hover focus:outline-none',
       selectable:
         'cursor-pointer transition-colors focus:outline-none focus:bg-neutral-hover focus:text-neutral-foreground-hover hover:bg-neutral-hover hover:text-neutral-foreground-hover',
     },
@@ -56,7 +56,7 @@ const listItemVariants = cva({
     {
       selected: true,
       focused: true,
-      className: 'bg-neutral text-neutral-foreground', // selected wins
+      className: 'bg-neutral text-neutral-foreground',
     },
     // Disabled state overrides other states
     {
@@ -70,6 +70,17 @@ const listItemVariants = cva({
       focused: true,
       className:
         'opacity-50 cursor-not-allowed pointer-events-none bg-neutral-hover text-neutral-foreground-hover',
+    },
+    // Disable interactive variants when disabled
+    {
+      disabled: true,
+      variant: 'clickable',
+      className: 'opacity-50 cursor-not-allowed pointer-events-none',
+    },
+    {
+      disabled: true,
+      variant: 'selectable',
+      className: 'opacity-50 cursor-not-allowed pointer-events-none',
     },
   ],
   defaultVariants: {

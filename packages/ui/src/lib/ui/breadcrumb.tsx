@@ -53,13 +53,19 @@ function Breadcrumb({ ...props }: BoxProps) {
  * </BreadcrumbList>
  * ```
  */
-function BreadcrumbList({ className, ...props }: ListProps) {
+function BreadcrumbList({ className, gap, gapX, gapY, ...props }: ListProps) {
   return (
     <List
       component="ol"
+      variant="none"
+      marker="default"
       data-slot="breadcrumb-list"
+      gap={gap}
+      gapX={gapX}
+      gapY={gapY}
       className={cn(
-        'text-foreground/80 flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5',
+        'text-foreground/80 flex-row flex-wrap items-center text-sm break-words',
+        !gap && 'gap-1.5 sm:gap-2.5',
         className,
       )}
       {...props}
@@ -81,7 +87,7 @@ function BreadcrumbItem({ className, ...props }: ListItemProps) {
   return (
     <ListItem
       data-slot="breadcrumb-item"
-      className={cn('inline-flex items-center gap-1.5', className)}
+      className={cn('flex items-center gap-1.5', className)}
       {...props}
     />
   );

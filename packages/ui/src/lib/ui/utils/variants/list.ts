@@ -4,7 +4,7 @@ import { styleProps } from './styles';
 
 /** ::::::::: List ::::::::: */
 const listVariants = cva({
-  base: 'group',
+  base: 'group/list flex flex-col list-inside',
   responsive: {
     ...styleProps,
   },
@@ -16,12 +16,12 @@ const listVariants = cva({
     },
     marker: {
       default: '',
-      circle: 'list-[circle] pl-6',
-      square: 'list-[square] pl-6',
-      roman: 'list-[lower-roman] pl-6',
-      alpha: 'list-[lower-alpha] pl-6',
-      decimal: 'list-decimal pl-6',
-      disc: 'list-disc pl-6',
+      circle: 'list-[circle]',
+      square: 'list-[square]',
+      roman: 'list-[lower-roman]',
+      'upper-roman': 'list-[upper-roman]',
+      alpha: 'list-[lower-alpha]',
+      'upper-alpha': 'list-[upper-alpha]',
     },
   },
   compoundVariants: [
@@ -34,6 +34,36 @@ const listVariants = cva({
       variant: 'ol',
       marker: 'default',
       className: 'list-decimal',
+    },
+    {
+      variant: 'none',
+      marker: 'circle',
+      className: 'pl-6',
+    },
+    {
+      variant: 'none',
+      marker: 'square',
+      className: 'pl-6',
+    },
+    {
+      variant: 'none',
+      marker: 'roman',
+      className: 'pl-6',
+    },
+    {
+      variant: 'none',
+      marker: 'upper-roman',
+      className: 'pl-6',
+    },
+    {
+      variant: 'none',
+      marker: 'alpha',
+      className: 'pl-6',
+    },
+    {
+      variant: 'none',
+      marker: 'upper-alpha',
+      className: 'pl-6',
     },
   ],
   defaultVariants: {
