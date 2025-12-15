@@ -185,12 +185,13 @@ function generateColumnsConfig<TData extends WithId, TValue>(
     }
 
     if (config.align) {
+      const originalCell = column.cell;
       column.cell = (props) => (
         <Box display="flex" items="center" justify={config.align}>
-          {column.cell
-            ? typeof column.cell === 'function'
-              ? column.cell(props)
-              : column.cell
+          {originalCell
+            ? typeof originalCell === 'function'
+              ? originalCell(props)
+              : originalCell
             : props.row.getValue(String(accessorKey))}
         </Box>
       );
