@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import {
   completeFromList,
   type Completion,
@@ -40,4 +41,3 @@ export const javascript = () =>
       ),
     }),
   );
-

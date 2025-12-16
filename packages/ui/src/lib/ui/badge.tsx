@@ -21,10 +21,11 @@ type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> &
  * - Variants: `solid`, `outline`, `soft`
  * - Colors: `primary`, `secondary`, `destructive`, `success`, `warning`, `info`, `neutral`
  * - Sizes: `sm`, `md`, `lg`, `xl`
+ * - Pill: Controls whether the badge is pill-shaped (fully rounded) or has default rounding
  *
  * @example
  * ```tsx
- * <Badge variant="outline" color="primary" size="lg">
+ * <Badge variant="outline" color="primary" badgeSize="lg">
  *   New
  * </Badge>
  * ```
@@ -32,8 +33,9 @@ type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> &
  * @param className - Additional CSS classes to apply to the badge.
  * @param variant - Visual style of the badge.
  * @param color - Color scheme of the badge.
- * @param size - Size of the badge.
- * @param {...props} props Additional HTML div attributes.
+ * @param badgeSize - Size of the badge.
+ * @param pill - Whether the badge should be pill-shaped (rounded-full) or have default rounding (rounded-md). Defaults to `true`.
+ * @param {...props} props Additional HTML div attributes including border style props like `rounded`.
  *
  * @returns A React div element styled as a badge.
  */
@@ -42,12 +44,12 @@ function Badge({
   variant,
   color,
   badgeSize,
-  rounded = true,
+  pill = true,
   ...props
 }: BadgeProps) {
   const { styleProps, others } = extractStyleProps(props);
   const badgeClass = cn(
-    badgeVariants({ ...styleProps, variant, color, badgeSize, rounded }),
+    badgeVariants({ ...styleProps, variant, color, badgeSize, pill }),
     className,
   );
   return <Box className={badgeClass} {...others} />;
