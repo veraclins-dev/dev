@@ -622,9 +622,9 @@ importers:
 
   packages/starter:
     dependencies:
-      tslib:
-        specifier: ^2.3.0
-        version: 2.8.1
+      '@nx/devkit':
+        specifier: 22.1.3
+        version: 22.1.3(nx@22.1.3(@swc-node/register@1.11.1(@swc/core@1.15.3(@swc/helpers@0.5.17))(@swc/types@0.1.25)(typescript@5.9.3))(@swc/core@1.15.3(@swc/helpers@0.5.17)))
 
   packages/ui:
     dependencies:
@@ -19759,7 +19759,7 @@ snapshots:
       lodash.isstring: 4.0.1
       lodash.once: 4.1.1
       ms: 2.1.3
-      semver: 7.7.2
+      semver: 7.7.3
 
   jsprim@2.0.2:
     dependencies:
