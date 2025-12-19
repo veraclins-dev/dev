@@ -18,6 +18,11 @@
 			"description": "Application description",
 			"x-prompt": "Describe your application"
 		},
+		"author": {
+			"type": "string",
+			"description": "Author name",
+			"x-prompt": "What is your name? (optional)"
+		},
 		"features": {
 			"type": "array",
 			"items": {

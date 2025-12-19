@@ -1,13 +1,21 @@
 import type { Tree } from '@nx/devkit';
-import { formatFiles, getWorkspaceLayout, names } from '@nx/devkit';
-import { join } from 'node:path';
+import {
+  addProjectConfiguration,
+  formatFiles,
+  getWorkspaceLayout,
+  joinPathFragments,
+  names,
+  normalizePath,
+} from '@nx/devkit';
 
 import {
   copyBaseTemplate,
   copyDeploymentConfig,
   copyFeatureModule,
   copyServiceIntegration,
+  createEnvFile,
   updatePackageJson,
+  updateReadme,
 } from '../../utils/generator-helpers.js';
 import {
   generatePrismaSchema,
@@ -23,12 +31,21 @@ export default async function appGenerator(
 ) {
   const workspaceLayout = getWorkspaceLayout(tree);
   const projectName = names(options.name).fileName;
-  const projectRoot = join(workspaceLayout.appsDir, projectName);
+
+  // Determine apps directory
+  // For standalone workspaces (appsDir === '.'), we still use 'apps' for consistency
+  // unless explicitly configured otherwise
+  const appsDir =
+    workspaceLayout.appsDir === '.'
+      ? 'apps'
+      : workspaceLayout.appsDir || 'apps';
+  const projectRoot = normalizePath(joinPathFragments(appsDir, projectName));
 
   // Build template configuration
   const config: TemplateConfig = {
     projectName: options.name,
     description: options.description || '',
+    author: options.author,
     features: options.features || [],
     database: options.database || 'postgresql',
     emailProvider: options.emailProvider || 'resend',
@@ -83,12 +100,52 @@ export default async function appGenerator(
   // 5. Generate Prisma schema (merge base + features)
   const { getTemplateSourcePath } = await import('../../utils/file-utils.js');
   const templateSourcePath = await getTemplateSourcePath();
-  const prismaSchemaPath = join(projectRoot, 'prisma/schema.prisma');
+  const prismaSchemaPath = normalizePath(
+    joinPathFragments(projectRoot, 'prisma/schema.prisma'),
+  );
   generatePrismaSchema(tree, templateSourcePath, config, prismaSchemaPath);
 
   // 6. Update package.json
   await updatePackageJson(tree, projectRoot, config);
 
-  // 7. Format all files
+  // 7. Add project configuration to workspace
+  addProjectConfiguration(tree, projectName, {
+    root: projectRoot,
+    projectType: 'application',
+    sourceRoot: joinPathFragments(projectRoot, 'app'),
+    tags: [],
+    targets: {
+      build: {
+        executor: '@nx/vite:build',
+        outputs: ['{options.outputPath}'],
+        options: {
+          outputPath: joinPathFragments('dist', projectRoot),
+        },
+      },
+      serve: {
+        executor: '@nx/vite:dev-server',
+        options: {},
+      },
+      test: {
+        executor: '@nx/vitest:vitest',
+        outputs: ['{workspaceRoot}/coverage/{projectRoot}'],
+        options: {
+          passWithNoTests: true,
+        },
+      },
+      lint: {
+        executor: '@nx/eslint:lint',
+        outputs: ['{options.outputFile}'],
+      },
+    },
+  });
+
+  // 8. Create .env file from .env.example
+  await createEnvFile(tree, projectRoot, config);
+
+  // 9. Update README with post-generation instructions
+  await updateReadme(tree, projectRoot, config);
+
+  // 10. Format all files
   await formatFiles(tree);
 }

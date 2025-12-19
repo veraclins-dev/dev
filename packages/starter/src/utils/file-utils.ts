@@ -1,6 +1,7 @@
 import type { Tree } from '@nx/devkit';
-import { existsSync,readdirSync, readFileSync, statSync } from 'node:fs';
-import { dirname,join, relative } from 'node:path';
+import { normalizePath } from '@nx/devkit';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /**
@@ -27,9 +28,12 @@ export async function getTemplateSourcePath(): Promise<string> {
   const currentFile = fileURLToPath(import.meta.url);
   const currentDir = dirname(currentFile);
 
-  // Navigate from dist/packages/starter/src/utils/file-utils.js
-  // to packages/starter/templates (bundled with package)
-  const packageRoot = join(currentDir, '../../..');
+  // Navigate from src/utils/file-utils.js to package root
+  // From: node_modules/@veraclins-dev/starter/src/utils/file-utils.js
+  // To:   node_modules/@veraclins-dev/starter/templates
+  // Or from: dist/packages/starter/src/utils/file-utils.js
+  // To:   dist/packages/starter/templates
+  const packageRoot = join(currentDir, '../..');
   const bundledTemplatePath = join(packageRoot, 'templates');
 
   if (existsSync(bundledTemplatePath)) {
@@ -43,7 +47,9 @@ export async function getTemplateSourcePath(): Promise<string> {
       `3. Ensure template-source is bundled with the @veraclins-dev/starter package\n\n` +
       `Searched paths:\n` +
       `- ${bundledTemplatePath}\n` +
-      `- ${localDevPath}`,
+      `- ${localDevPath}\n` +
+      `Current file location: ${currentFile}\n` +
+      `Current directory: ${currentDir}`,
   );
 }
 
@@ -99,12 +105,22 @@ export function copyDirectoryToTree(
   const allFiles = getAllFiles(sourceDir);
 
   for (const sourceFile of allFiles) {
-    if (!shouldInclude(sourceFile)) {
+    // Calculate relative path first to check against relative path
+    const relativePath = relative(sourceDir, sourceFile);
+
+    // Skip .gitkeep files - they're not needed in generated projects
+    if (relativePath.endsWith('.gitkeep')) {
       continue;
     }
 
-    const relativePath = relative(sourceDir, sourceFile);
-    const targetFile = join(targetDir, relativePath);
+    // Check shouldInclude using relative path (not absolute path)
+    // This avoids false positives when the sourceDir itself is in node_modules
+    if (!shouldInclude(relativePath)) {
+      continue;
+    }
+
+    // Normalize the target file path to ensure consistent path separators
+    const targetFile = normalizePath(join(targetDir, relativePath));
 
     // Read source file content
     const content = readFileSync(sourceFile, 'utf-8');

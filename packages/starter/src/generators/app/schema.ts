@@ -1,6 +1,7 @@
 export interface StarterAppGeneratorSchema {
   name: string;
   description?: string;
+  author?: string;
   features?: string[];
   database?: 'postgresql' | 'sqlite';
   emailProvider?: 'resend' | 'sendgrid' | 'none';
