@@ -2,7 +2,7 @@ import type { Tree } from '@nx/devkit';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import type { TemplateConfig } from './template';
+import type { TemplateConfig } from './template.js';
 
 /**
  * Feature dependencies - some features require others

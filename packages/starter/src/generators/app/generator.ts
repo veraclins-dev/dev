@@ -8,14 +8,14 @@ import {
   copyFeatureModule,
   copyServiceIntegration,
   updatePackageJson,
-} from '../../utils/generator-helpers';
+} from '../../utils/generator-helpers.js';
 import {
   generatePrismaSchema,
   getAllRequiredFeatures,
-} from '../../utils/prisma-merge';
-import { type TemplateConfig } from '../../utils/template';
+} from '../../utils/prisma-merge.js';
+import { type TemplateConfig } from '../../utils/template.js';
 
-import type { StarterAppGeneratorSchema } from './schema';
+import type { StarterAppGeneratorSchema } from './schema.js';
 
 export default async function appGenerator(
   tree: Tree,
@@ -81,7 +81,7 @@ export default async function appGenerator(
   );
 
   // 5. Generate Prisma schema (merge base + features)
-  const { getTemplateSourcePath } = await import('../../utils/file-utils');
+  const { getTemplateSourcePath } = await import('../../utils/file-utils.js');
   const templateSourcePath = await getTemplateSourcePath();
   const prismaSchemaPath = join(projectRoot, 'prisma/schema.prisma');
   generatePrismaSchema(tree, templateSourcePath, config, prismaSchemaPath);

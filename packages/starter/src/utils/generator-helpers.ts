@@ -2,8 +2,8 @@ import type { Tree } from '@nx/devkit';
 import { updateJson } from '@nx/devkit';
 import { join } from 'node:path';
 
-import { copyDirectoryToTree, getTemplateSourcePath } from './file-utils';
-import { renderTemplate, type TemplateConfig } from './template';
+import { copyDirectoryToTree, getTemplateSourcePath } from './file-utils.js';
+import { renderTemplate, type TemplateConfig } from './template.js';
 
 /**
  * Copy base template files to the target project
