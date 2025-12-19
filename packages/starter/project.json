@@ -41,7 +41,8 @@
         "tsConfig": "packages/starter/tsconfig.lib.json",
         "assets": [
           "packages/starter/*.md",
-          "packages/starter/generators.json"
+          "packages/starter/generators.json",
+          "packages/starter/package.json"
         ]
       }
     },
