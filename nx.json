@@ -27,6 +27,9 @@
   "plugins": [
     {
       "plugin": "@nx/vite/plugin",
+      "exclude": [
+        "packages/starter/templates/**/*"
+      ],
       "options": {
         "buildTargetName": "build",
         "testTargetName": "test",
@@ -44,6 +47,9 @@
     },
     {
       "plugin": "@nx/playwright/plugin",
+      "exclude": [
+        "packages/starter/templates/**/*"
+      ],
       "options": {
         "targetName": "e2e"
       }
@@ -73,6 +79,16 @@
         "serveStaticTargetName": "serve-static",
         "staticServeTargetName": "static-serve"
       }
+    },
+    {
+      "plugin": "@nx/vitest",
+      "exclude": [
+        "packages/starter/templates/**/*"
+      ],
+      "options": {
+        "testTargetName": "vitest:test",
+        "ciTargetName": "test-ci"
+      }
     }
   ],
   "targetDefaults": {
@@ -95,6 +111,16 @@
       "options": {
         "packageRoot": "dist/packages/{projectName}"
       }
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     }
   },
   "generators": {

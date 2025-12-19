@@ -1,0 +1,60 @@
+{
+  "name": "starter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/starter/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": [
+        "dist/{projectRoot}"
+      ],
+      "currentVersionResolver": "git-tag",
+      "fallbackCurrentVersionResolver": "disk"
+    }
+  },
+  "tags": [
+    "type:generator",
+    "scope:lib"
+  ],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": [
+        "{workspaceRoot}/dist/packages/starter"
+      ],
+      "options": {
+        "commands": [
+          "nx run starter:build:tsc",
+          "nx run starter:copy-templates"
+        ],
+        "parallel": false
+      }
+    },
+    "build:tsc": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/starter",
+        "main": "packages/starter/src/index.ts",
+        "tsConfig": "packages/starter/tsconfig.lib.json",
+        "assets": [
+          "packages/starter/*.md",
+          "packages/starter/generators.json"
+        ]
+      }
+    },
+    "copy-templates": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mkdir -p dist/packages/starter && cp -r packages/starter/templates dist/packages/starter/templates || true"
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

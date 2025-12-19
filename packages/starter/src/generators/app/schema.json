@@ -1,0 +1,117 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"cli": "nx",
+	"id": "starter-app",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "Application name",
+			"$default": {
+				"$source": "argv",
+				"index": 0
+			},
+			"x-prompt": "What is the name of your application?"
+		},
+		"description": {
+			"type": "string",
+			"description": "Application description",
+			"x-prompt": "Describe your application"
+		},
+		"features": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"enum": [
+					"notifications",
+					"admin",
+					"search",
+					"activity-logging",
+					"reporting",
+					"moderation",
+					"invitations",
+					"mfa"
+				]
+			},
+			"description": "Feature modules to include",
+			"default": []
+		},
+		"database": {
+			"type": "string",
+			"enum": ["postgresql", "sqlite"],
+			"description": "Database type",
+			"default": "postgresql",
+			"x-prompt": {
+				"message": "Which database would you like to use?",
+				"type": "list",
+				"items": [
+					{ "value": "postgresql", "label": "PostgreSQL" },
+					{ "value": "sqlite", "label": "SQLite" }
+				]
+			}
+		},
+		"emailProvider": {
+			"type": "string",
+			"enum": ["resend", "sendgrid", "none"],
+			"description": "Email service provider",
+			"default": "resend",
+			"x-prompt": {
+				"message": "Which email provider would you like to use?",
+				"type": "list",
+				"items": [
+					{ "value": "resend", "label": "Resend" },
+					{ "value": "sendgrid", "label": "SendGrid" },
+					{ "value": "none", "label": "None (mock mode)" }
+				]
+			}
+		},
+		"storageProvider": {
+			"type": "string",
+			"enum": ["firebase", "s3", "local", "none"],
+			"description": "File storage provider",
+			"default": "local",
+			"x-prompt": {
+				"message": "Which storage provider would you like to use?",
+				"type": "list",
+				"items": [
+					{ "value": "firebase", "label": "Firebase Storage" },
+					{ "value": "s3", "label": "AWS S3" },
+					{ "value": "local", "label": "Local Storage" },
+					{ "value": "none", "label": "None (mock mode)" }
+				]
+			}
+		},
+		"monitoringProvider": {
+			"type": "string",
+			"enum": ["sentry", "none"],
+			"description": "Monitoring provider",
+			"default": "sentry",
+			"x-prompt": {
+				"message": "Which monitoring provider would you like to use?",
+				"type": "list",
+				"items": [
+					{ "value": "sentry", "label": "Sentry" },
+					{ "value": "none", "label": "None" }
+				]
+			}
+		},
+		"deploymentTarget": {
+			"type": "string",
+			"enum": ["fly.io", "vercel", "railway", "docker", "none"],
+			"description": "Deployment target",
+			"default": "fly.io",
+			"x-prompt": {
+				"message": "Which deployment target would you like to configure?",
+				"type": "list",
+				"items": [
+					{ "value": "fly.io", "label": "Fly.io" },
+					{ "value": "vercel", "label": "Vercel" },
+					{ "value": "railway", "label": "Railway" },
+					{ "value": "docker", "label": "Docker" },
+					{ "value": "none", "label": "None" }
+				]
+			}
+		}
+	},
+	"required": ["name"]
+}

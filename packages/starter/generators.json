@@ -1,0 +1,10 @@
+{
+	"$schema": "http://json-schema.org/schema",
+	"generators": {
+		"app": {
+			"factory": "./src/generators/app/generator.js",
+			"schema": "./src/generators/app/schema.json",
+			"description": "Generate a new application from the starter template"
+		}
+	}
+}

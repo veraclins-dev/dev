@@ -1,0 +1,313 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client"
+  output          = "../generated/prisma"
+  previewFeatures = ["typedSql", "fullTextSearchPostgres", "relationJoins"]
+}
+
+generator json {
+  provider = "prisma-json-types-generator"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================================================
+// CORE USER MODELS
+// ============================================================================
+
+model User {
+  id              String  @id @default(cuid())
+  email           String  @unique
+  username        String  @unique
+  name            String?
+  aboutMe         String? @map("about_me")
+  location        String?
+  profileImage    String? @map("profile_image")
+  coverImage      String? @map("cover_image")
+  referralCode    String  @unique @map("referral_code")
+  referralChannel String? @map("referral_channel")
+  reputation      Int     @default(1)
+
+  onboarded Boolean? @default(false)
+
+  suspendedAt    DateTime? @map("suspended_at")
+  suspendedUntil DateTime? @map("suspended_until")
+
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+  lastLoginAt DateTime? @map("last_login_at")
+
+  roleId       String  @map("role_id")
+  referredById String? @map("referred_by_id")
+
+  role     Role  @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  referrer User? @relation("referred", fields: [referredById], references: [id], onDelete: SetNull)
+  referred User[] @relation("referred")
+
+  password    Password?
+  passkeys    Passkey[]
+  connections Connection[]
+  sessions    Session[]
+
+  auditLogs AuditLog[]
+
+  @@index([email])
+  @@index([username])
+  @@index([referralCode])
+  @@index([roleId])
+  @@index([createdAt])
+  @@index([deletedAt])
+  @@map("users")
+}
+
+model Password {
+  hash String
+
+  userId String @unique @map("user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("passwords")
+}
+
+model Passkey {
+  id         String  @id
+  name       String
+  aaguid     String
+  publicKey  Bytes   @map("public_key")
+  counter    BigInt
+  deviceType String  @map("device_type")
+  backedUp   Boolean @map("backed_up")
+  transports String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  userId         String @map("user_id")
+  webauthnUserId String @map("webauthn_user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([deviceType])
+  @@map("passkeys")
+}
+
+model Connection {
+  id           String @id @default(cuid())
+  providerName String @map("provider_name")
+  providerId   String @map("provider_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  userId String @map("user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerName, providerId])
+  @@map("connections")
+}
+
+model Session {
+  id        String  @id @default(cuid())
+  ipAddress String? @map("ip_address")
+  userAgent String? @map("user_agent")
+
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  expiresAt  DateTime @map("expires_at")
+  lastSeenAt DateTime @default(now()) @map("last_seen_at")
+
+  userId String @map("user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([lastSeenAt])
+  @@index([lastSeenAt, expiresAt], map: "idx_sessions_last_seen")
+  @@index([id, expiresAt], map: "idx_sessions_id_expires")
+  @@map("sessions")
+}
+
+model Verification {
+  id        String @id @default(cuid())
+  type      String
+  target    String
+  secret    String
+  algorithm String
+  digits    Int
+  period    Int
+  charSet   String @map("char_set")
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  expiresAt DateTime? @map("expires_at")
+
+  @@unique([target, type])
+  @@index([type])
+  @@index([expiresAt])
+  @@map("verifications")
+}
+
+// ============================================================================
+// PERMISSION AND ROLE MODELS
+// ============================================================================
+
+model Permission {
+  id          String  @id @default(cuid())
+  action      String
+  entity      String
+  access      String
+  isActive    Boolean @default(true) @map("is_active")
+  description String  @default("")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  roles Role[] @relation("PermissionToRole")
+
+  @@unique([action, entity, access])
+  @@map("permissions")
+}
+
+model Role {
+  id          String   @id @default(cuid())
+  name        RoleType @unique
+  description String   @default("")
+  level       Int      @unique
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  users       User[]
+  permissions Permission[] @relation("PermissionToRole")
+
+  @@map("roles")
+}
+
+// ============================================================================
+// AUDIT AND LOGGING MODELS
+// ============================================================================
+
+model AuditLog {
+  id           String         @id @default(cuid())
+  action       AuditLogAction
+  entityType   String         @map("entity_type")
+  entityId     String         @map("entity_id")
+  role         RoleType       @map("role")
+  actorId      String         @map("actor_id")
+  actionSource ActionSource?  @map("action_source")
+  triggeredBy  TriggeredBy?   @map("triggered_by")
+
+  details Json @db.JsonB
+
+  createdAt DateTime @default(now()) @map("created_at")
+  expiresAt DateTime @default(dbgenerated("(NOW() + '1 year'::interval)")) @map("expires_at")
+
+  actor User @relation(fields: [actorId], references: [id], onDelete: Cascade)
+
+  @@index([entityType, entityId])
+  @@index([entityType, entityId, createdAt])
+  @@index([actorId])
+  @@index([action])
+  @@index([createdAt])
+  @@index([action, createdAt])
+  @@index([createdAt(sort: Desc), role, entityType])
+  @@index([actorId, action, createdAt], map: "audit_logs_actor_action_created_idx")
+  @@index([createdAt, actionSource, triggeredBy])
+  @@index([actionSource])
+  @@index([triggeredBy])
+  @@index([actionSource, triggeredBy])
+  @@map("audit_logs")
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum RoleType {
+  member
+  moderator
+  admin
+  super_admin
+  system_admin
+}
+
+enum ActionSource {
+  user
+  system
+  admin
+}
+
+enum TriggeredBy {
+  manual
+  system
+}
+
+enum AuditLogAction {
+  create
+  edit
+  update
+  delete
+  restore
+  publish
+  draft
+  schedule
+  like
+  unlike
+  upvote
+  downvote
+  bookmark
+  unbookmark
+  report
+  dismiss_report
+  hide
+  unhide
+  feature
+  unfeature
+  pin
+  unpin
+  close
+  reopen
+  accept
+  unaccept
+  escalate
+  deescalate
+  login
+  logout
+  register
+  update_profile
+  change_password
+  update_avatar
+  update_bio
+  update_preferences
+  enable_2fa
+  disable_2fa
+  verify_email
+  request_password_reset
+  export_data
+  delete_account
+  suspend
+  unsuspend
+  reset_password
+  change_role
+  anonymize
+  force_logout
+  warn
+  backup
+  maintenance
+  cleanup
+  purge_logs
+  optimize_database
+  clear_cache
+  send_notification
+  update_config
+  health_check
+  login_failed
+}

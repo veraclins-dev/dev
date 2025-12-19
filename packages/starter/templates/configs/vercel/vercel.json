@@ -1,0 +1,21 @@
+{
+	"buildCommand": "npm run build",
+	"devCommand": "npm run dev",
+	"installCommand": "npm install",
+	"framework": null,
+	"outputDirectory": "build",
+	"rewrites": [
+		{
+			"source": "/(.*)",
+			"destination": "/"
+		}
+	],
+	"env": {
+		"NODE_ENV": "production"
+	},
+	"functions": {
+		"server/index.ts": {
+			"maxDuration": 30
+		}
+	}
+}
