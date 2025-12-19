@@ -33,7 +33,12 @@
         "assets": [
           "packages/starter/*.md",
           "packages/starter/generators.json",
-          "packages/starter/package.json"
+          "packages/starter/package.json",
+          {
+            "input": "packages/starter/src/generators",
+            "glob": "**/*.json",
+            "output": "src/generators"
+          }
         ]
       }
     },
@@ -41,6 +46,16 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "mkdir -p dist/packages/starter && cp -r packages/starter/templates dist/packages/starter/templates || true"
+      }
+    },
+    "validate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run starter:build",
+          "node packages/starter/scripts/validate-build.mjs"
+        ],
+        "parallel": false
       }
     }
   }
