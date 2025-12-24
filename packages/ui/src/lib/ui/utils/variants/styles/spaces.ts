@@ -133,7 +133,14 @@ const spaceVariants = {
 
 type SpaceVariants = typeof spaceVariants;
 
-export { spaceScale, type SpaceVariants, spaceVariants };
+export {
+  type MarginScale,
+  type SpaceScale,
+  spaceScale,
+  spaceScaleWithAuto,
+  type SpaceVariants,
+  spaceVariants,
+};
 
 /*!
 // Base margin variants

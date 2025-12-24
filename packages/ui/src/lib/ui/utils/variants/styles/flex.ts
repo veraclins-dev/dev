@@ -90,7 +90,7 @@ const flexVariants = {
 
 type FlexVariants = typeof flexVariants;
 
-export { type FlexVariants, flexVariants };
+export { type FlexDirection, type FlexVariants, flexVariants };
 
 /*!
 // Base flex variants

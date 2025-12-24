@@ -4,6 +4,9 @@ const gridTemplateScale = [...gridNumericScale, 'none', 'subgrid'] as const;
 
 const spanScale = [...gridNumericScale, 'full', 'auto'] as const;
 
+type GridNumericScale = (typeof gridNumericScale)[number];
+type GridTemplateScale = (typeof gridTemplateScale)[number];
+type SpanScale = (typeof spanScale)[number];
 function generateGridVariants<T extends string | number>(
   scale: readonly T[],
   prefix: string,
@@ -51,7 +54,13 @@ const gridVariants = {
 
 type GridVariants = typeof gridVariants;
 
-export { type GridVariants, gridVariants };
+export {
+  type GridNumericScale,
+  type GridTemplateScale,
+  type GridVariants,
+  gridVariants,
+  type SpanScale,
+};
 
 /*!
 // Base grid variants

@@ -11,6 +11,9 @@ const borderRadiusScale = [
   'full',
 ] as const;
 
+type BorderWidthScale = (typeof borderWidthScale)[number];
+type BorderRadiusScale = (typeof borderRadiusScale)[number];
+
 function generateBorderWidthVariants(prefix: string) {
   return borderWidthScale.reduce(
     (acc, value) => {
@@ -21,7 +24,7 @@ function generateBorderWidthVariants(prefix: string) {
       }
       return acc;
     },
-    {} as Record<(typeof borderWidthScale)[number], string>,
+    {} as Record<BorderWidthScale, string>,
   );
 }
 
@@ -31,7 +34,7 @@ function generateBorderRadiusVariants(prefix: string) {
       acc[value] = `${prefix}-${value}`;
       return acc;
     },
-    {} as Record<(typeof borderRadiusScale)[number], string>,
+    {} as Record<BorderRadiusScale, string>,
   );
 }
 
@@ -56,7 +59,12 @@ const borderVariants = {
 
 type BorderVariants = typeof borderVariants;
 
-export { type BorderVariants, borderVariants };
+export {
+  type BorderRadiusScale,
+  type BorderVariants,
+  borderVariants,
+  type BorderWidthScale,
+};
 
 /*!
 // Base border width variants

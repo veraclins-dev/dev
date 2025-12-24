@@ -104,20 +104,26 @@ export const StatusButton = ({
     idle: null,
   }[status];
 
+  const content = (
+    <>
+      {children}
+      {companion}
+    </>
+  );
+
   return (
     <Button className={cn('flex justify-center gap-4', className)} {...props}>
-      <Box>{children}</Box>
       {message ? (
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger>{companion}</TooltipTrigger>
+            <TooltipTrigger>{content}</TooltipTrigger>
             <TooltipContent>{message}</TooltipContent>
           </Tooltip>
         </TooltipProvider>
       ) : (
-        companion
+        content
       )}
     </Button>
   );
 };
-StatusButton.displayName = 'Button';
+StatusButton.displayName = 'StatusButton';

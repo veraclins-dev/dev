@@ -109,7 +109,18 @@ const sizeVariants = {
 
 type SizeVariants = typeof sizeVariants;
 
-export { type SizeVariants, sizeVariants };
+export {
+  type ExtendedSizeScale,
+  extendedSizeScale,
+  type HeightScale,
+  heightScale,
+  type MaxHeightScale,
+  type MaxWidthScale,
+  type SizeVariants,
+  sizeVariants,
+  type WidthScale,
+  widthScale,
+};
 
 /*!
 // Base size variants
