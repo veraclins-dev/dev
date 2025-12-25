@@ -52,7 +52,7 @@ function Badge({
     badgeVariants({ ...styleProps, variant, color, badgeSize, pill }),
     className,
   );
-  return <Box className={badgeClass} {...others} />;
+  return <Box data-slot="badge" className={badgeClass} {...others} />;
 }
 
 export { Badge, type BadgeProps };

@@ -38,7 +38,9 @@ export function DataTableColumnHeader<TData, TValue>({
             buttonSize="sm"
             className="-ml-3 h-8 data-[state=open]:bg-neutral"
           >
-            <Typography variant="body1">{title}</Typography>
+            <Typography variant="body1" className="capitalize">
+              {title}
+            </Typography>
             {column.getIsSorted() === 'desc' ? (
               <Icon name="chevron-down" />
             ) : column.getIsSorted() === 'asc' ? (

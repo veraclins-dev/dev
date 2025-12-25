@@ -143,17 +143,18 @@ function generateColumnsConfig<TData extends WithId, TValue>(
     const column: ColumnDef<TData, TValue> = {
       accessorKey: accessorKey,
       header:
-        config.header ??
-        (({ column }) => (
-          <DataTableColumnHeader
-            column={column}
-            title={
-              typeof config.header === 'string'
-                ? config.header
-                : (accessorKey?.toString() ?? 'Column')
-            }
-          />
-        )),
+        config.header && typeof config.header !== 'string'
+          ? config.header
+          : ({ column }) => (
+              <DataTableColumnHeader
+                column={column}
+                title={
+                  typeof config.header === 'string'
+                    ? config.header
+                    : (accessorKey?.toString() ?? 'Column')
+                }
+              />
+            ),
 
       cell:
         config.cell ??
