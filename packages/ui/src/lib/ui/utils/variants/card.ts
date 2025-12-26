@@ -9,7 +9,7 @@ const cardVariants = cva({
   variants: {
     elevated: {
       true: 'shadow-round',
-      false: 'shadow-md',
+      false: 'shadow-sm',
     },
     borderless: {
       true: 'border-0',
