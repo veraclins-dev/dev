@@ -85,6 +85,7 @@ const Component = ({
   return (
     <svg
       {...props}
+      aria-label={name}
       className={cn(sizeClassName[size], 'inline self-center', className)}
     >
       <use href={`${href}#${name}`} />
