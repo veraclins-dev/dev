@@ -111,7 +111,7 @@ describe('utils.downloadFile', () => {
       }),
     );
     await utils.downloadFile('https://example.com/file.txt', 2);
-    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
 });
 

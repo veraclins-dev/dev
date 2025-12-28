@@ -16,7 +16,7 @@
     "@mjackson/headers": "0.11.1",
     "arctic": "3.7.0",
     "debug": "4.4.3",
-    "twitter-api-v2": "^1.27.0"
+    "twitter-api-v2": "^1.28.0"
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",

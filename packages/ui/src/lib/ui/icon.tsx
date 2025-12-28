@@ -62,7 +62,7 @@ const Component = ({
   size = 'font',
   className,
   children,
-  href = '/icons/sprite.svg',
+  href,
   ...props
 }: Omit<IconProps, 'tooltip'>) => {
   if (children) {

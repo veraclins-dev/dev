@@ -15,7 +15,7 @@ function stripHTMLTags(htmlContent: string) {
     // Browser environment - use native DOMParser
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/html');
-    return doc.body.textContent || doc.body.innerText || '';
+    return (doc.body.textContent || doc.body.innerText || '').trim();
   } else {
     // Node.js/SSR environment - use regex fallback
     // This is safe for server-side rendering where we control the input
