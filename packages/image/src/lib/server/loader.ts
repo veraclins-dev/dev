@@ -13,6 +13,12 @@ export interface ImageLoaderOptions {
    * @default process.env.NODE_ENV === 'development'
    */
   isDev?: boolean;
+  /**
+   * Base path for resolving local file paths
+   * In production builds, this should point to the build output directory (e.g., 'build/client')
+   * @default '' (resolves relative to current working directory)
+   */
+  basePath?: string;
 }
 
 /**
@@ -42,6 +48,7 @@ export async function imageLoader(
   const {
     cacheDir = '.cache/images',
     isDev = process.env.NODE_ENV === 'development',
+    basePath = '',
   } = options;
   const url = new URL(request.url);
 
@@ -87,6 +94,7 @@ export async function imageLoader(
     const { buffer, contentType, maxAge, etag } = await imageOptimizer(
       request,
       params,
+      basePath,
     );
 
     const cacheEntry: CacheEntry = {

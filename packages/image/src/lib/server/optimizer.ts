@@ -218,6 +218,7 @@ export function validateParams(
 export async function imageOptimizer(
   _req: Request,
   params: ImageParamsResult,
+  basePath = '',
 ): Promise<OptimizeImageResult> {
   let upstreamBuffer: Buffer;
   let upstreamType: string | null;
@@ -253,7 +254,7 @@ export async function imageOptimizer(
     maxAge = getMaxAge(upstreamRes.headers.get('Cache-Control'));
   } else {
     try {
-      upstreamBuffer = await fsResolver(href);
+      upstreamBuffer = await fsResolver(href, basePath);
       upstreamType = detectContentType(upstreamBuffer) ?? mimeType;
     } catch (err) {
       console.error('upstream image response failed for', href, err);
@@ -408,15 +409,48 @@ export function getMaxAge(str: string | null): number {
 
 export const fsResolver = async (src: string, basePath = '') => {
   const string = src.slice(1);
-  const filePath = path.resolve(basePath, string);
 
-  const buffer = fs.readFileSync(filePath);
+  // Try multiple possible paths for production builds
+  const possiblePaths: string[] = [];
 
-  if (!buffer || buffer.byteLength < 2) {
-    throw new ImageError(500, 'Invalid image retrieved from resolver!');
+  // If basePath is provided, use it
+  if (basePath) {
+    possiblePaths.push(path.resolve(basePath, string));
   }
 
-  return buffer;
+  // In production, also try common build output locations
+  if (process.env.NODE_ENV === 'production') {
+    const cwd = process.cwd();
+    possiblePaths.push(
+      path.resolve(cwd, 'build', 'client', string),
+      path.resolve(cwd, '.output', 'public', string),
+      path.resolve(cwd, 'dist', 'client', string),
+    );
+  }
+
+  // Always try the default path (relative to current working directory)
+  possiblePaths.push(path.resolve(basePath || process.cwd(), string));
+
+  // Try each path until one works
+  for (const filePath of possiblePaths) {
+    try {
+      if (fs.existsSync(filePath)) {
+        const buffer = fs.readFileSync(filePath);
+        if (buffer && buffer.byteLength >= 2) {
+          return buffer;
+        }
+      }
+    } catch (_err) {
+      // Continue to next path
+      continue;
+    }
+  }
+
+  // If none of the paths worked, throw an error with the first attempted path
+  throw new ImageError(
+    500,
+    `Image not found: ${src}. Tried: ${possiblePaths.join(', ')}`,
+  );
 };
 
 function getExtension(mimeType: string): string | null {
