@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/docs",
-  "version": "0.70.9",
+  "version": "0.70.10",
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
