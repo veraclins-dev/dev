@@ -249,9 +249,9 @@ export const Autocomplete = ({
               ref={inputRef}
               name={`${formProps.name}-input`}
               aria-describedby={errorId}
-              aria-label={`${formProps.name ?? 'autocomplete-field'}-input`}
-              aria-labelledby={`${formProps.id ?? 'autocomplete-field'}-input`}
-              data-testid={`${formProps.id ?? 'autocomplete-field'}-input`}
+              aria-label={formProps.name ?? 'autocomplete-field'}
+              aria-labelledby={formProps.id ?? 'autocomplete-field'}
+              data-testid={formProps.id ?? 'autocomplete-field'}
               aria-invalid={errorId ? true : undefined}
               value={localValue}
               onChange={(e) => handleChange(e.target.value)}
