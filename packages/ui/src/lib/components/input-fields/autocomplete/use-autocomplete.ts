@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { type Maybe, type Option } from '../../../types';
-import { getOptionValue, useControlProps } from '../utils';
+import { getOptionLabel, getOptionValue, useControlProps } from '../utils';
 
 import { type AutocompleteProps } from './types';
 import {
@@ -171,7 +171,6 @@ export const useAutocomplete = ({
         freeSolo && multiple && separatorChar
           ? filterSeparators(value, separatorChar)
           : value;
-
       setLocalValue(filteredValue);
       setFocusedIndex(-1); // Reset focus when typing
 
@@ -239,14 +238,14 @@ export const useAutocomplete = ({
   const handleSelect = useCallback(
     (option: Option) => {
       const val = getOptionValue(option);
+      console.log('>>>>>', { val });
       if (addValue(val)) {
         if (multiple) {
           setLocalValue('');
         } else {
           // Handle both string and object options
-          const label =
-            typeof option === 'string' ? option : option.label || val;
-          setLocalValue(label);
+
+          setLocalValue(val);
         }
         refocusInput();
       }
@@ -410,12 +409,13 @@ export const useAutocomplete = ({
 
     // Update localValue in single mode when value changes externally
     if (!multiple && currentValue) {
+      console.log('>>>>>', { currentValue });
       setLocalValue(currentValue);
     }
 
     lastSyncedValueRef.current = currentValue;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentValue]); // Only depend on currentValue to avoid unnecessary runs
+  }, [currentValue, options, multiple]); // Include options to update label when options become available
 
   // Handle options changes
   useEffect(() => {
@@ -426,7 +426,26 @@ export const useAutocomplete = ({
     if (!found && !freeSolo) {
       reset();
     }
-  }, [options, freeSolo, selected, reset]);
+
+    // Update localValue in single mode when options become available
+    // This handles the case where initialValue was set before options loaded
+    if (!multiple && selected.length === 1 && options.length > 0) {
+      const selectedValue = selected[0];
+      const matchingOption = options.find(
+        (option) => getOptionValue(option) === selectedValue,
+      );
+      if (matchingOption) {
+        const label = getOptionLabel(matchingOption);
+        // Only update if current localValue is the raw value (ID), not the label
+        // Check if localValue matches the ID (not the label) to avoid unnecessary updates
+        if (localValue === selectedValue) {
+          console.log('>>>>>', { label });
+          setLocalValue(label);
+        }
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options, freeSolo, selected, reset, multiple]);
 
   // Cleanup timeout on unmount to prevent memory leaks
   useEffect(() => {

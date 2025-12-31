@@ -76,6 +76,7 @@ const objectOptions = [
   { label: 'Mango', value: 'mango' },
   { label: 'Pineapple', value: 'pineapple' },
 ];
+
 export function AutocompleteShowcase() {
   const [selectedCountry, setSelectedCountry] = useState<string>('');
 

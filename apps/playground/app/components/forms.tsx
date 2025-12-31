@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import {
   Form,
@@ -129,6 +129,49 @@ const ComplexAutocompleteSchema = z.object({
   skills: z.string().min(1, 'Please select at least one skill'),
   tags: z.string().optional(),
   location: z.string().optional(),
+});
+
+// Profile Form Schema (similar to about-form validation)
+const ProfileFormSchema = z.object({
+  name: z
+    .string()
+    .min(3, {
+      error: 'Name should be at least 3 characters.',
+    })
+    .max(30, {
+      error: 'Name should be 30 characters or fewer.',
+    })
+    .optional()
+    .nullable(),
+  aboutMe: z
+    .string()
+    .min(20, {
+      error: 'About me should be at least 20 characters.',
+    })
+    .max(500, {
+      error: 'About me should be 500 characters or fewer.',
+    })
+    .optional()
+    .nullable(),
+  schoolTypeId: z
+    .guid('Please select a valid school type.')
+    .optional()
+    .nullable(),
+  schoolId: z.guid('Please select a valid school.').optional().nullable(),
+  courseId: z.guid('Please select a valid course.').optional().nullable(),
+  location: z
+    .string()
+    .min(3, {
+      error: 'Location should be at least 3 characters.',
+    })
+    .optional()
+    .nullable(),
+  interests: z
+    .string()
+    .min(10, {
+      error: 'Please add at least one interest.',
+    })
+    .optional(),
 });
 
 // Basic Form Example
@@ -1280,6 +1323,251 @@ const ComplexAutocompleteFormExample = () => {
   );
 };
 
+// Profile Form Example (similar to about-form)
+const ProfileFormExample = () => {
+  // Mock data similar to about-form structure
+  const schoolTypes = [
+    {
+      id: 'a1b2c3d4-e5f6-4789-a012-3456789abcde',
+      name: 'University',
+      schools: [
+        {
+          id: 'b2c3d4e5-f6a7-4890-b123-456789abcdef',
+          name: 'Harvard University',
+        },
+        {
+          id: 'c3d4e5f6-a7b8-4901-c234-56789abcdef0',
+          name: 'MIT',
+        },
+        {
+          id: 'd4e5f6a7-b8c9-4012-d345-6789abcdef01',
+          name: 'Stanford University',
+        },
+      ],
+    },
+    {
+      id: 'e5f6a7b8-c9d0-4123-e456-789abcdef012',
+      name: 'Polytechnic',
+      schools: [
+        {
+          id: 'f6a7b8c9-d0e1-4234-f567-89abcdef0123',
+          name: 'Hussaini Adamu Federal Polytechnic, Kazaure',
+        },
+        {
+          id: 'a7b8c9d0-e1f2-4345-a678-9abcdef01234',
+          name: 'Yaba College of Technology',
+        },
+      ],
+    },
+    {
+      id: 'b8c9d0e1-f2a3-4456-b789-abcdef012345',
+      name: 'College',
+      schools: [
+        {
+          id: 'c9d0e1f2-a3b4-4567-c89a-bcdef0123456',
+          name: 'Community College',
+        },
+      ],
+    },
+  ];
+
+  const courses = [
+    {
+      id: 'd0e1f2a3-b4c5-4678-d9ab-cdef01234567',
+      name: 'Computer Science',
+    },
+    {
+      id: 'e1f2a3b4-c5d6-4789-eabc-def012345678',
+      name: 'Actuarial Science And Insurance',
+    },
+    {
+      id: 'f2a3b4c5-d6e7-4890-fbcd-ef0123456789',
+      name: 'Mathematics',
+    },
+    {
+      id: 'a3b4c5d6-e7f8-4901-acde-f0123456789a',
+      name: 'Physics',
+    },
+    {
+      id: 'b4c5d6e7-f8a9-4012-bdef-0123456789ab',
+      name: 'Chemistry',
+    },
+    {
+      id: 'c5d6e7f8-a9b0-4123-cdef-123456789abc',
+      name: 'Engineering',
+    },
+  ];
+
+  const tags = [
+    {
+      id: 'd6e7f8a9-b0c1-4234-def0-23456789abcd',
+      name: 'income-tax',
+    },
+    {
+      id: 'e7f8a9b0-c1d2-4345-ef01-3456789abcde',
+      name: 'literature-review',
+    },
+    {
+      id: 'f8a9b0c1-d2e3-4456-f012-456789abcdef',
+      name: 'political-theory',
+    },
+    {
+      id: 'a9b0c1d2-e3f4-4567-a123-56789abcdef0',
+      name: 'public-school',
+    },
+    {
+      id: 'b0c1d2e3-f4a5-4678-b234-6789abcdef01',
+      name: 'rotc',
+    },
+    {
+      id: 'c1d2e3f4-a5b6-4789-c345-789abcdef012',
+      name: 'sustainable-agriculture',
+    },
+    {
+      id: 'd2e3f4a5-b6c7-4890-d456-89abcdef0123',
+      name: 'web-development',
+    },
+    {
+      id: 'e3f4a5b6-c7d8-4901-e567-9abcdef01234',
+      name: 'data-science',
+    },
+  ];
+
+  // Mock existing profile data
+  const mockSchool = {
+    id: 'f6a7b8c9-d0e1-4234-f567-89abcdef0123',
+    typeId: 'e5f6a7b8-c9d0-4123-e456-789abcdef012',
+  };
+
+  const { form, fields } = useConform({
+    schema: ProfileFormSchema,
+    id: 'profile-form',
+    defaultValue: {
+      name: 'John Doe',
+      aboutMe:
+        'I am a computer science student passionate about web development and data science.',
+      schoolTypeId: mockSchool.typeId,
+      schoolId: mockSchool.id,
+      courseId: 'd0e1f2a3-b4c5-4678-d9ab-cdef01234567',
+      location: 'Abuja, Nigeria',
+      interests:
+        'd6e7f8a9-b0c1-4234-def0-23456789abcd|d2e3f4a5-b6c7-4890-d456-89abcdef0123',
+    },
+    shouldValidate: 'onBlur',
+  });
+
+  const [selectedType, setSelectedType] = useState<string>(
+    mockSchool.typeId || '',
+  );
+
+  const changeSelectedType = useCallback((type: string) => {
+    setSelectedType(type ?? '');
+  }, []);
+
+  console.log('Form values', {
+    values: form.value,
+    errors: form.allErrors,
+  });
+
+  return (
+    <Card className="col-span-2">
+      <CardHeader>
+        <Box className="flex items-center gap-2">
+          <Icon name="user-circle" className="h-5 w-5 text-blue-500" />
+          <CardTitle>Profile Form (About Form Pattern)</CardTitle>
+        </Box>
+        <CardDescription>
+          Form similar to about-form with dependent autocomplete fields, UUID
+          validation, and pre-filled values. Tests that labels display correctly
+          while IDs are stored in form fields.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="mx-auto">
+        <Form form={form} submitText="Save Profile" className="max-w-2xl">
+          <Box className="space-y-6">
+            {/* Personal Information */}
+            <Box className="space-y-4">
+              <Typography variant="h5">Personal Information</Typography>
+              <TextField
+                field={fields.name}
+                placeholder="Enter your name"
+                label="Full Name"
+              />
+              <TextareaField
+                field={fields.aboutMe}
+                placeholder="Tell others about your academic journey, interests, or what you're studying..."
+                label="Profile Summary"
+                rows={4}
+              />
+            </Box>
+
+            {/* Academic Information */}
+            <Box className="space-y-4">
+              <Typography variant="h5">Academic Information</Typography>
+              <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <Autocomplete
+                  options={schoolTypes.map((type) => ({
+                    label: type.name,
+                    value: type.id,
+                  }))}
+                  placeholder="Start typing to filter"
+                  field={fields.schoolTypeId}
+                  label="Institution Type"
+                  onChange={changeSelectedType}
+                />
+                <Autocomplete
+                  options={
+                    schoolTypes
+                      .find((type) => type.id === selectedType)
+                      ?.schools.map((school) => ({
+                        label: school.name,
+                        value: school.id,
+                      })) ?? []
+                  }
+                  dependsOn="schoolTypeId"
+                  placeholder="Start typing to filter"
+                  field={fields.schoolId}
+                  label="Institution"
+                />
+                <Autocomplete
+                  options={courses.map((course) => ({
+                    label: course.name,
+                    value: course.id,
+                  }))}
+                  placeholder="Start typing to filter"
+                  field={fields.courseId}
+                  label="Course of Study"
+                />
+                <TextField
+                  placeholder="Enter your location"
+                  field={fields.location}
+                  label="Location"
+                />
+              </Box>
+            </Box>
+
+            {/* Interests */}
+            <Box className="space-y-4">
+              <Typography variant="h5">Interests & Skills</Typography>
+              <Autocomplete
+                options={tags.map((tag) => ({
+                  label: tag.name,
+                  value: tag.id,
+                }))}
+                multiple
+                placeholder="Start typing to filter"
+                field={fields.interests}
+                label="Interests"
+                maxOptions={10}
+              />
+            </Box>
+          </Box>
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
 // Comment Form (Original Example)
 const CommentFormExample = () => {
   const fetcher = useCustomFetcher();
@@ -1372,6 +1660,7 @@ export const FormsShowcase = () => {
         <DependentAutocompleteFormExample />
         <MaxOptionsAutocompleteFormExample />
         <ComplexAutocompleteFormExample />
+        <ProfileFormExample />
       </Box>
     </Box>
   );
