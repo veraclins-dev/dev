@@ -1,0 +1,47 @@
+// ============================================================================
+// INVITATIONS FEATURE MODULE
+// Enable with: features.invitations = true
+// ============================================================================
+
+model Invitation {
+  id     String           @id @default(cuid())
+  status InvitationStatus @default(invited)
+  type   InvitationType   @default(member)
+
+  entityType String @map("entity_type")
+  entityId   String @map("entity_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  inviteeId String  @map("invitee_id")
+  inviterId String? @map("inviter_id")
+
+  invitee User  @relation("invitee", fields: [inviteeId], references: [id], onDelete: Cascade)
+  inviter User? @relation("inviter", fields: [inviterId], references: [id], onDelete: SetNull)
+
+  @@unique([entityType, entityId, inviteeId])
+  @@index([inviteeId, status])
+  @@index([entityType, entityId, status])
+  @@index([inviterId])
+  @@map("invitations")
+}
+
+// ============================================================================
+// INVITATIONS ENUMS
+// ============================================================================
+
+enum InvitationStatus {
+  invited
+  requested
+  pending_approval
+  accepted
+  rejected
+  declined
+}
+
+enum InvitationType {
+  member
+  moderator
+  admin
+}

@@ -33,7 +33,8 @@
       "@veraclins-dev/ui/*": ["packages/ui/src/*"],
       "@veraclins-dev/utils": ["packages/utils/src/index.ts"],
       "@veraclins-dev/docs": ["packages/docs/src/index.ts"],
-      "@veraclins-dev/starter": ["packages/starter/src/index.ts"]
+      "@veraclins-dev/starter": ["packages/starter/src/index.ts"],
+      "@veraclins-dev/starter-cli": ["packages/starter-cli/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
