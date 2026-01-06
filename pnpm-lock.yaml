@@ -669,6 +669,12 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
+  packages/starter-templates:
+    devDependencies:
+      fs-extra:
+        specifier: ^11.3.2
+        version: 11.3.2
+
   packages/ui:
     dependencies:
       '@dnd-kit/core':

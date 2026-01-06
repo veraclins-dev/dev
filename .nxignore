@@ -1,2 +1,0 @@
-# Exclude template files from Nx project graph processing
-packages/starter/templates/**

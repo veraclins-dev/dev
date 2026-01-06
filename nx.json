@@ -27,10 +27,6 @@
   "plugins": [
     {
       "plugin": "@nx/vite/plugin",
-      "exclude": [
-        "packages/starter/templates/**/*",
-        "packages/starter-cli/templates/**/*"
-      ],
       "options": {
         "buildTargetName": "build",
         "testTargetName": "test",
@@ -48,10 +44,6 @@
     },
     {
       "plugin": "@nx/playwright/plugin",
-      "exclude": [
-        "packages/starter/templates/**/*",
-        "packages/starter-cli/templates/**/*"
-      ],
       "options": {
         "targetName": "e2e"
       }
@@ -84,10 +76,6 @@
     },
     {
       "plugin": "@nx/vitest",
-      "exclude": [
-        "packages/starter/templates/**/*",
-        "packages/starter-cli/templates/**/*"
-      ],
       "options": {
         "testTargetName": "vitest:test",
         "ciTargetName": "test-ci"
