@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/editor",
-  "version": "0.71.0",
+  "version": "0.71.1",
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
