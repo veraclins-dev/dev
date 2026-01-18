@@ -151,7 +151,7 @@ const ITEM_CLASSES = cn(
   // Base Shared Styles
   SHARED_ITEM_CLASSES,
   // Focus and Hover States
-  'focus:bg-neutral-soft-hover focus:text-neutral-foreground-hover hover:bg-neutral-soft hover:text-neutral-foreground-hover',
+  'focus:bg-neutral-soft-hover focus:text-neutral-soft-hover-foreground hover:bg-neutral-soft hover:text-neutral-soft-foreground',
   // Destructive Variant
   'data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive',
   // Inset Spacing

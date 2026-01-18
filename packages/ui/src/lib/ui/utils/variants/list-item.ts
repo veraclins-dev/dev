@@ -12,9 +12,9 @@ const listItemVariants = cva({
     variant: {
       default: '',
       clickable:
-        'cursor-pointer transition-colors hover:bg-neutral-hover hover:text-neutral-foreground-hover focus:bg-neutral-hover focus:text-neutral-foreground-hover focus:outline-none',
+        'cursor-pointer transition-colors hover:bg-neutral-hover hover:text-neutral-hover-foreground focus:bg-neutral-hover focus:text-neutral-hover-foreground focus:outline-none',
       selectable:
-        'cursor-pointer transition-colors focus:outline-none focus:bg-neutral-hover focus:text-neutral-foreground-hover hover:bg-neutral-hover hover:text-neutral-foreground-hover',
+        'cursor-pointer transition-colors focus:outline-none focus:bg-neutral-hover focus:text-neutral-hover-foreground hover:bg-neutral-hover hover:text-neutral-hover-foreground',
     },
     itemSize: {
       sm: 'text-xs',
@@ -43,7 +43,7 @@ const listItemVariants = cva({
       false: '',
     },
     focused: {
-      true: 'bg-neutral-hover text-neutral-foreground-hover',
+      true: 'bg-neutral-hover text-neutral-hover-foreground',
       false: '',
     },
     disabled: {
@@ -69,7 +69,7 @@ const listItemVariants = cva({
       disabled: true,
       focused: true,
       className:
-        'opacity-50 cursor-not-allowed pointer-events-none bg-neutral-hover text-neutral-foreground-hover',
+        'opacity-50 cursor-not-allowed pointer-events-none bg-neutral-hover text-neutral-hover-foreground',
     },
     // Disable interactive variants when disabled
     {
