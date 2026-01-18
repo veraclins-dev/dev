@@ -9,7 +9,7 @@ export const CTASection = () => {
       display="flex"
       gapY={4}
       flexDirection="column"
-      className="container h-70 bg-[url(/public/group-interactive-learning.png)] text-white"
+      className="container h-70 bg-[url(/group-interactive-learning.png)] text-white"
     >
       <Typography variant="h3" className="md:text-4xl">
         Join the Edulinks.ng Community Today.

@@ -256,48 +256,48 @@ bg-background text-background border-background
 //  --foreground
 bg-foreground text-foreground border-foreground
 //  --card
-bg-card text-card border-card, border-card-foreground
-bg-card-hover text-card-hover border-card-hover, border-card-hover-foreground
-bg-card-soft text-card-soft border-card-soft, border-card-soft-foreground
-bg-card-soft-hover text-card-soft-hover border-card-soft-hover, border-card-soft-hover-foreground
+bg-card text-card border-card text-card-foreground border-card-foreground
+bg-card-hover text-card-hover border-card-hover text-card-hover-foreground border-card-hover-foreground
+bg-card-soft text-card-soft border-card-soft text-card-soft-foreground border-card-soft-foreground
+bg-card-soft-hover text-card-soft-hover border-card-soft-hover text-card-soft-hover-foreground border-card-soft-hover-foreground
 //  --card-inner
-bg-card-inner text-card-inner border-card-inner, border-card-inner-foreground
-bg-card-inner-hover text-card-inner-hover border-card-inner-hover, border-card-inner-hover-foreground
-bg-card-inner-soft text-card-inner-soft border-card-inner-soft, border-card-inner-soft-foreground
-bg-card-inner-soft-hover text-card-inner-soft-hover border-card-inner-soft-hover, border-card-inner-soft-hover-foreground
+bg-card-inner text-card-inner border-card-inner text-card-inner-foreground border-card-inner-foreground
+bg-card-inner-hover text-card-inner-hover border-card-inner-hover text-card-inner-hover-foreground border-card-inner-hover-foreground
+bg-card-inner-soft text-card-inner-soft border-card-inner-soft text-card-inner-soft-foreground border-card-inner-soft-foreground
+bg-card-inner-soft-hover text-card-inner-soft-hover border-card-inner-soft-hover text-card-inner-soft-hover-foreground border-card-inner-soft-hover-foreground
 //  --primary
-bg-primary text-primary border-primary, border-primary-foreground
-bg-primary-hover text-primary-hover border-primary-hover, border-primary-hover-foreground
-bg-primary-soft text-primary-soft border-primary-soft, border-primary-soft-foreground
-bg-primary-soft-hover text-primary-soft-hover border-primary-soft-hover, border-primary-soft-hover-foreground
+bg-primary text-primary border-primary text-primary-foreground border-primary-foreground
+bg-primary-hover text-primary-hover border-primary-hover text-primary-hover-foreground border-primary-hover-foreground
+bg-primary-soft text-primary-soft border-primary-soft text-primary-soft-foreground border-primary-soft-foreground
+bg-primary-soft-hover text-primary-soft-hover border-primary-soft-hover text-primary-soft-hover-foreground border-primary-soft-hover-foreground
 //  --secondary
-bg-secondary text-secondary border-secondary, border-secondary-foreground
-bg-secondary-hover text-secondary-hover border-secondary-hover, border-secondary-hover-foreground
-bg-secondary-soft text-secondary-soft border-secondary-soft, border-secondary-soft-foreground
-bg-secondary-soft-hover text-secondary-soft-hover border-secondary-soft-hover, border-secondary-soft-hover-foreground
+bg-secondary text-secondary border-secondary text-secondary-foreground border-secondary-foreground
+bg-secondary-hover text-secondary-hover border-secondary-hover text-secondary-hover-foreground border-secondary-hover-foreground
+bg-secondary-soft text-secondary-soft border-secondary-soft text-secondary-soft-foreground border-secondary-soft-foreground
+bg-secondary-soft-hover text-secondary-soft-hover border-secondary-soft-hover text-secondary-soft-hover-foreground border-secondary-soft-hover-foreground
 //  --neutral
-bg-neutral text-neutral border-neutral, border-neutral-foreground
-bg-neutral-hover text-neutral-hover border-neutral-hover, border-neutral-hover-foreground
-bg-neutral-soft text-neutral-soft border-neutral-soft, border-neutral-soft-foreground
-bg-neutral-soft-hover text-neutral-soft-hover border-neutral-soft-hover, border-neutral-soft-hover-foreground
+bg-neutral text-neutral border-neutral text-neutral-foreground border-neutral-foreground
+bg-neutral-hover text-neutral-hover border-neutral-hover text-neutral-hover-foreground border-neutral-hover-foreground
+bg-neutral-soft text-neutral-soft border-neutral-soft text-neutral-soft-foreground border-neutral-soft-foreground
+bg-neutral-soft-hover text-neutral-soft-hover border-neutral-soft-hover text-neutral-soft-hover-foreground border-neutral-soft-hover-foreground
 //  --destructive
-bg-destructive text-destructive border-destructive, border-destructive-foreground
-bg-destructive-hover text-destructive-hover border-destructive-hover, border-destructive-hover-foreground
-bg-destructive-soft text-destructive-soft border-destructive-soft, border-destructive-soft-foreground
-bg-destructive-soft-hover text-destructive-soft-hover border-destructive-soft-hover, border-destructive-soft-hover-foreground
+bg-destructive text-destructive border-destructive text-destructive-foreground border-destructive-foreground
+bg-destructive-hover text-destructive-hover border-destructive-hover text-destructive-hover-foreground border-destructive-hover-foreground
+bg-destructive-soft text-destructive-soft border-destructive-soft text-destructive-soft-foreground border-destructive-soft-foreground
+bg-destructive-soft-hover text-destructive-soft-hover border-destructive-soft-hover text-destructive-soft-hover-foreground border-destructive-soft-hover-foreground
 //  --success
-bg-success text-success border-success, border-success-foreground
-bg-success-hover text-success-hover border-success-hover, border-success-hover-foreground
-bg-success-soft text-success-soft border-success-soft, border-success-soft-foreground
-bg-success-soft-hover text-success-soft-hover border-success-soft-hover, border-success-soft-hover-foreground
+bg-success text-success border-success text-success-foreground border-success-foreground
+bg-success-hover text-success-hover border-success-hover text-success-hover-foreground border-success-hover-foreground
+bg-success-soft text-success-soft border-success-soft text-success-soft-foreground border-success-soft-foreground
+bg-success-soft-hover text-success-soft-hover border-success-soft-hover text-success-soft-hover-foreground border-success-soft-hover-foreground
 //  --warning
-bg-warning text-warning border-warning, border-warning-foreground
-bg-warning-hover text-warning-hover border-warning-hover, border-warning-hover-foreground
-bg-warning-soft text-warning-soft border-warning-soft, border-warning-soft-foreground
-bg-warning-soft-hover text-warning-soft-hover border-warning-soft-hover, border-warning-soft-hover-foreground
+bg-warning text-warning border-warning text-warning-foreground border-warning-foreground
+bg-warning-hover text-warning-hover border-warning-hover text-warning-hover-foreground border-warning-hover-foreground
+bg-warning-soft text-warning-soft border-warning-soft text-warning-soft-foreground border-warning-soft-foreground
+bg-warning-soft-hover text-warning-soft-hover border-warning-soft-hover text-warning-soft-hover-foreground border-warning-soft-hover-foreground
 //  --info
-bg-info text-info border-info, border-info-foreground
-bg-info-hover text-info-hover border-info-hover, border-info-hover-foreground
-bg-info-soft text-info-soft border-info-soft, border-info-soft-foreground
-bg-info-soft-hover text-info-soft-hover border-info-soft-hover, border-info-soft-hover-foreground
+bg-info text-info border-info text-info-foreground border-info-foreground
+bg-info-hover text-info-hover border-info-hover text-info-hover-foreground border-info-hover-foreground
+bg-info-soft text-info-soft border-info-soft text-info-soft-foreground border-info-soft-foreground
+bg-info-soft-hover text-info-soft-hover border-info-soft-hover text-info-soft-hover-foreground border-info-soft-hover-foreground
 */
