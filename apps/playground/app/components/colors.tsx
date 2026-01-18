@@ -1,15 +1,231 @@
 import {
   Box,
-  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
+  CardSubtitle,
   CardTitle,
   Typography,
 } from '@veraclins-dev/ui';
+import { cn, humanize } from '@veraclins-dev/utils';
 
 import { PlaygroundBreadcrumb } from './playground-breadcrumb';
+
+type BaseToken = 'background' | 'foreground' | 'border' | 'shadow-col';
+
+type Token =
+  | BaseToken
+  | 'card'
+  | 'card-inner'
+  | 'popover'
+  | 'primary'
+  | 'secondary'
+  | 'neutral'
+  | 'destructive'
+  | 'success'
+  | 'warning'
+  | 'info';
+
+type ItemToken =
+  | Token
+  | `${Token}-hover`
+  | `${Token}-soft`
+  | `${Token}-soft-hover`;
+
+type Item = {
+  description: string;
+  token: Token;
+};
+
+type ColorGroup = {
+  description: string;
+  title: string;
+  items: Item[];
+  noVariants?: boolean;
+};
+
+const colorGroups: ColorGroup[] = [
+  {
+    title: 'Brand and Action Colors',
+    description: 'Brand and action color family',
+    items: [
+      {
+        description: 'Brand and action color family',
+        token: 'primary',
+      },
+      {
+        token: 'secondary',
+        description: 'Supporting action color family',
+      },
+      {
+        token: 'neutral',
+        description: 'Neutral UI surfaces and text',
+      },
+    ],
+  },
+  {
+    title: 'Status Colors',
+    description: 'Semantic colors for UI states',
+    items: [
+      {
+        token: 'destructive',
+        description: 'Dangerous actions or error states',
+      },
+      {
+        token: 'success',
+        description: 'Successful actions or positive states',
+      },
+      {
+        token: 'warning',
+        description: 'Warning states or cautionary messages',
+      },
+      {
+        token: 'info',
+        description: 'Informative messages or contextual information',
+      },
+    ],
+  },
+  {
+    title: 'Cards and Modals',
+    description: 'Card and inner surfaces with hover/soft variants',
+    items: [
+      {
+        token: 'card',
+        description: 'Card and inner surfaces with hover/soft variants',
+      },
+      {
+        description: 'Nested card layers',
+        token: 'card-inner',
+      },
+      {
+        token: 'popover',
+        description: 'Floating surface tones',
+      },
+    ],
+  },
+];
+
+const baseTextMap: Record<BaseToken, 'foreground' | 'background'> = {
+  background: 'foreground',
+  foreground: 'background',
+  border: 'foreground',
+  'shadow-col': 'foreground',
+};
+
+function ColorToken({ token }: { token: ItemToken }) {
+  const isBase = (token: ItemToken): token is BaseToken => {
+    return Object.keys(baseTextMap).includes(token);
+  };
+
+  const textClasses = isBase(token)
+    ? `text-${baseTextMap[token]}`
+    : `text-${token}-foreground`;
+
+  const swatchClasses = cn(
+    'rounded-lg border p-4 flex flex-col gap-2 min-h-[96px]',
+    `bg-${token}`,
+    textClasses,
+  );
+
+  const badgeClasses = cn(
+    'mt-auto text-xs rounded border border-dashed px-2 py-1 w-fit',
+    `bg-${token}`,
+    textClasses,
+    isBase(token)
+      ? `border-${baseTextMap[token]}`
+      : `border-${token}-foreground`,
+  );
+
+  return (
+    <Box key={token} className={swatchClasses}>
+      <Typography variant="body2">
+        {humanize(token.replace(/-/g, ' '))}
+      </Typography>
+      <Typography variant="caption" className="opacity-70">
+        {`--${token}`}
+      </Typography>
+      <Box className={badgeClasses}>Aa</Box>
+    </Box>
+  );
+}
+
+function ColorItem({
+  item,
+  noVariants = false,
+}: {
+  item: Item;
+  noVariants?: boolean;
+}) {
+  const tokens: ItemToken[] = noVariants
+    ? [item.token]
+    : [
+        item.token,
+        `${item.token}-hover`,
+        `${item.token}-soft`,
+        `${item.token}-soft-hover`,
+      ];
+  return (
+    <Card>
+      <CardHeader>
+        <CardSubtitle>{humanize(item.token)}</CardSubtitle>
+        <CardDescription>{item.description}</CardDescription>
+      </CardHeader>
+      <CardContent
+        display="grid"
+        gap={3}
+        className="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      >
+        {tokens.map((token) => (
+          <ColorToken key={token} token={token} />
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
+
+function BaseGroup() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Base Colors and Structural Tokens</CardTitle>
+        <CardDescription>
+          Background and foreground foundation tokens
+        </CardDescription>
+      </CardHeader>
+      <CardContent
+        display="grid"
+        gap={3}
+        className="grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      >
+        <ColorToken token="background" />
+        <ColorToken token="foreground" />
+        <ColorToken token="border" />
+        <ColorToken token="shadow-col" />
+      </CardContent>
+    </Card>
+  );
+}
+
+function Group({ group }: { group: ColorGroup }) {
+  return (
+    <Card key={group.title}>
+      <CardHeader>
+        <CardTitle>{group.title}</CardTitle>
+        <CardDescription>{group.description}</CardDescription>
+      </CardHeader>
+      <CardContent display="flex" flexDirection="column" gap={4}>
+        {group.items.map((item) => (
+          <ColorItem
+            key={item.token}
+            item={item}
+            noVariants={group.noVariants}
+          />
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
 
 export function Colors() {
   return (
@@ -25,646 +241,63 @@ export function Colors() {
         guidelines, and real-world usage examples.
       </Typography>
 
-      {/* Basic Color Swatches */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Basic Color Swatches</CardTitle>
-          <CardDescription>
-            Core color tokens used throughout the design system
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Typography variant="h2" className="mb-4">
-            Colors
-          </Typography>
-          <Box display="flex" flexDirection="row" gap={4} flexWrap="wrap">
-            <Box className="bg-foreground p-2 rounded-md">
-              <Box p={4} py={2} className="bg-background rounded-md">
-                Main Background
-              </Box>
-            </Box>
-            <Box className="bg-background border p-2 rounded-md">
-              <Box className="bg-foreground text-background p-4 py-2 rounded-md">
-                Main Foreground (text color)
-              </Box>
-            </Box>
-            <Box p={4} className="bg-card text-card-foreground rounded-md">
-              Card
-            </Box>
-            <Box className="bg-card p-2 rounded-md">
-              <Box className="bg-card-inner text-card-inner-foreground p-4 py-2 rounded-md">
-                Card Inner
-              </Box>
-            </Box>
+      <BaseGroup />
 
-            <Box
-              display="flex"
-              p={4}
-              className="bg-popover text-popover-foreground rounded-md"
-            >
-              Popover
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-primary text-primary-foreground rounded-md"
-            >
-              Primary
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-primary-hover text-primary-foreground-hover rounded-md"
-            >
-              Primary Hover
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-secondary text-secondary-foreground rounded-md"
-            >
-              Secondary
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-secondary-hover text-secondary-foreground-hover rounded-md"
-            >
-              Secondary Hover
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-destructive text-destructive-foreground rounded-md"
-            >
-              Destructive
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-destructive-hover text-destructive-foreground-hover rounded-md"
-            >
-              Destructive Hover
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-success text-success-foreground rounded-md"
-            >
-              Success
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-success-hover text-success-foreground-hover rounded-md"
-            >
-              Success Hover
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-warning text-warning-foreground rounded-md"
-            >
-              Warning
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-warning-hover text-warning-foreground-hover rounded-md"
-            >
-              Warning Hover
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-info text-info-foreground rounded-md"
-            >
-              Info
-            </Box>
-            <Box
-              display="flex"
-              p={4}
-              className="bg-info-hover text-info-foreground-hover rounded-md"
-            >
-              Info Hover
-            </Box>
-          </Box>
-        </CardContent>
-      </Card>
-
-      {/* Design System Guidelines */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Design System Guidelines</CardTitle>
-          <CardDescription>
-            Semantic color mapping and usage guidelines for consistent design
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Semantic Colors */}
-            <Box>
-              <Typography variant="h4" className="mb-4">
-                Semantic Color Mapping
-              </Typography>
-              <Box display="flex" flexDirection="column" gap={3}>
-                <Box className="flex items-center gap-3 p-3 bg-primary/10 rounded-lg">
-                  <Box className="w-4 h-4 bg-primary rounded-full" />
-                  <Box>
-                    <Typography
-                      variant="body1"
-                      className="font-medium text-primary"
-                    >
-                      Primary
-                    </Typography>
-                    <Typography className="text-foreground/80">
-                      Main actions, links, and brand elements
-                    </Typography>
-                  </Box>
-                </Box>
-                <Box className="flex items-center gap-3 p-3 bg-secondary/10 rounded-lg">
-                  <Box className="w-4 h-4 bg-secondary rounded-full" />
-                  <Box>
-                    <Typography
-                      variant="body1"
-                      className="font-medium text-secondary"
-                    >
-                      Secondary
-                    </Typography>
-                    <Typography className="text-foreground/80">
-                      Supporting actions and subtle elements
-                    </Typography>
-                  </Box>
-                </Box>
-                <Box className="flex items-center gap-3 p-3 bg-success/10 rounded-lg">
-                  <Box className="w-4 h-4 bg-success rounded-full" />
-                  <Box>
-                    <Typography
-                      variant="body1"
-                      className="font-medium text-success"
-                    >
-                      Success
-                    </Typography>
-                    <Typography className="text-foreground/80">
-                      Positive states, confirmations, and achievements
-                    </Typography>
-                  </Box>
-                </Box>
-                <Box className="flex items-center gap-3 p-3 bg-warning/10 rounded-lg">
-                  <Box className="w-4 h-4 bg-warning rounded-full" />
-                  <Box>
-                    <Typography
-                      variant="body1"
-                      className="font-medium text-warning"
-                    >
-                      Warning
-                    </Typography>
-                    <Typography className="text-foreground/80">
-                      Caution states and important notices
-                    </Typography>
-                  </Box>
-                </Box>
-                <Box className="flex items-center gap-3 p-3 bg-destructive/10 rounded-lg">
-                  <Box className="w-4 h-4 bg-destructive rounded-full" />
-                  <Box>
-                    <Typography
-                      variant="body1"
-                      className="font-medium text-destructive"
-                    >
-                      Destructive
-                    </Typography>
-                    <Typography className="text-foreground/80">
-                      Errors, deletions, and dangerous actions
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-
-            {/* Usage Guidelines */}
-            <Box>
-              <Typography variant="h4" className="mb-4">
-                Usage Guidelines
-              </Typography>
-              <Box display="flex" flexDirection="column" gap={4}>
-                <Box>
-                  <Typography variant="h5" className="mb-2">
-                    Text Colors
-                  </Typography>
-                  <Box display="flex" flexDirection="column" gap={2}>
-                    <Box className="p-2 bg-background border rounded">
-                      <Typography className="text-primary">
-                        Primary text color
-                      </Typography>
-                    </Box>
-                    <Box className="p-2 bg-background border rounded">
-                      <Typography className="text-secondary">
-                        Secondary text color
-                      </Typography>
-                    </Box>
-                    <Box className="p-2 bg-background border rounded">
-                      <Typography className="text-primary">
-                        Link and accent text
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box>
-                  <Typography variant="h5" className="mb-2">
-                    Background Hierarchy
-                  </Typography>
-                  <Box display="flex" flexDirection="column" gap={2}>
-                    <Box className="p-3 bg-background border rounded">
-                      <Typography>Main background</Typography>
-                    </Box>
-                    <Box className="p-3 bg-card border rounded">
-                      <Typography>Card background</Typography>
-                    </Box>
-                    <Box className="p-3 bg-card-inner border rounded">
-                      <Typography>Nested card background</Typography>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-        </CardContent>
-      </Card>
-
-      {/* Theme Switching Examples */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Theme Switching</CardTitle>
-          <CardDescription>
-            Examples of how colors adapt to different themes and contexts
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Light Theme Example */}
-            <Box className="p-6 bg-background dark:bg-foreground dark:text-background border rounded-lg">
-              <Typography variant="h5" className="mb-4">
-                Light Theme
-              </Typography>
-              <Box display="flex" flexDirection="column" gap={3}>
-                <Box className="p-3 bg-primary border rounded">
-                  <Typography className="text-foreground">
-                    Primary text
-                  </Typography>
-                </Box>
-                <Box className="p-3 bg-primary/10 border rounded">
-                  <Typography className="text-primary">
-                    Primary accent
-                  </Typography>
-                </Box>
-                <Box className="p-3 bg-secondary/10 border rounded">
-                  <Typography className="text-foreground/80">
-                    Secondary text
-                  </Typography>
-                </Box>
-                <Box className="flex gap-2">
-                  <Button buttonSize="sm" variant="solid" color="primary">
-                    Primary Action
-                  </Button>
-                  <Button buttonSize="sm" variant="outline">
-                    Secondary Action
-                  </Button>
-                </Box>
-              </Box>
-            </Box>
-
-            {/* Dark Theme Example */}
-            <Box className="p-6 bg-foreground dark:bg-background dark:text-foreground border rounded-lg">
-              <Typography variant="h5" className="mb-4">
-                Dark Theme
-              </Typography>
-              <Box display="flex" flexDirection="column" gap={3}>
-                <Box className="p-3 bg-primary border rounded">
-                  <Typography className="text-foreground">
-                    Primary text
-                  </Typography>
-                </Box>
-                <Box className="p-3 bg-primary/20 border rounded">
-                  <Typography className="text-primary">
-                    Primary accent
-                  </Typography>
-                </Box>
-                <Box className="p-3 bg-secondary/20 border rounded">
-                  <Typography className="text-foreground/80">
-                    Secondary text
-                  </Typography>
-                </Box>
-                <Box className="flex gap-2">
-                  <Button buttonSize="sm" variant="solid" color="primary">
-                    Primary Action
-                  </Button>
-                  <Button buttonSize="sm" variant="outline">
-                    Secondary Action
-                  </Button>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-
-          {/* Seasonal Themes */}
-          <Box className="mt-6">
-            <Typography variant="h5" className="mb-4">
-              Semantic Color Variations
-            </Typography>
-            <Box className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Box className="p-4 bg-destructive/10 border rounded-lg text-center">
-                <Typography variant="h6" className="text-destructive mb-2">
-                  Destructive
-                </Typography>
-                <Typography className="text-destructive">
-                  Errors & warnings
-                </Typography>
-              </Box>
-              <Box className="p-4 bg-success/10 border rounded-lg text-center">
-                <Typography variant="h6" className="text-success mb-2">
-                  Success
-                </Typography>
-                <Typography className="text-success">
-                  Positive states
-                </Typography>
-              </Box>
-              <Box className="p-4 bg-warning/10 border rounded-lg text-center">
-                <Typography variant="h6" className="text-warning mb-2">
-                  Warning
-                </Typography>
-                <Typography className="text-warning">Caution states</Typography>
-              </Box>
-              <Box className="p-4 bg-info/10 border rounded-lg text-center">
-                <Typography variant="h6" className="text-info mb-2">
-                  Info
-                </Typography>
-                <Typography className="text-info">
-                  Information states
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
-        </CardContent>
-      </Card>
-
-      {/* Accessibility Considerations */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Accessibility & Color Contrast</CardTitle>
-          <CardDescription>
-            WCAG compliance examples and colorblind-friendly considerations
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Contrast Examples */}
-            <Box>
-              <Typography variant="h4" className="mb-4">
-                Color Contrast Examples
-              </Typography>
-              <Box display="flex" flexDirection="column" gap={3}>
-                <Box className="p-3 bg-primary rounded-lg">
-                  <Typography className="text-primary-foreground font-medium">
-                    ✅ High Contrast - WCAG AA Compliant
-                  </Typography>
-                </Box>
-                <Box className="p-3 bg-secondary rounded-lg">
-                  <Typography className="text-secondary-foreground font-medium">
-                    ✅ Medium Contrast - WCAG AA Large Text
-                  </Typography>
-                </Box>
-                <Box className="p-3 bg-muted rounded-lg">
-                  <Typography className="text-foreground/80 font-medium">
-                    ⚠️ Low Contrast - Not Accessible
-                  </Typography>
-                </Box>
-                <Box className="p-3 bg-warning rounded-lg">
-                  <Typography className="text-warning-foreground font-medium">
-                    ✅ High Contrast Warning - Good for Alerts
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
-
-            {/* Colorblind Considerations */}
-            <Box>
-              <Typography variant="h4" className="mb-4">
-                Colorblind-Friendly Design
-              </Typography>
-              <Box display="flex" flexDirection="column" gap={4}>
-                <Box>
-                  <Typography variant="h5" className="mb-2">
-                    Status Indicators
-                  </Typography>
-                  <Box display="flex" gap={3}>
-                    <Box className="flex items-center gap-2">
-                      <Box className="w-3 h-3 bg-success rounded-full" />
-                      <Typography>Success ✓</Typography>
-                    </Box>
-                    <Box className="flex items-center gap-2">
-                      <Box className="w-3 h-3 bg-destructive rounded-full" />
-                      <Typography>Error ✗</Typography>
-                    </Box>
-                    <Box className="flex items-center gap-2">
-                      <Box className="w-3 h-3 bg-warning rounded-full" />
-                      <Typography>Warning ⚠</Typography>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box>
-                  <Typography variant="h5" className="mb-2">
-                    Data Visualization
-                  </Typography>
-                  <Box className="grid grid-cols-2 gap-2">
-                    <Box className="p-2 bg-primary/10 border rounded text-center">
-                      <Typography className="text-primary">
-                        Category A
-                      </Typography>
-                    </Box>
-                    <Box className="p-2 bg-secondary/10 border rounded text-center">
-                      <Typography className="text-secondary-foreground">
-                        Category B
-                      </Typography>
-                    </Box>
-                    <Box className="p-2 bg-success/10 border rounded text-center">
-                      <Typography className="text-success">
-                        Category C
-                      </Typography>
-                    </Box>
-                    <Box className="p-2 bg-info/10 border rounded text-center">
-                      <Typography className="text-info">Category D</Typography>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-
-          {/* High Contrast Mode */}
-          <Box className="mt-6">
-            <Typography variant="h5" className="mb-4">
-              High Contrast Mode
-            </Typography>
-            <Box className="p-4 bg-foreground border-2 border-background rounded-lg">
-              <Typography variant="body1" className="text-background mb-3">
-                High contrast mode provides maximum readability for users with
-                visual impairments.
-              </Typography>
-              <Box className="flex gap-3">
-                <Button
-                  variant="solid"
-                  color="primary"
-                  className="bg-background text-foreground border-background"
-                >
-                  Primary Action
-                </Button>
-                <Button
-                  variant="outline"
-                  className="border-background text-background"
-                >
-                  Secondary Action
-                </Button>
-              </Box>
-            </Box>
-          </Box>
-        </CardContent>
-      </Card>
-
-      {/* Brand Guidelines */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Brand Guidelines</CardTitle>
-          <CardDescription>
-            Primary brand colors, secondary palette, and accent color usage
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Box className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Primary Brand Colors */}
-            <Box>
-              <Typography variant="h4" className="mb-4">
-                Primary Brand Colors
-              </Typography>
-              <Box display="flex" flexDirection="column" gap={3}>
-                <Box className="p-4 bg-primary rounded-lg">
-                  <Typography
-                    variant="body1"
-                    className="text-primary-foreground font-medium mb-1"
-                  >
-                    Primary
-                  </Typography>
-                  <Typography className="text-primary-foreground/80">
-                    Main brand color for logos, CTAs, and key elements
-                  </Typography>
-                </Box>
-                <Box className="p-4 bg-primary-hover rounded-lg">
-                  <Typography
-                    variant="body1"
-                    className="text-primary-foreground-hover font-medium mb-1"
-                  >
-                    Primary Hover
-                  </Typography>
-                  <Typography className="text-primary-foreground-hover/80">
-                    Hover states and secondary actions
-                  </Typography>
-                </Box>
-                <Box className="p-4 bg-secondary rounded-lg">
-                  <Typography
-                    variant="body1"
-                    className="text-secondary-foreground font-medium mb-1"
-                  >
-                    Secondary
-                  </Typography>
-                  <Typography className="text-secondary-foreground/80">
-                    Supporting elements and subtle actions
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
-
-            {/* Semantic Palette */}
-            <Box>
-              <Typography variant="h4" className="mb-4">
-                Semantic Palette
-              </Typography>
-              <Box display="flex" flexDirection="column" gap={3}>
-                <Box className="p-4 bg-muted rounded-lg">
-                  <Typography
-                    variant="body1"
-                    className="text-foreground/80 font-medium mb-1"
-                  >
-                    Neutral
-                  </Typography>
-                  <Typography className="text-foreground/80">
-                    Text, borders, and subtle elements
-                  </Typography>
-                </Box>
-                <Box className="p-4 bg-success rounded-lg">
-                  <Typography
-                    variant="body1"
-                    className="text-success-foreground font-medium mb-1"
-                  >
-                    Success
-                  </Typography>
-                  <Typography className="text-success-foreground/80">
-                    Positive actions and confirmations
-                  </Typography>
-                </Box>
-                <Box className="p-4 bg-destructive rounded-lg">
-                  <Typography
-                    variant="body1"
-                    className="text-destructive-foreground font-medium mb-1"
-                  >
-                    Destructive
-                  </Typography>
-                  <Typography className="text-destructive-foreground/80">
-                    Errors, warnings, and destructive actions
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-
-          {/* Accent Colors */}
-          <Box className="mt-6">
-            <Typography variant="h5" className="mb-4">
-              Accent Colors
-            </Typography>
-            <Box className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Box className="p-3 bg-warning/10 border rounded-lg text-center">
-                <Typography className="text-warning font-medium">
-                  Warning
-                </Typography>
-                <Typography variant="caption" className="text-warning">
-                  Caution states
-                </Typography>
-              </Box>
-              <Box className="p-3 bg-info/10 border rounded-lg text-center">
-                <Typography className="text-info font-medium">Info</Typography>
-                <Typography variant="caption" className="text-info">
-                  Information
-                </Typography>
-              </Box>
-              <Box className="p-3 bg-success/10 border rounded-lg text-center">
-                <Typography className="text-success font-medium">
-                  Success
-                </Typography>
-                <Typography variant="caption" className="text-success">
-                  Positive states
-                </Typography>
-              </Box>
-              <Box className="p-3 bg-destructive/10 border rounded-lg text-center">
-                <Typography className="text-destructive font-medium">
-                  Destructive
-                </Typography>
-                <Typography variant="caption" className="text-destructive">
-                  Errors & warnings
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
-        </CardContent>
-      </Card>
+      {colorGroups.map((group) => (
+        <Group key={group.title} group={group} />
+      ))}
     </Box>
   );
 }
+
+/** Tailwind CSS color classes
+//  --background
+bg-background text-background border-background
+//  --foreground
+bg-foreground text-foreground border-foreground
+//  --card
+bg-card text-card border-card, border-card-foreground
+bg-card-hover text-card-hover border-card-hover, border-card-hover-foreground
+bg-card-soft text-card-soft border-card-soft, border-card-soft-foreground
+bg-card-soft-hover text-card-soft-hover border-card-soft-hover, border-card-soft-hover-foreground
+//  --card-inner
+bg-card-inner text-card-inner border-card-inner, border-card-inner-foreground
+bg-card-inner-hover text-card-inner-hover border-card-inner-hover, border-card-inner-hover-foreground
+bg-card-inner-soft text-card-inner-soft border-card-inner-soft, border-card-inner-soft-foreground
+bg-card-inner-soft-hover text-card-inner-soft-hover border-card-inner-soft-hover, border-card-inner-soft-hover-foreground
+//  --primary
+bg-primary text-primary border-primary, border-primary-foreground
+bg-primary-hover text-primary-hover border-primary-hover, border-primary-hover-foreground
+bg-primary-soft text-primary-soft border-primary-soft, border-primary-soft-foreground
+bg-primary-soft-hover text-primary-soft-hover border-primary-soft-hover, border-primary-soft-hover-foreground
+//  --secondary
+bg-secondary text-secondary border-secondary, border-secondary-foreground
+bg-secondary-hover text-secondary-hover border-secondary-hover, border-secondary-hover-foreground
+bg-secondary-soft text-secondary-soft border-secondary-soft, border-secondary-soft-foreground
+bg-secondary-soft-hover text-secondary-soft-hover border-secondary-soft-hover, border-secondary-soft-hover-foreground
+//  --neutral
+bg-neutral text-neutral border-neutral, border-neutral-foreground
+bg-neutral-hover text-neutral-hover border-neutral-hover, border-neutral-hover-foreground
+bg-neutral-soft text-neutral-soft border-neutral-soft, border-neutral-soft-foreground
+bg-neutral-soft-hover text-neutral-soft-hover border-neutral-soft-hover, border-neutral-soft-hover-foreground
+//  --destructive
+bg-destructive text-destructive border-destructive, border-destructive-foreground
+bg-destructive-hover text-destructive-hover border-destructive-hover, border-destructive-hover-foreground
+bg-destructive-soft text-destructive-soft border-destructive-soft, border-destructive-soft-foreground
+bg-destructive-soft-hover text-destructive-soft-hover border-destructive-soft-hover, border-destructive-soft-hover-foreground
+//  --success
+bg-success text-success border-success, border-success-foreground
+bg-success-hover text-success-hover border-success-hover, border-success-hover-foreground
+bg-success-soft text-success-soft border-success-soft, border-success-soft-foreground
+bg-success-soft-hover text-success-soft-hover border-success-soft-hover, border-success-soft-hover-foreground
+//  --warning
+bg-warning text-warning border-warning, border-warning-foreground
+bg-warning-hover text-warning-hover border-warning-hover, border-warning-hover-foreground
+bg-warning-soft text-warning-soft border-warning-soft, border-warning-soft-foreground
+bg-warning-soft-hover text-warning-soft-hover border-warning-soft-hover, border-warning-soft-hover-foreground
+//  --info
+bg-info text-info border-info, border-info-foreground
+bg-info-hover text-info-hover border-info-hover, border-info-hover-foreground
+bg-info-soft text-info-soft border-info-soft, border-info-soft-foreground
+bg-info-soft-hover text-info-soft-hover border-info-soft-hover, border-info-soft-hover-foreground
+*/

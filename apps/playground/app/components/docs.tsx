@@ -316,7 +316,7 @@ export function DocsShowcase() {
             theme="dark"
             mode="static"
           />
-          <Box className="p-4 border rounded-lg bg-muted/50">
+          <Box className="p-4 border rounded-lg bg-neutral-soft">
             <Typography variant="subtitle2" className="mb-2">
               Live Preview:
             </Typography>
@@ -443,7 +443,7 @@ export default function Counter() {
   const { element, error } = useRunner({ code, scope });
 
   return (
-    <Box className="p-4 border rounded-lg bg-muted/50">
+    <Box className="p-4 border rounded-lg bg-neutral-soft">
       <Typography variant="subtitle2" className="mb-2">
         Live Preview:
       </Typography>
