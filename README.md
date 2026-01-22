@@ -1,82 +1,105 @@
-# Mothership2
+# veraclins-dev
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Nx monorepo for the Veraclins UI platform. It houses shared packages, a
+Playground app for interactive demos, and tooling for building, testing, and
+releasing the library suite.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+## Workspace layout
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+### Apps
 
-## Finish your CI setup
+- `apps/playground` - React Router app for showcasing packages and UI patterns.
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/HpfryDp5Tw)
+### Packages
 
+- `@veraclins-dev/ui` - UI component library and icon sprite exports.
+  Docs: https://packages.veraclins.dev/ui
+- `@veraclins-dev/editor` - Rich text editor components and extensions.
+  Docs: https://packages.veraclins.dev/editor
+- `@veraclins-dev/form` - Form helpers for Conform + React Router.
+  Docs: https://packages.veraclins.dev/form
+- `@veraclins-dev/image` - Image utilities (client + server).
+  Docs: https://packages.veraclins.dev/image
+- `@veraclins-dev/react-utils` - Shared React utilities (client + server).
+  Docs: https://packages.veraclins.dev/react-utils
+- `@veraclins-dev/utils` - Framework-agnostic utilities.
+  Docs: https://packages.veraclins.dev/utils
+- `@veraclins-dev/cva` - Class variance helpers.
+  Docs: https://packages.veraclins.dev/utils/cva
+- `@veraclins-dev/docs` - Documentation helpers.
+  Docs: https://packages.veraclins.dev/docs
+- `@veraclins-dev/remix-seo` - SEO utilities for React Router/Remix.
+  Docs: https://packages.veraclins.dev/react-utils/remix-seo
+- `@veraclins-dev/remix-auth-social` - Social auth helpers for Remix.
+  Docs: https://packages.veraclins.dev/auth
 
-## Run tasks
+## Tooling
 
-To run the dev server for your app, use:
+- **Nx** for project orchestration and caching
+- **pnpm** for dependency management
+- **React 19 + React Router v7** for the app runtime
+- **Vite** for builds and dev servers
+- **Tailwind CSS** for styling
+- **Storybook** for component documentation
+- **Vitest/Jest/Playwright** for testing
+
+## Prerequisites
+
+- Node.js 20+
+- pnpm 9+ (CI uses pnpm 10)
+
+## Getting started
 
 ```sh
-npx nx serve base
+pnpm install
 ```
 
-To create a production bundle:
+## Running tasks
+
+Targets are inferred by Nx plugins or declared in `project.json`. To see the
+available targets for a project:
 
 ```sh
-npx nx build base
+pnpm exec nx show project playground --web
 ```
 
-To see all available targets to run for a project, run:
+Common task patterns:
 
 ```sh
-npx nx show project base
+pnpm exec nx dev playground
+pnpm exec nx build playground
+pnpm exec nx lint playground
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
+To explore dependencies and the project graph:
 
 ```sh
-npx nx g @nx/react:app demo
+pnpm exec nx graph
 ```
 
-To generate a new library, use:
+## Local registry
+
+Start the Verdaccio registry for local package testing:
 
 ```sh
-npx nx g @nx/react:lib mylib
+pnpm exec nx local-registry
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+The registry configuration lives in `.verdaccio/config.yml` and stores artifacts
+under `tmp/local-registry/storage`.
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Release & publish
 
+Packages are built and published with Nx Release:
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```sh
+pnpm exec nx run-many -t build --projects=tag:scope:lib
+pnpm exec nx release publish
+```
 
-## Install Nx Console
+Publishing runs on the `master` and `prod` branches via `.github/workflows/publish.yml`.
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+## Contributing
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- Follow conventional commits (see `commitlint.config.mjs`).
+- Use `pnpm exec nx <target> <project>` for consistent task execution.
