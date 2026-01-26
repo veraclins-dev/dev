@@ -29,6 +29,16 @@
         "packages/remix-auth-social/src/index.ts"
       ],
       "@veraclins-dev/remix-seo": ["packages/remix-seo/src/index.ts"],
+      "@veraclins-dev/starter-cli": ["packages/starter-cli/src/index.ts"],
+      "@veraclins-dev/starter-cli/*": ["packages/starter-cli/src/*"],
+      "@veraclins-dev/starter-nx": ["packages/starter-nx/src/index.ts"],
+      "@veraclins-dev/starter-nx/*": ["packages/starter-nx/src/*"],
+      "@veraclins-dev/starter-templates": [
+        "packages/starter-templates/src/index.ts"
+      ],
+      "@veraclins-dev/starter-templates/*": [
+        "packages/starter-templates/src/*"
+      ],
       "@veraclins-dev/ui": ["packages/ui/src/index.ts"],
       "@veraclins-dev/ui/*": ["packages/ui/src/*"],
       "@veraclins-dev/utils": ["packages/utils/src/index.ts"],

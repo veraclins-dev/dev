@@ -1,0 +1,61 @@
+{
+  "name": "starter-cli",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/starter-cli/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": [
+        "dist/{projectRoot}"
+      ],
+      "currentVersionResolver": "git-tag",
+      "fallbackCurrentVersionResolver": "disk"
+    }
+  },
+  "tags": [
+    "type:generator",
+    "scope:lib"
+  ],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": [
+        "{workspaceRoot}/dist/packages/starter-cli"
+      ],
+      "options": {
+        "commands": [
+          "nx run starter-cli:copy-templates",
+          "nx run starter-cli:build:tsc"
+        ],
+        "parallel": false
+      }
+    },
+    "build:tsc": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/starter-cli",
+        "main": "packages/starter-cli/src/index.ts",
+        "tsConfig": "packages/starter-cli/tsconfig.lib.json",
+        "assets": [
+          "packages/starter-cli/*.md",
+          "packages/starter-cli/package.json",
+          {
+            "input": "packages/starter-cli/templates",
+            "glob": "**/*",
+            "output": "templates"
+          }
+        ],
+        "generatePackageJson": true
+      }
+    },
+    "copy-templates": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node packages/starter-cli/scripts/copy-templates.js"
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "name": "starter-nx",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/starter-nx/src",
+  "projectType": "library",
+  "tags": [
+    "type:generator",
+    "scope:lib"
+  ],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": [
+        "{workspaceRoot}/dist/packages/starter-nx"
+      ],
+      "options": {
+        "commands": [
+          "nx run starter-nx:build:tsc",
+          "nx run starter-nx:copy-templates"
+        ],
+        "parallel": false
+      }
+    },
+    "build:tsc": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/starter-nx",
+        "main": "packages/starter-nx/src/index.ts",
+        "tsConfig": "packages/starter-nx/tsconfig.lib.json",
+        "assets": [
+          "packages/starter-nx/*.md",
+          "packages/starter-nx/generators.json",
+          "packages/starter-nx/package.json",
+          {
+            "input": "packages/starter-nx/src/generators",
+            "glob": "**/*.json",
+            "output": "src/generators"
+          }
+        ]
+      }
+    },
+    "copy-templates": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mkdir -p dist/packages/starter-nx && cp -r packages/starter-templates/templates dist/packages/starter-nx/templates"
+      }
+    },
+    "validate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx run starter-nx:build",
+          "node packages/starter-nx/scripts/validate-build.mjs"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

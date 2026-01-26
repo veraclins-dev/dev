@@ -1,0 +1,7 @@
+{
+  "name": "starter-templates",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/starter-templates",
+  "projectType": "library",
+  "tags": ["type:template", "scope:lib"]
+}

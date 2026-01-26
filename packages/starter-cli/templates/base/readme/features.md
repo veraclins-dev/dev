@@ -1,0 +1,3 @@
+## 📋 Features
+
+{{FEATURES_SECTION}}

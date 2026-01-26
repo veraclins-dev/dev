@@ -1,0 +1,3 @@
+## ⚙️ Configuration
+
+{{CONFIGURATION_SECTION}}
