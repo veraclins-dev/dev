@@ -2,10 +2,10 @@
 // STORAGE SERVICE ABSTRACTION
 // ============================================================================
 
+import { type FirebaseConfig,FirebaseStorageProvider } from './firebase'
+import { type LocalStorageConfig,LocalStorageProvider } from './local'
+import { type S3Config,S3StorageProvider } from './s3'
 import { type StorageProvider, type UploadFileOptions, type UploadFileResult } from './types'
-import { FirebaseStorageProvider, type FirebaseConfig } from './firebase'
-import { S3StorageProvider, type S3Config } from './s3'
-import { LocalStorageProvider, type LocalStorageConfig } from './local'
 
 let storageProviderInstance: {
 	uploadFile: (options: UploadFileOptions) => Promise<UploadFileResult>

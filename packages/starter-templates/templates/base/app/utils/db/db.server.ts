@@ -1,10 +1,12 @@
-import { styleText } from 'node:util'
 import { PrismaPg } from '@prisma/adapter-pg'
+import { styleText } from 'node:util'
 
-import { invariant } from '@veraclins-dev/utils';
-import { excludeDeleted } from './extensions';
-import { singleton } from './singleton.server';
+import { invariant } from '@veraclins-dev/utils'
+
 import { PrismaClient } from '../../../generated/prisma/client'
+
+import { excludeDeleted } from './extensions'
+import { singleton } from './singleton.server'
 
 const adapter = new PrismaPg({
 	connectionString: process.env.DATABASE_URL,
@@ -21,6 +23,9 @@ const getColor = (duration: number) => {
 }
 
 export const db = singleton('prisma', () => {
+	// NOTE: if you change anything in this function you'll need to restart
+	// the dev server to see your changes.
+
 	const client = new PrismaClient({
 		adapter,
 		log: [
@@ -29,7 +34,7 @@ export const db = singleton('prisma', () => {
 			{ level: 'warn', emit: 'stdout' },
 		],
 		transactionOptions: {
-			timeout: 10000,
+			timeout: 10000, // 10 seconds - default timeout for all transactions
 		},
 	})
 
@@ -37,7 +42,7 @@ export const db = singleton('prisma', () => {
 		if (e.duration < logThreshold) return
 		const color = getColor(e.duration)
 		const dur = styleText(color, `${e.duration.toFixed(2)}ms`)
-		console.info(`prisma:query - ${dur}: ${e.query}`)
+		console.info(`prisma:query - ${dur}: ${e.query.slice(0, 100)}`)
 	})
 
 	const extended = client.$extends(excludeDeleted) as unknown as Omit<
@@ -45,6 +50,7 @@ export const db = singleton('prisma', () => {
 		'$on' | '$use'
 	>
 
+	 
 	extended.$connect()
 	return extended
 })
@@ -112,5 +118,4 @@ export async function paginate<QueryResult>({
 }
 
 export { Prisma } from '../../../generated/prisma/client'
-
 export * from '../../../generated/prisma/sql'

@@ -1,11 +1,11 @@
+import { data,redirect, useSearchParams } from 'react-router'
+
 import { Form, useConform } from '@veraclins-dev/form'
-import { processForm, formSubmissionErrors } from '@veraclins-dev/form/server'
-import { HiddenField, LabeledTextField } from '@veraclins-dev/ui'
-import { redirect, useSearchParams, data } from 'react-router'
+import { formSubmissionErrors,processForm } from '@veraclins-dev/form/server'
+import { LabeledTextField } from '@veraclins-dev/ui'
+
 import getStartedIllustration from '../../assets/images/get-started-illustration.svg'
 import AccountSetupVerification from '../../components/emails/account-setup-verification'
-import { AuthLayout } from './components/layout'
-import { AuthLink } from './components/link'
 import { requireAnonymous } from '../../utils/auth/auth.server'
 import { prepareVerification } from '../../utils/auth/verification.server'
 import {
@@ -15,7 +15,10 @@ import { sendEmail } from '../../utils/email.server'
 import { getPageTitle } from '../../utils/misc'
 import { Signup } from '../../utils/user/validations'
 import { UniqueSignup } from '../../utils/user/validations.server'
+
 import { type Route } from './+types/signup'
+import { AuthLayout } from './components/layout'
+import { AuthLink } from './components/link'
 
 export async function loader({ request, context }: Route.LoaderArgs) {
 	await requireAnonymous(request, context)

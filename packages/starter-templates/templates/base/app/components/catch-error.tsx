@@ -1,6 +1,8 @@
-import { Box, Button, Typography } from '@veraclins-dev/ui'
 import { useCallback } from 'react'
-import { useNavigate, type ErrorResponse } from 'react-router'
+import { type ErrorResponse,useNavigate } from 'react-router'
+
+import { Box, Button, Typography } from '@veraclins-dev/ui'
+
 import { ErrorLayout } from './error-layout'
 
 type ErrorInfo = {

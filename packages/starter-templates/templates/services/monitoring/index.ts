@@ -2,8 +2,8 @@
 // MONITORING SERVICE ABSTRACTION
 // ============================================================================
 
-import { type MonitoringProvider, type MonitoringConfig, type MonitoringProviderInterface } from './types'
-import { SentryMonitoringProvider, initClient as initSentryClient } from './sentry'
+import { initClient as initSentryClient,SentryMonitoringProvider } from './sentry'
+import { type MonitoringConfig, type MonitoringProvider, type MonitoringProviderInterface } from './types'
 
 let monitoringProviderInstance: MonitoringProviderInterface | null = null
 
@@ -72,4 +72,4 @@ export function setUser(user: { id: string; email?: string; username?: string })
 }
 
 // Re-export types
-export type { MonitoringProvider, MonitoringConfig } from './types'
+export type { MonitoringConfig,MonitoringProvider } from './types'

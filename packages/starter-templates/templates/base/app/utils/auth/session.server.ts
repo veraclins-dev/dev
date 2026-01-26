@@ -1,8 +1,11 @@
-import { combineResponseInits } from '@veraclins-dev/react-utils/server'
-import { invariant } from '@veraclins-dev/utils'
 import { createCookieSessionStorage, redirect } from 'react-router'
 import { safeRedirect } from 'remix-utils/safe-redirect'
+
+import { combineResponseInits } from '@veraclins-dev/react-utils/server'
+import { invariant } from '@veraclins-dev/utils'
+
 import { type Session } from '../db/types'
+
 import {
 	getVerification,
 	getVerificationRedirectToUrl,

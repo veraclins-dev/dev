@@ -13,8 +13,9 @@ const schema = z.object({
 })
 
 declare global {
+	// eslint-disable-next-line @typescript-eslint/no-namespace
 	namespace NodeJS {
-		interface ProcessEnv extends z.infer<typeof schema> {}
+		type ProcessEnv = z.infer<typeof schema>
 	}
 }
 

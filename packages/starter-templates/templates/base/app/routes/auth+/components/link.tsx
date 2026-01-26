@@ -1,6 +1,7 @@
 import { Box } from '@veraclins-dev/ui'
 import { cn } from '@veraclins-dev/utils'
-import { LinkWithRedirect, type LinkProps } from '../../../components/link'
+
+import { type LinkProps,LinkWithRedirect } from '../../../components/link'
 
 interface Props extends LinkProps {
 	text?: React.ReactNode

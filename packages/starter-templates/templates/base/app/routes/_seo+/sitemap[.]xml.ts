@@ -1,7 +1,10 @@
+import { type RouterContextProvider } from 'react-router'
+
 import { generateSitemap } from '@veraclins-dev/remix-seo'
 import { getDomainUrl } from '@veraclins-dev/utils'
-import { type RouterContextProvider } from 'react-router'
+
 import { serverBuildContext } from '../../../server/utils/context'
+
 import { type Route } from './+types/sitemap[.]xml'
 
 export async function loader({ request, context }: Route.LoaderArgs) {

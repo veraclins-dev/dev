@@ -1,13 +1,15 @@
 import { captureException } from '@sentry/react-router'
-import { Box } from '@veraclins-dev/ui'
-import { getErrorMessage } from '@veraclins-dev/utils'
 import { useEffect } from 'react'
 import {
+	type ErrorResponse,
 	isRouteErrorResponse,
 	useParams,
 	useRouteError,
-	type ErrorResponse,
 } from 'react-router'
+
+import { Box } from '@veraclins-dev/ui'
+import { getErrorMessage } from '@veraclins-dev/utils'
+
 import { CatchError } from './catch-error'
 
 type StatusHandler = (info: {

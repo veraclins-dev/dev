@@ -1,5 +1,7 @@
-import { Box } from '@veraclins-dev/ui'
 import { Outlet } from 'react-router'
+
+import { Box } from '@veraclins-dev/ui'
+
 import { Footer } from '../../components/footer.tsx'
 import { MarketingHeader } from '../../components/marketing-header.tsx'
 

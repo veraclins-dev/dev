@@ -1,4 +1,5 @@
 import path from 'node:path'
+
 import { imageLoader as baseImageLoader } from '@veraclins-dev/image/server'
 
 export const imageLoader = async ({ request }: { request: Request }) => {

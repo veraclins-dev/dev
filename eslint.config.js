@@ -15,6 +15,7 @@ module.exports = [
       '**/dist',
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
+      '**/templates/**/*',
     ],
   },
   {
@@ -28,6 +29,38 @@ module.exports = [
           depConstraints: [
             {
               sourceTag: 'type:app',
+              onlyDependOnLibsWithTags: [
+                'type:auth',
+                'type:editor',
+                'type:form',
+                'type:image',
+                'type:ui',
+                'type:utils',
+                'type:react-utils',
+                'type:cva',
+                'type:docs',
+                'type:code-runner',
+                'type:code-editor',
+              ],
+            },
+            {
+              sourceTag: 'type:generator',
+              onlyDependOnLibsWithTags: [
+                'type:auth',
+                'type:editor',
+                'type:form',
+                'type:image',
+                'type:ui',
+                'type:utils',
+                'type:react-utils',
+                'type:cva',
+                'type:docs',
+                'type:code-runner',
+                'type:code-editor',
+              ],
+            },
+            {
+              sourceTag: 'type:template',
               onlyDependOnLibsWithTags: [
                 'type:auth',
                 'type:editor',

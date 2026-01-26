@@ -1,7 +1,8 @@
 import { db } from '../../db/db.server';
 import { rateLimit } from '../../rate-limit.server';
-import { ReportSchema } from './validations';
 import { z } from '../../validations/index';
+
+import { ReportSchema } from './validations';
 
 export function createReportSchemaWithCheck(reporterId: string) {
   return ReportSchema.transform(async (data, ctx) => {

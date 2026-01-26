@@ -1,5 +1,7 @@
 import { createContext } from 'react-router'
+
 import { type User } from '../db/types'
+
 import { type Session } from './types'
 
 export const sessionContext = createContext<Session | null>(null)

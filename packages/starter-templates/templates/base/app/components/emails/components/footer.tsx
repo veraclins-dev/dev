@@ -1,14 +1,16 @@
 import {
+	Column,
 	Hr,
 	Img,
-	Text,
+	type ImgProps,
 	Link,
 	Row,
-	Column,
-	type ImgProps,
+	Text,
 } from '@react-email/components'
-import { EmailSection } from './section'
+
 import { getBaseURL } from '../../../utils/misc'
+
+import { EmailSection } from './section'
 
 interface SocialIcon extends ImgProps {
 	link: string

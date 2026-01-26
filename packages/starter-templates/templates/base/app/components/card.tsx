@@ -1,17 +1,17 @@
 import {
 	Box,
 	Card as CardUI,
+	CardAction,
 	CardContent,
-	CardHeader,
-	CardTitle,
-	CardSubtitle,
 	CardDescription,
 	CardFooter,
-	CardAction,
+	CardHeader,
 	CardImage,
 	type CardProps as CardPropsUI,
-	type CustomComponent,
+	CardSubtitle,
+	CardTitle,
 	type ContainerElement,
+	type CustomComponent,
 } from '@veraclins-dev/ui'
 import { cn } from '@veraclins-dev/utils'
 

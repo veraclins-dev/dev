@@ -1,7 +1,9 @@
+import { z } from '../../validations/index'
 import {
 	authenticate,
 	checkIsCommonPassword,
 } from '../auth/auth.server'
+
 import { getUser } from './user.server'
 import {
 	ChangeEmail,
@@ -11,7 +13,6 @@ import {
 	PasswordAndConfirmPassword,
 	Signup,
 } from './validations'
-import { z } from '../../validations/index'
 
 export const UniqueSignup = Signup.superRefine(
 	async ({ email }, ctx) => {

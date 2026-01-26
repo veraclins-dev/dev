@@ -2,9 +2,10 @@
 // SENTRY MONITORING PROVIDER
 // ============================================================================
 
-import * as Sentry from '@sentry/react-router'
 import { PrismaInstrumentation } from '@prisma/instrumentation'
 import { nodeProfilingIntegration } from '@sentry/profiling-node'
+import * as Sentry from '@sentry/react-router'
+
 import {
 	type MonitoringConfig,
 	type MonitoringProviderInterface,

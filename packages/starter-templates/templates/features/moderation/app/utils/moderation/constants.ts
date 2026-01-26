@@ -1,4 +1,5 @@
 import { type ReportCategory } from '../db/enums';
+
 import { type ThresholdConfig } from './types';
 
 export const REPORT_THRESHOLDS: Record<ReportCategory, ThresholdConfig> = {

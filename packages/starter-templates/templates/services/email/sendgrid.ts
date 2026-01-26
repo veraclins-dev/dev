@@ -4,10 +4,11 @@
 
 import { render } from '@react-email/components'
 import { type ReactElement } from 'react'
+
 import {
+	type EmailProviderInterface,
 	type SendEmailInput,
 	type SendEmailResult,
-	type EmailProviderInterface,
 } from './types'
 
 async function renderReactEmail(react: ReactElement) {

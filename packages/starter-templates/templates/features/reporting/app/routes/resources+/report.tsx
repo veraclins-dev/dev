@@ -1,9 +1,12 @@
+import { data } from 'react-router';
+
 import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server';
 import { jsonWithToast } from '@veraclins-dev/react-utils/server';
-import { data } from 'react-router';
+
 import { requireUserId } from '../../utils/auth/auth.server';
 import { reportContent } from '../../utils/reports/report.server';
 import { createReportSchemaWithCheck } from '../../utils/reports/validations.server';
+
 import { type Route } from './+types/report';
 
 export async function action({ request, context }: Route.ActionArgs) {

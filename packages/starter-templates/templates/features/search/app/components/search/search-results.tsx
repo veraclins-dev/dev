@@ -1,4 +1,5 @@
 import { Box, Typography } from '@veraclins-dev/ui';
+
 import { type SearchResults } from '../../utils/search/types';
 
 interface SearchResultsProps {
@@ -8,11 +9,19 @@ interface SearchResultsProps {
   className?: string;
 }
 
+interface SearchResultItem {
+  id: string;
+  name?: string;
+  title?: string;
+  username?: string;
+  description?: string;
+}
+
 export function SearchResults({
   results,
-  query,
-  resource,
   className,
+  query: _query,
+  resource: _resource,
 }: SearchResultsProps) {
   const hasResults = Object.values(results).some((result) => result.count > 0);
 
@@ -39,7 +48,8 @@ export function SearchResults({
               {result.count})
             </Typography>
             <Box display="flex" flexDirection="column" gap={2}>
-              {result.items.map((item: any) => (
+              { }
+              {result.items.map((item: SearchResultItem) => (
                 <Box
                   key={item.id}
                   className="p-4 rounded-lg border border-border hover:bg-card-inner transition-colors"

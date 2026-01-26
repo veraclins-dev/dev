@@ -1,4 +1,3 @@
-import { styleText } from 'node:util'
 import { helmet } from '@nichtsam/helmet/node-http'
 import { createRequestHandler } from '@react-router/express'
 import { ip as ipAddress } from 'address'
@@ -8,7 +7,9 @@ import express from 'express'
 import { ipKeyGenerator, rateLimit } from 'express-rate-limit'
 import getPort, { portNumbers } from 'get-port'
 import morgan from 'morgan'
+import { styleText } from 'node:util'
 import { RouterContextProvider, type ServerBuild } from 'react-router'
+
 import { serverBuildContext } from './utils/context.js'
 
 const MODE = process.env.NODE_ENV ?? 'development'

@@ -3,14 +3,16 @@ import {
 	Head,
 	Html,
 	Img,
+	pixelBasedPreset,
 	Preview,
 	Section,
 	Tailwind,
-	pixelBasedPreset,
 } from '@react-email/components'
+
+import { getBaseURL } from '../../../utils/misc'
+
 import { Footer } from './footer'
 import { EmailSection } from './section'
-import { getBaseURL } from '../../../utils/misc'
 
 interface EmailLayoutProps {
 	children: React.ReactNode

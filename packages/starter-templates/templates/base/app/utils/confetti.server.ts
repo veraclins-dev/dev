@@ -1,6 +1,7 @@
-import { combineHeaders } from '@veraclins-dev/react-utils/server'
 import * as cookie from 'cookie'
 import { redirect } from 'react-router'
+
+import { combineHeaders } from '@veraclins-dev/react-utils/server'
 
 const cookieName = 'en_confetti'
 

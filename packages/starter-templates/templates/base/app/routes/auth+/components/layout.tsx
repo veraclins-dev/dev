@@ -1,6 +1,7 @@
-import { type ImageProps, Image } from '@veraclins-dev/image'
+import { Image,type ImageProps } from '@veraclins-dev/image'
 import { getResponsiveValues, useBreakpoint } from '@veraclins-dev/react-utils'
 import { Box, Icon, Typography } from '@veraclins-dev/ui'
+
 import bottomIllustration from '../../../assets/images/bg-bottom-mask.svg'
 import topMask from '../../../assets/images/top-mask.svg'
 import { type Breakpoint } from '../../../common/types'

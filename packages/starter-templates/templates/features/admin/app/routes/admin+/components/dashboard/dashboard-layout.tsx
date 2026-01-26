@@ -1,5 +1,7 @@
-import { Box } from '@veraclins-dev/ui';
 import { type ReactNode } from 'react';
+
+import { Box } from '@veraclins-dev/ui';
+
 import { type StatCard, StatsCards } from './stats-cards';
 
 interface DashboardLayoutProps {

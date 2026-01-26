@@ -2,12 +2,13 @@
 // LOCAL STORAGE PROVIDER
 // ============================================================================
 
-import { writeFile, mkdir, unlink } from 'fs/promises'
+import { mkdir, unlink,writeFile } from 'fs/promises'
 import { join } from 'path'
+
 import {
+	type StorageProviderInterface,
 	type UploadFileOptions,
 	type UploadFileResult,
-	type StorageProviderInterface,
 } from './types'
 
 export interface LocalStorageConfig {

@@ -1,7 +1,10 @@
-import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server'
 import { data } from 'react-router'
+
+import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server'
+
 import { setTheme } from '../../utils/theme.server'
 import { ThemeSchema } from '../../validations/index'
+
 import { type Route } from './+types/theme'
 
 export async function action({ request }: Route.ActionArgs) {

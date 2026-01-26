@@ -1,7 +1,8 @@
-import { type ImageProps, Image } from '@veraclins-dev/image'
+import { Image,type ImageProps } from '@veraclins-dev/image'
 import { getResponsiveValues, useBreakpoint } from '@veraclins-dev/react-utils'
 import { Box, Icon, Typography } from '@veraclins-dev/ui'
 import { type Breakpoint } from '@veraclins-dev/utils'
+
 import { Card } from './card'
 import { LinkButton } from './link'
 

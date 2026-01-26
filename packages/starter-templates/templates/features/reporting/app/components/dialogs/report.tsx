@@ -1,3 +1,5 @@
+import { useEffect, useMemo } from 'react';
+
 import { useConform, useCustomFetcher } from '@veraclins-dev/form';
 import {
   Box,
@@ -6,13 +8,14 @@ import {
   TextareaField,
   Typography,
 } from '@veraclins-dev/ui';
-import { useEffect, useMemo } from 'react';
-import { FormModal } from './form-modal';
+
 import {
   getCategoriesForEntityType,
   getCategoryLabel,
 } from '../../utils/reports/category-mapping';
 import { ReportSchema } from '../../utils/reports/validations';
+
+import { FormModal } from './form-modal';
 
 interface ReportProps {
   entityType: string;

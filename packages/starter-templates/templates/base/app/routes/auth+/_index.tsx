@@ -1,6 +1,6 @@
 import { redirect } from 'react-router'
 
-export let loader = () => {
+export const loader = () => {
 	return redirect('/auth/login')
 }
 export default function Index() {

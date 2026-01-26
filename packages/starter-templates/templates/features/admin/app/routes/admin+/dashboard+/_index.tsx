@@ -1,11 +1,13 @@
 import { Box, Typography } from '@veraclins-dev/ui';
+import { getDateRange } from '@veraclins-dev/utils';
+
 import { type PageHandle } from '../../../common/types';
+import { getPageTitle } from '../../../utils/misc';
+import { getQueryParams } from '../../../utils/misc';
 import { DashboardLayout } from '../components/dashboard/dashboard-layout';
 import { PeriodSelect } from '../components/dashboard/period-select';
 import { type StatCard } from '../components/dashboard/stats-cards';
-import { getPageTitle } from '../../../utils/misc';
-import { getQueryParams } from '../../../utils/misc';
-import { getDateRange } from '@veraclins-dev/utils';
+
 import { type Route } from './+types/_index';
 
 export const handle: PageHandle = {

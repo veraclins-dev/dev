@@ -1,7 +1,7 @@
 import {
-  ViolationType,
-  ViolationSeverity,
   QueuePriority,
+  ViolationSeverity,
+  ViolationType,
 } from '../../db/enums';
 import { z } from '../../validations/index';
 

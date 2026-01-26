@@ -13,6 +13,7 @@ z.config({
 	},
 });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Values<S extends z.ZodType<any, any>> = z.TypeOf<S> & {
 	[key: string]: string | string[];
 };

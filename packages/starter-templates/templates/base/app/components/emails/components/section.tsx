@@ -1,4 +1,5 @@
 import { Section } from '@react-email/components'
+
 import { cn } from '@veraclins-dev/utils'
 
 type Props = {

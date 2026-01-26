@@ -85,7 +85,7 @@ function DataTable<TData extends WithId, TValue = unknown>({
     [columnsConfig],
   );
 
-  // eslint-disable-next-line react-hooks/incompatible-library
+   
   const table = useReactTable({
     data,
     columns: config.columns,

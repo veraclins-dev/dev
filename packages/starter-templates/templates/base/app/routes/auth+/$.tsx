@@ -1,5 +1,7 @@
 import { notFound } from '@veraclins-dev/react-utils/server'
+
 import { GeneralErrorBoundary } from '../../components/error-boundary'
+
 import { type Route } from './+types/$'
 
 export async function loader() {

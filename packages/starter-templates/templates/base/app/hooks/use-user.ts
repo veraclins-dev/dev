@@ -1,5 +1,6 @@
-import { useRootLoaderData } from './use-root-loader'
 import { type User } from '../utils/db/types'
+
+import { useRootLoaderData } from './use-root-loader'
 
 function isUser<T extends User>(user: T | null): user is T {
 	return (

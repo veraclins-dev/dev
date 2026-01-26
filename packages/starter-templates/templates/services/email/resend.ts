@@ -4,11 +4,13 @@
 
 import { render } from '@react-email/components';
 import { type ReactElement } from 'react';
+
 import { z } from '@veraclins-dev/utils';
+
 import {
+  type EmailProviderInterface,
   type SendEmailInput,
   type SendEmailResult,
-  type EmailProviderInterface,
 } from './types';
 
 const resendErrorSchema = z.union([

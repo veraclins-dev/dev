@@ -4,17 +4,18 @@
 
 import { initializeApp } from 'firebase/app'
 import {
-	type StorageError,
+	deleteObject,
+	getDownloadURL,
 	getStorage,
 	ref,
+	type StorageError,
 	uploadBytes,
-	getDownloadURL,
-	deleteObject,
 } from 'firebase/storage'
+
 import {
+	type StorageProviderInterface,
 	type UploadFileOptions,
 	type UploadFileResult,
-	type StorageProviderInterface,
 } from './types'
 
 export interface FirebaseConfig {

@@ -1,12 +1,15 @@
+import { data } from 'react-router'
+
 import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server'
 import { jsonWithToast } from '@veraclins-dev/react-utils/server'
-import { data } from 'react-router'
+
 import AccountSetupVerification from '../../components/emails/account-setup-verification'
 import { ForgotPasswordEmail } from '../../components/emails/forgot-password'
 import { requireAnonymous } from '../../utils/auth/auth.server'
 import { prepareVerification } from '../../utils/auth/verification.server'
 import { sendEmail } from '../../utils/email.server'
 import { ResendOTP } from '../../utils/user/validations'
+
 import { type Route } from './+types/resend-otp'
 
 export async function action({ request, context }: Route.ActionArgs) {

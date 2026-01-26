@@ -1,11 +1,11 @@
-import { Form, useConform } from '@veraclins-dev/form'
-import { processForm, formSubmissionErrors } from '@veraclins-dev/form/server'
-import { Icon, LabeledTextField } from '@veraclins-dev/ui'
 import { redirect, type RouterContextProvider } from 'react-router'
+
+import { Form, useConform } from '@veraclins-dev/form'
+import { formSubmissionErrors,processForm } from '@veraclins-dev/form/server'
+import { Icon, LabeledTextField } from '@veraclins-dev/ui'
+
 import newPasswordIllustration from '../../assets/images/new-password-illustration.svg'
 import { PasswordChangeNotice } from '../../components/emails/password-change-notice'
-import { AuthLayout } from './components/layout'
-import { AuthLink } from './components/link'
 import {
 	requireAnonymous,
 	resetUserPassword,
@@ -16,7 +16,10 @@ import { sendEmail } from '../../utils/email.server'
 import { getDisplayName, getPageTitle } from '../../utils/misc'
 import { PasswordAndConfirmPassword } from '../../utils/user/validations'
 import { ResetPassword } from '../../utils/user/validations.server'
+
 import { type Route } from './+types/reset-password'
+import { AuthLayout } from './components/layout'
+import { AuthLink } from './components/link'
 
 async function requireResetPasswordUsername(
 	request: Request,
