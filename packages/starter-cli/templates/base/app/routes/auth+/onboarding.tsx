@@ -1,22 +1,21 @@
+import { redirect, type RouterContextProvider } from 'react-router'
+import { safeRedirect } from 'remix-utils/safe-redirect'
+
 import { Form, useConform } from '@veraclins-dev/form'
 import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server'
 import {
 	Box,
 	CheckboxField,
-	HiddenField,
 	Icon,
 	LabeledTextField,
 } from '@veraclins-dev/ui'
-import { redirect, type RouterContextProvider } from 'react-router'
-import { safeRedirect } from 'remix-utils/safe-redirect'
+
 import createAccountIllustration from '../../assets/images/create-illustration.svg'
 import { WelcomeEmail } from '../../components/emails/welcome-email'
-import { AuthLayout } from './components/layout'
-import { AuthLink } from './components/link'
 import { requireAnonymous, signup } from '../../utils/auth/auth.server'
 import {
-	sessionKey,
 	authSessionStorage,
+	sessionKey,
 } from '../../utils/auth/session.server'
 import { verifySessionStorage } from '../../utils/auth/verification.server'
 import {
@@ -27,7 +26,10 @@ import { sendEmail } from '../../utils/email.server'
 import { getBaseURL, getPageTitle } from '../../utils/misc'
 import { CreateAccount } from '../../utils/user/validations'
 import { CreateUniqueAccount } from '../../utils/user/validations.server'
+
 import { type Route } from './+types/onboarding'
+import { AuthLayout } from './components/layout'
+import { AuthLink } from './components/link'
 
 async function getOnboardingSessionValues(
 	request: Request,
@@ -104,7 +106,7 @@ export const meta: Route.MetaFunction = () => {
 	return [{ title: getPageTitle('Create Account') }]
 }
 
-export default function OnboardingPage({}: Route.ComponentProps) {
+export default function OnboardingPage(_props: Route.ComponentProps) {
 	const { form, fields } = useConform({
 		schema: CreateAccount,
 		id: 'onboarding-form',

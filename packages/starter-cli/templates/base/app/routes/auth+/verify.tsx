@@ -2,6 +2,7 @@ import { VerifyForm } from '../../components/verification/verify'
 import { validateRequest } from '../../utils/auth/verification.server'
 import { codeQueryParam } from '../../utils/auth/verification.utils'
 import { getPageTitle } from '../../utils/misc'
+
 import { type Route } from './+types/verify'
 
 export async function loader({ request }: Route.LoaderArgs) {

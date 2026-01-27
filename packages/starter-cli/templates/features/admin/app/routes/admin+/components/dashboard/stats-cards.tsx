@@ -1,6 +1,8 @@
-import { Box, Icon, Typography, type IconName } from '@veraclins-dev/ui';
-import { cn, endOfPeriod } from '@veraclins-dev/utils';
 import { useMemo } from 'react';
+
+import { Box, Icon, type IconName,Typography } from '@veraclins-dev/ui';
+import { cn, endOfPeriod } from '@veraclins-dev/utils';
+
 import { type DateRangeValue } from '../../../../common/types';
 import { Card } from '../../../../components/card';
 import { detectPeriodFromValue } from '../../../../components/dates/select';

@@ -42,8 +42,6 @@ export async function createActivityWithNotifications(
   input: CreateActivityWithNotificationsInput,
   tx?: Prisma.TransactionClient
 ) {
-  const dbClient = tx || db;
-
   const activity = await createActivity(input, tx);
 
   const notifyUserIds = input.notifyUserIds ?? [];

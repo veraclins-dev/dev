@@ -1,4 +1,5 @@
 import { db } from '../../utils/db/db.server'
+
 import { type Route } from './+types/healthcheck'
 
 export async function loader({ request }: Route.LoaderArgs) {

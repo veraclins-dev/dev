@@ -1,15 +1,16 @@
+import { type z } from '../../validations/index';
 import { type Prisma } from '../db/db.server';
 import {
-  type ViolationType,
-  type ViolationSeverity,
   type QueuePriority,
   type QueueStatus,
+  type ViolationSeverity,
+  type ViolationType,
 } from '../db/enums';
+
 import {
-  type ViolationSchema,
   type QueueItemSchema,
+  type ViolationSchema,
 } from './validations';
-import { z } from '../../validations/index';
 
 export type ViolationInput = z.infer<typeof ViolationSchema>;
 export type QueueItemInput = z.infer<typeof QueueItemSchema>;
@@ -29,8 +30,8 @@ export interface ThresholdConfig {
 }
 
 export type {
-  ViolationType,
-  ViolationSeverity,
   QueuePriority,
   QueueStatus,
+  ViolationSeverity,
+  ViolationType,
 };

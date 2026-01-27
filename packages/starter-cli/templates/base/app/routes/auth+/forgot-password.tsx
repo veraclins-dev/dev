@@ -1,17 +1,20 @@
+import { data,redirect, useSearchParams } from 'react-router'
+
 import { Form, useConform } from '@veraclins-dev/form'
 import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server'
 import { Icon, LabeledTextField } from '@veraclins-dev/ui'
-import { redirect, useSearchParams, data } from 'react-router'
+
 import createAccountIllustration from '../../assets/images/new-password-illustration.svg'
 import { ForgotPasswordEmail } from '../../components/emails/forgot-password'
-import { AuthLayout } from './components/layout'
-import { AuthLink } from './components/link'
 import { prepareVerification } from '../../utils/auth/verification.server'
 import { sendEmail } from '../../utils/email.server'
 import { getPageTitle } from '../../utils/misc'
 import { ForgotPassword } from '../../utils/user/validations'
 import { ForgotPasswordWithCheck } from '../../utils/user/validations.server'
+
 import { type Route } from './+types/forgot-password'
+import { AuthLayout } from './components/layout'
+import { AuthLink } from './components/link'
 
 export async function action({ request }: Route.ActionArgs) {
 	const submission = await processForm({

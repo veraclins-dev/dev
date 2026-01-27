@@ -3,9 +3,11 @@ import {
   forbidden,
   notFound,
 } from '@veraclins-dev/react-utils/server';
+
 import { PAGE_DATA_DEFAULTS } from '../../constants';
 import { db, paginate, type Prisma } from '../../db/db.server';
 import { InvitationStatus, InvitationType } from '../../db/enums';
+
 import {
   type CreateInvitationInput,
   type UpdateInvitationInput,
@@ -357,7 +359,7 @@ export async function cancelRequest(
   });
 }
 
-export async function approveRequest(invitationId: string, approverId: string) {
+export async function approveRequest(invitationId: string, _approverId: string) {
   const invitation = await db.invitation.findUnique({
     where: { id: invitationId },
   });
@@ -378,7 +380,7 @@ export async function approveRequest(invitationId: string, approverId: string) {
   });
 }
 
-export async function rejectRequest(invitationId: string, rejectorId: string) {
+export async function rejectRequest(invitationId: string, _rejectorId: string) {
   const invitation = await db.invitation.findUnique({
     where: { id: invitationId },
   });

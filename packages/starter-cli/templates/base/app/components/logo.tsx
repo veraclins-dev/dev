@@ -1,6 +1,7 @@
 import { Image } from '@veraclins-dev/image'
 import { Box } from '@veraclins-dev/ui'
 import { cn } from '@veraclins-dev/utils'
+
 import logoIcon from '../assets/images/edulinks_logo_icon.svg'
 import logo from '../assets/images/logo.svg'
 

@@ -1,5 +1,6 @@
 import { PAGE_DATA_DEFAULTS } from '../constants';
 import { db, paginate, type Prisma } from '../db/db.server';
+
 import {
   type GetAuditLogsInput,
   type GetAuditLogsOptions,
@@ -70,6 +71,7 @@ export async function getAuditLogsByOptions(
   }
 
   if (role) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     where.role = role as any;
   }
 

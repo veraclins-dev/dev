@@ -1,3 +1,6 @@
+import { useCallback } from 'react'
+import { useSearchParams } from 'react-router'
+
 import { Form, useConform, useCustomFetcher } from '@veraclins-dev/form'
 import {
 	Box,
@@ -6,18 +9,17 @@ import {
 	LabeledTextField,
 	Typography,
 } from '@veraclins-dev/ui'
-import { useCallback } from 'react'
-import { useSearchParams } from 'react-router'
+
 import verifyIllustration from '../../assets/images/verify-illustration.svg'
 import {
 	AuthLayout,
 	type AuthPageHeading,
 } from '../../routes/auth+/components/layout'
 import {
-	type VerificationTypes,
 	codeQueryParam,
 	targetQueryParam,
 	typeQueryParam,
+	type VerificationTypes,
 	Verify,
 } from '../../utils/auth/verification.utils'
 import { VerificationType } from '../../utils/user/validations'
@@ -80,6 +82,8 @@ export function VerifyForm() {
 
 				<HiddenField field={fields[typeQueryParam]} />
 				<HiddenField field={fields[targetQueryParam]} />
+				<HiddenField field={fields[referralQueryParam]} />
+				<HiddenField field={fields[channelQueryParam]} />
 			</Form>
 			<Box display="flex" gap={1} items="center">
 				<Typography>Didn't receive code?</Typography>

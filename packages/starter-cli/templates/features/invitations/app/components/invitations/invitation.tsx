@@ -1,9 +1,11 @@
+import { useCallback } from 'react';
+
 import { useCustomFetcher } from '@veraclins-dev/form';
 import { Box, Button, Typography } from '@veraclins-dev/ui';
-import { useCallback } from 'react';
-import { Loader } from '../loader';
+
 import { type Invitation as InvitationType } from '../../routes/invitations+/api/types';
 import { InvitationStatus } from '../../utils/db/enums';
+import { Loader } from '../loader';
 
 type InvitationId = InvitationType['id'];
 
@@ -15,8 +17,8 @@ interface InvitationDetailProps {
 
 export const Invitation = ({
   invitation,
-  onClick,
-  onRemove,
+  onClick: _onClick,
+  onRemove: _onRemove,
 }: InvitationDetailProps) => {
   const fetcher = useCustomFetcher();
 

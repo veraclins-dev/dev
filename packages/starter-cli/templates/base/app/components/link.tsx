@@ -1,3 +1,8 @@
+import {
+	Link as RemixLink,
+	type LinkProps as RemixLinkProps,
+} from 'react-router'
+
 import { usePathWithRedirect } from '@veraclins-dev/react-utils'
 import {
 	ComposedTooltip,
@@ -5,10 +10,6 @@ import {
 	type LinkProps as VeraclinsLinkProps,
 } from '@veraclins-dev/ui'
 import { cn } from '@veraclins-dev/utils'
-import {
-	type LinkProps as RemixLinkProps,
-	Link as RemixLink,
-} from 'react-router'
 
 export interface LinkProps extends VeraclinsLinkProps<typeof RemixLink> {
 	tooltip?: string

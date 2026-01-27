@@ -1,8 +1,9 @@
-import { Box } from '@veraclins-dev/ui'
-import { cn } from '@veraclins-dev/utils'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigation } from 'react-router'
 import { useSpinDelay } from 'spin-delay'
+
+import { Box } from '@veraclins-dev/ui'
+import { cn } from '@veraclins-dev/utils'
 
 function Progress() {
 	const transition = useNavigation()
@@ -26,7 +27,9 @@ function Progress() {
 			.then(() => {
 				if (!delayedPending) setAnimationComplete(true)
 			})
-			.catch(() => {})
+			.catch(() => {
+				// Ignore animation errors
+			})
 	}, [delayedPending])
 
 	return (

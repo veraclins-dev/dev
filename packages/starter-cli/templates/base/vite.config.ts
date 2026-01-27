@@ -7,7 +7,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 const MODE = process.env.NODE_ENV
 
-export default defineConfig((config) => ({
+export default defineConfig((_config) => ({
 	root: __dirname,
 	build: {
 		cssMinify: MODE === 'production',

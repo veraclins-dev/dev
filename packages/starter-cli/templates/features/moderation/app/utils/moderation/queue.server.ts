@@ -1,5 +1,6 @@
-import { db, Prisma, paginate } from '../db/db.server';
-import { type QueueStatus, type QueuePriority } from '../db/enums';
+import { db, paginate,type Prisma } from '../db/db.server';
+import { type QueuePriority,type QueueStatus } from '../db/enums';
+
 import { type QueueItemInput } from './types';
 
 export interface CreateQueueItemInput extends QueueItemInput {

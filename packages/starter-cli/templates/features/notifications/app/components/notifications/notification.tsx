@@ -1,13 +1,15 @@
+import { useCallback, useEffect } from 'react';
+
 import { useCustomFetcher } from '@veraclins-dev/form';
 import { Box, ComposedDropdownMenu } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
-import { useCallback, useEffect } from 'react';
+
+import {
+  type Notification as NotificationType,
+  NotificationAction,
+} from '../../routes/notifications+/api/types';
 import { ActionItem, Activity, ActivityLink } from '../activity';
 import { MoreButton } from '../more-button';
-import {
-  NotificationAction,
-  type Notification as NotificationType,
-} from '../../routes/notifications+/api/types';
 
 type NotificationId = NotificationType['id'];
 
@@ -20,7 +22,7 @@ interface NotificationDetailProps {
 
 const Actions = ({
   notificationId,
-  userId,
+  userId: _userId,
   isRead,
   onDismiss,
 }: {

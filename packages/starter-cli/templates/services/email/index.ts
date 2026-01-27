@@ -2,9 +2,9 @@
 // EMAIL SERVICE ABSTRACTION
 // ============================================================================
 
-import { type EmailProvider, type SendEmailInput, type SendEmailResult } from './types'
 import { ResendEmailProvider } from './resend'
 import { SendGridEmailProvider } from './sendgrid'
+import { type EmailProvider, type SendEmailInput, type SendEmailResult } from './types'
 
 let emailProviderInstance: {
 	sendEmail: (input: SendEmailInput) => Promise<SendEmailResult>

@@ -1,28 +1,30 @@
-import { HoneypotProvider } from '@veraclins-dev/form'
-import { honeypot } from '@veraclins-dev/form/server'
-import { useNonce, EpicToaster, useToast } from '@veraclins-dev/react-utils'
 import {
-	combineHeaders,
-	pipeHeaders,
-	getToast,
-} from '@veraclins-dev/react-utils/server'
-import { IconProvider } from '@veraclins-dev/ui'
-import href from '@veraclins-dev/ui/sprite.svg'
-import { cn, getDomainUrl } from '@veraclins-dev/utils'
-import {
+	data,
+	isRouteErrorResponse,
 	Links,
 	Meta,
 	Outlet,
 	Scripts,
 	ScrollRestoration,
-	isRouteErrorResponse,
-	data,
 } from 'react-router';
+
+import { HoneypotProvider } from '@veraclins-dev/form'
+import { honeypot } from '@veraclins-dev/form/server'
+import { EpicToaster, useNonce, useToast } from '@veraclins-dev/react-utils'
+import {
+	combineHeaders,
+	getToast,
+	pipeHeaders,
+} from '@veraclins-dev/react-utils/server'
+import { IconProvider } from '@veraclins-dev/ui'
+import href from '@veraclins-dev/ui/sprite.svg'
+import { cn, getDomainUrl } from '@veraclins-dev/utils'
+
+import { type Route } from './+types/root'
 import { CatchError } from './components/catch-error';
 import { Confetti } from './components/confetti';
 import { Layout } from './components/layouts/main';
 import { EpicProgress } from './components/progress-bar';
-
 import { useTheme } from './hooks/use-theme';
 import tailwindStylesheetUrl from './styles/tailwind.css?url';
 import { userContext } from './utils/auth/context.server';
@@ -31,9 +33,8 @@ import { ClientHintCheck, getHints } from './utils/client-hints';
 import { getConfetti } from './utils/confetti.server';
 import { getEnv } from './utils/env.server';
 import { getPageTitle } from './utils/misc';
-import { type Theme, getTheme } from './utils/theme.server';
+import { getTheme,type Theme } from './utils/theme.server';
 import { makeTimings } from './utils/timing.server';
-import { type Route } from './+types/root'
 
 export const middleware: Route.MiddlewareFunction[] = [authMiddleware]
 

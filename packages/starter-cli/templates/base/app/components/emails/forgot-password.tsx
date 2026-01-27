@@ -1,4 +1,5 @@
 import { Button, Section, Text } from '@react-email/components'
+
 import { EmailHeading } from './components/heading'
 import { EmailLayout } from './components/layout'
 import { EmailSignature } from './sections/email-signature'

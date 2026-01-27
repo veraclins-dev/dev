@@ -1,10 +1,10 @@
-import { db, Prisma, paginate } from '../db/db.server';
+import { db, paginate,type Prisma } from '../db/db.server';
 import {
   type ViolationType,
-  type ViolationSeverity,
 } from '../db/enums';
-import { type ViolationInput } from './types';
+
 import { VIOLATION_POINTS } from './constants';
+import { type ViolationInput } from './types';
 
 export interface CreateViolationInput extends ViolationInput {
   expiresAt?: Date | null;

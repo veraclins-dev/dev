@@ -1,9 +1,9 @@
-import 'dotenv/config'
+import closeWithGrace from 'close-with-grace'
 import * as fs from 'fs'
 import { styleText } from 'node:util'
-
-import closeWithGrace from 'close-with-grace'
 import sourceMapSupport from 'source-map-support'
+
+import 'dotenv/config'
 
 sourceMapSupport.install({
 	retrieveSourceMap: function (source) {

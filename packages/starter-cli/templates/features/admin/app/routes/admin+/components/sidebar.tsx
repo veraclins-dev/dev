@@ -1,26 +1,28 @@
+import { Link as RouterLink, useLocation } from 'react-router';
+
 import {
   Box,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
   Icon,
+  type IconName,
+  Link,
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuItem,
   SidebarMenuButton,
+  SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-  Typography,
-  Link,
   SidebarRail,
-  type IconName,
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
+  Typography,
 } from '@veraclins-dev/ui';
-import { Link as RouterLink, useLocation } from 'react-router';
+
 import { Logo } from '../../../components/logo';
 import { APP_NAME } from '../../../utils/constants';
 

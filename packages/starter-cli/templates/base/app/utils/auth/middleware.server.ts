@@ -1,10 +1,12 @@
 import { redirect } from 'react-router'
+
+import { type Route } from '../../+types/root'
 import { db } from '../db/db.server'
 import { getUserById } from '../user/user.server'
-import { type Route } from '../../+types/root'
+
 import { getDbSession, SESSION_HEARTBEAT_INTERVAL } from './auth.server'
 import { sessionContext, userContext, userIdContext } from './context.server'
-import { getSession, sessionKey, authSessionStorage } from './session.server'
+import { authSessionStorage,getSession, sessionKey } from './session.server'
 
 export const authMiddleware: Route.MiddlewareFunction = async (
 	{ request, context },

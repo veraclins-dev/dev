@@ -1,29 +1,54 @@
+import bcrypt from 'bcryptjs'
 import crypto from 'node:crypto'
+import { redirect, type RouterContextProvider } from 'react-router'
+import { safeRedirect } from 'remix-utils/safe-redirect'
+
 import {
-	forbidden,
 	combineHeaders,
+	forbidden,
 	getRequestInfo,
 } from '@veraclins-dev/react-utils/server'
 import { invariant } from '@veraclins-dev/utils'
-import bcrypt from 'bcryptjs'
-import { redirect, type RouterContextProvider } from 'react-router'
-import { safeRedirect } from 'remix-utils/safe-redirect'
+
+import { type z } from '../../validations/index'
+import { db, type Prisma } from '../db/db.server'
+import { type Password,type User } from '../db/types'
+import { logUserAction } from '../logs/logs.server'
+import { generateReferralCode } from '../misc'
+import { getUserById, getUserByReferralCode } from '../user/user.server'
+import { type CreateAccount } from '../user/validations'
+
+import { sessionContext, userContext, userIdContext } from './context.server'
 import {
+	authSessionStorage,
 	getSession,
 	sessionKey,
-	authSessionStorage,
 } from './session.server'
-import { db, type Prisma } from '../db/db.server'
-import { type User, type Password } from '../db/types'
-import { getUserById } from '../user/user.server'
-import { type CreateAccount } from '../user/validations'
-import { type z } from '../../validations/index'
-import { sessionContext, userContext, userIdContext } from './context.server'
+
+type ErrorResponse = {
+	message: string
+	errors: Record<string, string>
+}
+
+export type SocialAuthResponse = {
+	userId: string
+	isNew?: boolean
+	error?: string | ErrorResponse
+}
 
 export const SESSION_EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 7
-export const SESSION_HEARTBEAT_INTERVAL = 1000 * 60 * 5
+export const SESSION_HEARTBEAT_INTERVAL = 1000 * 60 * 5 // 5 minutes
 export const getSessionExpirationDate = () =>
 	new Date(Date.now() + SESSION_EXPIRATION_TIME)
+
+// Social auth is optional - uncomment and configure providers when needed
+// import { type AuthProfile } from '@veraclins-dev/remix-auth-social'
+// import { Authenticator } from 'remix-auth'
+// import { providers } from '../connections/connection.server'
+// export const authenticator = new Authenticator<AuthProfile>()
+// for (const [providerName, provider] of Object.entries(providers)) {
+// 	authenticator.use(provider.getAuthStrategy(), providerName)
+// }
 
 invariant(process.env.HOST, 'HOST url is missing')
 
@@ -32,6 +57,7 @@ export async function logout(
 	context?: Readonly<RouterContextProvider>,
 	responseInit?: ResponseInit,
 ) {
+	// Clear context if available
 	if (context && typeof context === 'object' && 'get' in context) {
 		const routerContext = context
 		routerContext.set(sessionContext, null)
@@ -43,10 +69,21 @@ export async function logout(
 	const redirectTo = searchParams.get('redirectTo') ?? '/'
 	const cookieSession = await getSession(request)
 	const sessionId = cookieSession.get(sessionKey)
+	 
 	const session = sessionId
 		? await db.session.delete({ where: { id: sessionId } })
 		: null
-
+	if (session) {
+		const requestInfo = getRequestInfo(request)
+		await logUserAction({
+			action: 'logout',
+			entityType: 'user',
+			entityId: session.userId,
+			actorId: session.userId,
+			role: 'member',
+			details: { ...requestInfo, impact: 'low' },
+		})
+	}
 	throw redirect(safeRedirect(redirectTo), {
 		...responseInit,
 		headers: combineHeaders(
@@ -190,6 +227,7 @@ export async function requireOwner(
 }
 
 export async function requireAnonymous(
+	 
 	request: Request,
 	context?: Readonly<RouterContextProvider>,
 ) {
@@ -253,6 +291,18 @@ export async function createSession(
 				},
 			})
 		}
+		const requestInfo = getRequestInfo(request)
+		await logUserAction(
+			{
+				action: 'login',
+				entityType: 'user',
+				entityId: session.userId,
+				actorId: session.userId,
+				role: 'member',
+				details: { ...requestInfo, impact: 'low' },
+			},
+			tx,
+		)
 		return session
 	})
 }
@@ -330,11 +380,17 @@ export async function signup(
 		username,
 		password,
 		name,
+		referral,
+		channel,
 	}: z.infer<typeof CreateAccount>,
 	email: string,
 	request: Request,
 ) {
+	const referrer = await getUserByReferralCode(referral)
+
 	const hashedPassword = await hashPassword(password)
+
+	const refCode = generateReferralCode()
 
 	const userData: Prisma.UserCreateInput = {
 		email: email.trim(),
@@ -342,8 +398,13 @@ export async function signup(
 		username: username.trim(),
 		role: { connect: { name: 'member' } },
 		password: { create: { hash: hashedPassword } },
+		referralCode: refCode,
+		referralChannel: channel,
 	}
 
+	if (referrer) {
+		userData.referrer = { connect: { id: referrer.id } }
+	}
 	const session = await createSession(userData, request)
 
 	return session

@@ -1,21 +1,24 @@
-import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
+
+import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server';
+
 import { InfiniteLoader } from '../../components/infinite-loader';
+import { getPaginationParams } from '../../utils';
+import { getUserId, requireUserId } from '../../utils/auth/auth.server';
+import { getPageTitle } from '../../utils/misc';
+import {
+  getUserNotifications,
+  updateNotification,
+} from '../../utils/notifications/notifications.server';
+
+import { type Route } from './+types/_index';
 import {
   type Notifications as NotificationsLogType,
   type NotificationTab,
 } from './api/types';
 import { UpdateNotificationSchema } from './api/validations.server';
 import { Notifications } from './components/notifications';
-import { getPaginationParams } from '../../utils';
-import {
-  getUserNotifications,
-  updateNotification,
-} from '../../utils/notifications/notifications.server';
-import { getUserId, requireUserId } from '../../utils/auth/auth.server';
-import { getPageTitle } from '../../utils/misc';
-import { type Route } from './+types/_index';
 
 export const loader = async ({ request, context }: Route.LoaderArgs) => {
   const url = new URL(request.url);

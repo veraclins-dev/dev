@@ -1,6 +1,8 @@
-import { endOfPeriod, getDateRange } from '@veraclins-dev/utils';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
+
+import { endOfPeriod, getDateRange } from '@veraclins-dev/utils';
+
 import {
   DateDropdown,
   type DateDropdownValue,

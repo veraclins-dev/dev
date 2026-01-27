@@ -1,14 +1,16 @@
-import { Box, Typography } from '@veraclins-dev/ui';
 import { useCallback, useMemo } from 'react';
-import { Tabs } from '../activity/tabs';
-import { Card } from '../card';
-import { Empty } from '../empty';
+
+import { Box, Typography } from '@veraclins-dev/ui';
+
 import {
-  type InvitationTab,
   type Invitation as InvitationType,
+  type InvitationTab,
 } from '../../routes/invitations+/api/types';
 import { Invitation } from '../../routes/invitations+/components/invitations/invitation';
 import { InvitationStatus } from '../../utils/db/enums';
+import { Tabs } from '../activity/tabs';
+import { Card } from '../card';
+import { Empty } from '../empty';
 
 type InvitationsProps = {
   invitations: InvitationType[];

@@ -1,16 +1,19 @@
-import { Form, useConform } from '@veraclins-dev/form'
-import { processForm, formSubmissionErrors } from '@veraclins-dev/form/server'
-import { CheckboxField, LabeledTextField } from '@veraclins-dev/ui'
 import { useSearchParams } from 'react-router'
+
+import { Form, useConform } from '@veraclins-dev/form'
+import { formSubmissionErrors,processForm } from '@veraclins-dev/form/server'
+import { CheckboxField, LabeledTextField } from '@veraclins-dev/ui'
+
 import loginIllustration from '../../assets/images/login-illustration.svg'
-import { AuthLayout } from './components/layout'
-import { AuthLink } from './components/link'
 import { login, requireAnonymous } from '../../utils/auth/auth.server'
 import { handleNewSession } from '../../utils/auth/session.server'
 import { getPageTitle } from '../../utils/misc'
 import { Login } from '../../utils/user/validations'
 import { LoginWithCheck } from '../../utils/user/validations.server'
+
 import { type Route } from './+types/login'
+import { AuthLayout } from './components/layout'
+import { AuthLink } from './components/link'
 
 export async function loader({ request, context }: Route.LoaderArgs) {
 	await requireAnonymous(request, context)

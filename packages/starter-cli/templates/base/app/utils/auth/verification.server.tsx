@@ -1,13 +1,22 @@
+import { createCookieSessionStorage, redirect } from 'react-router'
+import { safeRedirect } from 'remix-utils/safe-redirect'
+
 import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server'
 import {
 	badRequest,
 	redirectWithToast,
 } from '@veraclins-dev/react-utils/server'
 import { getDomainUrl, invariant } from '@veraclins-dev/utils'
-import { createCookieSessionStorage, redirect } from 'react-router'
-import { safeRedirect } from 'remix-utils/safe-redirect'
+
+import { REDIRECT_TO_FIELD } from '../constants'
+import { db,type Prisma } from '../db/db.server'
+import { sendEmail } from '../email.server'
+import { generateTOTP, verifyTOTP } from '../totp.server'
+import { type z } from '../validations/index'
+
 import { getUserId, requireUserId } from './auth.server'
 import { rememberKey, sessionKey } from './session.server'
+import { authSessionStorage } from './session.server'
 import {
 	codeQueryParam,
 	newEmailAddressSessionKey,
@@ -17,15 +26,9 @@ import {
 	twoFAVerificationType,
 	typeQueryParam,
 	unverifiedSessionIdKey,
-	Verify,
 	type VerificationTypes,
+	Verify,
 } from './verification.utils'
-import { REDIRECT_TO_FIELD } from '../constants'
-import { type Prisma, db } from '../db/db.server'
-import { sendEmail } from '../email.server'
-import { authSessionStorage } from './session.server'
-import { generateTOTP, verifyTOTP } from '../totp.server'
-import { type z } from '../validations/index'
 
 const verifiedTimeKey = 'verified-time'
 
@@ -284,6 +287,8 @@ export async function handleResetPasswordVerification({
 		where: { OR: [{ email: target }, { username: target }] },
 		select: { email: true, username: true },
 	})
+	// we don't want to say the user is not found if the email is not found
+	// because that would allow an attacker to check if an email is registered
 	if (!user) {
 		return badRequest({ errors: { code: 'Invalid code' } })
 	}

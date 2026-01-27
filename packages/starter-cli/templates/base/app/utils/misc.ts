@@ -1,3 +1,5 @@
+import { createRandomString } from '@veraclins-dev/utils'
+
 import { type User } from '../db/types'
 
 export function getQueryParams<T extends Record<string, string>>(
@@ -14,6 +16,10 @@ export const getPageTitle = (page: string) => {
 
 export function getBaseURL() {
 	return globalThis.ENV ? ENV.HOST : 'http://localhost:3000'
+}
+
+export const generateReferralCode = () => {
+	return createRandomString(8).toUpperCase()
 }
 
 type NameFields = Pick<User, 'name' | 'username' | 'deletedAt'>

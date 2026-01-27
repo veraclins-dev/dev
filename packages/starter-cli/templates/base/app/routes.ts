@@ -1,7 +1,7 @@
-import { dirname, relative } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { type RouteConfig } from '@react-router/dev/routes'
 import { remixRoutesOptionAdapter } from '@react-router/remix-routes-option-adapter'
+import { dirname, relative } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { flatRoutes } from 'remix-flat-routes'
 
 // Get the app directory (where routes.ts is located)

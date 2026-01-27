@@ -1,6 +1,7 @@
 import { ReportCategory } from '../../db/enums';
-import { isValidCategoryForEntity } from './category-mapping';
 import { z } from '../../validations/index';
+
+import { isValidCategoryForEntity } from './category-mapping';
 
 export const ReportSchema = z
   .object({

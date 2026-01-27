@@ -1,14 +1,16 @@
+import { Outlet } from 'react-router';
+
 import { Box, SidebarProvider } from '@veraclins-dev/ui';
 
-import { Outlet } from 'react-router';
 import { type PageHandle } from '../../common/types';
 import { Navigation } from '../../components/navigation';
 import { PageHeader } from '../../components/page-header';
-import { AdminSidebar } from './components/sidebar';
-import { AdminSidebarTrigger } from './components/sidebar-trigger';
 import { getPageTitle } from '../../utils/misc';
 import { requireAdminUser } from '../../utils/permissions/permissions.server';
+
 import { type Route } from './+types/_layout';
+import { AdminSidebar } from './components/sidebar';
+import { AdminSidebarTrigger } from './components/sidebar-trigger';
 
 export const handle: PageHandle = {
   breadcrumb: 'Admin Panel',
