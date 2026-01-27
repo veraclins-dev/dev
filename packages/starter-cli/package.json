@@ -21,8 +21,7 @@
   "scripts": {
     "copy-templates": "node scripts/copy-templates.js",
     "build": "nx build starter-cli",
-    "dev": "tsc --watch",
-    "prepublishOnly": "nx build starter-cli"
+    "dev": "tsc --watch"
   },
   "keywords": [
     "veraclins",
