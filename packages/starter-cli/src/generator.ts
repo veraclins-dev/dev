@@ -1,12 +1,14 @@
 import chalk from 'chalk';
 import { execa } from 'execa';
-import { copy, ensureDir, pathExists, readFile, writeFile } from 'fs-extra';
+import fsExtra from 'fs-extra';
 import ora from 'ora';
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 import { renderTemplate } from './template-utils.js';
 import type { TemplateConfig } from './types.js';
+
+const { copy, ensureDir, pathExists, readFile, writeFile } = fsExtra;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

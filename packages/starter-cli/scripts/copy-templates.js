@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
-import { copy, pathExists } from 'fs-extra';
+import fsExtra from 'fs-extra';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
+
+const { copy, pathExists } = fsExtra;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

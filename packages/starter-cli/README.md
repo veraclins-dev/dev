@@ -5,13 +5,13 @@ A CLI tool to scaffold new Veraclins-based applications from the starter templat
 ## Installation
 
 ```bash
-npm install -g create-veraclins-app
+npm install -g @veraclins-dev/starter-cli
 ```
 
-Or use with `npx` (recommended):
+Then run `create-veraclins-app my-app`. Or use with `npx` (recommended, no install):
 
 ```bash
-npx create-veraclins-app my-app
+npx @veraclins-dev/starter-cli my-app
 ```
 
 ## Development
@@ -38,10 +38,11 @@ The templates are bundled directly in the CLI package, so the published package 
 ### Interactive Mode
 
 ```bash
-npx create-veraclins-app my-app
+npx @veraclins-dev/starter-cli my-app
 ```
 
 This will prompt you for:
+
 - Project name
 - Description
 - Author
@@ -56,7 +57,7 @@ This will prompt you for:
 ### Non-Interactive Mode
 
 ```bash
-npx create-veraclins-app my-app \
+npx @veraclins-dev/starter-cli my-app \
   --auth github,google \
   --features notifications,admin \
   --database postgresql \
