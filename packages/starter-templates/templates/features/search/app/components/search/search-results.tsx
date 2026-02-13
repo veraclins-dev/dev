@@ -48,7 +48,6 @@ export function SearchResults({
               {result.count})
             </Typography>
             <Box display="flex" flexDirection="column" gap={2}>
-              { }
               {result.items.map((item: SearchResultItem) => (
                 <Box
                   key={item.id}

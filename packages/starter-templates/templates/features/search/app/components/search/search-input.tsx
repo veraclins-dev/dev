@@ -20,7 +20,6 @@ export function SearchInput({
 }: SearchInputProps) {
 	const navigate = useNavigate()
 	const [searchParams] = useSearchParams()
-	 
 	const { form, fields } = useConform({
 		id: 'search-form',
 		schema: SearchSchema,
