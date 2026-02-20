@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/react-utils",
-  "version": "0.72.7",
+  "version": "0.72.8",
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
