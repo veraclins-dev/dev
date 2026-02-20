@@ -6,7 +6,7 @@ export function init() {
 	Sentry.init({
 		dsn: ENV.SENTRY_DSN,
 		environment: ENV.MODE,
-		beforeSend(event: { request?: { url?: string } }) {
+		beforeSend(event) {
 			if (event.request?.url) {
 				const url = new URL(event.request.url)
 				if (

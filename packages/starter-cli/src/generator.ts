@@ -50,7 +50,7 @@ function generateEnvContent(config: TemplateConfig): string {
   const databaseUrl =
     config.database === 'sqlite'
       ? 'file:./dev.db'
-      : `postgresql://localhost:5432/${projectName}`;
+      : `postgresql://postgres@localhost:5432/${projectName}`;
 
   const lines: string[] = [
     '# Core (generated – update DATABASE_URL and add real secrets for production)',
@@ -332,12 +332,10 @@ async function configureServices(
 ) {
   const servicesPath = join(templatePath, 'services');
 
+  // Base template app/utils/email.server.ts already exports sendEmail (Resend).
+  // Do not overwrite it with provider class files that do not export sendEmail.
   if (config.emailProvider !== 'none') {
-    const emailPath = join(servicesPath, 'email', `${config.emailProvider}.ts`);
-    if (await pathExists(emailPath)) {
-      const targetPath = join(projectPath, 'app', 'utils', 'email.server.ts');
-      await copy(emailPath, targetPath);
-    }
+    // Optional: add provider-specific config or env here; keep base email.server.ts.
   }
 
   if (config.storageProvider !== 'local') {

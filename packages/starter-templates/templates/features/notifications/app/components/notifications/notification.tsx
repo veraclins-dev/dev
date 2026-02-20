@@ -116,7 +116,7 @@ export const Notification = ({
       onClick={handleClick}
     >
       <Activity
-        message={notification.message || notification.activity.target}
+        message={notification.activity.target}
         target={notification.activity.targetType}
         profileImage={notification.activity.actor.profileImage}
         createdAt={notification.createdAt}

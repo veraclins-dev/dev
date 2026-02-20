@@ -8,7 +8,7 @@ import {
   type Notification as NotificationType,
   type NotificationTab,
 } from '../../routes/notifications+/api/types';
-import { Notification } from '../../routes/notifications+/components/notifications/notification';
+import { Notification } from './notification';
 import { Tabs } from '../activity/tabs';
 import { Card } from '../card';
 import { Empty } from '../empty';

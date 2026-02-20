@@ -18,7 +18,7 @@ import {
   type NotificationTab,
 } from './api/types';
 import { UpdateNotificationSchema } from './api/validations.server';
-import { Notifications } from './components/notifications';
+import { Notifications } from '../../components/notifications';
 
 export const loader = async ({ request, context }: Route.LoaderArgs) => {
   const url = new URL(request.url);

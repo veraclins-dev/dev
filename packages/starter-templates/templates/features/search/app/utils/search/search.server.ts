@@ -1,6 +1,6 @@
 import { badRequest } from '@veraclins-dev/react-utils/server'
 
-import { db } from '../../db/db.server'
+import { db } from '../db/db.server'
 import { z } from '../../validations/index'
 
 import {

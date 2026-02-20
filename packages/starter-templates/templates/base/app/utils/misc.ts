@@ -1,6 +1,6 @@
 import { createRandomString } from '@veraclins-dev/utils'
 
-import { type User } from '../db/types'
+import { type User } from './db/types'
 
 export function getQueryParams<T extends Record<string, string>>(
 	request: Request,

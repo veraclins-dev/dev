@@ -34,7 +34,7 @@ export const Navigation = () => {
 					gap={{ sm: 3, xl: 4 }}
 				>
 					<NavLink to="/admin" className="cursor-pointer px-6 py-3 lg:py-[18px]" tooltip="Admin">
-						<Icon size="md" name="settings" />
+						<Icon size="md" name="cog" />
 					</NavLink>
 				</Box>
 

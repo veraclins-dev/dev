@@ -23,15 +23,13 @@ export function init() {
 			Sentry.httpIntegration(),
 			nodeProfilingIntegration(),
 		],
-		tracesSampler(samplingContext: { request?: { url?: string } }) {
+		tracesSampler(samplingContext) {
 			if (samplingContext.request?.url?.includes('/resources/healthcheck')) {
 				return 0
 			}
 			return 1
 		},
-		beforeSendTransaction(event: {
-			request?: { headers?: Record<string, string> };
-		}) {
+		beforeSendTransaction(event) {
 			if (event.request?.headers?.['x-healthcheck'] === 'true') {
 				return null
 			}

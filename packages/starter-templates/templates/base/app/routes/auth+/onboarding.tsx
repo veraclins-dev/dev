@@ -91,7 +91,7 @@ export async function action({ request, context }: Route.ActionArgs) {
 		await verifySessionStorage.destroySession(verifySession),
 	)
 
-	const baseURL = getBaseURL()
+	const baseURL = getBaseURL() ?? 'http://localhost:3000'
 
 	await sendEmail({
 		to: email,

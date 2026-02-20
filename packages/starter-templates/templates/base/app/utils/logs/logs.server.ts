@@ -34,6 +34,7 @@ export const createAuditLog = async (
 /** Log a user action (e.g. login, signup) to the audit log. */
 export async function logUserAction(
 	params: CreateAuditLogInput & { details?: Prisma.JsonValue },
+	tx?: Prisma.TransactionClient,
 ) {
-	return createAuditLog(params)
+	return createAuditLog(params, tx)
 }
