@@ -2,7 +2,8 @@ import { forbidden, notFound } from '@veraclins-dev/react-utils/server';
 
 import { PAGE_DATA_DEFAULTS } from '../constants';
 import { db, paginate, type Prisma } from '../db/db.server';
-import { type Notification, type User } from '../db/types';
+import { type User } from '../db/types';
+import { type Notification } from '#generated/prisma/client';
 
 import { type NotificationInput, type UpdateNotificationInput } from './types';
 

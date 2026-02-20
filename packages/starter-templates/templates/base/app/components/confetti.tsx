@@ -1,6 +1,8 @@
 import { Index as ConfettiShower } from 'confetti-react'
 import { ClientOnly } from 'remix-utils/client-only'
 
+import type { MaybeString } from '../common/types'
+
 export function Confetti({ id }: { id?: MaybeString }) {
 	if (!id) return null
 

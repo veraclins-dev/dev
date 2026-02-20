@@ -10,6 +10,7 @@ import morgan from 'morgan'
 import { styleText } from 'node:util'
 import { RouterContextProvider, type ServerBuild } from 'react-router'
 
+import type { MaybeString } from '../app/common/types'
 import { serverBuildContext } from './utils/context.js'
 
 const MODE = process.env.NODE_ENV ?? 'development'

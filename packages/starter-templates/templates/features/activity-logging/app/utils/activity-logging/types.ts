@@ -23,9 +23,8 @@ export interface GetAuditLogsOptions {
   entityType?: string;
   entityId?: string;
   actorId?: string;
-  action?: string;
+  action?: Prisma.AuditLogWhereInput['action'];
   role?: string;
-  groupId?: string;
   startDate?: Date;
   endDate?: Date;
   skip?: number;

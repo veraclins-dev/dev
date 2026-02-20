@@ -385,6 +385,8 @@ async function renderTemplateVariables(
     'README.md',
     'prisma/schema.prisma',
     '.env.example',
+    'app/components/footer.tsx',
+    'app/routes/_marketing+/index.tsx',
   ];
   for (const rel of filesToRender) {
     const filePath = join(projectPath, rel);

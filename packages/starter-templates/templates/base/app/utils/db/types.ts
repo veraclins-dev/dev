@@ -1,4 +1,5 @@
 export {
+	type AuditLog,
 	type Connection,
 	type Passkey,
 	type Password,

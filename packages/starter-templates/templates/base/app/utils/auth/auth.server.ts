@@ -10,12 +10,12 @@ import {
 } from '@veraclins-dev/react-utils/server'
 import { invariant } from '@veraclins-dev/utils'
 
+import type { MaybeString } from '../../common/types'
 import { type z } from '../../validations/index'
 import { db, type Prisma } from '../db/db.server'
-import { type Password,type User } from '../db/types'
+import { type Password, type User } from '../db/types'
 import { logUserAction } from '../logs/logs.server'
-import { generateReferralCode } from '../misc'
-import { getUserById, getUserByReferralCode } from '../user/user.server'
+import { getUserById } from '../user/user.server'
 import { type CreateAccount } from '../user/validations'
 
 import { sessionContext, userContext, userIdContext } from './context.server'
@@ -376,21 +376,11 @@ export async function checkIsCommonPassword(password: string) {
 }
 
 export async function signup(
-	{
-		username,
-		password,
-		name,
-		referral,
-		channel,
-	}: z.infer<typeof CreateAccount>,
+	{ username, password, name }: z.infer<typeof CreateAccount>,
 	email: string,
 	request: Request,
 ) {
-	const referrer = await getUserByReferralCode(referral)
-
 	const hashedPassword = await hashPassword(password)
-
-	const refCode = generateReferralCode()
 
 	const userData: Prisma.UserCreateInput = {
 		email: email.trim(),
@@ -398,14 +388,8 @@ export async function signup(
 		username: username.trim(),
 		role: { connect: { name: 'member' } },
 		password: { create: { hash: hashedPassword } },
-		referralCode: refCode,
-		referralChannel: channel,
 	}
 
-	if (referrer) {
-		userData.referrer = { connect: { id: referrer.id } }
-	}
 	const session = await createSession(userData, request)
-
 	return session
 }

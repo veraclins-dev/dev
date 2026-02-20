@@ -44,7 +44,6 @@ export async function getAuditLogsByOptions(
     actorId,
     action,
     role,
-    groupId,
     startDate,
     endDate,
     skip = PAGE_DATA_DEFAULTS.skip,
@@ -73,10 +72,6 @@ export async function getAuditLogsByOptions(
   if (role) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     where.role = role as any;
-  }
-
-  if (groupId) {
-    where.groupId = groupId;
   }
 
   if (startDate || endDate) {
@@ -138,8 +133,9 @@ export async function getUserAuditLogs(
   );
 }
 
+/** Group-scoped audit logs (no groupId on base AuditLog; override in app if needed). */
 export async function getGroupAuditLogs(
-  groupId: string,
+  _groupId: string,
   options?: {
     skip?: number;
     take?: number;
@@ -147,9 +143,9 @@ export async function getGroupAuditLogs(
   },
   tx?: Prisma.TransactionClient
 ) {
-  return getAuditLogsByOptions(
+  return getAuditLogs(
     {
-      groupId,
+      where: {},
       ...options,
     },
     tx

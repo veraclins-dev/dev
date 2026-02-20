@@ -44,7 +44,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       value: 0,
       growth: 0,
       period,
-      icon: 'user-check',
+      icon: 'user',
       iconColor: 'success',
       priority: 'high',
     },
@@ -67,7 +67,7 @@ export default function DashboardOverview({
     <DashboardLayout
       stats={stats}
       header={
-        <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Box display="flex" justify="between" items="center">
           <Typography variant="h1">Dashboard Overview</Typography>
           <PeriodSelect />
         </Box>

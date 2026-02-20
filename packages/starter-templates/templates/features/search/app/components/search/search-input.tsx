@@ -41,7 +41,7 @@ export function SearchInput({
 			if (resource) {
 				params.set('resource', resource)
 			}
-			navigate(`/search?${params.toString()}`)
+			void navigate(`/search?${params.toString()}`)
 		}
 	}
 
@@ -49,8 +49,6 @@ export function SearchInput({
 		<Form
 			form={form}
 			onSubmit={handleSubmit}
-			method="GET"
-			action="/search"
 			noButtons
 			noError
 			className={className}

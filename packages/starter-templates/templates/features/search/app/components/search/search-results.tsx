@@ -48,7 +48,7 @@ export function SearchResults({
               {result.count})
             </Typography>
             <Box display="flex" flexDirection="column" gap={2}>
-              {result.items.map((item: SearchResultItem) => (
+              {(result.items as SearchResultItem[]).map((item) => (
                 <Box
                   key={item.id}
                   className="p-4 rounded-lg border border-border hover:bg-card-inner transition-colors"

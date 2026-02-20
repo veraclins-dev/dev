@@ -29,7 +29,7 @@ export const Footer = () => {
 							<Logo height={32} />
 						</Link>
 						<Typography variant="body2" className="max-w-sm text-foreground/70">
-							{{PROJECT_DESCRIPTION}} Build faster with a production-ready
+							{'{{PROJECT_DESCRIPTION}}'} Build faster with a production-ready
 							foundation.
 						</Typography>
 					</Box>
@@ -154,7 +154,7 @@ export const Footer = () => {
 					className="border-t border-border/40 py-8 md:flex-row"
 				>
 					<Typography variant="body2" className="text-foreground/60">
-						© {new Date().getFullYear()} {{PROJECT_NAME}}. All rights reserved.
+						© {new Date().getFullYear()} {'{{PROJECT_NAME}}'}. All rights reserved.
 					</Typography>
 					<Box display="flex" items="center" gap={4}>
 						<Link

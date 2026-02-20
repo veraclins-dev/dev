@@ -9,10 +9,10 @@ import {
 import { getDomainUrl, invariant } from '@veraclins-dev/utils'
 
 import { REDIRECT_TO_FIELD } from '../constants'
-import { db,type Prisma } from '../db/db.server'
+import { db, type Prisma } from '../db/db.server'
 import { sendEmail } from '../email.server'
 import { generateTOTP, verifyTOTP } from '../totp.server'
-import { type z } from '../validations/index'
+import { type z } from '../../validations/index'
 
 import { getUserId, requireUserId } from './auth.server'
 import { rememberKey, sessionKey } from './session.server'
@@ -60,7 +60,7 @@ export const verifySessionStorage = createCookieSessionStorage({
 		path: '/',
 		httpOnly: true,
 		maxAge: 60 * 10,
-		secrets: process.env.SESSION_SECRET.split(','),
+		secrets: (process.env.SESSION_SECRET ?? '').split(','),
 		secure: process.env.NODE_ENV === 'production',
 	},
 })

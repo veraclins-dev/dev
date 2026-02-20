@@ -13,9 +13,10 @@ const schema = z.object({
 })
 
 declare global {
-	// eslint-disable-next-line @typescript-eslint/no-namespace
+	// Augment process.env; avoid redeclaring if @types/node already provides ProcessEnv
+	// eslint-disable-next-line @typescript-eslint/no-namespace -- augmenting NodeJS
 	namespace NodeJS {
-		type ProcessEnv = z.infer<typeof schema>
+		interface ProcessEnv extends z.infer<typeof schema> {}
 	}
 }
 
@@ -32,12 +33,13 @@ export function init() {
 	}
 }
 
-export function getEnv() {
+export function getEnv(): Record<string, string> {
 	return {
-		MODE: process.env.NODE_ENV,
-		SENTRY_DSN: process.env.SENTRY_DSN,
-		HOST: process.env.HOST,
+		MODE: process.env.NODE_ENV ?? 'development',
+		SENTRY_DSN: process.env.SENTRY_DSN ?? '',
+		HOST: process.env.HOST ?? 'http://localhost:3000',
 		SCHEME: 'http',
+		APP_NAME: process.env.APP_NAME ?? 'App',
 	}
 }
 

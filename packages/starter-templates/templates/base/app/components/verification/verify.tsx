@@ -82,8 +82,6 @@ export function VerifyForm() {
 
 				<HiddenField field={fields[typeQueryParam]} />
 				<HiddenField field={fields[targetQueryParam]} />
-				<HiddenField field={fields[referralQueryParam]} />
-				<HiddenField field={fields[channelQueryParam]} />
 			</Form>
 			<Box display="flex" gap={1} items="center">
 				<Typography>Didn't receive code?</Typography>

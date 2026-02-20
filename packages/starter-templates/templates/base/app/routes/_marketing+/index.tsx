@@ -97,7 +97,7 @@ const HeroSection = () => {
 						variant="body1"
 						className="max-w-2xl text-lg text-foreground/90 md:text-xl"
 					>
-						{{PROJECT_DESCRIPTION}} Get started in minutes with a
+						{'{{PROJECT_DESCRIPTION}}'} Get started in minutes with a
 						complete, production-ready foundation.
 					</Typography>
 				</Box>

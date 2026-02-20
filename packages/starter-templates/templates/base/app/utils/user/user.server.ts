@@ -43,3 +43,8 @@ export function getUserByIdOrUsername(id: User['id']) {
 export function getUserByEmail(email: User['email']) {
 	return getUserWithRelations({ email })
 }
+
+/** Optional: extend when your schema has referralCode on User. */
+export function getUserByReferralCode(_code: string | null | undefined) {
+	return Promise.resolve(null) as ReturnType<typeof getUserWithRelations>
+}
