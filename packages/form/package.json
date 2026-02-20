@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/form",
-  "version": "0.72.6",
+  "version": "0.72.7",
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
