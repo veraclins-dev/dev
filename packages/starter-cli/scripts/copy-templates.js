@@ -4,7 +4,7 @@
  * dist/packages/starter-cli/templates at build time. Run as part of nx build starter-cli.
  */
 import fsExtra from 'fs-extra';
-import { dirname, resolve } from 'path';
+import { dirname, resolve, sep } from 'path';
 import { fileURLToPath } from 'url';
 
 const { copy, pathExists, ensureDir } = fsExtra;
@@ -39,7 +39,12 @@ async function copyTemplates() {
     await copy(SHARED_TEMPLATES, TEMPLATE_DEST, {
       overwrite: true,
       filter: (src) => {
-        return !src.includes('.git') && !src.includes('node_modules');
+        if (src.includes('node_modules')) return false;
+        // Exclude only the .git directory, not .gitignore or other dotfiles
+        const normalized = src.replace(/\\/g, sep);
+        const isGitDir =
+          normalized.includes(`${sep}.git${sep}`) || normalized.endsWith(`${sep}.git`);
+        return !isGitDir;
       },
     });
 

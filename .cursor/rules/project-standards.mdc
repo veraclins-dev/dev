@@ -107,3 +107,4 @@ alwaysApply: true
 - Keep every commit message line to below 100 characters
 - use markdown syntax for commit messages
 - Always diff the changes to generate proper commit messages
+- **Never use `git commit --no-verify`.** Always run the full commit (with hooks). If a pre-commit hook fails, fix the cause or the hook configuration instead of bypassing it.
