@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/starter-nx",
-  "version": "0.72.8",
+  "version": "0.72.9",
   "type": "module",
   "main": "./index.js",
   "types": "./index.d.ts",
