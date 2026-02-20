@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/starter-templates",
-  "version": "0.72.4",
+  "version": "0.72.5",
   "type": "module",
   "description": "Shared template source for @veraclins-dev/starter-nx and create-veraclins-app",
   "private": true,
