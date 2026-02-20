@@ -1,0 +1,32 @@
+# Dependencies
+node_modules
+
+# Build outputs
+build
+public/build
+server-build
+.cache
+
+# Environment (never commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Database
+postgres-data
+*.db
+*.db-journal
+
+# Testing & coverage
+coverage
+playwright-report
+test-results
+
+# IDE and OS
+.DS_Store
+.idea
+.vscode
+*.log
+
+# Misc
+*.tsbuildinfo

@@ -1,6 +1,6 @@
 # @veraclins-dev/starter-templates
 
-Shared template source for both the Nx plugin (`@veraclins-dev/starter-nx`) and CLI generator (`@veraclins-dev/starter-nx`) (`create-veraclins-app`).
+Shared template source for the Nx plugin (`@veraclins-dev/starter-nx`) and the CLI generator (`create-veraclins-app` / `@veraclins-dev/starter-cli`).
 
 This package contains the **single source of truth** for all template files used by both generators.
 
@@ -18,11 +18,10 @@ This package contains the **single source of truth** for all template files used
 Templates are copied from this package during the build process for each generator:
 
 - **Nx Plugin**:
-  1. `packages/starter-templates/templates` → `dist/packages/starter-nx/templates` (at workspace root)
+  1. `packages/starter-templates/templates` → `dist/packages/starter-nx/templates` (at build time)
 
 - **CLI**:
-  1. `packages/starter-templates/templates` → `packages/starter-cli/templates` (via copy-templates.js)
-  2. `packages/starter-cli/templates` → `dist/packages/starter-cli/templates` (bundled as assets during build)
+  1. At build time: `nx run starter-cli:build` runs `build:tsc` then `copy-templates`, which copies `packages/starter-templates/templates` → `dist/packages/starter-cli/templates`. No separate template copy is kept under `packages/starter-cli`.
 
 ### Runtime
 
@@ -33,7 +32,7 @@ Both generators **only use bundled templates** at runtime:
   - When installed: Uses templates from `node_modules/@veraclins-dev/starter-nx/templates` (at package root)
 
 - **CLI**:
-  - In workspace: Uses templates from `dist/packages/starter-cli/templates`
+  - In workspace: Both generators use templates from `dist/packages/<generator>/templates`, populated at build time from this package.
   - When installed: Uses templates from `node_modules/create-veraclins-app/templates` (at package root)
 
 ## Editing Templates

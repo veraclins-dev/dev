@@ -37,8 +37,7 @@ Auth pages use illustrations to create a visually appealing login/signup experie
 **Available illustrations:**
 - `login-illustration.svg` - Login page
 - `get-started-illustration.svg` - Signup page
-- `forgot-password-illustration.svg` - Forgot password page
-- `new-password-illustration.svg` - Reset password page
+- `new-password-illustration.svg` - Forgot password and reset password pages
 - `create-illustration.svg` - Onboarding page
 - `verify-illustration.svg` - Email verification page
 - `bg-bottom-mask.svg` - Background decorative element

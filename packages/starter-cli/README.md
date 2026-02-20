@@ -18,20 +18,17 @@ npx @veraclins-dev/starter-cli my-app
 
 ### Building the CLI
 
-Before building, ensure the `veraclins-template` repository is available at the same level as this package:
+Templates come from the single source of truth, `packages/starter-templates/templates`. At build time they are copied directly into `dist/packages/starter-cli/templates` (no copy under `packages/starter-cli`).
 
 ```bash
 # Install dependencies
 npm install
 
-# Copy templates from veraclins-template repository
-npm run copy-templates
-
-# Build the CLI
-npm run build
+# Build the CLI (compiles TS, then copies templates from starter-templates to dist)
+nx run starter-cli:build
 ```
 
-The templates are bundled directly in the CLI package, so the published package is self-contained and doesn't require external dependencies.
+The built package is self-contained; templates live under `dist/packages/starter-cli/templates`.
 
 ## Usage
 
@@ -53,6 +50,8 @@ This will prompt you for:
 - Storage provider
 - Deployment target
 - Package manager
+
+The generator will also create a `.env` file with values derived from your choices (including generated `SESSION_SECRET` and `HONEYPOT_SECRET`) and will run `git init` with a `.gitignore` if the project directory is not already a git repository. For PostgreSQL, `npm run setup` (and `npm run dev` the first time) will create the database with the same name as the project if it does not already exist; for SQLite no separate create step is needed.
 
 ### Non-Interactive Mode
 

@@ -43,6 +43,11 @@ export const links: Route.LinksFunction = () => {
 		{ rel: 'preload', href, as: 'image' },
 		{ rel: 'preload', href: tailwindStylesheetUrl, as: 'style' },
 		{
+			rel: 'icon',
+			type: 'image/svg+xml',
+			href: '/logo-square.svg',
+		},
+		{
 			rel: 'apple-touch-icon',
 			sizes: '180x180',
 			href: '/favicons/apple-touch-icon.png',
@@ -150,23 +155,24 @@ function Document({
 				<meta name="og:type" content="website" />
 				<meta name="og:title" content={appName} />
 				<meta name="og:description" content={appDescription} />
+				<link rel="icon" type="image/svg+xml" href="/logo-square.svg" />
 				<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 				<link
-					rel="/apple-touch-icon"
+					rel="apple-touch-icon"
 					sizes="180x180"
-					href="apple-touch-icon.png"
+					href="/favicons/apple-touch-icon.png"
 				/>
 				<link
 					rel="icon"
 					type="image/png"
 					sizes="32x32"
-					href="/favicon-32x32.png"
+					href="/favicons/favicon-32x32.png"
 				/>
 				<link
 					rel="icon"
 					type="image/png"
 					sizes="16x16"
-					href="/favicon-16x16.png"
+					href="/favicons/favicon-16x16.png"
 				/>
 				<link rel="manifest" href="/site.webmanifest" />
 				<Links />

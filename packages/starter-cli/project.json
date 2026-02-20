@@ -15,8 +15,8 @@
       ],
       "options": {
         "commands": [
-          "nx run starter-cli:copy-templates",
-          "nx run starter-cli:build:tsc"
+          "nx run starter-cli:build:tsc",
+          "nx run starter-cli:copy-templates"
         ],
         "parallel": false
       }
@@ -32,12 +32,7 @@
         "tsConfig": "packages/starter-cli/tsconfig.lib.json",
         "assets": [
           "packages/starter-cli/*.md",
-          "packages/starter-cli/package.json",
-          {
-            "input": "packages/starter-cli/templates",
-            "glob": "**/*",
-            "output": "templates"
-          }
+          "packages/starter-cli/package.json"
         ],
         "generatePackageJson": true
       }

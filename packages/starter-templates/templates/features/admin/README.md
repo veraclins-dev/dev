@@ -45,7 +45,7 @@ The Admin Dashboard module provides a complete admin panel infrastructure with:
 1. **Enable the feature** in your environment:
 
 ```typescript
-// env.example
+// .env.example
 FEATURES_ADMIN = true;
 ```
 

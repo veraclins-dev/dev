@@ -138,8 +138,8 @@ cat apps/my-test-app/prisma/schema.prisma | grep -q "model Notification" && echo
 ### 7. Package.json
 
 ```bash
-# Check that package.json was updated
-cat apps/my-test-app/package.json | grep -q '"name": "my-test-app"' && echo "✓ Name updated"
+# Check that package.json was updated (Nx uses scoped name e.g. @workspace/my-test-app)
+cat apps/my-test-app/package.json | grep -q 'my-test-app' && echo "✓ Name updated"
 cat apps/my-test-app/package.json | grep -q '"description":' && echo "✓ Description added"
 ```
 
@@ -204,7 +204,7 @@ nx g @veraclins-dev/starter-nx:app sqlite-app \
 **Expected:**
 
 - Prisma schema uses `sqlite` provider
-- Database URL in env.example points to SQLite
+- Database URL in .env.example points to SQLite
 
 ### Test Case 5: Different Providers
 
@@ -257,7 +257,7 @@ ls node_modules/@veraclins-dev/starter-nx
 **Solution:**
 
 - Verify templates are bundled in the package
-- Check `dist/packages/starter/templates/` exists
+- Check `dist/packages/starter-nx/templates/` exists
 - Verify `generators.json` has correct factory path
 
 ### Issue: Prisma schema merge errors

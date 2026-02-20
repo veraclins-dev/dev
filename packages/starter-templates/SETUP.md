@@ -17,11 +17,10 @@ veraclins-dev/
 │       ├── starter-nx/
 │       │   └── templates/           # (copied from templates during build)
 │       └── starter-cli/
-│           └── templates/           # (bundled from packages/starter-cli/templates)
+│           └── templates/           # (copied from starter-templates at build time)
 ├── packages/
 │   ├── starter-nx/                  # Nx plugin generator
-│   ├── starter-cli/                 # CLI generator
-│   │   └── templates/               # (intermediate: copied from templates, then bundled to dist)
+│   ├── starter-cli/                 # CLI generator (no local templates; uses dist at build time)
 │   └── starter-templates/           # ✨ Single source of truth
 │       └── templates/
 │           ├── base/
@@ -35,7 +34,7 @@ veraclins-dev/
 ```
 node_modules/
 ├── @veraclins-dev/
-│   └── starter/
+│   └── starter-nx/
 │       ├── src/
 │       └── templates/               # (at package root, bundled during publish)
 └── create-veraclins-app/
@@ -48,11 +47,10 @@ node_modules/
 Templates are copied from the shared package during build:
 
 - **Nx Plugin**:
-  1. `packages/starter-templates/templates` → `dist/packages/starter-nx/templates` (at workspace root)
+  1. `packages/starter-templates/templates` → `dist/packages/starter-nx/templates` (at build time)
 
 - **CLI**:
-  1. `packages/starter-templates/templates` → `packages/starter-cli/templates` (via copy-templates.js)
-  2. `packages/starter-cli/templates` → `dist/packages/starter-cli/templates` (bundled as assets during build)
+  1. At build time: `packages/starter-templates/templates` → `dist/packages/starter-cli/templates` (via copy-templates.js; no copy under `packages/starter-cli`)
 
 ### Runtime
 
@@ -81,7 +79,7 @@ Both generators **only use bundled templates** at runtime. They do not reference
 During build, templates are copied:
 
 - **Nx Plugin**: `packages/starter-templates/templates` → `dist/packages/starter-nx/templates`
-- **CLI**: `packages/starter-templates/templates` → `packages/starter-cli/templates`
+- **CLI**: `packages/starter-templates/templates` → `dist/packages/starter-cli/templates` (direct at build time)
 
 ## Benefits
 

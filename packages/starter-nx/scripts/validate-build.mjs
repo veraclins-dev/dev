@@ -13,10 +13,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Get the dist directory path
-// From packages/starter/scripts/validate-build.mjs
-// Go up to workspace root (../../../), then to dist/packages/starter
+// From packages/starter-nx/scripts/validate-build.mjs
+// Go up to workspace root (../../../), then to dist/packages/starter-nx
 const workspaceRoot = join(__dirname, '../../..');
-const distPath = join(workspaceRoot, 'dist/packages/starter');
+const distPath = join(workspaceRoot, 'dist/packages/starter-nx');
 
 const errors = [];
 const warnings = [];

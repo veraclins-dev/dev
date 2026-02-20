@@ -21,13 +21,13 @@ Both generators now **only use bundled templates**:
 2. **CLI** (`create-veraclins-app`):
    - Updated `packages/starter-cli/scripts/copy-templates.js`
    - Updated `packages/starter-cli/src/generator.ts`
-   - Only checks for bundled templates in `packages/starter-cli/templates`
-   - Build process copies from `packages/starter-templates/templates`
+   - Looks for bundled templates in `dist/packages/starter-cli/templates` (at runtime)
+   - Build process copies from `packages/starter-templates/templates` directly to `dist/packages/starter-cli/templates`
 
 ### Build Process
 
-- **Nx Plugin**: Build script copies from `packages/starter-templates/templates` to `dist/packages/starter-nx/templates`
-- **CLI**: Build script copies from `packages/starter-templates/templates` to `packages/starter-cli/templates`
+- **Nx Plugin**: Copies `packages/starter-templates/templates` → `dist/packages/starter-nx/templates`
+- **CLI**: Copies `packages/starter-templates/templates` → `dist/packages/starter-cli/templates` (no intermediate copy under `packages/starter-cli`)
 
 ## Going Forward
 

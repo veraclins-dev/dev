@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import { execa } from 'execa';
-import fsExtra from 'fs-extra';
+import { copy, ensureDir, pathExists, readFile, writeFile } from 'fs-extra';
+import { randomBytes } from 'node:crypto';
 import ora from 'ora';
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
@@ -8,7 +9,113 @@ import { fileURLToPath } from 'url';
 import { renderTemplate } from './template-utils.js';
 import type { TemplateConfig } from './types.js';
 
-const { copy, ensureDir, pathExists, readFile, writeFile } = fsExtra;
+/** Back-relations to inject into User model when a feature is included */
+const FEATURE_USER_RELATIONS: Record<string, string[]> = {
+  notifications: [
+    '  activitiesAsActor      Activity[]              @relation("activitiesAsActor")',
+    '  receiverActivities     Activity[]              @relation("receiverActivities")',
+    '  notifications          Notification[]',
+    '  notificationPreferences NotificationPreference[]',
+  ],
+  invitations: [
+    '  inviteeInvitations Invitation[] @relation("invitee")',
+    '  inviterInvitations Invitation[] @relation("inviter")',
+  ],
+  reporting: [
+    '  reportedReports Report[] @relation("ReportedBy")',
+    '  resolvedReports Report[] @relation("ResolvedBy")',
+  ],
+  moderation: [
+    '  userViolations             UserViolation[]',
+    '  assignedModerationQueues   ModerationQueue[]   @relation("AssignedModerator")',
+    '  resolvedModerationQueues   ModerationQueue[]   @relation("ResolvedModerator")',
+  ],
+};
+
+/** Back-relations to inject into AuditLog model when a feature is included */
+const FEATURE_AUDITLOG_RELATIONS: Record<string, string[]> = {
+  moderation: ['  userViolations UserViolation[]'],
+};
+
+function generateSecureSecret(): string {
+  return randomBytes(32).toString('base64');
+}
+
+function generateEnvContent(config: TemplateConfig): string {
+  const projectName = config.projectName
+    .replace(/[^a-z0-9_]/gi, '_')
+    .toLowerCase();
+  const databaseUrl =
+    config.database === 'sqlite'
+      ? 'file:./dev.db'
+      : `postgresql://localhost:5432/${projectName}`;
+
+  const lines: string[] = [
+    '# Core (generated – update DATABASE_URL and add real secrets for production)',
+    'NODE_ENV=development',
+    `DATABASE_URL=${databaseUrl}`,
+    `SESSION_SECRET=${generateSecureSecret()}`,
+    `HONEYPOT_SECRET=${generateSecureSecret()}`,
+    'HOST=http://localhost:3000',
+    `APP_NAME=${config.projectName}`,
+    'PORT=3000',
+    '',
+  ];
+
+  if (config.emailProvider !== 'none') {
+    lines.push('# Email');
+    if (config.emailProvider === 'resend') {
+      lines.push('RESEND_API_KEY=', 'EMAIL_FROM=noreply@example.com', '');
+    } else {
+      lines.push('SENDGRID_API_KEY=', 'EMAIL_FROM=noreply@example.com', '');
+    }
+  }
+
+  const oauthProviders = config.authProviders ?? [];
+  if (oauthProviders.length > 0) {
+    lines.push('# OAuth (optional – add keys when enabling providers)');
+    if (oauthProviders.includes('github')) {
+      lines.push('GIT_AUTH_CLIENT_ID=', 'GIT_AUTH_CLIENT_SECRET=', '');
+    }
+    if (oauthProviders.includes('google')) {
+      lines.push('GOOGLE_CLIENT_ID=', 'GOOGLE_CLIENT_SECRET=', '');
+    }
+    if (oauthProviders.includes('facebook')) {
+      lines.push('FACEBOOK_CLIENT_ID=', 'FACEBOOK_CLIENT_SECRET=', '');
+    }
+    if (oauthProviders.includes('twitter')) {
+      lines.push('TWITTER_CONSUMER_KEY=', 'TWITTER_CONSUMER_SECRET=', '');
+    }
+  }
+
+  if (config.storageProvider !== 'local') {
+    lines.push('# Storage');
+    if (config.storageProvider === 'firebase') {
+      lines.push(
+        'FIREBASE_API_KEY=',
+        'FIREBASE_AUTH_DOMAIN=',
+        'FIREBASE_PROJECT_ID=',
+        'FIREBASE_STORAGE_BUCKET=',
+        'FIREBASE_MESSAGING_SENDER_ID=',
+        'FIREBASE_APP_ID=',
+        'FIREBASE_STORAGE_ROOT=',
+        '',
+      );
+    } else {
+      lines.push(
+        'AWS_ACCESS_KEY_ID=',
+        'AWS_SECRET_ACCESS_KEY=',
+        'AWS_REGION=',
+        'AWS_S3_BUCKET=',
+        '',
+      );
+    }
+  }
+
+  lines.push('# Monitoring (optional)', 'SENTRY_DSN=', '');
+
+  return lines.join('\n').trimEnd();
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -70,6 +177,15 @@ export async function generateProject(config: TemplateConfig) {
     spinner.text = 'Rendering template variables...';
     await renderTemplateVariables(projectPath, config);
 
+    spinner.text = 'Applying database and schema options...';
+    await applyDatabaseToPrismaSchema(projectPath, config);
+
+    spinner.text = 'Creating .env file...';
+    await writeEnvFile(projectPath, config);
+
+    spinner.text = 'Initializing git repository...';
+    await initGitRepoIfNeeded(projectPath);
+
     if (!config.skipInstall) {
       spinner.text = 'Installing dependencies...';
       await installDependencies(projectPath, config);
@@ -114,7 +230,7 @@ async function includeFeatureModule(
   const featurePath = join(templatePath, 'features', feature);
   if (await pathExists(featurePath)) {
     await copyFeatureFiles(projectPath, featurePath, config);
-    await mergePrismaSchema(projectPath, featurePath);
+    await mergePrismaSchema(projectPath, featurePath, feature);
   } else {
     console.warn(
       chalk.yellow(`⚠️  Feature module "${feature}" not found, skipping...`),
@@ -136,17 +252,64 @@ async function copyFeatureFiles(
   }
 }
 
-async function mergePrismaSchema(projectPath: string, featurePath: string) {
+async function mergePrismaSchema(
+  projectPath: string,
+  featurePath: string,
+  feature: string,
+) {
   const featureSchemaPath = join(featurePath, 'prisma', 'schema.prisma');
   const mainSchemaPath = join(projectPath, 'prisma', 'schema.prisma');
 
-  if (await pathExists(featureSchemaPath)) {
-    const featureSchema = await readFile(featureSchemaPath, 'utf-8');
-    const mainSchema = await readFile(mainSchemaPath, 'utf-8');
-
-    const updatedSchema = mainSchema + '\n\n' + featureSchema;
-    await writeFile(mainSchemaPath, updatedSchema);
+  if (!(await pathExists(featureSchemaPath))) {
+    return;
   }
+
+  let mainSchema = await readFile(mainSchemaPath, 'utf-8');
+  const featureSchema = await readFile(featureSchemaPath, 'utf-8');
+
+  const userRels = FEATURE_USER_RELATIONS[feature];
+  if (userRels?.length) {
+    const block = `${userRels.join('\n')}\n\n  `;
+    mainSchema = mainSchema.replace(
+      /\n\s{2}@@index\(\[email\]\)/,
+      () => `\n${block}@@index([email])`,
+    );
+  }
+
+  const auditRels = FEATURE_AUDITLOG_RELATIONS[feature];
+  if (auditRels?.length) {
+    const block = `${auditRels.join('\n')}\n\n  `;
+    mainSchema = mainSchema.replace(
+      /(\s{2}actor User @relation\(fields: \[actorId\], references: \[id\], onDelete: Cascade\)\n)(\n\s{2}@@index\(\[entityType, entityId\]\))/,
+      `$1${block}$2`,
+    );
+  }
+
+  await writeFile(mainSchemaPath, `${mainSchema}\n\n${featureSchema}`);
+}
+
+async function applyDatabaseToPrismaSchema(
+  projectPath: string,
+  config: TemplateConfig,
+) {
+  const schemaPath = join(projectPath, 'prisma', 'schema.prisma');
+  if (!(await pathExists(schemaPath))) {
+    return;
+  }
+  let schema = await readFile(schemaPath, 'utf-8');
+  if (config.database === 'sqlite') {
+    schema = schema.replace(
+      /provider\s*=\s*"postgresql"/,
+      'provider = "sqlite"',
+    );
+    schema = schema.replace(/"fullTextSearchPostgres"/, '"fullTextSearch"');
+    schema = schema.replace(/ @db\.JsonB/g, '');
+    schema = schema.replace(
+      /@default\(dbgenerated\("\(NOW\(\) \+ '1 year'::interval\)"\)\)/g,
+      "@default(dbgenerated(\"datetime('now', '+1 year')\"))",
+    );
+  }
+  await writeFile(schemaPath, schema);
 }
 
 async function configureServices(
@@ -204,19 +367,53 @@ async function renderTemplateVariables(
   projectPath: string,
   config: TemplateConfig,
 ) {
-  const packageJsonPath = join(projectPath, 'package.json');
-  if (await pathExists(packageJsonPath)) {
-    const content = await readFile(packageJsonPath, 'utf-8');
-    const rendered = renderTemplate(content, config);
-    await writeFile(packageJsonPath, rendered);
+  const filesToRender = [
+    'package.json',
+    'README.md',
+    'prisma/schema.prisma',
+    '.env.example',
+  ];
+  for (const rel of filesToRender) {
+    const filePath = join(projectPath, rel);
+    if (await pathExists(filePath)) {
+      const content = await readFile(filePath, 'utf-8');
+      let rendered = renderTemplate(content, config);
+      // Template uses static name for Nx inference; replace with project name in generated app
+      if (rel === 'package.json') {
+        rendered = rendered.replace(
+          /"veraclins-template-base"/g,
+          JSON.stringify(config.projectName),
+        );
+      }
+      await writeFile(filePath, rendered);
+    }
+  }
+}
+
+async function writeEnvFile(projectPath: string, config: TemplateConfig) {
+  const envPath = join(projectPath, '.env');
+  const content = generateEnvContent(config);
+  await writeFile(envPath, content);
+}
+
+async function initGitRepoIfNeeded(projectPath: string) {
+  if (await pathExists(join(projectPath, '.git'))) {
+    return;
   }
 
-  const readmePath = join(projectPath, 'README.md');
-  if (await pathExists(readmePath)) {
-    const content = await readFile(readmePath, 'utf-8');
-    const rendered = renderTemplate(content, config);
-    await writeFile(readmePath, rendered);
+  try {
+    const { exitCode } = await execa('git', ['rev-parse', '--git-dir'], {
+      cwd: projectPath,
+      reject: false,
+    });
+    if (exitCode === 0) {
+      return;
+    }
+  } catch {
+    // Not a git repo, continue to init
   }
+
+  await execa('git', ['init'], { cwd: projectPath, stdio: 'pipe' });
 }
 
 async function installDependencies(

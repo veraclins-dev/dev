@@ -18,8 +18,8 @@ export async function getTemplateSourcePath(): Promise<string> {
   // Navigate from src/utils/file-utils.js to package root
   // From: node_modules/@veraclins-dev/starter-nx/src/utils/file-utils.js
   // To:   node_modules/@veraclins-dev/starter-nx/templates
-  // Or from: dist/packages/starter/src/utils/file-utils.js
-  // To:   dist/packages/starter/templates
+  // Or from: dist/packages/starter-nx/src/utils/file-utils.js
+  // To:   dist/packages/starter-nx/templates
   const currentFile = fileURLToPath(import.meta.url);
   const currentDir = dirname(currentFile);
   const packageRoot = join(currentDir, '../..');

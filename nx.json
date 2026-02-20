@@ -75,6 +75,11 @@
     },
     {
       "plugin": "@nx/react/router-plugin",
+      "exclude": [
+        "packages/starter-nx/templates/**/*",
+        "packages/starter-cli/templates/**/*",
+        "packages/starter-templates/templates/**/*"
+      ],
       "options": {
         "startTargetName": "start",
         "buildTargetName": "build",

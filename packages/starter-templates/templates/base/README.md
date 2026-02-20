@@ -65,8 +65,7 @@ Auth pages use illustrations to create a visually appealing login/signup experie
 **Available illustrations:**
 - `login-illustration.svg` - Login page
 - `get-started-illustration.svg` - Signup page
-- `forgot-password-illustration.svg` - Forgot password page
-- `new-password-illustration.svg` - Reset password page
+- `new-password-illustration.svg` - Forgot password and reset password pages
 - `create-illustration.svg` - Onboarding page
 - `verify-illustration.svg` - Email verification page
 - `bg-bottom-mask.svg` - Background decorative element
@@ -116,6 +115,7 @@ The app name is used throughout the application in page titles, emails, and meta
    ```
 
 **Additional Branding:**
+- Replace placeholder assets in `public/` (logo, email social icons, favicons). See `public/ASSETS-README.md` for the list and for using reference assets from `@edulinksng/app/assets/`.
 - Update favicons in `public/favicons/`
 - Update `public/site.webmanifest` with your app details
 - Customize email templates in `app/components/emails/`

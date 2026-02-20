@@ -1,0 +1,3 @@
+# Build output and cache - do not infer projects from these
+dist/
+.nx/

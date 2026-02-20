@@ -35,14 +35,14 @@ export async function copyBaseTemplate(
       const normalizedPath = normalizePath(filePath);
 
       // Include all base files except node_modules and .gitkeep
-      // Also skip env.example - it will be handled separately as .env.example
+      // Also skip .env.example - it will be handled separately in createEnvFile
       // Skip tsconfig.json transformation - it will be handled after copy
       // Skip vite.config.ts - it will be created by Nx's Vite generator
       // Skip readme/ folder - it's only used for template generation, not copied to projects
       return (
         !normalizedPath.includes('node_modules') &&
         !normalizedPath.endsWith('.gitkeep') &&
-        normalizedPath !== 'env.example' &&
+        normalizedPath !== '.env.example' &&
         normalizedPath !== 'tsconfig.json' &&
         normalizedPath !== 'vite.config.ts' &&
         !normalizedPath.startsWith('readme/') &&
@@ -482,7 +482,7 @@ export async function createEnvFile(
   projectRoot: string,
   config: TemplateConfig,
 ): Promise<void> {
-  // Check for both env.example and .env.example (template might have either)
+  // Check for both env.example (legacy) and .env.example (template might have either)
   const oldEnvExamplePath = join(projectRoot, 'env.example');
   const envExamplePath = join(projectRoot, '.env.example');
   const envPath = join(projectRoot, '.env');
@@ -491,7 +491,7 @@ export async function createEnvFile(
 
   // First, check if we need to read from the template source
   const templateSourcePath = await getTemplateSourcePath();
-  const templateEnvExamplePath = join(templateSourcePath, 'base/env.example');
+  const templateEnvExamplePath = join(templateSourcePath, 'base/.env.example');
   const { readFileSync, existsSync } = await import('node:fs');
 
   // Read from template source if it exists (since we skip it in copyBaseTemplate)
