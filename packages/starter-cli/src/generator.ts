@@ -162,6 +162,7 @@ export async function generateProject(config: TemplateConfig) {
     const templatePath = await getTemplateSourcePath();
     spinner.text = 'Copying base template...';
     await copyBaseTemplate(projectPath, templatePath);
+    await ensureGitignore(projectPath, templatePath);
 
     if (config.features.length > 0) {
       spinner.text = 'Including feature modules...';
@@ -201,6 +202,7 @@ export async function generateProject(config: TemplateConfig) {
       console.log(chalk.cyan(`  ${config.packageManager} install`));
     }
     console.log(chalk.cyan(`  ${config.packageManager} run setup`));
+    console.log(chalk.cyan(`  ${config.packageManager} run prisma:migrate`));
     console.log(chalk.cyan(`  ${config.packageManager} run dev`));
     console.log('');
   } catch (error) {
@@ -220,6 +222,15 @@ async function copyBaseTemplate(projectPath: string, templatePath: string) {
     });
   } else {
     throw new Error(`Template source not found at ${basePath}`);
+  }
+}
+
+/** Explicitly copy .gitignore from template so generated projects always have it (reliable across builds and packed packages). */
+async function ensureGitignore(projectPath: string, templatePath: string) {
+  const templateGitignore = join(templatePath, 'base', '.gitignore');
+  if (await pathExists(templateGitignore)) {
+    const content = await readFile(templateGitignore, 'utf-8');
+    await writeFile(join(projectPath, '.gitignore'), content);
   }
 }
 

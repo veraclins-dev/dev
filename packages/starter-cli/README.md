@@ -51,7 +51,7 @@ This will prompt you for:
 - Deployment target
 - Package manager
 
-The generator will also create a `.env` file with values derived from your choices (including generated `SESSION_SECRET` and `HONEYPOT_SECRET`) and will run `git init` with a `.gitignore` if the project directory is not already a git repository. For PostgreSQL, `npm run setup` (and `npm run dev` the first time) will create the database with the same name as the project if it does not already exist; for SQLite no separate create step is needed.
+The generator will also create a `.env` file with values derived from your choices (including generated `SESSION_SECRET` and `HONEYPOT_SECRET`) and will run `git init` with a `.gitignore` if the project directory is not already a git repository. After setup, run `prisma:migrate` before `dev`. For PostgreSQL, `setup` creates the database if it does not exist; for SQLite no separate create step is needed.
 
 ### Non-Interactive Mode
 
@@ -98,6 +98,7 @@ After creating your project:
 cd my-app
 npm install  # if --skip-install was used
 npm run setup
+npm run prisma:migrate
 npm run dev
 ```
 

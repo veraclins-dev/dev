@@ -102,6 +102,7 @@ alwaysApply: true
 # Git Workflow Guidelines
 
 - Use conventional commits
+- **Use only commit types that trigger a version change:** `feat` (minor), `fix` (patch), or `BREAKING CHANGE` / footer for major. Do not use `docs`, `chore`, `refactor`, `style`, or `test` as the subject type when the change should be released.
 - Keep commits atomic and focused
 - Write concise but meaningful commit messages
 - Keep every commit message line to below 100 characters
