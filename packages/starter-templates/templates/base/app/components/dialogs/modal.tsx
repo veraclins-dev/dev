@@ -12,7 +12,7 @@ import { cn } from '@veraclins-dev/utils'
 import { useCallback } from 'react'
 import { CancelButton } from './cancel-button'
 import { ConfirmButton } from './confirm-button'
-import { type SubmitButtonProps } from '../submit-button'
+import { type SubmitButtonProps } from '#app/components/submit-button'
 
 export type ModalDialogProps = Readonly<{
 	open: boolean

@@ -3,7 +3,7 @@ import { cn } from '@veraclins-dev/utils'
 import {
 	type SubmitButtonProps,
 	SubmitButton,
-} from '../submit-button'
+} from '#app/components/submit-button'
 
 interface ConfirmButtonProps extends SubmitButtonProps {}
 

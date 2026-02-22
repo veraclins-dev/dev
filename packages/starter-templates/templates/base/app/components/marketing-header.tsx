@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router'
 
 import { Box, Icon } from '@veraclins-dev/ui'
 
-import { useOptionalUser } from '../../hooks/use-user'
+import { useOptionalUser } from '#app/hooks/use-user'
 
 import { Link, LinkButton  } from './link'
 import { Logo } from './logo'

@@ -10,19 +10,19 @@ import {
 	Typography,
 } from '@veraclins-dev/ui'
 
-import verifyIllustration from '../../assets/images/verify-illustration.svg'
+import verifyIllustration from '#app/assets/images/verify-illustration.svg'
 import {
 	AuthLayout,
 	type AuthPageHeading,
-} from '../../routes/auth+/components/layout'
+} from '#app/routes/auth+/components/layout'
 import {
 	codeQueryParam,
 	targetQueryParam,
 	typeQueryParam,
 	type VerificationTypes,
 	Verify,
-} from '../../utils/auth/verification.utils'
-import { VerificationType } from '../../utils/user/validations'
+} from '#app/utils/auth/verification.utils'
+import { VerificationType } from '#app/utils/user/validations'
 
 export function VerifyForm() {
 	const [searchParams] = useSearchParams()

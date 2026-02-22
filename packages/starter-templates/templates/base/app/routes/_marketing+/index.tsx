@@ -1,5 +1,3 @@
-import { useSearchParams } from 'react-router'
-
 import {
 	Box,
 	Card,
@@ -8,9 +6,11 @@ import {
 	type IconName,
 	Typography,
 } from '@veraclins-dev/ui'
+import { useSearchParams } from 'react-router'
 
-import { Link, LinkButton } from '../../components/link'
-import { useOptionalUser } from '../../hooks/use-user'
+
+import { Link, LinkButton } from '#app/components/link'
+import { useOptionalUser } from '#app/hooks/use-user'
 
 interface FeatureCardProps {
 	icon: IconName

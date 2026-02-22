@@ -1,10 +1,10 @@
 import { forbidden } from '@veraclins-dev/react-utils/server'
 import type { RouterContextProvider } from 'react-router'
 
-import { requireUserId } from '../auth/auth.server'
-import { userContext } from '../auth/context.server'
-import { RoleLevel } from '../db/enums'
-import { getUserWithRelations } from '../user/user.server'
+import { requireUserId } from '#app/utils/auth/auth.server'
+import { userContext } from '#app/utils/auth/context.server'
+import { RoleLevel } from '#app/utils/db/enums'
+import { getUserWithRelations } from '#app/utils/user/user.server'
 
 export async function requireUserWithRole(
 	request: Request,

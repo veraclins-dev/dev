@@ -180,6 +180,9 @@ export async function generateProject(config: TemplateConfig) {
     spinner.text = 'Rendering template variables...';
     await renderTemplateVariables(projectPath, config);
 
+    spinner.text = 'Adding optional dependencies...';
+    await addOptionalDependencies(projectPath, config);
+
     spinner.text = 'Applying database and schema options...';
     await applyDatabaseToPrismaSchema(projectPath, config);
 
@@ -435,6 +438,26 @@ async function renderTemplateVariables(
       await writeFile(filePath, rendered);
     }
   }
+}
+
+/** Add dependencies required by selected optional services (e.g. firebase when storage is firebase). */
+async function addOptionalDependencies(
+  projectPath: string,
+  config: TemplateConfig,
+) {
+  const pkgPath = join(projectPath, 'package.json');
+  if (!(await pathExists(pkgPath))) return;
+
+  const pkg = JSON.parse(await readFile(pkgPath, 'utf-8')) as {
+    dependencies?: Record<string, string>;
+  };
+  if (!pkg.dependencies) pkg.dependencies = {};
+
+  if (config.storageProvider === 'firebase') {
+    pkg.dependencies['firebase'] = '^12.8.0';
+  }
+
+  await writeFile(pkgPath, JSON.stringify(pkg, null, 2));
 }
 
 async function writeEnvFile(projectPath: string, config: TemplateConfig) {
