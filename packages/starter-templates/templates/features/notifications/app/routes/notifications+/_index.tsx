@@ -3,14 +3,14 @@ import { useSearchParams } from 'react-router';
 
 import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server';
 
-import { InfiniteLoader } from '../../components/infinite-loader';
-import { getPaginationParams } from '../../utils';
-import { getUserId, requireUserId } from '../../utils/auth/auth.server';
-import { getPageTitle } from '../../utils/misc';
+import { InfiniteLoader } from '#app/components/infinite-loader';
+import { getPaginationParams } from '#app/utils';
+import { getUserId, requireUserId } from '#app/utils/auth/auth.server';
+import { getPageTitle } from '#app/utils/misc';
 import {
   getUserNotifications,
   updateNotification,
-} from '../../utils/notifications/notifications.server';
+} from '#app/utils/notifications/notifications.server';
 
 import { type Route } from './+types/_index';
 import {
@@ -18,7 +18,7 @@ import {
   type NotificationTab,
 } from './api/types';
 import { UpdateNotificationSchema } from './api/validations.server';
-import { Notifications } from '../../components/notifications';
+import { Notifications } from '#app/components/notifications/notifications';
 
 export const loader = async ({ request, context }: Route.LoaderArgs) => {
   const url = new URL(request.url);

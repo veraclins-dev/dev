@@ -19,7 +19,7 @@ import {
 } from '@veraclins-dev/utils'
 import { useEffect, useState } from 'react'
 
-import type { DatePeriodValue } from '../../common/types'
+import type { DatePeriodValue } from '#app/common/types'
 import { CalendarDialog } from './calendar-dialog'
 
 const periodOptions: { value: StartOfPeriod; label: string }[] = [

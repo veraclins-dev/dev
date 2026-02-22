@@ -3,15 +3,15 @@ import { useCallback, useMemo } from 'react';
 import { Box, Typography } from '@veraclins-dev/ui';
 import { isThisWeek } from '@veraclins-dev/utils';
 
-import { useOptionalUser } from '../../hooks/use-user';
+import { useOptionalUser } from '#app/hooks/use-user';
 import {
   type Notification as NotificationType,
   type NotificationTab,
-} from '../../routes/notifications+/api/types';
+} from '#app/routes/notifications+/api/types';
 import { Notification } from './notification';
-import { Tabs } from '../activity/tabs';
-import { Card } from '../card';
-import { Empty } from '../empty';
+import { Tabs } from '#app/components/activity/tabs';
+import { Card } from '#app/components/card';
+import { Empty } from '#app/components/empty';
 
 type NotificationsProps = {
   notifications: NotificationType[];

@@ -1,5 +1,5 @@
-import { db, type Prisma } from '../db/db.server'
-import { type User } from '../db/types'
+import { db, type Prisma } from '#app/utils/db/db.server'
+import { type User } from '#app/utils/db/types'
 
 export const userInclude = {
 	role: { include: { permissions: true } },

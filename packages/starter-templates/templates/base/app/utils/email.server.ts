@@ -1,7 +1,7 @@
 import { render } from '@react-email/components';
 import { type ReactElement } from 'react';
 
-import { z } from '../validations/index';
+import { z } from '#app/validations/index';
 
 const resendErrorSchema = z.union([
 	z.object({

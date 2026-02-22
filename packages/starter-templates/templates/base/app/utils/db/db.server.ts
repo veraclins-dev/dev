@@ -3,7 +3,7 @@ import { styleText } from 'node:util'
 
 import { invariant } from '@veraclins-dev/utils'
 
-import { PrismaClient } from '../../../generated/prisma/client'
+import { PrismaClient } from '#generated/prisma/client'
 
 import { excludeDeleted } from './extensions'
 import { singleton } from './singleton.server'
@@ -38,7 +38,7 @@ export const db = singleton('prisma', () => {
 		},
 	})
 
-	client.$on('query', (e) => {
+	client.$on('query', (e: { duration: number; query: string }) => {
 		if (e.duration < logThreshold) return
 		const color = getColor(e.duration)
 		const dur = styleText(color, `${e.duration.toFixed(2)}ms`)
@@ -117,5 +117,5 @@ export async function paginate<QueryResult>({
 	}
 }
 
-export { Prisma } from '../../../generated/prisma/client'
-export * from '../../../generated/prisma/sql'
+export { Prisma } from '#generated/prisma/client'
+export * from '#generated/prisma/sql'

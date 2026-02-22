@@ -3,9 +3,9 @@ import { useCallback } from 'react';
 import { useCustomFetcher } from '@veraclins-dev/form';
 import { Box, Button, Typography } from '@veraclins-dev/ui';
 
-import { type Invitation as InvitationType } from '../../routes/invitations+/api/types';
-import { InvitationStatus } from '../../utils/db/enums';
-import { Loader } from '../loader';
+import { type Invitation as InvitationType } from '#app/routes/invitations+/api/types';
+import { InvitationStatus } from '#generated/prisma/client';
+import { Loader } from '#app/components/loader';
 
 type InvitationId = InvitationType['id'];
 

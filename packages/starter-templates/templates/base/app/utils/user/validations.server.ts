@@ -1,4 +1,4 @@
-import { z } from '../../validations/index'
+import { z } from '#app/validations/index'
 import {
 	authenticate,
 	checkIsCommonPassword,

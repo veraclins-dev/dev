@@ -5,12 +5,12 @@ import { Box, Typography } from '@veraclins-dev/ui';
 import {
   type Invitation as InvitationType,
   type InvitationTab,
-} from '../../routes/invitations+/api/types';
-import { Invitation } from '../../routes/invitations+/components/invitations/invitation';
-import { InvitationStatus } from '../../utils/db/enums';
-import { Tabs } from '../activity/tabs';
-import { Card } from '../card';
-import { Empty } from '../empty';
+} from '#app/routes/invitations+/api/types';
+import { Invitation } from './invitation';
+import { InvitationStatus } from '#generated/prisma/client';
+import { Tabs } from '#app/components/activity/tabs';
+import { Card } from '#app/components/card';
+import { Empty } from '#app/components/empty';
 
 type InvitationsProps = {
   invitations: InvitationType[];

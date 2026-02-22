@@ -1,12 +1,12 @@
 import { useNavigateWithRedirect } from '@veraclins-dev/react-utils'
 import { Box, Icon } from '@veraclins-dev/ui'
 
-import { useOptionalUser } from '../hooks/use-user'
-import { Avatar } from './avatar'
-import { NavLink } from './nav-link'
-import { NotificationDropdown } from './notification-dropdown'
-import { SearchField } from './search-field'
-import { UserDropdown } from './user-dropdown'
+import { Avatar } from '#app/components/avatar'
+import { NavLink } from '#app/components/nav-link'
+import { NotificationDropdown } from '#app/components/notification-dropdown'
+import { SearchField } from '#app/components/search-field'
+import { UserDropdown } from '#app/components/user-dropdown'
+import { useOptionalUser } from '#app/hooks/use-user'
 
 export const Navigation = () => {
 	const profile = useOptionalUser()

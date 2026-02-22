@@ -8,11 +8,11 @@ import {
 } from '@veraclins-dev/react-utils/server'
 import { getDomainUrl, invariant } from '@veraclins-dev/utils'
 
-import { REDIRECT_TO_FIELD } from '../constants'
-import { db, type Prisma } from '../db/db.server'
-import { sendEmail } from '../email.server'
-import { generateTOTP, verifyTOTP } from '../totp.server'
-import { type z } from '../../validations/index'
+import { REDIRECT_TO_FIELD } from '#app/utils/constants'
+import { db, type Prisma } from '#app/utils/db/db.server'
+import { sendEmail } from '#app/utils/email.server'
+import { generateTOTP, verifyTOTP } from '#app/utils/totp.server'
+import { type z } from '#app/validations/index'
 
 import { getUserId, requireUserId } from './auth.server'
 import { rememberKey, sessionKey } from './session.server'

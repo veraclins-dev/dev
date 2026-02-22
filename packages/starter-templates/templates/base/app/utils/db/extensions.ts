@@ -1,4 +1,4 @@
-import { Prisma } from '../../../generated/prisma/client'
+import { Prisma } from '#generated/prisma/client'
 
 const SOFT_DELETABLE_MODELS = ['User'] as const
 
@@ -52,7 +52,17 @@ export const excludeDeleted = Prisma.defineExtension({
 	name: 'ExcludeDeleted',
 	query: {
 		$allModels: {
-			$allOperations({ model, operation, args, query }) {
+			$allOperations({
+				model,
+				operation,
+				args,
+				query,
+			}: {
+				model: string
+				operation: string
+				args: unknown
+				query: (args: unknown) => Promise<unknown>
+			}) {
 				if (!shouldFilterModel(model) || !shouldFilterOperation(operation)) {
 					return query(args)
 				}

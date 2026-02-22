@@ -1,20 +1,36 @@
-import { Box, Typography } from '@veraclins-dev/ui'
+import { Typography } from '@veraclins-dev/ui'
 
-interface EmptyProps {
-	title: string
-	message?: string
-	elevated?: boolean
+import { Card, type CardProps } from '#app/components/card'
+
+interface EmptyProps extends Pick<CardProps, 'className' | 'elevated'> {
+  message?: React.ReactNode
+  action?: React.ReactNode
+  title?: React.ReactNode
 }
 
-export function Empty({ title, message }: EmptyProps) {
-	return (
-		<Box display="flex" flexDirection="column" items="center" justify="center" gap={2} py={8}>
-			<Typography variant="h6">{title}</Typography>
-			{message && (
-				<Typography variant="body2" className="text-foreground/70">
-					{message}
-				</Typography>
-			)}
-		</Box>
-	)
+export function Empty({
+  title,
+  message,
+  action,
+  className,
+  ...props
+}: EmptyProps) {
+  return (
+    <Card
+      minHeight={40}
+      w="full"
+      flex="1"
+      contentProps={{ justify: 'center', items: 'center' }}
+      className={className}
+      {...props}
+    >
+      <Typography variant="h3" className="text-center">
+        {title}
+      </Typography>
+      <Typography variant="body2" className="text-foreground/80 text-center">
+        {message}
+      </Typography>
+      {action}
+    </Card>
+  )
 }

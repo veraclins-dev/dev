@@ -1,47 +1,42 @@
-import { Box, Typography } from '@veraclins-dev/ui'
+import { Box, Button } from '@veraclins-dev/ui'
+import { humanize } from '@veraclins-dev/utils'
 
-import { cn } from '@veraclins-dev/utils'
+import { Card } from '#app/components/card'
 
-interface TabsProps {
-	tabs: string[]
-	activeTab: string
-	onTabChange: (tab: string) => void
-	heading?: string
-	className?: string
-	plain?: boolean
-}
-
-export function Tabs({
-	tabs,
-	activeTab,
-	onTabChange,
-	heading,
-	className,
-}: TabsProps) {
-	return (
-		<Box className={className}>
-			{heading && (
-				<Typography variant="h5" className="mb-2">
-					{heading}
-				</Typography>
-			)}
-			<Box display="flex" gap={2}>
-				{tabs.map((tab) => (
-					<button
-						key={tab}
-						type="button"
-						onClick={() => onTabChange(tab)}
-						className={cn(
-							'rounded px-3 py-1.5 text-sm font-medium',
-							activeTab === tab
-								? 'bg-primary text-primary-foreground'
-								: 'bg-muted text-muted-foreground hover:bg-muted/80',
-						)}
-					>
-						{tab.charAt(0).toUpperCase() + tab.slice(1)}
-					</button>
-				))}
-			</Box>
-		</Box>
-	)
+export function Tabs<T extends string = string>({
+  tabs,
+  activeTab,
+  onTabChange,
+  heading,
+  className,
+  plain,
+}: {
+  tabs: readonly T[]
+  activeTab: T
+  onTabChange: (tab: T) => void
+  heading?: string
+  className?: string
+  plain?: boolean
+}) {
+  return (
+    <Card
+      className={className}
+      title={heading}
+      contentProps={{ ...(plain ? { p: 0, pt: 2 } : { pt: 2 }) }}
+      headerProps={{ ...(plain ? { p: 0 } : {}) }}
+    >
+      <Box display="flex" gap={2} mt={2}>
+        {tabs.map((tab) => (
+          <Button
+            key={tab}
+            variant="soft"
+            color={tab === activeTab ? 'primary' : 'neutral'}
+            onClick={() => onTabChange(tab)}
+          >
+            {tab === 'all' ? 'All' : humanize(tab)}
+          </Button>
+        ))}
+      </Box>
+    </Card>
+  )
 }

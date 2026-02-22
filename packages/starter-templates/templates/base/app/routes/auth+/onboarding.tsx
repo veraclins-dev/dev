@@ -10,22 +10,22 @@ import {
 	LabeledTextField,
 } from '@veraclins-dev/ui'
 
-import createAccountIllustration from '../../assets/images/create-illustration.svg'
-import { WelcomeEmail } from '../../components/emails/welcome-email'
-import { requireAnonymous, signup } from '../../utils/auth/auth.server'
+import createAccountIllustration from '#app/assets/images/create-illustration.svg'
+import { WelcomeEmail } from '#app/components/emails/welcome-email'
+import { requireAnonymous, signup } from '#app/utils/auth/auth.server'
 import {
 	authSessionStorage,
 	sessionKey,
-} from '../../utils/auth/session.server'
-import { verifySessionStorage } from '../../utils/auth/verification.server'
+} from '#app/utils/auth/session.server'
+import { verifySessionStorage } from '#app/utils/auth/verification.server'
 import {
 	onboardingEmailSessionKey,
-} from '../../utils/auth/verification.utils'
-import { redirectWithConfetti } from '../../utils/confetti.server'
-import { sendEmail } from '../../utils/email.server'
-import { getBaseURL, getPageTitle } from '../../utils/misc'
-import { CreateAccount } from '../../utils/user/validations'
-import { CreateUniqueAccount } from '../../utils/user/validations.server'
+} from '#app/utils/auth/verification.utils'
+import { redirectWithConfetti } from '#app/utils/confetti.server'
+import { sendEmail } from '#app/utils/email.server'
+import { getBaseURL, getPageTitle } from '#app/utils/misc'
+import { CreateAccount } from '#app/utils/user/validations'
+import { CreateUniqueAccount } from '#app/utils/user/validations.server'
 
 import { type Route } from './+types/onboarding'
 import { AuthLayout } from './components/layout'

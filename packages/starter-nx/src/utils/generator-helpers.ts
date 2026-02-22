@@ -2,9 +2,13 @@ import type { GeneratorCallback, Tree } from '@nx/devkit';
 import { normalizePath, readJson, updateJson } from '@nx/devkit';
 import { execSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 
-import { copyDirectoryToTree, getTemplateSourcePath } from './file-utils.js';
+import {
+  copyDirectoryToTree,
+  getTemplateSourcePath,
+  replaceAppAlias,
+} from './file-utils.js';
 import { renderTemplate, type TemplateConfig } from './template.js';
 
 /**
@@ -49,9 +53,10 @@ export async function copyBaseTemplate(
         normalizedPath !== 'README.md'
       );
     },
-    (content) => {
-      // Render template variables
-      return renderTemplate(content, config);
+    (content, relativePath) => {
+      const rendered = renderTemplate(content, config);
+      // Nx apps use relative imports; rewrite #app/... to relative path
+      return replaceAppAlias(rendered, relativePath);
     },
   );
 
@@ -118,9 +123,9 @@ export async function copyFeatureModule(
       // Exclude schema.prisma (will be merged separately)
       return !filePath.includes('prisma/schema.prisma');
     },
-    (content) => {
-      // Render template variables
-      return renderTemplate(content, config);
+    (content, relativePath) => {
+      const rendered = renderTemplate(content, config);
+      return replaceAppAlias(rendered, relativePath);
     },
   );
 }
@@ -156,9 +161,13 @@ export async function copyServiceIntegration(
       // Include all service files
       return true;
     },
-    (content) => {
-      // Render template variables
-      return renderTemplate(content, config);
+    (content, relativePath) => {
+      const rendered = renderTemplate(content, config);
+      // Service files end up under app/utils/services/<type>/; path relative to project root
+      const pathRelativeToProjectRoot = normalizePath(
+        relative(projectRoot, join(serviceTargetPath, relativePath)),
+      );
+      return replaceAppAlias(rendered, pathRelativeToProjectRoot);
     },
   );
 }

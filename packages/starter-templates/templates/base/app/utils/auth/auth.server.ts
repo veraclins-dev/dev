@@ -10,13 +10,13 @@ import {
 } from '@veraclins-dev/react-utils/server'
 import { invariant } from '@veraclins-dev/utils'
 
-import type { MaybeString } from '../../common/types'
-import { type z } from '../../validations/index'
-import { db, type Prisma } from '../db/db.server'
-import { type Password, type User } from '../db/types'
-import { logUserAction } from '../logs/logs.server'
-import { getUserById } from '../user/user.server'
-import { type CreateAccount } from '../user/validations'
+import type { MaybeString } from '#app/common/types'
+import { type z } from '#app/validations/index'
+import { db, type Prisma } from '#app/utils/db/db.server'
+import { type Password, type User } from '#app/utils/db/types'
+import { logUserAction } from '#app/utils/logs/logs.server'
+import { getUserById } from '#app/utils/user/user.server'
+import { type CreateAccount } from '#app/utils/user/validations'
 
 import { sessionContext, userContext, userIdContext } from './context.server'
 import {
@@ -267,7 +267,7 @@ export async function createSession(
 	user: string | Prisma.UserCreateInput,
 	request: Request,
 ) {
-	return await db.$transaction(async (tx) => {
+	return await db.$transaction(async (tx: Prisma.TransactionClient) => {
 		let session
 		if (typeof user === 'string') {
 			const [createdSession] = await Promise.all([

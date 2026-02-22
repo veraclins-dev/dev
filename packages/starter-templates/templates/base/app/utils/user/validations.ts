@@ -1,4 +1,4 @@
-import { z } from '../../validations/index'
+import { z } from '#app/validations/index'
 
 export const passwordRegex = /^(?=.*?[A-Za-z])(?=.*?\d).{6,30}$/
 

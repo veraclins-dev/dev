@@ -1,15 +1,22 @@
 import { useCallback, useEffect } from 'react';
 
 import { useCustomFetcher } from '@veraclins-dev/form';
-import { Box, ComposedDropdownMenu } from '@veraclins-dev/ui';
+import { Box, type IconName, ComposedDropdownMenu } from '@veraclins-dev/ui';
 import { cn } from '@veraclins-dev/utils';
 
 import {
   type Notification as NotificationType,
   NotificationAction,
-} from '../../routes/notifications+/api/types';
-import { ActionItem, Activity, ActivityLink } from '../activity';
-import { MoreButton } from '../more-button';
+} from '#app/routes/notifications+/api/types';
+import { ActionItem, Activity, ActivityLink } from '#app/components/activity/activity';
+import { MoreButton } from '#app/components/more-button';
+
+function getActivityIcon(targetType: string): IconName {
+  if (targetType === 'profile') return 'user-circle';
+  if (targetType === 'group') return 'group';
+  if (['question', 'answer'].includes(targetType)) return 'file-text';
+  return 'info';
+}
 
 type NotificationId = NotificationType['id'];
 
@@ -117,7 +124,7 @@ export const Notification = ({
     >
       <Activity
         message={notification.activity.target}
-        target={notification.activity.targetType}
+        icon={getActivityIcon(notification.activity.targetType)}
         profileImage={notification.activity.actor.profileImage}
         createdAt={notification.createdAt}
         isRead={notification.isRead}

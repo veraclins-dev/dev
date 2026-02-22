@@ -3,7 +3,7 @@ import { redirect } from 'react-router'
 
 import { combineHeaders } from '@veraclins-dev/react-utils/server'
 
-import type { MaybeString } from '../common/types'
+import type { MaybeString } from '#app/common/types'
 
 const cookieName = 'en_confetti'
 

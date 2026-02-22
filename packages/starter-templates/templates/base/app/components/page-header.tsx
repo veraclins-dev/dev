@@ -12,7 +12,7 @@ import { humanize, truncate } from '@veraclins-dev/utils'
 import { Fragment } from 'react'
 import { Link as RouterLink, type UIMatch, useMatches } from 'react-router'
 
-import type { BreadcrumbType, PageHandle } from '../common/types'
+import type { BreadcrumbType, PageHandle } from '#app/common/types'
 
 interface BreadcrumbsProps {
 	breadcrumbs: BreadcrumbType[]
@@ -79,9 +79,7 @@ export function PageHeader({ className, noPadding = false }: PageHeaderProps) {
 				description: handle?.description ?? '',
 				breadcrumb: {
 					label:
-						typeof handle?.breadcrumb === 'string'
-							? handle.breadcrumb
-							: humanize(pathname.split('/').pop() || 'Home'),
+						handle?.breadcrumb ?? humanize(pathname.split('/').pop() || 'Home'),
 					to: pathname,
 				},
 				actions: handle?.actions,

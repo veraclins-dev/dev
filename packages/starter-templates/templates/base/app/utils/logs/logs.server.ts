@@ -1,5 +1,5 @@
-import { db, type Prisma } from '../db/db.server'
-import { type ActionSource, type AuditLogAction, type RoleType, type TriggeredBy } from '../db/enums'
+import { db, type Prisma } from '#app/utils/db/db.server'
+import { type ActionSource, type AuditLogAction, type RoleType, type TriggeredBy } from '#app/utils/db/enums'
 
 export interface CreateAuditLogInput {
 	action: AuditLogAction

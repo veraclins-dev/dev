@@ -1,4 +1,4 @@
-import { type Prisma } from '../db/db.server';
+import { type Prisma } from '#app/utils/db/db.server';
 import { type Notification } from '#generated/prisma/client';
 
 export type NotificationWithActivity = Prisma.NotificationGetPayload<{

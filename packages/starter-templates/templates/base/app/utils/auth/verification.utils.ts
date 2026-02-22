@@ -1,4 +1,4 @@
-import { z } from '../../validations/index'
+import { z } from '#app/validations/index'
 import { REDIRECT_TO_FIELD } from '../constants'
 import { VerificationType } from '../user/validations'
 

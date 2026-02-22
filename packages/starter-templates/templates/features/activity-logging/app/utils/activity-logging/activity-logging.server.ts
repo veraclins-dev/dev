@@ -1,5 +1,5 @@
-import { PAGE_DATA_DEFAULTS } from '../constants';
-import { db, paginate, type Prisma } from '../db/db.server';
+import { PAGE_DATA_DEFAULTS } from '#app/utils/constants';
+import { db, paginate, type Prisma } from '#app/utils/db/db.server';
 
 import {
   type GetAuditLogsInput,

@@ -1,4 +1,4 @@
-import { db } from '../app/utils/db/db.server'
+import { db, type Prisma } from '../app/utils/db/db.server'
 
 async function seed() {
 	console.log('🌱 Seeding database...')

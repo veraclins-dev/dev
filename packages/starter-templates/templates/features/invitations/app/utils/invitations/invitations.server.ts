@@ -4,9 +4,9 @@ import {
   notFound,
 } from '@veraclins-dev/react-utils/server';
 
-import { PAGE_DATA_DEFAULTS } from '../../constants';
-import { db, paginate, type Prisma } from '../../db/db.server';
-import { InvitationStatus, InvitationType } from '../../db/enums';
+import { PAGE_DATA_DEFAULTS } from '#app/utils/constants';
+import { db, paginate, type Prisma } from '#app/utils/db/db.server';
+import { InvitationStatus, InvitationType } from '#generated/prisma/client';
 
 import {
   type CreateInvitationInput,

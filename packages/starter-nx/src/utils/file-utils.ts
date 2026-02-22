@@ -4,6 +4,33 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+const pathPosix = { dirname, join, relative };
+
+/**
+ * Replace #app/... imports with relative paths from the given file to app root.
+ * Used when generating Nx apps so the output uses relative imports instead of #app alias.
+ *
+ * @param content - File content that may contain #app/... imports
+ * @param filePathRelativeToProjectRoot - Path of the file relative to project root (e.g. app/routes/foo.tsx)
+ * @returns Content with #app/... replaced by relative path (e.g. ../utils/db/db.server)
+ */
+export function replaceAppAlias(
+  content: string,
+  filePathRelativeToProjectRoot: string,
+): string {
+  const normalized = normalizePath(filePathRelativeToProjectRoot);
+  const fromDir = pathPosix.dirname(normalized);
+  const appRoot = 'app';
+  return content.replace(/#app\/([^'"]+)/g, (_, subPath: string) => {
+    const toPath = `${appRoot}/${subPath}`;
+    let rel = pathPosix.relative(fromDir, toPath);
+    if (!rel.startsWith('.')) {
+      rel = `./${rel}`;
+    }
+    return rel.replace(/\\/g, '/');
+  });
+}
+
 /**
  * Get the template source directory path
  * Only looks for bundled templates in the package directory

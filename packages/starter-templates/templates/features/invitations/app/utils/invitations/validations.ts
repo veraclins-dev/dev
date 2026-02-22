@@ -1,8 +1,8 @@
 import {
   InvitationStatus,
   InvitationType,
-} from '../../db/enums';
-import { z } from '../../validations/index';
+} from '#generated/prisma/client';
+import { z } from '#app/validations/index';
 
 export const CreateInvitationSchema = z.object({
   entityType: z.string().min(1, 'Entity type is required'),

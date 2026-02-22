@@ -1,3 +1,5 @@
+import { type paginate } from '#app/utils/db/db.server'
+
 export {
 	type AuditLog,
 	type Connection,
@@ -8,3 +10,5 @@ export {
 	type User,
 	type Verification,
 } from '#generated/prisma/client'
+
+export type PaginateResult<T> = Awaited<ReturnType<typeof paginate<T[]>>>

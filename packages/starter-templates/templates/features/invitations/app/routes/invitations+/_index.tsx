@@ -3,18 +3,18 @@ import { useSearchParams } from 'react-router';
 
 import { formSubmissionErrors, processForm } from '@veraclins-dev/form/server';
 
-import { InfiniteLoader } from '../../components/infinite-loader';
-import { getPaginationParams } from '../../utils';
-import { getUserId, requireUserId } from '../../utils/auth/auth.server';
-import { db } from '../../utils/db/db.server';
-import { InvitationStatus } from '../../utils/db/enums';
+import { InfiniteLoader } from '#app/components/infinite-loader';
+import { getPaginationParams } from '#app/utils';
+import { getUserId, requireUserId } from '#app/utils/auth/auth.server';
+import { db } from '#app/utils/db/db.server';
+import { InvitationStatus } from '#generated/prisma/client';
 import {
   acceptInvitation,
   cancelRequest,
   declineInvitation,
   getUserInvitations,
-} from '../../utils/invitations/invitations.server';
-import { getPageTitle } from '../../utils/misc';
+} from '#app/utils/invitations/invitations.server';
+import { getPageTitle } from '#app/utils/misc';
 
 import { type Route } from './+types/_index';
 import {
@@ -22,7 +22,7 @@ import {
   type InvitationTab,
 } from './api/types';
 import { InvitationActionServerSchema } from './api/validations.server';
-import { Invitations } from './components/invitations';
+import { Invitations } from '#app/components/invitations/invitations';
 
 export const loader = async ({ request, context }: Route.LoaderArgs) => {
   const url = new URL(request.url);

@@ -2,7 +2,7 @@ import { Calendar, type DateValue, type CalendarProps } from '@veraclins-dev/ui'
 import { cn } from '@veraclins-dev/utils'
 import { useEffect, useState } from 'react'
 
-import { ModalDialog, type ModalDialogProps } from '../dialogs/modal'
+import { ModalDialog, type ModalDialogProps } from '#app/components/dialogs/modal'
 
 interface CalendarDialogProps
 	extends Pick<ModalDialogProps, 'open' | 'title' | 'subtitle'>,

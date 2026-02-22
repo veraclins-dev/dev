@@ -1,4 +1,4 @@
-import { z } from '../validations/index';
+import { z } from '#app/validations/index';
 
 const schema = z.object({
 	NODE_ENV: z.enum(['production', 'development', 'test'] as const),

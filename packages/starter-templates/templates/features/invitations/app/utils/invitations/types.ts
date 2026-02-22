@@ -1,8 +1,8 @@
-import { type Prisma } from '../../db/db.server';
+import { type Prisma } from '#app/utils/db/db.server';
 import {
   type InvitationStatus,
   type InvitationType,
-} from '../../db/enums';
+} from '#generated/prisma/client';
 
 export type InvitationWithRelations = Prisma.InvitationGetPayload<{
   include: {

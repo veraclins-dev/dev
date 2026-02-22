@@ -1,5 +1,5 @@
-import { type Prisma } from '../db/db.server';
-import { type AuditLog } from '../db/types';
+import { type Prisma } from '#app/utils/db/db.server';
+import { type AuditLog } from '#app/utils/db/types';
 
 export type AuditLogWithActor = Prisma.AuditLogGetPayload<{
   include: {

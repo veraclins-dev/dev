@@ -2,7 +2,7 @@ import { Image } from '@veraclins-dev/image'
 import { Box, ComposedTooltip, Icon, type IconName } from '@veraclins-dev/ui'
 import { cn, getSize, getSizeClasses, type Size } from '@veraclins-dev/utils'
 
-import type { MaybeString } from '../common/types'
+import type { MaybeString } from '#app/common/types'
 
 export interface AvatarProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
 	size?: Size
