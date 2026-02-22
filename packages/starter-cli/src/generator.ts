@@ -225,13 +225,47 @@ async function copyBaseTemplate(projectPath: string, templatePath: string) {
   }
 }
 
-/** Explicitly copy .gitignore from template so generated projects always have it (reliable across builds and packed packages). */
+const DEFAULT_GITIGNORE = `# Dependencies
+node_modules
+
+# Build outputs
+build
+public/build
+server-build
+.cache
+
+# Environment (never commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Database
+postgres-data
+*.db
+*.db-journal
+
+# Testing & coverage
+coverage
+playwright-report
+test-results
+
+# IDE and OS
+.DS_Store
+.idea
+.vscode
+*.log
+
+# Misc
+*.tsbuildinfo
+`;
+
+/** Write .gitignore into the project so generated apps always have it (template copy may omit dotfiles in some setups). */
 async function ensureGitignore(projectPath: string, templatePath: string) {
   const templateGitignore = join(templatePath, 'base', '.gitignore');
-  if (await pathExists(templateGitignore)) {
-    const content = await readFile(templateGitignore, 'utf-8');
-    await writeFile(join(projectPath, '.gitignore'), content);
-  }
+  const content = (await pathExists(templateGitignore))
+    ? await readFile(templateGitignore, 'utf-8')
+    : DEFAULT_GITIGNORE;
+  await writeFile(join(projectPath, '.gitignore'), content);
 }
 
 async function includeFeatureModule(
