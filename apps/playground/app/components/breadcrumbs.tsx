@@ -58,7 +58,9 @@ export function Breadcrumbs() {
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbLink href="/products">Products</BreadcrumbLink>
+                    <BreadcrumbLink tooltip="Products" href="/products">
+                      Products
+                    </BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>

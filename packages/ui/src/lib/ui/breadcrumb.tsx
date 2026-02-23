@@ -1,6 +1,6 @@
-import { Slot } from '@radix-ui/react-slot';
-
 import { cn } from '@veraclins-dev/utils';
+
+import type { WithTooltip } from '../types';
 
 import { Box, type BoxProps } from './box';
 import { Icon } from './icon';
@@ -105,22 +105,18 @@ type CustomComponent = React.ComponentType<any>;
  *
  * // Custom component
  * <BreadcrumbLink asChild>
- *   <Link to="/products">Products</Link>
+ *   <Link ="/products">Products</Link>
  * </BreadcrumbLink>
  * ```
  */
 function BreadcrumbLink<C extends 'a' | CustomComponent = 'a'>({
-  asChild,
+  // asChild,
   className,
   color,
   ...props
-}: LinkProps<C> & {
-  asChild?: boolean;
-}) {
-  const Comp = asChild ? Slot : Link;
-
+}: WithTooltip<LinkProps<C>>) {
   return (
-    <Comp
+    <Link
       color={color as NonNullable<LinkProps['color']>}
       data-slot="breadcrumb-link"
       className={cn('transition-colors opacity-80', className)}
