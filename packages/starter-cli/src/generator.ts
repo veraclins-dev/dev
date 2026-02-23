@@ -376,20 +376,21 @@ async function configureServices(
   }
 
   if (config.storageProvider !== 'local') {
-    const storagePath = join(
-      servicesPath,
-      'storage',
-      `${config.storageProvider}.ts`,
-    );
+    const storageDir = join(servicesPath, 'storage');
+    const targetDir = join(projectPath, 'app', 'services');
+    await ensureDir(targetDir);
+
+    const storageTypesPath = join(storageDir, 'types.ts');
+    if (await pathExists(storageTypesPath)) {
+      await copy(storageTypesPath, join(targetDir, 'types.ts'));
+    }
+
+    const storagePath = join(storageDir, `${config.storageProvider}.ts`);
     if (await pathExists(storagePath)) {
-      const targetPath = join(
-        projectPath,
-        'app',
-        'services',
-        `${config.storageProvider}.server.ts`,
+      await copy(
+        storagePath,
+        join(targetDir, `${config.storageProvider}.server.ts`),
       );
-      await ensureDir(dirname(targetPath));
-      await copy(storagePath, targetPath);
     }
   }
 }
