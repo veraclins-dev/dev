@@ -1,6 +1,6 @@
 {
   "name": "@veraclins-dev/starter-cli",
-  "version": "0.73.2",
+  "version": "0.73.3",
   "description": "Create a new Veraclins-based application",
   "type": "module",
   "repository": {
