@@ -31,6 +31,11 @@ export function replaceAppAlias(
   });
 }
 
+export function getBundledTemplatePathFromDir(currentDir: string): string {
+  const packageRoot = join(currentDir, '../..');
+  return join(packageRoot, 'templates');
+}
+
 /**
  * Get the template source directory path
  * Only looks for bundled templates in the package directory
@@ -49,8 +54,7 @@ export async function getTemplateSourcePath(): Promise<string> {
   // To:   dist/packages/starter-nx/templates
   const currentFile = fileURLToPath(import.meta.url);
   const currentDir = dirname(currentFile);
-  const packageRoot = join(currentDir, '../..');
-  const bundledTemplatePath = join(packageRoot, 'templates');
+  const bundledTemplatePath = getBundledTemplatePathFromDir(currentDir);
 
   if (existsSync(bundledTemplatePath)) {
     return bundledTemplatePath;

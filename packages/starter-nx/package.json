@@ -2,8 +2,8 @@
   "name": "@veraclins-dev/starter-nx",
   "version": "0.73.2",
   "type": "module",
-  "main": "./index.js",
-  "types": "./index.d.ts",
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
   "generators": "./generators.json",
   "repository": {
     "type": "git",
@@ -11,14 +11,15 @@
   },
   "exports": {
     ".": {
-      "types": "./index.d.ts",
-      "import": "./index.js",
-      "require": "./index.js"
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js",
+      "require": "./src/index.js"
     },
     "./package.json": "./package.json",
     "./generators.json": "./generators.json"
   },
   "dependencies": {
-    "@nx/devkit": "22.3.3"
+    "@nx/devkit": "22.3.3",
+    "vitest": "^4.0.16"
   }
 }

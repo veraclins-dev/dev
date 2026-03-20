@@ -1118,30 +1118,50 @@ export async function addPostInstallTasks(
 
   // Task to generate Prisma client after database is created
   tasks.push(() => {
-    try {
-      // Use absolute path from workspace root
-      const workspaceRoot = process.cwd();
-      const fullProjectRoot = join(workspaceRoot, projectRoot);
-      const prismaSchemaPath = join(fullProjectRoot, 'prisma/schema.prisma');
+    const workspaceRoot = process.cwd();
+    const fullProjectRoot = join(workspaceRoot, projectRoot);
+    const prismaSchemaPath = join(fullProjectRoot, 'prisma/schema.prisma');
 
-      if (existsSync(prismaSchemaPath)) {
-        console.log(
-          `\n📦 Generating Prisma client for ${config.projectName}...`,
-        );
-        execSync('npx prisma generate --sql', {
-          cwd: fullProjectRoot,
-          stdio: 'inherit',
-          env: { ...process.env },
-        });
-        console.log(`✅ Prisma client generated successfully\n`);
-      }
+    if (!existsSync(prismaSchemaPath)) {
+      return;
+    }
+
+    const localPrismaBin = join(fullProjectRoot, 'node_modules/.bin/prisma');
+    const workspacePrismaBin = join(workspaceRoot, 'node_modules/.bin/prisma');
+    if (!existsSync(localPrismaBin) && !existsSync(workspacePrismaBin)) {
+      console.warn(
+        `⚠️  Skipping Prisma client generation: Prisma CLI is not installed yet.`,
+      );
+      console.warn(
+        `   Run your package manager install, then execute 'npx prisma generate --sql' in ${projectRoot}.`,
+      );
+      return;
+    }
+
+    try {
+      console.log(`\n📦 Generating Prisma client for ${config.projectName}...`);
+      execSync('npx prisma generate --sql', {
+        cwd: fullProjectRoot,
+        stdio: 'inherit',
+        env: { ...process.env },
+      });
+      console.log(`✅ Prisma client generated successfully\n`);
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      if (errorMessage.includes("Cannot find module 'prisma/config'")) {
+        console.warn(
+          `⚠️  Skipping Prisma client generation: required Prisma runtime module 'prisma/config' is unavailable.`,
+        );
+        console.warn(
+          `   After installing dependencies, run 'npx prisma generate --sql' in ${projectRoot}.`,
+        );
+        return;
+      }
+
       console.warn(
         `⚠️  Failed to generate Prisma client. You may need to run 'npx prisma generate' manually.`,
       );
-      console.warn(
-        `   Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
+      console.warn(`   Error: ${errorMessage}`);
     }
   });
 

@@ -166,5 +166,6 @@
         "createRelease": "github"
       }
     }
-  }
+  },
+  "analytics": false
 }

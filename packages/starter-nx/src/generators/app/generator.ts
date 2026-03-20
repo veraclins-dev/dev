@@ -34,6 +34,8 @@ export default async function appGenerator(
   options: StarterAppGeneratorSchema,
 ): Promise<GeneratorCallback> {
   const tasks: GeneratorCallback[] = [];
+  ensureNxPluginDevDependencies(tree);
+
   const workspaceLayout = getWorkspaceLayout(tree);
   const projectName = names(options.name).fileName;
 
@@ -111,10 +113,7 @@ export default async function appGenerator(
   generatePrismaSchema(tree, templateSourcePath, config, prismaSchemaPath);
 
   // 6. Update package.json and install dependencies
-  const installTask = await updatePackageJson(tree, projectRoot, config);
-  if (installTask) {
-    tasks.push(installTask);
-  }
+  await updatePackageJson(tree, projectRoot, config);
 
   // 7. Add project configuration to workspace
   // Match Nx React plugin pattern: sourceRoot is always ${projectRoot}/src
@@ -181,6 +180,51 @@ export default async function appGenerator(
 
   // Return task chain for execution
   return runTasksInSerial(...tasks);
+}
+
+function getWorkspaceNxVersion(tree: Tree): string {
+  try {
+    const packageJson = tree.read('package.json', 'utf-8');
+    if (!packageJson) {
+      return 'latest';
+    }
+
+    const parsed = JSON.parse(packageJson) as {
+      devDependencies?: Record<string, string>;
+      dependencies?: Record<string, string>;
+    };
+
+    return (
+      parsed.devDependencies?.['nx'] ||
+      parsed.dependencies?.['nx'] ||
+      'latest'
+    );
+  } catch {
+    return 'latest';
+  }
+}
+
+function ensureNxPluginDevDependencies(tree: Tree): void {
+  const nxVersion = getWorkspaceNxVersion(tree);
+
+  updateJson(tree, 'package.json', (json) => {
+    const devDependencies = json.devDependencies || {};
+
+    if (!devDependencies['@nx/eslint']) {
+      devDependencies['@nx/eslint'] = nxVersion;
+    }
+    if (!devDependencies['@nx/vite']) {
+      devDependencies['@nx/vite'] = nxVersion;
+    }
+    if (!devDependencies['@nx/vitest']) {
+      devDependencies['@nx/vitest'] = nxVersion;
+    }
+
+    return {
+      ...json,
+      devDependencies,
+    };
+  });
 }
 
 /**
